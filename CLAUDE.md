@@ -4,7 +4,8 @@ Template repository for starting a Rezolve research project (latency, fine-tunin
 guardrails, etc.) using the Glite Autonomous Research Framework. Fork this repo and replace this
 section with your project-specific description.
 
-This is **not** the upstream Glite ARF template. It is a Rezolve fork-of-fork that adds:
+This started as a fork of the Glite ARF template but is developed independently by Rezolve. On
+top of the base framework it adds:
 
 * An Azure ML SSH-VM provisioner (`arf/scripts/utils/azure_ml_vm.py`) wired into the
   `setup-remote-machine` skill — Azure ML is the default GPU provider for Rezolve projects.
@@ -93,15 +94,8 @@ uv run pytest                                        # Run framework tests in ar
   `tasks/` directly (see rule 9).
 * Format specs for task documents: `arf/specifications/`.
 
-## Upstream sync
+## Provenance
 
-This repo tracks `GliteTech/glite-arf` as the `upstream` remote. To pull upstream framework
-improvements:
-
-```bash
-git fetch upstream
-git rebase upstream/main
-```
-
-Resolve any conflicts in `arf/` (the framework code), then push. Project-specific files under
-`project/`, `meta/`, and `tasks/` are unaffected by upstream rebases.
+rail-arf started as a fork of `GliteTech/glite-arf` but is developed independently. There is no
+`upstream` remote and we do not track upstream changes. Modify `arf/` (skills, verificators,
+aggregators, specs) freely — those are Rezolve's now.
