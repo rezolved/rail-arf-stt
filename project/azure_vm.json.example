@@ -1,0 +1,23 @@
+{
+  "spec_version": "1",
+  "vms": [
+    {
+      "name": "arf-EXAMPLE-region-v1",
+      "workspace": "<your-azure-ml-workspace>",
+      "resource_group": "<your-resource-group>",
+      "ssh_host_alias": "arf-EXAMPLE-region-v1",
+      "hourly_cost_usd": 13.96,
+      "priority": 1,
+      "notes": "Primary VM. Replace name/workspace/resource_group with your Azure ML compute pool entry. ssh_host_alias must match an entry in ~/.ssh/config so the provisioner can SSH without prompts."
+    },
+    {
+      "name": "arf-EXAMPLE-region-v2",
+      "workspace": "<your-azure-ml-workspace-fallback>",
+      "resource_group": "<your-resource-group>",
+      "ssh_host_alias": "arf-EXAMPLE-region-v2",
+      "hourly_cost_usd": 13.96,
+      "priority": 2,
+      "notes": "Fallback. Use a different region for capacity redundancy. Remove this entry if you only have one VM in the pool."
+    }
+  ]
+}

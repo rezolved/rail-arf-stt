@@ -7,17 +7,18 @@ description: >-
 ---
 # Setup Remote Machine
 
-**Version**: 3
+**Version**: 5
 
 ## Goal
 
-Provision a Vast.ai GPU instance, verify SSH connectivity and GPU availability, prepare the
-execution environment, and make the machine ready for task execution. Also defines the teardown
-protocol and execution monitoring procedures.
+Acquire a 2×H100 Azure ML compute instance from the shared pool defined in `project/azure_vm.json`,
+verify SSH connectivity and GPU availability, prepare the execution environment, and make the
+machine ready for task execution. Also defines the teardown protocol and execution monitoring
+procedures.
 
 ## Inputs
 
-* `$TASK_ID` — the task folder name (e.g., `0011-train-baseline-bert`)
+* `$TASK_ID` — the task folder name (e.g., `t0004_baseline_replication`)
 
 ## Context
 
@@ -25,15 +26,15 @@ Read before starting:
 
 * `tasks/$TASK_ID/plan/plan.md` — Section 5 (Remote Machines) defines GPU requirements, estimated
   runtime, and budget
-* `arf/specifications/remote_machines_specification.md` — machine_log.json schema, lifecycle states,
-  price/performance protocol
+* `arf/specifications/remote_machines_specification.md` — `machine_log.json` schema, lifecycle
+  states, cost protocol
 * `arf/specifications/task_results_specification.md` — schemas for `remote_machines_used.json` and
   `costs.json`
+* `project/azure_vm.json` — Azure ML compute pool (primary, fallbacks, hourly cost)
 * `project/budget.json` — per-task budget limit
-* `arf/specifications/project_budget_specification.md` — `project/budget.json` schema and threshold
-  rules
-* `arf/scripts/utils/vast_machines.py` — Python library for programmatic provisioning (optional but
-  recommended for automated retry and pre-validated filters)
+* `arf/scripts/utils/azure_ml_vm.py` — Python library and CLI for acquire/run/teardown against the
+  Azure ML pool. The library exposes `acquire()`, `run()`, `teardown()`, and
+  `to_machine_log_entry()` for schema-compatible `machine_log.json` shaping.
 * Current project spend and budget left — run:
   ```bash
   uv run python -u -m arf.scripts.aggregators.aggregate_costs --format json --detail full
@@ -41,386 +42,256 @@ Read before starting:
 
 * * *
 
-## Critical Rule
+## Critical Rules
 
-Wrap ALL CLI commands (`vastai`, `scp`, `ssh`) with `run_with_logs.py`:
+1. Wrap ALL CLI commands (`az`, `ssh`, `python -m arf.scripts.utils.azure_ml_vm`) with
+   `run_with_logs.py`:
 
-```bash
-uv run python -m arf.scripts.utils.run_with_logs --task-id $TASK_ID -- \
-  vastai search offers '...' --raw
-```
+   ```bash
+   uv run python -m arf.scripts.utils.run_with_logs --task-id $TASK_ID -- \
+     uv run python -m arf.scripts.utils.azure_ml_vm acquire $TASK_ID
+   ```
 
-The examples below show raw commands for clarity; always add the `run_with_logs.py` wrapper when
-executing them.
+   The examples below show raw commands for clarity; always add the `run_with_logs.py` wrapper when
+   executing them.
+
+2. The pool is shared with the finetuning team. Coordinate via the `#finetuning` Slack channel
+   before scheduling long-running jobs. Both pool VMs (`FT-NC80-v3`, `FT-NC80-v2`) carry their own
+   Azure-side 60-min idle shutdown as a safety net.
+
+3. Auto-deallocate after teardown. At $13.96/hr per VM, leaving an instance running overnight costs
+   ~$110. `azure_ml_vm teardown` will stop the VM unless another task holds a lock on it; only pass
+   `--keep-running` when the user has explicitly approved keeping the VM hot.
 
 * * *
 
 ## Steps
 
-### Phase 1: Search for Optimal Machine
+### Phase 1: Pre-flight checks
 
-1. Read `tasks/$TASK_ID/plan/plan.md` Section 5 (Remote Machines). Extract:
-   * Minimum GPU VRAM required
-   * Minimum system RAM and disk space
-   * Preferred GPU model (if any)
-   * Estimated runtime on a reference GPU
-   * Budget limit for this task
+1. Read `tasks/$TASK_ID/plan/plan.md` Section 5 (Remote Machines). Confirm the plan targets a 2×H100
+   / NC80-class machine. The pool only contains that SKU; non-NC80 plans need to be re-cut before
+   this skill runs.
 
-2. Build the search query. Determine the reliability threshold from the table in
-   `arf/specifications/remote_machines_specification.md` based on estimated task duration:
-   * Under 1h: `reliability>0.95`
-   * 1-5h: `reliability>0.98`
-   * 5-24h: `reliability>0.995`
-   * Over 24h: `reliability>0.999`
+2. Check current project spend and budget left:
 
    ```bash
-   vastai search offers \
-     'num_gpus=1 gpu_ram>=<MIN_VRAM> cpu_ram>=<MIN_RAM> \
-     disk_space>=<MIN_DISK> reliability><THRESHOLD> \
-     compute_cap<1200 cuda_max_good>=12.6 \
-     rentable=true verified=true' \
-     --order 'dph' --limit 20 --raw
+   uv run python -u -m arf.scripts.aggregators.aggregate_costs --format json --detail full
    ```
 
-   The `compute_cap<1200` filter blocks Blackwell-architecture GPUs (RTX 5090, RTX PRO 6000) whose
-   sm_120 compute capability is incompatible with PyTorch 2.6.0. The `cuda_max_good>=12.6` filter
-   blocks machines with CUDA drivers too old to run the container image. See
-   `arf/specifications/remote_machines_specification.md` "Default Search Filters" for details.
+   * If `stop_threshold_reached` is true or the plan's estimated GPU spend exceeds
+     `budget_left_before_stop_usd`, create `tasks/$TASK_ID/intervention/budget_exceeded.md` and
+     STOP.
+   * Estimated GPU spend: `estimated_hours * 13.96` USD per VM.
 
-   Add `gpu_name=<MODEL>` if the plan specifies a required model. For tasks over 5 hours, also add
-   `duration>=<2x_estimated_hours/24>` to filter out machines that would evict before completion.
-
-   For programmatic provisioning, use `arf.scripts.utils.vast_machines.build_query_string()` which
-   encodes these filters automatically.
-
-3. Record `search_started_at` as an ISO 8601 timestamp when the search begins. This will be used to
-   calculate `total_provisioning_seconds` later.
-
-4. Parse the JSON output. For all qualifying offers, calculate both `estimated_total_cost` and
-   `estimated_hours` using the relative speed table from
-   `arf/specifications/remote_machines_specification.md`:
-
-   ```text
-   estimated_hours = reference_hours / relative_speed
-   estimated_total_cost = dph_total * estimated_hours
-   ```
-
-5. Find the cost-efficiency sweet spot per the specification Decision Steps: sort by
-   `estimated_hours` (fastest first), then select the fastest GPU where stepping down to the next
-   cheaper tier would add substantial wait time (>30 min) for modest savings (<$2-3). Do NOT simply
-   pick the lowest `estimated_total_cost` — the user's waiting time has real cost. If two offers
-   have similar `estimated_hours` (within 20%), prefer the cheaper one.
-
-6. Check budget before provisioning:
-   * Read the current project spend using:
-     ```bash
-     uv run python -u -m arf.scripts.aggregators.aggregate_costs --format json --detail full
-     ```
-   * If `estimated_total_cost > per_task_default_limit` from `project/budget.json`, create
-     `tasks/$TASK_ID/intervention/budget_exceeded.md` and STOP.
-   * If `stop_threshold_reached` is true or `estimated_total_cost > budget_left_before_stop_usd`,
-     create `tasks/$TASK_ID/intervention/budget_exceeded.md` and STOP.
-   * The intervention file must state which limit was exceeded and include the current remaining
-     budget from the cost aggregator.
-
-7. Log the search results and selection rationale. Initialize `machine_log.json` in the step log
-   directory with `search_criteria`, `selected_offer`, `selection_rationale`, and
-   `search_started_at` fields. Set `failed_attempts` to `[]`.
-
-### Phase 1.5: Track Failed Attempts
-
-If any offer fails during Phase 2-4 (creation timeout, SSH failure, GPU verification mismatch),
-record a `failed_attempts` entry in `machine_log.json` before trying the next offer:
-
-```json
-{
-  "offer_id": 12345,
-  "instance_id": "34408778",
-  "gpu": "RTX 5090",
-  "failure_reason": "sm_120 compute capability not supported by PyTorch 2.6.0",
-  "failure_phase": "gpu_verification",
-  "duration_seconds": 180.0,
-  "wasted_cost_usd": 0.12,
-  "timestamp": "2026-04-05T10:30:00Z"
-}
-```
-
-Destroy the failed instance before trying the next offer. After 3 consecutive failures, create an
-intervention file and STOP.
-
-### Phase 2: Create Instance
-
-1. Create the instance:
+3. Verify `az` is authenticated:
 
    ```bash
-   vastai create instance <OFFER_ID> \
-     --image pytorch/pytorch:2.6.0-cuda12.6-cudnn9-devel \
-     --ssh --disk <DISK_GB> --raw
+   az account show -o json
    ```
 
-   Use the latest stable PyTorch image that matches the required CUDA version. Prefer `devel` images
-   (include CUDA compiler) over `runtime` images.
+   If this fails or returns a different subscription, stop and ask the user to run `az login` /
+   `az account set`.
 
-2. Extract `instance_id` from the response (`new_contract` field).
+### Phase 2: Acquire a VM from the pool
 
-3. Update `machine_log.json` with `instance_id`, `offer_id`, `image`, `disk_gb`, and `created_at`
-   timestamp.
-
-4. Label the instance in the Vast.ai dashboard:
+1. Call the provisioner. It iterates pool entries in priority order, starts a stopped VM if needed,
+   waits up to 8 minutes for SSH, and places `~/.arf-locks/$TASK_ID.lock` on the VM:
 
    ```bash
-   vastai label instance <INSTANCE_ID> "$PROJECT/$TASK_ID"
+   uv run python -m arf.scripts.utils.azure_ml_vm acquire $TASK_ID
    ```
 
-   Record the label in `machine_log.json` as the `label` field. This makes instances identifiable in
-   the provider dashboard.
+   * Exit code `0` — success; JSON on stdout includes `vm_name`, `ssh_host_alias`,
+     `hourly_cost_usd`, `acquired_at`, `started_vm`, and `failed_attempts`.
+   * Exit code `75` — pool busy; the provisioner has written
+     `tasks/$TASK_ID/intervention/pool_busy.md`. STOP and let the user resolve.
+   * Exit code `1` — generic error; surface stderr to the user and STOP.
 
-5. Record the `instance_id` prominently in the step log so it can be found during teardown even if
-   context is lost.
+2. Save the JSON output as the basis for `machine_log.json`. Use `to_machine_log_entry()` from the
+   library to convert it to the schema consumed by `aggregate_machines.py`:
 
-### Phase 3: Wait for Readiness
-
-1. Poll instance status every 30 seconds:
-
-   ```bash
-   vastai show instance <INSTANCE_ID> --raw
+   ```python
+   from arf.scripts.utils.azure_ml_vm import to_machine_log_entry
    ```
 
-2. Wait until `actual_status` is `"running"` (not just `cur_state == "running"` — the
-   `actual_status` field reflects the real container state).
+   Write the result to `tasks/$TASK_ID/logs/steps/NNN_setup-machines/machine_log.json` as a
+   one-element JSON array. Required fields populated at acquire time include `provider`,
+   `instance_id`, `selected_offer`, `created_at`, `ready_at`, `search_started_at`,
+   `total_provisioning_seconds`, and `failed_attempts`. `destroyed_at` and `total_cost_usd` remain
+   `null` until teardown.
 
-3. Extract `ssh_host` and `ssh_port` from the response.
+### Phase 3: Verify GPU and CUDA
 
-4. Timeout: If the instance does not reach `"running"` within 10 minutes:
-   * Destroy it: `vastai destroy instance <INSTANCE_ID>`
-   * Log the failure
-   * Try the next-best offer from Phase 1
-   * If 3 consecutive offers fail, create an intervention file and STOP
-
-5. Update `machine_log.json` with `ssh_host`, `ssh_port`, and `ready_at` timestamp. Calculate
-   `total_provisioning_seconds` as the difference between `search_started_at` and `ready_at`.
-
-### Phase 4: Verify SSH and GPU
-
-1. Connect via SSH with retries (up to 5 attempts, 30 seconds apart):
+1. Verify GPU availability over SSH (host alias resolves via the user's `~/.ssh/config`):
 
    ```bash
-   ssh -o StrictHostKeyChecking=no -o ConnectTimeout=15 \
-     -i ~/.ssh/id_ed25519 -p <SSH_PORT> root@<SSH_HOST> \
-     "echo connected"
-   ```
-
-   SSH key gotcha: keys must be registered on Vast.ai (`vastai show ssh-keys`). If authentication
-   fails after the instance is running, the key may not be attached. Use
-   `vastai attach ssh <INSTANCE_ID> "$(cat ~/.ssh/id_ed25519.pub)"` to attach it.
-
-2. Verify GPU availability:
-
-   ```bash
-   ssh ... "nvidia-smi --query-gpu=name,memory.total,driver_version \
+   ssh FT-NC80-v3 "nvidia-smi --query-gpu=name,memory.total,driver_version \
      --format=csv,noheader"
    ```
 
-3. Verify CUDA:
+   Expect two H100 80GB lines. If only one GPU is visible, destroy the lock and try the fallback.
+
+2. Verify CUDA toolkit:
 
    ```bash
-   ssh ... "nvcc --version"
+   ssh FT-NC80-v3 "nvcc --version"
    ```
 
-4. Check available disk space:
+3. Update `machine_log.json` with `gpu_verified` and `cuda_version`.
+
+### Phase 4: Prepare environment
+
+1. Copy data to the remote VM. Use `scp` for files under 100 MB; for larger transfers use `rsync`:
 
    ```bash
-   ssh ... "df -h / | tail -1"
+   scp $LOCAL_PATH FT-NC80-v3:$REMOTE_PATH
+   rsync -av $LOCAL_DIR/ FT-NC80-v3:$REMOTE_DIR/
    ```
 
-5. Update `machine_log.json` with `gpu_verified` and `cuda_version`.
+2. Install task-specific dependencies (vLLM, model checkpoints, etc.) inside the project conda env
+   on the VM. The pool VMs ship with conda + CUDA already installed by the Azure ML image.
 
-6. If GPU verification fails (wrong GPU model, insufficient VRAM):
-   * Destroy the instance
-   * Log the discrepancy
-   * Try another offer
-
-### Phase 5: Prepare Environment
-
-1. Copy data to the remote machine. Use `scp` for files under 100 MB, `vastai copy` for larger
-   transfers:
+3. Run a GPU smoke test:
 
    ```bash
-   # Small files
-   scp -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 \
-     -P <SSH_PORT> <LOCAL_PATH> root@<SSH_HOST>:<REMOTE_PATH>
-
-   # Large files/directories
-   vastai copy <LOCAL_PATH> <INSTANCE_ID>:<REMOTE_PATH>
+   ssh FT-NC80-v3 "python -c 'import torch; print(torch.cuda.device_count())'"
    ```
 
-2. Install additional dependencies if needed:
+   Expect the number of GPUs declared in the pool entry (e.g., `2` for an `NC80` H100 VM).
 
-   ```bash
-   ssh ... "pip install <packages>"
-   ```
+4. **Engine smoke gate** (MANDATORY for any task that will issue measurement requests). After
+   installing the task-specific engine (vLLM, SGLang, TRT-LLM, etc.) and launching it, issue one
+   trivial request (a `health`/`/version` endpoint check **and** one minimum-length chat
+   completion) before any warmup or measured phase. If either fails, mark the condition `null`
+   and skip directly to teardown — do not waste VM time on a broken engine. Record the smoke
+   result in `machine_log.json` under `smoke_gate_status` (`pass` or `fail`) with the failure
+   reason. See `LESSONS.md` (Lesson 2: smoke-gate before measurement) for the rationale.
 
-3. Verify the environment by running a smoke test:
-
-   ```bash
-   ssh ... "python -c 'import torch; print(torch.cuda.is_available())'"
-   ```
-
-4. Log the list of files copied and packages installed.
-
-5. If the plan estimates >2 hours of runtime, configure checkpointing:
-   * Set up the training script to save checkpoints every 30 minutes
-   * Record the checkpoint save path in `machine_log.json` as `checkpoint_path`
-   * Configure the training script to write a heartbeat file every 5 minutes with current epoch,
-     step, loss, and timestamp. Record the path as `heartbeat_path`
-   * Training scripts should handle `SIGTERM` gracefully: save a final checkpoint before exiting
-   * See `arf/specifications/remote_machines_specification.md` "Mandatory Checkpointing" for details
+5. For jobs over 2 hours, configure checkpointing and a heartbeat file. Record both paths in
+   `machine_log.json` as `checkpoint_path` and `heartbeat_path`. See
+   `arf/specifications/remote_machines_specification.md` "Mandatory Checkpointing".
 
 * * *
 
-## Execution on Remote Machines
+## Execution on Remote VMs
 
-This section is referenced by the `implementation` step in execute-task, not by `setup-machines`.
+Referenced by the `implementation` step in execute-task.
 
-### Running Long Jobs
+### Running long jobs
 
-ALWAYS use `tmux` for long-running jobs so they survive SSH disconnection:
+Always launch long jobs inside `tmux` so they survive SSH disconnection:
 
 ```bash
-# Start a detached tmux session
-ssh ... "tmux new-session -d -s work \
-  'python train.py > /root/output.log 2>&1; echo DONE >> /root/output.log'"
+ssh FT-NC80-v3 "tmux new-session -d -s work \
+  'python train.py > /home/azureuser/output.log 2>&1; echo DONE >> /home/azureuser/output.log'"
+```
+
+For jobs the orchestrator wants to monitor synchronously, use the library `run` entry point — it
+emits heartbeats every 5 min and checkpoint reminders every 30 min for jobs marked >2h:
+
+```bash
+uv run python -m arf.scripts.utils.azure_ml_vm run $TASK_ID -- \
+  tmux new-session -d -s work 'python train.py'
 ```
 
 ### Monitoring
 
-* Check if the job is running:
+* Check the tmux session:
   ```bash
-  ssh ... "tmux has-session -t work 2>/dev/null && echo running || echo finished"
+  ssh FT-NC80-v3 "tmux has-session -t work && echo running || echo finished"
   ```
-
 * Tail logs:
   ```bash
-  ssh ... "tail -50 /root/output.log"
+  ssh FT-NC80-v3 "tail -50 /home/azureuser/output.log"
   ```
-
-* Reconnect to tmux (interactive, for debugging):
+* Confirm the VM is still up:
   ```bash
-  ssh -p <SSH_PORT> root@<SSH_HOST> -t "tmux attach -t work"
+  az ml compute show --name FT-NC80-v3 \
+    --workspace-name finetuning-workspace --resource-group rezolve-AI -o json
   ```
 
-* Check instance cost accumulation:
-  ```bash
-  vastai show instance <INSTANCE_ID> --raw | \
-    python3 -c "import sys,json; d=json.load(sys.stdin); \
-    cost=d['dph_total']*d['client_run_time']/3600; \
-    print(f'Running {d[\"client_run_time\"]:.0f}s, cost ~${cost:.4f}')"
-  ```
+### Handling disconnection
 
-* Check whether the instance is still alive:
-  ```bash
-  vastai show instance <INSTANCE_ID> --raw | \
-    python3 -c "import sys,json; d=json.load(sys.stdin); \
-    print(f'Status: {d[\"actual_status\"]}')"
-  ```
+If the SSH session drops:
 
-### Handling Disconnection
-
-If the SSH connection drops during a long job:
-
-1. Verify instance is still running via `vastai show instance`
-2. Reconnect and check tmux: `ssh ... "tmux ls"`
-3. Tail the output log to check progress
-4. The job continues inside tmux regardless of SSH disconnection
+1. Verify the VM is still running via `az ml compute show`.
+2. Reconnect: `ssh FT-NC80-v3 "tmux ls"`.
+3. Tail the log to confirm progress.
+4. The job continues inside tmux regardless of SSH disconnection.
 
 * * *
 
 ## Teardown Protocol
 
-This section is executed during the `teardown` step of execute-task.
+Executed during the `teardown` step of execute-task.
 
 ### Steps
 
-1. Verify job completion on the remote machine:
+1. Confirm the job has finished:
 
    ```bash
-   ssh ... "tmux has-session -t work 2>/dev/null && echo STILL_RUNNING || echo DONE"
+   ssh FT-NC80-v3 "tmux has-session -t work && echo STILL_RUNNING || echo DONE"
    ```
 
-   If still running, wait or investigate. NEVER destroy a machine with an active job unless
-   explicitly instructed.
+   If still running, wait or investigate. NEVER tear down with a live job unless the user explicitly
+   instructs it.
 
-2. Download results from the remote machine:
+2. Download results from the VM:
 
    ```bash
-   scp -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 \
-     -P <SSH_PORT> -r root@<SSH_HOST>:<REMOTE_RESULTS_DIR> \
-     tasks/$TASK_ID/<LOCAL_DEST>
+   rsync -av FT-NC80-v3:$REMOTE_RESULTS_DIR/ tasks/$TASK_ID/$LOCAL_DEST/
    ```
 
-3. Verify all expected output files are present locally. List expected files from `plan/plan.md`
-   Section 7 (Expected Assets) and confirm each was downloaded.
-
-4. Destroy the instance:
+3. Release the lock and (if no other task holds a lock on the VM) deallocate the VM:
 
    ```bash
-   vastai destroy instance <INSTANCE_ID>
+   uv run python -m arf.scripts.utils.azure_ml_vm teardown $TASK_ID \
+     --acquired-at $CREATED_AT
    ```
 
-5. Confirm destruction by polling:
+   `--acquired-at` should be the `acquired_at` value from the Phase 2 acquire output; it lets the
+   provisioner compute `total_duration_hours` and `total_cost_usd`. The output JSON reports
+   `deallocated` (true if `az ml compute stop` ran) and `other_locks_present` (true if a sibling
+   task held a lock and the VM was left running).
 
-   ```bash
-   vastai show instance <INSTANCE_ID> --raw
-   ```
+4. Update `machine_log.json`. Use `to_machine_log_entry(acquire_result=..., teardown_result=...)` to
+   refresh the entry with `destroyed_at`, `total_duration_hours`, and `total_cost_usd`.
 
-   The instance should return an error or show a terminated state. Poll up to 3 times with 10-second
-   intervals.
+5. Update results files. Use exactly the field names shown — do not use aliases from
+   `machine_log.json`.
 
-6. Update `machine_log.json`:
-   * Set `destroyed_at` to the current ISO 8601 timestamp
-   * Calculate `total_duration_hours` from `created_at` to `destroyed_at`
-   * Set `total_cost_usd` — calculate from `dph_total` (from the last `vastai show instance` output
-     before destruction) multiplied by `total_duration_hours`
-
-7. Update results files. Use exactly the field names shown below — do not use aliases from
-   `machine_log.json` (e.g., use `ram_gb` not `gpu_ram_gb`, `duration_hours` not
-   `total_duration_hours`, `machine_id` not `instance_id`).
-
-   `results/remote_machines_used.json` — add a machine entry with all required fields:
+   `results/remote_machines_used.json`:
 
    ```json
    [
      {
-       "provider": "vast.ai",
-       "machine_id": "<INSTANCE_ID>",
-       "gpu": "RTX-4090",
-       "gpu_count": 1,
-       "ram_gb": 64,
-       "duration_hours": 2.5,
-       "cost_usd": 2.00
+       "provider": "azure-ml",
+       "machine_id": "FT-NC80-v3",
+       "gpu": "2xH100",
+       "gpu_count": 2,
+       "ram_gb": 880,
+       "duration_hours": 2.50,
+       "cost_usd": 34.90
      }
    ]
    ```
 
-   `results/costs.json` — add the machine cost to `breakdown` using key format
-   `"vast-ai-<gpu-model-lowercase>"`:
+   `results/costs.json` — add the machine cost to `breakdown` using key `"azure-ml-2xh100"`:
 
    ```json
    {
-     "total_cost_usd": 2.00,
+     "total_cost_usd": 34.90,
      "breakdown": {
-       "vast-ai-rtx4090": 2.00
+       "azure-ml-2xh100": 34.90
      }
    }
    ```
 
-   See `arf/specifications/task_results_specification.md` for the full schema.
-
-8. Run the machine destruction verificator:
+6. Run the machine destruction verificator:
 
    ```bash
-   uv run python -m arf.scripts.verificators.verify_machines_destroyed \
-     --task-id $TASK_ID
+   uv run python -m arf.scripts.verificators.verify_machines_destroyed --task-id $TASK_ID
    ```
 
    Fix any errors before proceeding.
@@ -429,42 +300,39 @@ This section is executed during the `teardown` step of execute-task.
 
 ## Done When
 
-* `machine_log.json` exists with all required fields populated including v2 fields:
-  `search_started_at`, `total_provisioning_seconds`, `failed_attempts`, `label`
-* Instance labeled in Vast.ai dashboard with `"$PROJECT/$TASK_ID"`
-* SSH connection verified and `nvidia-smi` output logged
-* All data and scripts copied to the remote machine
-* Smoke test (`torch.cuda.is_available()`) passes
-* For jobs >2h: `checkpoint_path` and `heartbeat_path` set in `machine_log.json`
-* Step log written with machine specs, search rationale, and SSH details
+* `machine_log.json` exists with all required fields populated: `provider="azure-ml"`, `instance_id`
+  (VM name), `selected_offer`, `created_at`, `ready_at`, `search_started_at`,
+  `total_provisioning_seconds`, `failed_attempts`, plus `destroyed_at` and `total_cost_usd` after
+  teardown.
+* SSH connectivity verified and `nvidia-smi` output logged (two H100 80GB lines).
+* All data and scripts copied to the VM.
+* Smoke test (`torch.cuda.device_count() == 2`) passes.
+* For jobs >2h: `checkpoint_path` and `heartbeat_path` set in `machine_log.json`.
+* Step log written with VM acquired, SSH details, and any `failed_attempts` summary.
 
 For teardown:
 
-* All results downloaded and verified locally
-* Instance destroyed and confirmed
-* `machine_log.json` has `destroyed_at` and `total_cost_usd`
-* `remote_machines_used.json` and `costs.json` updated
-* `verify_machines_destroyed.py` passes with no errors
+* All results downloaded and verified locally.
+* `azure_ml_vm teardown` exited `0`; output JSON inspected — `deallocated=true` unless another task
+  legitimately holds a lock on the same VM.
+* `machine_log.json` has `destroyed_at` and `total_cost_usd`.
+* `remote_machines_used.json` and `costs.json` updated.
+* `verify_machines_destroyed.py` passes with no errors.
 
 * * *
 
 ## Forbidden
 
-* NEVER run `prestep` or `poststep` — the orchestrator handles the step lifecycle
-
-* NEVER commit — the orchestrator handles all commits
-
-* NEVER modify `step_tracker.json` — the orchestrator manages step state
-
-* NEVER write `step_log.md` — the orchestrator writes it after this skill completes
-
-* NEVER leave an instance running without a corresponding `teardown` step in `step_tracker.json`
-
-* NEVER skip the budget check in Phase 1
-
-* NEVER destroy a machine while a job is still running (unless the user explicitly instructs it)
-
-* NEVER commit or hardcode SSH private keys, API keys, or instance credentials — use
-  `~/.ssh/id_ed25519` or read paths from environment
-
-* NEVER use `vastai copy` to copy to `/root` or `/` as destination (breaks SSH permissions)
+* NEVER run `prestep` or `poststep` — the orchestrator handles the step lifecycle.
+* NEVER commit — the orchestrator handles all commits.
+* NEVER modify `step_tracker.json` — the orchestrator manages step state.
+* NEVER write `step_log.md` — the orchestrator writes it after this skill completes.
+* NEVER leave a VM running without a corresponding `teardown` step in `step_tracker.json`.
+* NEVER skip the budget check in Phase 1.
+* NEVER tear down a VM while a job is still running (unless the user explicitly instructs it).
+* NEVER pass `--keep-running` to `azure_ml_vm teardown` without explicit user approval — the default
+  auto-stop is the primary defense against forgotten $13.96/hr instances.
+* NEVER commit Azure credentials or SSH private keys. The SSH key path lives in the user's
+  `~/.ssh/config` entry for `FT-NC80-v3` / `FT-NC80-v2`, not in the repo.
+* NEVER edit `project/azure_vm.json` to point at a personal VM without coordinating with the
+  finetuning team — the pool is shared infrastructure.
