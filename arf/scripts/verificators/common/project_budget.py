@@ -26,6 +26,7 @@ KNOWN_SERVICE_ALIASES: dict[str, tuple[str, ...]] = {
     "openai_api": ("openai", "gpt"),
     "anthropic_api": ("anthropic", "claude"),
     "vast_ai": ("vast-ai", "vastai"),
+    "azure_ml": ("azure-ml", "azureml", "azure_ml_compute"),
 }
 
 

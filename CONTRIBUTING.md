@@ -1,8 +1,60 @@
-# Contributing to Glite ARF
+# Contributing to rail-arf
 
-Thank you for your interest in contributing to the Glite Autonomous Research Framework (Glite ARF).
-This document describes what kinds of contributions are welcome, how to set up a development
-environment, and the process for proposing changes.
+This is the Rezolve fork-of-fork of the Glite Autonomous Research Framework. Most of this document
+mirrors upstream `GliteTech/glite-arf`'s `CONTRIBUTING.md`; the Rezolve-specific section below
+covers fork lifecycle (upstream sync, Rezolve-internal contributions, downstream forks).
+
+## Rezolve fork lifecycle
+
+`rail-arf` tracks `GliteTech/glite-arf` as the `upstream` git remote. Rezolve research projects
+fork `rail-arf` (not `glite-arf`) so they inherit Rezolve's framework additions and lessons by
+default.
+
+### Pulling upstream framework improvements
+
+When Glite ships a framework update we want, rebase onto upstream:
+
+```bash
+git fetch upstream
+git rebase upstream/main
+```
+
+Resolve any conflicts in `arf/` (Rezolve additions: Azure ML provisioner, bootstrap/significance
+library, warmup-protocol package, customised CLAUDE.md, extended setup-project skill, the two
+extra verificators). Project-specific files under `project/`, `meta/`, and `tasks/` are unaffected.
+
+Push the rebased branch and open a PR titled `Sync upstream <upstream-commit-sha>` so reviewers can
+diff the rebase against `origin/main` before fast-forwarding.
+
+### Adding Rezolve-specific framework code
+
+Modifications to `arf/`, `meta/` (generic types only), `LESSONS.md`, or the root `CLAUDE.md` go on
+the `main` branch directly (no `tasks/tXXXX_*` folder — those are reserved for project work, per
+key rule 0). Open a PR if the change is non-trivial. Always increment the version of any skill or
+specification you change (plain integer, +1 per change — see
+`arf/styleguide/agent_instructions_styleguide.md`).
+
+### Adding a lesson
+
+When a Rezolve research project produces a generalizable lesson, follow the procedure at the bottom
+of `LESSONS.md`: add a `## Lesson N` entry with *what went wrong*, *why*, *mitigation*, and wire
+the mitigation as a default in the relevant skill, asset spec, or verificator. A lesson without a
+corresponding code default is a complaint, not a lesson.
+
+### Spawning a new Rezolve research project
+
+```bash
+gh repo fork rezolved/rail-arf --org rezolved --fork-name rail-arf-<project-slug>
+```
+
+Then run `/setup-project` in Claude Code to populate `project/description.md`, `project/budget.json`,
+and the project's `meta/` entries.
+
+## Upstream-style contributions
+
+Thank you for your interest in contributing to the underlying Glite Autonomous Research Framework
+(Glite ARF). This document describes what kinds of contributions are welcome, how to set up a
+development environment, and the process for proposing changes.
 
 Glite ARF is maintained by [Glite Tech Ltd](https://glite.ai). We use it internally to run research
 on adaptive assessment and learner modeling, and we publish it because the same structure helps any

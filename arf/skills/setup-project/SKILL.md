@@ -9,7 +9,7 @@ description: >-
 ---
 # Setup Project
 
-**Version**: 7
+**Version**: 8
 
 ## Goal
 
@@ -139,10 +139,14 @@ Read before starting:
 ### Phase 4: Paid service provisioning
 
 Paid services are declared by `create-project-description` in `project/budget.json` under
-`available_services`. Canonical slugs are `openai_api`, `anthropic_api`, `vast_ai` (see
-`arf/scripts/verificators/common/project_budget.py` for the alias map). This phase verifies
+`available_services`. Canonical slugs are `openai_api`, `anthropic_api`, `vast_ai`, and `azure_ml`
+(see `arf/scripts/verificators/common/project_budget.py` for the alias map). This phase verifies
 credentials only for services that are actually declared, and lets the user drop a service from the
 project when they do not want to provide credentials.
+
+For Rezolve projects, `azure_ml` is the default GPU provider and `vast_ai` is supported as a
+fallback. `setup-remote-machine` reads `project/azure_vm.json` (per-pool VM definitions) when
+`azure_ml` is declared.
 
 14. Load `project/budget.json`, read `available_services`. If the list is empty, print
     `No paid services declared; skipping provisioning.` and advance to Phase 5.
@@ -183,6 +187,28 @@ project when they do not want to provide credentials.
 
     **`anthropic_api`**: tell the user Anthropic credentials are managed by the Claude Code or Codex
     CLI they are running, no key file is needed, and move on. Nothing else to do.
+
+    **`azure_ml`**:
+    * Run `az account show 2>&1`. If it exits `0` and prints a subscription, print
+      `az CLI authenticated — ok.` Move on to the workspace check.
+    * If `az` is not installed (`command -v az` fails), tell the user to install it via
+      <https://learn.microsoft.com/en-us/cli/azure/install-azure-cli> and ask them to type
+      `installed` once they have done so. Loop until `az --version` succeeds, the user types
+      `skip`, or types `cancel`.
+    * If `az` is installed but not authenticated, ask: "This project declares `azure_ml` but the
+      Azure CLI is not authenticated. Run `az login` in a separate terminal and type `done` here
+      when complete, type `skip` to remove `azure_ml` from `project/budget.json`
+      (`/setup-remote-machine` will refuse to run until `azure_ml` is re-added), or type `cancel`
+      to stop setup."
+    * After authentication, check `project/azure_vm.json` exists. If it does not, ask the user to
+      copy `project/azure_vm.json.example` and edit it to point at their VM pool. Loop until the
+      file exists or the user types `skip` / `cancel`.
+    * Run
+      `uv run python -u -m arf.scripts.utils.azure_ml_vm validate --pool-file project/azure_vm.json`
+      and surface any errors verbatim. The user must fix errors before continuing.
+    * On `skip`: edit `project/budget.json` to drop `"azure_ml"` from `available_services`. Re-run
+      `verify_project_budget`. Tell the user `/setup-remote-machine` will refuse to run.
+    * On `cancel`: as above.
 
     **Any other slug**: tell the user the service is declared but `/setup-project` has no
     provisioning block for it, so credentials for it must be handled manually. Do not exit; move on

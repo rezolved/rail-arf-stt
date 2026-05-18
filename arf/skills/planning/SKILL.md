@@ -4,7 +4,7 @@ description: "Synthesize research outputs into a task plan with steps, costs, ri
 ---
 # Planning
 
-**Version**: 7
+**Version**: 8
 
 ## Goal
 
@@ -278,6 +278,15 @@ Read before starting:
      exact command to run and the expected output. "Verificator passes" is a valid criterion only if
      the specific verificator command is named. Include at least one criterion that explicitly
      checks requirement coverage.
+
+   * `## Rejection Criteria` — concrete conditions under which the task's results are declared
+     **null** rather than reported as a real measurement. Required for any task that produces
+     benchmark numbers, paired comparisons, or anything that could be polluted by infrastructure
+     failures. Pre-register these conditions *before* running so they cannot be retroactively
+     loosened. The default rule for benchmark tasks: **if
+     `successful_requests / total_requests < 0.8`, the condition is null regardless of any
+     measured numbers.** See `LESSONS.md` (Lesson 3: pre-register failure-rate rejection) for the
+     rationale.
 
 3. Add additional sections wherever they improve clarity (e.g., `## Architecture`, `## Data Flow`,
    `## Alternative Approaches Considered`).
