@@ -579,6 +579,27 @@ script to automatically write `logs/steps/003_init-folders/folders_created.txt`.
 created directories (including `.gitkeep` files) AND the step log directory
 (`logs/steps/003_init-folders/`), then commit and run poststep.
 
+#### Aggregator cache
+
+Run all aggregators once and save output to `tasks/$TASK_ID/ctx/` so subagents do not re-fetch:
+
+```bash
+mkdir -p tasks/$TASK_ID/ctx
+uv run python -u -m arf.scripts.aggregators.aggregate_task_types \
+  --format json > tasks/$TASK_ID/ctx/task_types.json
+uv run python -u -m arf.scripts.aggregators.aggregate_costs \
+  --format json --detail full > tasks/$TASK_ID/ctx/costs.json
+uv run python -u -m arf.scripts.aggregators.aggregate_tasks \
+  --format json --detail full > tasks/$TASK_ID/ctx/tasks.json
+uv run python -u -m arf.scripts.aggregators.aggregate_metrics \
+  --format json --detail full > tasks/$TASK_ID/ctx/metrics.json
+uv run python -u -m arf.scripts.aggregators.aggregate_suggestions \
+  --format json --detail full > tasks/$TASK_ID/ctx/suggestions.json
+```
+
+These files are the source of truth for this task run. Subagents read them; do NOT run aggregators
+again within this task.
+
 ### Phase 2: Research
 
 #### Step: `research-papers` (optional)
@@ -689,6 +710,21 @@ uv run python -m arf.scripts.utils.run_with_logs --task-id $TASK_ID -- \
 ```
 
 Write `logs/steps/NNN_research-code/step_log.md`. Commit and run poststep.
+
+#### Summarize research
+
+After all research steps complete (research-papers, research-internet, research-code), spawn a
+subagent to compress the research files into a compact summary:
+
+```text
+Use the Agent tool to launch a subagent with this prompt:
+"Execute the /research-summarize skill for task $TASK_ID.
+Read arf/skills/research-summarize/SKILL.md and follow all steps."
+```
+
+This produces `research/research_summary.md` (~5–8 KB). Planning and implementation agents load
+this file instead of the full research files. This step is lightweight and does not need its own
+step_tracker entry — run it inline after the last research step completes.
 
 ### Phase 3: Planning
 

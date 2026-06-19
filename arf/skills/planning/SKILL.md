@@ -38,11 +38,9 @@ Read before starting:
 * Asset type specifications in `meta/asset_types/` for each expected asset type listed in
   `task.json`
 
-* Task type definitions — run to get all available types:
+* Task type definitions — read the pre-fetched cache (written by the orchestrator at task start):
 
-  ```bash
-  uv run python -u -m arf.scripts.aggregators.aggregate_task_types --format json
-  ```
+  `tasks/$TASK_ID/ctx/task_types.json`
 
 * Task type instructions in `meta/task_types/<slug>/instruction.md`
 
@@ -87,12 +85,9 @@ Read before starting:
      `meta/task_types/<slug>/instruction.md`. Follow the Planning Guidelines section from each
      matched type.
 
-   * If `task_types` is empty, load all task type descriptions via the aggregator:
+   * If `task_types` is empty, read all task type descriptions from the pre-fetched cache:
 
-     ```bash
-     uv run python -u -m arf.scripts.aggregators.aggregate_task_types \
-       --format json
-     ```
+     `tasks/$TASK_ID/ctx/task_types.json`
 
    Select the best-matching type(s) based on the task's name, `short_description`, and resolved long
    description. Read the matching type's `instruction.md` and follow its Planning Guidelines.
@@ -103,33 +98,24 @@ Read before starting:
      keep the plan focused on the target artifacts, the chosen correction mechanism (`update`,
      `delete`, `replace`, `file_changes`), and how the corrected effective state will be verified.
 
-3. Read all research files produced by earlier steps:
+3. Read the research summary produced by the research-summarize step:
 
-   * `tasks/$TASK_ID/research/research_papers.md` — key findings, methodology insights,
-     recommendations, hypotheses, best practices
+   * `tasks/$TASK_ID/research/research_summary.md` — compact synthesis of all research findings
 
-   * `tasks/$TASK_ID/research/research_internet.md` — additional findings, tools, libraries, recent
-     developments, gap resolutions
+   If you need more detail on a specific topic, read the relevant section of the full research files
+   (`research_papers.md`, `research_internet.md`, `research_code.md`) — but do not load them in
+   full unless necessary.
 
-   * `tasks/$TASK_ID/research/research_code.md` (if exists) — existing libraries, reusable code,
-     lessons learned from prior tasks
-
-4. For each dependency in `task.json`, read its results summary to understand what it produced:
-
-   ```bash
-   uv run python -u -m arf.scripts.aggregators.aggregate_tasks \
-     --format json --detail full --ids <dep_id_1> <dep_id_2> ...
-   ```
+4. For each dependency in `task.json`, read its results summary to understand what it produced.
+   Read `tasks/$TASK_ID/ctx/tasks.json` (pre-fetched by the orchestrator) and filter by the
+   dependency IDs from `task.json`.
 
 5. Read `project/budget.json` to understand spending constraints.
 
 6. Read asset type specifications in `meta/asset_types/` for each expected asset type.
 
-7. Discover registered metrics. Run:
-
-   ```bash
-   uv run python -u -m arf.scripts.aggregators.aggregate_metrics --format json --detail full
-   ```
+7. Discover registered metrics. Read `tasks/$TASK_ID/ctx/metrics.json` (pre-fetched by the
+   orchestrator).
 
    Review every registered metric and decide which ones this task can measure. A metric applies when
    the task performs the activity the metric measures — for example
@@ -142,8 +128,8 @@ Read before starting:
 
 1. Synthesize findings from all research files into a concrete technical approach:
 
-   * Which methods to use (informed by research_papers.md recommendations)
-   * Which tools and libraries to leverage (informed by research_internet.md)
+   * Which methods to use (informed by research_summary.md and research_papers.md)
+   * Which tools and libraries to leverage (informed by research_summary.md and research_internet.md)
    * Which existing project libraries to import (informed by research_code.md)
    * Which code to copy from prior tasks (informed by research_code.md)
    * Which prior answer assets already address part of the question space
@@ -356,8 +342,8 @@ Read before starting:
 
 * NEVER fabricate cost estimates, time estimates, or risk assessments.
 
-* NEVER skip reading research files before writing the plan — the plan must be grounded in research
-  findings.
+* NEVER skip reading `research_summary.md` before writing the plan — the plan must be grounded in
+  research findings.
 
 * NEVER use placeholder text like "TBD" or "to be determined" — resolve all unknowns or document
   them as risks.
