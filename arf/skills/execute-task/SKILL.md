@@ -597,8 +597,9 @@ uv run python -u -m arf.scripts.aggregators.aggregate_suggestions \
   --format json --detail full > tasks/$TASK_ID/ctx/suggestions.json
 ```
 
-These files are the source of truth for this task run. Subagents read them; do NOT run aggregators
-again within this task.
+These files are the source of truth for this task run. Subagents read them instead of re-running
+aggregators. Exception: if this task adds or edits `meta/` content (new metric, category, task
+type), re-run the affected aggregator and overwrite the corresponding `ctx/` file before planning.
 
 ### Phase 2: Research
 

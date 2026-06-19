@@ -33,17 +33,19 @@ def main() -> None:
         capture_output=True,
         text=True,
     )
-    if ruff.stdout.strip():
+    ruff_out = (ruff.stdout + ruff.stderr).strip()
+    if ruff_out or ruff.returncode not in (0, 1):
         results.append("**ruff**:")
-        results.extend(ruff.stdout.strip().splitlines()[:20])
+        results.extend(ruff_out.splitlines()[:20])
 
     mypy = subprocess.run(
         ["uv", "run", "mypy", file_path, "--no-error-summary"],
         capture_output=True,
         text=True,
     )
-    if mypy.stdout.strip():
-        lines = [line for line in mypy.stdout.strip().splitlines() if "error:" in line][:10]
+    mypy_out = (mypy.stdout + mypy.stderr).strip()
+    if mypy_out:
+        lines = [line for line in mypy_out.splitlines() if "error:" in line][:10]
         if lines:
             results.append("**mypy**:")
             results.extend(lines)
