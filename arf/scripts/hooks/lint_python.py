@@ -43,7 +43,7 @@ def main() -> None:
         text=True,
     )
     if mypy.stdout.strip():
-        lines = [l for l in mypy.stdout.strip().splitlines() if "error:" in l][:10]
+        lines = [line for line in mypy.stdout.strip().splitlines() if "error:" in line][:10]
         if lines:
             results.append("**mypy**:")
             results.extend(lines)
