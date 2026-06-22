@@ -46,6 +46,7 @@
 {"clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q07", "ground_truth": "How do I integrate Rezolve AI with my existing system ?"}
 {"clip_id": "7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn9", "ground_truth": "Okay, that's still very superficial. Could you give me more details if what makes it so intelligent?"}
 {"clip_id": "7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn3", "ground_truth": "I see, could you give me details on each of them?"}
+{"clip_id": "c79e3baf-c481-4e6b-bea9-c4a078b2bf89_turn2", "ground_truth": "A lot of forums are not looking at it so favorably"}
 {"clip_id": "f68c8bf1-2d96-424b-80b1-73ada80b747a_turn1", "ground_truth": "So I just want to know about this page."}
 {"clip_id": "5c5749f7-7303-427b-936e-cfb9fc8ac799_turn5", "ground_truth": "Tell me about latest acquisitions."}
 {"clip_id": "7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn14", "ground_truth": "but then what does your technology offer which is different to let's say any other re-ranking model or pipeline which is based on user events?"}
@@ -78,6 +79,7 @@
 {"clip_id": "0a4c73dc-6464-439d-b47f-471b668ae525_turn3", "ground_truth": "Who is the CEO of Rezolve?"}
 {"clip_id": "e53c95cd-2e5b-4617-93ac-f0f794d0ac01_turn5", "ground_truth": "Who are the board of directors of Rezolve Ai?"}
 {"clip_id": "error_en_0192", "ground_truth": "and to repeat those again, but slower. I got storefront website and what else."}
+{"clip_id": "error_en_0092", "ground_truth": "Where are Rezolve AI locations"}
 {"clip_id": "error_en_0005", "ground_truth": "How does Rezolve transform end-to-end shopping experience with agentic conversational first AI that unifies discovery, payments and support?"}
 {"clip_id": "error_en_0008", "ground_truth": "Can I try Brain Commerce out for myself? Is there a customer of yours which website I can access to try it out?"}
 {"clip_id": "error_en_0009", "ground_truth": "please give me examples of how your product could help me with my B2C furniture store."}

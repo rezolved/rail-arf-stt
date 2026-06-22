@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<llm_context_archive preset_id="project-memory" generated_at_utc="2026-06-22T15:42:05Z">
+  <archive_summary>
+    <title>Project Memory</title>
+    <description>Mid-size preset intended as a reusable working memory for ongoing chats.</description>
+    <use_case>Keeping a durable project memory in medium-size chat sessions.</use_case>
+    <section_count>9</section_count>
+    <char_count>8995</char_count>
+    <byte_count>9013</byte_count>
+    <estimated_tokens>2248</estimated_tokens>
+    <compatibility>131k-class, 200k-class, 1M-class</compatibility>
+  </archive_summary>
+  <included_content>
+    <item>project description</item>
+    <item>completed task summaries</item>
+    <item>planned tasks</item>
+    <item>question and short-answer coverage</item>
+    <item>recent paper summaries</item>
+    <item>datasets</item>
+    <item>libraries</item>
+    <item>metrics</item>
+    <item>top open suggestions</item>
+  </included_content>
+  <sections>
+    <section id="project-description" source_kind="file">
+      <title>Project Description</title>
+      <source_name>project/description.md</source_name>
+      <repo_paths>
+        <path>project/description.md</path>
+      </repo_paths>
+      <content>
+# STT Research for Ecommerce Voice AI
+
+## Goal
+
+Build and evaluate a Speech-to-Text harness optimised for Rezolve&#x27;s voice commerce assistant.
+The current production system (Deepgram) fails on domain-specific entities — brand names, product
+lines, integrations, investor-relations terms — causing silent action failures that break the user
+experience. This project benchmarks existing STT systems on a held-out gold set of production audio,
+evaluates entity-aware post-correction strategies, and investigates domain-adapted fine-tuning of
+Whisper-class models to achieve entity accuracy &gt;92% while keeping voice-to-action latency under
+800 ms p50.
+
+## Scope
+
+### In Scope
+
+* Evaluation of commercial STT APIs (Deepgram) and open-source models (Whisper variants) on
+  Rezolve production audio.
+* Entity-aware post-correction strategies: LLM correction pass, custom vocabulary injection,
+  contextual entity boosting.
+* Confidence-based routing: accept / correct / clarify / fallback thresholds.
+* Domain-adapted fine-tuning of Whisper-class models on Rezolve production audio.
+* Latency measurement end-to-end (speech end → tool call) for each candidate approach.
+* English-first ecommerce and investor-relations voice utterances.
+
+### Out of Scope
+
+* Non-English STT (deferred to a follow-up project after English PoC is validated).
+* Full TTS or voice synthesis pipeline — STT only.
+* Real-time streaming ASR protocol changes (out-of-scope for this research phase).
+* Production deployment and A/B testing infrastructure.
+
+## Research Questions
+
+1. What is the current WER and entity accuracy of Deepgram (production) and Whisper Large v3 on
+   the gold-92 benchmark, broken down by utterance category and entity type?
+2. Do entity-aware post-correction strategies (LLM correction pass, contextual boosting, custom
+   vocabulary injection) materially close the gap on action-critical spans without exceeding the
+   800 ms p50 latency budget?
+3. Does domain-adapted fine-tuning of Whisper-class models on Rezolve production audio improve
+   entity accuracy on the gold-92 benchmark without regressing general English WER?
+4. What confidence-routing policy (accept / correct / clarify / fallback thresholds) achieves
+   wrong-confident-action rate &lt;2% and clarification rate &lt;5% on the gold-92 benchmark?
+5. What is the minimum viable dataset size and composition for fine-tuning to achieve a meaningful
+   entity accuracy gain, and how does the gain scale with data volume?
+
+## Success Criteria
+
+* Entity accuracy &gt;92% on gold-92 (action-critical spans only) for at least one candidate system.
+* Intent preservation &gt;95% on gold-92 for the best candidate.
+* Action-critical WER &lt;8% on gold-92 for the best candidate.
+* Wrong confident action rate &lt;2% on gold-92 under the chosen confidence-routing policy.
+* Voice-to-action latency p50 &lt;800 ms end-to-end (STT + correction + routing).
+* At least one STT condition beats production Deepgram on entity accuracy with statistical
+  significance (BCa bootstrap p &lt;0.05, n=93 paired samples).
+
+## Key References
+
+* Radford et al. (2023) — &quot;Robust Speech Recognition via Large-Scale Weak Supervision&quot; (Whisper).
+* Deepgram Nova-2 documentation and API — current production STT endpoint.
+* Rezolve gold-92 benchmark (`tasks/t0001_stt_benchmark`) — 93 production voice clips,
+  investor-relations domain, annotated ground truth.
+* brainpowa-realtime-api STT evals (`scripts/evals/stt/`) — existing eval harness on public models.
+* Rezolve Confluence: STT Strategy for Ecommerce Voice AI — English-First Implementation Plan
+  (internal, 2026-06-10).
+
+## Current Phase
+
+Phase 0 complete: gold-92 benchmark dataset ingested and DVC-tracked (`t0001_stt_benchmark`).
+Next step: run baseline WER and entity accuracy evaluation for Deepgram and Whisper Large v3 on
+gold-92 (`t0002_baseline_evaluation`).
+      </content>
+    </section>
+    <section id="completed-task-summaries" source_kind="aggregator">
+      <title>Completed Tasks and Results</title>
+      <source_name>aggregate_tasks_full</source_name>
+      <content>
+Completed tasks: 0
+      </content>
+    </section>
+    <section id="planned-tasks" source_kind="aggregator">
+      <title>Planned Tasks</title>
+      <source_name>aggregate_tasks_full</source_name>
+      <content>
+Planned or active tasks: 0
+      </content>
+    </section>
+    <section id="questions-and-answers" source_kind="aggregator">
+      <title>Questions and Answers</title>
+      <source_name>aggregate_answers_full</source_name>
+      <content>
+Answers: 0
+      </content>
+    </section>
+    <section id="open-suggestions" source_kind="aggregator">
+      <title>Open Suggestions</title>
+      <source_name>aggregate_suggestions_full</source_name>
+      <content>
+Open suggestions: 0
+      </content>
+    </section>
+    <section id="paper-summaries" source_kind="aggregator">
+      <title>Paper Summaries</title>
+      <source_name>aggregate_papers_full</source_name>
+      <content>
+Papers: 0
+      </content>
+    </section>
+    <section id="datasets" source_kind="aggregator">
+      <title>Datasets</title>
+      <source_name>aggregate_datasets_full</source_name>
+      <content>
+Datasets: 0
+      </content>
+    </section>
+    <section id="libraries" source_kind="aggregator">
+      <title>Libraries</title>
+      <source_name>aggregate_libraries_full</source_name>
+      <content>
+Libraries: 0
+      </content>
+    </section>
+    <section id="metrics" source_kind="aggregator">
+      <title>Metrics</title>
+      <source_name>aggregate_metrics_full</source_name>
+      <source_ids>
+        <id>action_critical_wer_gold92</id>
+        <id>entity_accuracy_gold92</id>
+        <id>intent_preservation_gold92</id>
+        <id>latency_p50_seconds</id>
+        <id>wer_gold92</id>
+        <id>wrong_action_rate_gold92</id>
+      </source_ids>
+      <content>
+Metrics: 6
+
+## Action-Critical WER (gold-92)
+Key: action_critical_wer_gold92
+Unit: ratio
+Value type: float
+Word Error Rate restricted to action-critical token spans in the gold-92 benchmark. Computed as (S+D+I) / N_critical where N_critical is the total number of reference words in annotated critical spans.
+
+## Entity Accuracy (gold-92)
+Key: entity_accuracy_gold92
+Unit: accuracy
+Value type: float
+Accuracy on action-critical entity spans (brand names, product lines, SKUs, IR terms) in the gold-92 benchmark. A span is correct if the predicted text exactly matches the ground-truth annotation after normalisation.
+
+## Intent Preservation (gold-92)
+Key: intent_preservation_gold92
+Unit: accuracy
+Value type: float
+Fraction of utterances in gold-92 where the predicted transcript preserves the ground-truth intent as judged by the intent classifier. An utterance passes if the downstream action type and primary slot agree with the reference.
+
+## Latency p50 (seconds)
+Key: latency_p50_seconds
+Unit: seconds
+Value type: float
+50th-percentile end-to-end voice-to-action latency in seconds, measured from speech-end detection through STT decoding, optional post-correction, and routing to the first tool-call dispatch. Success threshold is under 0.8 s.
+
+## Word Error Rate (gold-92)
+Key: wer_gold92
+Unit: ratio
+Value type: float
+Full-transcript Word Error Rate on the gold-92 benchmark. Used primarily to detect general-WER regression after domain fine-tuning. Computed over all reference words, not restricted to critical spans.
+
+## Wrong Action Rate (gold-92)
+Key: wrong_action_rate_gold92
+Unit: ratio
+Value type: float
+Fraction of gold-92 utterances where the routing policy emits a confident action that differs from the ground-truth action. Measures the false-confidence failure mode; success threshold is below 2%.
+      </content>
+    </section>
+  </sections>
+</llm_context_archive>

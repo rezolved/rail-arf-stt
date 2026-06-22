@@ -1,30 +1,48 @@
 {
+  "spec_version": "2",
   "dataset_id": "stt-benchmark-gold-92",
   "name": "STT Benchmark Gold-92",
-  "description": "Gold held-out benchmark for STT evaluation in the Rezolve voice commerce assistant. 93 WAV clips from real production sessions (investor-relations domain). Each clip is annotated with: ground-truth transcript, current production Deepgram transcription, and Whisper Large v2 transcription. Speakers include accented English (French accent prominent). Used as the primary regression test for all STT experiments — NEVER use for training or fine-tuning.",
   "version": "v1",
-  "date_created": "2026-06-22",
-  "added_by_task": "t0001_stt_benchmark",
-  "source": "Rezolve production voice sessions (brainpowa-realtime-api), curated from 92-session batch",
-  "domain": "investor-relations / ecommerce voice commerce",
-  "language": "en",
-  "num_clips": 93,
-  "audio_format": "wav",
-  "total_audio_size_mb": 58,
-  "categories": ["stt-benchmark", "audio", "evaluation"],
-  "files": {
-    "gold_set": "files/gold_set.jsonl",
-    "ground_truth": "files/ground_truth.jsonl",
-    "audio_dir": "files/audio/"
-  },
-  "gold_set_schema": {
-    "clip_id": "string — unique identifier (session_id + turn number)",
-    "source": "string — 'clean_voices' or other source label",
-    "filename": "string — audio filename (matches files/audio/)",
-    "ground_truth": "string — manually verified correct transcript",
-    "production": "string — Deepgram production transcript",
-    "whisper": "string — Whisper Large v2 transcript"
-  },
-  "split": "held_out_only",
-  "license": "internal — Rezolve proprietary, not for public release"
+  "short_description": "Held-out benchmark of 93 production voice clips for STT evaluation in the Rezolve voice commerce assistant, annotated with ground-truth transcripts and existing Deepgram and Whisper hypotheses.",
+  "description_path": "description.md",
+  "source_paper_id": null,
+  "url": null,
+  "download_url": null,
+  "year": 2026,
+  "date_published": "2026-06-22",
+  "authors": [
+    {
+      "name": "Rezolve AI Research",
+      "country": "GB",
+      "institution": "Rezolve",
+      "orcid": null
+    }
+  ],
+  "institutions": [
+    {
+      "name": "Rezolve",
+      "country": "GB"
+    }
+  ],
+  "license": "proprietary",
+  "access_kind": "proprietary",
+  "size_description": "93 WAV clips (~58 MB total audio). Speakers include accented English (French, German, Hebrew, Korean, Russian, Spanish native languages) plus English-native Rezolve IR session recordings.",
+  "files": [
+    {
+      "path": "files/gold_set.jsonl",
+      "description": "Full annotation set: clip_id, source, filename, ground-truth transcript, Deepgram Nova-2 production transcript, Whisper Large v2 transcript (93 records).",
+      "format": "jsonl"
+    },
+    {
+      "path": "files/ground_truth.jsonl",
+      "description": "Simplified ground-truth index: clip_id and manually verified transcript only (93 records). Canonical reference for WER and entity accuracy computation.",
+      "format": "jsonl"
+    },
+    {
+      "path": "files/audio.dvc",
+      "description": "DVC pointer to the 93 WAV audio files stored in Azure Blob Storage at azure://ml-dvc-datasets/datasets/rail-arf-stt. Run 'dvc pull' to download.",
+      "format": "dvc"
+    }
+  ],
+  "categories": ["stt-evaluation", "audio-datasets"]
 }

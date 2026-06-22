@@ -1,0 +1,59 @@
+{
+  "task_id": "t0001_stt_benchmark",
+  "steps": [
+    {
+      "step": 1,
+      "name": "create-branch",
+      "description": "Task created on main during setup-project (no separate branch).",
+      "status": "completed",
+      "started_at": "2026-06-22T00:00:00Z",
+      "completed_at": "2026-06-22T00:00:00Z",
+      "log_file": "logs/steps/001_create-branch/"
+    },
+    {
+      "step": 2,
+      "name": "check-deps",
+      "description": "Verify dependencies — none required.",
+      "status": "completed",
+      "started_at": "2026-06-22T00:00:00Z",
+      "completed_at": "2026-06-22T00:00:00Z",
+      "log_file": "logs/steps/002_check-deps/"
+    },
+    {
+      "step": 3,
+      "name": "init-folders",
+      "description": "Create task folder structure.",
+      "status": "completed",
+      "started_at": "2026-06-22T00:00:00Z",
+      "completed_at": "2026-06-22T00:00:00Z",
+      "log_file": "logs/steps/003_init-folders/"
+    },
+    {
+      "step": 4,
+      "name": "implementation",
+      "description": "Copy audio clips, create JSONL annotations, DVC-track audio directory.",
+      "status": "completed",
+      "started_at": "2026-06-22T00:00:00Z",
+      "completed_at": "2026-06-22T00:00:00Z",
+      "log_file": "logs/steps/004_implementation/"
+    },
+    {
+      "step": 5,
+      "name": "results",
+      "description": "Write results files: summary, detailed, metrics, costs.",
+      "status": "completed",
+      "started_at": "2026-06-22T00:00:00Z",
+      "completed_at": "2026-06-22T00:00:00Z",
+      "log_file": "logs/steps/005_results/"
+    },
+    {
+      "step": 6,
+      "name": "reporting",
+      "description": "Commit dataset asset and task files to git.",
+      "status": "completed",
+      "started_at": "2026-06-22T00:00:00Z",
+      "completed_at": "2026-06-22T00:00:00Z",
+      "log_file": "logs/steps/006_reporting/"
+    }
+  ]
+}

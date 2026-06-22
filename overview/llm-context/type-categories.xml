@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<llm_context_archive type_id="categories" generated_at_utc="2026-06-22T15:42:05Z">
+  <archive_summary>
+    <title>All Categories</title>
+    <description>Complete category definitions with full detailed descriptions.</description>
+    <section_count>1</section_count>
+    <char_count>4769</char_count>
+    <byte_count>4775</byte_count>
+    <estimated_tokens>1192</estimated_tokens>
+    <compatibility>131k-class, 200k-class, 1M-class</compatibility>
+  </archive_summary>
+  <included_content>
+    <item>all categories with detailed descriptions</item>
+  </included_content>
+  <sections>
+    <section id="full-categories" source_kind="aggregator">
+      <title>All Categories (Full Detail)</title>
+      <source_name>aggregate_categories</source_name>
+      <source_ids>
+        <id>audio-datasets</id>
+        <id>commercial-apis</id>
+        <id>confidence-routing</id>
+        <id>entity-correction</id>
+        <id>latency-profiling</id>
+        <id>stt-evaluation</id>
+        <id>whisper-finetuning</id>
+      </source_ids>
+      <content>
+Categories: 7
+
+## Audio Datasets
+ID: audio-datasets
+Version: 1
+
+Covers tasks that source, clean, and version audio data from Rezolve production sessions. This includes mining production logs for voice clips, annotating ground-truth transcripts, tagging entity spans and utterance categories, and managing large audio files via DVC against the Azure Blob remote. The gold-92 benchmark dataset belongs to this category. Tasks here produce the data assets consumed by stt-evaluation, entity-correction, and whisper-finetuning tasks.
+
+## Commercial APIs
+ID: commercial-apis
+Version: 1
+
+Covers tasks that call, configure, and measure commercial speech-to-text services. The main subject is Deepgram Nova-2, which is the current Rezolve production STT endpoint. Work in this category establishes the baseline accuracy and latency numbers that all open-source and fine-tuned approaches are compared against. It may also include evaluation of other commercial options (e.g., Azure Speech, Google STT) if they become relevant to the research roadmap.
+
+## Confidence Routing
+ID: confidence-routing
+Version: 1
+
+Covers tasks that design and evaluate policies for acting on STT output with varying reliability. A routing policy maps confidence scores (and optionally entity-level scores) to one of four outcomes: accept the transcript, apply post-correction, ask the user for clarification, or hand off to a fallback path. The key objectives are keeping the wrong-confident-action rate below 2% and the clarification rate below 5% on the gold-92 benchmark without sacrificing throughput.
+
+## Entity Correction
+ID: entity-correction
+Version: 1
+
+Covers work that takes a raw ASR transcript and applies a correction pass to fix brand names, product lines, SKUs, and other Rezolve-specific entities. Techniques include LLM correction passes, custom vocabulary injection, and contextual entity boosting. Tasks here focus on accuracy gains measured on action-critical spans of the gold-92 benchmark and on the incremental latency cost each approach adds to the voice-to-action pipeline.
+
+## Latency Profiling
+ID: latency-profiling
+Version: 1
+
+Covers tasks that instrument and measure the full latency path: speech capture end, ASR decoding, optional post-correction, confidence routing, and downstream tool call dispatch. The success threshold is p50 &lt; 800 ms. Tasks here profile individual stages, compare latency across candidate systems, and identify bottlenecks. Latency data is collected alongside accuracy metrics so accuracy–latency trade-offs can be reasoned about explicitly.
+
+## STT Evaluation
+ID: stt-evaluation
+Version: 1
+
+Covers tasks that measure how well a speech-to-text system transcribes Rezolve production audio. Primary metrics are entity accuracy on action-critical spans, word error rate, and intent preservation, evaluated against the gold-92 benchmark. This category includes initial baseline runs, cross-system comparisons, and regression checks. It does not include tasks that modify the STT pipeline itself — see entity-correction, confidence-routing, and whisper-finetuning for those.
+
+## Whisper Fine-Tuning
+ID: whisper-finetuning
+Version: 1
+
+Covers experiments that adapt pre-trained Whisper (or Whisper-derived) models to the Rezolve voice commerce domain. Tasks include dataset preparation from production audio, supervised fine-tuning runs, hyperparameter sweeps, and post-fine-tune evaluation on the gold-92 benchmark. A key constraint is that fine-tuned models must not regress general English WER relative to the base checkpoint. Gold-92 is never used for training — only for held-out evaluation.
+      </content>
+    </section>
+  </sections>
+</llm_context_archive>

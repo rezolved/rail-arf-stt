@@ -1,0 +1,9 @@
+{
+  "spec_version": "1",
+  "task_id": "t0001_stt_benchmark",
+  "captured_at": "2026-06-22T00:00:00Z",
+  "checked_roots": [],
+  "copied_sessions": [],
+  "errors": [],
+  "note": "Task created manually during setup-project; no CLI session transcript available."
+}

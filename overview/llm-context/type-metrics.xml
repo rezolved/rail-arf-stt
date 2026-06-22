@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<llm_context_archive type_id="metrics" generated_at_utc="2026-06-22T15:42:05Z">
+  <archive_summary>
+    <title>All Metrics</title>
+    <description>Complete metric definitions with full descriptions, units, and associated datasets.</description>
+    <section_count>1</section_count>
+    <char_count>3043</char_count>
+    <byte_count>3043</byte_count>
+    <estimated_tokens>760</estimated_tokens>
+    <compatibility>131k-class, 200k-class, 1M-class</compatibility>
+  </archive_summary>
+  <included_content>
+    <item>all metrics with full descriptions</item>
+  </included_content>
+  <sections>
+    <section id="full-metrics" source_kind="aggregator">
+      <title>All Metrics (Full Detail)</title>
+      <source_name>aggregate_metrics_full</source_name>
+      <source_ids>
+        <id>action_critical_wer_gold92</id>
+        <id>entity_accuracy_gold92</id>
+        <id>intent_preservation_gold92</id>
+        <id>latency_p50_seconds</id>
+        <id>wer_gold92</id>
+        <id>wrong_action_rate_gold92</id>
+      </source_ids>
+      <content>
+Metrics: 6
+
+## Action-Critical WER (gold-92)
+Key: action_critical_wer_gold92
+Unit: ratio
+Value type: float
+Version: 1
+
+Word Error Rate restricted to action-critical token spans in the gold-92 benchmark. Computed as (S+D+I) / N_critical where N_critical is the total number of reference words in annotated critical spans.
+
+## Entity Accuracy (gold-92)
+Key: entity_accuracy_gold92
+Unit: accuracy
+Value type: float
+Version: 1
+
+Accuracy on action-critical entity spans (brand names, product lines, SKUs, IR terms) in the gold-92 benchmark. A span is correct if the predicted text exactly matches the ground-truth annotation after normalisation.
+
+## Intent Preservation (gold-92)
+Key: intent_preservation_gold92
+Unit: accuracy
+Value type: float
+Version: 1
+
+Fraction of utterances in gold-92 where the predicted transcript preserves the ground-truth intent as judged by the intent classifier. An utterance passes if the downstream action type and primary slot agree with the reference.
+
+## Latency p50 (seconds)
+Key: latency_p50_seconds
+Unit: seconds
+Value type: float
+Version: 1
+
+50th-percentile end-to-end voice-to-action latency in seconds, measured from speech-end detection through STT decoding, optional post-correction, and routing to the first tool-call dispatch. Success threshold is under 0.8 s.
+
+## Word Error Rate (gold-92)
+Key: wer_gold92
+Unit: ratio
+Value type: float
+Version: 1
+
+Full-transcript Word Error Rate on the gold-92 benchmark. Used primarily to detect general-WER regression after domain fine-tuning. Computed over all reference words, not restricted to critical spans.
+
+## Wrong Action Rate (gold-92)
+Key: wrong_action_rate_gold92
+Unit: ratio
+Value type: float
+Version: 1
+
+Fraction of gold-92 utterances where the routing policy emits a confident action that differs from the ground-truth action. Measures the false-confidence failure mode; success threshold is below 2%.
+      </content>
+    </section>
+  </sections>
+</llm_context_archive>
