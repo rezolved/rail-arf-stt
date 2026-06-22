@@ -4,7 +4,7 @@ description: "Run an ARF task through all required stages and merge the final PR
 ---
 # Execute Task
 
-**Version**: 22
+**Version**: 24
 
 ## Goal
 
@@ -575,9 +575,37 @@ uv run python -m arf.scripts.utils.run_with_logs --task-id $TASK_ID -- \
 
 The script creates all required directories, reads `task.json` `expected_assets` for asset
 subdirectories, and adds `.gitkeep` to every empty directory. The `--step-log-dir` flag causes the
-script to automatically write `logs/steps/003_init-folders/folders_created.txt`. Stage both the
-created directories (including `.gitkeep` files) AND the step log directory
-(`logs/steps/003_init-folders/`), then commit and run poststep.
+script to automatically write `tasks/$TASK_ID/logs/steps/003_init-folders/folders_created.txt`.
+
+#### Aggregator cache (part of init-folders step)
+
+Still within the `init-folders` step (before committing it), populate the aggregator cache so
+subagents do not re-fetch across phases. Commands use shell redirection, so wrap with `bash -c`:
+
+```bash
+uv run python -m arf.scripts.utils.run_with_logs --task-id $TASK_ID -- \
+  bash -c "mkdir -p tasks/$TASK_ID/ctx && \
+    uv run python -u -m arf.scripts.aggregators.aggregate_task_types \
+      --format json > tasks/$TASK_ID/ctx/task_types.json && \
+    uv run python -u -m arf.scripts.aggregators.aggregate_costs \
+      --format json --detail full > tasks/$TASK_ID/ctx/costs.json && \
+    uv run python -u -m arf.scripts.aggregators.aggregate_tasks \
+      --format json --detail short > tasks/$TASK_ID/ctx/tasks.json && \
+    uv run python -u -m arf.scripts.aggregators.aggregate_metrics \
+      --format json --detail full > tasks/$TASK_ID/ctx/metrics.json && \
+    uv run python -u -m arf.scripts.aggregators.aggregate_suggestions \
+      --format json --detail full > tasks/$TASK_ID/ctx/suggestions.json"
+```
+
+Stage both the created directories (including `.gitkeep` files) and the step log directory
+(`tasks/$TASK_ID/logs/steps/003_init-folders/`), then commit and run poststep. Do not stage
+`tasks/$TASK_ID/ctx/` — these cache files are gitignored and intentionally local-only; they are
+consumed within this session but not committed to the branch.
+
+These cache files are the source of truth for this task run. Subagents read them instead of
+re-running aggregators. Exception: if this task adds or edits `meta/` content (new metric, category,
+task type), re-run the affected aggregator via `run_with_logs` and overwrite the corresponding
+`ctx/` file before planning.
 
 ### Phase 2: Research
 
@@ -688,7 +716,25 @@ uv run python -m arf.scripts.utils.run_with_logs --task-id $TASK_ID -- \
   uv run python -m arf.scripts.verificators.verify_research_code $TASK_ID
 ```
 
-Write `logs/steps/NNN_research-code/step_log.md`. Commit and run poststep.
+#### Summarize research
+
+After all research steps complete (research-papers, research-internet, research-code), spawn a
+subagent to compress the research files into a compact summary:
+
+```text
+Use the Agent tool to launch a subagent with this prompt:
+"Execute the /research-summarize skill for task $TASK_ID.
+Read arf/skills/research-summarize/SKILL.md and follow all steps."
+```
+
+This produces `research/research_summary.md` (~5–8 KB). Planning and implementation agents load this
+file instead of the full research files. This step is lightweight and does not need its own
+step_tracker entry — run it inline after the last research step completes.
+
+Log this under the last research step that actually ran (research-code, or research-internet /
+research-papers if research-code was skipped): append a note to that step's
+`tasks/$TASK_ID/logs/steps/NNN_<step>/step_log.md`. Stage both that step log and
+`tasks/$TASK_ID/research/research_summary.md`, then commit and run poststep.
 
 ### Phase 3: Planning
 

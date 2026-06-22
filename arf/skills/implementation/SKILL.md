@@ -4,7 +4,7 @@ description: "Execute `plan/plan.md`, produce assets, and verify results."
 ---
 # Implementation
 
-**Version**: 11
+**Version**: 12
 
 ## Goal
 
@@ -27,9 +27,9 @@ Read before starting:
 
 * `tasks/$TASK_ID/plan/plan.md` — the plan to execute (Step by Step section)
 
-* `tasks/$TASK_ID/research/research_papers.md` — findings from existing papers
-
-* `tasks/$TASK_ID/research/research_internet.md` — findings from internet research
+* `tasks/$TASK_ID/research/research_summary.md` — compact synthesis of all research findings (load
+  full research files only if you need detail beyond the summary). If this file does not exist
+  (research steps were skipped for this task type), proceed based on `plan/plan.md` directly.
 
 * Asset type specifications in `meta/asset_types/` for each expected asset type
 
@@ -130,13 +130,13 @@ Read before starting:
 5. Build a working completion checklist for every `REQ-*` item. Track status as `done`, `partial`,
    or `blocked` while you execute the plan.
 
-6. Read research outputs to inform implementation decisions:
+6. Read the research summary to inform implementation decisions:
 
-   * `tasks/$TASK_ID/research/research_papers.md` — key findings, methodology insights, and
-     recommendations from existing papers
+   * `tasks/$TASK_ID/research/research_summary.md` — compact synthesis of all research findings
 
-   * `tasks/$TASK_ID/research/research_internet.md` — additional findings from internet research,
-     including tools, libraries, and recent developments
+   If you need more detail on a specific topic, read the relevant section of the full research files
+   (`research_papers.md`, `research_internet.md`, `research_code.md`) — but do not load them in
+   full unless necessary.
 
 7. Scan all existing answer assets in question-only short form:
 
@@ -310,11 +310,11 @@ or rich objects with `cost_usd`.
 script output. Flag any `0.0` values for metrics that should have real measurements — investigate
 before returning to the orchestrator.
 
-Before the requirement review, check metrics coverage. Run:
-
-```bash
-uv run python -u -m arf.scripts.aggregators.aggregate_metrics --format ids
-```
+Before the requirement review, check metrics coverage. Read the metrics cache:
+`tasks/$TASK_ID/ctx/metrics.json` (pre-fetched by the orchestrator). If this file does not exist
+(skill run standalone), generate it:
+`mkdir -p tasks/$TASK_ID/ctx && uv run python -u -m arf.scripts.aggregators.aggregate_metrics --format json --detail full > tasks/$TASK_ID/ctx/metrics.json`
+Extract the metric IDs from the JSON to compare against `results/metrics.json`.
 
 Compare the registered metric IDs against what is in `results/metrics.json`. For each registered
 metric not present, ask: "Did this task perform the activity this metric measures?" Specifically:

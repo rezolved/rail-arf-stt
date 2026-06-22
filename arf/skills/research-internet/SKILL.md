@@ -5,7 +5,7 @@ model: "claude-sonnet-4-6"
 ---
 # Research Internet
 
-**Version**: 4
+**Version**: 5
 
 ## Goal
 
@@ -91,9 +91,21 @@ Execute a structured, multi-pass search strategy.
 
 5. Deep-read promising sources using WebFetch:
 
-   * Read full content of the most relevant blog posts, documentation pages, and repository READMEs
+   * Read the most relevant sections (abstract, methods, results, key benchmarks) of promising blog
+     posts, documentation pages, and repository READMEs — not the full page (see WebFetch discipline
+     below)
    * Extract specific numbers, benchmarks, and implementation details
    * Note reliability of each source (peer-reviewed vs. not)
+
+   **WebFetch discipline**: fetch only what you need.
+
+   * Prefer targeted scrapes: ask WebFetch to extract a specific section (abstract, methods,
+     results) rather than the full page.
+   * Do not fetch more than 12 pages per task.
+   * If a page is longer than 8 KB of useful content, stop reading after the key sections (abstract,
+     conclusion, methods summary). Do not load the full text of long blog posts or tutorials.
+   * If a source's key finding can be stated in one sentence, prefer WebSearch (which returns
+     excerpts) over WebFetch (which returns full pages).
 
 6. Record every query — exact text and source. Do not paraphrase.
 
@@ -134,6 +146,11 @@ comprehensively.
    skill completes.
 
 ### Phase 4: Synthesize and Write research_internet.md
+
+**Size limit**: `research_internet.md` must not exceed 40 KB / 250 lines. If your synthesis exceeds
+this, prioritize by direct relevance to the task objective: keep the top 15 most actionable sources
+with their findings and discard peripheral context. State the number of sources consulted vs.
+included in the `## Search Strategy` section (after the YAML frontmatter).
 
 1. Organize all findings by topic, not by source. Each topic becomes a `### ` subsection under
    `## Key Findings`.

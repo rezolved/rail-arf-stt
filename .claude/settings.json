@@ -21,12 +21,12 @@
           {
             "type": "command",
             "if": "Edit(*.md)|Write(*.md)",
-            "command": "/check-markdown-style"
+            "command": "uv run python arf/scripts/hooks/lint_markdown.py"
           },
           {
             "type": "command",
             "if": "Edit(*.py)|Write(*.py)",
-            "command": "/check-python-style"
+            "command": "uv run python arf/scripts/hooks/lint_python.py"
           }
         ]
       },
