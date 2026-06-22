@@ -1,7 +1,6 @@
 ---
 name: "research-summarize"
-description: "Compress research files into a compact summary for downstream subagents. Run after
-  research-papers and research-internet complete, before planning."
+description: "Compress research files into a compact summary for downstream subagents. Run after all research steps complete, before planning."
 ---
 # Research Summarize
 
@@ -10,8 +9,8 @@ description: "Compress research files into a compact summary for downstream suba
 ## Goal
 
 Read the research files produced by the research stage and write a compact
-`research/research_summary.md` that planning and implementation agents can load instead of the full
-research files.
+`tasks/$TASK_ID/research/research_summary.md` that planning and implementation agents can load
+instead of the full research files.
 
 ## Inputs
 
@@ -63,9 +62,9 @@ Read before starting:
    * ...
 
    ## Full Detail Available In
-   * `research/research_papers.md` — <N> papers
-   * `research/research_internet.md` — <N> sources
-   * `research/research_code.md` — <N> code references (if present)
+   * `tasks/$TASK_ID/research/research_papers.md` — <N> papers
+   * `tasks/$TASK_ID/research/research_internet.md` — <N> sources
+   * `tasks/$TASK_ID/research/research_code.md` — <N> code references (if present)
    ```
 
 3. Keep the summary under 200 lines / 8 KB. If you cannot fit critical information, prefer

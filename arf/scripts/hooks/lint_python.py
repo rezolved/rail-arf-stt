@@ -4,7 +4,9 @@ Replaces the /check-python-style skill invocation. Reads the file path
 from the Claude Code hook stdin payload, runs ruff and mypy, and prints
 any violations. No styleguide file is loaded into context.
 """
+
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -17,29 +19,46 @@ def main() -> None:
         return
 
     tool_input = hook_input.get("tool_input", {})
-    file_path = tool_input.get("file_path", "")
+    if not isinstance(tool_input, dict):
+        return
 
+    file_path = tool_input.get("file_path", "")
     if not file_path or not file_path.endswith(".py"):
         return
 
-    path = Path(file_path)
+    # Resolve relative paths against the hook's reported cwd.
+    cwd = hook_input.get("cwd", "")
+    path = Path(cwd) / file_path if cwd else Path(file_path)
     if not path.exists():
         return
 
+    abs_path = str(path)
     results: list[str] = []
 
     ruff = subprocess.run(
-        ["uv", "run", "ruff", "check", file_path, "--output-format=concise"],
+        ["uv", "run", "ruff", "check", abs_path, "--output-format=concise"],
         capture_output=True,
         text=True,
     )
     ruff_out = (ruff.stdout + ruff.stderr).strip()
     if ruff_out or ruff.returncode not in (0, 1):
         results.append("**ruff**:")
-        results.extend(ruff_out.splitlines()[:20])
+        if ruff_out:
+            results.extend(ruff_out.splitlines()[:20])
+        else:
+            results.append(f"(ruff exited with code {ruff.returncode}, no output)")
+
+    # Use package-based mypy for task code to avoid duplicate-module-name errors
+    # across task folders (per execute-task Critical Rule: uv run mypy -p tasks.$TASK_ID.code).
+    task_match = re.search(r"/tasks/([^/]+)/code/", abs_path)
+    if task_match:
+        task_id = task_match.group(1)
+        mypy_cmd = ["uv", "run", "mypy", "-p", f"tasks.{task_id}.code", "--no-error-summary"]
+    else:
+        mypy_cmd = ["uv", "run", "mypy", abs_path, "--no-error-summary"]
 
     mypy = subprocess.run(
-        ["uv", "run", "mypy", file_path, "--no-error-summary"],
+        mypy_cmd,
         capture_output=True,
         text=True,
     )
@@ -49,6 +68,10 @@ def main() -> None:
         if lines:
             results.append("**mypy**:")
             results.extend(lines)
+        elif mypy.returncode != 0:
+            # Surface non-"error:" mypy failures (config issues, crashes).
+            results.append("**mypy**:")
+            results.extend(mypy_out.splitlines()[:5])
 
     if results:
         print("\n".join(results))

@@ -575,31 +575,35 @@ uv run python -m arf.scripts.utils.run_with_logs --task-id $TASK_ID -- \
 
 The script creates all required directories, reads `task.json` `expected_assets` for asset
 subdirectories, and adds `.gitkeep` to every empty directory. The `--step-log-dir` flag causes the
-script to automatically write `logs/steps/003_init-folders/folders_created.txt`. Stage both the
-created directories (including `.gitkeep` files) AND the step log directory
-(`logs/steps/003_init-folders/`), then commit and run poststep.
+script to automatically write `logs/steps/003_init-folders/folders_created.txt`.
 
-#### Aggregator cache
+#### Aggregator cache (part of init-folders step)
 
-Run all aggregators once and save output to `tasks/$TASK_ID/ctx/` so subagents do not re-fetch:
+Still within the `init-folders` step (before committing it), populate the aggregator cache so
+subagents do not re-fetch across phases. Commands use shell redirection, so wrap with `bash -c`:
 
 ```bash
-mkdir -p tasks/$TASK_ID/ctx
-uv run python -u -m arf.scripts.aggregators.aggregate_task_types \
-  --format json > tasks/$TASK_ID/ctx/task_types.json
-uv run python -u -m arf.scripts.aggregators.aggregate_costs \
-  --format json --detail full > tasks/$TASK_ID/ctx/costs.json
-uv run python -u -m arf.scripts.aggregators.aggregate_tasks \
-  --format json --detail full > tasks/$TASK_ID/ctx/tasks.json
-uv run python -u -m arf.scripts.aggregators.aggregate_metrics \
-  --format json --detail full > tasks/$TASK_ID/ctx/metrics.json
-uv run python -u -m arf.scripts.aggregators.aggregate_suggestions \
-  --format json --detail full > tasks/$TASK_ID/ctx/suggestions.json
+uv run python -m arf.scripts.utils.run_with_logs --task-id $TASK_ID -- \
+  bash -c "mkdir -p tasks/$TASK_ID/ctx && \
+    uv run python -u -m arf.scripts.aggregators.aggregate_task_types \
+      --format json > tasks/$TASK_ID/ctx/task_types.json && \
+    uv run python -u -m arf.scripts.aggregators.aggregate_costs \
+      --format json --detail full > tasks/$TASK_ID/ctx/costs.json && \
+    uv run python -u -m arf.scripts.aggregators.aggregate_tasks \
+      --format json --detail full > tasks/$TASK_ID/ctx/tasks.json && \
+    uv run python -u -m arf.scripts.aggregators.aggregate_metrics \
+      --format json --detail full > tasks/$TASK_ID/ctx/metrics.json && \
+    uv run python -u -m arf.scripts.aggregators.aggregate_suggestions \
+      --format json --detail full > tasks/$TASK_ID/ctx/suggestions.json"
 ```
 
-These files are the source of truth for this task run. Subagents read them instead of re-running
-aggregators. Exception: if this task adds or edits `meta/` content (new metric, category, task
-type), re-run the affected aggregator and overwrite the corresponding `ctx/` file before planning.
+Stage both the created directories (including `.gitkeep` files), the step log directory
+(`logs/steps/003_init-folders/`), and `tasks/$TASK_ID/ctx/`, then commit and run poststep.
+
+These cache files are the source of truth for this task run. Subagents read them instead of
+re-running aggregators. Exception: if this task adds or edits `meta/` content (new metric,
+category, task type), re-run the affected aggregator via `run_with_logs` and overwrite the
+corresponding `ctx/` file before planning.
 
 ### Phase 2: Research
 
@@ -726,6 +730,9 @@ Read arf/skills/research-summarize/SKILL.md and follow all steps."
 This produces `research/research_summary.md` (~5–8 KB). Planning and implementation agents load
 this file instead of the full research files. This step is lightweight and does not need its own
 step_tracker entry — run it inline after the last research step completes.
+
+Stage `tasks/$TASK_ID/research/research_summary.md` and commit it as part of the last research
+step's commit (before that step's poststep). Do not wait until a later phase to commit this file.
 
 ### Phase 3: Planning
 

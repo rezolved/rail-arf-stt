@@ -27,11 +27,10 @@ Read before starting:
 
 * `tasks/$TASK_ID/task.json` — task objective, dependencies, expected assets
 
-* `tasks/$TASK_ID/research/research_papers.md` — findings from existing papers
-
-* `tasks/$TASK_ID/research/research_internet.md` — findings from internet research
-
-* `tasks/$TASK_ID/research/research_code.md` — findings from code research (if exists)
+* `tasks/$TASK_ID/research/research_summary.md` — compact synthesis produced by the
+  research-summarize step; load this instead of the full research files. If a specific topic
+  needs more depth, read the relevant section of the full file (`research_papers.md`,
+  `research_internet.md`, `research_code.md`) selectively — do not load them in full.
 
 * `arf/specifications/plan_specification.md` — authoritative format specification for `plan/plan.md`
 
