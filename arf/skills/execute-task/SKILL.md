@@ -603,9 +603,9 @@ Stage both the created directories (including `.gitkeep` files) and the step log
 consumed within this session but not committed to the branch.
 
 These cache files are the source of truth for this task run. Subagents read them instead of
-re-running aggregators. Exception: if this task adds or edits `meta/` content (new metric,
-category, task type), re-run the affected aggregator via `run_with_logs` and overwrite the
-corresponding `ctx/` file before planning.
+re-running aggregators. Exception: if this task adds or edits `meta/` content (new metric, category,
+task type), re-run the affected aggregator via `run_with_logs` and overwrite the corresponding
+`ctx/` file before planning.
 
 ### Phase 2: Research
 
@@ -727,12 +727,14 @@ Use the Agent tool to launch a subagent with this prompt:
 Read arf/skills/research-summarize/SKILL.md and follow all steps."
 ```
 
-This produces `research/research_summary.md` (~5–8 KB). Planning and implementation agents load
-this file instead of the full research files. This step is lightweight and does not need its own
+This produces `research/research_summary.md` (~5–8 KB). Planning and implementation agents load this
+file instead of the full research files. This step is lightweight and does not need its own
 step_tracker entry — run it inline after the last research step completes.
 
-Write `logs/steps/NNN_research-code/step_log.md`. Stage both this step log and
-`tasks/$TASK_ID/research/research_summary.md`. Commit and run poststep.
+Log this under the last research step that actually ran (research-code, or research-internet /
+research-papers if research-code was skipped): append a note to that step's
+`tasks/$TASK_ID/logs/steps/NNN_<step>/step_log.md`. Stage both that step log and
+`tasks/$TASK_ID/research/research_summary.md`, then commit and run poststep.
 
 ### Phase 3: Planning
 

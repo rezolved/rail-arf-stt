@@ -33,12 +33,20 @@ def main() -> None:
         return
 
     abs_path = str(path.resolve())
+    # Pass a repo-relative path to the linters when cwd is known, so their
+    # diagnostics (injected into the next agent turn) stay short.
+    lint_target = abs_path
+    if cwd:
+        try:
+            lint_target = str(path.resolve().relative_to(Path(cwd).resolve()))
+        except ValueError:
+            lint_target = abs_path
     results: list[str] = []
 
     run_cwd = cwd or None
     try:
         ruff = subprocess.run(
-            ["uv", "run", "ruff", "check", abs_path, "--output-format=concise"],
+            ["uv", "run", "ruff", "check", lint_target, "--output-format=concise"],
             capture_output=True,
             text=True,
             cwd=run_cwd,
@@ -53,7 +61,7 @@ def main() -> None:
     except Exception as e:
         results.append(f"**ruff**: could not run ({e})")
 
-    mypy_cmd = ["uv", "run", "mypy", abs_path, "--no-error-summary"]
+    mypy_cmd = ["uv", "run", "mypy", lint_target, "--no-error-summary"]
     # Task folders are Python packages; path-based mypy triggers duplicate-module-name errors
     # across task folders unless --explicit-package-bases is set (see execute-task SKILL.md
     # "Type-checking task code"). Add it for files under tasks/<id>/code/.

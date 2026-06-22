@@ -30,7 +30,15 @@ def main() -> None:
     if not path.exists():
         return
 
-    quoted_path = shlex.quote(str(path.resolve()))
+    # Prefer a repo-relative path so the reminder injected into the next agent
+    # turn stays short; fall back to the absolute path when cwd is unknown.
+    display_path = str(path.resolve())
+    if cwd:
+        try:
+            display_path = str(path.resolve().relative_to(Path(cwd).resolve()))
+        except ValueError:
+            display_path = str(path.resolve())
+    quoted_path = shlex.quote(display_path)
     print(f"Run flowmark when done: uv run flowmark --inplace --nobackup {quoted_path}")
 
 
