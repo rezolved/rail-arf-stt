@@ -1,0 +1,8 @@
+{
+  "spec_version": 1,
+  "name": "Word Error Rate (gold-92)",
+  "description": "Full-transcript Word Error Rate on the gold-92 benchmark. Used primarily to detect general-WER regression after domain fine-tuning. Computed over all reference words, not restricted to critical spans.",
+  "unit": "ratio",
+  "value_type": "float",
+  "higher_is_better": false
+}

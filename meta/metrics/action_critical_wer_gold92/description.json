@@ -1,0 +1,10 @@
+{
+  "spec_version": 1,
+  "name": "Action-Critical WER (gold-92)",
+  "description": "Word Error Rate restricted to action-critical token spans in the gold-92 benchmark. Computed as (S+D+I) / N_critical where N_critical is the total number of reference words in annotated critical spans.",
+  "unit": "ratio",
+  "value_type": "float",
+  "higher_is_better": false,
+  "is_key": true,
+  "emoji": "⚠️"
+}

@@ -1,0 +1,10 @@
+{
+  "spec_version": 1,
+  "name": "Intent Preservation (gold-92)",
+  "description": "Fraction of utterances in gold-92 where the predicted transcript preserves the ground-truth intent as judged by the intent classifier. An utterance passes if the downstream action type and primary slot agree with the reference.",
+  "unit": "accuracy",
+  "value_type": "float",
+  "higher_is_better": true,
+  "is_key": true,
+  "emoji": "✅"
+}

@@ -1,0 +1,6 @@
+{
+  "spec_version": 1,
+  "name": "STT Evaluation",
+  "short_description": "Benchmarking ASR systems on entity accuracy, WER, and intent preservation using the gold-92 held-out set.",
+  "detailed_description": "Covers tasks that measure how well a speech-to-text system transcribes Rezolve production audio. Primary metrics are entity accuracy on action-critical spans, word error rate, and intent preservation, evaluated against the gold-92 benchmark. This category includes initial baseline runs, cross-system comparisons, and regression checks. It does not include tasks that modify the STT pipeline itself — see entity-correction, confidence-routing, and whisper-finetuning for those."
+}

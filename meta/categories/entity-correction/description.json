@@ -1,0 +1,6 @@
+{
+  "spec_version": 1,
+  "name": "Entity Correction",
+  "short_description": "Post-correction strategies that improve accuracy on domain-specific entities after the raw ASR transcript is produced.",
+  "detailed_description": "Covers work that takes a raw ASR transcript and applies a correction pass to fix brand names, product lines, SKUs, and other Rezolve-specific entities. Techniques include LLM correction passes, custom vocabulary injection, and contextual entity boosting. Tasks here focus on accuracy gains measured on action-critical spans of the gold-92 benchmark and on the incremental latency cost each approach adds to the voice-to-action pipeline."
+}

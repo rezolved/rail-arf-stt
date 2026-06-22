@@ -1,0 +1,13 @@
+{
+  "spec_version": 2,
+  "name": "Whisper Fine-Tuning Run",
+  "short_description": "Train a domain-adapted Whisper checkpoint on Rezolve production audio and evaluate on gold-92.",
+  "detailed_description": "Covers tasks that prepare a training split from DVC-tracked production audio, run supervised fine-tuning of a Whisper-class model (locally on Mac Metal via MPS or on an Azure H100 VM), and evaluate the checkpoint on gold-92 for entity accuracy, WER regression, and latency. Tasks must include a data-scale experiment or ablation so the minimum-viable dataset size can be estimated. Gold-92 is held out strictly for evaluation — never included in training or validation.",
+  "optional_steps": [
+    "planning",
+    "research-code",
+    "setup-machines",
+    "teardown"
+  ],
+  "has_external_costs": true
+}

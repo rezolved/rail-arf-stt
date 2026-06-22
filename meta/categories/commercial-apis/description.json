@@ -1,0 +1,6 @@
+{
+  "spec_version": 1,
+  "name": "Commercial APIs",
+  "short_description": "Integration and evaluation of third-party STT APIs, primarily Deepgram Nova-2, as the production baseline.",
+  "detailed_description": "Covers tasks that call, configure, and measure commercial speech-to-text services. The main subject is Deepgram Nova-2, which is the current Rezolve production STT endpoint. Work in this category establishes the baseline accuracy and latency numbers that all open-source and fine-tuned approaches are compared against. It may also include evaluation of other commercial options (e.g., Azure Speech, Google STT) if they become relevant to the research roadmap."
+}

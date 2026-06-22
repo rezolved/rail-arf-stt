@@ -1,0 +1,13 @@
+{
+  "spec_version": 2,
+  "name": "STT Benchmark Run",
+  "short_description": "End-to-end evaluation of one STT configuration on gold-92: transcription, metric computation, and significance testing.",
+  "detailed_description": "Covers tasks that run a fully specified STT configuration (model/API + optional post-correction + optional routing policy) on the gold-92 benchmark and produce entity accuracy, WER, intent preservation, and latency metrics with BCa bootstrap confidence intervals. Every evaluation task in this project follows this shape: DVC-pull audio, call transcription, compute metrics, run significance test vs Deepgram baseline, package results. Unlike baseline-evaluation (which is open-ended), this type has a fixed output schema tied to the registered project metrics.",
+  "optional_steps": [
+    "planning",
+    "setup-machines",
+    "teardown",
+    "compare-literature"
+  ],
+  "has_external_costs": true
+}

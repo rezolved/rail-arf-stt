@@ -1,0 +1,10 @@
+{
+  "spec_version": 1,
+  "name": "Latency p50 (seconds)",
+  "description": "50th-percentile end-to-end voice-to-action latency in seconds, measured from speech-end detection through STT decoding, optional post-correction, and routing to the first tool-call dispatch. Success threshold is under 0.8 s.",
+  "unit": "seconds",
+  "value_type": "float",
+  "higher_is_better": false,
+  "is_key": true,
+  "emoji": "⚡"
+}

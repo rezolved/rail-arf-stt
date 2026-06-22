@@ -1,0 +1,6 @@
+{
+  "spec_version": 1,
+  "name": "Confidence Routing",
+  "short_description": "Threshold-based decision logic that routes each utterance to accept, correct, clarify, or fallback based on ASR confidence.",
+  "detailed_description": "Covers tasks that design and evaluate policies for acting on STT output with varying reliability. A routing policy maps confidence scores (and optionally entity-level scores) to one of four outcomes: accept the transcript, apply post-correction, ask the user for clarification, or hand off to a fallback path. The key objectives are keeping the wrong-confident-action rate below 2% and the clarification rate below 5% on the gold-92 benchmark without sacrificing throughput."
+}

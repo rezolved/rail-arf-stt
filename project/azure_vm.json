@@ -1,0 +1,41 @@
+{
+  "spec_version": "1",
+  "vms": [
+    {
+      "name": "FT-NC80-v3",
+      "workspace": "finetuning-workspace",
+      "resource_group": "rezolve-AI",
+      "ssh_host_alias": "FT-NC80-v3",
+      "hourly_cost_usd": 13.96,
+      "priority": 1,
+      "notes": "Primary. Finetuning-team H100 box (eastus2). Image 26.01.05 / driver 535.274.02 (newest, image-paired with serving weu primary). Coordinate with #rail-arf-serving before claiming."
+    },
+    {
+      "name": "FT-NC80-v1",
+      "workspace": "finetuning-workspace",
+      "resource_group": "rezolve-AI",
+      "ssh_host_alias": "FT-NC80-v1",
+      "hourly_cost_usd": 13.96,
+      "priority": 2,
+      "notes": "Finetuning-team H100 box (eastus2). Image 25.07.12 / driver 535.247.01. Coordinate with #rail-arf-serving before claiming."
+    },
+    {
+      "name": "FT-NC80-v2",
+      "workspace": "finetuning-workspace",
+      "resource_group": "rezolve-AI",
+      "ssh_host_alias": "FT-NC80-v2",
+      "hourly_cost_usd": 13.96,
+      "priority": 3,
+      "notes": "Finetuning-team H100 box (eastus2). Image 25.07.12 / driver 535.247.01. Coordinate with #rail-arf-serving before claiming."
+    },
+    {
+      "name": "FT-MC",
+      "workspace": "finetuning-workspace",
+      "resource_group": "rezolve-AI",
+      "ssh_host_alias": "FT-MC",
+      "hourly_cost_usd": 13.96,
+      "priority": 4,
+      "notes": "Finetuning-team multi-GPU H100 box (eastus2). Image 25.07.12 / driver 535.247.01. Coordinate with #rail-arf-serving before claiming."
+    }
+  ]
+}

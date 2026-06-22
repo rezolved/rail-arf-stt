@@ -1,0 +1,6 @@
+{
+  "spec_version": 1,
+  "name": "Audio Datasets",
+  "short_description": "Collection, curation, ground-truth annotation, and DVC versioning of production audio used for STT experiments.",
+  "detailed_description": "Covers tasks that source, clean, and version audio data from Rezolve production sessions. This includes mining production logs for voice clips, annotating ground-truth transcripts, tagging entity spans and utterance categories, and managing large audio files via DVC against the Azure Blob remote. The gold-92 benchmark dataset belongs to this category. Tasks here produce the data assets consumed by stt-evaluation, entity-correction, and whisper-finetuning tasks."
+}

@@ -1,0 +1,6 @@
+{
+  "spec_version": 1,
+  "name": "Latency Profiling",
+  "short_description": "End-to-end measurement of voice-to-action latency from speech end to tool call across candidate STT pipeline configurations.",
+  "detailed_description": "Covers tasks that instrument and measure the full latency path: speech capture end, ASR decoding, optional post-correction, confidence routing, and downstream tool call dispatch. The success threshold is p50 < 800 ms. Tasks here profile individual stages, compare latency across candidate systems, and identify bottlenecks. Latency data is collected alongside accuracy metrics so accuracy–latency trade-offs can be reasoned about explicitly."
+}

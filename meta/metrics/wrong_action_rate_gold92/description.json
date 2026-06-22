@@ -1,0 +1,10 @@
+{
+  "spec_version": 1,
+  "name": "Wrong Action Rate (gold-92)",
+  "description": "Fraction of gold-92 utterances where the routing policy emits a confident action that differs from the ground-truth action. Measures the false-confidence failure mode; success threshold is below 2%.",
+  "unit": "ratio",
+  "value_type": "float",
+  "higher_is_better": false,
+  "is_key": true,
+  "emoji": "🚫"
+}

@@ -1,0 +1,6 @@
+{
+  "spec_version": 1,
+  "name": "Whisper Fine-Tuning",
+  "short_description": "Domain-adapted fine-tuning of Whisper-class ASR models on Rezolve production audio to improve entity accuracy.",
+  "detailed_description": "Covers experiments that adapt pre-trained Whisper (or Whisper-derived) models to the Rezolve voice commerce domain. Tasks include dataset preparation from production audio, supervised fine-tuning runs, hyperparameter sweeps, and post-fine-tune evaluation on the gold-92 benchmark. A key constraint is that fine-tuned models must not regress general English WER relative to the base checkpoint. Gold-92 is never used for training — only for held-out evaluation."
+}

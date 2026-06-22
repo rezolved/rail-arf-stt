@@ -1,0 +1,12 @@
+{
+  "spec_version": 2,
+  "name": "Post-Correction Experiment",
+  "short_description": "Evaluate a specific post-correction strategy on ASR transcripts for entity accuracy gain vs latency cost.",
+  "detailed_description": "Covers tasks that take raw ASR transcripts from a prior stt-benchmark-run and apply a correction strategy — LLM correction pass, custom vocabulary injection, contextual entity boosting, or a combination. The task measures the delta in entity accuracy and action-critical WER on gold-92 compared to the uncorrected transcript, plus the added per-utterance latency. Results must include a cost estimate (LLM tokens or API calls) and should be compared against at least one other correction strategy.",
+  "optional_steps": [
+    "planning",
+    "research-code",
+    "compare-literature"
+  ],
+  "has_external_costs": true
+}

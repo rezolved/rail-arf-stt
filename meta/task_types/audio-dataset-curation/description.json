@@ -1,0 +1,12 @@
+{
+  "spec_version": 2,
+  "name": "Audio Dataset Curation",
+  "short_description": "Collect, clean, annotate, and DVC-track production audio clips for STT experiments.",
+  "detailed_description": "Covers tasks that source audio from Rezolve production logs or the rail-artifacts voice samples repository, apply quality filtering, annotate ground-truth transcripts and entity spans, and version the result with DVC against the Azure Blob remote. Unlike download-dataset (which fetches public, pre-labeled sets), this type involves human or LLM-assisted labelling of proprietary audio. Gold-92 curation and any future production audio expansion tasks belong here.",
+  "optional_steps": [
+    "research-internet",
+    "research-code",
+    "planning"
+  ],
+  "has_external_costs": false
+}
