@@ -597,8 +597,10 @@ uv run python -m arf.scripts.utils.run_with_logs --task-id $TASK_ID -- \
       --format json --detail full > tasks/$TASK_ID/ctx/suggestions.json"
 ```
 
-Stage both the created directories (including `.gitkeep` files), the step log directory
-(`logs/steps/003_init-folders/`), and `tasks/$TASK_ID/ctx/`, then commit and run poststep.
+Stage both the created directories (including `.gitkeep` files) and the step log directory
+(`logs/steps/003_init-folders/`), then commit and run poststep. Do not stage
+`tasks/$TASK_ID/ctx/` — these cache files are gitignored and intentionally local-only; they are
+consumed within this session but not committed to the branch.
 
 These cache files are the source of truth for this task run. Subagents read them instead of
 re-running aggregators. Exception: if this task adds or edits `meta/` content (new metric,

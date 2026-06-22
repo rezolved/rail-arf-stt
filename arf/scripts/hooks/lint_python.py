@@ -32,7 +32,7 @@ def main() -> None:
     if not path.exists():
         return
 
-    abs_path = str(path)
+    abs_path = str(path.resolve())
     results: list[str] = []
 
     ruff = subprocess.run(
