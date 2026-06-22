@@ -6,7 +6,6 @@ any violations. No styleguide file is loaded into context.
 """
 
 import json
-import re
 import subprocess
 import sys
 from pathlib import Path
@@ -53,14 +52,7 @@ def main() -> None:
     except Exception as e:
         results.append(f"**ruff**: could not run ({e})")
 
-    # Use package-based mypy for task code to avoid duplicate-module-name errors
-    # across task folders (per execute-task Critical Rule: uv run mypy -p tasks.$TASK_ID.code).
-    task_match = re.search(r"/tasks/([^/]+)/code/", abs_path)
-    if task_match:
-        task_id = task_match.group(1)
-        mypy_cmd = ["uv", "run", "mypy", "-p", f"tasks.{task_id}.code", "--no-error-summary"]
-    else:
-        mypy_cmd = ["uv", "run", "mypy", abs_path, "--no-error-summary"]
+    mypy_cmd = ["uv", "run", "mypy", abs_path, "--no-error-summary"]
 
     try:
         mypy = subprocess.run(

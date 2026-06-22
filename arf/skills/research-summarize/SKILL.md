@@ -4,7 +4,7 @@ description: "Compress research files into a compact summary for downstream suba
 ---
 # Research Summarize
 
-**Version**: 1
+**Version**: 2
 
 ## Goal
 
@@ -65,8 +65,11 @@ Read before starting:
    ## Full Detail Available In
    * `tasks/$TASK_ID/research/research_papers.md` — <N> papers
    * `tasks/$TASK_ID/research/research_internet.md` — <N> sources
-   * `tasks/$TASK_ID/research/research_code.md` — <N> code references (if present)
+   * `tasks/$TASK_ID/research/research_code.md` — <N> code references
    ```
+
+   For each research file that was not generated (step was skipped), write
+   "(not generated — step skipped)" instead of a source count.
 
 3. Keep the summary under 200 lines / 8 KB. If you cannot fit critical information, prefer
    specificity over breadth — include the most actionable findings and omit peripheral detail.
@@ -80,5 +83,7 @@ Read before starting:
 ## Forbidden
 
 * NEVER copy large blocks from research files verbatim. Compress and synthesize.
-* NEVER omit the "Full Detail Available In" section — planning agents must know the full files exist.
+* NEVER omit the "Full Detail Available In" section — downstream agents use it to decide which
+  research files to read. For files not generated (step skipped), write "(not generated — step
+  skipped)" instead of a source count.
 * NEVER commit. The orchestrator owns commits.

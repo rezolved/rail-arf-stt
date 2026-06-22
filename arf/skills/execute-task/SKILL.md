@@ -4,7 +4,7 @@ description: "Run an ARF task through all required stages and merge the final PR
 ---
 # Execute Task
 
-**Version**: 23
+**Version**: 24
 
 ## Goal
 
@@ -716,8 +716,6 @@ uv run python -m arf.scripts.utils.run_with_logs --task-id $TASK_ID -- \
   uv run python -m arf.scripts.verificators.verify_research_code $TASK_ID
 ```
 
-Write `logs/steps/NNN_research-code/step_log.md`. Commit and run poststep.
-
 #### Summarize research
 
 After all research steps complete (research-papers, research-internet, research-code), spawn a
@@ -733,8 +731,8 @@ This produces `research/research_summary.md` (~5–8 KB). Planning and implement
 this file instead of the full research files. This step is lightweight and does not need its own
 step_tracker entry — run it inline after the last research step completes.
 
-Stage `tasks/$TASK_ID/research/research_summary.md` and commit it as part of the last research
-step's commit (before that step's poststep). Do not wait until a later phase to commit this file.
+Write `logs/steps/NNN_research-code/step_log.md`. Stage both this step log and
+`tasks/$TASK_ID/research/research_summary.md`. Commit and run poststep.
 
 ### Phase 3: Planning
 
