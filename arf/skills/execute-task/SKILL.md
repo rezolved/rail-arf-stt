@@ -4,7 +4,7 @@ description: "Run an ARF task through all required stages and merge the final PR
 ---
 # Execute Task
 
-**Version**: 22
+**Version**: 23
 
 ## Goal
 

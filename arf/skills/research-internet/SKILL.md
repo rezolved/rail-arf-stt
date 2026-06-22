@@ -5,7 +5,7 @@ model: "claude-sonnet-4-6"
 ---
 # Research Internet
 
-**Version**: 4
+**Version**: 5
 
 ## Goal
 

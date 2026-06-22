@@ -4,7 +4,7 @@ description: "Synthesize research outputs into a task plan with steps, costs, ri
 ---
 # Planning
 
-**Version**: 10
+**Version**: 11
 
 ## Goal
 
@@ -44,7 +44,7 @@ Read before starting:
   `tasks/$TASK_ID/ctx/task_types.json`
 
   If this file does not exist (skill run standalone), generate it:
-  `uv run python -u -m arf.scripts.aggregators.aggregate_task_types --format json > tasks/$TASK_ID/ctx/task_types.json`
+  `mkdir -p tasks/$TASK_ID/ctx && uv run python -u -m arf.scripts.aggregators.aggregate_task_types --format json > tasks/$TASK_ID/ctx/task_types.json`
 
 * Task type instructions in `meta/task_types/<slug>/instruction.md`
 
@@ -123,7 +123,7 @@ Read before starting:
 
 7. Discover registered metrics. Read `tasks/$TASK_ID/ctx/metrics.json` (pre-fetched by the
    orchestrator). If this file does not exist (skill run standalone), generate it:
-   `uv run python -u -m arf.scripts.aggregators.aggregate_metrics --format json --detail full > tasks/$TASK_ID/ctx/metrics.json`
+   `mkdir -p tasks/$TASK_ID/ctx && uv run python -u -m arf.scripts.aggregators.aggregate_metrics --format json --detail full > tasks/$TASK_ID/ctx/metrics.json`
 
    Review every registered metric and decide which ones this task can measure. A metric applies when
    the task performs the activity the metric measures — for example
