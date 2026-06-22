@@ -30,9 +30,8 @@ def main() -> None:
     if not path.exists():
         return
 
-    print(
-        f"Run flowmark when done: uv run flowmark --inplace --nobackup {shlex.quote(str(path.resolve()))}"
-    )
+    quoted_path = shlex.quote(str(path.resolve()))
+    print(f"Run flowmark when done: uv run flowmark --inplace --nobackup {quoted_path}")
 
 
 if __name__ == "__main__":
