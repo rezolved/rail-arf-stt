@@ -1,0 +1,2 @@
+['remote "azure"']
+    connection_string = DefaultEndpointsProtocol=https;AccountName=mldvcstorerezolve;AccountKey=YOUR_ACCOUNT_KEY_HERE;EndpointSuffix=core.windows.net

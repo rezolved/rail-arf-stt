@@ -1,0 +1,26 @@
+[
+  {
+    "id": "S-0001-01",
+    "kind": "evaluation",
+    "title": "Baseline WER and entity accuracy evaluation",
+    "description": "Run WER and entity accuracy scoring on Deepgram (production) and Whisper Large v3 against gold-92 ground truth. Break down by utterance category and entity type. Report BCa bootstrap CIs.",
+    "priority": "high",
+    "depends_on": ["t0001_stt_benchmark"]
+  },
+  {
+    "id": "S-0001-02",
+    "kind": "dataset",
+    "title": "Investigate 2-clip discrepancy between gold_set and ground_truth",
+    "description": "gold_set.jsonl has 93 entries, ground_truth.jsonl has 91. Identify the 2 missing clips and either add them to ground_truth or document why they were excluded.",
+    "priority": "medium",
+    "depends_on": ["t0001_stt_benchmark"]
+  },
+  {
+    "id": "S-0001-03",
+    "kind": "experiment",
+    "title": "Entity-aware post-correction with LLM pass",
+    "description": "Feed Deepgram output + a Rezolve entity list (brands, products, integrations) to an LLM and measure entity accuracy improvement on gold-92. Target <100 ms added latency.",
+    "priority": "high",
+    "depends_on": ["t0001_stt_benchmark"]
+  }
+]

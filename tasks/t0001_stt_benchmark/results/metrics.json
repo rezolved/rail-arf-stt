@@ -1,0 +1,5 @@
+{
+  "note": "Formal metrics (WER, entity accuracy) will be reported in t0002_baseline_evaluation.",
+  "dataset_clips": 93,
+  "ground_truth_entries": 91
+}

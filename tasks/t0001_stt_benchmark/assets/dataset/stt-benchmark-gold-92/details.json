@@ -1,0 +1,30 @@
+{
+  "dataset_id": "stt-benchmark-gold-92",
+  "name": "STT Benchmark Gold-92",
+  "description": "Gold held-out benchmark for STT evaluation in the Rezolve voice commerce assistant. 93 WAV clips from real production sessions (investor-relations domain). Each clip is annotated with: ground-truth transcript, current production Deepgram transcription, and Whisper Large v2 transcription. Speakers include accented English (French accent prominent). Used as the primary regression test for all STT experiments — NEVER use for training or fine-tuning.",
+  "version": "v1",
+  "date_created": "2026-06-22",
+  "added_by_task": "t0001_stt_benchmark",
+  "source": "Rezolve production voice sessions (brainpowa-realtime-api), curated from 92-session batch",
+  "domain": "investor-relations / ecommerce voice commerce",
+  "language": "en",
+  "num_clips": 93,
+  "audio_format": "wav",
+  "total_audio_size_mb": 58,
+  "categories": ["stt-benchmark", "audio", "evaluation"],
+  "files": {
+    "gold_set": "files/gold_set.jsonl",
+    "ground_truth": "files/ground_truth.jsonl",
+    "audio_dir": "files/audio/"
+  },
+  "gold_set_schema": {
+    "clip_id": "string — unique identifier (session_id + turn number)",
+    "source": "string — 'clean_voices' or other source label",
+    "filename": "string — audio filename (matches files/audio/)",
+    "ground_truth": "string — manually verified correct transcript",
+    "production": "string — Deepgram production transcript",
+    "whisper": "string — Whisper Large v2 transcript"
+  },
+  "split": "held_out_only",
+  "license": "internal — Rezolve proprietary, not for public release"
+}

@@ -1,0 +1,13 @@
+{
+  "task_id": "t0001_stt_benchmark",
+  "name": "STT Benchmark — Gold-92 Dataset Ingestion",
+  "description_short": "Ingest, version, and register the gold-92 STT benchmark dataset.",
+  "description": "Import the gold-92 benchmark dataset built from Rezolve production voice sessions (investor-relations domain, accented English). The dataset contains 93 WAV audio clips annotated with ground-truth transcripts, current production (Deepgram) transcriptions, and Whisper transcriptions. Audio files are tracked via DVC; JSONL annotation files are committed to git. This dataset is the primary regression test for all future STT experiments — it MUST NEVER be used for training or fine-tuning.",
+  "status": "completed",
+  "dependency": [],
+  "start_time": "2026-06-22",
+  "end_time": "2026-06-22",
+  "expected_assets": {
+    "dataset": 1
+  }
+}

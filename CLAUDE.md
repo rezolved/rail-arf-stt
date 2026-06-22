@@ -1,26 +1,17 @@
-# rail-arf — Rezolve's Canonical ARF Fork
+# rail-arf-stt — STT Research for Ecommerce Voice AI (ARF)
 
-Template repository for starting a Rezolve research project (latency, fine-tuning, RAG,
-guardrails, etc.) using the Glite Autonomous Research Framework. Fork this repo and replace this
-section with your project-specific description.
+Autonomous-research project to benchmark and improve Speech-to-Text (STT) for Rezolve's voice
+commerce assistant. Goal: beat production Deepgram on entity accuracy (brands, products, SKUs)
+and intent preservation using a domain-specific evaluation harness, with fast latency (<800 ms
+p50 voice-to-action) and confidence-based routing to reduce wrong-action rate below 2%.
 
-This started as a fork of the Glite ARF template but is developed independently by Rezolve. On
-top of the base framework it adds:
-
-* An Azure ML SSH-VM provisioner (`arf/scripts/utils/azure_ml_vm.py`) wired into the
-  `setup-remote-machine` skill — Azure ML is the default GPU provider for Rezolve projects.
-* A statistically-significant paired-bootstrap library (`arf/scripts/stats/bootstrap_compare/`)
-  with locked seeds, used for any cross-condition comparison.
-* A warmup-protocol shape (`arf/scripts/protocols/warmup_runner/`) — engine-agnostic constants and
-  spec for the warmup-N + measured-M latency-benchmark pattern.
-* A `LESSONS.md` at the repo root capturing hard-won lessons from prior Rezolve research projects,
-  encoded as defaults in skills and verificators.
+This repo is a private fork of `rezolved/rail-arf` (Rezolve's canonical ARF fork-base). See
+`project/description.md` for the full goal and success criteria.
 
 ## Commands
 
 ```bash
 # Setup
-# New fork onboarding: run /setup-project in Claude Code or $setup-project in Codex
 uv sync                                            # Install deps
 uv run pre-commit install                          # Activate git hooks
 python3 doctor.py                                  # Validate environment
@@ -34,68 +25,56 @@ uv run flowmark --inplace --nobackup <path.md>      # Format markdown
 uv run ruff check --fix . && uv run ruff format .   # Lint and format Python
 uv run mypy .                                        # Type check
 uv run pytest                                        # Run framework tests in arf/tests
+
+# DVC (large data files — see docs/dvc-data-workflow.md)
+dvc pull                                            # Download all tracked data files
+dvc push                                            # Upload new/updated data files
+dvc add <file-or-dir>                               # Track a new large file with DVC
 ```
+
+## DVC data workflow
+
+Large data files (audio clips, model checkpoints, large eval datasets) are tracked by DVC and
+stored in Azure Blob Storage at `azure://ml-dvc-datasets/datasets/rail-arf-stt` (account:
+`mldvcstorerezolve`). Git commits only the small `.dvc` pointer files — not the data bytes.
+
+**After `git pull`, always run `dvc pull` to sync data.**
+
+Setup: copy `.dvc/config.local.example` to `.dvc/config.local` and fill in the connection string
+from the team vault (same key as `rail-benchmarks` and `rail-arf-finetuning`). See
+`docs/dvc-data-workflow.md` for full instructions.
+
+Key rules for task agents:
+
+* Any task that produces audio files, model checkpoints, or multi-MB eval sets MUST gitignore
+  the data and track it with `dvc add`.
+* Run `dvc push` before merging the task PR so teammates can `dvc pull` the data.
+* NEVER commit raw audio blobs to git — only `.dvc` pointer files are committed.
 
 ## Key References
 
-* Project description and goals: create `project/description.md` in your fork
-* New project onboarding: @arf/skills/setup-project/SKILL.md
-* ARF architecture and glossary: @arf/README.md
-* Rezolve-specific lessons accumulated over prior projects: @LESSONS.md
-* Python style guide: @arf/styleguide/python_styleguide.md
-* Markdown style guide: @arf/styleguide/markdown_styleguide.md
-* Agent instructions style guide: @arf/styleguide/agent_instructions_styleguide.md
-* Paper asset specification: @meta/asset_types/paper/specification.md
-* Aggregators reference: @arf/docs/reference/aggregators.md
+* Project description and goals: `project/description.md`
+* STT strategy and phase plan: Confluence — STT Strategy for Ecommerce Voice AI
+* Benchmark data (gold 92 clips): `tasks/t0001_stt_benchmark/` (DVC-tracked audio)
+* New project onboarding: `arf/skills/setup-project/SKILL.md`
+* ARF architecture and glossary: `arf/README.md`
+* Lessons from prior Rezolve projects: `LESSONS.md`
+* Python style guide: `arf/styleguide/python_styleguide.md`
+* Markdown style guide: `arf/styleguide/markdown_styleguide.md`
+* DVC workflow: `docs/dvc-data-workflow.md`
+
+## Benchmark
+
+The primary metric is **entity accuracy** on the gold-92 benchmark (`t0001_stt_benchmark`):
+93 WAV clips from Rezolve production sessions (investor-relations domain, accented English)
+annotated with ground-truth transcripts. Secondary metrics: WER, intent preservation, latency.
+
+NEVER train or tune on gold-92 — it is a held-out regression set only.
 
 ## Rezolve conventions
 
 * Always write **brainpowa** in lowercase — never "Brainpowa" or "BrainPowa".
 * Use the `gh` CLI for GitHub operations (PR reads, diffs, status checks). Never paste credentials
-  into the repo.
-* Never add a "Generated with Claude Code" promo line to commit messages or PR descriptions.
-* The default GPU provider is **Azure ML** (configured via `project/azure_vm.json`). vast.ai is
-  supported as a fallback if a project declares it in `available_services`.
-
-## Key Rules
-
-0. Framework / infrastructure / specification / skill / verificator / aggregator / materializer
-   changes in `arf/`, generic `meta/`, and generic boilerplate are not task work. Do not create a
-   `tasks/tXXXX_*` folder for such changes.
-1. All CLI tool calls MUST be wrapped in `arf/scripts/utils/run_with_logs.py`.
-2. One task = one folder = one branch = one PR.
-3. **NEVER** modify files outside the task folder. Only top-level tooling files may change:
-   `pyproject.toml`, `uv.lock`, `ruff.toml`, `.gitignore`.
-4. Each task stage and each action is a separate well-described commit.
-5. Nothing in a completed task folder may be changed; use the corrections mechanism in later tasks.
-6. Run `uv run flowmark --inplace --nobackup <changed.md>` on edited markdown files, then run
-   `uv run ruff check --fix . && uv run ruff format . && uv run mypy .` before commit.
-7. Framework tests live in `arf/tests/`. Task-specific tests live in
-   `tasks/$TASK_ID/code/test_*.py`. Do not create or use a top-level `tests/` directory.
-8. Full data normalization; no duplication across task folders.
-9. **Always use aggregators to enumerate cross-task data.** Never walk `tasks/` with
-   Glob/Grep/find/Explore to list tasks, papers, suggestions, answers, datasets, libraries, models,
-   predictions, costs, metrics, or metric results. Aggregators in `arf/scripts/aggregators/` apply
-   the corrections overlay; raw filesystem walks silently miss corrections and produce stale
-   answers. See `arf/docs/reference/aggregators.md` for the full list and flags.
-10. Read `LESSONS.md` before planning a task that involves latency benchmarks, GPU provisioning,
-    quantization, or paired-bootstrap analysis. Each lesson lists the mitigation already wired into
-    the framework and the verificator that enforces it.
-
-## Task Workflow
-
-* Tasks live in `tasks/tXXXX_slug/` (t prefix + 4-digit ID + underscore slug).
-* Each task runs in its own git worktree on branch `task/<task_id>`.
-* Multiple tasks can execute in parallel (each in a separate worktree).
-* New tasks branch: `new_tasks/<first_index>-<last_index>`.
-* Mandatory stages: research -> planning -> implementation -> analysis -> reporting.
-* Every step must be logged in `logs/`; verificators enforce this.
-* Aggregators collect data across tasks AND apply corrections overlays — use them instead of walking
-  `tasks/` directly (see rule 9).
-* Format specs for task documents: `arf/specifications/`.
-
-## Provenance
-
-rail-arf started as a fork of `GliteTech/glite-arf` but is developed independently. There is no
-`upstream` remote and we do not track upstream changes. Modify `arf/` (skills, verificators,
-aggregators, specs) freely — those are Rezolve's now.
+  into commits, logs, or agent prompts.
+* External communications (PRs, Jira, Confluence, Slack) go in English even when prompting in
+  Russian.
