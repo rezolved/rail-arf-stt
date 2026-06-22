@@ -74,7 +74,7 @@ Read before starting:
 ## Done When
 
 * `tasks/$TASK_ID/research/research_summary.md` exists.
-* File is under 8 KB.
+* File is under 200 lines and 8 KB.
 * All mandatory sections are present.
 
 ## Forbidden

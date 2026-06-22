@@ -311,8 +311,10 @@ script output. Flag any `0.0` values for metrics that should have real measureme
 before returning to the orchestrator.
 
 Before the requirement review, check metrics coverage. Read the metrics cache:
-`tasks/$TASK_ID/ctx/metrics.json` (pre-fetched by the orchestrator). Extract the metric IDs from
-the JSON to compare against `results/metrics.json`.
+`tasks/$TASK_ID/ctx/metrics.json` (pre-fetched by the orchestrator). If this file does not exist
+(skill run standalone), generate it:
+`uv run python -u -m arf.scripts.aggregators.aggregate_metrics --format json --detail full > tasks/$TASK_ID/ctx/metrics.json`
+Extract the metric IDs from the JSON to compare against `results/metrics.json`.
 
 Compare the registered metric IDs against what is in `results/metrics.json`. For each registered
 metric not present, ask: "Did this task perform the activity this metric measures?" Specifically:

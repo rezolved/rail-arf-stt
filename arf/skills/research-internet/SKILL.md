@@ -148,7 +148,7 @@ comprehensively.
 **Size limit**: `research_internet.md` must not exceed 40 KB / 250 lines. If your synthesis
 exceeds this, prioritize by direct relevance to the task objective: keep the top 15 most actionable
 sources with their findings and discard peripheral context. State the number of sources consulted
-vs. included at the top of the file.
+vs. included in the `## Search Strategy` section (after the YAML frontmatter).
 
 1. Organize all findings by topic, not by source. Each topic becomes a `### ` subsection under
    `## Key Findings`.

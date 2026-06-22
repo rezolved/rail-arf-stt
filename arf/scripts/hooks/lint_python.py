@@ -35,11 +35,13 @@ def main() -> None:
     abs_path = str(path.resolve())
     results: list[str] = []
 
+    run_cwd = cwd or None
     try:
         ruff = subprocess.run(
             ["uv", "run", "ruff", "check", abs_path, "--output-format=concise"],
             capture_output=True,
             text=True,
+            cwd=run_cwd,
         )
         ruff_out = (ruff.stdout + ruff.stderr).strip()
         if ruff_out or ruff.returncode not in (0, 1):
@@ -65,6 +67,7 @@ def main() -> None:
             mypy_cmd,
             capture_output=True,
             text=True,
+            cwd=run_cwd,
         )
         mypy_out = (mypy.stdout + mypy.stderr).strip()
         if mypy_out:

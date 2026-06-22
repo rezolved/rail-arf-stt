@@ -4,7 +4,7 @@ description: "Synthesize research outputs into a task plan with steps, costs, ri
 ---
 # Planning
 
-**Version**: 9
+**Version**: 10
 
 ## Goal
 
@@ -42,6 +42,9 @@ Read before starting:
 * Task type definitions — read the pre-fetched cache (written by the orchestrator at task start):
 
   `tasks/$TASK_ID/ctx/task_types.json`
+
+  If this file does not exist (skill run standalone), generate it:
+  `uv run python -u -m arf.scripts.aggregators.aggregate_task_types --format json > tasks/$TASK_ID/ctx/task_types.json`
 
 * Task type instructions in `meta/task_types/<slug>/instruction.md`
 
@@ -107,10 +110,11 @@ Read before starting:
    (`research_papers.md`, `research_internet.md`, `research_code.md`) — but do not load them in
    full unless necessary.
 
-4. For each dependency in `task.json`, understand what it produced. Use `tasks/$TASK_ID/ctx/tasks.json`
-   (pre-fetched by the orchestrator, `--detail short`) only to locate the dependency IDs and their
-   status. For actual dependency context (what the task produced), read the dependency's result files
-   directly: `tasks/<dep_id>/results/results_summary.md`. Do not load the full `ctx/tasks.json` into
+4. For each dependency in `task.json`, understand what it produced. Use
+   `tasks/$TASK_ID/ctx/tasks.json` (pre-fetched by the orchestrator, `--detail short`) only to
+   locate the dependency IDs and their status. For actual dependency context (what the task
+   produced), read the dependency's result files directly:
+   `tasks/<dep_id>/results/results_summary.md`. Do not load the full `ctx/tasks.json` into
    context — extract only the records you need.
 
 5. Read `project/budget.json` to understand spending constraints.
@@ -118,7 +122,8 @@ Read before starting:
 6. Read asset type specifications in `meta/asset_types/` for each expected asset type.
 
 7. Discover registered metrics. Read `tasks/$TASK_ID/ctx/metrics.json` (pre-fetched by the
-   orchestrator).
+   orchestrator). If this file does not exist (skill run standalone), generate it:
+   `uv run python -u -m arf.scripts.aggregators.aggregate_metrics --format json --detail full > tasks/$TASK_ID/ctx/metrics.json`
 
    Review every registered metric and decide which ones this task can measure. A metric applies when
    the task performs the activity the metric measures — for example
@@ -345,8 +350,9 @@ Read before starting:
 
 * NEVER fabricate cost estimates, time estimates, or risk assessments.
 
-* NEVER skip reading `research_summary.md` before writing the plan — the plan must be grounded in
-  research findings.
+* NEVER skip reading `research_summary.md` when it exists — the plan must be grounded in research
+  findings. Only proceed without it when research steps were explicitly skipped for this task type
+  (see the fallback in the Context section).
 
 * NEVER use placeholder text like "TBD" or "to be determined" — resolve all unknowns or document
   them as risks.
