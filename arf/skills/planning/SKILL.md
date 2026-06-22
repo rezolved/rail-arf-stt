@@ -4,7 +4,7 @@ description: "Synthesize research outputs into a task plan with steps, costs, ri
 ---
 # Planning
 
-**Version**: 8
+**Version**: 9
 
 ## Goal
 
@@ -107,9 +107,11 @@ Read before starting:
    (`research_papers.md`, `research_internet.md`, `research_code.md`) — but do not load them in
    full unless necessary.
 
-4. For each dependency in `task.json`, read its results summary to understand what it produced.
-   Read `tasks/$TASK_ID/ctx/tasks.json` (pre-fetched by the orchestrator) and filter by the
-   dependency IDs from `task.json`.
+4. For each dependency in `task.json`, understand what it produced. Use `tasks/$TASK_ID/ctx/tasks.json`
+   (pre-fetched by the orchestrator, `--detail short`) only to locate the dependency IDs and their
+   status. For actual dependency context (what the task produced), read the dependency's result files
+   directly: `tasks/<dep_id>/results/results_summary.md`. Do not load the full `ctx/tasks.json` into
+   context — extract only the records you need.
 
 5. Read `project/budget.json` to understand spending constraints.
 

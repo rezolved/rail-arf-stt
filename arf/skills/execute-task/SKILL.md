@@ -590,7 +590,7 @@ uv run python -m arf.scripts.utils.run_with_logs --task-id $TASK_ID -- \
     uv run python -u -m arf.scripts.aggregators.aggregate_costs \
       --format json --detail full > tasks/$TASK_ID/ctx/costs.json && \
     uv run python -u -m arf.scripts.aggregators.aggregate_tasks \
-      --format json --detail full > tasks/$TASK_ID/ctx/tasks.json && \
+      --format json --detail short > tasks/$TASK_ID/ctx/tasks.json && \
     uv run python -u -m arf.scripts.aggregators.aggregate_metrics \
       --format json --detail full > tasks/$TASK_ID/ctx/metrics.json && \
     uv run python -u -m arf.scripts.aggregators.aggregate_suggestions \
