@@ -6,6 +6,7 @@ any violations. No styleguide file is loaded into context.
 """
 
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -53,6 +54,11 @@ def main() -> None:
         results.append(f"**ruff**: could not run ({e})")
 
     mypy_cmd = ["uv", "run", "mypy", abs_path, "--no-error-summary"]
+    # Task folders are Python packages; path-based mypy triggers duplicate-module-name errors
+    # across task folders unless --explicit-package-bases is set (see execute-task SKILL.md
+    # "Type-checking task code"). Add it for files under tasks/<id>/code/.
+    if re.search(r"(?:^|/)tasks/[^/]+/code/", abs_path.replace("\\", "/")):
+        mypy_cmd.append("--explicit-package-bases")
 
     try:
         mypy = subprocess.run(
