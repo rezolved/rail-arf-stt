@@ -575,7 +575,7 @@ uv run python -m arf.scripts.utils.run_with_logs --task-id $TASK_ID -- \
 
 The script creates all required directories, reads `task.json` `expected_assets` for asset
 subdirectories, and adds `.gitkeep` to every empty directory. The `--step-log-dir` flag causes the
-script to automatically write `logs/steps/003_init-folders/folders_created.txt`.
+script to automatically write `tasks/$TASK_ID/logs/steps/003_init-folders/folders_created.txt`.
 
 #### Aggregator cache (part of init-folders step)
 
@@ -598,7 +598,7 @@ uv run python -m arf.scripts.utils.run_with_logs --task-id $TASK_ID -- \
 ```
 
 Stage both the created directories (including `.gitkeep` files) and the step log directory
-(`logs/steps/003_init-folders/`), then commit and run poststep. Do not stage
+(`tasks/$TASK_ID/logs/steps/003_init-folders/`), then commit and run poststep. Do not stage
 `tasks/$TASK_ID/ctx/` — these cache files are gitignored and intentionally local-only; they are
 consumed within this session but not committed to the branch.
 

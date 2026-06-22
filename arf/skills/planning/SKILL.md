@@ -30,7 +30,9 @@ Read before starting:
 * `tasks/$TASK_ID/research/research_summary.md` — compact synthesis produced by the
   research-summarize step; load this instead of the full research files. If a specific topic
   needs more depth, read the relevant section of the full file (`research_papers.md`,
-  `research_internet.md`, `research_code.md`) selectively — do not load them in full.
+  `research_internet.md`, `research_code.md`) selectively — do not load them in full. If this
+  file does not exist (research steps were skipped for this task type), proceed based on
+  `task.json` directly.
 
 * `arf/specifications/plan_specification.md` — authoritative format specification for `plan/plan.md`
 

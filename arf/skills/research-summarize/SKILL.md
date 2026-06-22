@@ -20,14 +20,15 @@ instead of the full research files.
 
 Read before starting:
 
-* `tasks/$TASK_ID/research/research_papers.md`
-* `tasks/$TASK_ID/research/research_internet.md`
-* `tasks/$TASK_ID/research/research_code.md` (if it exists)
+* `tasks/$TASK_ID/research/research_papers.md` (if it exists — research-papers step is optional)
+* `tasks/$TASK_ID/research/research_internet.md` (if it exists — research-internet step is optional)
+* `tasks/$TASK_ID/research/research_code.md` (if it exists — research-code step is optional)
 * `tasks/$TASK_ID/task.json` — to understand what the task needs
 
 ## Steps
 
-1. Read all available research files.
+1. Read all available research files, skipping any that do not exist. If none exist, write a
+   minimal summary grounded solely in `task.json`.
 
 2. Write `tasks/$TASK_ID/research/research_summary.md` with these sections:
 

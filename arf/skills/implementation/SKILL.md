@@ -28,7 +28,8 @@ Read before starting:
 * `tasks/$TASK_ID/plan/plan.md` — the plan to execute (Step by Step section)
 
 * `tasks/$TASK_ID/research/research_summary.md` — compact synthesis of all research findings (load
-  full research files only if you need detail beyond the summary)
+  full research files only if you need detail beyond the summary). If this file does not exist
+  (research steps were skipped for this task type), proceed based on `plan/plan.md` directly.
 
 * Asset type specifications in `meta/asset_types/` for each expected asset type
 

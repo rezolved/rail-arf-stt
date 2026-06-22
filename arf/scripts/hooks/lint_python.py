@@ -35,18 +35,21 @@ def main() -> None:
     abs_path = str(path.resolve())
     results: list[str] = []
 
-    ruff = subprocess.run(
-        ["uv", "run", "ruff", "check", abs_path, "--output-format=concise"],
-        capture_output=True,
-        text=True,
-    )
-    ruff_out = (ruff.stdout + ruff.stderr).strip()
-    if ruff_out or ruff.returncode not in (0, 1):
-        results.append("**ruff**:")
-        if ruff_out:
-            results.extend(ruff_out.splitlines()[:20])
-        else:
-            results.append(f"(ruff exited with code {ruff.returncode}, no output)")
+    try:
+        ruff = subprocess.run(
+            ["uv", "run", "ruff", "check", abs_path, "--output-format=concise"],
+            capture_output=True,
+            text=True,
+        )
+        ruff_out = (ruff.stdout + ruff.stderr).strip()
+        if ruff_out or ruff.returncode not in (0, 1):
+            results.append("**ruff**:")
+            if ruff_out:
+                results.extend(ruff_out.splitlines()[:20])
+            else:
+                results.append(f"(ruff exited with code {ruff.returncode}, no output)")
+    except Exception as e:
+        results.append(f"**ruff**: could not run ({e})")
 
     # Use package-based mypy for task code to avoid duplicate-module-name errors
     # across task folders (per execute-task Critical Rule: uv run mypy -p tasks.$TASK_ID.code).
@@ -57,21 +60,24 @@ def main() -> None:
     else:
         mypy_cmd = ["uv", "run", "mypy", abs_path, "--no-error-summary"]
 
-    mypy = subprocess.run(
-        mypy_cmd,
-        capture_output=True,
-        text=True,
-    )
-    mypy_out = (mypy.stdout + mypy.stderr).strip()
-    if mypy_out:
-        lines = [line for line in mypy_out.splitlines() if "error:" in line][:10]
-        if lines:
-            results.append("**mypy**:")
-            results.extend(lines)
-        elif mypy.returncode != 0:
-            # Surface non-"error:" mypy failures (config issues, crashes).
-            results.append("**mypy**:")
-            results.extend(mypy_out.splitlines()[:5])
+    try:
+        mypy = subprocess.run(
+            mypy_cmd,
+            capture_output=True,
+            text=True,
+        )
+        mypy_out = (mypy.stdout + mypy.stderr).strip()
+        if mypy_out:
+            lines = [line for line in mypy_out.splitlines() if "error:" in line][:10]
+            if lines:
+                results.append("**mypy**:")
+                results.extend(lines)
+            elif mypy.returncode != 0:
+                # Surface non-"error:" mypy failures (config issues, crashes).
+                results.append("**mypy**:")
+                results.extend(mypy_out.splitlines()[:5])
+    except Exception as e:
+        results.append(f"**mypy**: could not run ({e})")
 
     if results:
         print("\n".join(results))
