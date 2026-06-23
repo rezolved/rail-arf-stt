@@ -1,19 +1,16 @@
-# Category: Confidence Routing
+# Papers: `confidence-routing` (1)
 
-Threshold-based decision logic that routes each utterance to accept, correct, clarify, or
-fallback based on ASR confidence.
+1 papers across 1 year(s).
 
-[Back to Dashboard](../README.md)
-
-**Detail pages**: [Papers (1)](../papers/by-category/confidence-routing.md)
+[Back to all papers](../README.md)
 
 ---
 
-## Papers (1)
+## 2026 (1)
 
 <details>
-<summary>📝 <strong>Towards Human-Like Interactive Speech Recognition With Agentic
-Correction and Semantic Evaluation</strong> — Jiang et al., 2026</summary>
+<summary>📝 Towards Human-Like Interactive Speech Recognition With Agentic Correction
+and Semantic Evaluation — Jiang et al., 2026</summary>
 
 | Field | Value |
 |---|---|
@@ -23,9 +20,9 @@ Correction and Semantic Evaluation</strong> — Jiang et al., 2026</summary>
 | **DOI** | `10.48550/arXiv.2605.29430` |
 | **URL** | https://arxiv.org/abs/2605.29430 |
 | **Date added** | 2026-06-23 |
-| **Categories** | [`entity-correction`](../../meta/categories/entity-correction/), [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`confidence-routing`](../../meta/categories/confidence-routing/) |
-| **Added by** | [`t0003_literature_review_entity_stt`](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Full summary** | [`summary.md`](../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2605.29430/summary.md) |
+| **Categories** | [`entity-correction`](../../../meta/categories/entity-correction/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`confidence-routing`](../../../meta/categories/confidence-routing/) |
+| **Added by** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
+| **Full summary** | [`summary.md`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2605.29430/summary.md) |
 
 Jiang et al. reframe ASR as a closed-loop interactive task and demonstrate that semantic
 errors (wrong intent, wrong entity) are far more correctable than surface token errors. The
@@ -49,17 +46,3 @@ appealing but requires latency budgeting — at most 1-2 correction turns are fe
 800ms. The heavy Qwen3-32B backend requires distillation for production.
 
 </details>
-
-## Tasks (1)
-
-| # | Task | Status | Completed |
-|---|------|--------|-----------|
-| 0003 | [Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026)](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) | completed | 2026-06-23 09:25 |
-
-## Answers (0)
-
-No answers in this category.
-
-## Suggestions (0 open, 0 closed)
-
-No open suggestions in this category.

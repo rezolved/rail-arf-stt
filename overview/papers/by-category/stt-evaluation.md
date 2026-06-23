@@ -1,12 +1,12 @@
-# Papers by Date Added
+# Papers: `stt-evaluation` (13)
 
-15 paper(s) grouped by project added date.
+13 papers across 1 year(s).
 
 [Back to all papers](../README.md)
 
 ---
 
-## 2026-06-23 (15)
+## 2026 (13)
 
 <details>
 <summary>📝 Back to Basics: Revisiting ASR in the Age of Voice Agents — Tay et al.,
@@ -60,60 +60,6 @@ inputs like accented investor-relations vocabulary. Third, the paper validates R
 methodological choice to use real production audio for gold-92 rather than TTS-synthesized
 data, and confirms that short terse commands — a common voice commerce pattern — are a
 high-risk category that merits dedicated coverage in the benchmark design.
-
-</details>
-
-<details>
-<summary>📝 Beyond Prompting: Efficient and Robust Contextual Biasing for Speech
-LLMs via Logit-Space Integration (LOGIC) — Wang, 2026</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `10.48550_arXiv.2601.15397` |
-| **Authors** | Peidong Wang |
-| **Venue** | arXiv preprint (preprint) |
-| **DOI** | `10.48550/arXiv.2601.15397` |
-| **URL** | https://arxiv.org/abs/2601.15397 |
-| **Date added** | 2026-06-23 |
-| **Categories** | [`entity-correction`](../../../meta/categories/entity-correction/), [`latency-profiling`](../../../meta/categories/latency-profiling/) |
-| **Added by** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Full summary** | [`summary.md`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2601.15397/summary.md) |
-
-LOGIC (Logit-Space Integration for Contextual Biasing) addresses the inability of Speech LLMs
-to reliably recognise domain-specific entities — brand names, contact names, product
-identifiers — without the scalability failures of prompting or the hallucination failures of
-generative error correction. The paper motivates the problem by demonstrating that prompting
-collapses with as few as 460 entities (exhibiting "list-vomiting" output) and that GEC
-introduces hallucinated entities based on textual similarity rather than acoustic evidence.
-LOGIC is proposed as a decoding-layer alternative that injects entity bias directly into the
-logit distribution at each auto-regressive step using a subword-aware prefix tree, achieving
-O(1) complexity with respect to entity list size.
-
-The method constructs a Token-Level Trie from the entity phrase list using Multi-Path
-Tokenization to handle SentencePiece's context-dependent subword segmentation, then applies a
-sparse logit bonus at each decoding step for tokens that extend a valid Trie path. Immediate
-Prefix Boosting (IPB) fires the bias from the very first token of any entity to maximise
-recall for short entries, while Retroactive Score Rectification (RSR) penalises hypotheses
-that accumulate partial-match bonuses but diverge before completing the entity string. The
-CUDA implementation uses a sparse kernel with O(D) per-step complexity, deployed as a vLLM
-LogitsProcessor with zero-copy GPU state.
-
-Experiments using Phi-4-Mini across 11 multilingual locales on an internal Microsoft Person
-Name test suite show **9% average relative EWER improvement** in a conservative configuration
-and **17%** in an aggressive configuration, with average FAR increase of just **+0.30%** and
-RTF overhead of only **+2.8%** on A100 GPUs. French (**19%**), German (**14%**), and Mexican
-Spanish (**17%**) see the strongest improvements. The method generalises to logographic
-languages (zh-CN **9%**, ja-JP **6%**) despite the added complexity of context-sensitive
-subword tokenization.
-
-For the Rezolve STT project, LOGIC is directly actionable as a production-grade entity-biasing
-layer for any Speech LLM (Phi-4, GPT-4o Audio) used as a replacement for or complement to
-Deepgram. Its near-zero latency overhead is compatible with the 800 ms p50 voice-to-action
-budget, and RSR's hallucination suppression is critical for ecommerce where false entity
-insertions cause incorrect purchase actions. The key validation gap is whether the EWER
-improvements on Person Names transfer to Rezolve's entity types (brand names, product lines,
-investor-relations terms), which have different phonetic distributions and may require
-independent tuning of the biasing bonus λ per entity category.
 
 </details>
 
@@ -441,53 +387,6 @@ reward shaping principle is directly transferable: any RL-based ASR fine-tuning 
 should weight brand/product/SKU tokens at alpha=5×. The reference-aware exploration mechanism
 addresses a practical training stability concern that would arise when fine-tuning on a small
 (~1000 utterance) ecommerce entity dataset.
-
-</details>
-
-<details>
-<summary>📝 TARQ: Tail-Aware Reconstruction Quantization for Rare-Word Robust
-Automatic Speech Recognition — Wang et al., 2026</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `10.48550_arXiv.2605.27808` |
-| **Authors** | Xinyu Wang, Ziyu Zhao, Ke Bai, Silin Meng, Dongming Shen, Xiao-Wen Chang, Yixuan He |
-| **Venue** | arXiv preprint (preprint) |
-| **DOI** | `10.48550/arXiv.2605.27808` |
-| **URL** | https://arxiv.org/abs/2605.27808 |
-| **Date added** | 2026-06-23 |
-| **Categories** | [`entity-correction`](../../../meta/categories/entity-correction/), [`latency-profiling`](../../../meta/categories/latency-profiling/) |
-| **Added by** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Full summary** | [`summary.md`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2605.27808/summary.md) |
-
-TARQ diagnoses and fixes a structural flaw in data-aware post-training quantization for ASR:
-standard calibration metrics inherit the Zipfian token-frequency distribution of the
-calibration corpus, assigning only ~6.9% of trace mass to rare tokens (names, numerals, domain
-terms) that represent a disproportionate share of recognition risk in entity-sensitive
-applications. The research question is whether this metric-level imbalance — not solver
-quality — is the root cause of rare-word degradation under W4G128 quantization of modern ASR
-models.
-
-TARQ addresses this through RAREBAL, a closed-form per-Linear-layer trace equalization that
-reweights the calibration metric to give equal mass to common and rare token groups, computed
-from a single scalar derived from activation second moments already accumulated during PTQ. A
-propagation-aware residual correction ensures the sequential layer sweep remains aligned with
-the rebalanced metric. Both components require no entity labels, no additional data, and no
-extra calibration pass, making TARQ a drop-in enhancement to any GPTQ-family solver.
-
-Across 8 backbones and 6 datasets, TARQ achieves rank-1 mean plain WER on all backbones and
-rank-1 mean rare-WER on 6 of 8, with a cross-corpus stability swing of just 0.63 pp vs 2.51 pp
-for GPTQ. Entity-rich benchmarks (ProfASR, ContextASR-Speech-En) confirm transfer without
-entity supervision. Deployment profiling shows 1.06x–2.18x GPU speedup and 33%–67% VRAM
-reduction, with Whisper-large-v3 reaching CPU real time (RTF 0.87 at 8 threads).
-
-For Rezolve's voice commerce pipeline, TARQ offers a practical path to compressed ASR without
-sacrificing brand name and SKU recognition quality. The identified limitation — failure on
-isolated rare proper nouns lacking phonetic context — directly motivates the entity-correction
-research track in this project, confirming that inference-time contextual biasing or
-vocabulary injection must complement quantization-time fixes. The paper's rare-WER metric also
-provides a precise template for enriching the gold-92 benchmark evaluation beyond aggregate
-WER.
 
 </details>
 

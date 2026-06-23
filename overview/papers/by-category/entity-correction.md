@@ -1,67 +1,12 @@
-# Papers by Date Added
+# Papers: `entity-correction` (13)
 
-15 paper(s) grouped by project added date.
+13 papers across 1 year(s).
 
 [Back to all papers](../README.md)
 
 ---
 
-## 2026-06-23 (15)
-
-<details>
-<summary>📝 Back to Basics: Revisiting ASR in the Age of Voice Agents — Tay et al.,
-2026</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `10.48550_arXiv.2603.25727` |
-| **Authors** | Geeyang Tay, Wentao Ma, Jaewon Lee, Yuzhi Tang, Daniel Lee, Weisu Yin, Dongming Shen, Silin Meng, Yi Zhu, Mu Li, Alex Smola |
-| **Venue** | arXiv preprint (preprint) |
-| **DOI** | `10.48550/arXiv.2603.25727` |
-| **URL** | https://arxiv.org/abs/2603.25727 |
-| **Date added** | 2026-06-23 |
-| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`latency-profiling`](../../../meta/categories/latency-profiling/) |
-| **Added by** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Full summary** | [`summary.md`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2603.25727/summary.md) |
-
-Tay et al. (2026) challenge the assumption that ASR is a solved problem by demonstrating that
-modern systems achieving sub-5% WER on standard benchmarks fail severely and unpredictably
-under real-world voice agent conditions. The paper's motivation is direct: voice agents do not
-passively transcribe speech but use transcripts to trigger downstream tool calls and execute
-actions. Under out-of-distribution conditions, hallucinated or garbled transcripts cause
-silent action failures — exactly the problem Rezolve faces with its production Deepgram
-deployment on accented investor-relations audio. The paper introduces WildASR, a multilingual
-diagnostic benchmark (EN/ZH/JA/KO) constructed entirely from real human speech.
-
-The benchmark decomposes OOD robustness into 11 conditions across three axes: environmental
-degradation (reverberation, far-field, phone codec, noise gap, clipping), demographic shift
-(children, older adults, accented speakers), and linguistic diversity (short utterances,
-truncated audio, code-switching). Seven systems — Whisper Large V3, GPT-4o Transcribe, Gemini
-2.5/3 Pro, Qwen2-Audio, Deepgram Nova 2, ElevenLabs Scribe V1 — are evaluated under a unified
-protocol. Three diagnostic tools supplement raw metrics: a P90 Elbow detector, a prompt
-sensitivity profiler (10 paraphrased instructions), and integration of Hallucination Error
-Rate to catch semantic fabrications that WER misses.
-
-The headline results are stark. Noise gaps cause **+67.7% WER** for English conversational
-speech and **+121% CER** for Korean. No model achieves below **18.2% WER** on English child
-speech. Deepgram Nova 2 on Chinese code-switching produces 33.7% lexical error but **68.4%
-semantic hallucination rate**. Prompt phrasing alone induces up to **σ = 46.1%** performance
-swing for Chinese. Robustness does not transfer across languages: a model robust to
-reverberation in English may catastrophically fail in Japanese under the same perturbation.
-Synthetic TTS-based evaluation underestimates real failure rates by 5.9× compared to authentic
-child speech.
-
-For this project, the paper delivers three concrete takeaways. First, the gold-92 evaluation
-harness must stratify by utterance condition type and adopt HER alongside WER and entity
-accuracy — aggregate WER alone will miss the hallucination risk that production Deepgram
-carries. Second, Deepgram Nova 2 and Whisper Large V3 both show condition-specific failure
-modes that mean their gold-92 rankings may not reflect their behavior on domain-specific OOD
-inputs like accented investor-relations vocabulary. Third, the paper validates Rezolve's
-methodological choice to use real production audio for gold-92 rather than TTS-synthesized
-data, and confirms that short terse commands — a common voice commerce pattern — are a
-high-risk category that merits dedicated coverage in the benchmark design.
-
-</details>
+## 2026 (13)
 
 <details>
 <summary>📝 Beyond Prompting: Efficient and Robust Contextual Biasing for Speech
@@ -286,44 +231,6 @@ wrong-action rate target of less than 2%. The benchmark's construction pipeline 
 replicable recipe for extending the gold-92 benchmark, and the comparison of prompting vs.
 boosting baselines provides concrete references for the entity correction experiments planned
 in this project.
-
-</details>
-
-<details>
-<summary>📝 Moonshine v2: Ergodic Streaming Encoder ASR for Latency-Critical Speech
-Applications — Kudlur et al., 2026</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `10.48550_arXiv.2602.12241` |
-| **Authors** | Manjunath Kudlur, Evan King, James Wang, Pete Warden |
-| **Venue** | arXiv preprint (preprint) |
-| **DOI** | `10.48550/arXiv.2602.12241` |
-| **URL** | https://arxiv.org/abs/2602.12241 |
-| **Date added** | 2026-06-23 |
-| **Categories** | [`latency-profiling`](../../../meta/categories/latency-profiling/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
-| **Added by** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Full summary** | [`summary.md`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2602.12241/summary.md) |
-
-Moonshine v2 addresses latency in on-device ASR through an ergodic streaming encoder that
-processes audio in fixed-size chunks with bounded per-chunk computation. The motivation is
-that standard transformer encoders block on full-utterance processing, creating latency
-proportional to utterance length that is unacceptable for real-time voice assistants.
-
-The architecture uses sliding-window self-attention to provide each audio frame a fixed
-receptive field, enabling stateless chunk-by-chunk processing. Three model sizes (Tiny, Small,
-Medium) are provided, all using the same encoder design with varying capacity. The decoder
-remains a standard autoregressive transformer.
-
-Measured on Apple M3, the Tiny model achieves **50ms** latency at **8.03%** compute load while
-the Medium achieves **258ms** at **28.95%** load. Average WER ranges from **12.01%** (Tiny) to
-**6.65%** (Medium) on the Open ASR leaderboard. The Medium model is **43.7×** faster than
-Whisper Large v3 at 1-2pp WER penalty.
-
-For Rezolve's pipeline, Moonshine v2 represents a viable low-latency streaming ASR alternative
-that fits comfortably within the 800ms p50 budget. The Small variant (148ms, 7.84% WER) is the
-most promising trade-off point. However, no entity-level accuracy data is reported;
-domain-specific evaluation on ecommerce entities is a prerequisite before production adoption.
 
 </details>
 

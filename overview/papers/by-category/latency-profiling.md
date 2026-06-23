@@ -1,58 +1,16 @@
-# Category: Latency Profiling
+# Papers: `latency-profiling` (5)
 
-End-to-end measurement of voice-to-action latency from speech end to tool call across
-candidate STT pipeline configurations.
+5 papers across 1 year(s).
 
-[Back to Dashboard](../README.md)
-
-**Detail pages**: [Papers (5)](../papers/by-category/latency-profiling.md) | [Suggestions
-(2)](../suggestions/by-category/latency-profiling.md)
+[Back to all papers](../README.md)
 
 ---
 
-## Papers (5)
+## 2026 (5)
 
 <details>
-<summary>📝 <strong>Moonshine v2: Ergodic Streaming Encoder ASR for Latency-Critical
-Speech Applications</strong> — Kudlur et al., 2026</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `10.48550_arXiv.2602.12241` |
-| **Authors** | Manjunath Kudlur, Evan King, James Wang, Pete Warden |
-| **Venue** | arXiv preprint (preprint) |
-| **DOI** | `10.48550/arXiv.2602.12241` |
-| **URL** | https://arxiv.org/abs/2602.12241 |
-| **Date added** | 2026-06-23 |
-| **Categories** | [`latency-profiling`](../../meta/categories/latency-profiling/), [`stt-evaluation`](../../meta/categories/stt-evaluation/) |
-| **Added by** | [`t0003_literature_review_entity_stt`](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Full summary** | [`summary.md`](../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2602.12241/summary.md) |
-
-Moonshine v2 addresses latency in on-device ASR through an ergodic streaming encoder that
-processes audio in fixed-size chunks with bounded per-chunk computation. The motivation is
-that standard transformer encoders block on full-utterance processing, creating latency
-proportional to utterance length that is unacceptable for real-time voice assistants.
-
-The architecture uses sliding-window self-attention to provide each audio frame a fixed
-receptive field, enabling stateless chunk-by-chunk processing. Three model sizes (Tiny, Small,
-Medium) are provided, all using the same encoder design with varying capacity. The decoder
-remains a standard autoregressive transformer.
-
-Measured on Apple M3, the Tiny model achieves **50ms** latency at **8.03%** compute load while
-the Medium achieves **258ms** at **28.95%** load. Average WER ranges from **12.01%** (Tiny) to
-**6.65%** (Medium) on the Open ASR leaderboard. The Medium model is **43.7×** faster than
-Whisper Large v3 at 1-2pp WER penalty.
-
-For Rezolve's pipeline, Moonshine v2 represents a viable low-latency streaming ASR alternative
-that fits comfortably within the 800ms p50 budget. The Small variant (148ms, 7.84% WER) is the
-most promising trade-off point. However, no entity-level accuracy data is reported;
-domain-specific evaluation on ecommerce entities is a prerequisite before production adoption.
-
-</details>
-
-<details>
-<summary>📝 <strong>Back to Basics: Revisiting ASR in the Age of Voice
-Agents</strong> — Tay et al., 2026</summary>
+<summary>📝 Back to Basics: Revisiting ASR in the Age of Voice Agents — Tay et al.,
+2026</summary>
 
 | Field | Value |
 |---|---|
@@ -62,9 +20,9 @@ Agents</strong> — Tay et al., 2026</summary>
 | **DOI** | `10.48550/arXiv.2603.25727` |
 | **URL** | https://arxiv.org/abs/2603.25727 |
 | **Date added** | 2026-06-23 |
-| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`latency-profiling`](../../meta/categories/latency-profiling/) |
-| **Added by** | [`t0003_literature_review_entity_stt`](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Full summary** | [`summary.md`](../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2603.25727/summary.md) |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`latency-profiling`](../../../meta/categories/latency-profiling/) |
+| **Added by** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
+| **Full summary** | [`summary.md`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2603.25727/summary.md) |
 
 Tay et al. (2026) challenge the assumption that ASR is a solved problem by demonstrating that
 modern systems achieving sub-5% WER on standard benchmarks fail severely and unpredictably
@@ -106,47 +64,8 @@ high-risk category that merits dedicated coverage in the benchmark design.
 </details>
 
 <details>
-<summary>📝 <strong>Contextual Biasing for Streaming ASR via CTC-based Word
-Spotting</strong> — Tsai et al., 2026</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `10.48550_arXiv.2605.18222` |
-| **Authors** | Kai-Chen Tsai, Tien-Hong Lo, Yun-Ting Sun, Berlin Chen |
-| **Venue** | arXiv preprint (preprint) |
-| **DOI** | `10.48550/arXiv.2605.18222` |
-| **URL** | https://arxiv.org/abs/2605.18222 |
-| **Date added** | 2026-06-23 |
-| **Categories** | [`entity-correction`](../../meta/categories/entity-correction/), [`latency-profiling`](../../meta/categories/latency-profiling/), [`stt-evaluation`](../../meta/categories/stt-evaluation/) |
-| **Added by** | [`t0003_literature_review_entity_stt`](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Full summary** | [`summary.md`](../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2605.18222/summary.md) |
-
-Tsai et al. adapt CTC-based word spotting to streaming ASR by maintaining trie search state
-across audio chunks. The core contribution is that keyword paths are not discarded at chunk
-boundaries but preserved in a stateful token passing buffer, allowing detections that straddle
-chunk boundaries. An incremental commitment threshold controls how long ambiguous segments are
-held before being emitted.
-
-The approach is model-agnostic: it operates on CTC posteriors, not encoder activations, making
-it applicable without any retraining. The streaming window is 160ms per chunk, consistent with
-practical streaming ASR deployment constraints.
-
-Results demonstrate reduced WER and improved keyword F-score compared to streaming CTC without
-biasing; specific absolute numbers are not reported in the abstract. Latency overhead is
-bounded and configurable via the commitment threshold β.
-
-For Rezolve's pipeline, the most attractive property is zero training cost: the stateful
-CTC-WS can be applied directly to Whisper Turbo's CTC head without modifying model weights.
-The 160ms chunk size matches typical streaming deployment, and the commitment mechanism can be
-tuned to stay within the 800ms p50 latency budget. The absence of absolute metric values in
-the paper's available metadata is a gap; full-paper validation is needed before concluding on
-entity F-score gains.
-
-</details>
-
-<details>
-<summary>📝 <strong>Beyond Prompting: Efficient and Robust Contextual Biasing for
-Speech LLMs via Logit-Space Integration (LOGIC)</strong> — Wang, 2026</summary>
+<summary>📝 Beyond Prompting: Efficient and Robust Contextual Biasing for Speech
+LLMs via Logit-Space Integration (LOGIC) — Wang, 2026</summary>
 
 | Field | Value |
 |---|---|
@@ -156,9 +75,9 @@ Speech LLMs via Logit-Space Integration (LOGIC)</strong> — Wang, 2026</summary
 | **DOI** | `10.48550/arXiv.2601.15397` |
 | **URL** | https://arxiv.org/abs/2601.15397 |
 | **Date added** | 2026-06-23 |
-| **Categories** | [`entity-correction`](../../meta/categories/entity-correction/), [`latency-profiling`](../../meta/categories/latency-profiling/) |
-| **Added by** | [`t0003_literature_review_entity_stt`](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Full summary** | [`summary.md`](../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2601.15397/summary.md) |
+| **Categories** | [`entity-correction`](../../../meta/categories/entity-correction/), [`latency-profiling`](../../../meta/categories/latency-profiling/) |
+| **Added by** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
+| **Full summary** | [`summary.md`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2601.15397/summary.md) |
 
 LOGIC (Logit-Space Integration for Contextual Biasing) addresses the inability of Speech LLMs
 to reliably recognise domain-specific entities — brand names, contact names, product
@@ -199,8 +118,85 @@ independent tuning of the biasing bonus λ per entity category.
 </details>
 
 <details>
-<summary>📝 <strong>TARQ: Tail-Aware Reconstruction Quantization for Rare-Word Robust
-Automatic Speech Recognition</strong> — Wang et al., 2026</summary>
+<summary>📝 Contextual Biasing for Streaming ASR via CTC-based Word Spotting — Tsai
+et al., 2026</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `10.48550_arXiv.2605.18222` |
+| **Authors** | Kai-Chen Tsai, Tien-Hong Lo, Yun-Ting Sun, Berlin Chen |
+| **Venue** | arXiv preprint (preprint) |
+| **DOI** | `10.48550/arXiv.2605.18222` |
+| **URL** | https://arxiv.org/abs/2605.18222 |
+| **Date added** | 2026-06-23 |
+| **Categories** | [`entity-correction`](../../../meta/categories/entity-correction/), [`latency-profiling`](../../../meta/categories/latency-profiling/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+| **Added by** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
+| **Full summary** | [`summary.md`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2605.18222/summary.md) |
+
+Tsai et al. adapt CTC-based word spotting to streaming ASR by maintaining trie search state
+across audio chunks. The core contribution is that keyword paths are not discarded at chunk
+boundaries but preserved in a stateful token passing buffer, allowing detections that straddle
+chunk boundaries. An incremental commitment threshold controls how long ambiguous segments are
+held before being emitted.
+
+The approach is model-agnostic: it operates on CTC posteriors, not encoder activations, making
+it applicable without any retraining. The streaming window is 160ms per chunk, consistent with
+practical streaming ASR deployment constraints.
+
+Results demonstrate reduced WER and improved keyword F-score compared to streaming CTC without
+biasing; specific absolute numbers are not reported in the abstract. Latency overhead is
+bounded and configurable via the commitment threshold β.
+
+For Rezolve's pipeline, the most attractive property is zero training cost: the stateful
+CTC-WS can be applied directly to Whisper Turbo's CTC head without modifying model weights.
+The 160ms chunk size matches typical streaming deployment, and the commitment mechanism can be
+tuned to stay within the 800ms p50 latency budget. The absence of absolute metric values in
+the paper's available metadata is a gap; full-paper validation is needed before concluding on
+entity F-score gains.
+
+</details>
+
+<details>
+<summary>📝 Moonshine v2: Ergodic Streaming Encoder ASR for Latency-Critical Speech
+Applications — Kudlur et al., 2026</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `10.48550_arXiv.2602.12241` |
+| **Authors** | Manjunath Kudlur, Evan King, James Wang, Pete Warden |
+| **Venue** | arXiv preprint (preprint) |
+| **DOI** | `10.48550/arXiv.2602.12241` |
+| **URL** | https://arxiv.org/abs/2602.12241 |
+| **Date added** | 2026-06-23 |
+| **Categories** | [`latency-profiling`](../../../meta/categories/latency-profiling/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+| **Added by** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
+| **Full summary** | [`summary.md`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2602.12241/summary.md) |
+
+Moonshine v2 addresses latency in on-device ASR through an ergodic streaming encoder that
+processes audio in fixed-size chunks with bounded per-chunk computation. The motivation is
+that standard transformer encoders block on full-utterance processing, creating latency
+proportional to utterance length that is unacceptable for real-time voice assistants.
+
+The architecture uses sliding-window self-attention to provide each audio frame a fixed
+receptive field, enabling stateless chunk-by-chunk processing. Three model sizes (Tiny, Small,
+Medium) are provided, all using the same encoder design with varying capacity. The decoder
+remains a standard autoregressive transformer.
+
+Measured on Apple M3, the Tiny model achieves **50ms** latency at **8.03%** compute load while
+the Medium achieves **258ms** at **28.95%** load. Average WER ranges from **12.01%** (Tiny) to
+**6.65%** (Medium) on the Open ASR leaderboard. The Medium model is **43.7×** faster than
+Whisper Large v3 at 1-2pp WER penalty.
+
+For Rezolve's pipeline, Moonshine v2 represents a viable low-latency streaming ASR alternative
+that fits comfortably within the 800ms p50 budget. The Small variant (148ms, 7.84% WER) is the
+most promising trade-off point. However, no entity-level accuracy data is reported;
+domain-specific evaluation on ecommerce entities is a prerequisite before production adoption.
+
+</details>
+
+<details>
+<summary>📝 TARQ: Tail-Aware Reconstruction Quantization for Rare-Word Robust
+Automatic Speech Recognition — Wang et al., 2026</summary>
 
 | Field | Value |
 |---|---|
@@ -210,9 +206,9 @@ Automatic Speech Recognition</strong> — Wang et al., 2026</summary>
 | **DOI** | `10.48550/arXiv.2605.27808` |
 | **URL** | https://arxiv.org/abs/2605.27808 |
 | **Date added** | 2026-06-23 |
-| **Categories** | [`entity-correction`](../../meta/categories/entity-correction/), [`latency-profiling`](../../meta/categories/latency-profiling/) |
-| **Added by** | [`t0003_literature_review_entity_stt`](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Full summary** | [`summary.md`](../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2605.27808/summary.md) |
+| **Categories** | [`entity-correction`](../../../meta/categories/entity-correction/), [`latency-profiling`](../../../meta/categories/latency-profiling/) |
+| **Added by** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
+| **Full summary** | [`summary.md`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2605.27808/summary.md) |
 
 TARQ diagnoses and fixes a structural flaw in data-aware post-training quantization for ASR:
 standard calibration metrics inherit the Zipfian token-frequency distribution of the
@@ -242,51 +238,5 @@ research track in this project, confirming that inference-time contextual biasin
 vocabulary injection must complement quantization-time fixes. The paper's rare-WER metric also
 provides a precise template for enriching the gold-92 benchmark evaluation beyond aggregate
 WER.
-
-</details>
-
-## Tasks (1)
-
-| # | Task | Status | Completed |
-|---|------|--------|-----------|
-| 0003 | [Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026)](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) | completed | 2026-06-23 09:25 |
-
-## Answers (0)
-
-No answers in this category.
-
-## Suggestions (2 open, 0 closed)
-
-<details>
-<summary>🔧 <strong>Implement Novitasari2026 common-word cue injection as a
-zero-latency biasing add-on</strong> (S-0003-05)</summary>
-
-**Kind**: technique | **Priority**: medium | **Date**: 2026-06-23 | **Source**:
-[t0003_literature_review_entity_stt](../../tasks/t0003_literature_review_entity_stt/)
-
-Implement the common-word cue approach from Novitasari2026 as a pre-processing step on top of
-Rezolve's existing dynamic context injection. The method maps non-standard brand names and
-SKUs to phonetically similar common-word anchors, adding them to the bias list without G2P.
-Novitasari2026 reported 16.3% reduction in bias-word errors with zero added latency and no
-model retraining, and the method is additive to any existing biasing technique. Evaluate on
-gold-92 entity accuracy and confirm zero latency impact. Recommended task types:
-post-correction-experiment, stt-benchmark-run.
-
-</details>
-
-<details>
-<summary>📊 <strong>Measure end-to-end latency of RECOVER and Ron2026 pipelines on
-Rezolve infrastructure</strong> (S-0003-06)</summary>
-
-**Kind**: evaluation | **Priority**: medium | **Date**: 2026-06-23 | **Source**:
-[t0003_literature_review_entity_stt](../../tasks/t0003_literature_review_entity_stt/)
-
-The survey found that latency estimates for both RECOVER (~+100-200ms) and Ron2026 (~550-650ms
-total) are extrapolations from known Whisper Turbo inference speed and GPT-4o API latency, not
-empirical measurements. Before confirming either method fits the 800ms p50 budget, measure
-actual pipeline latency on Rezolve's production infrastructure at p50 and p95. This is a
-prerequisite for any production deployment decision. If GPT-4o API latency exceeds the budget,
-evaluate a local 7B model substitute for the LLM-Select step. Recommended task types:
-latency-profiling, experiment-run.
 
 </details>

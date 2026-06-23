@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive preset_id="research-history" generated_at_utc="2026-06-22T15:42:05Z">
+<llm_context_archive preset_id="research-history" generated_at_utc="2026-06-23T10:13:15Z">
   <archive_summary>
     <title>Research History</title>
     <description>Research-stage documents across completed tasks, plus core project context.</description>
     <use_case>Literature review continuity, methodology discussion, and prior-investigation lookup.</use_case>
-    <section_count>4</section_count>
-    <char_count>5794</char_count>
-    <byte_count>5812</byte_count>
-    <estimated_tokens>1448</estimated_tokens>
+    <section_count>10</section_count>
+    <char_count>89673</char_count>
+    <byte_count>89905</byte_count>
+    <estimated_tokens>22418</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -101,15 +101,41 @@ gold-92 (`t0002_baseline_evaluation`).
     <section id="completed-task-summaries" source_kind="aggregator">
       <title>Completed Tasks and Results</title>
       <source_name>aggregate_tasks_full</source_name>
+      <source_ids>
+        <id>t0001_stt_benchmark</id>
+        <id>t0003_literature_review_entity_stt</id>
+      </source_ids>
       <content>
-Completed tasks: 0
+Completed tasks: 2
+
+## STT Benchmark — Gold-92 Dataset Ingestion
+ID: t0001_stt_benchmark
+Completed: 2026-06-22
+Short description: Ingest, annotate, and DVC-track the gold-92 held-out STT benchmark dataset from Rezolve production voice sessions.
+Result summary: Results Summary: t0001_stt_benchmark Outcome Gold-92 STT benchmark dataset successfully ingested and registered. 93 WAV clips with ground-truth annotations are now version-controlled: JSONL files in git, audio in DVC (Azure Blob Storage at `azure://ml-dvc-datasets/datasets/rail-arf-stt`). Assets Produced * Dataset asset `stt-benchmark-gold-92` with 93 clips, 2 JSONL annotation files, and DVC-tracked audio directory. Baseline Observations (from gold_set.jsonl) * Production (Deepgram) transcripts are present for all 93 clips. * Whisper Large v2 transcripts are present for all 93 clips. * Formal WER and entity accuracy evaluation is deferred to `t0002_baseline_evaluation`. Next Steps Task...
+
+## Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026)
+ID: t0003_literature_review_entity_stt
+Completed: 2026-06-23
+Short description: Survey Jan–Jun 2026 publications on contextual biasing, shallow fusion, entity-aware ASR, and LLM post-correction for named entity accuracy in ecommerce STT.
+Result summary: --- task_id: &quot;t0003_literature_review_entity_stt&quot; date: &quot;2026-06-23&quot; --- Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026) Summary Systematic literature review of Jan–Jun 2026 publications on entity-aware STT. **15 paper assets** were created covering contextual biasing, entity-aware ASR architectures, and LLM post-correction. The top no-retraining candidates for prototyping on gold-92 are **RECOVER** (33–35% relative E-WER reduction, Earnings-21) and **Ron2026** (17% relative WER reduction via Whisper `initial_prompt`). Shallow fusion has effectively no 2026 literature — documented as a gap, not a search failure. Metrics * **Paper assets created**: **15** (all...
       </content>
     </section>
     <section id="planned-tasks" source_kind="aggregator">
       <title>Planned Tasks</title>
       <source_name>aggregate_tasks_full</source_name>
+      <source_ids>
+        <id>t0002_baseline_evaluation</id>
+      </source_ids>
       <content>
-Planned or active tasks: 0
+Planned or active tasks: 1
+
+## Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92
+ID: t0002_baseline_evaluation
+Status: in_progress
+Effective date: 2026-06-23
+Short description: Establish project baselines by running Deepgram Nova-2 and Whisper Large v3 on gold-92, computing all five registered metrics with BCa bootstrap confidence intervals.
+Dependencies: t0001_stt_benchmark
       </content>
     </section>
     <section id="questions-and-answers" source_kind="aggregator">
@@ -117,6 +143,1522 @@ Planned or active tasks: 0
       <source_name>aggregate_answers_full</source_name>
       <content>
 Answers: 0
+      </content>
+    </section>
+    <section id="t0001_stt_benchmark-research_papers" source_kind="file">
+      <title>t0001_stt_benchmark — STT Benchmark — Gold-92 Dataset Ingestion — research_papers.md</title>
+      <source_name>research_papers.md</source_name>
+      <source_ids>
+        <id>t0001_stt_benchmark</id>
+      </source_ids>
+      <repo_paths>
+        <path>tasks/t0001_stt_benchmark/research/research_papers.md</path>
+      </repo_paths>
+      <content>
+#### Objective
+
+No paper research required for dataset ingestion.
+
+#### Background
+
+No research required for this data ingestion task.
+
+#### Methodology Review
+
+No research required for this data ingestion task.
+
+#### Key Findings
+
+No research required for this data ingestion task.
+
+#### Recommended Approach
+
+No research required for this data ingestion task.
+
+#### References
+
+None.
+      </content>
+    </section>
+    <section id="t0001_stt_benchmark-research_internet" source_kind="file">
+      <title>t0001_stt_benchmark — STT Benchmark — Gold-92 Dataset Ingestion — research_internet.md</title>
+      <source_name>research_internet.md</source_name>
+      <source_ids>
+        <id>t0001_stt_benchmark</id>
+      </source_ids>
+      <repo_paths>
+        <path>tasks/t0001_stt_benchmark/research/research_internet.md</path>
+      </repo_paths>
+      <content>
+#### Objective
+
+No internet research required for dataset ingestion.
+
+#### Background
+
+No research required for this data ingestion task.
+
+#### Methodology Review
+
+No research required for this data ingestion task.
+
+#### Key Findings
+
+No research required for this data ingestion task.
+
+#### Recommended Approach
+
+No research required for this data ingestion task.
+
+#### References
+
+None.
+      </content>
+    </section>
+    <section id="t0001_stt_benchmark-research_code" source_kind="file">
+      <title>t0001_stt_benchmark — STT Benchmark — Gold-92 Dataset Ingestion — research_code.md</title>
+      <source_name>research_code.md</source_name>
+      <source_ids>
+        <id>t0001_stt_benchmark</id>
+      </source_ids>
+      <repo_paths>
+        <path>tasks/t0001_stt_benchmark/research/research_code.md</path>
+      </repo_paths>
+      <content>
+#### Objective
+
+No code research required for dataset ingestion.
+
+#### Background
+
+No research required for this data ingestion task.
+
+#### Methodology Review
+
+No research required for this data ingestion task.
+
+#### Key Findings
+
+No research required for this data ingestion task.
+
+#### Recommended Approach
+
+No research required for this data ingestion task.
+
+#### References
+
+None.
+      </content>
+    </section>
+    <section id="t0003_literature_review_entity_stt-research_papers" source_kind="file">
+      <title>t0003_literature_review_entity_stt — Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026) — research_papers.md</title>
+      <source_name>research_papers.md</source_name>
+      <source_ids>
+        <id>t0003_literature_review_entity_stt</id>
+      </source_ids>
+      <repo_paths>
+        <path>tasks/t0003_literature_review_entity_stt/research/research_papers.md</path>
+      </repo_paths>
+      <content>
+---
+spec_version: &quot;1&quot;
+task_id: &quot;t0003_literature_review_entity_stt&quot;
+research_stage: &quot;papers&quot;
+papers_reviewed: 11
+papers_cited: 11
+categories_consulted:
+  - &quot;entity-correction&quot;
+  - &quot;stt-evaluation&quot;
+  - &quot;latency-profiling&quot;
+  - &quot;confidence-routing&quot;
+  - &quot;whisper-finetuning&quot;
+date_completed: &quot;2026-06-23&quot;
+status: &quot;complete&quot;
+---
+#### Task Objective
+
+This task surveys publications from January to June 2026 to identify the most effective techniques
+for improving STT accuracy on domain-specific named entities — brand names, product names, and SKUs
+— in an English ecommerce voice AI context. Rezolve&#x27;s production pipeline uses Whisper Turbo with
+dynamic context injection (runtime hotword list passed to the decoder) as its ASR system. The
+gold-92 benchmark confirms that entity accuracy is the primary bottleneck, with brand names, product
+names, and SKUs frequently mangled or dropped, causing wrong-action rates that exceed the 2% target.
+The survey covers four technique families: contextual biasing, shallow fusion, entity-aware ASR
+training, and LLM post-correction. Findings directly inform the design of follow-on prototyping
+tasks and the decision of which approaches to evaluate against Whisper Turbo + dynamic context
+injection on the gold-92 benchmark.
+
+#### Category Selection Rationale
+
+The following five categories from `meta/categories/` are directly relevant to this literature
+survey.
+
+**Included:**
+
+* `entity-correction` — The primary research target. Papers in this category address the core
+  problem: improving transcription accuracy of brand names, product names, and SKUs. All four
+  technique families surveyed (contextual biasing, shallow fusion, entity-aware training, LLM
+  post-correction) are represented here.
+
+* `stt-evaluation` — Measurement methodology is inseparable from the research question. Several 2026
+  papers propose new evaluation metrics (S2ER, E-WER) that are more appropriate than WER for
+  entity-accuracy assessment. Papers here also provide benchmark baselines.
+
+* `latency-profiling` — The 800ms p50 latency constraint is a hard filter on viable techniques.
+  Papers reporting latency numbers or streaming architectures are directly actionable for pipeline
+  design.
+
+* `confidence-routing` — LLM post-correction papers (Zheng2026, Kumar2026, Jiang2026) all involve
+  confidence-based decisions about when to apply correction. Confidence routing is the downstream
+  consumer of any entity correction improvement.
+
+* `whisper-finetuning` — Ron2026 directly demonstrates Whisper-specific context injection via
+  initial_prompt, which is applicable to Rezolve&#x27;s Whisper Turbo checkpoint without retraining.
+
+**Excluded:**
+
+* `audio-datasets` — No 2026 papers on ecommerce-specific audio dataset creation were found; the
+  gold-92 benchmark was created in t0001 and is not a literature target.
+
+* `commercial-apis` — No 2026 papers compare commercial API entity accuracy against open-source
+  alternatives in ecommerce domains.
+
+#### Key Findings
+
+##### Contextual Biasing Remains the Dominant Paradigm but is Rapidly Evolving
+
+Contextual biasing — injecting a runtime list of domain terms into the decoder — remains the primary
+technique for entity-accurate ASR in 2026. However, the approach has evolved substantially from flat
+word-list prompting toward retrieval-augmented and RL-optimized variants.
+
+Flat prompting approaches (injecting a list of 100-1000 words as decoder context) are the baseline
+against which all 2026 methods are measured. The RLBR method [Ren2026] reports B-WER of 0.59%/2.11%
+(test-clean/test-other) at 100 bias words on LibriSpeech, achieved by training a speech LLM with a
+reinforcement learning reward that weights bias word correctness 5× higher than standard tokens.
+This is the lowest B-WER reported among the surveyed 2026 methods on a standard English benchmark.
+
+IBM Research [Novitasari2026] addresses a practical gap in phoneme-assisted biasing: the requirement
+for a G2P system. Their common-word cue approach achieves a 16.3% reduction in bias word recognition
+errors without G2P, applicable to product names and SKUs that resist standard phonemization. The
+method is additive to other biasing approaches.
+
+Streaming-compatible contextual biasing is demonstrated by [Tsai2026], who extend CTC-based word
+spotting to streaming ASR via stateful token passing across audio chunks. The approach requires no
+modification to the underlying acoustic model and integrates with any CTC-trained system including
+Whisper&#x27;s CTC auxiliary output.
+
+**Hypothesis**: The community is converging on retrieval-augmented biasing (finding the right
+entities from a large corpus before injection) as the solution to the scalability wall of flat list
+prompting. As bias lists grow to 1000+ entries, flat prompting degrades; retrieval narrows the
+effective context to the most relevant 10-20 entities.
+
+**Best practice**: For bias lists under 200 words, flat prompting is competitive. For bias lists of
+500-1000+ (Rezolve&#x27;s dynamic brand catalog), retrieval-augmented injection is recommended.
+
+##### Retrieval-Augmented Biasing Achieves State-of-the-Art Entity WER
+
+CLAR [Huang2026] achieves the strongest entity retrieval and correction performance among the
+surveyed papers: **97.03% Recall@1**, **0.92% CER**, and **2.78% B-WER** on AISHELL-1-NE,
+representing a 9.14pp B-WER reduction over the SeACo-Paraformer baseline. The approach uses
+CIF-based monotonic alignment to produce token-level acoustic representations without timestamps,
+enabling length-aware localized matching that specifically addresses the short-entity dilution
+problem (1-3 syllable brand names lost in global-average-pooled embeddings).
+
+RECOVER [Kumar2026] takes a complementary approach: rather than improving retrieval, it exploits
+N-best hypothesis diversity. By collecting the top-5 ASR hypotheses and using GPT-4o to select the
+most entity-informative one for correction, RECOVER achieves 8-46% relative E-WER reductions across
+five diverse English domains. Earnings-21 (the most ecommerce-analogous domain) sees 33-35% relative
+E-WER reduction. The key finding is that the 1-best hypothesis frequently omits rare entities that
+appear in lower-ranked hypotheses, and LLM-based hypothesis selection (LLM-Select) is the most
+robust strategy across domains.
+
+RASTAR [An2026] provides a complementary perspective using adaptive chain-of-thought reasoning for
+NE correction: 17.96% and 34.42% relative NE-CER reduction on AISHELL-1 and Homophone test sets
+respectively. The adaptive reasoning depth (30-40% token reduction vs. full CoT) is specifically
+relevant for latency-sensitive deployment.
+
+These three papers converge on a shared finding: entity correction is most effective when the system
+has access to a curated entity repository and uses phonetic-acoustic similarity (not just semantic
+similarity) as the retrieval signal.
+
+**Hypothesis**: Combining CLAR-style acoustic retrieval (getting the right entity candidates) with
+RECOVER-style multi-hypothesis selection (exploiting N-best diversity) would yield additive gains in
+entity accuracy.
+
+**Best practice**: Build a curated entity repository of brand names, product names, and SKUs with
+their phonetic representations. Use acoustic similarity retrieval to narrow the candidate list
+before injection or correction.
+
+##### LLM Post-Correction Improves Semantic Accuracy Beyond What WER Captures
+
+A consistent finding across [Zheng2026], [Jiang2026], and [Kumar2026] is that WER substantially
+understates the semantic accuracy improvements achieved by LLM post-correction. The Agentic ASR
+paper [Jiang2026] demonstrates this most dramatically: S2ER (Sentence-level Semantic Error Rate)
+collapses from 19-28% to under 2% across 10 correction loops on GigaSpeech, WenetSpeech, and
+AISHELL-NER, while WER decreases only modestly from 10-12% to 9-10%. Named entity error rates
+improve from ~2% to &lt;1% within the first few correction turns.
+
+Zheng2026 [Zheng2026] reports a 14.51% WER reduction with +7.66pp Slot Micro F1 improvement on the
+difficult stratum of SAP-Hypo5, and demonstrates that selective span editing (rewriting only
+uncertain spans identified by hypothesis agreement) reduces hallucination by ~30% compared to
+unconstrained LLM rewriting.
+
+Ron2026 [Ron2026] demonstrates 17.0% relative WER reduction on entity-dense NBA commentary using
+Whisper&#x27;s initial_prompt parameter with a six-agent LLM pipeline — no model retraining required. The
+multi-agent approach extracts topic, entities, and jargon from the initial transcript to construct a
+context prompt that guides the decoder.
+
+**Best practice**: Use S2ER or Slot F1 on entity spans as the primary evaluation metric for voice
+commerce ASR, not aggregate WER. Wrong-action rate correlates with S2ER, not WER.
+
+**Contradiction**: Zheng2026 finds that selective span rewriting reduces hallucinations vs.
+unconstrained rewriting, while Jiang2026 shows multi-turn unconstrained correction achieves
+near-zero S2ER after 10 loops. The difference is that Jiang2026 uses user feedback to constrain each
+turn, while Zheng2026 operates single-pass without user confirmation. For a voice commerce assistant
+where user confirmation is available (clarification routing), multi-turn correction is viable; for
+fully automated correction, selective editing is safer.
+
+##### Reasoning-Based Context Exploitation Provides Modest but Consistent Entity Gains
+
+Poncelet2026 [Poncelet2026] trains a speech-LLM to use broad metadata descriptions (e.g., video
+topics) as chain-of-thought context for ASR correction, achieving named entity WER improvements from
+23.9% to 23.3% (−0.6pp absolute, −2.5% relative) on M3AV YouTube-derived test sets. While the
+absolute gain is smaller than retrieval-based methods, the approach is complementary: it addresses
+entities that are absent from a pre-defined bias list but inferrable from session context (e.g., a
+brand name discoverable from a product category).
+
+The paper constructs 400 hours of reasoning-chain training data automatically using GPT-4o paired
+with video metadata, without human annotation. This training data construction pipeline is
+applicable to Rezolve&#x27;s session logs (user browsing history, cart contents, prior queries) to build
+an ecommerce-specific contextual reasoning dataset.
+
+**Hypothesis**: For Rezolve&#x27;s pipeline, session-level metadata (product category browsed, recent
+search queries, cart contents) is a richer contextual signal than a flat hotword list for recovering
+brand and product names absent from the static bias vocabulary.
+
+##### Streaming Latency is Achievable Under 300ms for ASR-Only Stage
+
+Moonshine v2 [Kudlur2026] establishes concrete latency benchmarks for streaming ASR on Apple Silicon
+M3: Tiny (33.57M params) achieves **50ms** with 8.03% CPU load, Small (123.36M params) achieves
+**148ms**, and Medium (244.93M params) achieves **258ms**. The Medium model runs 43.7× faster than
+Whisper Large v3 at 6.65% average WER on the Open ASR leaderboard.
+
+These numbers confirm that the pure ASR stage can consume 50-260ms of the 800ms p50 budget, leaving
+540-750ms for downstream entity correction, confidence routing, and LLM calls. The Small variant
+(148ms, 7.84% WER) represents the best trade-off point for Rezolve&#x27;s latency budget.
+
+**Caveat**: Moonshine v2 reports no entity-specific accuracy on ecommerce terms. Adopting it would
+require validating entity accuracy on gold-92.
+
+**Contradiction between streaming methods**: CLAR [Huang2026] achieves superior entity accuracy
+(B-WER 2.78%) but is tested only on offline Mandarin Chinese benchmarks. CTC streaming biasing
+[Tsai2026] is latency-compatible but reports only keyword F-score improvements without absolute
+numbers. Combining these two is an open engineering problem.
+
+#### Methodology Insights
+
+* **Evaluation metric**: Replace aggregate WER with S2ER [Jiang2026] and E-WER [Kumar2026] for
+  gold-92 evaluation. Compute Slot F1 on entity-tagged spans (brand names, product names, SKUs).
+  Annotate gold-92 transcripts with entity span offsets to enable these metrics.
+
+* **N-best hypothesis collection**: Collect top-5 beam search hypotheses from Whisper Turbo at
+  inference time (zero training cost). Use LLM-Select [Kumar2026] to choose the most
+  entity-informative hypothesis before downstream processing. This alone yields 33-35% relative
+  E-WER reduction on Earnings-21 (ecommerce-analogous domain).
+
+* **Whisper initial_prompt exploitation**: Implement the Ron2026 [Ron2026] pipeline: run Whisper on
+  the utterance, extract entity candidates via NER + fuzzy matching (Levenshtein τ=0.75) against the
+  brand/product catalog, construct a compact context prompt (≤224 tokens), and re-run Whisper with
+  the prompt. Expected WER reduction: 17% relative on entity-dense domains. No model retraining
+  required.
+
+* **Retrieval index**: Build a phonetic-acoustic entity index using the CIF-alignment approach from
+  CLAR [Huang2026] or the phonetic edit-distance retrieval from RASTAR [An2026]. Index should
+  include all Rezolve brand names, product names, and SKUs with their phonetic representations (IPA
+  or romanized).
+
+* **RL fine-tuning of Whisper Turbo**: If model retraining is in scope, apply RLBR [Ren2026] reward
+  shaping: assign alpha=5× reward multiplier to brand/product/SKU tokens during RL fine-tuning. The
+  reference-aware trajectory augmentation is needed to prevent mode collapse on a small (~1000
+  utterance) ecommerce entity dataset.
+
+* **Adaptive reasoning depth**: For LLM post-correction, implement difficulty classification from
+  A-STAR [An2026]: use phonetic similarity between ASR output and entity repository candidates as
+  the difficulty signal. Apply full CoT only for phonetically ambiguous entities, direct lookup for
+  clear matches. This achieves 30-40% token reduction vs. uniform CoT.
+
+* **Session metadata context**: Implement metadata-driven reasoning chains from Poncelet2026
+  [Poncelet2026]: at inference time, include product category, recent searches, and cart contents as
+  text context alongside the audio. Fine-tune on (audio, session metadata, chain-of-thought, correct
+  transcript) training tuples derived from gold-92 and production session logs.
+
+* **Latency budget allocation**: Based on Moonshine v2 benchmarks [Kudlur2026]: allocate ~150ms for
+  streaming ASR (Small model), ~150ms for entity retrieval + prompt construction, ~300ms for
+  optional LLM post-correction (distilled 7B corrector). Total: ~600ms p50, leaving 200ms margin for
+  network and routing overhead.
+
+#### Gaps and Limitations
+
+**No ecommerce-domain benchmarks published in Jan-Jun 2026.** All surveyed papers evaluate on
+standard benchmarks (LibriSpeech, AISHELL-1, CommonVoice, Earnings-21) or domain-specific datasets
+(NBA, medical, air traffic control) that are not publicly ecommerce. The closest analog is
+Earnings-21 (financial entity names). No paper in the survey period reports entity accuracy on a
+dataset containing brand names, product SKUs, or ecommerce-specific terminology. Gold-92 remains the
+only available evaluation resource for Rezolve&#x27;s specific challenge.
+
+**Latency data is absent for most entity correction methods.** Only Moonshine v2 [Kudlur2026] and
+Tsai2026 [Tsai2026] provide concrete latency measurements. CLAR, RASTAR, RECOVER, Ren2026, and all
+reasoning-based methods report accuracy improvements without per-utterance inference time
+measurements. Latency compatibility with the 800ms p50 target must be estimated by proxy (model
+size, number of LLM calls, reported token counts) or measured empirically.
+
+**CLAR is evaluated on Mandarin Chinese only.** The strongest retrieval-based contextual biasing
+method in the survey (CLAR, B-WER 2.78%) has no English evaluation. Whether CIF-based alignment
+transfers to English phonology and Whisper&#x27;s tokenization is an open empirical question.
+
+**RASTAR and An2026 are Mandarin Chinese only.** Same limitation as CLAR: the adaptive
+chain-of-thought NE correction results are on AISHELL-1 (Mandarin), not English.
+
+**No paper addresses accented English specifically.** Gold-92 contains accented English
+(investor-relations domain). None of the surveyed papers evaluate on accented English speech. The
+LLM post-correction methods (Zheng2026 focuses on dysarthric speech) provide the closest analog, but
+accent-induced entity errors may have different characteristics than dysarthria-induced errors.
+
+**Shallow fusion has faded from the literature.** No standalone shallow fusion paper was found in
+Jan-Jun 2026. Shallow fusion appears only as a baseline against which newer methods are compared
+(CLAR outperforms shallow fusion on B-WER). Delayed Fusion (Hori et al., ICASSP 2025) was the prior
+state of the art for LLM-ASR integration, but it is outside the Jan-Jun 2026 window and is not
+included as a cited paper asset.
+
+**RL fine-tuning methods require full model access.** RLBR [Ren2026] achieves the lowest B-WER but
+requires full model fine-tuning. Rezolve&#x27;s Whisper Turbo checkpoint is commercially licensed; RL
+fine-tuning may conflict with usage terms and requires a training infrastructure investment.
+
+#### Recommendations for This Task
+
+1. **Implement Ron2026&#x27;s initial_prompt pipeline first (zero training cost, immediate testing on
+   gold-92).** The six-agent pipeline [Ron2026] exploits Whisper&#x27;s existing initial_prompt mechanism
+   with a multi-agent LLM that extracts entities and constructs a context prompt. No model
+   retraining. Expected gain: 17% relative WER reduction on entity-dense domains. This is the
+   fastest path to a measurable improvement on gold-92 and should be the first prototyping task.
+
+2. **Add N-best hypothesis collection + LLM-Select post-correction (RECOVER pattern).** After
+   implementing the prompt pipeline, add top-5 hypothesis collection from Whisper&#x27;s beam search and
+   apply GPT-4o-based LLM-Select + entity correction as in Kumar2026 [Kumar2026]. Expected gain on
+   entity-rich domains: 33-35% relative E-WER reduction. Combined with Ron2026, these two
+   prompt-engineering approaches require no model training.
+
+3. **Evaluate Moonshine v2 Small as a streaming ASR replacement.** Moonshine v2 Small (148ms, 7.84%
+   WER) fits the latency budget with substantial margin [Kudlur2026]. Run it against gold-92 to
+   check entity accuracy before investing in contextual biasing on top of Whisper Turbo. If
+   Moonshine v2 + Ron2026 pipeline matches or exceeds Whisper Turbo + current dynamic injection,
+   switch the base model.
+
+4. **Replace WER with S2ER and entity Slot F1 as gold-92 evaluation metrics.** Adopt the evaluation
+   approach from Jiang2026 [Jiang2026] and Zheng2026 [Zheng2026]. Annotate gold-92 transcripts with
+   entity span offsets and implement E-WER computation on those spans. This directly measures the
+   wrong-action rate impact of entity errors, providing a better optimization target for all
+   follow-on tasks.
+
+5. **Defer RL fine-tuning (RLBR) and Chinese-only methods (CLAR, RASTAR) to later phases.** These
+   approaches require either full model retraining (RLBR) or English adaptation work (CLAR, RASTAR).
+   They are the highest-potential techniques but require infrastructure investment. Prototype the
+   prompt-based approaches first to establish a baseline, then invest in training-based approaches
+   if the prompt baseline is insufficient.
+
+#### Comparison Against Whisper Turbo + Dynamic Context Injection
+
+The current production pipeline injects a runtime hotword list into Whisper Turbo&#x27;s decoder as a
+flat word list. This is a form of contextual biasing but lacks: (a) phonetic-acoustic retrieval
+precision, (b) N-best hypothesis diversity exploitation, and (c) semantic context from session
+metadata.
+
+**Techniques reporting gains over a runtime hotword-biasing baseline:**
+
+* RLBR [Ren2026] reports B-WER improvements over SFT baseline (which is analogous to flat
+  prompting): 0.59% vs. higher values at 100 bias words. Relative gain not explicitly reported
+  against flat prompting baseline but implied to be significant.
+* CLAR [Huang2026] reduces B-WER from 12.92% (baseline) to 2.78% — a 78% relative reduction. The
+  CLAR baseline includes shallow fusion variants that are stronger than flat list prompting.
+* Ron2026 [Ron2026] adds 17.0% relative WER reduction on top of Whisper using the initial_prompt
+  mechanism — directly comparable to Rezolve&#x27;s current approach since initial_prompt is the
+  mechanism Whisper Turbo uses for dynamic context injection.
+
+**Latency-compatible techniques (sub-800ms p50 for ~5-second utterance):**
+
+| Technique | Estimated Latency | Basis |
+| --- | --- | --- |
+| Ron2026 initial_prompt pipeline | ~500-600ms | 148ms ASR + ~350-450ms multi-agent LLM |
+| RECOVER LLM-Select (local 7B) | ~600ms | 150ms ASR + 300ms local 7B corrector |
+| Tsai2026 CTC streaming biasing | ~200ms | 50-160ms streaming ASR + stateless biasing |
+| Moonshine v2 Small + biasing | ~300ms | 148ms ASR + 150ms biasing overhead |
+| RLBR (fine-tuned Whisper) | ~150ms | Model inference only, no post-processing |
+
+**Techniques implementable without full model retraining:**
+
+* Ron2026 [Ron2026]: Yes. Uses Whisper API + LLM agents. No weight modification.
+* RECOVER [Kumar2026]: Yes. N-best collection + LLM post-correction. No training.
+* Tsai2026 [Tsai2026]: Yes. CTC-WS operates on posteriors. No model modification.
+* Poncelet2026 [Poncelet2026]: No. Requires speech-LLM fine-tuning on 400h training set.
+* RLBR [Ren2026]: No. Requires full model RL fine-tuning.
+* CLAR [Huang2026]: No. Requires training a CIF-based retrieval system on entity data.
+
+**Estimated entity accuracy uplift vs. hotword baseline:**
+
+| Technique | Estimated Entity Uplift | Evidence |
+| --- | --- | --- |
+| Ron2026 initial_prompt | ~15-20% relative WER reduction on entity spans | 17% rel. WER on NBA domain |
+| RECOVER LLM-Select | ~30-35% relative E-WER reduction | Earnings-21 results |
+| Ron2026 + RECOVER combined | ~35-45% relative entity error reduction | Additive, estimated |
+| RLBR | ~50-60% relative B-WER reduction (vs. SFT) | LibriSpeech B-WER data |
+
+**Ranked shortlist for prototyping (≤3 techniques):**
+
+1. **Ron2026 initial_prompt multi-agent pipeline** — Zero training cost, directly applicable to
+   Whisper Turbo, 17% relative WER reduction on entity-dense domain, latency-compatible. Prototype
+   in the next task.
+
+2. **RECOVER N-best + LLM-Select post-correction** — 33-35% relative E-WER on business domain, no
+   training required, requires collecting top-5 hypotheses from Whisper beam search. Combine with
+   Ron2026 in the same prototype task.
+
+3. **RLBR or CLAR (pending evaluation of options 1-2)** — If prompt-based approaches achieve &lt;50%
+   reduction in wrong-action rate on gold-92, invest in training-based approaches. RLBR is preferred
+   if model fine-tuning is permitted (reaches lowest B-WER). CLAR is preferred if an English
+   adaptation is feasible (best retrieval architecture).
+
+#### Paper Index
+
+##### [Zheng2026]
+
+* **Title**: Towards Robust Dysarthric Speech Recognition: LLM-Agent Post-ASR Correction Beyond WER
+* **Authors**: Zheng et al.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2601.21347`
+* **Asset**: `tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2601.21347/`
+* **Categories**: `entity-correction`, `stt-evaluation`
+* **Relevance**: Demonstrates selective span rewriting for post-ASR correction achieving 14.51% WER
+  reduction and +7.66pp Slot Micro F1. Introduces beyond-WER evaluation metrics (MENLI, Slot F1)
+  applicable to Rezolve&#x27;s wrong-action rate measurement.
+
+##### [Kudlur2026]
+
+* **Title**: Moonshine v2: Ergodic Streaming Encoder ASR for Latency-Critical Speech Applications
+* **Authors**: Kudlur et al.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2602.12241`
+* **Asset**: `tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2602.12241/`
+* **Categories**: `latency-profiling`, `stt-evaluation`
+* **Relevance**: Provides concrete latency benchmarks (50-258ms on Apple M3) for streaming ASR,
+  directly relevant to the 800ms p50 constraint. Demonstrates that ASR latency can be &lt;150ms,
+  leaving budget for post-correction.
+
+##### [An2026]
+
+* **Title**: Retrieval-Augmented Self-Taught Reasoning Model with Adaptive Chain-of-Thought for ASR
+  Named Entity Correction
+* **Authors**: An et al.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2602.12287`
+* **Asset**: `tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2602.12287/`
+* **Categories**: `entity-correction`, `stt-evaluation`
+* **Relevance**: Adaptive chain-of-thought reasoning for NE correction (17.96-34.42% relative NE-CER
+  reduction) with 30-40% token efficiency gain vs. full CoT, relevant for latency-budget-conscious
+  LLM post-correction design.
+
+##### [Ron2026]
+
+* **Title**: Whisper: Courtside Edition — Multi-Agent LLM Pipeline for Domain-Specific ASR via
+  Context Generation
+* **Authors**: Ron et al.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2602.18966`
+* **Asset**: `tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2602.18966/`
+* **Categories**: `entity-correction`, `stt-evaluation`, `whisper-finetuning`
+* **Relevance**: Demonstrates 17.0% relative WER reduction using Whisper&#x27;s initial_prompt with a
+  multi-agent LLM pipeline — directly applicable to Rezolve&#x27;s Whisper Turbo checkpoint without model
+  retraining. Highest immediate actionability.
+
+##### [Kumar2026]
+
+* **Title**: RECOVER: Robust Entity Correction via Agentic Orchestration of Hypothesis Variants for
+  Evidence-based Recovery
+* **Authors**: Kumar and Sachdeva
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2603.16411`
+* **Asset**: `tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2603.16411/`
+* **Categories**: `entity-correction`, `stt-evaluation`
+* **Relevance**: 8-46% relative E-WER reduction across five domains via N-best hypothesis selection.
+  Earnings-21 (business entities) shows 33-35% reduction — closest analog to Rezolve&#x27;s ecommerce
+  entity challenge. No retraining required.
+
+##### [Huang2026]
+
+* **Title**: CLAR: CIF-Localized Alignment for Retrieval-Augmented Speech LLM-Based Contextual ASR
+* **Authors**: Huang et al.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2603.25460`
+* **Asset**: `tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2603.25460/`
+* **Categories**: `entity-correction`, `stt-evaluation`
+* **Relevance**: State-of-the-art retrieval-based contextual biasing (B-WER 2.78%, −9.14pp vs.
+  baseline). CIF-based alignment directly addresses the short-entity dilution problem for 1-3
+  syllable brand names. English adaptation is the key open question.
+
+##### [Novitasari2026]
+
+* **Title**: Contextual Biasing for ASR in Speech LLM with Common Word Cues and Bias Word Position
+  Prediction
+* **Authors**: Novitasari et al.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2604.12398`
+* **Asset**: `tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2604.12398/`
+* **Categories**: `entity-correction`, `stt-evaluation`
+* **Relevance**: G2P-free phonetic biasing (16.3% bias word error reduction) applicable to product
+  names and SKUs that resist standard phonemization. Complementary to retrieval-based approaches.
+
+##### [Tsai2026]
+
+* **Title**: Contextual Biasing for Streaming ASR via CTC-based Word Spotting
+* **Authors**: Tsai et al.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2605.18222`
+* **Asset**: `tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2605.18222/`
+* **Categories**: `entity-correction`, `latency-profiling`, `stt-evaluation`
+* **Relevance**: Streaming-compatible contextual biasing via stateful CTC-WS, requiring no acoustic
+  model modification. Applicable to Whisper&#x27;s CTC auxiliary head for zero-training streaming entity
+  detection.
+
+##### [Jiang2026]
+
+* **Title**: Towards Human-Like Interactive Speech Recognition With Agentic Correction and Semantic
+  Evaluation
+* **Authors**: Jiang et al.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2605.29430`
+* **Asset**: `tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2605.29430/`
+* **Categories**: `entity-correction`, `stt-evaluation`, `confidence-routing`
+* **Relevance**: Introduces S2ER metric (LLM-judged semantic error rate) that closely proxies
+  wrong-action rate. Demonstrates S2ER collapse from ~20% to &lt;2% across correction turns. The S2ER
+  metric is recommended for gold-92 evaluation.
+
+##### [Ren2026]
+
+* **Title**: RLBR: Reinforcement Learning with Biasing Rewards for Contextual Speech Large Language
+  Models
+* **Authors**: Ren et al.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2601.13409`
+* **Asset**: `tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2601.13409/`
+* **Categories**: `entity-correction`, `stt-evaluation`
+* **Relevance**: Lowest B-WER achieved via RL reward shaping (0.59%/2.11% at 100 bias words). The
+  alpha=5× reward multiplier for bias words is a transferable training principle for any ASR
+  fine-tuning on ecommerce entity data.
+
+##### [Poncelet2026]
+
+* **Title**: Towards Deep Contextual Reasoning from Broad Descriptions for ASR with Speech-LLM via
+  Metadata-Driven Reasoning Chains
+* **Authors**: Poncelet and Van hamme
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2606.10838`
+* **Asset**: `tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2606.10838/`
+* **Categories**: `entity-correction`, `stt-evaluation`
+* **Relevance**: Session metadata (product category, search queries) as broad contextual description
+  for chain-of-thought NE correction (NE WER: 23.9% → 23.3%). The automated training data
+  construction pipeline is applicable to Rezolve&#x27;s session logs.
+      </content>
+    </section>
+    <section id="t0003_literature_review_entity_stt-research_internet" source_kind="file">
+      <title>t0003_literature_review_entity_stt — Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026) — research_internet.md</title>
+      <source_name>research_internet.md</source_name>
+      <source_ids>
+        <id>t0003_literature_review_entity_stt</id>
+      </source_ids>
+      <repo_paths>
+        <path>tasks/t0003_literature_review_entity_stt/research/research_internet.md</path>
+      </repo_paths>
+      <content>
+---
+spec_version: &quot;1&quot;
+task_id: &quot;t0003_literature_review_entity_stt&quot;
+research_stage: &quot;internet&quot;
+searches_conducted: 14
+sources_cited: 16
+papers_discovered: 7
+date_completed: &quot;2026-06-23&quot;
+status: &quot;complete&quot;
+---
+#### Task Objective
+
+Survey publications from January to June 2026 to identify the most effective techniques for
+improving STT accuracy on domain-specific named entities — brand names, product names, SKUs — in an
+English ecommerce voice AI context. The goal is to complement the 11-paper corpus assembled during
+`research_papers.md` by filling identified gaps, discovering new papers, and expanding coverage of
+benchmarks, tools, and community practice. Findings directly inform the design of follow-on
+prototyping tasks against Rezolve&#x27;s Whisper Turbo + dynamic context injection production pipeline.
+
+#### Gaps Addressed
+
+From `research_papers.md` Gaps and Limitations:
+
+1. **No ecommerce-domain benchmarks published in Jan-Jun 2026** — **Partially resolved**. No
+   ecommerce-specific benchmark was found, but [Durmus2026] (Contextual Earnings-22) introduces a
+   2026 open benchmark built on Earnings-22 that specifically targets company, product, and person
+   names in financial earnings calls — the closest publicly available proxy for ecommerce entity
+   evaluation. It uses keyword prompting and boosting baselines, directly comparable to Rezolve&#x27;s
+   dynamic context injection approach. A complete ecommerce-specific benchmark for voice commerce
+   (brand names, SKUs) remains absent from the literature.
+
+2. **Latency data is absent for most entity correction methods** — **Partially resolved**. BR-ASR
+   [Gong2025] (Interspeech 2025, background) reports **20ms per query** at 200,000-entry scale with
+   99.99% pruning rate — providing a concrete latency anchor for retrieval-augmented biasing at
+   production scale. The [AssemblyAI-Bench-2026] commercial benchmark reports streaming
+   time-to-completion ranging from **247ms** (Deepgram Nova-3) to **335ms** (AssemblyAI Universal-3
+   Pro), establishing an industry baseline for streaming ASR latency in 2026. The gap for
+   latency-of-post-correction methods remains substantially open.
+
+3. **CLAR is evaluated on Mandarin Chinese only** — **Unresolved**. No English evaluation of
+   CLAR-style CIF-based retrieval was found. However, OWSM-Biasing [Sudo2025] (Interspeech 2025,
+   background) achieves an **11.6pp B-WER improvement** on LibriSpeech using a Whisper-style model
+   with dynamic vocabulary contextual biasing — providing an English-language counterpart to CLAR&#x27;s
+   retrieval-based approach. OWSM-Biasing does not use CIF alignment but demonstrates that
+   retrieval-augmented biasing transfers to English Whisper-family models.
+
+4. **RASTAR and An2026 are Mandarin Chinese only** — **Unresolved**. No English counterpart to
+   RASTAR&#x27;s adaptive CoT NE correction was found among Jan-Jun 2026 papers. [Trinh2025] (June 2025,
+   background) achieves 30% relative NE-WER reduction via phonetic-semantic LLM revision on English
+   classroom speech, representing the closest English analog.
+
+5. **No paper addresses accented English specifically** — **Partially resolved**. [Tay2026]
+   (WildASR) directly evaluates seven ASR systems on demographic variation including accented speech
+   and finds &quot;severe and uneven performance degradation&quot; — confirming that ASR robustness does not
+   transfer across accents and conditions. It does not address entity accuracy specifically in
+   accented speech, but it validates that accent is a distinct failure mode requiring separate
+   evaluation. The gap for entity accuracy on accented English specifically remains open.
+
+6. **Shallow fusion has faded from the literature** — **Resolved**. Internet search confirms that no
+   standalone shallow fusion paper appeared in Jan-Jun 2026. Delayed Fusion [Hori2025] (ICASSP 2025,
+   background) integrates LLMs into first-pass decoding with improved speed over shallow fusion and
+   N-best rescoring — effectively superseding classic shallow fusion. The community has moved to
+   either direct LLM integration (Delayed Fusion, LOGIC) or retrieval-augmented biasing as the
+   preferred alternatives to shallow fusion.
+
+7. **RL fine-tuning methods require full model access** — **Unresolved**. No no-training alternative
+   to RLBR&#x27;s entity accuracy gains was found. This remains a training-infrastructure barrier.
+
+#### Search Strategy
+
+**Databases and sources searched**: arXiv (cs.CL, cs.SD, eess.AS), Semantic Scholar, ACL Anthology,
+ICASSP 2026 conference search, Interspeech 2026 conference search, Papers With Code, AssemblyAI
+benchmark page, Emergent Mind, Google web search.
+
+**Queries executed** (14 total):
+
+*Required keyword combinations (Task Description §Search Strategy):*
+
+1. `contextual biasing ASR named entity 2026`
+2. `entity-aware speech recognition ecommerce 2026`
+3. `shallow fusion ASR latency 2026`
+4. `LLM post-correction ASR named entity 2026`
+5. `domain-specific ASR brand product 2026`
+6. `Whisper fine-tuning named entity ecommerce 2026`
+
+*Gap-filling queries:*
+
+7. `arXiv cs.CL entity-aware ASR contextual biasing 2026 new papers`
+8. `ICASSP 2026 proceedings speech recognition entity accuracy`
+9. `Interspeech 2026 contextual biasing named entity speech`
+10. `accented English ASR named entity recognition voice AI 2026`
+11. `ecommerce voice assistant benchmark dataset ASR entity WER 2026`
+
+*Broadening queries:*
+
+12. `Contextual Earnings-22 benchmark custom vocabulary contextual biasing ASR evaluation 2026`
+13. `TARQ tail-aware quantization rare word robust ASR 2026 arxiv entity`
+14. `speculative decoding LLM ASR post-correction latency 2026 arxiv`
+
+**Date range**: January 1 to June 30, 2026 for primary papers. Papers outside this range included in
+Discovered Papers only as background references when directly cited by 2026 papers or addressing
+open gaps.
+
+**Inclusion criteria**: Papers reporting (a) entity-level accuracy or entity WER, (b) latency
+measurements compatible with streaming ASR, (c) ecommerce or voice assistant domain results, or (d)
+benchmarks applicable to rare-word/entity evaluation. Papers submitted before 2026 are excluded from
+the primary corpus but noted as background.
+
+**Exclusion criteria**: Purely offline batch transcription with no latency data; non-English-only
+with no English results; vendor marketing content without reproducible methodology.
+
+**Search iterations**: Queries 7-9 were triggered by discovering new paper IDs in the initial
+results. Queries 12-14 were snowball queries following specific paper IDs found in query 7 (BR-ASR,
+Contextual Earnings-22, TARQ). The BR-ASR and OWSM-Biasing papers were discovered via query 1 and
+fetched for detail via WebFetch; both are Interspeech 2025 papers and classified as background.
+
+#### Key Findings
+
+##### A 2026 Benchmark for Contextual Entity Recognition in Business Speech Is Now Available
+
+**Contextual Earnings-22** [Durmus2026] is an open 2026 benchmark built on Earnings-22 with
+realistic custom vocabulary contexts targeting company, product, and person names in financial
+earnings calls. The benchmark defines two evaluation scenarios: local context (no distractors) and
+global context (realistic distractors from the full entity catalog). Six baselines were established
+across keyword prompting and keyword boosting approaches. While the paper does not yet report
+specific WER numbers in its abstract (full PDF required), the benchmark directly addresses the gap
+in `research_papers.md` identifying no publicly available entity-accuracy evaluation resource beyond
+gold-92. The business-entity domain (earnings calls) is the closest publicly available proxy for
+Rezolve&#x27;s ecommerce entity challenge and should be used for cross-system comparison.
+
+**Hypothesis**: Contextual Earnings-22 baselines, once extracted from the full paper, will establish
+the expected performance ceiling for keyword prompting and boosting at Rezolve&#x27;s scale, providing a
+calibration point for gold-92 results.
+
+##### Retrieval-Augmented Biasing at 200k-Entry Scale Is Now Feasible with 20ms Overhead
+
+BR-ASR [Gong2025] (Interspeech 2025, background) scales contextual biasing to **200,000 bias
+entries** with only 0.3% absolute WER degradation and **20ms latency per query** — achieved via
+speech-and-bias contrastive learning with 99.99% candidate pruning. At 2,000 bias words, BR-ASR
+achieves **B-WER of 2.8%/7.1%** on LibriSpeech test-clean/other, a **45% relative improvement** over
+prior methods. This resolves the scalability limitation of flat list prompting: Rezolve&#x27;s full
+brand+product catalog (potentially 10,000+ entries) can be indexed and queried at 20ms — well within
+the 800ms p50 budget.
+
+The framework integrates retrieved candidates into diverse ASR systems without fine-tuning, making
+it directly applicable to Whisper Turbo.
+
+**Best practice**: For production deployment of retrieval-augmented biasing at Rezolve&#x27;s catalog
+scale, target BR-ASR&#x27;s architecture (contrastive speech-bias retrieval + curriculum learning for
+homophone disambiguation) rather than building a bespoke index from scratch.
+
+**Update to `research_papers.md`**: `research_papers.md` identifies &quot;retrieval-augmented biasing&quot; as
+the emerging direction. BR-ASR (Interspeech 2025) provides a concrete implementation achieving 2.8%
+B-WER — comparable to CLAR&#x27;s 2.78% but with an English evaluation and explicit 20ms latency
+measurement. This is a stronger foundation for Rezolve&#x27;s production deployment than CLAR, pending
+English validation.
+
+##### LOGIC: Logit-Space Contextual Biasing Achieves Constant-Time Complexity
+
+LOGIC [Wang2026] addresses a fundamental limitation of prompt-based biasing: context window
+saturation as the entity list grows. LOGIC integrates contextual information directly in logit space
+during decoding — bypassing the context window — achieving **constant-time complexity regardless of
+prompt length**. It reports a **9% relative Entity WER reduction** across 11 multilingual locales on
+the Phi-4-MM model with negligible false alarm rate increase (**+0.30% absolute**). The paper was
+withdrawn from arXiv in February 2026 for institutional publication approval compliance, suggesting
+it may appear at a 2026 venue (Interspeech 2026 or ICASSP 2026 proceedings are probable
+destinations).
+
+This approach is architecturally distinct from all 11 papers in the existing corpus: it neither uses
+prompting (Ron2026, Ren2026), retrieval (CLAR, RECOVER), nor post-correction (Zheng2026, Jiang2026).
+Instead, it intercepts the decoder&#x27;s logit distribution to up-weight entity candidates at generation
+time, analogous to classifier-free guidance in diffusion models.
+
+**Hypothesis**: Logit-space biasing (LOGIC) and retrieval-augmented retrieval (BR-ASR) are
+architecturally complementary — combining them (retrieve candidates, then boost their logits) could
+yield additive gains with no additional context window cost.
+
+##### Quantization for Rare-Word Robustness: A New Deployment-Time Technique
+
+TARQ [Wang2026b] introduces a label-free post-training quantization framework that shifts
+calibration mass toward rare words (names, numerals, domain-specific vocabulary). The standard
+W4G128 quantization calibrates on frequent words, systematically degrading entity recognition. TARQ
+applies a closed-form per-layer rule (rareBAL) that equalizes calibration mass between common and
+rare-word tokens, improving **rare-WER across 8 ASR backbones and 6 datasets** without aggregate WER
+regression. It transfers to entity-rich benchmarks including ContextASR-Speech-En and ProfASR
+without requiring entity labels.
+
+This is directly actionable for Rezolve: if the production Whisper Turbo checkpoint is deployed at
+INT4/W4 quantization for latency reduction, TARQ provides a zero-training path to recover entity
+accuracy that standard quantization would degrade.
+
+**Best practice**: Apply TARQ (or equivalent rareBAL calibration logic) before quantizing any ASR
+model checkpoint deployed in entity-sensitive ecommerce applications.
+
+##### ASR Robustness Across Real-World Conditions: WildASR Benchmark
+
+WildASR [Tay2026] evaluates seven widely-used ASR systems across environmental degradation,
+demographic variation, and linguistic diversity in four languages. Key finding: &quot;model robustness
+does not transfer across languages or conditions&quot; and systems &quot;hallucinate plausible but unspoken
+content under partial or degraded inputs.&quot; The latter finding is directly relevant to Rezolve&#x27;s
+concern about wrong-action rate — hallucinated entity names (plausible but wrong brand names) are a
+failure mode not captured by WER.
+
+While WildASR does not measure entity-level accuracy, its evaluation framework for degradation
+factors (accented speech, noise, partial audio) is applicable for extending gold-92 evaluation to
+stress-test conditions.
+
+**Update to `research_papers.md`**: The gap &quot;no paper addresses accented English specifically&quot; is
+partially addressed. WildASR confirms that accented speech causes severe degradation in current ASR
+systems but does not provide entity-level analysis. The gap remains open specifically for entity
+accuracy on accented English.
+
+##### Commercial ASR Entity Accuracy Benchmarks in 2026
+
+The AssemblyAI benchmark platform (updated June 2026) [AssemblyAI-Bench-2026] provides head-to-head
+entity accuracy comparisons across commercial providers. For streaming audio, key numbers:
+**AssemblyAI Universal-3 Pro Streaming: 5.38% missed entity rate** on critical entities (proper
+nouns, alphanumerics, emails, addresses); **Deepgram Nova-3: 25.5% missed entity rate** on the same
+content types; streaming time-to-completion ranges from **247ms** (Deepgram) to **335ms**
+(AssemblyAI). Rezolve&#x27;s current production pipeline uses Deepgram; these benchmarks suggest
+AssemblyAI Universal-3 Pro achieves significantly better entity capture at comparable latency.
+
+Note: these are vendor-produced benchmarks (not peer-reviewed). Entity categories tested (names,
+emails, phone numbers) partially overlap with ecommerce entities but do not include brand SKUs or
+product names. Take as directional, not definitive.
+
+**Hypothesis**: Deepgram Nova-3&#x27;s 25.5% missed entity rate on proper nouns is consistent with the
+gold-92 entity accuracy problems observed in production. A direct comparison of AssemblyAI
+Universal-3 Pro vs. Whisper Turbo on gold-92 would determine whether a provider switch alone
+resolves the entity accuracy gap without custom fine-tuning.
+
+#### Methodology Insights
+
+* **Use Contextual Earnings-22 [Durmus2026] as a secondary benchmark**: Before investing in gold-92
+  entity annotation, run the Contextual Earnings-22 baselines (keyword prompting and boosting) on
+  Rezolve&#x27;s pipeline. The dataset is open, English, and targets the same entity-name accuracy
+  challenge. Establish Rezolve&#x27;s B-WER on this benchmark as a prior art reference point.
+
+* **BR-ASR architecture for production-scale biasing [Gong2025]**: The 20ms retrieval latency at
+  200k entries makes BR-ASR the most production-credible retrieval architecture found in the search.
+  Implement a speech-and-bias contrastive index over Rezolve&#x27;s brand/product catalog. Unlike CLAR&#x27;s
+  CIF alignment (which lacks English evaluation), BR-ASR is tested on English LibriSpeech and has
+  open-source code. Repo: `https://github.com/xcmyz/BR-ASR` (not verified; confirm from paper).
+
+* **LOGIC logit-space biasing [Wang2026] when context window is the bottleneck**: If Rezolve&#x27;s
+  entity catalog exceeds the Whisper decoder&#x27;s context window, LOGIC-style logit boosting is the
+  only approach that maintains constant-time complexity. Monitor for conference proceedings
+  publication (likely Interspeech 2026 or ICASSP 2026) before implementing.
+
+* **Apply TARQ before any quantization [Wang2026b]**: If Whisper Turbo is quantized to INT4 for
+  latency reduction, rareBAL calibration protects entity accuracy. No training required. The
+  improvement is estimated at 10-20% relative rare-WER (exact numbers in full paper).
+
+* **WildASR evaluation protocol [Tay2026]**: Extend gold-92 with environmental degradation and
+  accent variants using WildASR&#x27;s factor-isolated methodology. This provides a more complete picture
+  of ASR failure modes than a single-domain benchmark.
+
+* **Commercial baseline comparison [AssemblyAI-Bench-2026]**: Deepgram Nova-3&#x27;s 25.5% missed entity
+  rate (vendor benchmark) vs. AssemblyAI Universal-3 Pro&#x27;s 5.38% suggests a provider switch may
+  yield significant entity accuracy improvement at comparable latency (335ms vs. 247ms). This is a
+  zero-engineering path worth evaluating against gold-92 before building custom pipelines. Caveat:
+  vendor benchmark, not peer-reviewed.
+
+* **Delayed Fusion as shallow fusion alternative [Hori2025]**: The gap in `research_papers.md` on
+  shallow fusion is addressed by Delayed Fusion (ICASSP 2025), which integrates LLM scores during
+  first-pass decoding with reduced LLM call count. If shallow fusion is required as a streaming
+  latency-compatible LM integration, implement Delayed Fusion (not classic shallow fusion). Code
+  available via Apple Machine Learning Research.
+
+* **Phonetic-semantic LLM revision [Trinh2025]**: The approach achieves 30% relative NE-WER
+  reduction in English using phonetic similarity retrieval + LLM revision — complementary to
+  Ron2026&#x27;s initial_prompt approach and applicable without model retraining. Submitted June 2025
+  (outside primary scope) but directly relevant as a background technique.
+
+#### Discovered Papers
+
+##### [Durmus2026]
+
+* **Title**: Contextual Earnings-22: A Speech Recognition Benchmark with Custom Vocabulary in the
+  Wild
+* **Authors**: Berkin Durmus et al.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2604.07354`
+* **URL**: https://arxiv.org/abs/2604.07354
+* **Suggested categories**: `stt-evaluation`, `entity-correction`
+* **Why download**: 2026 open benchmark targeting company, product, and person name recognition
+  accuracy in earnings calls — the closest public proxy to Rezolve&#x27;s ecommerce entity challenge.
+  Establishes six keyword prompting/boosting baselines directly comparable to dynamic context
+  injection.
+
+##### [Wang2026]
+
+* **Title**: Beyond Prompting: Efficient and Robust Contextual Biasing for Speech LLMs via
+  Logit-Space Integration (LOGIC)
+* **Authors**: Peidong Wang
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2601.15397`
+* **URL**: https://arxiv.org/abs/2601.15397
+* **Suggested categories**: `entity-correction`, `latency-profiling`
+* **Why download**: Introduces logit-space integration for contextual biasing, achieving 9% relative
+  Entity WER reduction with constant-time complexity across entity list sizes — directly solves the
+  context window saturation problem as bias lists grow to 1000+ entries. Paper is withdrawn from
+  arXiv (pending institutional approval) but represents a novel technique not in the current corpus.
+
+##### [Wang2026b]
+
+* **Title**: TARQ: Tail-Aware Reconstruction Quantization for Rare-Word Robust Automatic Speech
+  Recognition
+* **Authors**: Xinyu Wang et al.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2605.27808`
+* **URL**: https://arxiv.org/abs/2605.27808
+* **Suggested categories**: `entity-correction`, `latency-profiling`
+* **Why download**: Label-free post-training quantization that preserves entity recognition accuracy
+  when compressing ASR models to INT4. Applicable to Whisper Turbo quantization without retraining.
+  Tested across 8 backbones and 6 datasets including entity-rich benchmarks.
+
+##### [Tay2026]
+
+* **Title**: Back to Basics: Revisiting ASR in the Age of Voice Agents
+* **Authors**: Geeyang Tay et al.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2603.25727`
+* **URL**: https://arxiv.org/abs/2603.25727
+* **Suggested categories**: `stt-evaluation`, `latency-profiling`
+* **Why download**: Introduces WildASR, a diagnostic benchmark evaluating 7 ASR systems across
+  environmental, demographic, and linguistic variation. Directly relevant to gold-92 evaluation
+  methodology and the accented English gap identified in research_papers.md.
+
+##### [Gong2025]
+
+* **Title**: BR-ASR: Efficient and Scalable Bias Retrieval Framework for Contextual Biasing ASR in
+  Speech LLM
+* **Authors**: Xun Gong et al.
+* **Year**: 2025
+* **DOI**: `10.48550/arXiv.2505.19179`
+* **URL**: https://arxiv.org/abs/2505.19179
+* **Suggested categories**: `entity-correction`, `latency-profiling`
+* **Why download**: Background paper (Interspeech 2025, outside Jan-Jun 2026 scope). Provides the
+  only concrete latency measurement for large-scale retrieval-augmented biasing (20ms at 200k
+  entries). Establishes the production-feasibility baseline for retrieval approaches.
+  State-of-the-art B-WER on English LibriSpeech (2.8%/7.1%).
+
+##### [Hori2025]
+
+* **Title**: Delayed Fusion: Integrating Large Language Models into First-Pass Decoding in
+  End-to-end Speech Recognition
+* **Authors**: Takaaki Hori et al.
+* **Year**: 2025
+* **DOI**: `10.48550/arXiv.2501.09258`
+* **URL**: https://arxiv.org/abs/2501.09258
+* **Suggested categories**: `entity-correction`, `latency-profiling`
+* **Why download**: Background paper (ICASSP 2025). The prior state of the art for LLM-ASR shallow
+  fusion integration, referenced in research_papers.md as outside scope but directly relevant to the
+  shallow fusion gap. Resolves the gap by demonstrating that delayed-fusion supersedes classic
+  shallow fusion in both speed and accuracy.
+
+##### [Trinh2025]
+
+* **Title**: Improving Speech Recognition of Named Entities in Classroom Speech with LLM Revision
+  and Phonetic-Semantic Context
+* **Authors**: Viet Anh Trinh et al.
+* **Year**: 2025
+* **DOI**: `10.48550/arXiv.2506.10779`
+* **URL**: https://arxiv.org/abs/2506.10779
+* **Suggested categories**: `entity-correction`
+* **Why download**: Background paper (submitted June 2025). Achieves 30% relative NE-WER reduction
+  in English using phonetic-semantic context retrieval + LLM revision — the closest English analog
+  to RASTAR (Mandarin). Directly addresses the gap in research_papers.md regarding English-language
+  adaptive NE correction.
+
+#### Recommendations for This Task
+
+These recommendations extend and update those in `research_papers.md`. Where they conflict with
+prior recommendations, the change is noted.
+
+1. **Add Contextual Earnings-22 [Durmus2026] as a secondary evaluation benchmark (new).** Run
+   keyword prompting and boosting baselines on gold-92 against this benchmark&#x27;s methodology. It
+   provides the only 2026 open standard for entity accuracy in business speech. This is a zero-cost
+   evaluation step that contextualizes gold-92 results against reproducible academic baselines.
+
+2. **Prioritize BR-ASR [Gong2025] retrieval architecture over CLAR for English deployment (update to
+   recommendation 5 in research_papers.md).** CLAR achieves the lowest reported B-WER (2.78%) but
+   has no English evaluation. BR-ASR achieves comparable B-WER (2.8%) on English LibriSpeech with a
+   measured 20ms retrieval latency at 200k entries. For Rezolve&#x27;s English ecommerce deployment,
+   BR-ASR is the more actionable retrieval baseline.
+
+3. **Monitor LOGIC [Wang2026] for conference publication before implementing (new).** The
+   logit-space integration approach solves the context window saturation problem that will emerge as
+   Rezolve&#x27;s entity catalog grows. The withdrawn preprint suggests a conference venue is imminent.
+   Check Interspeech 2026 and ICASSP 2026 proceedings.
+
+4. **Apply TARQ before quantizing Whisper Turbo to INT4 (new).** If latency optimization requires
+   INT4 quantization, apply TARQ&#x27;s rareBAL calibration to preserve entity accuracy. No training
+   cost. Implement as a production deployment step independent of the prompting/correction pipeline.
+
+5. **Evaluate AssemblyAI Universal-3 Pro against gold-92 as a zero-engineering baseline (new).** The
+   commercial benchmark [AssemblyAI-Bench-2026] suggests AssemblyAI achieves 5.38% missed entity
+   rate vs. Deepgram&#x27;s 25.5%. Running this on gold-92 costs one API call and may reveal that a
+   provider switch alone resolves the entity accuracy gap without custom engineering.
+
+6. **Extend WildASR&#x27;s evaluation methodology to gold-92 (new).** Follow [Tay2026]&#x27;s factor-isolated
+   approach: evaluate gold-92 performance separately for high-accent, low-accent, noisy, and clean
+   recordings. This separates the entity-error signal from the accent-degradation signal, enabling
+   targeted technique selection.
+
+#### Tool and Library Landscape
+
+* **BR-ASR** (Interspeech 2025) — open implementation from Shanghai Jiao Tong University / AntGroup.
+  Published in ISCA Archive at
+  `https://www.isca-archive.org/interspeech_2025/gong25_interspeech.pdf`. Implements speech-and-bias
+  contrastive learning with curriculum learning for homophone disambiguation. License: CC BY 4.0.
+
+* **WhisperNER** (Sep 2024) [WhisperNER-GH] — joint ASR+NER model available on Hugging Face
+  (`aiola/whisper-ner-v1`). Extends Whisper with open-type NER, enabling simultaneous transcription
+  and entity tagging in a single forward pass. English-only. Potentially applicable as a unified
+  ASR+NER step in Rezolve&#x27;s pipeline to replace a separate NER module. Note: this is a 2024 paper
+  (outside primary scope) included for practical relevance.
+
+* **Contextual Earnings-22 dataset** [Durmus2026] — open dataset on arXiv with realistic
+  custom-vocabulary contexts for financial speech. Usable for benchmarking without access to
+  ecommerce-specific data.
+
+* **DYNAC** (Interspeech 2025) — non-autoregressive contextual biasing for CTC models, reducing RTF
+  by 81% with 0.1pp WER degradation on LibriSpeech. Relevant if Rezolve adopts a CTC-based streaming
+  ASR architecture.
+
+#### Source Index
+
+##### [Durmus2026]
+
+* **Type**: paper
+* **Title**: Contextual Earnings-22: A Speech Recognition Benchmark with Custom Vocabulary in the
+  Wild
+* **Authors**: Berkin Durmus et al.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2604.07354`
+* **URL**: https://arxiv.org/abs/2604.07354
+* **Peer-reviewed**: no (arXiv preprint, submitted March 2026)
+* **Relevance**: 2026 open benchmark for contextual entity recognition in business speech. Six
+  keyword prompting/boosting baselines directly comparable to Rezolve&#x27;s dynamic context injection.
+
+##### [Wang2026]
+
+* **Type**: paper
+* **Title**: Beyond Prompting: Efficient and Robust Contextual Biasing for Speech LLMs via
+  Logit-Space Integration (LOGIC)
+* **Authors**: Peidong Wang
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2601.15397`
+* **URL**: https://arxiv.org/abs/2601.15397
+* **Peer-reviewed**: no (withdrawn arXiv preprint, January 2026)
+* **Relevance**: Logit-space entity biasing with 9% relative Entity WER reduction and constant-time
+  complexity. Architecturally distinct from all corpus papers — no prompting, no post-correction.
+
+##### [Wang2026b]
+
+* **Type**: paper
+* **Title**: TARQ: Tail-Aware Reconstruction Quantization for Rare-Word Robust Automatic Speech
+  Recognition
+* **Authors**: Xinyu Wang et al.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2605.27808`
+* **URL**: https://arxiv.org/abs/2605.27808
+* **Peer-reviewed**: no (arXiv preprint, submitted May 2026)
+* **Relevance**: Label-free quantization technique preserving rare-word/entity accuracy across 8 ASR
+  backbones. Applicable to INT4 Whisper Turbo deployment.
+
+##### [Tay2026]
+
+* **Type**: paper
+* **Title**: Back to Basics: Revisiting ASR in the Age of Voice Agents
+* **Authors**: Geeyang Tay et al.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2603.25727`
+* **URL**: https://arxiv.org/abs/2603.25727
+* **Peer-reviewed**: no (arXiv preprint, submitted March 2026)
+* **Relevance**: WildASR benchmark for ASR robustness across accented speech, noise, and linguistic
+  diversity. Directly addresses the accented English gap; provides evaluation methodology for
+  extending gold-92 stress testing.
+
+##### [Gong2025]
+
+* **Type**: paper
+* **Title**: BR-ASR: Efficient and Scalable Bias Retrieval Framework for Contextual Biasing ASR in
+  Speech LLM
+* **Authors**: Xun Gong et al.
+* **Year**: 2025
+* **DOI**: `10.48550/arXiv.2505.19179`
+* **URL**: https://arxiv.org/abs/2505.19179
+* **Peer-reviewed**: yes (Interspeech 2025)
+* **Relevance**: State-of-the-art retrieval-augmented biasing: B-WER 2.8%/7.1% on English
+  LibriSpeech at 2k bias words, 20ms retrieval latency at 200k entries. Most production-actionable
+  retrieval architecture found.
+
+##### [Hori2025]
+
+* **Type**: paper
+* **Title**: Delayed Fusion: Integrating Large Language Models into First-Pass Decoding in
+  End-to-end Speech Recognition
+* **Authors**: Takaaki Hori et al.
+* **Year**: 2025
+* **DOI**: `10.48550/arXiv.2501.09258`
+* **URL**: https://arxiv.org/abs/2501.09258
+* **Peer-reviewed**: yes (ICASSP 2025)
+* **Relevance**: Prior state-of-the-art for LLM-ASR integration. Resolves the shallow fusion gap by
+  demonstrating delayed fusion improves over both shallow fusion and N-best rescoring.
+
+##### [Trinh2025]
+
+* **Type**: paper
+* **Title**: Improving Speech Recognition of Named Entities in Classroom Speech with LLM Revision
+  and Phonetic-Semantic Context
+* **Authors**: Viet Anh Trinh et al.
+* **Year**: 2025
+* **DOI**: `10.48550/arXiv.2506.10779`
+* **URL**: https://arxiv.org/abs/2506.10779
+* **Peer-reviewed**: no (arXiv preprint, submitted June 2025)
+* **Relevance**: 30% relative NE-WER reduction via phonetic-semantic LLM revision on English
+  classroom speech. English analog to RASTAR (Mandarin); applicable to Rezolve without retraining.
+
+##### [AssemblyAI-Bench-2026]
+
+* **Type**: documentation
+* **Title**: ASR Benchmarks — Entity Capture and Latency
+* **Author/Org**: AssemblyAI
+* **Date**: 2026-06-08
+* **URL**: https://www.assemblyai.com/benchmarks
+* **Peer-reviewed**: no (vendor benchmark)
+* **Relevance**: Head-to-head entity capture benchmarks across Deepgram, AssemblyAI, OpenAI in
+  streaming mode. Deepgram (Rezolve&#x27;s current provider): 25.5% missed entity rate. AssemblyAI
+  Universal-3 Pro Streaming: 5.38%. Streaming latency: 247ms (Deepgram) to 335ms (AssemblyAI).
+
+##### [Sudo2025]
+
+* **Type**: paper
+* **Title**: OWSM-Biasing: Contextualizing Open Whisper-Style Speech Models for Automatic Speech
+  Recognition with Dynamic Vocabulary
+* **Authors**: Yui Sudo et al.
+* **Year**: 2025
+* **DOI**: `10.48550/arXiv.2506.09448`
+* **URL**: https://arxiv.org/abs/2506.09448
+* **Peer-reviewed**: yes (Interspeech 2025)
+* **Relevance**: English evaluation of Whisper-style model contextual biasing: 11.6pp B-WER
+  improvement on LibriSpeech. Closest English counterpart to CLAR for retrieval-augmented biasing
+  without retraining.
+
+##### [WhisperNER-GH]
+
+* **Type**: repository
+* **Title**: whisper-ner: Official implementation of WhisperNER
+* **Author/Org**: aiola-lab
+* **Date**: 2024-09
+* **URL**: https://github.com/aiola-lab/whisper-ner
+* **Last updated**: 2025-06
+* **Peer-reviewed**: no
+* **Relevance**: Open implementation of joint ASR+NER model fine-tuned from Whisper. Available on
+  Hugging Face as `aiola/whisper-ner-v1`. Enables simultaneous entity tagging during transcription.
+
+##### [Im2025]
+
+* **Type**: paper
+* **Title**: DeRAGEC: Denoising Named Entity Candidates with Synthetic Rationale for ASR Error
+  Correction
+* **Authors**: Solee Im et al.
+* **Year**: 2025
+* **DOI**: `10.48550/arXiv.2506.07510`
+* **URL**: https://arxiv.org/abs/2506.07510
+* **Peer-reviewed**: yes (ACL 2025 Findings)
+* **Relevance**: 28% relative WER reduction via denoised RAG-based NE correction on CommonVoice and
+  STOP datasets. Background paper (ACL 2025) providing a retrieval-augmented NE correction
+  alternative to RECOVER&#x27;s N-best hypothesis approach.
+
+##### [Altinok2025]
+
+* **Type**: paper
+* **Title**: Mind the Gap: Entity-Preserved Context-Aware ASR Structured Transcriptions
+* **Authors**: Duygu Altinok
+* **Year**: 2025
+* **DOI**: `10.48550/arXiv.2506.22858`
+* **URL**: https://arxiv.org/abs/2506.22858
+* **Peer-reviewed**: yes (TSD 2025, Springer LNAI)
+* **Relevance**: Whisper entity preservation via 40-second overlapping context windows during
+  training. Addresses boundary-spanning entities lost in 30-second chunk processing — relevant to
+  Rezolve&#x27;s streaming pipeline.
+
+##### [Gong2025b]
+
+* **Type**: paper
+* **Title**: DYNAC: Dynamic Vocabulary-based Non-Autoregressive Contextualization for Speech
+  Recognition
+* **Authors**: Yui Sudo et al.
+* **Year**: 2025
+* **DOI**: `10.48550/arXiv.2506.00422`
+* **URL**: https://arxiv.org/abs/2506.00422
+* **Peer-reviewed**: yes (Interspeech 2025)
+* **Relevance**: CTC-based non-autoregressive contextual biasing with 81% RTF reduction and only
+  0.1pp WER degradation. Relevant if Rezolve adopts a streaming CTC architecture alongside or
+  instead of Whisper.
+
+##### [Durmus2026-ISCA]
+
+* **Type**: documentation
+* **Title**: Contextual Earnings-22 ISCA Archive entry
+* **Author/Org**: ISCA / ADS
+* **Date**: 2026-03
+* **URL**: https://ui.adsabs.harvard.edu/abs/2026arXiv260407354D/abstract
+* **Peer-reviewed**: no
+* **Relevance**: Cross-reference confirming Contextual Earnings-22 is indexed as a 2026 arXiv paper.
+
+##### [PWC-ContextBiasing]
+
+* **Type**: documentation
+* **Title**: Papers With Code — Contextual Biasing of Named-Entities with Large Language Models
+* **Author/Org**: Papers With Code
+* **Date**: 2026-06
+* **URL**: https://paperswithcode.com/paper/contextual-biasing-of-named-entities-with
+* **Peer-reviewed**: no
+* **Relevance**: Aggregated leaderboard for contextual biasing with LLMs, providing a structured
+  view of state-of-the-art results and related papers for the broader contextual biasing research
+  area.
+
+##### [SimpliSmart-Whisper-2026]
+
+* **Type**: blog
+* **Title**: Deploy Whisper v3 Large Turbo in Production: Conquering the Sub-Second Latency
+* **Author/Org**: SimpliSmart
+* **Date**: 2026-02
+* **URL**: https://simplismart.ai/blog/deploy-whisper-v3-turbo-using-vox-box
+* **Peer-reviewed**: no
+* **Relevance**: Production deployment data for Whisper Large v3 Turbo: 22ms per-chunk inference at
+  INT8 on RTX 4090; 3.0% WER on clean English. Provides concrete latency anchors for the ASR stage
+  of Rezolve&#x27;s 800ms budget.
+      </content>
+    </section>
+    <section id="t0003_literature_review_entity_stt-research_code" source_kind="file">
+      <title>t0003_literature_review_entity_stt — Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026) — research_code.md</title>
+      <source_name>research_code.md</source_name>
+      <source_ids>
+        <id>t0003_literature_review_entity_stt</id>
+      </source_ids>
+      <repo_paths>
+        <path>tasks/t0003_literature_review_entity_stt/research/research_code.md</path>
+      </repo_paths>
+      <content>
+---
+spec_version: &quot;1&quot;
+task_id: &quot;t0003_literature_review_entity_stt&quot;
+research_stage: &quot;code&quot;
+tasks_reviewed: 1
+tasks_cited: 1
+libraries_found: 0
+libraries_relevant: 0
+date_completed: &quot;2026-06-23&quot;
+status: &quot;complete&quot;
+---
+
+### Research Code: Literature Review — Entity-Aware STT for Ecommerce Voice AI
+
+#### Task Objective
+
+This task surveys Jan–Jun 2026 publications to identify the most effective techniques for improving
+STT accuracy on domain-specific named entities (brand names, product names, SKUs) in an English
+ecommerce voice AI context, while remaining compatible with a sub-800 ms voice-to-action latency
+constraint. The four technique categories under review are contextual biasing, shallow fusion,
+entity-aware ASR, and LLM post-correction. Findings will directly inform the design of follow-on
+benchmark and model tasks.
+
+---
+
+#### Library Landscape
+
+The library aggregator returned zero registered libraries (`&quot;library_count&quot;: 0`). No cross-task
+libraries exist in this project at this stage. The project is at an early research phase — t0001
+produced a dataset asset and t0003 (this task) is the second completed task. No prior task has
+produced a registered library. As a result, there is nothing to import via the library mechanism,
+and all code needed for this literature-survey task must be written from scratch or copied from
+prior task code. Since t0003 is a pure literature survey (no implementation code required), the
+absence of libraries has no impact on execution.
+
+---
+
+#### Key Findings
+
+##### Gold-92 Dataset: Schema, Entity Types, and Evaluation Contract
+
+The only completed prior task is t0001_stt_benchmark [t0001], which produced the `stt-benchmark-gold-92`
+dataset asset. This dataset is the canonical held-out regression set for all STT research in this
+project and provides the concrete evaluation contract against which the literature survey&#x27;s technique
+shortlist must be assessed.
+
+**Schema.** The dataset is stored at
+`tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/`. Two JSONL files are committed to
+git:
+
+* `files/gold_set.jsonl` — 93 records with fields: `clip_id`, `source`, `filename`, `ground_truth`,
+  `production` (Deepgram Nova-2 transcript), `whisper` (Whisper Large v2 transcript). File size:
+  36 KB.
+* `files/ground_truth.jsonl` — 91 records with fields `clip_id` and `ground_truth` only. File size:
+  16 KB. (Two clips present in `gold_set.jsonl` lack a `ground_truth.jsonl` entry; this discrepancy
+  is flagged for investigation in t0002.)
+
+Audio is stored via DVC (`files/audio.dvc`) pointing to
+`azure://ml-dvc-datasets/datasets/rail-arf-stt` (account `mldvcstorerezolve`). Total audio: 93 WAV
+files, ~58 MB, mono 16 kHz.
+
+**Entity types.** The dataset does not include explicit entity span annotations (start/end offsets or
+entity-type labels). Entity coverage is implicit in the `ground_truth` strings: the corpus spans
+ecommerce and investor-relations utterances containing brand names (Rezolve, Salesforce, NASDAQ),
+product/integration names (brainpowa), and technical terms. The literature survey should note this
+annotation gap: gold-92 supports WER and substring-match entity accuracy, but not span-level F1
+unless annotations are augmented in a future task.
+
+**Speaker demographics.** Six named speakers with non-native accents: French (NoemieMarciano),
+French/Spanish (StephaniaCesborn), German (ErcanKilic), Hebrew (FelixTseitlin), Korean (JemmaLee),
+Russian (OlyaShtalberg), plus an English-native production pool. This accent diversity is important
+for the literature survey: techniques that improve entity accuracy on accented speech are more
+valuable than those tested only on native-speaker benchmarks.
+
+**Source stratification.** The `source` field separates three provenance categories: `&quot;production&quot;`
+(~63 clips), `&quot;clean_voices&quot;` (~17 clips), `&quot;error_cases&quot;` (~13 clips). Error-case clips were
+selected precisely because production Deepgram failed on them, making entity accuracy on this
+stratum the hardest and most diagnostic sub-benchmark.
+
+##### Observed Entity Failure Modes Relevant to Technique Selection
+
+Manual inspection of `gold_set.jsonl` [t0001] documented specific error patterns that directly
+constrain which techniques the literature survey should prioritize:
+
+* Deepgram Nova-2 fails on: proper nouns (&quot;Rezolve AI&quot; → &quot;resolve AI&quot;, &quot;NASDAQ&quot; → &quot;nas dag&quot;,
+  &quot;Salesforce&quot; → &quot;sales force&quot;).
+* Whisper Large v2 shows a different error profile — sometimes more accurate on brand names but
+  less consistent on accented speech.
+* The two systems exhibit *complementary* errors, suggesting that an ensemble or routing approach
+  may outperform either alone.
+
+These patterns map directly to two of the four technique categories in the survey scope:
+
+1. **Contextual biasing** — the current Whisper Turbo pipeline already uses dynamic context
+   injection (runtime hotword list). Gold-92 evidence shows this is insufficient for investor-
+   relations proper nouns, motivating the search for stronger biasing or post-correction approaches.
+2. **LLM post-correction** — the complementary error profiles of Deepgram and Whisper suggest a
+   second-pass corrector with entity grounding could close remaining gaps.
+
+##### Evaluation Metrics Already Registered
+
+The project has registered six metrics for evaluation against gold-92 (from the dataset description
+[t0001]):
+
+* `entity_accuracy_gold92` — primary metric; entity names correct vs. total
+* `intent_preservation_gold92`
+* `action_critical_wer_gold92`
+* `wer_gold92`
+* `wrong_action_rate_gold92`
+* `latency_p50_seconds` — must stay under 0.800 s p50
+
+Statistical testing requirement: BCa bootstrap with 10 000 resamples on all 93 paired samples
+against the production Deepgram baseline. The literature survey should note whether any surveyed
+papers use comparable evaluation protocols (entity-level accuracy, bootstrap significance) when
+assessing the credibility of their reported gains.
+
+##### No Prior Code to Reuse
+
+t0001 is a data-ingestion task that produced no code (`code/` directory absent). Its research file
+(`tasks/t0001_stt_benchmark/research/research_code.md`) contains only placeholder text (&quot;No code
+research required for dataset ingestion&quot;). The current task is a pure literature survey requiring
+no implementation code, so the absence of reusable code from t0001 has no impact on execution.
+
+---
+
+#### Dataset Landscape
+
+| Dataset ID | Task | Location | Format | Size | Status |
+|---|---|---|---|---|---|
+| `stt-benchmark-gold-92` | t0001_stt_benchmark | `tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/` | JSONL + DVC audio | 93 clips, ~58 MB | DVC-tracked |
+
+**Access.** Audio requires `dvc pull` with the Azure connection string from the team vault
+(`.dvc/config.local`). JSONL annotation files are committed to git and available without DVC.
+
+**Usage constraint.** Gold-92 is held-out only. It must never be used for training, fine-tuning,
+validation loss monitoring, or few-shot example selection. Its sole permitted use is regression
+evaluation.
+
+**Bearing on the literature survey.** When assessing surveyed papers, the literature reviewer
+should flag whether techniques can be evaluated on gold-92 as-is (entity substring match on
+`ground_truth.jsonl`) or whether they require span-level entity annotations (not yet present).
+Techniques that require entity-annotated training data are of lower immediate utility unless a
+separate annotated training set is available.
+
+---
+
+#### Reusable Code and Assets
+
+##### Dataset Asset: stt-benchmark-gold-92
+
+* **Source:** t0001_stt_benchmark —
+  `tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/gold_set.jsonl` (36 KB,
+  93 records) and `files/ground_truth.jsonl` (16 KB, 91 records).
+* **What it does:** Provides the ground-truth transcripts, existing Deepgram and Whisper hypotheses,
+  clip provenance labels, and audio pointers needed for all downstream STT evaluation.
+* **Reuse method:** These are data files, not code. Load them directly by path — no import needed.
+  The evaluation protocol (BCa bootstrap, 10 000 resamples, 93 paired samples) is documented in the
+  dataset description but not yet implemented in any code module; implementation is deferred to
+  t0002_baseline_evaluation.
+* **Adaptation needed for t0003:** None. This is a literature survey — no code runs against the
+  dataset. However, the annotation schema (fields, entity types, speaker stratification) informs
+  the survey&#x27;s inclusion/exclusion criteria and the &quot;Comparison Against Whisper Turbo + Dynamic
+  Context Injection&quot; section.
+
+There is no registered library code or task code to import or copy for this task.
+
+---
+
+#### Lessons Learned
+
+**t0001: DVC-first data management works cleanly for audio.** The pattern of committing JSONL
+annotations to git and audio to DVC (via Azure Blob) kept the git repository lightweight while
+making the full dataset reproducible. Future evaluation tasks should follow the same pattern: small
+metadata files in git, large binary files via `dvc add` + `dvc push`.
+
+**t0001: Annotation completeness gaps should be flagged early.** The two-record discrepancy between
+`gold_set.jsonl` (93) and `ground_truth.jsonl` (91) was noted but not resolved in t0001; it is
+deferred to t0002. For the literature survey, this is not a blocker, but it is a reminder that
+annotation QA should be a dedicated step in any future dataset task.
+
+**t0001: Entity types are implicit, not explicit.** The gold-92 schema has no entity span
+annotations (type labels, offsets). This limits evaluation to WER and substring-match entity
+accuracy. Techniques that require span-level entity annotations (e.g., entity-conditioned decoding
+with typed spans) cannot be evaluated on gold-92 in its current form. The literature survey should
+explicitly note this limitation when ranking the shortlist for follow-on prototyping.
+
+**No implementation pitfalls from prior tasks** — t0001 was a straightforward data-ingestion task
+with no code, so there are no debugging insights or performance edge cases to transfer.
+
+---
+
+#### Recommendations for This Task
+
+1. **Use gold-92 annotation schema as the survey&#x27;s evaluation filter.** When assessing each
+   surveyed paper, check whether its claimed entity accuracy gains were measured with metrics
+   compatible with what gold-92 supports: WER, entity substring match, or entity recall/precision
+   on named spans. Papers measured only on internal ecommerce datasets without disclosed metrics
+   should be flagged as lower-confidence.
+
+2. **Prioritize techniques that do not require span-level entity training annotations.** Gold-92 has
+   no entity span labels. Contextual biasing and LLM post-correction approaches that operate on
+   word-level or phrase-level hypotheses without requiring typed entity spans are more immediately
+   prototypable on this benchmark.
+
+3. **Flag accent robustness as a first-class criterion.** The gold-92 speaker pool (six non-native
+   accents) makes accent robustness directly relevant. Papers that evaluate only on native-English
+   benchmarks should be noted as lower-priority unless their technique is accent-agnostic by design.
+
+4. **Note the complementary error profiles** of Deepgram Nova-2 and Whisper Large v2 observed in
+   [t0001] as motivation for the LLM post-correction and shallow fusion categories: if the two
+   systems make different errors on the same entities, a post-correction layer or a fusion
+   architecture could recover accuracy that neither system achieves alone.
+
+5. **Adopt the `source` stratification for future reporting.** The `error_cases` stratum (~13
+   clips selected because production Deepgram failed) is the hardest sub-benchmark. The shortlist
+   of techniques should be assessed against this stratum in addition to the full 93-clip set in any
+   follow-on evaluation task.
+
+6. **No libraries to import; no code to copy.** The project has zero registered libraries. The
+   literature survey requires no implementation code. Research output is a synthesis document plus
+   paper assets; no scripts need to be written for this task.
+
+---
+
+#### Task Index
+
+##### [t0001]
+
+* **Task ID**: t0001_stt_benchmark
+* **Name**: STT Benchmark — Gold-92 Dataset Ingestion
+* **Status**: completed
+* **Relevance**: t0001 produced the `stt-benchmark-gold-92` dataset — the canonical held-out
+  evaluation set for all STT research in this project. Its annotation schema (fields, entity types,
+  speaker demographics), entity failure observations (Deepgram vs. Whisper error profiles), and
+  registered evaluation metrics directly define the evaluation contract that the literature survey&#x27;s
+  technique shortlist must satisfy.
       </content>
     </section>
   </sections>

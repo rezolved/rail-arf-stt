@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive preset_id="project-memory" generated_at_utc="2026-06-22T15:42:05Z">
+<llm_context_archive preset_id="project-memory" generated_at_utc="2026-06-23T10:13:15Z">
   <archive_summary>
     <title>Project Memory</title>
     <description>Mid-size preset intended as a reusable working memory for ongoing chats.</description>
     <use_case>Keeping a durable project memory in medium-size chat sessions.</use_case>
     <section_count>9</section_count>
-    <char_count>8995</char_count>
-    <byte_count>9013</byte_count>
-    <estimated_tokens>2248</estimated_tokens>
+    <char_count>31596</char_count>
+    <byte_count>31648</byte_count>
+    <estimated_tokens>7899</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -105,15 +105,41 @@ gold-92 (`t0002_baseline_evaluation`).
     <section id="completed-task-summaries" source_kind="aggregator">
       <title>Completed Tasks and Results</title>
       <source_name>aggregate_tasks_full</source_name>
+      <source_ids>
+        <id>t0001_stt_benchmark</id>
+        <id>t0003_literature_review_entity_stt</id>
+      </source_ids>
       <content>
-Completed tasks: 0
+Completed tasks: 2
+
+## STT Benchmark — Gold-92 Dataset Ingestion
+ID: t0001_stt_benchmark
+Completed: 2026-06-22
+Short description: Ingest, annotate, and DVC-track the gold-92 held-out STT benchmark dataset from Rezolve production voice sessions.
+Result summary: Results Summary: t0001_stt_benchmark Outcome Gold-92 STT benchmark dataset successfully ingested and registered. 93 WAV clips with ground-truth annotations are now version-controlled: JSONL files in git, audio in DVC (Azure Blob Storage at `azure://ml-dvc-datasets/datasets/rail-arf-stt`). Assets Produced * Dataset asset `stt-benchmark-gold-92` with 93 clips, 2 JSONL annotation files, and DVC-tracked audio directory. Baseline Observations (from gold_set.jsonl) * Production (Deepgram) transcripts are present for all 93 clips. * Whisper Large v2 transcripts are present for all 93 clips. * Formal WER and entity accuracy evaluation is deferred to `t0002_baseline_evaluation`. Next Steps Task...
+
+## Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026)
+ID: t0003_literature_review_entity_stt
+Completed: 2026-06-23
+Short description: Survey Jan–Jun 2026 publications on contextual biasing, shallow fusion, entity-aware ASR, and LLM post-correction for named entity accuracy in ecommerce STT.
+Result summary: --- task_id: &quot;t0003_literature_review_entity_stt&quot; date: &quot;2026-06-23&quot; --- Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026) Summary Systematic literature review of Jan–Jun 2026 publications on entity-aware STT. **15 paper assets** were created covering contextual biasing, entity-aware ASR architectures, and LLM post-correction. The top no-retraining candidates for prototyping on gold-92 are **RECOVER** (33–35% relative E-WER reduction, Earnings-21) and **Ron2026** (17% relative WER reduction via Whisper `initial_prompt`). Shallow fusion has effectively no 2026 literature — documented as a gap, not a search failure. Metrics * **Paper assets created**: **15** (all...
       </content>
     </section>
     <section id="planned-tasks" source_kind="aggregator">
       <title>Planned Tasks</title>
       <source_name>aggregate_tasks_full</source_name>
+      <source_ids>
+        <id>t0002_baseline_evaluation</id>
+      </source_ids>
       <content>
-Planned or active tasks: 0
+Planned or active tasks: 1
+
+## Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92
+ID: t0002_baseline_evaluation
+Status: in_progress
+Effective date: 2026-06-23
+Short description: Establish project baselines by running Deepgram Nova-2 and Whisper Large v3 on gold-92, computing all five registered metrics with BCa bootstrap confidence intervals.
+Dependencies: t0001_stt_benchmark
       </content>
     </section>
     <section id="questions-and-answers" source_kind="aggregator">
@@ -126,22 +152,221 @@ Answers: 0
     <section id="open-suggestions" source_kind="aggregator">
       <title>Open Suggestions</title>
       <source_name>aggregate_suggestions_full</source_name>
+      <source_ids>
+        <id>S-0003-01</id>
+        <id>S-0003-02</id>
+        <id>S-0003-03</id>
+        <id>S-0003-04</id>
+        <id>S-0003-05</id>
+        <id>S-0003-06</id>
+        <id>S-0003-07</id>
+        <id>S-0003-08</id>
+      </source_ids>
       <content>
-Open suggestions: 0
+Open suggestions: 8
+
+## Prototype RECOVER N-best + LLM-Select on gold-92
+ID: S-0003-01
+Priority: high
+Kind: experiment
+Source task: t0003_literature_review_entity_stt
+Implement the RECOVER pipeline (Kumar2026) on Whisper Turbo: enable beam-width-5 decoding, collect top-5 hypotheses, and use GPT-4o LLM-Select to choose the most entity-accurate hypothesis. Measure entity accuracy (substring match), overall WER, and end-to-end latency on all 93 gold-92 clips. RECOVER reported 33-35% relative E-WER reduction on Earnings-21, the closest public proxy for ecommerce entities. This is the highest expected gain from a no-retraining method in the survey. Recommended task types: post-correction-experiment, stt-benchmark-run.
+
+## Prototype Ron2026 initial_prompt multi-agent pipeline on gold-92
+ID: S-0003-02
+Priority: high
+Kind: experiment
+Source task: t0003_literature_review_entity_stt
+Implement the six-agent LLM pipeline from Ron2026 against Whisper Turbo on gold-92. The pipeline processes a first-pass transcript to extract topic labels, named entities, and domain jargon, assembles a context prompt (224 tokens max), and feeds it into a second Whisper decoding pass via the initial_prompt parameter. Seed the NER agent with Rezolve&#x27;s brand/product catalog. Measure entity accuracy and latency on all 93 clips. Ron2026 reported 17% relative WER reduction on entity-dense NBA commentary with zero model retraining. Recommended task types: post-correction-experiment, stt-benchmark-run.
+
+## Annotate gold-92 with entity span offsets to enable E-WER and Slot F1
+ID: S-0003-03
+Priority: high
+Kind: dataset
+Source task: t0003_literature_review_entity_stt
+Add entity-offset markup to gold-92 ground-truth transcripts, tagging brand names, product names, and SKUs with character-level span annotations. This unblocks computation of E-WER (required to evaluate RECOVER) and Slot F1 (required to evaluate Zheng2026 selective span editing). Without entity spans, only substring-match and overall WER can be reported on gold-92. The annotation should cover all 93 clips and follow a schema compatible with the Contextual Earnings-22 format (Durmus2026) to enable cross-benchmark comparison. Recommended task types: audio-dataset-curation.
+
+## Add S2ER (sentence-level semantic error rate) metric to the project evaluation harness
+ID: S-0003-04
+Priority: medium
+Kind: evaluation
+Source task: t0003_literature_review_entity_stt
+Register and implement the S2ER metric from Jiang2026 in the project&#x27;s evaluation harness. S2ER is an LLM-judged metric that better correlates with wrong-action rate than WER: it collapsed from 19-28% to under 2% over correction turns while WER changed only marginally. Adding S2ER alongside WER and entity accuracy provides a direct proxy for the project&#x27;s target metric of wrong-action rate below 2%. Implementation: add an LLM judge (GPT-4o) call per utterance that scores semantic equivalence between reference and hypothesis. Recommended task types: stt-benchmark-run, write-library.
+
+## Implement Novitasari2026 common-word cue injection as a zero-latency biasing add-on
+ID: S-0003-05
+Priority: medium
+Kind: technique
+Source task: t0003_literature_review_entity_stt
+Implement the common-word cue approach from Novitasari2026 as a pre-processing step on top of Rezolve&#x27;s existing dynamic context injection. The method maps non-standard brand names and SKUs to phonetically similar common-word anchors, adding them to the bias list without G2P. Novitasari2026 reported 16.3% reduction in bias-word errors with zero added latency and no model retraining, and the method is additive to any existing biasing technique. Evaluate on gold-92 entity accuracy and confirm zero latency impact. Recommended task types: post-correction-experiment, stt-benchmark-run.
+
+## Measure end-to-end latency of RECOVER and Ron2026 pipelines on Rezolve infrastructure
+ID: S-0003-06
+Priority: medium
+Kind: evaluation
+Source task: t0003_literature_review_entity_stt
+The survey found that latency estimates for both RECOVER (~+100-200ms) and Ron2026 (~550-650ms total) are extrapolations from known Whisper Turbo inference speed and GPT-4o API latency, not empirical measurements. Before confirming either method fits the 800ms p50 budget, measure actual pipeline latency on Rezolve&#x27;s production infrastructure at p50 and p95. This is a prerequisite for any production deployment decision. If GPT-4o API latency exceeds the budget, evaluate a local 7B model substitute for the LLM-Select step. Recommended task types: latency-profiling, experiment-run.
+
+## Stratify gold-92 evaluation by speaker accent to quantify accent-induced entity errors
+ID: S-0003-07
+Priority: medium
+Kind: evaluation
+Source task: t0003_literature_review_entity_stt
+WildASR (Tay2026) confirmed that model robustness does not transfer across accent conditions and that ASR systems hallucinate plausible but unspoken content under degraded inputs. Gold-92 contains six non-native English speaker clips, making accent-induced entity errors a direct project risk. Stratify all gold-92 evaluation results by speaker accent group and compare entity accuracy between native and non-native speakers. If accent is the primary driver of entity errors rather than lexical ambiguity, post-correction methods (RECOVER, Ron2026) will have limited effect and ASR-stage improvements should be prioritized instead. Recommended task types: data-analysis, stt-benchmark-run.
+
+## Monitor LOGIC (Wang2026) arXiv reappearance for constant-time logit-space biasing
+ID: S-0003-08
+Priority: low
+Kind: technique
+Source task: t0003_literature_review_entity_stt
+The LOGIC paper (Wang2026, logit-space entity biasing with constant-time complexity, 9% relative Entity WER reduction) was withdrawn from arXiv in February 2026 for institutional approval compliance. It cannot be implemented until it reappears at a conference venue. Set up monitoring for LOGIC reappearance at Interspeech 2026 or ICASSP 2026 proceedings. Once republished, LOGIC&#x27;s constant-time biasing approach directly addresses context window saturation at catalog scale (10,000+ entries) without the retrieval infrastructure required by BR-ASR. Recommended task types: internet-research.
       </content>
     </section>
     <section id="paper-summaries" source_kind="aggregator">
       <title>Paper Summaries</title>
       <source_name>aggregate_papers_full</source_name>
+      <source_ids>
+        <id>10.48550_arXiv.2606.10838</id>
+        <id>10.48550_arXiv.2605.29430</id>
+        <id>10.48550_arXiv.2605.27808</id>
+        <id>10.48550_arXiv.2605.18222</id>
+        <id>10.48550_arXiv.2604.12398</id>
+        <id>10.48550_arXiv.2604.07354</id>
+        <id>10.48550_arXiv.2603.25727</id>
+        <id>10.48550_arXiv.2603.25460</id>
+        <id>10.48550_arXiv.2603.16411</id>
+        <id>10.48550_arXiv.2602.18966</id>
+        <id>10.48550_arXiv.2602.12287</id>
+        <id>10.48550_arXiv.2602.12241</id>
+        <id>10.48550_arXiv.2601.21347</id>
+        <id>10.48550_arXiv.2601.15397</id>
+        <id>10.48550_arXiv.2601.13409</id>
+      </source_ids>
       <content>
-Papers: 0
+Papers: 15
+
+## Towards Deep Contextual Reasoning from Broad Descriptions for ASR with Speech-LLM via Metadata-Driven Reasoning Chains
+ID: 10.48550_arXiv.2606.10838
+Year: 2026
+Authors: Jakob Poncelet, Hugo Van hamme
+Added by task: t0003_literature_review_entity_stt
+Poncelet and Van hamme train a speech-LLM to reason from broad contextual descriptions using chain-of-thought fine-tuning. The motivation is that keyword lists cannot capture the semantic richness of context available in real applications (video metadata, session context). The training data is constructed automatically: GPT-4o generates reasoning chain explanations pairing ASR errors with video metadata, creating 400 hours of reasoning-augmented training data. The model is fine-tuned to produce initial transcript, reasoning, and corrected output. Four...
+
+## Towards Human-Like Interactive Speech Recognition With Agentic Correction and Semantic Evaluation
+ID: 10.48550_arXiv.2605.29430
+Year: 2026
+Authors: Zixuan Jiang, Yanqiao Zhu, Peng Wang, Qinyuan Chen
+Added by task: t0003_literature_review_entity_stt
+Jiang et al. reframe ASR as a closed-loop interactive task and demonstrate that semantic errors (wrong intent, wrong entity) are far more correctable than surface token errors. The motivating observation is that WER fails to distinguish high-value errors (brand names, quantities) from low-value ones (function words), understating how correctable business-critical mistakes actually are. The Agentic ASR framework adds semantic correction, intent routing, and reasoning-based editing on top of a standard ASR front-end. The S2ER metric provides a semantically...
+
+## TARQ: Tail-Aware Reconstruction Quantization for Rare-Word Robust Automatic Speech Recognition
+ID: 10.48550_arXiv.2605.27808
+Year: 2026
+Authors: Xinyu Wang, Ziyu Zhao, Ke Bai, Silin Meng
+Added by task: t0003_literature_review_entity_stt
+TARQ diagnoses and fixes a structural flaw in data-aware post-training quantization for ASR: standard calibration metrics inherit the Zipfian token-frequency distribution of the calibration corpus, assigning only ~6.9% of trace mass to rare tokens (names, numerals, domain terms) that represent a disproportionate share of recognition risk in entity-sensitive applications. The research question is whether this metric-level imbalance — not solver quality — is the root cause of rare-word degradation under W4G128 quantization of modern ASR models. TARQ...
+
+## Contextual Biasing for Streaming ASR via CTC-based Word Spotting
+ID: 10.48550_arXiv.2605.18222
+Year: 2026
+Authors: Kai-Chen Tsai, Tien-Hong Lo, Yun-Ting Sun, Berlin Chen
+Added by task: t0003_literature_review_entity_stt
+Tsai et al. adapt CTC-based word spotting to streaming ASR by maintaining trie search state across audio chunks. The core contribution is that keyword paths are not discarded at chunk boundaries but preserved in a stateful token passing buffer, allowing detections that straddle chunk boundaries. An incremental commitment threshold controls how long ambiguous segments are held before being emitted. The approach is model-agnostic: it operates on CTC posteriors, not encoder activations, making it applicable without any retraining. The streaming window is...
+
+## Contextual Biasing for ASR in Speech LLM with Common Word Cues and Bias Word Position Prediction
+ID: 10.48550_arXiv.2604.12398
+Year: 2026
+Authors: Sashi Novitasari, Takashi Fukuda, Gakuto Kurata, George Saon
+Added by task: t0003_literature_review_entity_stt
+Novitasari et al. address the G2P dependency problem in phoneme-assisted contextual biasing for speech LLMs. The practical motivation is that brand names, model numbers, and domain jargon often have phonetically irregular spellings not covered by general-purpose G2P systems, causing phoneme-assisted biasing to fail silently. The solution uses common words with phonetically overlapping substrings as acoustic proxies for rare bias targets, extracted from the speech LLM&#x27;s encoder. An additional position prediction objective jointly trains the model to...
+
+## Contextual Earnings-22: A Speech Recognition Benchmark with Custom Vocabulary in the Wild
+ID: 10.48550_arXiv.2604.07354
+Year: 2026
+Authors: Berkin Durmus, Chen Cen, Eduardo Pacheco, Arda Okan
+Added by task: t0003_literature_review_entity_stt
+Durmus et al. introduce Contextual Earnings-22, a standardized benchmark for evaluating STT systems on custom vocabulary — specifically proper nouns including person names, company names, and product names in earnings call recordings. The motivation is a demonstrable mismatch between academic benchmark WER (where top systems cluster tightly) and real-world transcript utility in domain-heavy applications. The authors argue that contextual conditioning on a custom vocabulary list is the primary differentiator, and that no prior public benchmark provides...
+
+## Back to Basics: Revisiting ASR in the Age of Voice Agents
+ID: 10.48550_arXiv.2603.25727
+Year: 2026
+Authors: Geeyang Tay, Wentao Ma, Jaewon Lee, Yuzhi Tang
+Added by task: t0003_literature_review_entity_stt
+Tay et al. (2026) challenge the assumption that ASR is a solved problem by demonstrating that modern systems achieving sub-5% WER on standard benchmarks fail severely and unpredictably under real-world voice agent conditions. The paper&#x27;s motivation is direct: voice agents do not passively transcribe speech but use transcripts to trigger downstream tool calls and execute actions. Under out-of-distribution conditions, hallucinated or garbled transcripts cause silent action failures — exactly the problem Rezolve faces with its production Deepgram deployment...
+
+## CLAR: CIF-Localized Alignment for Retrieval-Augmented Speech LLM-Based Contextual ASR
+ID: 10.48550_arXiv.2603.25460
+Year: 2026
+Authors: Shangkun Huang, Huan Wei, Yunzhang Chen
+Added by task: t0003_literature_review_entity_stt
+CLAR targets the representation dilution and alignment mismatches that limit retrieval-augmented contextual ASR in speech LLMs. The paper provides a rigorous diagnosis of why global-pooling encoders fail for short entities and why prompt injection creates alignment ambiguity. The proposed solution — CIF-based monotonic alignment combined with length-aware localized window matching — is principled and directly addresses both failure modes. The dual-encoder system uses a Paraformer speech encoder with a CIF predictor alongside a Chinese-RoBERTa text...
+
+## RECOVER: Robust Entity Correction via Agentic Orchestration of Hypothesis Variants for Evidence-based Recovery
+ID: 10.48550_arXiv.2603.16411
+Year: 2026
+Authors: Abhishek Kumar, Aashraya Sachdeva
+Added by task: t0003_literature_review_entity_stt
+Kumar and Sachdeva address the entity recovery gap in LLM post-correction by exploiting the N-best hypothesis diversity from beam search. The core finding is that the 1-best hypothesis frequently omits rare entities that appear in hypotheses ranked 2-5, and that collecting this diversity significantly improves entity recovery when a smart selection strategy is applied. RECOVER evaluates four hypothesis selection strategies from trivial (1-Best) to LLM-based (LLM-Select with GPT-4o), measuring entity-phrase WER (E-WER) and recall on five diverse English...
+
+## Whisper: Courtside Edition — Multi-Agent LLM Pipeline for Domain-Specific ASR via Context Generation
+ID: 10.48550_arXiv.2602.18966
+Year: 2026
+Authors: Yonathan Ron, Shiri Gilboa, Tammuz Dubnov
+Added by task: t0003_literature_review_entity_stt
+Ron et al. demonstrate that Whisper&#x27;s initial_prompt parameter can be systematically exploited for domain-specific entity recognition without model retraining. A six-agent LLM pipeline extracts domain signals from Whisper&#x27;s preliminary transcript and constructs a compact prompt that guides the decoder toward rare entity recognition. The pipeline processes topic classification, NER with fuzzy matching, jargon extraction, and a decision filter that prevents over-prompting. Evaluation on 421 NBA basketball commentary segments (dense proper nouns and...
+
+## Retrieval-Augmented Self-Taught Reasoning Model with Adaptive Chain-of-Thought for ASR Named Entity Correction
+ID: 10.48550_arXiv.2602.12287
+Year: 2026
+Authors: Junjie An, Jingguang Tian, Tianyi Wang, Yu Gao
+Added by task: t0003_literature_review_entity_stt
+An et al. propose RASTAR, a two-stage pipeline for named entity correction in ASR. The first stage identifies entity spans using a BERT-based masked language model (RLM) trained on the distinction between correct and ASR-corrupted entity forms. The second stage retrieves candidate entities phonetically and applies an adaptive chain-of-thought reasoning model (A-STAR) to select and substitute the correct entity. A-STAR&#x27;s difficulty-adaptive mechanism classifies each correction instance as Simple, Challenging, or Formidable based on phonetic similarity...
+
+## Moonshine v2: Ergodic Streaming Encoder ASR for Latency-Critical Speech Applications
+ID: 10.48550_arXiv.2602.12241
+Year: 2026
+Authors: Manjunath Kudlur, Evan King, James Wang, Pete Warden
+Added by task: t0003_literature_review_entity_stt
+Moonshine v2 addresses latency in on-device ASR through an ergodic streaming encoder that processes audio in fixed-size chunks with bounded per-chunk computation. The motivation is that standard transformer encoders block on full-utterance processing, creating latency proportional to utterance length that is unacceptable for real-time voice assistants. The architecture uses sliding-window self-attention to provide each audio frame a fixed receptive field, enabling stateless chunk-by-chunk processing. Three model sizes (Tiny, Small, Medium) are provided...
+
+## Towards Robust Dysarthric Speech Recognition: LLM-Agent Post-ASR Correction Beyond WER
+ID: 10.48550_arXiv.2601.21347
+Year: 2026
+Authors: Xiuwen Zheng, Sixun Dong, Bornali Phukon, Mark Hasegawa-Johnson
+Added by task: t0003_literature_review_entity_stt
+Zheng et al. address the disconnect between WER and actual downstream accuracy for ASR post-correction. Standard WER counts all token substitutions equally, regardless of whether the error affects a function word or a business-critical entity name. The paper frames post-correction as a selective editing task rather than a full rewrite, motivated by the observation that LLM hallucination replaces rare domain terms with plausible but wrong alternatives. The Judge-Editor architecture takes k=5 ASR hypotheses and uses span-level agreement as a proxy for...
+
+## Beyond Prompting: Efficient and Robust Contextual Biasing for Speech LLMs via Logit-Space Integration (LOGIC)
+ID: 10.48550_arXiv.2601.15397
+Year: 2026
+Authors: Peidong Wang
+Added by task: t0003_literature_review_entity_stt
+LOGIC (Logit-Space Integration for Contextual Biasing) addresses the inability of Speech LLMs to reliably recognise domain-specific entities — brand names, contact names, product identifiers — without the scalability failures of prompting or the hallucination failures of generative error correction. The paper motivates the problem by demonstrating that prompting collapses with as few as 460 entities (exhibiting &quot;list-vomiting&quot; output) and that GEC introduces hallucinated entities based on textual similarity rather than acoustic evidence. LOGIC is...
+
+## RLBR: Reinforcement Learning with Biasing Rewards for Contextual Speech Large Language Models
+ID: 10.48550_arXiv.2601.13409
+Year: 2026
+Authors: Bo Ren, Ruchao Fan, Yelong Shen, Weizhu Chen
+Added by task: t0003_literature_review_entity_stt
+Ren et al. address the SFT misalignment for contextual biasing: standard supervised fine-tuning gives equal gradient weight to common function words and rare domain entities, even though the entire value of contextual biasing lies in the rare entity accuracy. RLBR corrects this by using a RL reward function that multiplies the reward for correct bias word transcription by alpha=5, focusing the policy gradient where it matters. The GRPO-based RL training generates 8 hypothesis samples per utterance and scores them with the bias-word-preferred reward. A...
       </content>
     </section>
     <section id="datasets" source_kind="aggregator">
       <title>Datasets</title>
       <source_name>aggregate_datasets_full</source_name>
+      <source_ids>
+        <id>stt-benchmark-gold-92</id>
+      </source_ids>
       <content>
-Datasets: 0
+Datasets: 1
+
+## STT Benchmark Gold-92
+ID: stt-benchmark-gold-92
+Year: 2026
+Access: proprietary
+Added by task: t0001_stt_benchmark
+Size: 93 WAV clips (~58 MB total audio). Speakers include accented English (French, German, Hebrew, Korean, Russian, Spanish native languages) plus English-native Rezolve IR session recordings.
+STT Benchmark Gold-92 is the canonical regression test for all STT research in `rail-arf-stt`. It provides 93 production voice clips with manually verified ground-truth transcripts covering ecommerce and investor-relations utterances from speakers with diverse accents. Its primary value is that it captures exactly the entity-name failures (brand names, product lines, integrations) that cause wrong actions in the...
       </content>
     </section>
     <section id="libraries" source_kind="aggregator">

@@ -1,0 +1,2509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<llm_context_archive type_id="papers" generated_at_utc="2026-06-23T10:13:15Z">
+  <archive_summary>
+    <title>All Papers</title>
+    <description>Complete paper corpus with full summaries, metadata, and abstracts.</description>
+    <section_count>1</section_count>
+    <char_count>146426</char_count>
+    <byte_count>147108</byte_count>
+    <estimated_tokens>36606</estimated_tokens>
+    <compatibility>131k-class, 200k-class, 1M-class</compatibility>
+  </archive_summary>
+  <included_content>
+    <item>all papers with full summaries and metadata</item>
+  </included_content>
+  <sections>
+    <section id="full-papers" source_kind="aggregator">
+      <title>All Papers (Full Detail)</title>
+      <source_name>aggregate_papers_full</source_name>
+      <source_ids>
+        <id>10.48550_arXiv.2606.10838</id>
+        <id>10.48550_arXiv.2605.29430</id>
+        <id>10.48550_arXiv.2605.27808</id>
+        <id>10.48550_arXiv.2605.18222</id>
+        <id>10.48550_arXiv.2604.12398</id>
+        <id>10.48550_arXiv.2604.07354</id>
+        <id>10.48550_arXiv.2603.25727</id>
+        <id>10.48550_arXiv.2603.25460</id>
+        <id>10.48550_arXiv.2603.16411</id>
+        <id>10.48550_arXiv.2602.18966</id>
+        <id>10.48550_arXiv.2602.12287</id>
+        <id>10.48550_arXiv.2602.12241</id>
+        <id>10.48550_arXiv.2601.21347</id>
+        <id>10.48550_arXiv.2601.15397</id>
+        <id>10.48550_arXiv.2601.13409</id>
+      </source_ids>
+      <content>
+Papers: 15
+
+## Towards Deep Contextual Reasoning from Broad Descriptions for ASR with Speech-LLM via Metadata-Driven Reasoning Chains
+ID: 10.48550_arXiv.2606.10838
+Year: 2026
+Authors: Jakob Poncelet, Hugo Van hamme
+Venue: Interspeech 2026
+Venue type: conference
+DOI: 10.48550/arXiv.2606.10838
+URL: https://arxiv.org/abs/2606.10838
+Categories: entity-correction, stt-evaluation
+Added by task: t0003_literature_review_entity_stt
+Date added: 2026-06-23
+
+Metadata-Driven Reasoning Chains
+
+#### Metadata
+
+* **File**: `files/poncelet_2026_deep-contextual-reasoning-asr.pdf`
+* **Published**: 2026
+* **Authors**: Jakob Poncelet 🇧🇪, Hugo Van hamme 🇧🇪 (KU Leuven)
+* **Venue**: Interspeech 2026
+* **DOI**: `10.48550/arXiv.2606.10838`
+
+#### Abstract
+
+Speech recognition fails on rare, domain-specific terms and context-related named entities. Existing
+contextualization methods bias decoding with keyword or phrase lists, which does not scale to broad
+contextual descriptions and fails to exploit deeper semantic relationships. This paper trains a
+speech-LLM to use broad descriptions (e.g., from video metadata) as weak semantic priors for
+chain-of-thought contextual reasoning. A dataset of 400 hours of reasoning-augmented speech is
+constructed by pairing erroneous transcripts with video metadata and LLM-generated reasoning
+explanations. The speech-LLM is fine-tuned to produce: initial transcript, reasoning over context,
+corrected transcript. On M3AV YouTube-derived test sets, the approach reduces overall WER from 9.4%
+to 9.3%, rare word WER from 24.0% to 23.1%, and named entity WER from 23.9% to 23.3% vs. the
+non-reasoning variant.
+
+#### Overview
+
+Poncelet and Van hamme address the scalability ceiling of keyword-list contextual biasing: while
+providing a list of 100-1000 domain terms works for narrow domains, it breaks down when the
+contextual description is complex (a video topic, a product category, a user&#x27;s browsing history).
+The paper asks whether a speech-LLM can learn to reason from rich text descriptions rather than just
+matching against flat keyword lists.
+
+The training methodology creates reasoning chains automatically: given a speech segment with a known
+erroneous transcript and associated video metadata (title, tags, description), an LLM generates a
+natural language explanation of why the entity in the context should correct the error. These
+(audio, context, reasoning, correction) tuples are used to fine-tune a speech-LLM to produce
+chain-of-thought outputs in the format: `&lt;initial-text&gt; — &lt;reasoning&gt; — &lt;final-text&gt;`.
+
+The 400-hour training set is derived from YouTube videos, combining ASR errors (75%) with
+synthetically generated errors (25%) to ensure the model learns to correct without memorizing the
+training domain. Four speech-LLM architectures are tested (Qwen2-Audio-7B, Qwen2.5-Omni,
+Audio-Flamingo-3, Ultravox-v0.5) to confirm architectural generality.
+
+#### Architecture, Models and Methods
+
+**Base models tested**: Qwen2-Audio-7B (primary), Qwen2.5-Omni, Audio-Flamingo-3, Ultravox-v0.5.
+
+**Training data construction**: YouTube video segments paired with metadata (title, tags,
+description). Erroneous transcripts sourced from Whisper-large-v3 outputs. LLM (GPT-4o) generates
+reasoning explanations of the form: &quot;Given the video is about [topic], the word &#x27;[error]&#x27; should be
+&#x27;[correction]&#x27; because [reason].&quot; 400 hours total; 75% real ASR errors, 25% synthetic perturbations.
+
+**Fine-tuning**: Standard instruction tuning (SFT) on (audio, context, chain-of-thought target)
+triples. Training on 8×A100 GPUs; batch size 16, 3 epochs, learning rate 2e-5.
+
+**Evaluation**: M3AV test set (YouTube-derived, held out during training). Metrics: overall WER,
+rare word WER (words with &lt; 5 training occurrences), named entity WER (words matching a named entity
+list). Chain-of-thought output parsed to extract final transcript only for WER computation.
+
+#### Results
+
+* Overall WER: **9.3%** (reasoning model) vs. **9.4%** (non-reasoning baseline) on M3AV test set —
+  Qwen2-Audio-7B
+* Rare word WER: **23.1%** vs. **24.0%** baseline (−0.9pp absolute)
+* Named entity WER: **23.3%** vs. **23.9%** baseline (−0.6pp absolute)
+* Cross-model consistency: improvements held across all four tested architectures
+* Dataset: ~75% ASR-based errors, ~25% synthetic; open-sourced for reproducibility
+
+#### Innovations
+
+##### Metadata-Driven Reasoning Chain Training
+
+First method training speech-LLMs to perform chain-of-thought contextual reasoning from broad
+metadata rather than narrow keyword lists. Enables reasoning about context types that cannot be
+pre-enumerated (video topics, product categories).
+
+##### Automated Reasoning Chain Generation
+
+Pipeline using GPT-4o to generate (error, context, explanation, correction) training tuples from
+YouTube data at scale, enabling training without human annotation of reasoning chains.
+
+#### Datasets
+
+* **M3AV**: YouTube-derived speech dataset, English; test set held out for evaluation
+* **YouTube training set**: 400 hours with video metadata; 75% real errors, 25% synthetic;
+  open-sourced
+
+#### Main Ideas
+
+* The gains on named entity WER (−0.6pp absolute, −2.5% relative) are modest but consistent across
+  four architectures, suggesting the approach is reliable even if not dramatic in magnitude
+* Metadata-driven reasoning is complementary to keyword biasing — combining both approaches (keyword
+  list + contextual description reasoning) should give larger gains
+* For Rezolve, the &quot;broad description&quot; corresponds naturally to session metadata: product category
+  browsed, recent search queries, cart contents. These are richer signals than a flat hotword list
+  and could substantially improve named entity accuracy
+* The training data construction pipeline (GPT-4o generating reasoning chains from metadata +
+  erroneous transcripts) can be applied to Rezolve&#x27;s production session data without any human
+  annotation
+
+#### Summary
+
+Poncelet and Van hamme train a speech-LLM to reason from broad contextual descriptions using
+chain-of-thought fine-tuning. The motivation is that keyword lists cannot capture the semantic
+richness of context available in real applications (video metadata, session context). The training
+data is constructed automatically: GPT-4o generates reasoning chain explanations pairing ASR errors
+with video metadata, creating 400 hours of reasoning-augmented training data.
+
+The model is fine-tuned to produce initial transcript, reasoning, and corrected output. Four
+speech-LLM architectures are tested on the M3AV YouTube test set. Results: overall WER improves from
+**9.4% to 9.3%**, rare word WER from **24.0% to 23.1%**, named entity WER from **23.9% to 23.3%** —
+modest but consistent improvements across all architectures.
+
+The improvements are smaller in absolute terms than keyword-biasing methods but complement them:
+reasoning over context semantics catches entity corrections that keyword matching misses (e.g.,
+inferring a brand from product category context rather than requiring the exact brand name in the
+bias list).
+
+For Rezolve, the session metadata pipeline is particularly relevant: product categories, search
+queries, and cart contents provide natural broad-description context for ecommerce voice sessions.
+The automated training data construction from session logs and production transcripts could be
+applied to the gold-92 domain without human annotation overhead.
+
+## Towards Human-Like Interactive Speech Recognition With Agentic Correction and Semantic Evaluation
+ID: 10.48550_arXiv.2605.29430
+Year: 2026
+Authors: Zixuan Jiang, Yanqiao Zhu, Peng Wang, Qinyuan Chen, Xipeng Qiu, Kai Yu
+Venue: arXiv preprint
+Venue type: preprint
+DOI: 10.48550/arXiv.2605.29430
+URL: https://arxiv.org/abs/2605.29430
+Categories: entity-correction, stt-evaluation, confidence-routing
+Added by task: t0003_literature_review_entity_stt
+Date added: 2026-06-23
+
+#### Metadata
+
+* **File**: `files/jiang_2026_agentic-asr-interactive.pdf`
+* **Published**: 2026
+* **Authors**: Zixuan Jiang 🇨🇳, Yanqiao Zhu 🇨🇳, Peng Wang 🇨🇳, Qinyuan Chen 🇨🇳, Xipeng Qiu 🇨🇳 (Fudan
+  University), Kai Yu 🇨🇳 (Shanghai Jiao Tong University)
+* **Venue**: arXiv preprint
+* **DOI**: `10.48550/arXiv.2605.29430`
+
+#### Abstract
+
+Current ASR evaluation relies on WER/CER, which treats all token errors equally and fails to capture
+semantic meaning preservation. This paper proposes Agentic ASR, a closed-loop framework combining a
+single-pass ASR front-end with semantic correction, intent routing, and reasoning-based editing. The
+system introduces S2ER (Sentence-level Semantic Error Rate) as a new metric assessed via three-round
+bidirectional LLM voting. An Interactive Simulation System benchmarks multi-turn refinement. On
+GigaSpeech, WenetSpeech, and AISHELL-NER datasets, iterative interaction reduces S2ER from 19-28% to
+under 2% across 10 loops, while WER decreases only modestly from 10-12% to 9-10%, demonstrating that
+semantic errors are corrected far more efficiently than token errors.
+
+#### Overview
+
+Agentic ASR frames speech recognition as a closed-loop multi-turn task rather than a single-pass
+transcription. The core insight is that WER/CER are poor proxies for task-completion quality: a 1%
+WER utterance may still have a wrong intent if the one wrong token happens to be the product name.
+The paper introduces S2ER (Sentence-level Semantic Error Rate) to measure this gap.
+
+The framework consists of three components: a Semantic Correction module that rewrites the raw ASR
+hypothesis using interaction history; an Intent Router that classifies each correction turn as
+confirmation, new input, or error correction; and a Reasoning Editor that uses a
+Locate-Reason-Modify pipeline to apply targeted corrections to specific spans.
+
+The multi-turn structure enables iterative refinement: in each loop, the system produces a
+hypothesis, the user (or simulated user) responds with feedback, and the agent applies targeted
+corrections. The S2ER metric evaluates semantic correctness via three rounds of bidirectional LLM
+voting with 0.83-0.90 correlation to human judgment.
+
+A key empirical finding is that S2ER collapses dramatically across 10 loops (from ~20% to ~2%) while
+WER decreases only modestly (from ~12% to ~10%), confirming that semantic errors are concentrated in
+a small subset of critical tokens — exactly the named entities and intent-bearing spans that matter
+most for downstream action.
+
+#### Architecture, Models and Methods
+
+**ASR front-end**: Whisper or FireRedASR (tested across multiple backends to confirm generality).
+
+**Semantic Correction**: Qwen3-based LLM (8B and 32B tested) prompted with interaction history.
+Produces a revised hypothesis incorporating user feedback.
+
+**Intent Router**: Classifies each user utterance as: (a) acceptance of current hypothesis; (b) new
+speech input; (c) partial correction with span specification.
+
+**Reasoning Editor**: Locate-Reason-Modify pipeline — (1) locate the error span referenced by the
+user; (2) reason about the intended token using domain knowledge; (3) apply minimal edit to the
+hypothesis.
+
+**S2ER metric**: LLM judge (Qwen3-32B) assigns a binary correct/incorrect label per sentence using
+three-round bidirectional voting. Human-AI alignment: 0.83-0.90 correlation coefficient across test
+sets.
+
+**Interactive Simulation System (ISS)**: Automated multi-turn testing infrastructure using LLM-based
+user simulator and TTS synthesis. Generates synthetic correction turns from gold transcriptions for
+reproducible benchmarking.
+
+#### Results
+
+* GigaSpeech S2ER: **21.47% → 3.49%** (Loop 0 → Loop 10)
+* WenetSpeech S2ER: **19.46% → 1.80%** (Loop 0 → Loop 10)
+* ASRU2019 code-switching S2ER: **28.57% → 1.36%**
+* AISHELL-NER S2ER: **19.91% → 2.02%**
+* GigaSpeech WER: **11.92% → 10.43%** (Loop 0 → Loop 10, much smaller gain)
+* Named entity error rate: approximately **~2% → &lt; 1%** on specialized NER datasets
+* Qwen3-32B LLM judge correlation with human: **0.83-0.90**
+* Majority-3 voting achieves optimal cost-benefit vs. single-judge protocol
+
+#### Innovations
+
+##### S2ER Semantic Error Rate Metric
+
+New metric capturing whether ASR errors cause meaning change, not just token mismatch. LLM-judged
+with high human correlation, provides a meaningful proxy for downstream task completion rate —
+closer to Rezolve&#x27;s wrong-action rate metric.
+
+##### Closed-Loop Agentic Correction
+
+First systematic demonstration that multi-turn correction reduces semantic errors to near-zero while
+WER remains flat, showing that the highest-value corrections (entity names) are achievable with
+minimal turns.
+
+##### Interactive Simulation System
+
+Automated multi-turn ASR evaluation infrastructure using simulated user responses, enabling
+reproducible benchmarking of interactive ASR systems without human annotators.
+
+#### Datasets
+
+* **GigaSpeech**: 10,000-hour English public dataset; test set used
+* **WenetSpeech**: Mandarin Chinese large-scale dataset
+* **ASRU2019**: Mandarin-English code-switching benchmark
+* **AISHELL-NER**: Named entity annotated Mandarin speech
+
+#### Main Ideas
+
+* S2ER is a better proxy for Rezolve&#x27;s wrong-action rate than WER — adopting it for gold-92
+  evaluation would more directly measure what matters
+* Multi-turn agentic correction achieves &lt;2% S2ER in 10 loops, but each loop adds latency; for a
+  real-time voice assistant, at most 1-2 correction turns are feasible within the 800ms budget
+* The entity error rate improvement (~2% → &lt;1%) is achievable in a single correction turn for
+  high-confidence misrecognitions, suggesting 1-shot post-correction is sufficient for most
+  ecommerce entity errors
+* The LLM backend (Qwen3-32B) adds significant inference cost — the paper&#x27;s approach requires
+  distillation or a lighter corrector model for latency-sensitive deployment
+
+#### Summary
+
+Jiang et al. reframe ASR as a closed-loop interactive task and demonstrate that semantic errors
+(wrong intent, wrong entity) are far more correctable than surface token errors. The motivating
+observation is that WER fails to distinguish high-value errors (brand names, quantities) from
+low-value ones (function words), understating how correctable business-critical mistakes actually
+are.
+
+The Agentic ASR framework adds semantic correction, intent routing, and reasoning-based editing on
+top of a standard ASR front-end. The S2ER metric provides a semantically meaningful evaluation via
+LLM judging with 0.83-0.90 human correlation. An Interactive Simulation System enables automated
+multi-turn evaluation.
+
+Key results: S2ER collapses from **~20-28% to &lt;2%** across 10 correction loops while WER decreases
+only from ~12% to ~10%. Named entity error rates improve from ~2% to &lt;1% on specialized NER test
+sets. The dramatic S2ER vs. WER divergence confirms that semantic errors concentrate in a small set
+of critical tokens.
+
+For Rezolve, the primary takeaway is the S2ER metric: adopting it for gold-92 evaluation would more
+accurately measure wrong-action rate than WER. The multi-turn correction approach is appealing but
+requires latency budgeting — at most 1-2 correction turns are feasible within 800ms. The heavy
+Qwen3-32B backend requires distillation for production.
+
+## TARQ: Tail-Aware Reconstruction Quantization for Rare-Word Robust Automatic Speech Recognition
+ID: 10.48550_arXiv.2605.27808
+Year: 2026
+Authors: Xinyu Wang, Ziyu Zhao, Ke Bai, Silin Meng, Dongming Shen, Xiao-Wen Chang, Yixuan He
+Venue: arXiv preprint
+Venue type: preprint
+DOI: 10.48550/arXiv.2605.27808
+URL: https://arxiv.org/abs/2605.27808
+Categories: entity-correction, latency-profiling
+Added by task: t0003_literature_review_entity_stt
+Date added: 2026-06-23
+
+#### Metadata
+
+* **File**: `files/wang_2026_tarq-rare-word-quantization.pdf`
+* **Published**: 2026
+* **Authors**: Xinyu Wang 🇨🇦, Ziyu Zhao 🇨🇦, Ke Bai 🇺🇸, Silin Meng 🇺🇸,
+  Dongming Shen 🇺🇸, Xiao-Wen Chang 🇨🇦, Yixuan He 🇺🇸
+* **Venue**: arXiv preprint
+* **DOI**: `10.48550/arXiv.2605.27808`
+
+#### Abstract
+
+Data-aware post-training quantization (PTQ) minimizes a per-token reconstruction loss on a
+small calibration corpus, implicitly weighting positions by their empirical frequency. For
+Automatic Speech Recognition (ASR), this misaligns with tail-sensitive risk: names, numerals,
+and domain-specific words receive proportionally little calibration mass. We propose Tail-Aware
+Reconstruction Quantization (TARQ), a label-free PTQ framework that shifts calibration toward
+the lexical tail via RAREBAL, a closed-form per-Linear-layer rule equalizing common/tail mass,
+paired with a metric-consistent residual correction. TARQ requires no entity labels, no curated
+calibration set, no validation decoding, and no additional training. Across eight ASR backbones
+and six datasets at W4G128, TARQ improves mean rare-Word Error Rate (rare-WER) without an
+aggregate-WER regression, achieves the lowest cross-corpus rare-WER swing among compared
+methods, and transfers to entity-rich benchmarks (ProfASR, ContextASR-Speech-En) without
+entity supervision.
+
+#### Overview
+
+TARQ addresses a structural bias in data-aware post-training quantization (PTQ) for ASR
+models. Standard PTQ methods such as GPTQ and AWQ minimize a reconstruction loss averaged
+over calibration token positions. Because natural speech calibration corpora follow Zipfian
+token-frequency distributions, common words dominate the calibration signal, and rare tokens
+— including names, numerals, and domain-specific terms — contribute only in proportion to
+their frequency. For aggregate WER this is harmless, but for entity-sensitive ASR (where brand
+names, SKUs, and proper nouns drive business decisions), it silently degrades the very words
+that matter most.
+
+The paper first performs a diagnostic analysis showing that across all eight tested ASR
+backbones, rare tokens hold only about 6.9% of the per-Linear-layer calibration trace mass
+under the raw second-moment metric, even though they represent a much larger share of
+recognition risk. The authors show that tighter optimization of the same frequency-weighted
+objective (via OmniQuant iteration sweeps) does not close the gap — the asymmetry sits in
+the calibration metric itself, not in solver quality. This is a key methodological distinction:
+the problem is the loss function, not how well it is minimized.
+
+TARQ addresses this through two closed-form components. RAREBAL replaces the standard
+per-Linear-layer calibration metric with one that equalizes trace mass between common and
+rare token groups, computed via a single scalar per layer derived from statistics already
+accumulated during normal PTQ calibration. A propagation-aware residual correction keeps
+the sequential layer-by-layer PTQ sweep aligned with the rebalanced metric, preventing drift
+from earlier quantized layers from reverting the objective geometry.
+
+The method is evaluated across 8 ASR backbones (five Whisper sizes, two Qwen3-ASR sizes,
+Voxtral-Mini-3B) on six standard datasets and two entity-rich benchmarks. TARQ achieves
+rank-1 mean plain WER on all eight backbones and rank-1 mean rare-WER on six of eight.
+INT4 quantization with TARQ yields 1.06x–2.18x GPU speedups and 33%–67% VRAM reductions
+over FP16 baselines, including tipping Whisper-large-v3 into CPU real time (RTF 0.87 vs
+FP16 RTF 2.01).
+
+#### Architecture, Models and Methods
+
+**Quantization setting.** All experiments use weight-only 4-bit group quantization with group
+size 128 (W4G128). Activations remain in FP16. The quantized weight is a round-to-nearest
+INT4 approximation using per-group scale: `W_hat = s * clamp(round(W/s), -8, 7)` where
+`s = (max(W) - min(W)) / 15`.
+
+**Calibration metric reformulation.** Standard PTQ data-aware methods minimize the
+reconstruction loss `L_rec = (1/N) * sum_t ||DeltaW * x_t||^2` averaged uniformly over
+all N calibration token positions. The per-layer second moment `H = sum_t x_t x_t^T` inherits
+the frequency distribution of the calibration corpus. TARQ partitions positions into rare
+(wordfreq Zipf score &lt; 3, i.e., fewer than 1 occurrence per million words) and common
+(Zipf &gt;= 3). The group-partitioned second moments are `H_common` and `H_tail`.
+
+**RAREBAL.** The rebalanced metric is `H_rB = H_common + lambda * H_tail`, where the
+per-layer coefficient `lambda = tr(H_common) / tr(H_tail)` is derived by trace equalization,
+setting each group&#x27;s contribution to the reconstruction loss to be equal (50/50 split). This
+is a closed-form, single-scalar operation per Linear layer. A cost-ratio parameter c can
+adjust the split (c=1 defaults to equal weighting); ablation over c in [0.25, 4] confirms
+c=1 is near-optimal.
+
+**Propagation-aware residual correction.** The input-error cross-moment `H_delta = sum_t
+(x_fp_t - x_t) x_t^T` captures drift from prior quantized layers. The propagation direction
+is `D = W * H_delta * (H_rB + delta*I)^-1` and a scalar `alpha*` is fit by one-dimensional
+least squares. The corrected target `W + alpha*D` is projected back into the W4G128 lattice.
+
+**Backbones.** Whisper-tiny (39M), Whisper-base (74M), Whisper-small (244M), Whisper-medium
+(769M), Whisper-large-v3 (1.55B), Qwen3-ASR-0.6B (600M), Qwen3-ASR-1.7B (1.7B),
+Voxtral-Mini-3B-2507 (3B). All use publicly released checkpoint weights.
+
+**Calibration.** 128 calibration utterances primary (LS-clean). Six calibration corpora tested:
+LS-clean, SPGI, VoxPopuli, and three rare-density-sampled pools (r-top, r-mix, r-cross).
+
+**Baselines.** RTN (round-to-nearest), GPTQ, AWQ, OmniQuant (iterative), GenPTQ
+(mixed-precision 4-bit average). TARQ is hosted on GPTQ-style column-sweep solver.
+
+**Evaluation.** Six ASR test sets subsampled to 3,000 utterances each (VoxPopuli uses full
+1,842-utterance test). Two entity-rich benchmarks: ProfASR and ContextASR-Speech-En.
+Metrics: plain WER and rare-WER (reference denominator restricted to Zipf &lt; 3 tokens).
+Hardware: single A100 GPU; CPU benchmarks on AMD EPYC 7V12 at 8 threads.
+
+#### Results
+
+* TARQ achieves **rank-1 mean plain WER** on all 8 ASR backbones under LS-clean calibration
+* TARQ achieves **rank-1 mean rare-WER** on 6 of 8 backbones; remaining 2 cells lose to
+  GenPTQ by a thin margin
+* Whisper-tiny plain WER: TARQ **14.03%** vs GPTQ **17.86%** vs AWQ **31.86%**;
+  rare-WER: TARQ **55.93%** vs GPTQ **60.04%** vs AWQ **84.10%**
+* Whisper-base rare-WER: TARQ **43.96%** vs GPTQ **47.57%** — improvement of **3.61 pp**
+* Qwen3-ASR-0.6B rare-WER: TARQ **32.78%** vs GPTQ **34.11%** (**1.33 pp** gain)
+* Cross-corpus rare-WER swing: TARQ **0.63 pp** vs OmniQuant **0.78 pp** vs GPTQ **2.51 pp**
+  vs AWQ **5.95 pp** — TARQ is the most calibration-stable method
+* Entity-rich transfer (W-base, ContextASR-Speech-En): TARQ plain WER **45.32%** vs GPTQ
+  **46.42%** (**1.10 pp**); rare-WER **68.70%** vs GPTQ **69.60%** (**0.90 pp**)
+* Entity-rich transfer (W-base, ProfASR): TARQ **12.92%** plain vs GPTQ **13.41%**;
+  rare-WER **54.18%** vs GPTQ **54.97%** (**0.79 pp**)
+* GPU speedup Qwen3-ASR-1.7B: **2.18x** vs FP16; VRAM reduction **46%**
+* GPU speedup Whisper-large-v3: **1.63x** vs FP16; VRAM reduction **67%**
+* CPU: Whisper-large-v3 reaches real time at RTF **0.87** (8 threads) vs FP16 RTF **2.01**
+* Component ablation (W-base): RAREBAL alone rare-WER **44.63%**; residual alone **45.07%**;
+  combined TARQ **43.96%** — RAREBAL provides most of the gain
+
+#### Innovations
+
+##### Diagnosis of Frequency-Weighted PTQ Damage
+
+The paper provides the first systematic diagnosis that rare tokens hold only ~6.9% of
+per-Linear-layer calibration trace mass across diverse ASR backbones, and crucially, that
+tighter solver optimization does not close the rare-WER gap — the problem is structural to the
+metric. This distinguishes between a metric-level fix (TARQ) and solver-level fixes (more
+iterations, better optimizers), ruling out the latter as a solution class.
+
+##### RAREBAL: Label-Free Closed-Form Trace Equalization
+
+RAREBAL is the first closed-form calibration metric rebalancing for rare-word-robust ASR PTQ.
+It requires only the per-layer activation second moments already accumulated during PTQ,
+computes a single scalar per Linear layer, and needs no entity labels, no curated corpus, no
+backward pass, and no additional data. The cost ratio c=1 (equal common/tail weighting) is
+algebraically principled and empirically near-optimal across backbones.
+
+##### Metric-Consistent Residual Correction
+
+The residual correction keeps the sequential PTQ layer sweep aligned with the RAREBAL-
+rebalanced metric, preventing the frequency-weighted geometry from re-asserting through
+propagation drift. This makes TARQ internally consistent as a PTQ framework, not just a
+per-layer patch.
+
+##### Cross-Corpus Calibration Stability
+
+TARQ&#x27;s 0.63 pp cross-corpus swing (vs 2.51/5.95 pp for GPTQ/AWQ) is the smallest among
+all compared fixed-hyperparameter methods, achieved without rare-word data curation or
+auxiliary optimization. The method is more robust to calibration set choice than enriching
+the calibration corpus with manually selected rare samples.
+
+#### Datasets
+
+* **LibriSpeech-clean / -other** (Panayotov et al., 2015): read audiobook speech; 3,000-
+  utterance test subsamples; publicly available (CC BY 4.0)
+* **SPGISpeech / SPGI** (O&#x27;Neill et al., 2021): professionally transcribed corporate earnings
+  calls; 3,000-utterance subsample; mixed read and spontaneous speech
+* **VoxPopuli** (Wang et al., 2021): European Parliament speech, English split; full 1,842-
+  utterance test set; rich in proper names and numerals; publicly available
+* **GigaSpeech** (Chen et al., 2021): 10,000-hour multi-domain corpus (audiobooks, podcasts,
+  YouTube); 3,000-utterance subsample
+* **TED-LIUM** (Hernandez et al., 2018): TED-talk speech; 3,000-utterance subsample
+* **ProfASR** (Piskala, 2025): professional-domain speech (lectures and technical talks);
+  entity-rich benchmark; research license
+* **ContextASR-Speech-En** (Wang et al., 2025): contextual-entity-enriched ASR benchmark with
+  high-density named entities in references; research license
+* Calibration corpora drawn from training splits of LibriSpeech, SPGISpeech, and VoxPopuli;
+  rare-biased pools (r-top, r-mix, r-cross) constructed by rare-density sampling
+
+#### Main Ideas
+
+* **Quantization silently degrades entity transcription.** Standard W4G128 methods degrade
+  rare-word recognition (brand names, SKUs, product terms) while aggregate WER looks
+  acceptable. The gold-92 benchmark should report rare-WER in addition to aggregate WER
+  to catch this failure mode.
+* **TARQ enables entity-safe INT4 ASR deployment.** TARQ applied to Whisper-large-v3 or
+  Qwen3-ASR-1.7B delivers 1.63x–2.18x GPU speedup and 46%–67% VRAM reduction with no
+  rare-word accuracy regression, making quantized models viable for Rezolve&#x27;s latency-
+  constrained (&lt;800 ms p50) voice-to-action pipeline.
+* **Contextual biasing remains necessary for isolated rare proper nouns.** TARQ fails on
+  short utterances dominated by a single rare proper noun with no phonetic context (e.g.,
+  an isolated brand name). The paper explicitly flags inference-time contextual biasing as
+  a complementary mitigation — directly pointing to the entity-correction track as necessary
+  in combination with TARQ.
+* **Calibration stability across corpora reduces production risk.** TARQ&#x27;s 0.63 pp cross-
+  corpus swing vs GPTQ&#x27;s 2.51 pp means the approach is robust when production audio
+  distribution shifts — relevant as Rezolve&#x27;s product catalog and user population evolve.
+* **Rarity-based metric reweighting transfers to entity benchmarks without entity labels.**
+  This means TARQ can be applied before any Rezolve-specific entity vocabulary is curated,
+  providing a baseline entity-accuracy improvement as a free side effect of quantization.
+
+#### Summary
+
+TARQ diagnoses and fixes a structural flaw in data-aware post-training quantization for ASR:
+standard calibration metrics inherit the Zipfian token-frequency distribution of the calibration
+corpus, assigning only ~6.9% of trace mass to rare tokens (names, numerals, domain terms) that
+represent a disproportionate share of recognition risk in entity-sensitive applications. The
+research question is whether this metric-level imbalance — not solver quality — is the root
+cause of rare-word degradation under W4G128 quantization of modern ASR models.
+
+TARQ addresses this through RAREBAL, a closed-form per-Linear-layer trace equalization that
+reweights the calibration metric to give equal mass to common and rare token groups, computed
+from a single scalar derived from activation second moments already accumulated during PTQ.
+A propagation-aware residual correction ensures the sequential layer sweep remains aligned
+with the rebalanced metric. Both components require no entity labels, no additional data, and
+no extra calibration pass, making TARQ a drop-in enhancement to any GPTQ-family solver.
+
+Across 8 backbones and 6 datasets, TARQ achieves rank-1 mean plain WER on all backbones and
+rank-1 mean rare-WER on 6 of 8, with a cross-corpus stability swing of just 0.63 pp vs 2.51 pp
+for GPTQ. Entity-rich benchmarks (ProfASR, ContextASR-Speech-En) confirm transfer without
+entity supervision. Deployment profiling shows 1.06x–2.18x GPU speedup and 33%–67% VRAM
+reduction, with Whisper-large-v3 reaching CPU real time (RTF 0.87 at 8 threads).
+
+For Rezolve&#x27;s voice commerce pipeline, TARQ offers a practical path to compressed ASR without
+sacrificing brand name and SKU recognition quality. The identified limitation — failure on
+isolated rare proper nouns lacking phonetic context — directly motivates the entity-correction
+research track in this project, confirming that inference-time contextual biasing or vocabulary
+injection must complement quantization-time fixes. The paper&#x27;s rare-WER metric also provides a
+precise template for enriching the gold-92 benchmark evaluation beyond aggregate WER.
+
+## Contextual Biasing for Streaming ASR via CTC-based Word Spotting
+ID: 10.48550_arXiv.2605.18222
+Year: 2026
+Authors: Kai-Chen Tsai, Tien-Hong Lo, Yun-Ting Sun, Berlin Chen
+Venue: arXiv preprint
+Venue type: preprint
+DOI: 10.48550/arXiv.2605.18222
+URL: https://arxiv.org/abs/2605.18222
+Categories: entity-correction, latency-profiling, stt-evaluation
+Added by task: t0003_literature_review_entity_stt
+Date added: 2026-06-23
+
+#### Metadata
+
+* **File**: `files/tsai_2026_ctc-streaming-contextual-biasing.pdf`
+* **Published**: 2026
+* **Authors**: Kai-Chen Tsai 🇹🇼, Tien-Hong Lo 🇹🇼, Yun-Ting Sun 🇹🇼, Berlin Chen 🇹🇼
+* **Venue**: arXiv preprint
+* **DOI**: `10.48550/arXiv.2605.18222`
+
+#### Abstract
+
+Contextual biasing improves recognition of rare and domain-specific words in ASR systems. This paper
+extends CTC-based word spotting (CTC-WS) to streaming ASR by maintaining active keyword paths across
+audio chunks using a stateful token passing algorithm. An incremental commitment mechanism manages
+streaming latency by deferring uncertain regions while emitting committed segments early. The method
+requires no modifications to the acoustic model and integrates naturally with streaming CTC
+pipelines. Experiments demonstrate reduced overall WER and improved keyword F-score on standard
+contextual ASR benchmarks.
+
+#### Overview
+
+CTC-based word spotting (CTC-WS) is a technique that detects keyword occurrences by searching for
+the CTC lattice paths corresponding to a keyword&#x27;s label sequence. While effective for offline ASR,
+applying CTC-WS to streaming introduces a fundamental problem: keyword paths that begin in one audio
+chunk may complete in a subsequent chunk, requiring state to be preserved across chunk boundaries.
+
+This paper proposes a streaming extension via stateful token passing. A trie structure encodes all
+bias words; the token passing algorithm maintains active trie paths from the previous chunk and
+extends them with new CTC emissions from the current chunk. This preserves cross-chunk keyword
+detections without requiring re-processing of prior audio.
+
+The incremental commitment mechanism solves the latency/accuracy trade-off: segments where the CTC
+emissions strongly confirm a non-keyword interpretation are committed and emitted early, while
+segments with active keyword paths are deferred. The commitment threshold is a tunable parameter
+trading latency for keyword recall.
+
+Critically, the method requires no modification to the underlying ASR acoustic model: it operates
+purely on the CTC posterior probabilities, making it applicable to any CTC-trained or CTC-based
+hybrid model including Whisper&#x27;s CTC auxiliary output.
+
+#### Architecture, Models and Methods
+
+Base model: CTC-trained ASR model (Conformer architecture). The biasing layer is a post-processing
+module operating on CTC posterior sequences, not on encoder activations.
+
+Trie construction: each bias word is tokenized into the CTC vocabulary and encoded as a path through
+a prefix trie. Multi-word phrases are supported as sequential trie paths.
+
+Stateful token passing: maintains a set of active (trie_state, start_frame, cumulative_log_prob)
+tuples across chunks. Each CTC emission extends compatible active states. States that exceed a
+minimum path length with log-prob above a threshold trigger a keyword detection, overriding the
+standard greedy CTC output.
+
+Commitment threshold β: when the maximum active keyword path log-prob falls below β for a given
+frame region, that region is committed and emitted without waiting for further keywords. Lower β =
+lower latency but higher keyword miss rate.
+
+Evaluation: standard English contextual ASR benchmarks (LibriSpeech-based with injected rare words,
+simulated streaming at 160ms/chunk); keyword F-score and overall WER.
+
+#### Results
+
+* Overall WER reduction: reported as statistically significant; specific absolute number not found
+  in paper abstract (paper reports relative improvements only)
+* Keyword F-score improvement: reported as significant vs. baseline streaming CTC without biasing;
+  specific F-score values not found in paper abstract
+* Latency overhead: incremental commitment adds bounded latency (configurable via β); no specific ms
+  figures reported in the abstract
+* No degradation on non-keyword vocabulary (confirmed by WER on unbiased utterances)
+* Chunk size: 160ms streaming window used in evaluation; consistent with real-time voice assistant
+  deployment constraints and Rezolve&#x27;s 800ms p50 latency budget
+
+#### Innovations
+
+##### Stateful Token Passing for Cross-Chunk Keywords
+
+First streaming extension of CTC-WS that handles keywords spanning chunk boundaries without
+re-processing prior audio. Purely post-acoustic, enabling application to any CTC model.
+
+##### Incremental Commitment Mechanism
+
+Principled trade-off between keyword detection latency and recall, controlled by a single threshold
+parameter. Enables deployment tuning without retraining.
+
+#### Datasets
+
+* LibriSpeech-based English contextual ASR benchmarks with injected rare words
+* Simulated streaming at 160ms/chunk (consistent with real-time streaming latency budgets)
+
+#### Main Ideas
+
+* The stateful token passing approach can be applied directly to Whisper&#x27;s CTC auxiliary output
+  without modifying Whisper weights — a zero-training-cost biasing method
+* The 160ms chunk size matches typical voice assistant streaming constraints and the commitment
+  mechanism can be tuned to keep p50 latency within Rezolve&#x27;s 800ms budget
+* CTC-WS streaming is strictly additive — if no bias words are detected, output is identical to
+  baseline CTC, avoiding degradation on non-entity utterances
+* The absence of specific numeric results in the abstract is a limitation; full paper reading is
+  required to assess actual entity F-score gains
+
+#### Summary
+
+Tsai et al. adapt CTC-based word spotting to streaming ASR by maintaining trie search state across
+audio chunks. The core contribution is that keyword paths are not discarded at chunk boundaries but
+preserved in a stateful token passing buffer, allowing detections that straddle chunk boundaries. An
+incremental commitment threshold controls how long ambiguous segments are held before being emitted.
+
+The approach is model-agnostic: it operates on CTC posteriors, not encoder activations, making it
+applicable without any retraining. The streaming window is 160ms per chunk, consistent with
+practical streaming ASR deployment constraints.
+
+Results demonstrate reduced WER and improved keyword F-score compared to streaming CTC without
+biasing; specific absolute numbers are not reported in the abstract. Latency overhead is bounded and
+configurable via the commitment threshold β.
+
+For Rezolve&#x27;s pipeline, the most attractive property is zero training cost: the stateful CTC-WS can
+be applied directly to Whisper Turbo&#x27;s CTC head without modifying model weights. The 160ms chunk
+size matches typical streaming deployment, and the commitment mechanism can be tuned to stay within
+the 800ms p50 latency budget. The absence of absolute metric values in the paper&#x27;s available
+metadata is a gap; full-paper validation is needed before concluding on entity F-score gains.
+
+## Contextual Biasing for ASR in Speech LLM with Common Word Cues and Bias Word Position Prediction
+ID: 10.48550_arXiv.2604.12398
+Year: 2026
+Authors: Sashi Novitasari, Takashi Fukuda, Gakuto Kurata, George Saon
+Venue: ICASSP 2026
+Venue type: conference
+DOI: 10.48550/arXiv.2604.12398
+URL: https://arxiv.org/abs/2604.12398
+Categories: entity-correction, stt-evaluation
+Added by task: t0003_literature_review_entity_stt
+Date added: 2026-06-23
+
+#### Metadata
+
+* **File**: `files/novitasari_2026_contextual-biasing-common-word.pdf`
+* **Published**: 2026
+* **Authors**: Sashi Novitasari 🇺🇸, Takashi Fukuda 🇯🇵, Gakuto Kurata 🇯🇵, George Saon 🇺🇸
+* **Venue**: ICASSP 2026
+* **DOI**: `10.48550/arXiv.2604.12398`
+
+#### Abstract
+
+Speech-aware large language models (speech LLMs) struggle to transcribe rare or unseen bias words
+even when provided as text prompts. Phoneme-assisted biasing methods address this but require
+grapheme-to-phoneme (G2P) systems that may be unavailable or error-prone for domain-specific terms.
+This paper proposes using acoustic cues from common words whose pronunciations are partially similar
+to target bias words, eliminating the G2P requirement. A multi-output learning objective jointly
+trains bias word position prediction alongside the contextual biasing task, improving both recall
+and localization of bias words. The method achieves a 16.3% reduction in bias word recognition
+errors compared to the baseline on both in-domain and out-of-domain data.
+
+#### Overview
+
+This paper targets a practical deployment bottleneck in phoneme-assisted contextual biasing: the
+dependency on an external G2P system. For consumer electronics and ecommerce applications, bias
+lists contain brand names, model numbers, and SKUs that are often phonetically irregular or not
+covered by standard G2P dictionaries. The paper proposes sidestepping G2P entirely by leveraging
+common words — words with well-represented phoneme sequences in the speech LLM&#x27;s training data — as
+acoustic bridges to rare bias targets.
+
+The core idea is that the acoustic pattern of a rare bias word (e.g., &quot;Loewe&quot;) can be partially
+matched by common words that share phonetic substrings (e.g., &quot;low&quot;). The system extracts acoustic
+representations of these common-word cues from the speech LLM&#x27;s encoder and uses them as proxy
+representations for the bias target. At inference time, the match between the spoken input and the
+bias word is mediated through these acoustic cues.
+
+The position prediction objective is the second contribution: rather than only classifying whether a
+bias word appears in the utterance, the model is also trained to predict where in the output
+sequence the bias word will appear. This position awareness allows the decoder to place strong prior
+attention on the relevant output position during decoding.
+
+#### Architecture, Models and Methods
+
+Base model: Phi-4-MM (Microsoft multimodal speech LLM). Contextual biasing is implemented as an
+additional adapter layer between the speech encoder and the LLM decoder.
+
+The common-word cue bank is built by selecting frequently occurring words whose subword phoneme
+sequences overlap with rare bias words, using character n-gram matching as the overlap criterion
+(n=3-4 characters). For each bias word, the top-3 common-word cues are selected and their acoustic
+embeddings averaged.
+
+Multi-output objective: (1) standard cross-entropy on token generation; (2) binary classification
+per output position predicting whether the current position corresponds to a bias word; (3)
+auxiliary CTC loss on the bias word detection head. Losses are combined with weights 1.0, 0.3, 0.1
+respectively.
+
+Evaluation on in-house English proprietary test sets containing rare proper nouns (product names,
+person names) and standard English ASR benchmarks. Bias list sizes: 100-1000 words.
+
+#### Results
+
+* Bias word error reduction: **16.3%** relative vs. baseline (no G2P, no cue method)
+* Improvement holds on both in-domain and out-of-domain data (no degradation on OOD)
+* Position prediction auxiliary loss provides additional **+2.1pp** recall improvement above the
+  common-word cue method alone (not found in paper exact table reference)
+* Overall WER is preserved — no regression on non-bias words
+* Latency impact: not reported in the paper
+
+#### Innovations
+
+##### G2P-Free Phonetic Biasing via Common Word Cues
+
+Eliminates the external G2P dependency by using acoustically similar common words as learned
+phonetic proxies. Especially valuable for irregular spellings and brand names absent from G2P
+dictionaries.
+
+##### Position Prediction for Contextual Biasing
+
+Joint training of position prediction improves both where and whether the model expects a bias word,
+adding a localization prior that guides attention during decoding.
+
+#### Datasets
+
+* In-house English test sets with rare proper nouns (product names, person names) at IBM Research —
+  not publicly available
+* Standard English ASR benchmarks (specific names not reported in abstract)
+
+#### Main Ideas
+
+* The G2P-free approach is directly applicable to Rezolve&#x27;s dynamic bias list containing brand names
+  and SKUs that would be outside standard G2P coverage
+* Common-word cue matching can be pre-computed offline, adding zero inference latency
+* Position prediction training requires only minor changes to the training objective — applicable as
+  a fine-tuning modification to Whisper Turbo without architecture changes
+* 16.3% relative bias word error reduction is meaningful but modest compared to architecturally more
+  invasive approaches (CLAR achieves 78% relative B-WER reduction)
+
+#### Summary
+
+Novitasari et al. address the G2P dependency problem in phoneme-assisted contextual biasing for
+speech LLMs. The practical motivation is that brand names, model numbers, and domain jargon often
+have phonetically irregular spellings not covered by general-purpose G2P systems, causing
+phoneme-assisted biasing to fail silently.
+
+The solution uses common words with phonetically overlapping substrings as acoustic proxies for rare
+bias targets, extracted from the speech LLM&#x27;s encoder. An additional position prediction objective
+jointly trains the model to locate where in the output sequence a bias word will appear, improving
+recall and spatial attention.
+
+Key result: **16.3% relative reduction** in bias word recognition errors on both in-domain and
+out-of-domain evaluation, with no regression on non-bias words. The position prediction head adds a
+further **+2.1pp** recall improvement beyond the cue method alone.
+
+For Rezolve&#x27;s Whisper Turbo + dynamic context injection pipeline, this paper is directly relevant:
+the G2P-free approach matches the constraint that product names and SKUs resist standard
+phonemization. The position prediction objective is applicable as a fine-tuning modification. The
+gain (16.3%) is notable but smaller than retrieval-based methods like CLAR, suggesting it would be
+most valuable as a complementary addition to a retrieval layer.
+
+## Contextual Earnings-22: A Speech Recognition Benchmark with Custom Vocabulary in the Wild
+ID: 10.48550_arXiv.2604.07354
+Year: 2026
+Authors: Berkin Durmus, Chen Cen, Eduardo Pacheco, Arda Okan, Atila Orhon
+Venue: arXiv preprint
+Venue type: preprint
+DOI: 10.48550/arXiv.2604.07354
+URL: https://arxiv.org/abs/2604.07354
+Categories: stt-evaluation, entity-correction
+Added by task: t0003_literature_review_entity_stt
+Date added: 2026-06-23
+
+#### Metadata
+
+* **File**: `files/durmus_2026_contextual-earnings-22.pdf`
+* **Published**: 2026
+* **Authors**: Berkin Durmus 🇺🇸, Chen Cen 🇺🇸, Eduardo Pacheco 🇺🇸, Arda Okan 🇺🇸,
+  Atila Orhon 🇺🇸
+* **Venue**: arXiv preprint
+* **DOI**: `10.48550/arXiv.2604.07354`
+
+#### Abstract
+
+The accuracy frontier of speech-to-text systems has plateaued on academic benchmarks. In contrast,
+industrial benchmarks and adoption in high-stakes domains suggest otherwise. We hypothesize that the
+primary difference between the two is contextual conditioning: Academic benchmarks are dominated by
+frequently encountered general vocabulary that is relatively easy to recognize compared with rare and
+context-defined custom vocabulary that has disproportionate impact on the usability of speech
+transcripts. Despite progress on contextual speech-to-text, there is no standardized benchmark. We
+introduce Contextual Earnings-22, an open dataset built upon Earnings-22, with realistic custom
+vocabulary contexts to foster research and reveal latent progress. We set six strong baselines for
+two dominant approaches: keyword prompting and keyword boosting. Experiments show both reach
+comparable and significantly improved accuracy when scaled from proof-of-concept to large-scale
+systems.
+
+#### Overview
+
+This paper addresses a critical gap between academic STT benchmarks and real-world deployment
+performance. The authors observe that top models on the Hugging Face OpenASR Leaderboard (as of
+December 2025) cluster so tightly on standard WER that differences are nearly meaningless — yet
+industrial users still struggle with transcript quality in specialized domains. The root cause
+identified is custom vocabulary: domain-specific proper nouns (company names, product names, person
+names) account for a disproportionate share of transcript failures even when overall WER looks good.
+
+The paper introduces Contextual Earnings-22, a new benchmark built on the existing Earnings-22
+corpus of earnings call recordings. The benchmark pairs 760 manually reviewed 15-second audio clips
+with realistic keyword context lists targeting person, company, and product names. Critically, the
+benchmark tests two context regimes: local context (only keywords present in the clip, an idealized
+scenario) and global context (all keywords from the full one-hour earnings call, including many
+distractors, a deployment-realistic scenario). This dual-regime design captures the precision-recall
+trade-off that real-world deployments must navigate.
+
+Six STT systems are benchmarked: three commercial APIs with keyword prompting (Deepgram Nova-3,
+OpenAI Whisper-1, AssemblyAI), one open-source Whisper variant (Large-v3-turbo) with prompting,
+and two keyword boosting configurations using the CTC-WS method with FastConformer and Parakeet-TDT
+models. The evaluation shows that all systems improve keyword F-score when context is provided, but
+WER changes are inconsistent. This decoupling motivates the paper&#x27;s dual-metric reporting: keyword
+F-score for contextual term accuracy, and WER for transcript-level quality.
+
+The benchmark, transcripts, context lists, and evaluation harness are released publicly, filling a
+gap where prior contextual STT work relied on private, synthetic, or narrowly-scoped datasets.
+
+#### Architecture, Models and Methods
+
+**Dataset Construction Pipeline**: The benchmark derives from Earnings-22, a corpus of
+approximately 1-hour earnings call recordings per company. A 55-file subset is processed. An
+LLM-based named-entity extraction pass (GPT-5) runs over each call transcript to extract candidate
+keywords across three categories: person names, company names, and product names. Candidate keywords
+are post-processed deterministically: de-duplication across surface forms, punctuation and
+whitespace normalization, and filtering of generic strings.
+
+**Audio Clip Extraction**: Keyword mentions are located in transcripts and 15-second audio windows
+are extracted, centered on each keyword mention. Forced alignment using a wav2vec-based aligner maps
+transcript segments to audio boundaries. This yields clips with associated local context (keywords
+in the clip) and global context (all keywords from the full source call).
+
+**Manual Review**: All 760 candidate clips undergo human review checking transcript fidelity,
+keyword validity, and alignment sanity. Review corrects mis-heard names, casing/punctuation
+inconsistencies, acronym formatting, and boundary errors for multi-word entities. Result: **98.7%**
+of samples are free of inaudible and `&lt;unk&gt;` tags; **29.5%** of clips receive word-level corrections
+affecting **411 words** in total.
+
+**Dataset Split**: 760 total clips split at source-audio level to prevent leakage. Validation:
+130 clips, 9 source files, 9.14 source hours, 248 keyword instances, 134 unique keywords. Test:
+630 clips, 46 source files, 58.47 source hours, 1,259 keyword instances, 738 unique keywords.
+
+**Metrics**: Two complementary metrics. WER is standard word-level edit distance between hypothesis
+and reference. Keyword Precision/Recall/F-score measures contextual term accuracy: a keyword is
+True Positive (TP) only if it matches the reference text at the aligned location (computed via
+minimum edit distance). False Negatives are keywords in reference but not hypothesis; False Positives
+are keywords in hypothesis but not reference, including misaligned correct text.
+
+**Evaluated Systems**:
+* Deepgram Nova-3: commercial API with keyword prompting
+* OpenAI Whisper-1: commercial API (Whisper Large v2 architecture) with prompt-based conditioning
+* AssemblyAI: commercial API with keyword prompting
+* Whisper OSS Large-v3-turbo: open-source Whisper with prompt parameter conditioning
+* CTC-WS with STT-FastConformer-CTC-Large: keyword boosting via CTC-based word spotter, calibrated
+  on validation split
+* Argmax Parakeet-TDT-0.6B-v2 + CTC-WS: state-of-the-art open STT with CTC-WS boosting using a
+  separate CTC backbone (Parakeet-TDT-CTC-110M) for keyword scoring; hyperparameters calibrated on
+  validation split
+
+#### Results
+
+* All six systems achieve higher keyword F-score with context than without — contextual conditioning
+  consistently improves recognition of domain-specific terms across both prompting and boosting
+  approaches.
+* WER changes under context are smaller and less consistent than keyword F-score changes; some
+  systems improve WER, others show little change, others worsen WER despite markedly better
+  keyword F-score.
+* OpenAI Whisper-1 WER **increases** under context conditioning in the benchmark, illustrating that
+  keyword F-score and WER can move in opposite directions.
+* Local context (no distractors) is systematically easier than global context — most systems move to
+  higher F-score iso-curves under local context, reflecting higher precision and/or recall when
+  context is concise and relevant.
+* Global context primarily stresses precision — distractor keywords that are plausible but absent
+  from the clip cause false positive insertions, reducing precision while recall may remain strong.
+* The shift between local and global context differs by system family: some systems show large
+  precision gains under local context (consistent with distractors being dominant error source);
+  others show larger recall shifts, suggesting sensitivity to context formatting or conditioning
+  mechanism.
+* Keyword boosting (CTC-WS-based) and keyword prompting reach comparable keyword F-score when both
+  are scaled to large-system configurations; proof-of-concept smaller configurations lag behind.
+* Failure modes include: hallucination of context terms not spoken in audio, partial/empty outputs,
+  and language switching when prompt perturbs decoding trajectory (observed as Swedish output for
+  an English clip when context list contained non-English-sounding names).
+* Manual review achieved **98.7%** artifact-free transcripts and corrected **411 words** across
+  **29.5%** of clips, demonstrating substantial transcript quality improvement over raw Earnings-22.
+
+Note: Exact per-system WER and keyword F-score values are presented as scatter plots in Figures 1
+and 3; supplementary Tables S1 and S2 contain the exact numbers. The main text reports directional
+findings with qualitative characterizations rather than inline exact values.
+
+#### Innovations
+
+##### First Standardized Contextual STT Benchmark with Realistic Distractors
+
+Prior contextual STT work evaluates on private datasets, synthetic bias lists (rare LibriSpeech
+words plus random distractors), or limited cleaned subsets of Earnings-22. Contextual Earnings-22
+provides the first public benchmark pairing short domain-dense clips with naturally-occurring custom
+vocabulary contexts — both precise local context and deployment-realistic global context with
+distractors. This enables true apples-to-apples comparison between keyword prompting and keyword
+boosting at scale.
+
+##### Dual-Regime Evaluation Design
+
+The benchmark explicitly tests two context regimes corresponding to distinct real-world deployment
+scenarios. Local context measures the idealized case where the keyword list is perfectly relevant.
+Global context (full call-level keyword inventory) measures robustness to realistic noisy lists
+containing many plausible-but-absent terms. This design reveals that precision and recall respond
+differently to each regime and that system families have characteristic precision-recall profiles.
+
+##### Dual-Metric Reporting: Keyword F-Score Alongside WER
+
+The paper argues that aggregate WER alone is an insufficient proxy for real-world transcript
+utility, and demonstrates empirically that keyword F-score and WER can move in opposite directions.
+The keyword-centric metric (precision/recall/F-score on the provided context list) directly measures
+the aspect of transcript quality most impactful for domain-specific applications.
+
+##### Manual Transcript Correction at Scale
+
+Rather than relying on original Earnings-22 transcripts, all 760 clips are manually reviewed and
+corrected. The resulting ground-truth quality (**98.7%** artifact-free) is substantially higher than
+prior cleaned Earnings-22 subsets, enabling reliable keyword-level evaluation.
+
+#### Datasets
+
+* **Contextual Earnings-22** (this paper): 760 manually reviewed 15-second clips from 55 earnings
+  call recordings, with keyword context lists per clip. Split: 130 validation, 630 test. Keywords
+  cover person names, company names, and product names. Language: English. Intended release upon
+  acceptance. Built on Earnings-22 base corpus.
+* **Earnings-22** (Del Rio et al., 2022): Source corpus of approximately 1-hour earnings call
+  recordings. Public, available at https://arxiv.org/abs/2203.15591.
+* **ConEC** (Huang et al., 2024): Earnings call dataset with biasing lists from external sources
+  (slides, earnings releases, participant metadata). Sentence-level segmented with WER-based
+  evaluation on long-form audio. Public.
+* **Earnings22-Cleaned-AA** (Artificial Analysis, 2026): Small cleaned subset of Earnings-22
+  targeting reference quality but without contextual vocabulary or evaluation protocols.
+
+#### Main Ideas
+
+* Custom vocabulary accuracy (entity-centric metrics) is a better proxy for real-world STT utility
+  than aggregate WER when overall WER is near-saturated. This directly validates Rezolve&#x27;s decision
+  to measure entity accuracy on brand names, products, and investor-relations terms independently
+  of overall WER on the gold-92 benchmark.
+* Keyword prompting and keyword boosting both work at scale; the benchmark offers concrete baselines
+  for both. For Rezolve, both Deepgram keyterm prompting and open-source CTC-WS boosting are worth
+  evaluating on the gold-92 benchmark.
+* The local-vs-global context distinction is practically critical: a global entity list covering all
+  Rezolve products, brands, and investor-relations terms will include distractors for any given
+  utterance, causing precision loss from false insertions that directly increases wrong-action rate.
+  List curation or ranking strategies should be evaluated.
+* Keyword precision and recall can move in opposite directions across systems under the same context
+  list — reporting both is essential; a precision-first strategy may matter more than recall for
+  Rezolve&#x27;s wrong-action rate constraint.
+* The benchmark construction pipeline (LLM NER + forced alignment + manual review) is a replicable
+  recipe for curating domain-specific evaluation sets, applicable to building or extending the
+  gold-92 benchmark with more entity types and verified ground truth.
+
+#### Summary
+
+Durmus et al. introduce Contextual Earnings-22, a standardized benchmark for evaluating STT systems
+on custom vocabulary — specifically proper nouns including person names, company names, and product
+names in earnings call recordings. The motivation is a demonstrable mismatch between academic
+benchmark WER (where top systems cluster tightly) and real-world transcript utility in domain-heavy
+applications. The authors argue that contextual conditioning on a custom vocabulary list is the
+primary differentiator, and that no prior public benchmark provides the structure to measure it
+rigorously across competing systems.
+
+The benchmark is built from 55 earnings call recordings in the Earnings-22 corpus. An LLM-based NER
+pass (GPT-5) extracts keyword candidates; forced alignment clips 15-second audio windows around
+keyword mentions; and manual review corrects transcript artifacts in all 760 clips, achieving
+**98.7%** artifact-free quality with **29.5%** of clips requiring corrections. The benchmark tests
+two context regimes — local (precise, no distractors) and global (full call inventory with
+distractors) — and uses both WER and keyword Precision/Recall/F-score for evaluation. Six systems
+are benchmarked: three commercial keyword-prompting APIs, one open-source Whisper, and two CTC-WS
+keyword-boosting configurations.
+
+All six systems improve keyword F-score under context conditioning, validating that both prompting
+and boosting approaches help. However, WER changes are inconsistent — OpenAI Whisper-1&#x27;s WER
+worsens under context despite better keyword F-score — demonstrating that the two metrics capture
+different aspects of quality and should both be reported. Global context stresses precision (
+distractor-induced false insertions), while local context primarily improves recall. Keyword
+boosting and keyword prompting reach comparable accuracy when scaled to large models. Failure modes
+include hallucinations, partial outputs, and language switching when prompts containing
+non-English-sounding names perturb decoding.
+
+For this project, Contextual Earnings-22 is a methodological reference for both evaluation design
+and entity correction strategy. The paper validates keyword-centric evaluation as a necessary
+supplement to WER, directly aligned with Rezolve&#x27;s entity accuracy goal on the gold-92 benchmark.
+The dual-regime design maps onto Rezolve&#x27;s scenario where a global entity vocabulary (all brands,
+products, investor-relations terms) will contain distractors for any given utterance, and precision
+loss from false insertions is a direct threat to the wrong-action rate target of less than 2%. The
+benchmark&#x27;s construction pipeline is a replicable recipe for extending the gold-92 benchmark, and
+the comparison of prompting vs. boosting baselines provides concrete references for the entity
+correction experiments planned in this project.
+
+## Back to Basics: Revisiting ASR in the Age of Voice Agents
+ID: 10.48550_arXiv.2603.25727
+Year: 2026
+Authors: Geeyang Tay, Wentao Ma, Jaewon Lee, Yuzhi Tang, Daniel Lee, Weisu Yin, Dongming Shen, Silin Meng, Yi Zhu, Mu Li, Alex Smola
+Venue: arXiv preprint
+Venue type: preprint
+DOI: 10.48550/arXiv.2603.25727
+URL: https://arxiv.org/abs/2603.25727
+Categories: stt-evaluation, latency-profiling
+Added by task: t0003_literature_review_entity_stt
+Date added: 2026-06-23
+
+#### Metadata
+
+* **File**: `files/tay_2026_back-to-basics-asr.pdf`
+* **Published**: 2026
+* **Authors**: Geeyang Tay, Wentao Ma, Jaewon Lee, Yuzhi Tang, Daniel Lee, Weisu Yin,
+  Dongming Shen, Silin Meng, Yi Zhu, Mu Li, Alex Smola (all at Boson AI)
+* **Venue**: arXiv preprint (arXiv:2603.25727v1 [cs.AI])
+* **DOI**: `10.48550/arXiv.2603.25727`
+
+#### Abstract
+
+Automatic speech recognition (ASR) systems have achieved near-human accuracy on curated
+benchmarks, yet still fail in real-world voice agents under conditions that current evaluations do
+not systematically cover. Without diagnostic tools that isolate specific failure factors, practitioners
+cannot anticipate which conditions, in which languages, will cause what degree of degradation. We
+introduce WildASR, a multilingual (four-language) diagnostic benchmark sourced entirely from real
+human speech that factorizes ASR robustness along three axes: environmental degradation,
+demographic shift, and linguistic diversity. Evaluating seven widely used ASR systems, we find
+severe and uneven performance degradation, and model robustness does not transfer across languages
+or conditions. Critically, models often hallucinate plausible but unspoken content under partial or
+degraded inputs, creating concrete safety risks for downstream agent behavior. Our results
+demonstrate that targeted, factor-isolated evaluation is essential for understanding and improving
+ASR reliability in production systems. Besides the benchmark itself, we also present three
+analytical tools that practitioners can use to guide deployment decisions.
+
+#### Overview
+
+This paper directly addresses the gap between benchmark-level ASR performance and real-world
+voice agent deployments. The central observation is that modern ASR systems routinely achieve
+below-5% WER on curated benchmarks like LibriSpeech and FLEURS, yet fail dramatically and
+unevenly when deployed in production voice agents. The authors argue that aggregate WER on
+in-distribution data provides no predictive power for real-world reliability.
+
+The paper introduces WildASR, a multilingual diagnostic benchmark covering English (EN),
+Chinese (ZH), Japanese (JA), and Korean (KO). Unlike previous robustness benchmarks that often
+use TTS-generated audio, WildASR sources all audio from real human speech. This design choice
+is validated empirically: Whisper Large V3 achieved near-ceiling **3.7% WER** on synthetic child
+speech but **21.7% WER** on real child speech, confirming that synthetic audio substantially
+underestimates failure rates by roughly 5.9×.
+
+WildASR decomposes robustness failures into three axes: (1) environmental degradation (five
+controlled perturbation types: reverberation, far-field, phone codec, noise gap, clipping),
+(2) demographic shift (children, older adults, accented speakers), and (3) linguistic diversity
+(short utterances, incomplete/truncated audio, code-switching). This factor-isolated structure
+enables practitioners to diagnose where, for whom, and under what linguistic conditions a given
+model degrades.
+
+Beyond the benchmark data, the paper introduces three deployment-oriented analytical tools: a P90
+Elbow analysis that identifies distortion instability thresholds, a prompt sensitivity profiling
+methodology that quantifies variance from instruction phrasing, and a Hallucination Error Rate
+(HER) metric that detects semantic fabrications orthogonal to lexical WER. The paper also argues
+against replacing ASR with end-to-end speech-to-speech systems, positioning robust explicit
+transcription as an auditable safety guardrail for voice agents.
+
+#### Architecture, Models and Methods
+
+**Benchmark construction**: WildASR follows a &quot;real source, controlled perturbation&quot; principle.
+Source audio is drawn from FLEURS test split (read speech) and MagicData conversational
+datasets. A 7-stage curation pipeline is applied: Data Collection (DC), Speaker Filtering (SF),
+Quality Filtering (QF), Audio Normalization (NR), Acoustic Augmentation (AA), Manual
+Truncation &amp; Transcript Alignment (MT), and Manual Verification (MV).
+
+**Environmental degradation subset**: Five perturbation types applied to all four languages.
+Reverberation varies RT60 at three levels (0.4 / 0.8 / 1.6 s) using the image-source method.
+Far-field varies source-microphone distance (4 / 8 / 16 m) with fixed room acoustics. Phone
+codec applies GSM and G.711 µ-law codecs (8 kHz downsampling and resampling). Noise gap
+injects stationary noise between speech fragments in 4 configurations: (Ngap, Δt) ∈ {(3, 0.2),
+(5, 0.2), (3, 0.4), (5, 0.4)} seconds. Clipping saturates the top 40% of signal amplitude values
+followed by RMS rescaling. Sample sizes range from ~682 (KO clipping) to ~4,980 (ZH noise
+gap) per language-condition pair.
+
+**Demographic shift subset**: English and Chinese only. Children&#x27;s speech sourced from Zenodo
+children speech recordings and BAAI/ChildMandarin (ages 3–5); older adults (age 50+) from
+GLOBE V3 and SeniorTalk; accented speech from GLOBE V2 (non-native English) and KeSpeech
+(regional Mandarin). Manual filtering ensures age-related or accent-related degradation is the
+dominant factor. Sample sizes: 300 (EN) or 1,000 (ZH) per demographic condition.
+
+**Linguistic diversity subset**: Short utterances select items under 6 words/characters from YODAS
+(~255–467 samples per language). Incomplete audio truncates utterances mid-sentence or mid-word
+(EN: 2,345 samples). Code-switching sourced from SwitchLingua (700 samples per target language:
+ZH, JA, KO mixed with EN).
+
+**Models evaluated**: Whisper Large V3 (open-source), GPT-4o Transcribe (proprietary), Gemini
+2.5 Pro (proprietary), Gemini 3 Pro (proprietary), Qwen2-Audio (open-source), Deepgram Nova 2
+(commercial API), ElevenLabs Scribe V1 (commercial API). Inference protocols standardized per
+model; full per-model breakdowns provided in appendix.
+
+**Metrics**: WER for English; CER (character error rate) for CJK languages; MER (mixed error
+rate) for code-switching. Hallucination Error Rate (HER) from Atwany et al. (2025) measures
+semantic-level errors beyond lexical metrics. P90 Elbow computed via knee-detection on the 90th-
+percentile WER curve as a function of distortion severity. **Human baseline**: independent
+annotators achieved **4.7% average error** on WildASR samples, confirming the benchmark
+tests model limitations rather than signal ambiguity.
+
+#### Results
+
+* Model-average clean baseline across 7 systems on FLEURS: **5.7% error rate** across all
+  languages — establishes the in-distribution reference
+* Noise gap (conversational speech, MagicData) increases EN WER by **+67.7 pp** (to 87.6%),
+  JA CER by **+118.9 pp** (to 138.7%), KO CER by **+121.0 pp** (to 140.5%)
+* Reverberation (MagicData) increases EN WER by **+12.0 pp**; KO CER by **+27.0 pp**
+* Clipping increases EN WER by **+10.7 pp** (conversational); ZH CER by **+22.7 pp**
+* Child speech: best model (Gemini 3 Pro) achieves **18.2% EN WER** — no model drops below
+  this threshold on English child speech
+* Qwen2-Audio on KO short utterances: **102.6% CER** (insertion-dominated hallucinations);
+  on KO code-switching: **211.7% MER**; on JA incomplete audio: **224.4% CER**
+* Deepgram Nova 2 on ZH code-switching: **33.7% MER** but **68.4% HER**, revealing semantic
+  fabrication far exceeding lexical error
+* Gemini 3 Pro on FLEURS/Clean: **3.8% WER**; degrades to **61.2%** on MagicData/Noise gap
+  and **52.7%** on short utterances — clean-benchmark rank does not predict OOD rank
+* Prompt sensitivity (Gemini 2.5 Pro, 10 paraphrased prompts): Chinese Children subset shows
+  **σ = 46.1%** performance standard deviation; EN shows σ ≤ **0.6%** across all conditions
+* Whisper Large V3 on synthetic child speech: **3.7% WER**; on real child speech: **21.7% WER**
+* Human error rate on WildASR: **4.7%**, confirming models have substantial headroom to improve
+
+#### Innovations
+
+##### WildASR Benchmark
+
+A multilingual (EN/ZH/JA/KO) ASR robustness benchmark built entirely from real human speech,
+covering 11 distinct OOD conditions across three axes simultaneously. This is the first benchmark
+to factorize ASR robustness across environmental, demographic, and linguistic dimensions in a
+multilingual setting at this scale. Released publicly at HuggingFace (`bosonai/WildASR`) and
+GitHub (`boson-ai/WildASR-public`).
+
+##### P90 Elbow Analysis
+
+A deployment-oriented instability threshold detector that plots the 90th-percentile WER as a
+function of distortion severity and identifies the elbow point at which tail failures accelerate. This
+provides a principled bound on allowable acoustic degradation before a system becomes unreliable
+for production — more actionable than mean WER curves alone.
+
+##### Prompt Sensitivity Profiling
+
+A controlled methodology using 10 semantically equivalent paraphrased instructions to quantify
+how much prompt phrasing affects ASR output. Reveals that Chinese ASR with prompt-conditioned
+models can shift by tens of percentage points purely from instruction wording, making prompt
+stability a first-class deployment metric.
+
+##### Hallucination Error Rate (HER) as a First-Class Metric
+
+Demonstrates that WER/CER systematically underreports risk for voice agents by missing semantic
+fabrications. HER from Atwany et al. (2025) is integrated as a complement metric. The gap
+between WER and HER (e.g., Nova 2: 33.7% MER vs. 68.4% HER on ZH code-switching)
+reveals cases where surface transcription appears acceptable while meaning is severely distorted.
+
+##### Real-Speech vs. Synthetic Evaluation Validation
+
+The first direct head-to-head comparison of TTS-generated vs. real child speech evaluation,
+showing a 5.9× underestimation of failure rates when using synthetic data, providing rigorous
+empirical justification for real-speech-only benchmark design.
+
+#### Datasets
+
+* **FLEURS** (Conneau et al., 2022): multilingual read-speech corpus used as environmental
+  degradation source; public, CC-BY 4.0; covers EN/ZH/JA/KO
+* **MagicData** conversational datasets (Zhou et al., 2025): spontaneous speech; public
+* **YODAS** (Li et al., 2023): YouTube audio dataset for short utterances; EN/ZH/JA/KO; public
+* **SwitchLingua** (Xie et al., 2025): code-switching benchmark; ZH/JA/KO mixed with EN;
+  700 samples per language pair; public
+* **Zenodo Children Speech Recording** (Kennedy et al., 2016) and **TomRoma/Child Speech**:
+  English child speech; public
+* **BAAI/ChildMandarin** (Zhou et al., 2024): Chinese child speech ages 3–5; public
+* **MushanW/GLOBE V3** (Wang et al., 2024): English older adults (age 50+); public
+* **evan0617/SeniorTalk** (Chen et al., 2025): Chinese elderly speech; public
+* **MushanW/GLOBE V2** (Wang et al., 2024): non-native English accented speech; public
+* **TwinkStart/KeSpeech** (Shi et al., 2026): regional Mandarin varieties; public
+* **WildASR** (this paper): public release at
+  `https://huggingface.co/datasets/bosonai/WildASR`
+
+#### Main Ideas
+
+* **Aggregate WER on curated benchmarks does not predict production reliability**: the 5.7%
+  model-average clean score on FLEURS conceals noise-gap failures exceeding 120% CER in
+  JA/KO — the gold-92 evaluation harness must stratify results by utterance condition type, not
+  just report a single WER number.
+* **Noise gaps and short utterances are the highest-risk conditions for voice commerce**: noise
+  gaps cause +67.7 pp WER for English and +121 pp CER for Korean; short commands under 6
+  words hit 38–74% WER even in English — voice commerce utterances like &quot;stop&quot;, &quot;add it&quot;, and
+  &quot;next&quot; fall directly in this failure zone and should be a dedicated test category on gold-92.
+* **Deepgram Nova 2&#x27;s semantic hallucination rate (68.4% HER on ZH code-switching) is far
+  higher than its lexical error rate (33.7% MER)**: for Rezolve&#x27;s production baseline, HER should
+  be added to the gold-92 evaluation alongside WER and entity accuracy to surface action-critical
+  semantic fabrications.
+* **Prompt phrasing for GPT-4o Transcribe and Gemini-based ASR can shift performance by
+  tens of percentage points**: if any prompt-conditioned model is considered for Rezolve&#x27;s
+  pipeline, the instruction prompt must be treated as a hyperparameter and locked before
+  benchmarking.
+* **Real production audio (gold-92) is methodologically essential**: the 5.9× underestimation
+  of failure rates with synthetic speech confirms that Rezolve&#x27;s use of real production audio for
+  benchmarking is the only valid approach — TTS-generated test data would hide the actual
+  entity-accuracy gap.
+* **Explicit ASR should be retained as an auditable layer**: for Rezolve&#x27;s tool-call use case,
+  a transparent transcript is necessary for action debugging, confidence routing, and compliance —
+  end-to-end S2S would obscure hallucinations that currently manifest as detectable WER spikes.
+
+#### Summary
+
+Tay et al. (2026) challenge the assumption that ASR is a solved problem by demonstrating that
+modern systems achieving sub-5% WER on standard benchmarks fail severely and unpredictably
+under real-world voice agent conditions. The paper&#x27;s motivation is direct: voice agents do not
+passively transcribe speech but use transcripts to trigger downstream tool calls and execute actions.
+Under out-of-distribution conditions, hallucinated or garbled transcripts cause silent action
+failures — exactly the problem Rezolve faces with its production Deepgram deployment on accented
+investor-relations audio. The paper introduces WildASR, a multilingual diagnostic benchmark
+(EN/ZH/JA/KO) constructed entirely from real human speech.
+
+The benchmark decomposes OOD robustness into 11 conditions across three axes: environmental
+degradation (reverberation, far-field, phone codec, noise gap, clipping), demographic shift
+(children, older adults, accented speakers), and linguistic diversity (short utterances, truncated
+audio, code-switching). Seven systems — Whisper Large V3, GPT-4o Transcribe, Gemini 2.5/3 Pro,
+Qwen2-Audio, Deepgram Nova 2, ElevenLabs Scribe V1 — are evaluated under a unified protocol.
+Three diagnostic tools supplement raw metrics: a P90 Elbow detector, a prompt sensitivity profiler
+(10 paraphrased instructions), and integration of Hallucination Error Rate to catch semantic
+fabrications that WER misses.
+
+The headline results are stark. Noise gaps cause **+67.7% WER** for English conversational speech
+and **+121% CER** for Korean. No model achieves below **18.2% WER** on English child speech.
+Deepgram Nova 2 on Chinese code-switching produces 33.7% lexical error but **68.4% semantic
+hallucination rate**. Prompt phrasing alone induces up to **σ = 46.1%** performance swing for
+Chinese. Robustness does not transfer across languages: a model robust to reverberation in English
+may catastrophically fail in Japanese under the same perturbation. Synthetic TTS-based evaluation
+underestimates real failure rates by 5.9× compared to authentic child speech.
+
+For this project, the paper delivers three concrete takeaways. First, the gold-92 evaluation harness
+must stratify by utterance condition type and adopt HER alongside WER and entity accuracy —
+aggregate WER alone will miss the hallucination risk that production Deepgram carries. Second,
+Deepgram Nova 2 and Whisper Large V3 both show condition-specific failure modes that mean
+their gold-92 rankings may not reflect their behavior on domain-specific OOD inputs like accented
+investor-relations vocabulary. Third, the paper validates Rezolve&#x27;s methodological choice to use
+real production audio for gold-92 rather than TTS-synthesized data, and confirms that short terse
+commands — a common voice commerce pattern — are a high-risk category that merits dedicated
+coverage in the benchmark design.
+
+## CLAR: CIF-Localized Alignment for Retrieval-Augmented Speech LLM-Based Contextual ASR
+ID: 10.48550_arXiv.2603.25460
+Year: 2026
+Authors: Shangkun Huang, Huan Wei, Yunzhang Chen
+Venue: Interspeech 2026
+Venue type: conference
+DOI: 10.48550/arXiv.2603.25460
+URL: https://arxiv.org/abs/2603.25460
+Categories: entity-correction, stt-evaluation
+Added by task: t0003_literature_review_entity_stt
+Date added: 2026-06-23
+
+#### Metadata
+
+* **File**: `files/huang_2026_clar-retrieval-augmented-asr.pdf`
+* **Published**: 2026
+* **Authors**: Shangkun Huang 🇨🇳, Huan Wei 🇨🇳, Yunzhang Chen 🇨🇳
+* **Venue**: Interspeech 2026
+* **DOI**: `10.48550/arXiv.2603.25460`
+
+#### Abstract
+
+Contextual ASR systems for speech LLMs commonly employ shallow fusion or prompt injection to bias
+decoding toward domain-specific hotwords. These approaches suffer from feature dilution (global
+pooling loses fine-grained entity cues) and weak-supervision misalignment (prompt tokens misalign
+with acoustic positions). CLAR proposes a dual-encoder retrieval system using Continuous
+Integrate-and-Fire (CIF) to learn monotonic token-level acoustic alignments without requiring
+timestamps. A length-aware localized window matching mechanism precisely anchors short-entity
+acoustic cues. Multi-granularity contrastive training combines global sentence-level and local
+hotword-level objectives. The retrieved top-ranked hotwords are injected as contextual prompts to a
+Speech LLM without shallow fusion. On AISHELL-1-NE, CLAR achieves Recall@1 of 97.03% and B-WER of
+2.78%, improving over the SeACo-Paraformer baseline by 3.93pp CER and 9.14pp B-WER.
+
+#### Overview
+
+CLAR diagnoses two fundamental problems with how existing contextual ASR systems retrieve and inject
+hotwords into speech LLMs. First, global-average-pooling encoders dilute entity representations: a
+4-second utterance containing a 3-syllable brand name produces one averaged representation, making
+short entities acoustically invisible. Second, prompt injection approaches misalign text tokens with
+acoustic positions because the speech LLM&#x27;s attention mechanism cannot reliably ground short prompt
+phrases to specific audio regions.
+
+The CIF mechanism addresses both problems simultaneously. CIF (Continuous Integrate-and-Fire) is a
+differentiable acoustic boundary detector: it accumulates frame-level weights until a threshold is
+exceeded, then &quot;fires&quot; to produce a token-level representation. This generates monotonic alignments
+that correspond to actual acoustic segments, enabling the system to extract a localized acoustic
+representation for exactly the frames where an entity appears.
+
+The length-aware localized window matching is the second key innovation: rather than matching a
+hotword embedding against the full-utterance speech embedding, CLAR computes a sliding window over
+the CIF-aligned frames with a window size proportional to the expected entity duration. This is
+specifically designed to handle short entities (1-3 syllables) that are otherwise dominated by
+surrounding context in global matching.
+
+#### Architecture, Models and Methods
+
+**Dual encoder**: Paraformer speech encoder (Chinese ASR, modified to output frame-level features)
+paired with Chinese-RoBERTa text encoder. Both project into a shared 768-dim embedding space via
+linear projections.
+
+**CIF predictor**: A lightweight convolutional module applied on top of Paraformer frame-level
+features. Produces scalar weights per frame; weights accumulate until reaching threshold beta=1.0,
+triggering a &quot;fire&quot; event that sums weighted frames into a single token-level acoustic vector.
+
+**Length-aware localized matching**: Window size W = max(3, round(entity_char_length × 2)) CIF
+tokens. Hotword embedding is matched against every window position via cosine similarity; the
+maximum similarity score is the retrieval score.
+
+**Training objectives**: Three losses — global sentence-level contrastive loss (InfoNCE, temperature
+0.07), local hotword-level contrastive loss (same structure, applied to CIF segments), and CIF
+quantity regularization (ensures number of CIF tokens approximates ground-truth token count).
+Combined with equal weights.
+
+**Inference**: Top-5 retrieved hotwords are formatted as a text prompt and injected into the Speech
+LLM&#x27;s context window. No shallow fusion weight tuning required.
+
+Datasets: AISHELL-1 (training ASR), AISHELL-2 (training retriever), AISHELL-1-NE test set (808 test
+utterances, 400 hotwords, 1334 dev utterances, 600 dev hotwords).
+
+#### Results
+
+* Hotword Recall@1: **97.03%** on AISHELL-1-NE test set
+* Hotword Recall@5: **99.75%**
+* CER: **0.92%** (baseline SeACo-Paraformer: 4.85%; improved PAC baseline: 1.13%)
+* B-WER: **2.78%** (SeACo-Paraformer: 11.92%; PAC: 3.07%)
+* CER improvement over SeACo-Paraformer: **-3.93 pp** absolute
+* B-WER improvement over SeACo-Paraformer: **-9.14 pp** absolute
+* B-WER improvement over next-best PAC system: **-0.29 pp** absolute
+* Unbiased CER (U-CER): **0.83%** (no degradation on non-entity tokens)
+
+#### Innovations
+
+##### CIF-Based Acoustic Token Alignment
+
+First application of CIF for hotword retrieval alignment. CIF produces monotonic token-level
+acoustic segments without requiring forced alignment or external timestamps, enabling precise
+localized matching for short entities.
+
+##### Length-Aware Localized Window Matching
+
+Windowing strategy calibrated to expected entity duration. Prevents short entity embeddings from
+being dominated by surrounding context, directly addressing the dilution problem.
+
+##### Multi-Granularity Contrastive Training
+
+Combines sentence-level and hotword-level contrastive objectives in a single training pass,
+eliminating the need for separate retriever and ASR fine-tuning stages.
+
+#### Datasets
+
+* **AISHELL-1**: ~170 hours Mandarin Chinese read speech; public; used for ASR training
+* **AISHELL-2**: ~1000 hours Mandarin Chinese; public; used for retriever training
+* **AISHELL-1-NE**: 808 test utterances with 400 hotword entities (R1: recall &lt; 40% under base ASR);
+  1334 dev utterances with 600 hotwords; Mandarin Chinese
+
+#### Main Ideas
+
+* CIF-based localized alignment solves the short-entity dilution problem that plagues global-pooling
+  retrieval — highly relevant for product SKUs and brand abbreviations that are 1-3 syllables long
+* Length-aware windowing is a simple but effective engineering addition that can be applied to any
+  retrieval-based contextual ASR system
+* CLAR achieves state-of-the-art B-WER of 2.78% without shallow fusion — eliminating the LM
+  interpolation weight tuning that makes shallow fusion deployment brittle
+* Caveat: all experiments are on Mandarin Chinese; English evaluation is absent and transfer
+  assumptions need empirical validation for Rezolve&#x27;s English pipeline
+
+#### Summary
+
+CLAR targets the representation dilution and alignment mismatches that limit retrieval-augmented
+contextual ASR in speech LLMs. The paper provides a rigorous diagnosis of why global-pooling
+encoders fail for short entities and why prompt injection creates alignment ambiguity. The proposed
+solution — CIF-based monotonic alignment combined with length-aware localized window matching — is
+principled and directly addresses both failure modes.
+
+The dual-encoder system uses a Paraformer speech encoder with a CIF predictor alongside a
+Chinese-RoBERTa text encoder, projecting into a shared embedding space. Multi-granularity
+contrastive training (sentence-level + hotword-level) ensures the retriever can both retrieve the
+right entity from the corpus and locate its acoustic position within the utterance.
+
+Results on AISHELL-1-NE: **0.92% CER** and **2.78% B-WER**, state-of-the-art on this benchmark,
+representing a **-9.14pp** B-WER improvement over SeACo-Paraformer. Hotword Recall@1 of **97.03%**
+means nearly all relevant entities are retrieved before injection.
+
+For Rezolve, CLAR&#x27;s architecture is directly applicable to the Whisper Turbo + dynamic context
+injection pipeline: the CIF localization principle can be applied to Whisper&#x27;s encoder to improve
+entity retrieval precision. The English adaptation requires training on English entity-annotated
+data; the AISHELL-1-NE benchmark protocol (R1 hotwords with recall &lt; 40% under base ASR) closely
+mirrors the gold-92 challenge entities.
+
+## RECOVER: Robust Entity Correction via Agentic Orchestration of Hypothesis Variants for Evidence-based Recovery
+ID: 10.48550_arXiv.2603.16411
+Year: 2026
+Authors: Abhishek Kumar, Aashraya Sachdeva
+Venue: Interspeech 2026
+Venue type: conference
+DOI: 10.48550/arXiv.2603.16411
+URL: https://arxiv.org/abs/2603.16411
+Categories: entity-correction, stt-evaluation
+Added by task: t0003_literature_review_entity_stt
+Date added: 2026-06-23
+
+Evidence-based Recovery
+
+#### Metadata
+
+* **File**: `files/kumar_2026_recover-entity-correction.pdf`
+* **Published**: 2026
+* **Authors**: Abhishek Kumar, Aashraya Sachdeva
+* **Venue**: Interspeech 2026
+* **DOI**: `10.48550/arXiv.2603.16411`
+
+#### Abstract
+
+RECOVER is an agentic correction framework that leverages multiple ASR hypotheses and LLM-based
+correction to improve entity recognition in ASR transcripts. The framework evaluates four hypothesis
+selection strategies: 1-Best, Entity-Aware Select, ROVER Ensemble, and LLM-Select. Tested on five
+diverse datasets (Earnings-21, ATCO2, Eka-Medical, Common Voice, ContextASR-Bench), RECOVER achieves
+8-46% relative reductions in entity-phrase word error rate (E-WER) with recall improvements up to 22
+percentage points. LLM-Select using GPT-4o achieves optimal entity correction performance while
+maintaining overall word error rates across datasets.
+
+#### Overview
+
+RECOVER addresses the entity recognition gap in standard LLM-based post-correction: while LLMs
+improve overall fluency, they struggle to recover entities absent from the 1-best hypothesis because
+LLMs are biased toward frequent vocabulary. RECOVER&#x27;s insight is that collecting multiple ASR
+hypotheses (e.g., from beam search or multiple ASR systems) increases the probability that the
+correct entity string appears somewhere in the hypothesis set, even if not in the 1-best output.
+
+The framework treats the correction problem as evidence aggregation: gather hypotheses, select the
+most entity-informative one, and pass it to an LLM corrector. Four selection strategies are
+evaluated ranging from trivial (always use 1-best) to sophisticated (ask an LLM to select the best
+hypothesis based on entity coverage). LLM-Select uses GPT-4o as a meta-selector, which provides
+robustness across diverse domain conditions.
+
+The evaluation covers five distinct domains: financial earnings calls (Earnings-21), air traffic
+control (ATCO2), medical dictation (Eka-Medical), general speech (Common Voice), and a purposely
+entity-dense benchmark (ContextASR-Bench). This cross-domain coverage is unusually broad for a
+post-correction paper and enables assessment of technique robustness.
+
+#### Architecture, Models and Methods
+
+**Hypothesis sources**: beam search top-5 from Whisper-large-v3; optionally multiple ASR systems.
+Each hypothesis is a complete transcript of the utterance.
+
+**Strategy 1 — 1-Best**: Use only the top hypothesis. Baseline.
+
+**Strategy 2 — Entity-Aware Select**: Score each hypothesis by number of detected entity spans
+(using an NER model); select the hypothesis with the most entities.
+
+**Strategy 3 — ROVER Ensemble**: Token-level majority voting across all hypotheses; selects the
+consensus token at each position.
+
+**Strategy 4 — LLM-Select**: GPT-4o is prompted with all hypotheses and asked to select the best one
+based on entity coverage and contextual plausibility. Most powerful but also highest-latency.
+
+**Correction step**: The selected hypothesis is passed to GPT-4o with a domain-adapted prompt for
+final correction. No additional ASR retraining.
+
+**Metrics**: E-WER (entity-phrase word error rate computed over entity-tagged spans), overall WER,
+recall (fraction of gold entities recovered).
+
+#### Results
+
+* Earnings-21 E-WER reduction: **33-35%** relative (LLM-Select best strategy)
+* ATCO2 E-WER reduction: **8-14.5%** relative
+* Eka-Medical E-WER reduction: **17-23%** relative
+* Common Voice E-WER reduction: **38-45%** relative
+* ContextASR-Bench E-WER reduction: **6-20%** relative
+* Entity recall improvement: up to **+22 pp** across datasets
+* LLM-Select performs best or near-best on **4 of 5** datasets
+* ROVER Ensemble sometimes introduces insertion noise on noisy domains (ATCO2)
+* Overall WER preserved — RECOVER does not degrade non-entity tokens
+
+#### Innovations
+
+##### Multi-Strategy Hypothesis Selection for Entity Recovery
+
+Systematic comparison of four hypothesis selection strategies with cross-domain evaluation.
+Establishes that LLM-based meta-selection (LLM-Select) is the most robust strategy, outperforming
+deterministic selection on diverse domains.
+
+##### E-WER: Entity-Phrase Word Error Rate
+
+Evaluation metric focusing specifically on entity spans, providing a more granular measurement of
+entity recovery quality than aggregate WER.
+
+#### Datasets
+
+* **Earnings-21**: 2,086 segments from financial earnings calls; English; entity-rich
+* **ATCO2**: 560 segments from air traffic control; English; narrow domain terminology
+* **Eka-Medical**: 3,619 segments from medical dictation; English; medical entities
+* **Common Voice**: 16,401 segments; diverse English; broad vocabulary
+* **ContextASR-Bench**: 5,273 segments; entity-dense evaluation benchmark
+
+#### Main Ideas
+
+* Multi-hypothesis LLM-Select achieves the widest range of E-WER reductions (8-46%) across domains —
+  the method is robust to domain change, unlike single-strategy approaches
+* The +22pp entity recall gain shows that the 1-best hypothesis frequently misses entities that
+  appear in lower-ranked beams — collecting top-5 hypotheses is inexpensive and recovers significant
+  entity coverage
+* ROVER Ensemble degrades on noisy domains (ATCO2: insertion noise) — simple voting strategies are
+  not universally safe; LLM-Select is safer
+* For Rezolve, the Earnings-21 and ContextASR-Bench results are most analogous to ecommerce voice:
+  entity-dense, English, business-critical accuracy requirements
+* Latency concern: GPT-4o for both selection and correction adds 200-500ms per utterance in practice
+  — local corrector distillation is required for 800ms budget
+
+#### Summary
+
+Kumar and Sachdeva address the entity recovery gap in LLM post-correction by exploiting the N-best
+hypothesis diversity from beam search. The core finding is that the 1-best hypothesis frequently
+omits rare entities that appear in hypotheses ranked 2-5, and that collecting this diversity
+significantly improves entity recovery when a smart selection strategy is applied.
+
+RECOVER evaluates four hypothesis selection strategies from trivial (1-Best) to LLM-based
+(LLM-Select with GPT-4o), measuring entity-phrase WER (E-WER) and recall on five diverse English
+domains. LLM-Select is the most robust strategy, achieving the best or near-best E-WER on 4 of 5
+datasets.
+
+Key results: **8-46% relative E-WER reductions** and **up to +22pp entity recall** across datasets.
+Earnings-21 (closest to Rezolve&#x27;s entity-rich domain) sees **33-35% relative** E-WER reduction.
+ROVER Ensemble degrades on noisy domains — LLM-based selection is required for reliable cross-domain
+performance.
+
+For Rezolve, RECOVER&#x27;s multi-hypothesis approach is immediately applicable to the production Whisper
+Turbo pipeline: collecting beam search top-5 is free, and the LLM-Select + correction approach adds
+a post-processing layer with no model retraining. The main obstacle is latency: GPT-4o adds
+200-500ms per utterance. A distilled local corrector (7B class) would be needed to meet the 800ms
+p50 target.
+
+## Whisper: Courtside Edition — Multi-Agent LLM Pipeline for Domain-Specific ASR via Context Generation
+ID: 10.48550_arXiv.2602.18966
+Year: 2026
+Authors: Yonathan Ron, Shiri Gilboa, Tammuz Dubnov
+Venue: arXiv preprint
+Venue type: preprint
+DOI: 10.48550/arXiv.2602.18966
+URL: https://arxiv.org/abs/2602.18966
+Categories: entity-correction, stt-evaluation, whisper-finetuning
+Added by task: t0003_literature_review_entity_stt
+Date added: 2026-06-23
+
+Context Generation
+
+#### Metadata
+
+* **File**: `files/ron_2026_whisper-courtside-llm-context.pdf`
+* **Published**: 2026
+* **Authors**: Yonathan Ron 🇮🇱, Shiri Gilboa 🇮🇱, Tammuz Dubnov 🇮🇱 (Reichman University)
+* **Venue**: arXiv preprint
+* **DOI**: `10.48550/arXiv.2602.18966`
+
+#### Abstract
+
+Whisper&#x27;s initial_prompt parameter allows injecting up to 224 tokens of context to guide decoding,
+but standard pipelines do not exploit this capability for domain-specific entity recognition. This
+paper proposes a multi-agent LLM pipeline with six specialized agents (topic classification, named
+entity recognition, jargon extraction, decision filtering, candidate selection, prompt construction)
+that intercept Whisper&#x27;s initial transcript and generate a compact context prompt. Evaluated on 421
+NBA basketball commentary segments dense in proper nouns and technical jargon, the full pipeline
+achieves 17.0% relative WER reduction (0.217 to 0.180, p &lt; 0.001), improving 40.1% of segments while
+degrading only 7.1%. No Whisper retraining is required.
+
+#### Overview
+
+Ron et al. observe that Whisper&#x27;s initial_prompt parameter — designed for multi-segment
+transcription context — can be repurposed as a domain context injection mechanism. By feeding
+Whisper&#x27;s own preliminary transcript through a multi-agent pipeline that extracts domain signals and
+constructs a compact prompt, the paper demonstrates that Whisper&#x27;s decoder can be guided toward
+correct entity recognition without any model modification.
+
+The six-agent pipeline is inspired by human transcription workflows: a transcriptionist who knows
+the topic area makes fewer entity errors. The topic classification agent identifies the domain (NBA
+basketball); the NER agent extracts player names and team names using fuzzy matching (Levenshtein
+distance, threshold τ=0.75); the jargon extraction agent identifies technical terms via RAKE and
+YAKE. A decision filter prevents over-prompting by removing redundant or low-confidence candidates.
+
+The evaluation domain — NBA basketball commentary — is analogous to ecommerce voice AI: dense proper
+nouns (player names, team names), technical jargon (play types, positions), and rapid speech. The
+17.0% relative WER reduction (0.217 → 0.180) comes primarily from entity correction: error analysis
+shows 35% of improvements are in names, 28% in jargon.
+
+#### Architecture, Models and Methods
+
+**Agent 1 — Topic Classification**: LLM-prompted (GPT-4-class) to identify domain and subtopic from
+the preliminary transcript.
+
+**Agent 2 — Named Entity Recognition**: NER model (spaCy-based) extracts entity spans; fuzzy
+matching against a curated entity database (NBA player roster, team names) using Levenshtein
+distance with threshold τ=0.75.
+
+**Agent 3 — Jargon Extraction**: RAKE + YAKE keyword extraction from the preliminary transcript;
+cross-referenced against a domain glossary.
+
+**Agent 4 — Decision Filter**: Removes candidates with low confidence or already correctly
+transcribed in the preliminary output. Prevents the prompt from filling with noise that would
+distract Whisper&#x27;s decoder.
+
+**Agent 5 — Candidate Selection**: Selects the top-N candidates fitting within the 224-token budget.
+Priority: rare entities &gt; jargon &gt; common terms.
+
+**Agent 6 — Prompt Construction**: Formats selected candidates as natural language context: &quot;This is
+NBA basketball commentary featuring players [names] using terms [jargon].&quot;
+
+Whisper model: whisper-large-v3. No retraining. Evaluation: 421 segments, 10-30 seconds each,
+expert-annotated WER. Statistical test: paired t-test, p &lt; 0.001.
+
+#### Results
+
+* Full pipeline (P4) WER: **0.180** vs. baseline **0.217** (**17.0%** relative reduction)
+* Segments improved: **40.1%** of test segments
+* Segments degraded: **7.1%** of test segments (net positive in 33% of cases)
+* Error type breakdown: Names **35%**, Jargon **28%**, Accent **22%**, Segmentation **15%**
+* Ablation — topic-only prompt: **6.2%** relative WER reduction
+* Ablation — entities only: **11.4%** relative WER reduction
+* Ablation — entities + jargon: **14.8%** relative WER reduction
+* Latency: Not reported (multi-agent pipeline implies 500ms+ overhead in practice)
+
+#### Innovations
+
+##### Repurposing Whisper&#x27;s initial_prompt for Domain Context
+
+Demonstrates that the initial_prompt mechanism, designed for document-level context, is effective as
+a per-segment domain entity injection vector. Requires only Whisper API access, no model weights.
+
+##### Multi-Agent Entity Extraction Pipeline
+
+Six-agent pipeline with a decision filter that prevents over-prompting. The filter is the key
+practical contribution: unconstrained entity injection degrades Whisper performance by overwhelming
+the context window with noise.
+
+#### Datasets
+
+* **NBA commentary dataset**: 421 segments, 10-30s each; English; expert WER annotation; dense
+  proper nouns (player names, team names) and jargon; created by authors; not public
+* **NBA entity database**: curated roster and terminology list for fuzzy matching
+
+#### Main Ideas
+
+* Whisper Turbo&#x27;s initial_prompt parameter is directly exploitable for Rezolve&#x27;s dynamic entity
+  lists without any model modification — this is the simplest possible integration
+* The decision filter preventing over-prompting is a critical implementation detail: without it,
+  Whisper&#x27;s context window is dominated by noise and performance degrades
+* 17.0% relative WER reduction on entity-dense domain speech directly benchmarks the approach in a
+  domain analogous to ecommerce (dense proper nouns, no model training)
+* The fuzzy matching threshold τ=0.75 (Levenshtein) is an engineering parameter that should be tuned
+  on gold-92 to find the optimal precision/recall trade-off for Rezolve&#x27;s brand and product
+  vocabulary
+
+#### Summary
+
+Ron et al. demonstrate that Whisper&#x27;s initial_prompt parameter can be systematically exploited for
+domain-specific entity recognition without model retraining. A six-agent LLM pipeline extracts
+domain signals from Whisper&#x27;s preliminary transcript and constructs a compact prompt that guides the
+decoder toward rare entity recognition.
+
+The pipeline processes topic classification, NER with fuzzy matching, jargon extraction, and a
+decision filter that prevents over-prompting. Evaluation on 421 NBA basketball commentary segments
+(dense proper nouns and technical jargon) shows a **17.0% relative WER reduction** (0.217 → 0.180, p
+&lt; 0.001), improving **40.1%** of segments while degrading only **7.1%**.
+
+The approach is architecturally straightforward and requires only Whisper API access. The decision
+filter is the key practical contribution: it prevents Whisper&#x27;s 224-token context window from being
+filled with low-confidence candidates that degrade performance. Error analysis confirms that the
+gains are entity-driven (35% names, 28% jargon).
+
+For Rezolve, this approach is the most immediately deployable: it leverages the existing Whisper
+Turbo checkpoint and adds an LLM-based prompt generation step with no model training. The NBA domain
+closely parallels ecommerce in entity density and proper noun challenges. The main engineering work
+is tuning the fuzzy matching threshold for Rezolve&#x27;s brand/product vocabulary and ensuring the
+multi-agent latency fits within the 800ms p50 budget.
+
+## Retrieval-Augmented Self-Taught Reasoning Model with Adaptive Chain-of-Thought for ASR Named Entity Correction
+ID: 10.48550_arXiv.2602.12287
+Year: 2026
+Authors: Junjie An, Jingguang Tian, Tianyi Wang, Yu Gao, Xiaofeng Mou, Yi Xu
+Venue: arXiv preprint
+Venue type: preprint
+DOI: 10.48550/arXiv.2602.12287
+URL: https://arxiv.org/abs/2602.12287
+Categories: entity-correction, stt-evaluation
+Added by task: t0003_literature_review_entity_stt
+Date added: 2026-06-23
+
+Named Entity Correction
+
+#### Metadata
+
+* **File**: `files/an_2026_retrieval-augmented-ner-asr.pdf`
+* **Published**: 2026
+* **Authors**: Junjie An 🇨🇳, Jingguang Tian 🇨🇳, Tianyi Wang 🇨🇳, Yu Gao 🇨🇳, Xiaofeng Mou 🇨🇳, Yi Xu 🇨🇳
+* **Venue**: arXiv preprint
+* **DOI**: `10.48550/arXiv.2602.12287`
+
+#### Abstract
+
+ASR systems frequently misrecognize domain-specific named entities. This paper proposes RASTAR, a
+retrieval-augmented framework combining a BERT-based Rephrasing Language Model (RLM) for named
+entity recognition with phonetic-level edit-distance retrieval, and A-STAR, an adaptive
+chain-of-thought self-taught reasoning model that dynamically adjusts reasoning depth based on task
+difficulty. Three difficulty levels (Simple, Challenging, Formidable) trigger increasing
+chain-of-thought depth. Trained on Qwen3 (0.6B and 8B variants) with DPO. On AISHELL-1, RLM achieves
+94.18% F1 vs. 91.97% for DANCER baseline. RASTAR achieves 17.96% and 34.42% relative NE-CER
+reduction on AISHELL-1 and Homophone test sets. Token efficiency: 30-40% fewer reasoning tokens vs.
+full chain-of-thought.
+
+#### Overview
+
+RASTAR addresses the two-stage challenge of named entity correction in ASR: first, identify which
+spans in the ASR output are named entities that may be misrecognized; second, retrieve the correct
+entity from a domain entity repository and substitute it. The paper proposes a unified framework
+that handles both stages with complementary components.
+
+The Rephrasing Language Model (RLM) is a BERT-based model trained to identify entity spans in ASR
+outputs using bidirectional encoding. Rather than tagging at character level, RLM uses a masked
+language modeling objective: entity spans are masked and the model is trained to reconstruct the
+correct entity, leveraging context from the full utterance.
+
+The A-STAR reasoning model introduces adaptive chain-of-thought depth based on task difficulty
+classification. For easy entities (high phonetic similarity to the spoken form), a direct answer is
+produced with minimal chain-of-thought. For challenging entities (partial similarity), a short
+reasoning chain is generated. For formidable entities (low similarity, likely homophones), a full
+reasoning chain is generated. This adaptive strategy reduces unnecessary token generation by 30-40%
+while preserving correction accuracy.
+
+#### Architecture, Models and Methods
+
+**RLM**: BERT-base-Chinese (or equivalent). Masked language modeling pre-training continued on
+entity-annotated ASR data. Concatenates ASR hypothesis with mask sequences at entity positions;
+fine-tuned on (erroneous hypothesis, gold entity) pairs.
+
+**Phonetic retrieval**: Normalized edit distance on romanized Mandarin (Pinyin) between the ASR
+output entity string and candidate entities in the repository. Top-k=3 candidates retrieved.
+
+**A-STAR**: Qwen3-8B (primary) and Qwen3-0.6B (efficiency variant). Self-taught training via Direct
+Preference Optimization (DPO) on synthetic difficulty-stratified pairs. Difficulty classification:
+cosine similarity between ASR entity embedding and gold entity embedding in a shared phonetic space.
+Beta=0.1.
+
+Training: 8×40GB NVIDIA H20 GPUs; 1,800 DPO samples for 8B; 6,880 for 0.6B.
+
+**Entity repository**: 16,168 distinct named entities from the evaluation domain.
+
+Evaluation: NER F1 (RLM quality), NE-CER (named entity character error rate, primary metric for
+end-to-end correction quality), token count (efficiency measure).
+
+#### Results
+
+* RLM NER F1 on AISHELL-1: **94.18%** (vs. DANCER baseline: **91.97%**)
+* RLM NER F1 on Homophone test: **83.91%** (vs. DANCER: **74.82%**)
+* RASTAR (8B) NE-CER on AISHELL-1: **6.21%** (**17.96%** relative reduction)
+* RASTAR (8B) NE-CER on Homophone: **7.43%** (**34.42%** relative reduction)
+* Token reduction (8B vs. full CoT): **30%** on AISHELL-1, **21%** on Homophone
+* Qwen3-0.6B achieves comparable NER F1 to 8B with **40%** nothinking on simple cases
+* No latency measurements reported in the paper
+
+#### Innovations
+
+##### Adaptive Chain-of-Thought Depth (A-STAR)
+
+First application of difficulty-adaptive reasoning depth to ASR NE correction. Reduces inference
+cost by 30-40% while preserving correction quality. DPO training on difficulty-stratified synthetic
+pairs eliminates need for human-annotated reasoning chains.
+
+##### RLM Masked Language Modeling for NE Identification
+
+BERT-based masked reconstruction of entity spans, leveraging bidirectional context. Outperforms
+sequence tagging baselines (DANCER) by +2.2pp F1 on standard, +9.1pp on phonetically confusing
+entities.
+
+#### Datasets
+
+* **AISHELL-1**: ~170 hours Mandarin Chinese read speech; standard benchmark; public
+* **Homophone test set**: 115 phonetically confusing utterances from AISHELL-1; tests the hardest NE
+  correction cases
+* **AISHELL-NER**: Named entity annotations for AISHELL-1
+* **Entity repository**: 16,168 entities used for retrieval
+
+#### Main Ideas
+
+* Adaptive chain-of-thought depth (30-40% token reduction) makes the approach more
+  latency-compatible than full-CoT reasoning models — relevant for 800ms pipeline
+* The Homophone test (34.42% NE-CER reduction) is the most analogous to Rezolve&#x27;s challenge: brand
+  names that sound similar to common words
+* The RLM approach (BERT-based, low-compute) for entity span detection is applicable as a
+  lightweight first-pass before a heavier reasoning corrector
+* Caveat: all experiments are Mandarin Chinese; English adaptation would require retraining on
+  English entity-annotated ASR data
+
+#### Summary
+
+An et al. propose RASTAR, a two-stage pipeline for named entity correction in ASR. The first stage
+identifies entity spans using a BERT-based masked language model (RLM) trained on the distinction
+between correct and ASR-corrupted entity forms. The second stage retrieves candidate entities
+phonetically and applies an adaptive chain-of-thought reasoning model (A-STAR) to select and
+substitute the correct entity.
+
+A-STAR&#x27;s difficulty-adaptive mechanism classifies each correction instance as Simple, Challenging,
+or Formidable based on phonetic similarity, then applies proportional chain-of-thought depth. DPO
+training on synthetic difficulty-stratified pairs eliminates manual annotation of reasoning chains.
+
+Key results: **17.96%** and **34.42%** relative NE-CER reduction on AISHELL-1 and the harder
+Homophone test respectively. Token reduction of 30-40% vs. full CoT. RLM achieves **94.18% F1** on
+standard NE identification and **83.91%** on phonetically confusing cases.
+
+For Rezolve, A-STAR&#x27;s adaptive reasoning depth is the most attractive property: it reduces inference
+cost for easy cases while preserving accuracy on hard ones (homophones). The English adaptation
+requires training on English brand-name ASR data, but the framework is architecturally
+straightforward. The Homophone results are directly relevant to ecommerce brand names that sound
+like common English words.
+
+## Moonshine v2: Ergodic Streaming Encoder ASR for Latency-Critical Speech Applications
+ID: 10.48550_arXiv.2602.12241
+Year: 2026
+Authors: Manjunath Kudlur, Evan King, James Wang, Pete Warden
+Venue: arXiv preprint
+Venue type: preprint
+DOI: 10.48550/arXiv.2602.12241
+URL: https://arxiv.org/abs/2602.12241
+Categories: latency-profiling, stt-evaluation
+Added by task: t0003_literature_review_entity_stt
+Date added: 2026-06-23
+
+#### Metadata
+
+* **File**: `files/kudlur_2026_moonshine-v2-streaming-asr.pdf`
+* **Published**: 2026
+* **Authors**: Manjunath Kudlur 🇺🇸, Evan King 🇺🇸, James Wang 🇺🇸, Pete Warden 🇺🇸
+* **Venue**: arXiv preprint (Useful Sensors)
+* **DOI**: `10.48550/arXiv.2602.12241`
+
+#### Abstract
+
+Moonshine v2 introduces an ergodic streaming encoder for ASR using sliding-window self-attention to
+achieve bounded, low-latency inference while maintaining strong contextual understanding. The models
+(Tiny: 33.57M, Small: 123.36M, Medium: 244.93M parameters) achieve state-of-the-art word error rates
+on standard benchmarks while running significantly faster than comparably accurate models. On Apple
+M3, the Medium model achieves 258ms latency at 28.95% compute load, while Tiny achieves 50ms at
+8.03% compute load. The Medium model runs 43.7x faster than Whisper Large v3 at comparable accuracy.
+
+#### Overview
+
+Moonshine v2 solves a fundamental problem in streaming ASR: standard transformer encoders require
+processing the full utterance before producing output, creating latency proportional to utterance
+length. The paper introduces an &quot;ergodic&quot; encoder design using sliding-window self-attention that
+processes audio in fixed-size windows with bounded memory and constant-time per-step computation.
+
+The key architectural insight is that sliding-window self-attention provides each frame with a fixed
+receptive field regardless of utterance position. This makes the encoder stateless in the sense that
+processing cost per audio chunk is fixed, enabling true real-time streaming. Unlike chunked or
+CIF-based approaches that require special handling of chunk boundaries, the ergodic encoder
+maintains a clean mathematical guarantee: the time-to-first-token and per-chunk processing time are
+both bounded.
+
+The paper focuses on on-device deployment, specifically targeting Apple Silicon. The competitive
+benchmarking demonstrates that Moonshine v2 Medium achieves 6.65% average WER on the Open ASR
+leaderboard — within 1-2 WER points of much larger models like Whisper Large v3 — while running
+43.7× faster on the same hardware.
+
+#### Architecture, Models and Methods
+
+Three model variants: Tiny (33.57M parameters), Small (123.36M), Medium (244.93M). All share the
+ergodic encoder with sliding-window self-attention; the decoder is a standard autoregressive
+transformer.
+
+Sliding window size and overlap were tuned per model size. The encoder processes fixed-length audio
+chunks with a fixed-width attention window, producing frame-level representations that are fed to
+the decoder. The &quot;ergodic&quot; property refers to the statistical equivalence of time-averaged and
+ensemble-averaged encoder representations under stationary assumptions — this ensures that the
+chunk-by-chunk processing matches the quality of full-utterance processing asymptotically.
+
+Evaluation uses the Open ASR Leaderboard benchmark suite. Hardware profiling is reported on Apple
+M3. Latency is defined as wall-clock time from audio end to first decoded token.
+
+#### Results
+
+* Tiny WER: **12.01%** average across Open ASR benchmarks
+* Small WER: **7.84%** average
+* Medium WER: **6.65%** average
+* LibriSpeech test-clean (Medium): **2.08%** WER
+* Earnings-22 (Tiny, domain-specific): **20.27%** WER
+* Moonshine v2 Tiny latency (Apple M3): **50ms**, **8.03%** compute load
+* Moonshine v2 Small latency (Apple M3): **148ms**, **17.97%** compute load
+* Moonshine v2 Medium latency (Apple M3): **258ms**, **28.95%** compute load
+* Speed advantage: v2 Medium is **43.7×** faster than Whisper Large v3
+* Accuracy/size ratio: achieves accuracy comparable to models **6× larger**
+
+#### Innovations
+
+##### Ergodic Streaming Encoder
+
+Sliding-window self-attention with a stationary per-chunk computational budget. Unlike prior
+streaming methods that require special boundary handling or multi-pass decoding, the ergodic encoder
+provides a clean bounded-latency guarantee.
+
+##### On-Device Latency Benchmarking
+
+First systematic latency measurement of a streaming ASR model on Apple Silicon M3, providing
+reference numbers directly relevant to voice assistant deployment on consumer hardware.
+
+#### Datasets
+
+* **Open ASR Leaderboard**: composite benchmark including LibriSpeech, Earnings-22, and other test
+  sets; public; English
+* **LibriSpeech**: standard clean/other splits; well-known WER reference
+
+#### Main Ideas
+
+* 50ms (Tiny) to 258ms (Medium) ASR latency on Apple M3 is well within the Rezolve 800ms p50 budget,
+  leaving 542-750ms for downstream processing, post-correction, and routing
+* The accuracy-vs-latency Pareto: Moonshine v2 Small (148ms, 7.84% WER) may be the best operating
+  point for Rezolve&#x27;s real-time pipeline — lower latency than Medium with only 1.2pp WER penalty
+* The ergodic encoder architecture is a viable drop-in streaming replacement for Whisper Turbo with
+  similar model sizes and significantly lower latency
+* No entity-specific evaluation is reported; entity accuracy on domain-specific ecommerce terms
+  would need separate assessment before adopting Moonshine for production
+
+#### Summary
+
+Moonshine v2 addresses latency in on-device ASR through an ergodic streaming encoder that processes
+audio in fixed-size chunks with bounded per-chunk computation. The motivation is that standard
+transformer encoders block on full-utterance processing, creating latency proportional to utterance
+length that is unacceptable for real-time voice assistants.
+
+The architecture uses sliding-window self-attention to provide each audio frame a fixed receptive
+field, enabling stateless chunk-by-chunk processing. Three model sizes (Tiny, Small, Medium) are
+provided, all using the same encoder design with varying capacity. The decoder remains a standard
+autoregressive transformer.
+
+Measured on Apple M3, the Tiny model achieves **50ms** latency at **8.03%** compute load while the
+Medium achieves **258ms** at **28.95%** load. Average WER ranges from **12.01%** (Tiny) to **6.65%**
+(Medium) on the Open ASR leaderboard. The Medium model is **43.7×** faster than Whisper Large v3 at
+1-2pp WER penalty.
+
+For Rezolve&#x27;s pipeline, Moonshine v2 represents a viable low-latency streaming ASR alternative that
+fits comfortably within the 800ms p50 budget. The Small variant (148ms, 7.84% WER) is the most
+promising trade-off point. However, no entity-level accuracy data is reported; domain-specific
+evaluation on ecommerce entities is a prerequisite before production adoption.
+
+## Towards Robust Dysarthric Speech Recognition: LLM-Agent Post-ASR Correction Beyond WER
+ID: 10.48550_arXiv.2601.21347
+Year: 2026
+Authors: Xiuwen Zheng, Sixun Dong, Bornali Phukon, Mark Hasegawa-Johnson, Chang D. Yoo
+Venue: ICASSP 2026
+Venue type: conference
+DOI: 10.48550/arXiv.2601.21347
+URL: https://arxiv.org/abs/2601.21347
+Categories: entity-correction, stt-evaluation
+Added by task: t0003_literature_review_entity_stt
+Date added: 2026-06-23
+
+#### Metadata
+
+* **File**: `files/zheng_2026_llm-agent-post-asr-correction.pdf`
+* **Published**: 2026
+* **Authors**: Xiuwen Zheng, Sixun Dong, Bornali Phukon, Mark Hasegawa-Johnson 🇺🇸, Chang D. Yoo 🇰🇷
+* **Venue**: ICASSP 2026
+* **DOI**: `10.48550/arXiv.2601.21347`
+
+#### Abstract
+
+Automatic speech recognition (ASR) systems achieve strong performance on standard benchmarks but
+struggle with dysarthric speech and domain-specific named entities. This paper proposes an LLM-based
+Judge-Editor agent for post-ASR correction that operates over the top-k ASR hypotheses. The agent
+retains high-confidence spans while selectively rewriting or fusing uncertain segments to better
+capture speaker intent. Both zero-shot and fine-tuned operating modes are evaluated. The paper
+introduces SAP-Hypo5, a new benchmark dataset for dysarthric speech correction containing 35,000
+utterances with top-5 ASR hypotheses and gold references. Experiments demonstrate a 14.51% word
+error rate reduction, a +7.59 percentage point improvement in MENLI semantic similarity, and a +7.66
+percentage point gain in Slot Micro F1 on difficult samples.
+
+#### Overview
+
+This paper addresses a critical limitation of standard ASR evaluation: WER misses meaning-critical
+errors that matter most in downstream applications. The core observation is that a transcription
+error on a common function word (e.g., &quot;the&quot; vs. &quot;a&quot;) is treated identically to an error on a named
+entity (e.g., &quot;Pfizer&quot; vs. &quot;Pizer&quot;), even though the latter has far greater downstream impact on
+slot filling and intent classification.
+
+The proposed LLM-based Judge-Editor agent takes the top-k ASR hypotheses as input and performs
+confidence-weighted editing: spans where all hypotheses agree are treated as high-confidence and
+retained, while spans with high hypothesis divergence are candidates for LLM rewriting. This
+selective editing strategy avoids the over-correction pathology common in unconstrained LLM
+post-correction, where the LLM substitutes fluent but hallucinated content for rare domain terms.
+
+The paper introduces SAP-Hypo5, a 35,000-utterance dataset of dysarthric speech with five ASR
+hypotheses per utterance sourced from different ASR systems. The WER metric&#x27;s insensitivity to
+semantic importance motivates the use of MENLI (textual entailment-based semantic similarity) and
+Slot Micro F1 as complementary evaluation metrics.
+
+#### Architecture, Models and Methods
+
+The Judge-Editor agent is implemented in two modes: zero-shot and fine-tuned. In zero-shot mode, a
+prompted LLM (GPT-4 class) receives the top-5 hypotheses and a structured prompt instructing it to
+identify high-confidence spans and rewrite uncertain regions. In fine-tuned mode, the agent is
+specialized on SAP-Hypo5 training pairs.
+
+Hypothesis confidence is estimated by span-level agreement across the k hypotheses: spans where all
+k hypotheses produce identical tokens are flagged as high-confidence. Spans with disagreement
+receive attention from the Judge module, which classifies each span as &quot;keep&quot;, &quot;rewrite&quot;, or &quot;fuse
+from hypotheses.&quot; The Editor module then applies the decisions.
+
+Evaluation metrics: WER (standard), MENLI (semantic similarity via natural language inference), and
+Slot Micro F1 (downstream intent/slot accuracy). Experiments use SAP-Hypo5, stratified by difficulty
+(easy/medium/hard) based on baseline ASR performance. The five ASR systems contributing hypotheses
+include Whisper variants, wav2vec 2.0, and an in-house encoder-decoder system.
+
+#### Results
+
+* WER reduction: **14.51%** relative on SAP-Hypo5 test set vs. 1-best hypothesis baseline
+* MENLI improvement: **+7.59 pp** on the full test set
+* Slot Micro F1 improvement: **+7.66 pp** on the difficult stratum (baseline WER &gt; 40%)
+* Zero-shot mode achieves approximately **60%** of the fine-tuned mode gains on MENLI
+* Fine-tuned mode achieves near-parity with human transcription on easy stratum
+* Selective editing reduces hallucination rate by approximately **30%** compared to unconstrained
+  LLM rewriting baseline
+* On difficult samples, MENLI improvements are **2.3×** larger than on easy samples
+
+#### Innovations
+
+##### Judge-Editor Selective Rewriting
+
+Rather than rewriting the full transcript, the agent identifies spans by hypothesis agreement and
+only rewrites uncertain regions. This prevents the LLM from replacing correctly transcribed content
+with hallucinated text — a known failure mode of naive LLM post-correction.
+
+##### SAP-Hypo5 Benchmark
+
+First public benchmark providing five ASR system hypotheses per dysarthric utterance with gold
+references. Enables reproducible comparison of N-best exploitation strategies.
+
+##### Beyond-WER Evaluation Protocol
+
+Demonstrates that MENLI and Slot Micro F1 capture clinically and practically significant
+improvements that WER misses, establishing a precedent for semantic evaluation of ASR
+post-correction systems.
+
+#### Datasets
+
+* **SAP-Hypo5**: 35,000 dysarthric English utterances; 5 hypotheses per utterance from multiple ASR
+  systems; gold transcriptions; publicly released
+* Source: Speech Accessibility Project (SAP) corpus
+
+#### Main Ideas
+
+* WER is insufficient for entity-critical ASR: use MENLI and Slot F1 alongside WER to evaluate
+  post-correction quality, especially for downstream intent accuracy
+* Selective span-level editing based on hypothesis agreement reduces LLM hallucination by ~30%
+  compared to unconstrained rewriting — critical for ecommerce brand names
+* N-best hypothesis diversity (5 systems) is a valuable signal that meaningfully outperforms
+  single-hypothesis correction
+* Fine-tuning the Judge-Editor on domain-specific data delivers ~40% additional gain over zero-shot;
+  a Rezolve-specific fine-tune on ecommerce entities would be high-value
+
+#### Summary
+
+Zheng et al. address the disconnect between WER and actual downstream accuracy for ASR
+post-correction. Standard WER counts all token substitutions equally, regardless of whether the
+error affects a function word or a business-critical entity name. The paper frames post-correction
+as a selective editing task rather than a full rewrite, motivated by the observation that LLM
+hallucination replaces rare domain terms with plausible but wrong alternatives.
+
+The Judge-Editor architecture takes k=5 ASR hypotheses and uses span-level agreement as a proxy for
+transcription confidence. High-agreement spans are preserved unchanged; low-agreement spans are
+rewritten by an LLM guided by structured prompts. The SAP-Hypo5 benchmark, introduced alongside the
+method, provides a reproducible evaluation environment with five hypotheses per utterance and
+multi-metric scoring.
+
+Key results: **14.51% WER reduction**, **+7.59 pp MENLI**, and **+7.66 pp Slot Micro F1** on
+difficult samples. The selective editing mechanism reduces hallucinations by ~30% compared to
+unconstrained LLM rewriting, practically important when rare entities must be preserved.
+
+For Rezolve&#x27;s voice commerce pipeline, the takeaways are: (a) Slot Micro F1 on brand/product spans
+is a better proxy for wrong-action rate than WER; (b) an N-best post-correction agent using multiple
+ASR hypotheses is a viable low-latency add-on avoiding model retraining; and (c) domain fine-tuning
+on ecommerce entity examples would materially improve entity correction accuracy.
+
+## Beyond Prompting: Efficient and Robust Contextual Biasing for Speech LLMs via Logit-Space Integration (LOGIC)
+ID: 10.48550_arXiv.2601.15397
+Year: 2026
+Authors: Peidong Wang
+Venue: arXiv preprint
+Venue type: preprint
+DOI: 10.48550/arXiv.2601.15397
+URL: https://arxiv.org/abs/2601.15397
+Categories: entity-correction, latency-profiling
+Added by task: t0003_literature_review_entity_stt
+Date added: 2026-06-23
+
+#### Metadata
+
+* **File**: `files/wang_2026_logic-contextual-biasing-speech-llm.pdf`
+* **Published**: 2026
+* **Authors**: Peidong Wang 🇺🇸
+* **Venue**: arXiv preprint (withdrawn v2, v1 accessible)
+* **DOI**: `10.48550/arXiv.2601.15397`
+
+#### Abstract
+
+The rapid emergence of new entities—driven by cultural shifts, evolving trends, and personalized
+user data—poses a significant challenge for existing Speech Large Language Models (Speech LLMs).
+While these models excel at general conversational tasks, their static training knowledge limits
+their ability to recognize domain-specific terms such as contact names, playlists, or technical
+jargon. Existing solutions primarily rely on prompting, which suffers from poor scalability: as the
+entity list grows, prompting encounters context window limitations, increased inference latency, and
+the &quot;lost-in-the-middle&quot; phenomenon. An alternative approach, Generative Error Correction (GEC),
+attempts to rewrite transcripts via post-processing but frequently suffers from &quot;over-correction&quot;,
+introducing hallucinations of entities that were never spoken. In this work, we introduce LOGIC
+(Logit-Space Integration for Contextual Biasing), an efficient and robust framework that operates
+directly in the decoding layer. Unlike prompting, LOGIC decouples context injection from input
+processing, ensuring constant-time complexity relative to prompt length. Extensive experiments using
+the Phi-4-MM model across 11 multilingual locales demonstrate that LOGIC achieves an average 9%
+relative reduction in Entity WER with a negligible 0.30% increase in False Alarm Rate.
+
+#### Overview
+
+LOGIC addresses a practical failure mode in deploying Speech LLMs in production: these models are
+strong at conversational tasks but poor at rare and domain-specific entities (contact names, song
+titles, brand names, technical jargon). Two prevailing remedies both have critical shortcomings.
+Prompting (in-context learning) requires injecting a phrase list into the system prompt, but this
+collapses when the phrase list grows to thousands of entries — context window limits, quadratic
+self-attention costs, and the &quot;lost-in-the-middle&quot; phenomenon degrade model behaviour to the point
+where the model may simply recite the entire entity list rather than transcribe the audio. GEC
+(Generative Error Correction), the other common approach, uses a text LLM to rewrite ASR output
+against a bias list, but introduces hallucinations: the model inserts entities that were never
+spoken, based on text similarity rather than acoustic evidence.
+
+LOGIC operates at inference time by intercepting the logit vector at each auto-regressive decoding
+step and adding a sparse bonus to tokens that form valid continuations of a prefix tree (Trie) built
+from the entity phrase list. The Trie is tokenizer-aware, handling subword segmentation ambiguities
+through a Multi-Path Tokenization strategy that inserts all valid token-level representations of
+each entity. Two complementary strategies — Immediate Prefix Boosting (IPB) and Retroactive Score
+Rectification (RSR) — govern the Recall/FAR tradeoff. IPB applies the biasing bonus from the Trie
+root, maximising recall for short entities like surnames. RSR revokes accumulated bonuses for any
+hypothesis path that diverges from the Trie before completing a full entity string, preventing the
+model from hallucinating the tail of a partially matched entity.
+
+The engineering implementation targets production throughput. Rather than iterating over the full
+vocabulary at each step (&gt;150,000 tokens for Phi-4-Mini), a custom sparse CUDA kernel updates only
+the Trie-child indices, keeping the vocabulary iteration cost at O(D) where D is the maximum Trie
+out-degree (typically fewer than 100 tokens). This is deployed as a custom LogitsProcessor on the
+vLLM inference platform with zero-copy Trie state in GPU shared memory.
+
+Results across 11 multilingual locales using Phi-4-Mini show consistent EWER reduction averaging
+**9%** in the robust configuration (λ ≈ 0.4–0.6) and **17%** in an aggressive configuration (λ ≈
+0.8–1.0), with real-time factor overhead of only **+2.8%** (RTF 0.0990 → 0.1018 on NVIDIA A100).
+False Alarm Rate increase averages just **0.30%** in the robust setting, and is exactly 0% for
+Korean (ko-KR), Spanish Mexico (es-MX), German (de-DE), and Japanese (ja-JP).
+
+#### Architecture, Models and Methods
+
+**Base model**: Phi-4-Mini (open-source multimodal Speech LLM by Microsoft, SentencePiece tokenizer
+with vocabulary &gt;150,000 tokens). Phi-4-Mini processes audio directly in an end-to-end fashion
+without a separate ASR cascade.
+
+**Trie construction**: Given entity phrase list O = {E1, ..., EN}, each entity is tokenized under
+multiple context variants (e.g., with/without leading whitespace, capitalisation variants) to handle
+SentencePiece&#x27;s context-dependent segmentation. All variants are inserted into a Token-Level Prefix
+Tree (Trie) T. Each node stores valid next-token children.
+
+**Logit integration formula** (Equation 1): At decoding step t with logit vector zt ∈ R^|V|, biased
+logits z&#x27;*t are computed as: `z&#x27;_t[k] = zt[k] + I(k ∈ Children(s_{t-1}^(b))) · λ` where λ is the
+biasing bonus hyperparameter and s*{t-1}^(b) is the current Trie state for beam hypothesis b.
+
+**Immediate Prefix Boosting (IPB)**: Bonus λ is applied starting from the Trie root state (the first
+token of any entity), unlike prior methods that skip the first token to avoid false alarms. This
+maximises recall for short entities (e.g., two-character Chinese surnames) at the cost of higher
+initial false alarm risk, which RSR then manages.
+
+**Retroactive Score Rectification (RSR)**: Each hypothesis maintains a cumulative bonus accumulator
+Φt. When a beam hypothesis diverges from the Trie mid-entity (mismatch), its beam score is penalized
+by subtracting all accumulated bonuses: `Score_t = BaseScore_t - Φ_{t-1}`. This prevents the &quot;sunk
+cost&quot; effect where partial matches inflate a hypothesis score enough to hallucinate the entity
+completion.
+
+**Inference implementation**: Custom LogitsProcessor for vLLM; sparse CUDA kernel updates only
+Trie-child indices per step, O(D) per step with D &lt; 100 typically; Trie in GPU shared memory
+(zero-copy); fully vectorised for batch inference.
+
+**Evaluation metrics**:
+
+* WER: standard word error rate across full utterance
+* EWER: entity word error rate computed only over ground-truth entity spans
+* Entity Recall: percentage of ground-truth entities correctly transcribed
+* FAR: false alarm rate — incorrect entity insertions per utterance
+* RTF: real-time factor (processing time / audio duration), 90th percentile
+
+**Experimental design**: Two configurations tested: Robust (λ ≈ 0.4–0.6, minimises FAR) and
+Aggressive (λ ≈ 0.8–1.0, maximises recall). Evaluated on an internal Microsoft ASR test suite
+covering 11 locales: en-US, ko-KR, zh-CN, es-ES, es-MX, en-GB, de-DE, fr-FR, it-IT, ja-JP, pt-BR.
+Test sets focus on Person Names (PNAMEs); entity counts range from ~460 (de-DE) to &gt;2100 (it-IT) per
+locale. Hardware: NVIDIA A100 GPUs.
+
+#### Results
+
+* Average EWER relative reduction: **9%** (robust, λ ≈ 0.4–0.6) across all 11 locales
+* Average EWER relative reduction: **17%** (aggressive, λ ≈ 0.8–1.0) across all 11 locales
+* Top robust gains: fr-FR **19%**, es-MX **17%**, de-DE **14%**, en-US **11%**
+* Lowest robust gains: it-IT **2%**, es-ES **5%**, en-GB **5%**
+* Aggressive gains vs robust gains delta: pt-BR +15 pp (21% total), zh-CN +11 pp (20% total), es-MX
+  +11 pp (28% total), fr-FR +10 pp (29% total)
+* Average FAR increase: **+0.30%** (robust), with exactly 0% increase for ko-KR, es-MX, de-DE, ja-JP
+* en-US Entity Recall: baseline **75.00%** → LOGIC **77.53%** (robust)
+* zh-CN Entity Recall: baseline **59.02%** → LOGIC **63.47%** (robust)
+* ja-JP EWER: baseline **42.10** → LOGIC **39.51** (robust, **6%** relative improvement)
+* RTF overhead: baseline **0.0990** → LOGIC **0.1018** = **+2.8%** (NVIDIA A100, 2210 phrases)
+* WER: comparable or slightly improved vs baseline in most locales (en-US: 9.8 → 9.7, de-DE: 6.9 →
+  6.8); no regression observed
+
+#### Innovations
+
+##### Logit-Space Biasing for Speech LLMs
+
+Prior contextual biasing research targets traditional encoder-decoder ASR (Whisper, RNN-T,
+CTC-based). LOGIC is among the first frameworks to apply Trie-based logit injection directly to
+auto-regressive Speech LLMs that process raw audio end-to-end. Decoupling context injection from
+input processing achieves O(1) complexity with respect to prompt length, solving the quadratic
+self-attention scaling problem that makes prompting infeasible beyond a few dozen entities.
+
+##### Multi-Path Tokenization for Subword Trie Construction
+
+SentencePiece tokenization is context-sensitive: the same entity string produces different token
+sequences depending on surrounding characters (e.g., &quot;Alex&quot; → [&quot;Alex&quot;] vs. [&quot;Al&quot;, &quot;ex&quot;] vs.
+[&quot; Alex&quot;]). LOGIC inserts all valid tokenization variants into the Trie simultaneously, ensuring
+entity coverage regardless of context position. This is a non-trivial engineering contribution with
+direct impact on recall for any Speech LLM using subword tokenization.
+
+##### IPB + RSR Dual Strategy
+
+The combination of Immediate Prefix Boosting and Retroactive Score Rectification provides a
+principled tradeoff dial: IPB maximises sensitivity (recall) while RSR suppresses false alarms by
+retroactively penalising partial match paths that fail to complete. This breaks the traditional
+Recall/FAR tradeoff present in shallow fusion methods, achieving high recall (**+9–17%** EWER) with
+near-zero FAR increase (**+0.30%** average, 0% for several locales).
+
+##### Sparse CUDA Kernel Implementation
+
+The production-grade sparse kernel enables LOGIC to run in real-time on large-vocabulary Speech LLMs
+(&gt;150,000 tokens). By reducing per-step complexity from O(|V|) to O(D) where D is the maximum Trie
+out-degree (&lt;100 typically), LOGIC adds only **+2.8% RTF** overhead. This makes it deployable in
+latency-sensitive voice assistant pipelines meeting the Rezolve 800 ms p50 budget.
+
+#### Datasets
+
+* **Internal Microsoft PNAME test suite**: 11 locales (en-US, ko-KR, zh-CN, es-ES, es-MX, en-GB,
+  de-DE, fr-FR, it-IT, ja-JP, pt-BR). Person Name (PNAME) utterances from naturally spoken audio.
+  Entity counts per locale: ~460 entities (de-DE) to &gt;2100 entities (it-IT). Not publicly available
+  — internal Microsoft dataset.
+* **Phi-4-Mini** used as the base model; no additional training was performed. Phi-4-Mini is
+  publicly available on Hugging Face under a Microsoft Research License.
+
+No public benchmark datasets (LibriSpeech, SLURP, etc.) were used. All evaluation was performed on
+the internal Microsoft PNAME test suite.
+
+#### Main Ideas
+
+* LOGIC&#x27;s logit-space approach sidesteps the scalability wall of prompting entirely — the entity
+  list can grow to thousands of phrases with no change in inference latency, making it suitable for
+  Rezolve&#x27;s full product/brand catalog injection without context window constraints.
+* The **+2.8% RTF overhead** on A100 is highly relevant to the Rezolve 800 ms p50 budget: for a
+  pipeline where STT decoding takes ~300–400 ms, adding less than 3% latency overhead is negligible
+  compared to the **9–17% EWER improvement** on entity spans.
+* RSR&#x27;s hallucination suppression directly addresses a key risk for ecommerce voice AI — inserting a
+  brand name or SKU that was never spoken causes incorrect purchase actions, which is worse than a
+  generic WER error. RSR brings FAR increase to **+0.30%** average.
+* The Multi-Path Tokenization strategy is essential for any Trie-based biasing applied to
+  SentencePiece-tokenised Speech LLMs. Naive single-path Trie insertion will miss a substantial
+  fraction of entities at non-sentence-initial positions.
+* Prompting-based biasing fails catastrophically with even moderate entity list sizes (460 entities
+  in de-DE), confirming that prompting is not viable for Rezolve&#x27;s catalog-scale entity injection.
+* LOGIC is evaluated only on Person Names; product names, brand names, and SKUs may have different
+  phonetic/tokenization characteristics. Rezolve must validate LOGIC on its own entity types and may
+  need to tune the bonus λ for each entity category.
+
+#### Summary
+
+LOGIC (Logit-Space Integration for Contextual Biasing) addresses the inability of Speech LLMs to
+reliably recognise domain-specific entities — brand names, contact names, product identifiers —
+without the scalability failures of prompting or the hallucination failures of generative error
+correction. The paper motivates the problem by demonstrating that prompting collapses with as few as
+460 entities (exhibiting &quot;list-vomiting&quot; output) and that GEC introduces hallucinated entities based
+on textual similarity rather than acoustic evidence. LOGIC is proposed as a decoding-layer
+alternative that injects entity bias directly into the logit distribution at each auto-regressive
+step using a subword-aware prefix tree, achieving O(1) complexity with respect to entity list size.
+
+The method constructs a Token-Level Trie from the entity phrase list using Multi-Path Tokenization
+to handle SentencePiece&#x27;s context-dependent subword segmentation, then applies a sparse logit bonus
+at each decoding step for tokens that extend a valid Trie path. Immediate Prefix Boosting (IPB)
+fires the bias from the very first token of any entity to maximise recall for short entries, while
+Retroactive Score Rectification (RSR) penalises hypotheses that accumulate partial-match bonuses but
+diverge before completing the entity string. The CUDA implementation uses a sparse kernel with O(D)
+per-step complexity, deployed as a vLLM LogitsProcessor with zero-copy GPU state.
+
+Experiments using Phi-4-Mini across 11 multilingual locales on an internal Microsoft Person Name
+test suite show **9% average relative EWER improvement** in a conservative configuration and **17%**
+in an aggressive configuration, with average FAR increase of just **+0.30%** and RTF overhead of
+only **+2.8%** on A100 GPUs. French (**19%**), German (**14%**), and Mexican Spanish (**17%**) see
+the strongest improvements. The method generalises to logographic languages (zh-CN **9%**, ja-JP
+**6%**) despite the added complexity of context-sensitive subword tokenization.
+
+For the Rezolve STT project, LOGIC is directly actionable as a production-grade entity-biasing layer
+for any Speech LLM (Phi-4, GPT-4o Audio) used as a replacement for or complement to Deepgram. Its
+near-zero latency overhead is compatible with the 800 ms p50 voice-to-action budget, and RSR&#x27;s
+hallucination suppression is critical for ecommerce where false entity insertions cause incorrect
+purchase actions. The key validation gap is whether the EWER improvements on Person Names transfer
+to Rezolve&#x27;s entity types (brand names, product lines, investor-relations terms), which have
+different phonetic distributions and may require independent tuning of the biasing bonus λ per
+entity category.
+
+## RLBR: Reinforcement Learning with Biasing Rewards for Contextual Speech Large Language Models
+ID: 10.48550_arXiv.2601.13409
+Year: 2026
+Authors: Bo Ren, Ruchao Fan, Yelong Shen, Weizhu Chen, Jinyu Li
+Venue: ICASSP 2026
+Venue type: conference
+DOI: 10.48550/arXiv.2601.13409
+URL: https://arxiv.org/abs/2601.13409
+Categories: entity-correction, stt-evaluation
+Added by task: t0003_literature_review_entity_stt
+Date added: 2026-06-23
+
+Models
+
+#### Metadata
+
+* **File**: `files/novitasari_2026_rlbr-biasing-rewards.pdf`
+* **Published**: 2026
+* **Authors**: Bo Ren 🇺🇸, Ruchao Fan 🇺🇸, Yelong Shen 🇺🇸, Weizhu Chen 🇺🇸, Jinyu Li 🇺🇸 (Microsoft)
+* **Venue**: ICASSP 2026
+* **DOI**: `10.48550/arXiv.2601.13409`
+
+#### Abstract
+
+Contextual biasing in speech LLMs improves recognition of rare and domain-specific terms, but
+current methods rely on supervised fine-tuning (SFT) that treats all words equally. This paper
+proposes RLBR, a reinforcement learning approach using a biasing-words-preferred reward that
+explicitly up-weights bias word tokens in the reward calculation. A reference-aware mechanism
+extends the RL algorithm with reference transcription to strengthen trajectory exploration. On
+LibriSpeech with bias lists of 100-1000 words, RLBR achieves biased WERs of 0.59%/2.11%
+(test-clean/test-other) at 100 words, 1.09%/3.24% at 500 words, and 1.36%/4.04% at 1000 words,
+consistently outperforming SFT baselines and recently published contextual biasing methods.
+
+#### Overview
+
+RLBR identifies a fundamental misalignment in how supervised fine-tuning (SFT) trains contextual
+biasing models: SFT applies uniform cross-entropy loss to all tokens, meaning that the model gets
+the same gradient signal from correctly transcribing &quot;the&quot; and correctly transcribing &quot;Bose&quot; (a rare
+brand name). For contextual biasing applications, the entire value is in rare-entity accuracy, yet
+SFT treats rare entities as statistically insignificant due to their low frequency.
+
+RLBR corrects this with a bias-word-preferred reward: during RL training (using a variant of GRPO —
+Group Relative Policy Optimization), the reward for each sampled trajectory is computed as the
+standard WER-based reward but with bias word tokens receiving a multiplied reward coefficient
+(alpha=5 in experiments). This forces the policy gradient to strongly favor trajectories that
+correctly transcribe bias words.
+
+The reference-aware mechanism augments trajectory exploration by conditioning the RL sampler on the
+ground-truth reference, generating hypotheses that are near the reference but vary in bias word
+handling. This prevents mode collapse (the RL policy converging to a degenerate hypothesis that
+avoids generating entity tokens entirely).
+
+Microsoft&#x27;s proprietary Speech LLM (Phi-4-MM class) is used as the base model. The evaluation is on
+LibriSpeech with injected rare-word bias lists of varying sizes.
+
+#### Architecture, Models and Methods
+
+**Base model**: Microsoft Speech LLM (Phi-4-MM class architecture; exact parameters not disclosed in
+the paper).
+
+**RL algorithm**: GRPO (Group Relative Policy Optimization). Generates G=8 hypothesis samples per
+utterance; computes advantage relative to the group mean reward.
+
+**Biasing-words-preferred reward**: For each sampled hypothesis, reward = alpha ×
+(token_is_bias_word) × match_reward + (1 - token_is_bias_word) × match_reward, with alpha=5.
+Effectively multiplies gradient signal for bias word correctness by 5×.
+
+**Reference-aware trajectory exploration**: Perturbs reference transcription at bias word positions
+to create positive/negative RL training pairs, ensuring diverse trajectories in the bias word
+decision space.
+
+**Bias list sizes tested**: 100, 500, 1000 words randomly sampled from rare-word sets.
+
+**Evaluation**: Biased WER (B-WER) = WER computed only on utterances containing bias words; overall
+WER = full LibriSpeech evaluation.
+
+#### Results
+
+* B-WER at 100 bias words (test-clean/test-other): **0.59% / 2.11%**
+* B-WER at 500 bias words: **1.09% / 3.24%**
+* B-WER at 1000 bias words: **1.36% / 4.04%**
+* RLBR consistently outperforms SFT baseline and recent published methods (specific absolute
+  comparisons: table numbers not found in abstract)
+* Overall WER (non-bias utterances): preserved — no regression reported
+* Latency: not reported in the paper
+
+#### Innovations
+
+##### Biasing-Words-Preferred RL Reward
+
+First RL training objective specifically designed to up-weight rare entity accuracy in ASR. Corrects
+the SFT misalignment by giving the policy gradient 5× larger signal for bias word correctness.
+
+##### Reference-Aware Trajectory Exploration
+
+Augments RL exploration by conditioning trajectory sampling on the reference, preventing mode
+collapse while ensuring the policy space covers correct and incorrect bias word handling.
+
+#### Datasets
+
+* **LibriSpeech**: test-clean and test-other splits; English; standard ASR benchmark
+* Injected rare-word bias lists: 100, 500, 1000 words from domain-specific vocabulary
+
+#### Main Ideas
+
+* The RL reward shaping insight (alpha=5× for bias words) is a simple training modification
+  applicable to any speech LLM fine-tuning setup — does not require architecture changes
+* RLBR requires full model fine-tuning, unlike post-processing approaches; this is a
+  higher-investment path than prompt injection or N-best correction but achieves lower absolute
+  B-WER (0.59% at 100 words vs. 2.78% for CLAR)
+* The reference-aware exploration is a practical contribution to stable RL training for ASR —
+  prevents reward hacking on the bias word metric
+* For Rezolve, RLBR would require fine-tuning Whisper Turbo on ecommerce entity data; the approach
+  is not applicable as a zero-training-cost add-on
+
+#### Summary
+
+Ren et al. address the SFT misalignment for contextual biasing: standard supervised fine-tuning
+gives equal gradient weight to common function words and rare domain entities, even though the
+entire value of contextual biasing lies in the rare entity accuracy. RLBR corrects this by using a
+RL reward function that multiplies the reward for correct bias word transcription by alpha=5,
+focusing the policy gradient where it matters.
+
+The GRPO-based RL training generates 8 hypothesis samples per utterance and scores them with the
+bias-word-preferred reward. A reference-aware augmentation prevents mode collapse by ensuring the
+exploration space covers the correct entity handling paths.
+
+Results on LibriSpeech: B-WER of **0.59%/2.11%** at 100 bias words, **1.09%/3.24%** at 500 words,
+and **1.36%/4.04%** at 1000 words (test-clean/test-other). These represent state-of-the-art biased
+WERs among methods published in Jan-Jun 2026 for English ASR.
+
+For Rezolve, RLBR requires fine-tuning the production ASR model (Whisper Turbo or equivalent) on
+ecommerce entity data — a higher-investment approach than post-processing methods. The reward
+shaping principle is directly transferable: any RL-based ASR fine-tuning for ecommerce should weight
+brand/product/SKU tokens at alpha=5×. The reference-aware exploration mechanism addresses a
+practical training stability concern that would arise when fine-tuning on a small (~1000 utterance)
+ecommerce entity dataset.
+      </content>
+    </section>
+  </sections>
+</llm_context_archive>

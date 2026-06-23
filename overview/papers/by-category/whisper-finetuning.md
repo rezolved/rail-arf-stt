@@ -1,19 +1,16 @@
-# Category: Whisper Fine-Tuning
+# Papers: `whisper-finetuning` (1)
 
-Domain-adapted fine-tuning of Whisper-class ASR models on Rezolve production audio to improve
-entity accuracy.
+1 papers across 1 year(s).
 
-[Back to Dashboard](../README.md)
-
-**Detail pages**: [Papers (1)](../papers/by-category/whisper-finetuning.md)
+[Back to all papers](../README.md)
 
 ---
 
-## Papers (1)
+## 2026 (1)
 
 <details>
-<summary>📝 <strong>Whisper: Courtside Edition — Multi-Agent LLM Pipeline for
-Domain-Specific ASR via Context Generation</strong> — Ron et al., 2026</summary>
+<summary>📝 Whisper: Courtside Edition — Multi-Agent LLM Pipeline for Domain-Specific
+ASR via Context Generation — Ron et al., 2026</summary>
 
 | Field | Value |
 |---|---|
@@ -23,9 +20,9 @@ Domain-Specific ASR via Context Generation</strong> — Ron et al., 2026</summar
 | **DOI** | `10.48550/arXiv.2602.18966` |
 | **URL** | https://arxiv.org/abs/2602.18966 |
 | **Date added** | 2026-06-23 |
-| **Categories** | [`entity-correction`](../../meta/categories/entity-correction/), [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../meta/categories/whisper-finetuning/) |
-| **Added by** | [`t0003_literature_review_entity_stt`](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Full summary** | [`summary.md`](../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2602.18966/summary.md) |
+| **Categories** | [`entity-correction`](../../../meta/categories/entity-correction/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../../meta/categories/whisper-finetuning/) |
+| **Added by** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
+| **Full summary** | [`summary.md`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2602.18966/summary.md) |
 
 Ron et al. demonstrate that Whisper's initial_prompt parameter can be systematically exploited
 for domain-specific entity recognition without model retraining. A six-agent LLM pipeline
@@ -49,17 +46,3 @@ main engineering work is tuning the fuzzy matching threshold for Rezolve's brand
 vocabulary and ensuring the multi-agent latency fits within the 800ms p50 budget.
 
 </details>
-
-## Tasks (1)
-
-| # | Task | Status | Completed |
-|---|------|--------|-----------|
-| 0003 | [Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026)](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) | completed | 2026-06-23 09:25 |
-
-## Answers (0)
-
-No answers in this category.
-
-## Suggestions (0 open, 0 closed)
-
-No open suggestions in this category.

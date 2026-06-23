@@ -1,11 +1,9 @@
-# Research Suggestions Backlog
+# Suggestions: `stt-evaluation`
 
-8 suggestions **8 open** (3 high, 4 medium, 1 low).
+7 suggestion(s) in category [`stt-evaluation`](../../../meta/categories/stt-evaluation/) **7
+open** (3 high, 3 medium, 1 low).
 
-**Browse by view**: By category: [`audio-datasets`](by-category/audio-datasets.md),
-[`entity-correction`](by-category/entity-correction.md),
-[`latency-profiling`](by-category/latency-profiling.md),
-[`stt-evaluation`](by-category/stt-evaluation.md); [By date added](by-date-added/README.md)
+[Back to all suggestions](../README.md)
 
 ---
 
@@ -20,9 +18,9 @@ Slot F1</strong> (S-0003-03)</summary>
 | **ID** | `S-0003-03` |
 | **Kind** | dataset |
 | **Date added** | 2026-06-23 |
-| **Source task** | [`t0003_literature_review_entity_stt`](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
+| **Source task** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
 | **Source paper** | — |
-| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`audio-datasets`](../../meta/categories/audio-datasets/) |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`audio-datasets`](../../../meta/categories/audio-datasets/) |
 
 Add entity-offset markup to gold-92 ground-truth transcripts, tagging brand names, product
 names, and SKUs with character-level span annotations. This unblocks computation of E-WER
@@ -43,9 +41,9 @@ task types: audio-dataset-curation.
 | **ID** | `S-0003-01` |
 | **Kind** | experiment |
 | **Date added** | 2026-06-23 |
-| **Source task** | [`t0003_literature_review_entity_stt`](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Source paper** | [`10.48550_arXiv.2603.16411`](../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2603.16411/) |
-| **Categories** | [`entity-correction`](../../meta/categories/entity-correction/), [`stt-evaluation`](../../meta/categories/stt-evaluation/) |
+| **Source task** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
+| **Source paper** | [`10.48550_arXiv.2603.16411`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2603.16411/) |
+| **Categories** | [`entity-correction`](../../../meta/categories/entity-correction/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
 
 Implement the RECOVER pipeline (Kumar2026) on Whisper Turbo: enable beam-width-5 decoding,
 collect top-5 hypotheses, and use GPT-4o LLM-Select to choose the most entity-accurate
@@ -66,9 +64,9 @@ gold-92</strong> (S-0003-02)</summary>
 | **ID** | `S-0003-02` |
 | **Kind** | experiment |
 | **Date added** | 2026-06-23 |
-| **Source task** | [`t0003_literature_review_entity_stt`](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Source paper** | [`10.48550_arXiv.2602.18966`](../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2602.18966/) |
-| **Categories** | [`entity-correction`](../../meta/categories/entity-correction/), [`stt-evaluation`](../../meta/categories/stt-evaluation/) |
+| **Source task** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
+| **Source paper** | [`10.48550_arXiv.2602.18966`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2602.18966/) |
+| **Categories** | [`entity-correction`](../../../meta/categories/entity-correction/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
 
 Implement the six-agent LLM pipeline from Ron2026 against Whisper Turbo on gold-92. The
 pipeline processes a first-pass transcript to extract topic labels, named entities, and domain
@@ -91,9 +89,9 @@ project evaluation harness</strong> (S-0003-04)</summary>
 | **ID** | `S-0003-04` |
 | **Kind** | evaluation |
 | **Date added** | 2026-06-23 |
-| **Source task** | [`t0003_literature_review_entity_stt`](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Source paper** | [`10.48550_arXiv.2605.29430`](../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2605.29430/) |
-| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`entity-correction`](../../meta/categories/entity-correction/) |
+| **Source task** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
+| **Source paper** | [`10.48550_arXiv.2605.29430`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2605.29430/) |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`entity-correction`](../../../meta/categories/entity-correction/) |
 
 Register and implement the S2ER metric from Jiang2026 in the project's evaluation harness.
 S2ER is an LLM-judged metric that better correlates with wrong-action rate than WER: it
@@ -106,29 +104,6 @@ types: stt-benchmark-run, write-library.
 </details>
 
 <details>
-<summary>🔧 <strong>Implement Novitasari2026 common-word cue injection as a
-zero-latency biasing add-on</strong> (S-0003-05)</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `S-0003-05` |
-| **Kind** | technique |
-| **Date added** | 2026-06-23 |
-| **Source task** | [`t0003_literature_review_entity_stt`](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Source paper** | [`10.48550_arXiv.2604.12398`](../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2604.12398/) |
-| **Categories** | [`entity-correction`](../../meta/categories/entity-correction/), [`latency-profiling`](../../meta/categories/latency-profiling/) |
-
-Implement the common-word cue approach from Novitasari2026 as a pre-processing step on top of
-Rezolve's existing dynamic context injection. The method maps non-standard brand names and
-SKUs to phonetically similar common-word anchors, adding them to the bias list without G2P.
-Novitasari2026 reported 16.3% reduction in bias-word errors with zero added latency and no
-model retraining, and the method is additive to any existing biasing technique. Evaluate on
-gold-92 entity accuracy and confirm zero latency impact. Recommended task types:
-post-correction-experiment, stt-benchmark-run.
-
-</details>
-
-<details>
 <summary>📊 <strong>Measure end-to-end latency of RECOVER and Ron2026 pipelines on
 Rezolve infrastructure</strong> (S-0003-06)</summary>
 
@@ -137,9 +112,9 @@ Rezolve infrastructure</strong> (S-0003-06)</summary>
 | **ID** | `S-0003-06` |
 | **Kind** | evaluation |
 | **Date added** | 2026-06-23 |
-| **Source task** | [`t0003_literature_review_entity_stt`](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
+| **Source task** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
 | **Source paper** | — |
-| **Categories** | [`latency-profiling`](../../meta/categories/latency-profiling/), [`stt-evaluation`](../../meta/categories/stt-evaluation/) |
+| **Categories** | [`latency-profiling`](../../../meta/categories/latency-profiling/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
 
 The survey found that latency estimates for both RECOVER (~+100-200ms) and Ron2026 (~550-650ms
 total) are extrapolations from known Whisper Turbo inference speed and GPT-4o API latency, not
@@ -160,9 +135,9 @@ accent-induced entity errors</strong> (S-0003-07)</summary>
 | **ID** | `S-0003-07` |
 | **Kind** | evaluation |
 | **Date added** | 2026-06-23 |
-| **Source task** | [`t0003_literature_review_entity_stt`](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Source paper** | [`10.48550_arXiv.2603.25727`](../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2603.25727/) |
-| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`audio-datasets`](../../meta/categories/audio-datasets/) |
+| **Source task** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
+| **Source paper** | [`10.48550_arXiv.2603.25727`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2603.25727/) |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`audio-datasets`](../../../meta/categories/audio-datasets/) |
 
 WildASR (Tay2026) confirmed that model robustness does not transfer across accent conditions
 and that ASR systems hallucinate plausible but unspoken content under degraded inputs. Gold-92
@@ -186,9 +161,9 @@ logit-space biasing</strong> (S-0003-08)</summary>
 | **ID** | `S-0003-08` |
 | **Kind** | technique |
 | **Date added** | 2026-06-23 |
-| **Source task** | [`t0003_literature_review_entity_stt`](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Source paper** | [`10.48550_arXiv.2601.15397`](../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2601.15397/) |
-| **Categories** | [`entity-correction`](../../meta/categories/entity-correction/), [`stt-evaluation`](../../meta/categories/stt-evaluation/) |
+| **Source task** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
+| **Source paper** | [`10.48550_arXiv.2601.15397`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2601.15397/) |
+| **Categories** | [`entity-correction`](../../../meta/categories/entity-correction/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
 
 The LOGIC paper (Wang2026, logit-space entity biasing with constant-time complexity, 9%
 relative Entity WER reduction) was withdrawn from arXiv in February 2026 for institutional

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<llm_context_archive type_id="suggestions" generated_at_utc="2026-06-23T10:13:15Z">
+  <archive_summary>
+    <title>All Suggestions</title>
+    <description>Complete suggestion list with full descriptions, priority, and status.</description>
+    <section_count>1</section_count>
+    <char_count>8285</char_count>
+    <byte_count>8285</byte_count>
+    <estimated_tokens>2071</estimated_tokens>
+    <compatibility>131k-class, 200k-class, 1M-class</compatibility>
+  </archive_summary>
+  <included_content>
+    <item>all suggestions with full descriptions</item>
+  </included_content>
+  <sections>
+    <section id="full-suggestions" source_kind="aggregator">
+      <title>All Suggestions (Full Detail)</title>
+      <source_name>aggregate_suggestions_full</source_name>
+      <source_ids>
+        <id>S-0003-01</id>
+        <id>S-0003-02</id>
+        <id>S-0003-03</id>
+        <id>S-0003-04</id>
+        <id>S-0003-05</id>
+        <id>S-0003-06</id>
+        <id>S-0003-07</id>
+        <id>S-0003-08</id>
+      </source_ids>
+      <content>
+Suggestions: 8
+
+## Prototype RECOVER N-best + LLM-Select on gold-92
+ID: S-0003-01
+Status: active
+Priority: high
+Kind: experiment
+Source task: t0003_literature_review_entity_stt
+Source paper: 10.48550_arXiv.2603.16411
+Categories: entity-correction, stt-evaluation
+Date added: 2026-06-23
+
+Implement the RECOVER pipeline (Kumar2026) on Whisper Turbo: enable beam-width-5 decoding, collect top-5 hypotheses, and use GPT-4o LLM-Select to choose the most entity-accurate hypothesis. Measure entity accuracy (substring match), overall WER, and end-to-end latency on all 93 gold-92 clips. RECOVER reported 33-35% relative E-WER reduction on Earnings-21, the closest public proxy for ecommerce entities. This is the highest expected gain from a no-retraining method in the survey. Recommended task types: post-correction-experiment, stt-benchmark-run.
+
+## Prototype Ron2026 initial_prompt multi-agent pipeline on gold-92
+ID: S-0003-02
+Status: active
+Priority: high
+Kind: experiment
+Source task: t0003_literature_review_entity_stt
+Source paper: 10.48550_arXiv.2602.18966
+Categories: entity-correction, stt-evaluation
+Date added: 2026-06-23
+
+Implement the six-agent LLM pipeline from Ron2026 against Whisper Turbo on gold-92. The pipeline processes a first-pass transcript to extract topic labels, named entities, and domain jargon, assembles a context prompt (224 tokens max), and feeds it into a second Whisper decoding pass via the initial_prompt parameter. Seed the NER agent with Rezolve&#x27;s brand/product catalog. Measure entity accuracy and latency on all 93 clips. Ron2026 reported 17% relative WER reduction on entity-dense NBA commentary with zero model retraining. Recommended task types: post-correction-experiment, stt-benchmark-run.
+
+## Annotate gold-92 with entity span offsets to enable E-WER and Slot F1
+ID: S-0003-03
+Status: active
+Priority: high
+Kind: dataset
+Source task: t0003_literature_review_entity_stt
+Categories: stt-evaluation, audio-datasets
+Date added: 2026-06-23
+
+Add entity-offset markup to gold-92 ground-truth transcripts, tagging brand names, product names, and SKUs with character-level span annotations. This unblocks computation of E-WER (required to evaluate RECOVER) and Slot F1 (required to evaluate Zheng2026 selective span editing). Without entity spans, only substring-match and overall WER can be reported on gold-92. The annotation should cover all 93 clips and follow a schema compatible with the Contextual Earnings-22 format (Durmus2026) to enable cross-benchmark comparison. Recommended task types: audio-dataset-curation.
+
+## Add S2ER (sentence-level semantic error rate) metric to the project evaluation harness
+ID: S-0003-04
+Status: active
+Priority: medium
+Kind: evaluation
+Source task: t0003_literature_review_entity_stt
+Source paper: 10.48550_arXiv.2605.29430
+Categories: stt-evaluation, entity-correction
+Date added: 2026-06-23
+
+Register and implement the S2ER metric from Jiang2026 in the project&#x27;s evaluation harness. S2ER is an LLM-judged metric that better correlates with wrong-action rate than WER: it collapsed from 19-28% to under 2% over correction turns while WER changed only marginally. Adding S2ER alongside WER and entity accuracy provides a direct proxy for the project&#x27;s target metric of wrong-action rate below 2%. Implementation: add an LLM judge (GPT-4o) call per utterance that scores semantic equivalence between reference and hypothesis. Recommended task types: stt-benchmark-run, write-library.
+
+## Implement Novitasari2026 common-word cue injection as a zero-latency biasing add-on
+ID: S-0003-05
+Status: active
+Priority: medium
+Kind: technique
+Source task: t0003_literature_review_entity_stt
+Source paper: 10.48550_arXiv.2604.12398
+Categories: entity-correction, latency-profiling
+Date added: 2026-06-23
+
+Implement the common-word cue approach from Novitasari2026 as a pre-processing step on top of Rezolve&#x27;s existing dynamic context injection. The method maps non-standard brand names and SKUs to phonetically similar common-word anchors, adding them to the bias list without G2P. Novitasari2026 reported 16.3% reduction in bias-word errors with zero added latency and no model retraining, and the method is additive to any existing biasing technique. Evaluate on gold-92 entity accuracy and confirm zero latency impact. Recommended task types: post-correction-experiment, stt-benchmark-run.
+
+## Measure end-to-end latency of RECOVER and Ron2026 pipelines on Rezolve infrastructure
+ID: S-0003-06
+Status: active
+Priority: medium
+Kind: evaluation
+Source task: t0003_literature_review_entity_stt
+Categories: latency-profiling, stt-evaluation
+Date added: 2026-06-23
+
+The survey found that latency estimates for both RECOVER (~+100-200ms) and Ron2026 (~550-650ms total) are extrapolations from known Whisper Turbo inference speed and GPT-4o API latency, not empirical measurements. Before confirming either method fits the 800ms p50 budget, measure actual pipeline latency on Rezolve&#x27;s production infrastructure at p50 and p95. This is a prerequisite for any production deployment decision. If GPT-4o API latency exceeds the budget, evaluate a local 7B model substitute for the LLM-Select step. Recommended task types: latency-profiling, experiment-run.
+
+## Stratify gold-92 evaluation by speaker accent to quantify accent-induced entity errors
+ID: S-0003-07
+Status: active
+Priority: medium
+Kind: evaluation
+Source task: t0003_literature_review_entity_stt
+Source paper: 10.48550_arXiv.2603.25727
+Categories: stt-evaluation, audio-datasets
+Date added: 2026-06-23
+
+WildASR (Tay2026) confirmed that model robustness does not transfer across accent conditions and that ASR systems hallucinate plausible but unspoken content under degraded inputs. Gold-92 contains six non-native English speaker clips, making accent-induced entity errors a direct project risk. Stratify all gold-92 evaluation results by speaker accent group and compare entity accuracy between native and non-native speakers. If accent is the primary driver of entity errors rather than lexical ambiguity, post-correction methods (RECOVER, Ron2026) will have limited effect and ASR-stage improvements should be prioritized instead. Recommended task types: data-analysis, stt-benchmark-run.
+
+## Monitor LOGIC (Wang2026) arXiv reappearance for constant-time logit-space biasing
+ID: S-0003-08
+Status: active
+Priority: low
+Kind: technique
+Source task: t0003_literature_review_entity_stt
+Source paper: 10.48550_arXiv.2601.15397
+Categories: entity-correction, stt-evaluation
+Date added: 2026-06-23
+
+The LOGIC paper (Wang2026, logit-space entity biasing with constant-time complexity, 9% relative Entity WER reduction) was withdrawn from arXiv in February 2026 for institutional approval compliance. It cannot be implemented until it reappears at a conference venue. Set up monitoring for LOGIC reappearance at Interspeech 2026 or ICASSP 2026 proceedings. Once republished, LOGIC&#x27;s constant-time biasing approach directly addresses context window saturation at catalog scale (10,000+ entries) without the retrieval infrastructure required by BR-ASR. Recommended task types: internet-research.
+      </content>
+    </section>
+  </sections>
+</llm_context_archive>

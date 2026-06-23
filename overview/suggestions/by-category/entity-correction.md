@@ -1,37 +1,13 @@
-# Suggestions by Date Added
+# Suggestions: `entity-correction`
 
-8 suggestion(s) grouped by derived added date.
+5 suggestion(s) in category [`entity-correction`](../../../meta/categories/entity-correction/)
+**5 open** (2 high, 2 medium, 1 low).
 
 [Back to all suggestions](../README.md)
 
 ---
 
-## 2026-06-23 (8)
-
 ## High Priority
-
-<details>
-<summary>📂 <strong>Annotate gold-92 with entity span offsets to enable E-WER and
-Slot F1</strong> (S-0003-03)</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `S-0003-03` |
-| **Kind** | dataset |
-| **Date added** | 2026-06-23 |
-| **Source task** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Source paper** | — |
-| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`audio-datasets`](../../../meta/categories/audio-datasets/) |
-
-Add entity-offset markup to gold-92 ground-truth transcripts, tagging brand names, product
-names, and SKUs with character-level span annotations. This unblocks computation of E-WER
-(required to evaluate RECOVER) and Slot F1 (required to evaluate Zheng2026 selective span
-editing). Without entity spans, only substring-match and overall WER can be reported on
-gold-92. The annotation should cover all 93 clips and follow a schema compatible with the
-Contextual Earnings-22 format (Durmus2026) to enable cross-benchmark comparison. Recommended
-task types: audio-dataset-curation.
-
-</details>
 
 <details>
 <summary>🧪 <strong>Prototype RECOVER N-best + LLM-Select on gold-92</strong>
@@ -124,53 +100,6 @@ Novitasari2026 reported 16.3% reduction in bias-word errors with zero added late
 model retraining, and the method is additive to any existing biasing technique. Evaluate on
 gold-92 entity accuracy and confirm zero latency impact. Recommended task types:
 post-correction-experiment, stt-benchmark-run.
-
-</details>
-
-<details>
-<summary>📊 <strong>Measure end-to-end latency of RECOVER and Ron2026 pipelines on
-Rezolve infrastructure</strong> (S-0003-06)</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `S-0003-06` |
-| **Kind** | evaluation |
-| **Date added** | 2026-06-23 |
-| **Source task** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Source paper** | — |
-| **Categories** | [`latency-profiling`](../../../meta/categories/latency-profiling/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
-
-The survey found that latency estimates for both RECOVER (~+100-200ms) and Ron2026 (~550-650ms
-total) are extrapolations from known Whisper Turbo inference speed and GPT-4o API latency, not
-empirical measurements. Before confirming either method fits the 800ms p50 budget, measure
-actual pipeline latency on Rezolve's production infrastructure at p50 and p95. This is a
-prerequisite for any production deployment decision. If GPT-4o API latency exceeds the budget,
-evaluate a local 7B model substitute for the LLM-Select step. Recommended task types:
-latency-profiling, experiment-run.
-
-</details>
-
-<details>
-<summary>📊 <strong>Stratify gold-92 evaluation by speaker accent to quantify
-accent-induced entity errors</strong> (S-0003-07)</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `S-0003-07` |
-| **Kind** | evaluation |
-| **Date added** | 2026-06-23 |
-| **Source task** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Source paper** | [`10.48550_arXiv.2603.25727`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2603.25727/) |
-| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`audio-datasets`](../../../meta/categories/audio-datasets/) |
-
-WildASR (Tay2026) confirmed that model robustness does not transfer across accent conditions
-and that ASR systems hallucinate plausible but unspoken content under degraded inputs. Gold-92
-contains six non-native English speaker clips, making accent-induced entity errors a direct
-project risk. Stratify all gold-92 evaluation results by speaker accent group and compare
-entity accuracy between native and non-native speakers. If accent is the primary driver of
-entity errors rather than lexical ambiguity, post-correction methods (RECOVER, Ron2026) will
-have limited effect and ASR-stage improvements should be prioritized instead. Recommended task
-types: data-analysis, stt-benchmark-run.
 
 </details>
 

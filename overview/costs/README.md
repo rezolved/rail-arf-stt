@@ -15,9 +15,9 @@ stop threshold.
 | Warn threshold | 80% ($1600.00) |
 | Stop threshold | 100% ($2000.00) |
 | Default per-task limit | $100.00 USD |
-| Tasks with cost records | 0 |
+| Tasks with cost records | 1 |
 | Tasks with non-zero spend | 0 |
-| Skipped tasks | 0 |
+| Skipped tasks | 2 |
 
 ## Service Totals
 
@@ -27,6 +27,15 @@ No entries found.
 
 No entries found.
 
+1 task cost record(s) are zero-cost and omitted from the main spend table.
+
 ## Task Spend
 
 No task cost records found.
+
+## Skipped Tasks
+
+| Task ID | Reason |
+|---------|--------|
+| `t0001_stt_benchmark` | results/costs.json missing a numeric total_cost_usd |
+| `t0002_baseline_evaluation` | results/costs.json is missing or invalid |
