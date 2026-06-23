@@ -1,0 +1,95 @@
+{
+  "spec_version": "3",
+  "paper_id": "10.48550_arXiv.2603.25727",
+  "doi": "10.48550/arXiv.2603.25727",
+  "title": "Back to Basics: Revisiting ASR in the Age of Voice Agents",
+  "url": "https://arxiv.org/abs/2603.25727",
+  "pdf_url": "https://arxiv.org/pdf/2603.25727",
+  "date_published": "2026-03-26",
+  "year": 2026,
+  "authors": [
+    {
+      "name": "Geeyang Tay",
+      "country": null,
+      "institution": "Boson AI",
+      "orcid": null
+    },
+    {
+      "name": "Wentao Ma",
+      "country": null,
+      "institution": "Boson AI",
+      "orcid": null
+    },
+    {
+      "name": "Jaewon Lee",
+      "country": null,
+      "institution": "Boson AI",
+      "orcid": null
+    },
+    {
+      "name": "Yuzhi Tang",
+      "country": null,
+      "institution": "Boson AI",
+      "orcid": null
+    },
+    {
+      "name": "Daniel Lee",
+      "country": null,
+      "institution": "Boson AI",
+      "orcid": null
+    },
+    {
+      "name": "Weisu Yin",
+      "country": null,
+      "institution": "Boson AI",
+      "orcid": null
+    },
+    {
+      "name": "Dongming Shen",
+      "country": null,
+      "institution": "Boson AI",
+      "orcid": null
+    },
+    {
+      "name": "Silin Meng",
+      "country": null,
+      "institution": "Boson AI",
+      "orcid": null
+    },
+    {
+      "name": "Yi Zhu",
+      "country": null,
+      "institution": "Boson AI",
+      "orcid": null
+    },
+    {
+      "name": "Mu Li",
+      "country": null,
+      "institution": "Boson AI",
+      "orcid": null
+    },
+    {
+      "name": "Alex Smola",
+      "country": null,
+      "institution": "Boson AI",
+      "orcid": null
+    }
+  ],
+  "institutions": [],
+  "journal": "arXiv preprint",
+  "venue_type": "preprint",
+  "categories": [
+    "stt-evaluation",
+    "latency-profiling"
+  ],
+  "abstract": "Automatic speech recognition (ASR) systems have achieved near-human accuracy on curated benchmarks, yet still fail in real-world voice agents under conditions that current evaluations do not systematically cover. Without diagnostic tools that isolate specific failure factors, practitioners cannot anticipate which conditions, in which languages, will cause what degree of degradation. We introduce WildASR, a multilingual (four-language) diagnostic benchmark sourced entirely from real human speech that factorizes ASR robustness along three axes: environmental degradation, demographic shift, and linguistic diversity. Evaluating seven widely used ASR systems, we find severe and uneven performance degradation, and model robustness does not transfer across languages or conditions. Critically, models often hallucinate plausible but unspoken content under partial or degraded inputs, creating concrete safety risks for downstream agent behavior. Our results demonstrate that targeted, factor-isolated evaluation is essential for understanding and improving ASR reliability in production systems. Besides the benchmark itself, we also present three analytical tools that practitioners can use to guide deployment decisions.",
+  "citation_key": "Tay2026",
+  "summary_path": "summary.md",
+  "files": [
+    "files/tay_2026_back-to-basics-asr.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0003_literature_review_entity_stt",
+  "date_added": "2026-06-23"
+}
