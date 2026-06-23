@@ -41,9 +41,9 @@
       "step": 5,
       "name": "research-internet",
       "description": "Search arXiv, Semantic Scholar, ACL Anthology, ICASSP, and Interspeech 2026 for papers on contextual biasing, shallow fusion, entity-aware ASR, and LLM post-correction.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-23T08:35:53Z",
-      "completed_at": null,
+      "completed_at": "2026-06-23T08:44:59Z",
       "log_file": "logs/steps/005_research-internet/"
     },
     {
