@@ -1,0 +1,41 @@
+{
+  "spec_version": "3",
+  "paper_id": "10.48550_arXiv.2603.16411",
+  "doi": "10.48550/arXiv.2603.16411",
+  "title": "RECOVER: Robust Entity Correction via Agentic Orchestration of Hypothesis Variants for Evidence-based Recovery",
+  "url": "https://arxiv.org/abs/2603.16411",
+  "pdf_url": "https://arxiv.org/pdf/2603.16411",
+  "date_published": "2026-03-17",
+  "year": 2026,
+  "authors": [
+    {
+      "name": "Abhishek Kumar",
+      "country": null,
+      "institution": null,
+      "orcid": null
+    },
+    {
+      "name": "Aashraya Sachdeva",
+      "country": null,
+      "institution": null,
+      "orcid": null
+    }
+  ],
+  "institutions": [],
+  "journal": "Interspeech 2026",
+  "venue_type": "conference",
+  "categories": [
+    "entity-correction",
+    "stt-evaluation"
+  ],
+  "abstract": "RECOVER is an agentic correction framework that leverages multiple ASR hypotheses and LLM-based correction to improve entity recognition in ASR transcripts. The framework evaluates four hypothesis selection strategies: 1-Best, Entity-Aware Select, ROVER Ensemble, and LLM-Select. Tested on five diverse datasets (Earnings-21, ATCO2, Eka-Medical, Common Voice, ContextASR-Bench), RECOVER achieves 8-46% relative reductions in entity-phrase word error rate (E-WER) with recall improvements up to 22 percentage points. LLM-Select using GPT-4o achieves optimal entity correction performance while maintaining overall word error rates across datasets.",
+  "citation_key": "Kumar2026",
+  "summary_path": "summary.md",
+  "files": [
+    "files/kumar_2026_recover-entity-correction.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0003_literature_review_entity_stt",
+  "date_added": "2026-06-23"
+}

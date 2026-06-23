@@ -1,0 +1,52 @@
+{
+  "spec_version": "3",
+  "paper_id": "10.48550_arXiv.2603.25460",
+  "doi": "10.48550/arXiv.2603.25460",
+  "title": "CLAR: CIF-Localized Alignment for Retrieval-Augmented Speech LLM-Based Contextual ASR",
+  "url": "https://arxiv.org/abs/2603.25460",
+  "pdf_url": "https://arxiv.org/pdf/2603.25460",
+  "date_published": "2026-03-26",
+  "year": 2026,
+  "authors": [
+    {
+      "name": "Shangkun Huang",
+      "country": "CN",
+      "institution": "BRVoice Team, Bairong, Inc.",
+      "orcid": null
+    },
+    {
+      "name": "Huan Wei",
+      "country": "CN",
+      "institution": "BRVoice Team, Bairong, Inc.",
+      "orcid": null
+    },
+    {
+      "name": "Yunzhang Chen",
+      "country": "CN",
+      "institution": "BRVoice Team, Bairong, Inc.",
+      "orcid": null
+    }
+  ],
+  "institutions": [
+    {
+      "name": "BRVoice Team, Bairong, Inc.",
+      "country": "CN"
+    }
+  ],
+  "journal": "Interspeech 2026",
+  "venue_type": "conference",
+  "categories": [
+    "entity-correction",
+    "stt-evaluation"
+  ],
+  "abstract": "Contextual ASR systems for speech LLMs commonly employ shallow fusion or prompt injection to bias decoding toward domain-specific hotwords. These approaches suffer from feature dilution (global pooling loses fine-grained entity cues) and weak-supervision misalignment (prompt tokens misalign with acoustic positions). CLAR proposes a dual-encoder retrieval system using Continuous Integrate-and-Fire (CIF) to learn monotonic token-level acoustic alignments without requiring timestamps. A length-aware localized window matching mechanism precisely anchors short-entity acoustic cues. Multi-granularity contrastive training combines global sentence-level and local hotword-level objectives. The retrieved top-ranked hotwords are injected as contextual prompts to a Speech LLM without shallow fusion. On AISHELL-1-NE, CLAR achieves Recall@1 of 97.03% and B-WER of 2.78%, improving over the SeACo-Paraformer baseline by 3.93pp CER and 9.14pp B-WER.",
+  "citation_key": "Huang2026",
+  "summary_path": "summary.md",
+  "files": [
+    "files/huang_2026_clar-retrieval-augmented-asr.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0003_literature_review_entity_stt",
+  "date_added": "2026-06-23"
+}

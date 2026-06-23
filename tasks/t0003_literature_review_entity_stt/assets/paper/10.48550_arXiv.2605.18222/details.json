@@ -1,0 +1,59 @@
+{
+  "spec_version": "3",
+  "paper_id": "10.48550_arXiv.2605.18222",
+  "doi": "10.48550/arXiv.2605.18222",
+  "title": "Contextual Biasing for Streaming ASR via CTC-based Word Spotting",
+  "url": "https://arxiv.org/abs/2605.18222",
+  "pdf_url": "https://arxiv.org/pdf/2605.18222",
+  "date_published": "2026-05-18",
+  "year": 2026,
+  "authors": [
+    {
+      "name": "Kai-Chen Tsai",
+      "country": "TW",
+      "institution": "National Taiwan University",
+      "orcid": null
+    },
+    {
+      "name": "Tien-Hong Lo",
+      "country": "TW",
+      "institution": "National Taiwan University",
+      "orcid": null
+    },
+    {
+      "name": "Yun-Ting Sun",
+      "country": "TW",
+      "institution": "National Taiwan University",
+      "orcid": null
+    },
+    {
+      "name": "Berlin Chen",
+      "country": "TW",
+      "institution": "National Taiwan University",
+      "orcid": null
+    }
+  ],
+  "institutions": [
+    {
+      "name": "National Taiwan University",
+      "country": "TW"
+    }
+  ],
+  "journal": "arXiv preprint",
+  "venue_type": "preprint",
+  "categories": [
+    "entity-correction",
+    "latency-profiling",
+    "stt-evaluation"
+  ],
+  "abstract": "Contextual biasing improves recognition of rare and domain-specific words in ASR systems. This paper extends CTC-based word spotting (CTC-WS) to streaming ASR by maintaining active keyword paths across audio chunks using a stateful token passing algorithm. An incremental commitment mechanism manages streaming latency by deferring uncertain regions while emitting committed segments early. The method requires no modifications to the acoustic model and integrates naturally with streaming CTC pipelines. Experiments demonstrate reduced overall WER and improved keyword F-score on standard contextual ASR benchmarks.",
+  "citation_key": "Tsai2026",
+  "summary_path": "summary.md",
+  "files": [
+    "files/tsai_2026_ctc-streaming-contextual-biasing.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0003_literature_review_entity_stt",
+  "date_added": "2026-06-23"
+}

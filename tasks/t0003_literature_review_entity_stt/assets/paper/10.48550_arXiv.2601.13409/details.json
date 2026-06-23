@@ -1,0 +1,64 @@
+{
+  "spec_version": "3",
+  "paper_id": "10.48550_arXiv.2601.13409",
+  "doi": "10.48550/arXiv.2601.13409",
+  "title": "RLBR: Reinforcement Learning with Biasing Rewards for Contextual Speech Large Language Models",
+  "url": "https://arxiv.org/abs/2601.13409",
+  "pdf_url": "https://arxiv.org/pdf/2601.13409",
+  "date_published": "2026-01-19",
+  "year": 2026,
+  "authors": [
+    {
+      "name": "Bo Ren",
+      "country": "US",
+      "institution": "Microsoft",
+      "orcid": null
+    },
+    {
+      "name": "Ruchao Fan",
+      "country": "US",
+      "institution": "Microsoft",
+      "orcid": null
+    },
+    {
+      "name": "Yelong Shen",
+      "country": "US",
+      "institution": "Microsoft",
+      "orcid": null
+    },
+    {
+      "name": "Weizhu Chen",
+      "country": "US",
+      "institution": "Microsoft",
+      "orcid": null
+    },
+    {
+      "name": "Jinyu Li",
+      "country": "US",
+      "institution": "Microsoft",
+      "orcid": null
+    }
+  ],
+  "institutions": [
+    {
+      "name": "Microsoft",
+      "country": "US"
+    }
+  ],
+  "journal": "ICASSP 2026",
+  "venue_type": "conference",
+  "categories": [
+    "entity-correction",
+    "stt-evaluation"
+  ],
+  "abstract": "Contextual biasing in speech LLMs improves recognition of rare and domain-specific terms, but current methods rely on supervised fine-tuning (SFT) that treats all words equally. This paper proposes RLBR, a reinforcement learning approach using a biasing-words-preferred reward that explicitly up-weights bias word tokens in the reward calculation. A reference-aware mechanism extends the RL algorithm with reference transcription to strengthen trajectory exploration. On LibriSpeech with bias lists of 100-1000 words, RLBR achieves biased WERs of 0.59%/2.11% (test-clean/test-other) at 100 words, 1.09%/3.24% at 500 words, and 1.36%/4.04% at 1000 words, consistently outperforming SFT baselines and recently published contextual biasing methods.",
+  "citation_key": "Ren2026",
+  "summary_path": "summary.md",
+  "files": [
+    "files/novitasari_2026_rlbr-biasing-rewards.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0003_literature_review_entity_stt",
+  "date_added": "2026-06-23"
+}

@@ -1,0 +1,53 @@
+{
+  "spec_version": "3",
+  "paper_id": "10.48550_arXiv.2602.18966",
+  "doi": "10.48550/arXiv.2602.18966",
+  "title": "Whisper: Courtside Edition — Multi-Agent LLM Pipeline for Domain-Specific ASR via Context Generation",
+  "url": "https://arxiv.org/abs/2602.18966",
+  "pdf_url": "https://arxiv.org/pdf/2602.18966",
+  "date_published": "2026-02-21",
+  "year": 2026,
+  "authors": [
+    {
+      "name": "Yonathan Ron",
+      "country": "IL",
+      "institution": "Reichman University",
+      "orcid": null
+    },
+    {
+      "name": "Shiri Gilboa",
+      "country": "IL",
+      "institution": "Reichman University",
+      "orcid": null
+    },
+    {
+      "name": "Tammuz Dubnov",
+      "country": "IL",
+      "institution": "Reichman University",
+      "orcid": null
+    }
+  ],
+  "institutions": [
+    {
+      "name": "Reichman University",
+      "country": "IL"
+    }
+  ],
+  "journal": "arXiv preprint",
+  "venue_type": "preprint",
+  "categories": [
+    "entity-correction",
+    "stt-evaluation",
+    "whisper-finetuning"
+  ],
+  "abstract": "Whisper's initial_prompt parameter allows injecting up to 224 tokens of context to guide decoding, but standard pipelines do not exploit this capability for domain-specific entity recognition. This paper proposes a multi-agent LLM pipeline with six specialized agents (topic classification, named entity recognition, jargon extraction, decision filtering, candidate selection, prompt construction) that intercept Whisper's initial transcript and generate a compact context prompt. Evaluated on 421 NBA basketball commentary segments dense in proper nouns and technical jargon, the full pipeline achieves 17.0% relative WER reduction (0.217 to 0.180, p < 0.001), improving 40.1% of segments while degrading only 7.1%. No Whisper retraining is required.",
+  "citation_key": "Ron2026",
+  "summary_path": "summary.md",
+  "files": [
+    "files/ron_2026_whisper-courtside-llm-context.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0003_literature_review_entity_stt",
+  "date_added": "2026-06-23"
+}

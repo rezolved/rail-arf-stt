@@ -1,0 +1,65 @@
+{
+  "spec_version": "3",
+  "paper_id": "10.48550_arXiv.2602.12287",
+  "doi": "10.48550/arXiv.2602.12287",
+  "title": "Retrieval-Augmented Self-Taught Reasoning Model with Adaptive Chain-of-Thought for ASR Named Entity Correction",
+  "url": "https://arxiv.org/abs/2602.12287",
+  "pdf_url": "https://arxiv.org/pdf/2602.12287",
+  "date_published": "2026-02-21",
+  "year": 2026,
+  "authors": [
+    {
+      "name": "Junjie An",
+      "country": "CN",
+      "institution": null,
+      "orcid": null
+    },
+    {
+      "name": "Jingguang Tian",
+      "country": "CN",
+      "institution": null,
+      "orcid": null
+    },
+    {
+      "name": "Tianyi Wang",
+      "country": "CN",
+      "institution": null,
+      "orcid": null
+    },
+    {
+      "name": "Yu Gao",
+      "country": "CN",
+      "institution": null,
+      "orcid": null
+    },
+    {
+      "name": "Xiaofeng Mou",
+      "country": "CN",
+      "institution": null,
+      "orcid": null
+    },
+    {
+      "name": "Yi Xu",
+      "country": "CN",
+      "institution": null,
+      "orcid": null
+    }
+  ],
+  "institutions": [],
+  "journal": "arXiv preprint",
+  "venue_type": "preprint",
+  "categories": [
+    "entity-correction",
+    "stt-evaluation"
+  ],
+  "abstract": "ASR systems frequently misrecognize domain-specific named entities. This paper proposes RASTAR, a retrieval-augmented framework combining a BERT-based Rephrasing Language Model (RLM) for named entity recognition with phonetic-level edit-distance retrieval, and A-STAR, an adaptive chain-of-thought self-taught reasoning model that dynamically adjusts reasoning depth based on task difficulty. Three difficulty levels (Simple, Challenging, Formidable) trigger increasing chain-of-thought depth. Trained on Qwen3 (0.6B and 8B variants) with DPO. On AISHELL-1, RLM achieves 94.18% F1 (vs. 91.97% for DANCER baseline) and RASTAR achieves 17.96% and 34.42% relative NE-CER reduction on AISHELL-1 and Homophone test sets. Token efficiency: 30-40% fewer reasoning tokens vs. full chain-of-thought.",
+  "citation_key": "An2026",
+  "summary_path": "summary.md",
+  "files": [
+    "files/an_2026_retrieval-augmented-ner-asr.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0003_literature_review_entity_stt",
+  "date_added": "2026-06-23"
+}

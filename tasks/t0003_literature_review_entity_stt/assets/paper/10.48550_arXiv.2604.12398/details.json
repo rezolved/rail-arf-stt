@@ -1,0 +1,62 @@
+{
+  "spec_version": "3",
+  "paper_id": "10.48550_arXiv.2604.12398",
+  "doi": "10.48550/arXiv.2604.12398",
+  "title": "Contextual Biasing for ASR in Speech LLM with Common Word Cues and Bias Word Position Prediction",
+  "url": "https://arxiv.org/abs/2604.12398",
+  "pdf_url": "https://arxiv.org/pdf/2604.12398",
+  "date_published": "2026-04-14",
+  "year": 2026,
+  "authors": [
+    {
+      "name": "Sashi Novitasari",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Takashi Fukuda",
+      "country": "JP",
+      "institution": "IBM Research Tokyo",
+      "orcid": null
+    },
+    {
+      "name": "Gakuto Kurata",
+      "country": "JP",
+      "institution": "IBM Research Tokyo",
+      "orcid": null
+    },
+    {
+      "name": "George Saon",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    }
+  ],
+  "institutions": [
+    {
+      "name": "IBM Research",
+      "country": "US"
+    },
+    {
+      "name": "IBM Research Tokyo",
+      "country": "JP"
+    }
+  ],
+  "journal": "ICASSP 2026",
+  "venue_type": "conference",
+  "categories": [
+    "entity-correction",
+    "stt-evaluation"
+  ],
+  "abstract": "Speech-aware large language models (speech LLMs) struggle to transcribe rare or unseen bias words even when provided as text prompts. Phoneme-assisted biasing methods address this but require grapheme-to-phoneme (G2P) systems that may be unavailable or error-prone for domain-specific terms. This paper proposes using acoustic cues from common words whose pronunciations are partially similar to target bias words, eliminating the G2P requirement. A multi-output learning objective jointly trains bias word position prediction alongside the contextual biasing task, improving both recall and localization of bias words. The method achieves a 16.3% reduction in bias word recognition errors compared to the baseline on both in-domain and out-of-domain data.",
+  "citation_key": "Novitasari2026",
+  "summary_path": "summary.md",
+  "files": [
+    "files/novitasari_2026_contextual-biasing-common-word.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0003_literature_review_entity_stt",
+  "date_added": "2026-06-23"
+}
