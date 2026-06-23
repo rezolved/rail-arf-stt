@@ -1,0 +1,140 @@
+{
+  "task_id": "t0002_baseline_evaluation",
+  "steps": [
+    {
+      "step": 1,
+      "name": "create-branch",
+      "description": "Create task/t0002_baseline_evaluation branch from main and set up worktree.",
+      "status": "in_progress",
+      "started_at": "2026-06-23T08:05:02Z",
+      "completed_at": null,
+      "log_file": "logs/steps/001_create-branch/"
+    },
+    {
+      "step": 2,
+      "name": "check-deps",
+      "description": "Verify t0001_stt_benchmark is completed and gold-92 dataset is available.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 3,
+      "name": "init-folders",
+      "description": "Create task folder structure including assets/predictions/ for two predictions assets.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 4,
+      "name": "research-papers",
+      "description": "Review Whisper paper and any relevant STT evaluation papers in the corpus.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 5,
+      "name": "research-internet",
+      "description": "Research Deepgram Nova-2 API documentation, Whisper inference setup, and STT evaluation frameworks.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 6,
+      "name": "research-code",
+      "description": "Review t0001 dataset asset structure and any utilities relevant to loading gold-92 audio.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 7,
+      "name": "planning",
+      "description": "Design evaluation pipeline: Deepgram API calls, Whisper inference, metric computation, BCa bootstrap, charts.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 8,
+      "name": "setup-machines",
+      "description": "Provision GPU instance for Whisper Large v3 inference if local CPU is too slow.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 9,
+      "name": "implementation",
+      "description": "Run Deepgram Nova-2 and Whisper Large v3 on gold-92; compute all five registered metrics with BCa CIs.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 10,
+      "name": "teardown",
+      "description": "Destroy GPU instance and download results after Whisper inference completes.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 11,
+      "name": "creative-thinking",
+      "description": "Identify non-obvious analysis angles: per-accent breakdown, per-entity-type analysis, latency-accuracy tradeoffs.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 12,
+      "name": "results",
+      "description": "Write results_summary.md, results_detailed.md, metrics.json with both system results and all charts.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 13,
+      "name": "compare-literature",
+      "description": "Compare entity accuracy and WER against published Whisper Large v3 and Deepgram benchmarks.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 14,
+      "name": "suggestions",
+      "description": "Formulate suggestions for post-correction and fine-tuning tasks based on baseline gaps.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 15,
+      "name": "reporting",
+      "description": "Final verificator pass, session capture, task.json status update.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    }
+  ]
+}
