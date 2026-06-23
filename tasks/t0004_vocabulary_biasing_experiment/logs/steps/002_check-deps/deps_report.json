@@ -1,0 +1,10 @@
+{
+  "task_id": "t0004_vocabulary_biasing_experiment",
+  "checked_at": "2026-06-23T13:43:45Z",
+  "result": "passed",
+  "dependencies": [
+    {"task_id": "t0002_baseline_evaluation", "status": "completed", "satisfied": true}
+  ],
+  "errors": 0,
+  "warnings": 0
+}

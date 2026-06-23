@@ -14,8 +14,8 @@
       "step": 2,
       "name": "check-deps",
       "description": "Verify t0002_baseline_evaluation is completed and gold-92 predictions are accessible.",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-06-23T13:43:45Z",
       "completed_at": null,
       "log_file": "logs/steps/002_check-deps/"
     },
