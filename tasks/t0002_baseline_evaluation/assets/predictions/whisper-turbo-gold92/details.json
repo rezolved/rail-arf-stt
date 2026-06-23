@@ -1,0 +1,32 @@
+{
+  "spec_version": "2",
+  "predictions_id": "whisper-turbo-gold92",
+  "name": "Whisper turbo on Gold-92",
+  "short_description": "Per-instance Whisper turbo STT predictions on the gold-92 benchmark of 93 accented English investor-relations audio clips, establishing a faster open-source STT baseline for the Rezolve voice commerce project.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "OpenAI Whisper turbo (~809M parameters) run locally via faster-whisper (CTranslate2 INT8, CPU, language='en') on Apple M5 Mac. No fine-tuning or domain adaptation. Whisper turbo is a distilled variant offering comparable accuracy to large-v3 at roughly 8x faster inference.",
+  "dataset_ids": [
+    "stt-benchmark-gold-92"
+  ],
+  "prediction_format": "jsonl",
+  "prediction_schema": "Each line is a JSON object with fields: clip_id (string), reference (string, normalised ground truth), hypothesis (string, model output), accent_group (string, speaker accent category), entity_spans_reference (list of {text, type, start, end}), entity_spans_predicted (list of {text, type, found: bool}), entity_accuracy (float or null for anomaly clips), wer (float, word error rate for this clip), latency_seconds (float, end-to-end inference time), anomaly_flag (string or null).",
+  "instance_count": 93,
+  "metrics_at_creation": {
+    "entity_accuracy_gold92": 0.251812,
+    "wer_gold92": 0.106319
+  },
+  "files": [
+    {
+      "path": "files/predictions-gold92.jsonl",
+      "description": "Per-instance predictions on gold-92 benchmark (93 clips). One JSON object per line.",
+      "format": "jsonl"
+    }
+  ],
+  "categories": [
+    "stt-evaluation",
+    "whisper-finetuning"
+  ],
+  "created_by_task": "t0002_baseline_evaluation",
+  "date_created": "2026-06-23"
+}

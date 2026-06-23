@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0002_baseline_evaluation",
+  "command": "python -u -m arf.scripts.verificators.verify_research_papers --task-id t0002_baseline_evaluation",
+  "exit_code": 2,
+  "duration_seconds": 0.031,
+  "started_at": "2026-06-23T08:29:28Z",
+  "completed_at": "2026-06-23T08:29:28Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0002_baseline_evaluation",
+  "stdout_file": "024_20260623T082928Z_python-u-m.stdout.txt",
+  "stderr_file": "024_20260623T082928Z_python-u-m.stderr.txt",
+  "stdout_lines": 0,
+  "stderr_lines": 2,
+  "truncated": false
+}

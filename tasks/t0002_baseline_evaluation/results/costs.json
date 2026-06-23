@@ -1,0 +1,15 @@
+{
+  "total_cost_usd": 2.50,
+  "breakdown": {
+    "claude-code-orchestration": {
+      "description": "Anthropic API usage by Claude Code agent for task orchestration, planning, implementation, and results steps (~estimate)",
+      "cost_usd": 2.50,
+      "model": "claude-sonnet-4-6"
+    }
+  },
+  "services": {
+    "anthropic_api": 2.50
+  },
+  "budget_limit": 100.0,
+  "note": "Deepgram Nova-2 API was not called (DEEPGRAM_API_KEY unavailable), so the estimated $0.08–0.09 Deepgram cost was not incurred. Whisper inference ran locally on Apple M5 CPU at zero marginal cost. No GPU instance was provisioned. The only real spend is Claude Code orchestration, estimated at $2.50."
+}

@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0002_baseline_evaluation/tasks/t0002_baseline_evaluation/code/run_deepgram.py", line 185, in <module>
+    main()
+    ~~~~^^
+  File "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0002_baseline_evaluation/tasks/t0002_baseline_evaluation/code/run_deepgram.py", line 107, in main
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: DEEPGRAM_API_KEY environment variable is not set. Please set it before running this script.

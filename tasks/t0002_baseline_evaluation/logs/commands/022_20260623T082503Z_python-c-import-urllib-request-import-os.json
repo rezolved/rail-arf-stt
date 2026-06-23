@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0002_baseline_evaluation",
+  "command": "python -c \nimport urllib.request\nimport os\n\noutput_dir = 'tasks/t0002_baseline_evaluation/assets/paper/10.1109_ASRU65441.2025.11434797/files'\nos.makedirs(output_dir, exist_ok=True)\nout_file = os.path.join(output_dir, 'ayache_2024_whisperner-joint-asr-ner.pdf')\n\nif os.path.exists(out_file) and os.path.getsize(out_file) > 10000:\n    print(f'File already exists: {out_file} ({os.path.getsize(out_file)} bytes)')\nelse:\n    url = 'https://arxiv.org/pdf/2409.08107'\n    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (research paper download)'})\n    with urllib.request.urlopen(req, timeout=60) as resp:\n        data = resp.read()\n    with open(out_file, 'wb') as f:\n        f.write(data)\n    print(f'Downloaded {len(data)} bytes to {out_file}')\n    # Validate\n    assert data[:4] == b'%PDF', f'Not a PDF: {data[:20]}'\n    assert b'%%EOF' in data[-1000:] or b'%%EOF' in data[-2000:], 'Missing EOF marker'\n    print('Validation passed: valid PDF with EOF marker')\n",
+  "exit_code": 0,
+  "duration_seconds": 3.922,
+  "started_at": "2026-06-23T08:25:03Z",
+  "completed_at": "2026-06-23T08:25:06Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0002_baseline_evaluation",
+  "stdout_file": "022_20260623T082503Z_python-c-import-urllib-request-import-os.stdout.txt",
+  "stderr_file": "022_20260623T082503Z_python-c-import-urllib-request-import-os.stderr.txt",
+  "stdout_lines": 2,
+  "stderr_lines": 0,
+  "truncated": false
+}

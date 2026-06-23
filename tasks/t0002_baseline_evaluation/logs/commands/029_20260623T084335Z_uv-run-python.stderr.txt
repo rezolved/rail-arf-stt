@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0002_baseline_evaluation/tasks/t0002_baseline_evaluation/code/run_deepgram.py", line 16, in <module>
+    from deepgram import DeepgramClient, PrerecordedOptions
+ImportError: cannot import name 'PrerecordedOptions' from 'deepgram' (/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0002_baseline_evaluation/.venv/lib/python3.13/site-packages/deepgram/__init__.py)

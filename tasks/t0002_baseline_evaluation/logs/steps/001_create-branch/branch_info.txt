@@ -1,0 +1,5 @@
+branch: task/t0002_baseline_evaluation
+base_branch: main
+base_commit: d5c0717
+worktree_path: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0002_baseline_evaluation
+created_at: 2026-06-23T08:05:02Z

@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0002_baseline_evaluation",
+  "command": "python -u meta/asset_types/paper/verify_summary.py tasks/t0002_baseline_evaluation/assets/paper/10.21437_Interspeech.2020-1338/summary.md",
+  "exit_code": 0,
+  "duration_seconds": 0.03,
+  "started_at": "2026-06-23T08:24:23Z",
+  "completed_at": "2026-06-23T08:24:23Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0002_baseline_evaluation",
+  "stdout_file": "021_20260623T082423Z_python-u-meta-asset-types-paper-verify-s.stdout.txt",
+  "stderr_file": "021_20260623T082423Z_python-u-meta-asset-types-paper-verify-s.stderr.txt",
+  "stdout_lines": 0,
+  "stderr_lines": 0,
+  "truncated": false
+}

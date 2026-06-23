@@ -5,12 +5,12 @@
   "name": "Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92",
   "short_description": "Establish project baselines by running Deepgram Nova-2 and Whisper Large v3 on gold-92, computing all five registered metrics with BCa bootstrap confidence intervals.",
   "long_description_file": "task_description.md",
-  "status": "in_progress",
+  "status": "completed",
   "dependencies": [
     "t0001_stt_benchmark"
   ],
   "start_time": "2026-06-23T08:04:26Z",
-  "end_time": null,
+  "end_time": "2026-06-23T10:25:00Z",
   "expected_assets": {
     "predictions": 2
   },

@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0002_baseline_evaluation",
+  "command": "curl -L -A Mozilla/5.0 (research bot; mailto:margaritatiamanova@rezolve.com) -o tasks/t0002_baseline_evaluation/assets/paper/10.21437_Interspeech.2020-1338/files/liu_2020_blockwise-bootstrap-asr.pdf https://www.isca-archive.org/interspeech_2020/liu20c_interspeech.pdf -w \\nHTTP_STATUS:%{http_code}\\nCONTENT_TYPE:%{content_type}\\nSIZE:%{size_download}",
+  "exit_code": 0,
+  "duration_seconds": 0.523,
+  "started_at": "2026-06-23T08:21:23Z",
+  "completed_at": "2026-06-23T08:21:23Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0002_baseline_evaluation",
+  "stdout_file": "015_20260623T082123Z_curl-l-a.stdout.txt",
+  "stderr_file": "015_20260623T082123Z_curl-l-a.stderr.txt",
+  "stdout_lines": 4,
+  "stderr_lines": 5,
+  "truncated": false
+}

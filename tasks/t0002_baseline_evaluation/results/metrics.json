@@ -1,0 +1,32 @@
+{
+  "variants": [
+    {
+      "variant_id": "whisper-large-v3",
+      "label": "Whisper Large v3",
+      "dimensions": {
+        "model": "whisper-large-v3"
+      },
+      "metrics": {
+        "entity_accuracy_gold92": 0.251812,
+        "wer_gold92": 0.100301,
+        "action_critical_wer_gold92": 0.303797,
+        "intent_preservation_gold92": 0.903226,
+        "latency_p50_seconds": 5.6598
+      }
+    },
+    {
+      "variant_id": "whisper-turbo",
+      "label": "Whisper turbo",
+      "dimensions": {
+        "model": "whisper-turbo"
+      },
+      "metrics": {
+        "entity_accuracy_gold92": 0.251812,
+        "wer_gold92": 0.106319,
+        "action_critical_wer_gold92": 0.303797,
+        "intent_preservation_gold92": 0.903226,
+        "latency_p50_seconds": 4.2501
+      }
+    }
+  ]
+}

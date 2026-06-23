@@ -1,0 +1,2 @@
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0002_baseline_evaluation/tasks/t0002_baseline_evaluation/code/compute_metrics.py:567: UserWarning: Clip error_en_0005 has Cyrillic ground truth 'How does Rezolve transform end-to-end shopping experience with agentic conversational first AI that unifies discovery, payments and support?' — known annotation error. Including in run with anomaly flag.
+  clips = load_gold92()

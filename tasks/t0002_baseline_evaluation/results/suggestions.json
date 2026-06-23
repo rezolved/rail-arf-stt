@@ -1,0 +1,75 @@
+{
+  "spec_version": "1",
+  "suggestions": [
+    {
+      "id": "S-0002-01",
+      "title": "Vocabulary-biased Whisper inference via STT_INITIAL_PROMPT on gold-92",
+      "description": "Run Whisper turbo on gold-92 with a domain vocabulary prompt injected via STT_INITIAL_PROMPT (e.g., 'Rezolve, brainpowa, Rezolve AI, Shopify Plus, Salesforce Commerce Cloud, Adobe Commerce, AI Foundry'). The baseline showed 'Rezolve' is systematically transcribed as 'Hizol' or 'Resolve' — a pure vocabulary gap. Vocabulary biasing via initial_prompt requires zero training and zero API cost. Measure entity accuracy on production clips specifically (baseline: 8.8%) and compare with paired BCa test against the whisper-turbo baseline. Recommended task types: stt-benchmark-run, experiment-run.",
+      "kind": "experiment",
+      "priority": "high",
+      "source_task": "t0002_baseline_evaluation",
+      "source_paper": null,
+      "categories": ["stt-evaluation", "whisper-finetuning"]
+    },
+    {
+      "id": "S-0002-02",
+      "title": "Run Deepgram Nova-2 baseline on gold-92 to complete REQ-1 and paired significance test",
+      "description": "The t0002 baseline evaluation could not run Deepgram Nova-2 because DEEPGRAM_API_KEY was unavailable. This blocked REQ-1, REQ-5 (paired significance test), REQ-9 (Deepgram predictions asset), and the production comparator column in all results tables. Cost is approximately $0.09 for 93 clips. A dedicated task should obtain the key from the team vault, run Deepgram Nova-2 with nova-2 model and default settings on all 93 gold-92 clips, compute all five registered metrics with BCa CIs, run the paired significance test against whisper-turbo, and produce the deepgram-nova2-gold92 predictions asset. Recommended task types: stt-benchmark-run, baseline-evaluation.",
+      "kind": "experiment",
+      "priority": "high",
+      "source_task": "t0002_baseline_evaluation",
+      "source_paper": null,
+      "categories": ["stt-evaluation", "commercial-apis"]
+    },
+    {
+      "id": "S-0002-03",
+      "title": "LLM post-correction layer for entity normalization on Whisper transcripts",
+      "description": "Build a lightweight LLM post-correction pass that takes a Whisper transcript and a domain entity glossary (Rezolve, brainpowa, product names, IR terms) and corrects entity-span errors without rewriting the full transcript. The baseline shows entity accuracy of 25.2% overall and 8.8% on production clips — the majority of failures are vocabulary substitutions (Rezolve→Hizol, Rezolve→Resolve) that a prompted LLM with glossary access could correct cheaply. Target: measure entity accuracy gain and added latency overhead vs the 800 ms p50 budget. Recommended task types: post-correction-experiment, experiment-run.",
+      "kind": "technique",
+      "priority": "high",
+      "source_task": "t0002_baseline_evaluation",
+      "source_paper": null,
+      "categories": ["entity-correction", "stt-evaluation"]
+    },
+    {
+      "id": "S-0002-04",
+      "title": "Domain fine-tuning of Whisper turbo on Rezolve investor-relations audio",
+      "description": "Fine-tune Whisper turbo on Rezolve-domain audio (investor-relations sessions, brand names, product terms) to close the vocabulary gap revealed by the baseline. Both large-v3 and turbo achieved identical entity accuracy (25.2%), confirming model size is not the bottleneck — training data distribution is. The WhisperNER supervised fine-tuning comparison showed 81.35 F1 on a domain-specific corpus vs our 25.2%, indicating large headroom. A fine-tuning task should collect or synthesize domain audio+transcript pairs, run LoRA or full fine-tune on turbo (pragmatic: 25% lower latency than large-v3 with no accuracy loss), and evaluate on gold-92 production clips (baseline: 8.8%). Recommended task types: whisper-finetuning-run, experiment-run.",
+      "kind": "experiment",
+      "priority": "medium",
+      "source_task": "t0002_baseline_evaluation",
+      "source_paper": null,
+      "categories": ["whisper-finetuning", "audio-datasets"]
+    },
+    {
+      "id": "S-0002-05",
+      "title": "Expand gold-92 benchmark with more production clips and fix annotation inconsistencies",
+      "description": "Three findings motivate benchmark expansion: (1) the 34-clip production subset scores only 8.8% entity accuracy but drives all business-critical decisions; a larger production sample would tighten BCa confidence intervals and reduce the risk of outlier clips dominating results; (2) at least three clips (Examples 10, 13, 14) show verbatim transcript matches scoring 0 entity accuracy due to annotation normalisation mismatches — the annotation schema needs an audit; (3) clip error_en_0005 has Cyrillic ground truth indicating upstream data quality issues. The expanded benchmark should also apply blockwise bootstrap by speaker for the clean_voices subset as recommended by Liu2020. Recommended task types: audio-dataset-curation, data-analysis.",
+      "kind": "dataset",
+      "priority": "medium",
+      "source_task": "t0002_baseline_evaluation",
+      "source_paper": null,
+      "categories": ["audio-datasets", "stt-evaluation"]
+    },
+    {
+      "id": "S-0002-06",
+      "title": "Add Azure Speech Services as a third STT comparison point on gold-92",
+      "description": "Azure Cognitive Services Speech-to-Text supports custom keyword lists and phrase boosting natively, making it a strong candidate for domain entity accuracy without fine-tuning. Compare it against Deepgram Nova-2 and Whisper turbo on gold-92 using all five registered metrics. Requires AZURE_SPEECH_API_KEY from the team vault. Azure also offers Custom Speech (domain adaptation) which can be evaluated in a follow-up. Estimated cost: approximately $0.01–$0.05 for 93 clips at standard tier pricing. Recommended task types: stt-benchmark-run, comparative-analysis.",
+      "kind": "experiment",
+      "priority": "medium",
+      "source_task": "t0002_baseline_evaluation",
+      "source_paper": null,
+      "categories": ["commercial-apis", "stt-evaluation"]
+    },
+    {
+      "id": "S-0002-07",
+      "title": "Implement intent classification metric to replace span-presence proxy",
+      "description": "The current intent_preservation_gold92 metric uses a span-presence heuristic that is over-estimated: 'Resolve' satisfies 'Rezolve' after normalisation, inflating the 90.3% figure. A proper intent classifier should distinguish entity substitution that changes action target (e.g., wrong company name) from substitution that preserves action type (e.g., generic query intent). This is needed to make intent_preservation_gold92 meaningful for the confidence-routing policy (wrong_action_rate_gold92 goal: <2%). Implement as a lightweight rule-based or LLM-based classifier and re-evaluate on gold-92. Recommended task types: write-library, experiment-run.",
+      "kind": "evaluation",
+      "priority": "medium",
+      "source_task": "t0002_baseline_evaluation",
+      "source_paper": null,
+      "categories": ["stt-evaluation", "confidence-routing"]
+    }
+  ]
+}
