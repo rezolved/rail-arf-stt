@@ -1,0 +1,32 @@
+{
+  "spec_version": "2",
+  "predictions_id": "whisper-large-v3-biased",
+  "name": "Whisper Large v3 + Vocabulary Bias on Gold-92",
+  "short_description": "Per-instance Whisper Large v3 STT predictions on gold-92 with 31-term domain vocabulary injected via initial_prompt, ablating vocabulary biasing against t0002 baseline.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "OpenAI Whisper Large v3 (~1.5B parameters) run locally via faster-whisper (CTranslate2 INT8, CPU, language='en', beam_size=5) with initial_prompt set to a 31-term domain vocabulary string covering Rezolve brand names, product lines, and key people. No fine-tuning applied.",
+  "dataset_ids": [
+    "stt-benchmark-gold-92"
+  ],
+  "prediction_format": "jsonl",
+  "prediction_schema": "Each line is a JSON object with fields: clip_id (string), reference (string, normalised ground truth), hypothesis (string, model output), accent_group (string, speaker accent category), entity_spans_reference (list of {text, type, start, end}), entity_spans_predicted (list of {text, type, found: bool}), entity_accuracy (float or null for anomaly clips), wer (float, word error rate for this clip), latency_seconds (float, end-to-end inference time), anomaly_flag (string or null).",
+  "instance_count": 93,
+  "metrics_at_creation": {
+    "entity_accuracy_gold92": 0.460145,
+    "wer_gold92": 0.085256
+  },
+  "files": [
+    {
+      "path": "files/predictions-gold92.jsonl",
+      "description": "Per-instance predictions on gold-92 benchmark (93 clips). One JSON object per line.",
+      "format": "jsonl"
+    }
+  ],
+  "categories": [
+    "stt-evaluation",
+    "whisper-finetuning"
+  ],
+  "created_by_task": "t0004_vocabulary_biasing_experiment",
+  "date_created": "2026-06-23"
+}

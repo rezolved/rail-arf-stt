@@ -1,0 +1,10 @@
+{
+  "spec_version": 1,
+  "name": "Entity Accuracy — Domain Vocabulary",
+  "description": "Entity accuracy computed only over the 31 domain-specific terms (brand names, product names, person names) from the Rezolve vocabulary list that appear in gold-92 ground truth. A term is correct if it appears verbatim in the predicted transcript after normalisation.",
+  "unit": "accuracy",
+  "value_type": "float",
+  "higher_is_better": true,
+  "is_key": true,
+  "emoji": "📖"
+}

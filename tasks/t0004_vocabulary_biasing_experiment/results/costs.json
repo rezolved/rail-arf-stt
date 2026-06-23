@@ -1,0 +1,5 @@
+{
+  "total_cost_usd": 0.0,
+  "breakdown": {},
+  "note": "All inference ran locally on CPU (faster-whisper CTranslate2 int8 and moonshine_onnx). No paid external API calls were made."
+}

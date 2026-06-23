@@ -1,0 +1,13 @@
+Loading Moonshine ONNX model: moonshine/base
+  [10/93] French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q04: 'Can you integrate with Shopify Plus Salesforce Commerce Clou'
+  [20/93] German_ErcanKilic__en-ErcanKilic-q07: 'How do I integrate Resolve AI with my existing system?'
+  [30/93] Korean_JemmaLee__en-JemmaLee-q05: 'What can your agent do autonomously in the shopping journey?'
+  [40/93] Spanish_StephaniaCesborn__en-StephaniaCesborn-q01: 'How does Resolviai improve product discovery from enterprise'
+  [50/93] f68c8bf1-2d96-424b-80b1-73ada80b747a_turn1: 'So I just want to know about this page'
+  [60/93] a51ce143-d891-4d78-9942-cad87653e9bb_turn1: 'Each company is generated the most revenue from the acquisit'
+  [70/93] 2affce69-d8ed-4b50-96cf-c72dda4e181e_turn3: 'That matter to me as the director of customer voice and insi'
+  [80/93] e53c95cd-2e5b-4617-93ac-f0f794d0ac01_turn5: 'The board of directors of resolve a.r.'
+  [90/93] error_en_0019: 'Kind of interesting can you take them to a page that talks a'
+  [93/93] error_en_0011: "Hospitality sector and i'm looking for a conversational ai s"
+
+Wrote 93 transcripts to tasks/t0004_vocabulary_biasing_experiment/data/moonshine_base_transcripts.json

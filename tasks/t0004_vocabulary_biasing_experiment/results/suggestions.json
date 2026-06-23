@@ -1,0 +1,95 @@
+{
+  "spec_version": 1,
+  "suggestions": [
+    {
+      "id": "S-0004-01",
+      "title": "GPU benchmark: biased Whisper turbo latency on production hardware",
+      "description": "Re-run biased Whisper turbo on gold-92 using a GPU (T4 or A10G) to measure realistic production latency. CPU p50 is 5.86s — well above the 800ms voice-to-action target. GPU inference with CTranslate2 CUDA typically achieves 5–10× speedup. This would validate whether vocabulary biasing is viable for real-time deployment or should be reserved for async transcription. Task types: stt-benchmark-run, experiment-run.",
+      "kind": "experiment",
+      "priority": "high",
+      "source_task": "t0004_vocabulary_biasing_experiment",
+      "source_paper": null,
+      "categories": [
+        "stt-evaluation",
+        "latency-profiling"
+      ]
+    },
+    {
+      "id": "S-0004-02",
+      "title": "Expand vocabulary biasing to cover product SKUs and contextual phrases",
+      "description": "The current 31-term prompt focuses on brand and person names. Gold-92 also contains product SKU patterns and ecommerce action phrases ('add to cart', 'checkout now') that are misrecognised. Extend the initial_prompt to include 20–30 additional SKU-format terms and action phrases. Measure entity_accuracy_domain_vocab delta on gold-92. If terms exceed Whisper's 224-token prompt limit, evaluate truncation strategies. Task types: stt-benchmark-run, experiment-run.",
+      "kind": "experiment",
+      "priority": "high",
+      "source_task": "t0004_vocabulary_biasing_experiment",
+      "source_paper": null,
+      "categories": [
+        "stt-evaluation",
+        "whisper-finetuning"
+      ]
+    },
+    {
+      "id": "S-0004-03",
+      "title": "Whisper fine-tuning on Rezolve domain audio to push EA beyond 50%",
+      "description": "Vocabulary biasing raised overall entity accuracy from 25% to 46% but is limited to terms explicitly listed in the prompt. Fine-tuning Whisper turbo on 500–1000 Rezolve domain utterances (synthetic + production) could push entity accuracy above 50% and generalise to unseen vocabulary. Combine with vocabulary biasing at inference time. Use gold-92 as the held-out test set (never train on it). Task types: stt-benchmark-run, experiment-run.",
+      "kind": "experiment",
+      "priority": "medium",
+      "source_task": "t0004_vocabulary_biasing_experiment",
+      "source_paper": null,
+      "categories": [
+        "whisper-finetuning",
+        "stt-evaluation"
+      ]
+    },
+    {
+      "id": "S-0004-04",
+      "title": "Moonshine fine-tuning experiment for latency-constrained deployment",
+      "description": "Moonshine base (70ms p50 on CPU) is 80× faster than Whisper but has 18.4% WER and no initial_prompt support. Fine-tuning on Rezolve domain data could close the accuracy gap while preserving the latency advantage. This would enable a two-tier routing strategy: Moonshine for low-confidence fast inference, biased Whisper for action-critical queries. Task types: stt-benchmark-run, experiment-run.",
+      "kind": "experiment",
+      "priority": "medium",
+      "source_task": "t0004_vocabulary_biasing_experiment",
+      "source_paper": null,
+      "categories": [
+        "stt-evaluation",
+        "latency-profiling"
+      ]
+    },
+    {
+      "id": "S-0004-05",
+      "title": "Confidence-based routing: Moonshine fast-path + biased Whisper fallback",
+      "description": "Design and benchmark a two-stage routing system: Moonshine base transcribes first (70ms); if any domain entity is detected with low confidence or the transcript contains known misrecognition patterns, route to biased Whisper turbo for re-transcription. Measure end-to-end latency distribution (p50, p95) and entity accuracy on gold-92 vs single-model approaches. Task types: stt-benchmark-run, comparative-analysis.",
+      "kind": "experiment",
+      "priority": "medium",
+      "source_task": "t0004_vocabulary_biasing_experiment",
+      "source_paper": null,
+      "categories": [
+        "stt-evaluation",
+        "latency-profiling"
+      ]
+    },
+    {
+      "id": "S-0004-06",
+      "title": "Streaming Whisper inference benchmark (faster-whisper VAD chunking)",
+      "description": "The current batch latency (p50 5.86s biased turbo on CPU) is driven by full-utterance encoding. faster-whisper supports VAD-based chunking with streaming output. Benchmark streaming mode on gold-92 to measure time-to-first-token and full-transcript latency. This is independent of vocabulary biasing and could reduce perceived latency below 800ms even on CPU. Task types: stt-benchmark-run.",
+      "kind": "experiment",
+      "priority": "medium",
+      "source_task": "t0004_vocabulary_biasing_experiment",
+      "source_paper": null,
+      "categories": [
+        "stt-evaluation",
+        "latency-profiling"
+      ]
+    },
+    {
+      "id": "S-0004-07",
+      "title": "Collect 100 new production Rezolve utterances for gold-93+ benchmark expansion",
+      "description": "Gold-92 is a 93-clip benchmark from investor-relations sessions. The vocabulary biasing experiment confirmed that entity accuracy on this set is representative, but the set is small (BCa CIs span ~15pp). Collect 100 additional production clips covering checkout, product search, and support intents to broaden benchmark coverage and reduce CI width. Annotate with ground-truth transcripts using the same format as gold-92. Track with DVC. Task types: stt-benchmark-run.",
+      "kind": "dataset",
+      "priority": "low",
+      "source_task": "t0004_vocabulary_biasing_experiment",
+      "source_paper": null,
+      "categories": [
+        "stt-evaluation"
+      ]
+    }
+  ]
+}

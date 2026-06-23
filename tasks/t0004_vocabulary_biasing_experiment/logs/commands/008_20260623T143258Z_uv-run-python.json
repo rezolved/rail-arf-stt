@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0004_vocabulary_biasing_experiment",
+  "command": "uv run python -u tasks/t0004_vocabulary_biasing_experiment/code/compute_metrics_biased.py",
+  "exit_code": 1,
+  "duration_seconds": 0.513,
+  "started_at": "2026-06-23T14:32:58Z",
+  "completed_at": "2026-06-23T14:32:58Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment",
+  "stdout_file": "008_20260623T143258Z_uv-run-python.stdout.txt",
+  "stderr_file": "008_20260623T143258Z_uv-run-python.stderr.txt",
+  "stdout_lines": 37,
+  "stderr_lines": 10,
+  "truncated": false
+}
