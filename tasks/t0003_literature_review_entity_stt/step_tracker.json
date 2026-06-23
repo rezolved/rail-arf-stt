@@ -95,9 +95,9 @@
       "step": 11,
       "name": "reporting",
       "description": "Run all verificators, capture session transcripts, set task status to completed.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-23T09:15:39Z",
-      "completed_at": null,
+      "completed_at": "2026-06-23T09:18:14Z",
       "log_file": "logs/steps/011_reporting/"
     },
     {
