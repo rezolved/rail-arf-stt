@@ -122,9 +122,9 @@
       "step": 14,
       "name": "suggestions",
       "description": "Formulate suggestions for post-correction and fine-tuning tasks based on baseline gaps.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-23T10:18:18Z",
-      "completed_at": null,
+      "completed_at": "2026-06-23T10:23:05Z",
       "log_file": "logs/steps/014_suggestions/"
     },
     {
