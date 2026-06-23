@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0002_baseline_evaluation",
+  "command": "curl -L -o tasks/t0002_baseline_evaluation/assets/paper/10.48550_arXiv.2212.04356/files/radford_2023_whisper-robust-speech-recognition.pdf https://arxiv.org/pdf/2212.04356",
+  "exit_code": 0,
+  "duration_seconds": 0.799,
+  "started_at": "2026-06-23T08:19:39Z",
+  "completed_at": "2026-06-23T08:19:40Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0002_baseline_evaluation",
+  "stdout_file": "014_20260623T081939Z_curl-l-o.stdout.txt",
+  "stderr_file": "014_20260623T081939Z_curl-l-o.stderr.txt",
+  "stdout_lines": 0,
+  "stderr_lines": 6,
+  "truncated": false
+}

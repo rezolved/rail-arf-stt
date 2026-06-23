@@ -1,0 +1,70 @@
+{
+  "spec_version": "3",
+  "paper_id": "10.48550_arXiv.2212.04356",
+  "doi": "10.48550/arXiv.2212.04356",
+  "title": "Robust Speech Recognition via Large-Scale Weak Supervision",
+  "url": "https://arxiv.org/abs/2212.04356",
+  "pdf_url": "https://arxiv.org/pdf/2212.04356",
+  "date_published": "2022-12-06",
+  "year": 2022,
+  "authors": [
+    {
+      "name": "Alec Radford",
+      "country": "US",
+      "institution": "OpenAI",
+      "orcid": null
+    },
+    {
+      "name": "Jong Wook Kim",
+      "country": "US",
+      "institution": "OpenAI",
+      "orcid": null
+    },
+    {
+      "name": "Tao Xu",
+      "country": "US",
+      "institution": "OpenAI",
+      "orcid": null
+    },
+    {
+      "name": "Greg Brockman",
+      "country": "US",
+      "institution": "OpenAI",
+      "orcid": null
+    },
+    {
+      "name": "Christine McLeavey",
+      "country": "US",
+      "institution": "OpenAI",
+      "orcid": null
+    },
+    {
+      "name": "Ilya Sutskever",
+      "country": "US",
+      "institution": "OpenAI",
+      "orcid": null
+    }
+  ],
+  "institutions": [
+    {
+      "name": "OpenAI",
+      "country": "US"
+    }
+  ],
+  "journal": "arXiv preprint",
+  "venue_type": "preprint",
+  "categories": [
+    "stt-evaluation",
+    "whisper-finetuning"
+  ],
+  "abstract": "We study the capabilities of speech processing systems trained simply to predict large amounts of transcripts of audio on the internet. When scaled to 680,000 hours of multilingual and multitask supervision, the resulting models generalize well to standard benchmarks and are often competitive with prior fully supervised results but in a zero-shot transfer setting without the need for any fine-tuning. When compared to humans, the models approach their accuracy and robustness. We are releasing models and inference code to serve as a foundation for further work on robust speech processing.",
+  "citation_key": "Radford2022",
+  "summary_path": "summary.md",
+  "files": [
+    "files/radford_2023_whisper-robust-speech-recognition.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0002_baseline_evaluation",
+  "date_added": "2026-06-23"
+}

@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0002_baseline_evaluation",
+  "command": "python -u -m arf.scripts.aggregators.aggregate_tasks --format json --detail full --ids t0001_stt_benchmark",
+  "exit_code": 0,
+  "duration_seconds": 0.079,
+  "started_at": "2026-06-23T08:18:46Z",
+  "completed_at": "2026-06-23T08:18:47Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0002_baseline_evaluation",
+  "stdout_file": "010_20260623T081846Z_python-u-m.stdout.txt",
+  "stderr_file": "010_20260623T081846Z_python-u-m.stderr.txt",
+  "stdout_lines": 30,
+  "stderr_lines": 0,
+  "truncated": false
+}
