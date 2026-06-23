@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0002_baseline_evaluation",
+  "command": "uv run flowmark --inplace --nobackup tasks/t0002_baseline_evaluation/research/research_papers.md",
+  "exit_code": 0,
+  "duration_seconds": 0.794,
+  "started_at": "2026-06-23T08:10:21Z",
+  "completed_at": "2026-06-23T08:10:22Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0002_baseline_evaluation",
+  "stdout_file": "005_20260623T081021Z_uv-run-flowmark.stdout.txt",
+  "stderr_file": "005_20260623T081021Z_uv-run-flowmark.stderr.txt",
+  "stdout_lines": 0,
+  "stderr_lines": 0,
+  "truncated": false
+}

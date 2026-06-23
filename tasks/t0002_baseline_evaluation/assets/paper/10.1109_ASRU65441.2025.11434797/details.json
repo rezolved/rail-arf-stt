@@ -1,0 +1,75 @@
+{
+  "spec_version": "3",
+  "paper_id": "10.1109_ASRU65441.2025.11434797",
+  "doi": "10.1109/ASRU65441.2025.11434797",
+  "title": "WhisperNER: Unified Open Named Entity and Speech Recognition",
+  "url": "https://arxiv.org/abs/2409.08107",
+  "pdf_url": "https://arxiv.org/pdf/2409.08107",
+  "date_published": "2025-12-06",
+  "year": 2024,
+  "authors": [
+    {
+      "name": "Gil Ayache",
+      "country": "IL",
+      "institution": "aiOla Research",
+      "orcid": null
+    },
+    {
+      "name": "Menachem Pirchi",
+      "country": "IL",
+      "institution": "aiOla Research",
+      "orcid": null
+    },
+    {
+      "name": "Aviv Navon",
+      "country": "IL",
+      "institution": "aiOla Research",
+      "orcid": null
+    },
+    {
+      "name": "Aviv Shamsian",
+      "country": "IL",
+      "institution": "aiOla Research",
+      "orcid": null
+    },
+    {
+      "name": "Gill Hetz",
+      "country": "IL",
+      "institution": "aiOla Research",
+      "orcid": null
+    },
+    {
+      "name": "Joseph Keshet",
+      "country": "IL",
+      "institution": "aiOla Research and Technion",
+      "orcid": null
+    }
+  ],
+  "institutions": [
+    {
+      "name": "aiOla Research",
+      "country": "IL"
+    },
+    {
+      "name": "Technion - Israel Institute of Technology",
+      "country": "IL"
+    }
+  ],
+  "journal": "2025 IEEE Automatic Speech Recognition and Understanding Workshop (ASRU)",
+  "venue_type": "conference",
+  "categories": [
+    "stt-evaluation",
+    "whisper-finetuning",
+    "entity-correction"
+  ],
+  "abstract": "Integrating named entity recognition (NER) with automatic speech recognition (ASR) can significantly enhance transcription accuracy and enrich its content. We introduce WhisperNER, a novel model that facilitates joint speech transcription and entity recognition. WhisperNER supports open-type NER, enabling recognition of various entities during inference. Building on recent advancements in open NER research, we augment a large synthetic dataset with synthetic speech samples. This approach enables us to train WhisperNER on numerous examples with various NER tags. During training, the model is prompted with NER labels and optimized to produce the transcribed utterance alongside the corresponding tagged entities. For evaluation, we generate synthetic speech for commonly used NER benchmarks and annotate existing ASR datasets with open NER tags. Our experiments show that WhisperNER outperforms natural baselines in both out-of-domain open-type NER and supervised fine-tuning.",
+  "citation_key": "Ayache2024",
+  "summary_path": "summary.md",
+  "files": [
+    "files/ayache_2024_whisperner-joint-asr-ner.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0002_baseline_evaluation",
+  "date_added": "2026-06-23"
+}

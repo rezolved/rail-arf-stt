@@ -1,0 +1,6 @@
+Saved Chart 1 to tasks/t0002_baseline_evaluation/results/images/fig1_primary_metrics_comparison.png (49,344 bytes)
+Saved Chart 2 to tasks/t0002_baseline_evaluation/results/images/fig2_per_utterance_entity_accuracy.png (60,179 bytes)
+
+Chart generation complete.
+  Chart 1: tasks/t0002_baseline_evaluation/results/images/fig1_primary_metrics_comparison.png
+  Chart 2: tasks/t0002_baseline_evaluation/results/images/fig2_per_utterance_entity_accuracy.png

@@ -1,0 +1,45 @@
+{
+  "spec_version": "3",
+  "paper_id": "10.21437_Interspeech.2020-1338",
+  "doi": "10.21437/Interspeech.2020-1338",
+  "title": "Statistical Testing on ASR Performance via Blockwise Bootstrap",
+  "url": "https://www.isca-archive.org/interspeech_2020/liu20c_interspeech.html",
+  "pdf_url": "https://www.isca-archive.org/interspeech_2020/liu20c_interspeech.pdf",
+  "date_published": "2020-10-25",
+  "year": 2020,
+  "authors": [
+    {
+      "name": "Zhe Liu",
+      "country": "US",
+      "institution": "Facebook AI",
+      "orcid": null
+    },
+    {
+      "name": "Fuchun Peng",
+      "country": "US",
+      "institution": "Facebook AI",
+      "orcid": null
+    }
+  ],
+  "institutions": [
+    {
+      "name": "Facebook AI",
+      "country": "US"
+    }
+  ],
+  "journal": "Interspeech 2020",
+  "venue_type": "conference",
+  "categories": [
+    "stt-evaluation"
+  ],
+  "abstract": "A common question being raised in automatic speech recognition (ASR) evaluations is how reliable is an observed word error rate (WER) improvement comparing two ASR systems, where statistical hypothesis testing and confidence interval (CI) can be utilized to tell whether this improvement is real or only due to random chance. The bootstrap resampling method has been popular for such significance analysis which is intuitive and easy to use. However, this method fails in dealing with dependent data, which is prevalent in speech world - for example, ASR performance on utterances from the same speaker could be correlated. In this paper we present blockwise bootstrap approach - by dividing evaluation utterances into nonoverlapping blocks, this method resamples these blocks instead of original data. We show that the resulting variance estimator of absolute WER difference between two ASR systems is consistent under mild conditions. We also demonstrate the validity of blockwise bootstrap method on both synthetic and real-world speech data.",
+  "citation_key": "Liu2020",
+  "summary_path": "summary.md",
+  "files": [
+    "files/liu_2020_blockwise-bootstrap-asr.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0002_baseline_evaluation",
+  "date_added": "2026-06-23"
+}

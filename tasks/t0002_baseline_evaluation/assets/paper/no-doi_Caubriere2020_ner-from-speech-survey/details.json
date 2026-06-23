@@ -1,0 +1,76 @@
+{
+  "spec_version": "3",
+  "paper_id": "no-doi_Caubriere2020_ner-from-speech-survey",
+  "doi": null,
+  "title": "Where are we in Named Entity Recognition from Speech?",
+  "url": "https://aclanthology.org/2020.lrec-1.556/",
+  "pdf_url": "https://aclanthology.org/2020.lrec-1.556.pdf",
+  "date_published": "2020-05",
+  "year": 2020,
+  "authors": [
+    {
+      "name": "Antoine Caubrière",
+      "country": "FR",
+      "institution": "LIUM - Le Mans University",
+      "orcid": null
+    },
+    {
+      "name": "Sophie Rosset",
+      "country": "FR",
+      "institution": "LIMSI - University of Paris-Saclay, CNRS",
+      "orcid": null
+    },
+    {
+      "name": "Yannick Estève",
+      "country": "FR",
+      "institution": "LIA - Avignon University",
+      "orcid": null
+    },
+    {
+      "name": "Antoine Laurent",
+      "country": "FR",
+      "institution": "LIUM - Le Mans University",
+      "orcid": null
+    },
+    {
+      "name": "Emmanuel Morin",
+      "country": "FR",
+      "institution": "LS2N - University of Nantes, CNRS",
+      "orcid": null
+    }
+  ],
+  "institutions": [
+    {
+      "name": "LIUM - Le Mans University",
+      "country": "FR"
+    },
+    {
+      "name": "LIMSI - University of Paris-Saclay, CNRS",
+      "country": "FR"
+    },
+    {
+      "name": "LIA - Avignon University",
+      "country": "FR"
+    },
+    {
+      "name": "LS2N - University of Nantes, CNRS",
+      "country": "FR"
+    }
+  ],
+  "journal": "Proceedings of the 12th Language Resources and Evaluation Conference (LREC 2020)",
+  "venue_type": "conference",
+  "categories": [
+    "stt-evaluation",
+    "entity-correction"
+  ],
+  "abstract": "Named entity recognition (NER) from speech is usually made through a pipeline process that consists in (i) processing audio using an automatic speech recognition system (ASR) and (ii) applying a NER to the ASR outputs. The latest data available for named entity extraction from speech in French were produced during the ETAPE evaluation campaign in 2012. Since the publication of ETAPE's campaign results, major improvements were done on NER and ASR systems, especially with the development of neural approaches for both of these components. In addition, recent studies have shown the capability of End-to-End (E2E) approach for NER / SLU tasks. In this paper, we propose a study of the improvements made in speech recognition and named entity recognition for pipeline approaches. For this type of systems, we propose an original 3-pass approach. We also explore the capability of an E2E system to do structured NER. Finally, we compare the performances of ETAPE's systems (state-of-the-art systems in 2012) with the performances obtained using current technologies. The results show the interest of the E2E approach, which however remains below an updated pipeline approach.",
+  "citation_key": "Caubriere2020",
+  "summary_path": "summary.md",
+  "files": [
+    "files/caubriere_2020_ner-from-speech-survey.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0002_baseline_evaluation",
+  "date_added": "2026-06-23"
+}

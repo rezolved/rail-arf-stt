@@ -1,0 +1,2 @@
+Downloaded 2239302 bytes to tasks/t0002_baseline_evaluation/assets/paper/10.1109_ASRU65441.2025.11434797/files/ayache_2024_whisperner-joint-asr-ner.pdf
+Validation passed: valid PDF with EOF marker

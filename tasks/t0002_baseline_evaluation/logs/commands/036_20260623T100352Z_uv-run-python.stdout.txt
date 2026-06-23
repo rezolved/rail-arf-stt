@@ -1,0 +1,11 @@
+Computing metrics for Whisper turbo...
+  entity_accuracy: 0.2518 (0.1812-0.3370)
+  wer: 0.1063 (0.0895-0.1443)
+  action_critical_wer: 0.3038 (0.1344-0.2688)
+  intent_preservation: 0.9032 (0.8280-0.9570)
+  latency_p50: 4.250s
+
+Wrote tasks/t0002_baseline_evaluation/results/metrics.json
+Updated tasks/t0002_baseline_evaluation/data/analysis_output.json
+
+Done.

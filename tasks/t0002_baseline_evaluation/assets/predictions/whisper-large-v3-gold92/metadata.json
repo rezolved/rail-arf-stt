@@ -1,0 +1,26 @@
+{
+  "model": "Whisper Large v3",
+  "package": "faster-whisper",
+  "package_version": "1.x",
+  "device": "cpu",
+  "compute_type": "int8",
+  "language": "en",
+  "hardware": "Apple M5 Mac",
+  "inference_date": "2026-06-23",
+  "total_inference_time_minutes": 8.8,
+  "latency_p50_seconds": 5.6598,
+  "latency_note": "Whisper latency is local CPU-only and does NOT include network round-trip. Not comparable to Deepgram latency figures.",
+  "warmup_clips": 3,
+  "bootstrap": {
+    "method": "BCa (standard i.i.d.)",
+    "n_resamples": 10000,
+    "random_state": 42,
+    "note": "Standard i.i.d. BCa. For clean_voices subset (~40 clips, 6 named speakers), blockwise bootstrap by speaker would be more accurate (Liu & Peng 2020). Standard BCa is acceptable for the full 93-clip primary result."
+  },
+  "anomaly_clips": [
+    {
+      "clip_id": "error_en_0005",
+      "note": "gold_set.jsonl has Cyrillic 'ы' as ground_truth for this clip. canonical ground_truth.jsonl has normal English. Clip included in WER but excluded from entity accuracy aggregate."
+    }
+  ]
+}
