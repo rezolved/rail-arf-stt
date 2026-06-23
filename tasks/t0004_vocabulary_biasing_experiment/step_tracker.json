@@ -77,9 +77,9 @@
       "step": 9,
       "name": "implementation",
       "description": "Run Whisper large-v3 and turbo with initial_prompt on gold-92; compute all metrics with BCa CIs; write biased prediction assets.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-23T13:45:27Z",
-      "completed_at": null,
+      "completed_at": "2026-06-23T14:43:48Z",
       "log_file": "logs/steps/009_implementation/"
     },
     {
