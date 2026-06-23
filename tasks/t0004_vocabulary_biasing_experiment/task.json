@@ -5,12 +5,12 @@
   "name": "Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy",
   "short_description": "Test whether Whisper's initial_prompt vocabulary biasing improves entity accuracy on gold-92 domain terms compared to t0002 baselines.",
   "long_description_file": "task_description.md",
-  "status": "in_progress",
+  "status": "completed",
   "dependencies": [
     "t0002_baseline_evaluation"
   ],
   "start_time": "2026-06-23T13:39:58Z",
-  "end_time": null,
+  "end_time": "2026-06-23T15:30:00Z",
   "expected_assets": {
     "predictions": 3
   },
