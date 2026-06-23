@@ -86,10 +86,10 @@
       "step": 10,
       "name": "suggestions",
       "description": "Generate follow-up task suggestions based on literature findings and shortlisted techniques.",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-06-23T09:13:25Z",
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/010_suggestions/"
     },
     {
       "step": 11,
