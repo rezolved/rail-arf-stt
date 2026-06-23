@@ -104,8 +104,8 @@
       "step": 12,
       "name": "results",
       "description": "Write results_summary.md, results_detailed.md, metrics.json with all four variants and per-term breakdown.",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-06-23T14:43:53Z",
       "completed_at": null,
       "log_file": "logs/steps/012_results/"
     },
