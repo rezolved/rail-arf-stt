@@ -50,9 +50,9 @@
       "step": 6,
       "name": "research-code",
       "description": "Review t0001 dataset asset structure and any utilities relevant to loading gold-92 audio.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-23T08:18:16Z",
-      "completed_at": null,
+      "completed_at": "2026-06-23T08:27:24Z",
       "log_file": "logs/steps/006_research-code/"
     },
     {
