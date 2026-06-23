@@ -1,0 +1,84 @@
+{
+  "spec_version": "3",
+  "paper_id": "10.48550_arXiv.2605.27808",
+  "doi": "10.48550/arXiv.2605.27808",
+  "title": "TARQ: Tail-Aware Reconstruction Quantization for Rare-Word Robust Automatic Speech Recognition",
+  "url": "https://arxiv.org/abs/2605.27808",
+  "pdf_url": "https://arxiv.org/pdf/2605.27808",
+  "date_published": "2026-05-27",
+  "year": 2026,
+  "authors": [
+    {
+      "name": "Xinyu Wang",
+      "country": "CA",
+      "institution": "McGill University",
+      "orcid": null
+    },
+    {
+      "name": "Ziyu Zhao",
+      "country": "CA",
+      "institution": "McGill University",
+      "orcid": null
+    },
+    {
+      "name": "Ke Bai",
+      "country": "US",
+      "institution": "Boson AI",
+      "orcid": null
+    },
+    {
+      "name": "Silin Meng",
+      "country": "US",
+      "institution": "Boson AI",
+      "orcid": null
+    },
+    {
+      "name": "Dongming Shen",
+      "country": "US",
+      "institution": "Boson AI",
+      "orcid": null
+    },
+    {
+      "name": "Xiao-Wen Chang",
+      "country": "CA",
+      "institution": "McGill University",
+      "orcid": null
+    },
+    {
+      "name": "Yixuan He",
+      "country": "US",
+      "institution": "Arizona State University",
+      "orcid": null
+    }
+  ],
+  "institutions": [
+    {
+      "name": "McGill University",
+      "country": "CA"
+    },
+    {
+      "name": "Boson AI",
+      "country": "US"
+    },
+    {
+      "name": "Arizona State University",
+      "country": "US"
+    }
+  ],
+  "journal": "arXiv preprint",
+  "venue_type": "preprint",
+  "categories": [
+    "entity-correction",
+    "latency-profiling"
+  ],
+  "abstract": "Data-aware post-training quantization (PTQ) minimizes a per-token reconstruction loss on a small calibration corpus, implicitly weighting positions by their empirical frequency. For Automatic Speech Recognition (ASR), this misaligns with tail-sensitive risk: names, numerals, and domain-specific words receive proportionally little calibration mass. We propose Tail-Aware Reconstruction Quantization (TARQ), a label-free PTQ framework that shifts calibration toward the lexical tail via RAREBAL, a closed-form per-Linear-layer rule equalizing common/tail mass, paired with a metric-consistent residual correction. TARQ requires no entity labels, no curated calibration set, no validation decoding, and no additional training. Across eight ASR backbones and six datasets at W4G128, TARQ improves mean rare-Word Error Rate (rare-WER) without an aggregate-WER regression, achieves the lowest cross-corpus rare-WER swing among compared methods, and transfers to entity-rich benchmarks (ProfASR, ContextASR-Speech-En) without entity supervision.",
+  "citation_key": "Wang2026",
+  "summary_path": "summary.md",
+  "files": [
+    "files/wang_2026_tarq-rare-word-quantization.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0003_literature_review_entity_stt",
+  "date_added": "2026-06-23"
+}
