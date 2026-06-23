@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0004_vocabulary_biasing_experiment",
+  "command": "uv run python -u -m arf.scripts.verificators.verify_predictions t0004_vocabulary_biasing_experiment whisper-large-v3-biased",
+  "exit_code": 1,
+  "duration_seconds": 0.033,
+  "started_at": "2026-06-23T14:41:46Z",
+  "completed_at": "2026-06-23T14:41:46Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment",
+  "stdout_file": "011_20260623T144146Z_uv-run-python.stdout.txt",
+  "stderr_file": "011_20260623T144146Z_uv-run-python.stderr.txt",
+  "stdout_lines": 0,
+  "stderr_lines": 1,
+  "truncated": false
+}

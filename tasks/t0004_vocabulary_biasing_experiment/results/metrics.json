@@ -1,0 +1,79 @@
+{
+  "variants": [
+    {
+      "variant_id": "whisper-large-v3",
+      "label": "Whisper Large v3 (baseline)",
+      "dimensions": {
+        "model": "whisper-large-v3"
+      },
+      "metrics": {
+        "entity_accuracy_gold92": 0.251812,
+        "wer_gold92": 0.100301,
+        "action_critical_wer_gold92": 0.303797,
+        "intent_preservation_gold92": 0.903226,
+        "latency_p50_seconds": 5.6598,
+        "entity_accuracy_domain_vocab": 0.181818
+      }
+    },
+    {
+      "variant_id": "whisper-large-v3-biased",
+      "label": "Whisper Large v3 + vocab bias",
+      "dimensions": {
+        "model": "whisper-large-v3"
+      },
+      "metrics": {
+        "entity_accuracy_gold92": 0.460145,
+        "wer_gold92": 0.085256,
+        "action_critical_wer_gold92": 0.025316,
+        "intent_preservation_gold92": 0.989247,
+        "latency_p50_seconds": 6.6621,
+        "entity_accuracy_domain_vocab": 0.945455
+      }
+    },
+    {
+      "variant_id": "whisper-turbo",
+      "label": "Whisper turbo (baseline)",
+      "dimensions": {
+        "model": "whisper-turbo"
+      },
+      "metrics": {
+        "entity_accuracy_gold92": 0.251812,
+        "wer_gold92": 0.106319,
+        "action_critical_wer_gold92": 0.303797,
+        "intent_preservation_gold92": 0.903226,
+        "latency_p50_seconds": 4.2501,
+        "entity_accuracy_domain_vocab": 0.181818
+      }
+    },
+    {
+      "variant_id": "whisper-turbo-biased",
+      "label": "Whisper turbo + vocab bias",
+      "dimensions": {
+        "model": "whisper-turbo"
+      },
+      "metrics": {
+        "entity_accuracy_gold92": 0.431159,
+        "wer_gold92": 0.08325,
+        "action_critical_wer_gold92": 0.050633,
+        "intent_preservation_gold92": 0.967742,
+        "latency_p50_seconds": 5.8598,
+        "entity_accuracy_domain_vocab": 0.872727
+      }
+    },
+    {
+      "variant_id": "moonshine-base",
+      "label": "Moonshine base (no biasing \u2014 model doesn't support initial_prompt)",
+      "dimensions": {
+        "model": "moonshine-base"
+      },
+      "metrics": {
+        "entity_accuracy_gold92": 0.217029,
+        "wer_gold92": 0.183551,
+        "action_critical_wer_gold92": 0.411392,
+        "intent_preservation_gold92": 0.849462,
+        "latency_p50_seconds": 0.0697,
+        "entity_accuracy_domain_vocab": 0.109091
+      }
+    }
+  ]
+}

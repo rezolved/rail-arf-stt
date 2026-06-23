@@ -1,0 +1,16 @@
+=== Whisper Large v3 biased ===
+Wrote tasks/t0004_vocabulary_biasing_experiment/assets/predictions/whisper-large-v3-biased/files/predictions-gold92.jsonl (93 records)
+Wrote tasks/t0004_vocabulary_biasing_experiment/assets/predictions/whisper-large-v3-biased/details.json
+Wrote tasks/t0004_vocabulary_biasing_experiment/assets/predictions/whisper-large-v3-biased/description.md
+
+=== Whisper turbo biased ===
+Wrote tasks/t0004_vocabulary_biasing_experiment/assets/predictions/whisper-turbo-biased/files/predictions-gold92.jsonl (93 records)
+Wrote tasks/t0004_vocabulary_biasing_experiment/assets/predictions/whisper-turbo-biased/details.json
+Wrote tasks/t0004_vocabulary_biasing_experiment/assets/predictions/whisper-turbo-biased/description.md
+
+=== Moonshine base (no biasing) ===
+Wrote tasks/t0004_vocabulary_biasing_experiment/assets/predictions/moonshine-base-gold92/files/predictions-gold92.jsonl (93 records)
+Wrote tasks/t0004_vocabulary_biasing_experiment/assets/predictions/moonshine-base-gold92/details.json
+Wrote tasks/t0004_vocabulary_biasing_experiment/assets/predictions/moonshine-base-gold92/description.md
+
+Done. All prediction assets written.

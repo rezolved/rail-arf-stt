@@ -12,7 +12,7 @@
   "start_time": "2026-06-23T13:39:58Z",
   "end_time": null,
   "expected_assets": {
-    "predictions": 2
+    "predictions": 3
   },
   "task_types": [
     "stt-benchmark-run",

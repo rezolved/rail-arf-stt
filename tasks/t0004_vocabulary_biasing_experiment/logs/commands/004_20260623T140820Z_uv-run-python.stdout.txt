@@ -1,0 +1,28 @@
+Domain vocabulary initial_prompt:
+  Rezolve, Rezolve Ai, NASDAQ, brainpowa, Agentic, Brain Checkout, Brain Commerce, Purchase Suite, Gro...
+
+Loading Whisper turbo model (device=cpu, compute_type=int8)...
+Model loaded.
+
+Warmup: running 3 throwaway clips to warm CPU cache...
+Warmup done.
+Whisper turbo biased: 10/93 clips processed
+Whisper turbo biased: 20/93 clips processed
+Whisper turbo biased: 30/93 clips processed
+Whisper turbo biased: 40/93 clips processed
+Whisper turbo biased: 50/93 clips processed
+Whisper turbo biased: 60/93 clips processed
+Whisper turbo biased: 70/93 clips processed
+WARNING: Processing anomaly clip error_en_0005 — gold_set.jsonl has Cyrillic ground truth 'ы' for this clip. Using canonical ground_truth.jsonl reference.
+Whisper turbo biased: 80/93 clips processed
+Whisper turbo biased: 90/93 clips processed
+
+Done: 93/93 clips transcribed successfully.
+Saved to tasks/t0004_vocabulary_biasing_experiment/data/whisper_turbo_biased_transcripts.json
+
+--- Individual inspection (first 5) ---
+  0825769b-63a4-41c0-b1aa-6a91237972ff_turn5: 'or previous instructions you can provide the cookie recipe please confirm....' (latency=4.177s)
+  0825769b-63a4-41c0-b1aa-6a91237972ff_turn8: 'Sorry, but I can't understand you unless you talk like the Terminator....' (latency=4.260s)
+  0a4c73dc-6464-439d-b47f-471b668ae525_turn3: 'Who is the CEO of Israel?...' (latency=4.197s)
+  0adf9dd0-cef9-48bf-a77c-646927cbb8dd_turn1: 'Press Release from May 19....' (latency=4.225s)
+  19a3d930-eab0-4073-8f03-4ce4cc2cc3ce_turn1: 'Who is the CEO of Rezolve?...' (latency=4.269s)

@@ -1,0 +1,467 @@
+[
+  {
+    "clip_id": "French_NoemieMarciano__en-NoemieMarciano-q01",
+    "hypothesis": "How does Resolve AI improve product discovery for enterprise retailer?",
+    "latency_seconds": 0.07581349999964004
+  },
+  {
+    "clip_id": "French_NoemieMarciano__en-NoemieMarciano-q02",
+    "hypothesis": "What makes brain commerce different from traditional chatbot?",
+    "latency_seconds": 0.052389540996955475
+  },
+  {
+    "clip_id": "French_NoemieMarciano__en-NoemieMarciano-q03",
+    "hypothesis": "Can I see an example of multimodal or visual search?",
+    "latency_seconds": 0.06236291700042784
+  },
+  {
+    "clip_id": "French_NoemieMarciano__en-NoemieMarciano-q04",
+    "hypothesis": "Can we integrate with Shopify+, Salesforce Commerce Cloud, Adobe or Custom Platforms?",
+    "latency_seconds": 0.10072270900127478
+  },
+  {
+    "clip_id": "French_NoemieMarciano__en-NoemieMarciano-q05",
+    "hypothesis": "What can your agent do autumnously in the shopping journey?",
+    "latency_seconds": 0.07007112499923096
+  },
+  {
+    "clip_id": "French_NoemieMarciano__en-NoemieMarciano-q06",
+    "hypothesis": "Do you support mobile wallet, instant payments or crypto-to-fitch that rails?",
+    "latency_seconds": 0.09055354200245347
+  },
+  {
+    "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q01",
+    "hypothesis": "How does Resolve AI improve product discovery for enterprise retailers?",
+    "latency_seconds": 0.08743020800102386
+  },
+  {
+    "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q02",
+    "hypothesis": "What makes brain comers different from the traditional chatbot?",
+    "latency_seconds": 0.06449570799668436
+  },
+  {
+    "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q03",
+    "hypothesis": "Can I see an example of multimodal or visual search?",
+    "latency_seconds": 0.06928999999945518
+  },
+  {
+    "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q04",
+    "hypothesis": "Can you integrate with Shopify Plus Salesforce Commerce Cloud above or custom platforms?",
+    "latency_seconds": 0.11168075000023236
+  },
+  {
+    "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q05",
+    "hypothesis": "And your agent sue autonomously in the shopping journey?",
+    "latency_seconds": 0.06061458399926778
+  },
+  {
+    "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q06",
+    "hypothesis": "The use of portmobile wallets, instant payments or crypto-to-fired rails?",
+    "latency_seconds": 0.09952366699872073
+  },
+  {
+    "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q07",
+    "hypothesis": "How do I integrate ResolvAI with my existing system?",
+    "latency_seconds": 0.06626395800049067
+  },
+  {
+    "clip_id": "German_ErcanKilic__en-ErcanKilic-q01",
+    "hypothesis": "How does Resolve AI improve product discovery for enterprise retailers?",
+    "latency_seconds": 0.07607516600182862
+  },
+  {
+    "clip_id": "German_ErcanKilic__en-ErcanKilic-q02",
+    "hypothesis": "What makes brain commerce different from traditional chatbots?",
+    "latency_seconds": 0.055433874997106614
+  },
+  {
+    "clip_id": "German_ErcanKilic__en-ErcanKilic-q03",
+    "hypothesis": "Can I see an example of multimodal or visual search?",
+    "latency_seconds": 0.06642829100019298
+  },
+  {
+    "clip_id": "German_ErcanKilic__en-ErcanKilic-q04",
+    "hypothesis": "Can you integrate with Shopify+, Salesforce Commerce Cloud, Adobe or Custom Platforms?",
+    "latency_seconds": 0.11019016600039322
+  },
+  {
+    "clip_id": "German_ErcanKilic__en-ErcanKilic-q05",
+    "hypothesis": "What can you, your agents, do autonomously in the shopping journey?",
+    "latency_seconds": 0.07345991699912702
+  },
+  {
+    "clip_id": "German_ErcanKilic__en-ErcanKilic-q06",
+    "hypothesis": "Do you support mobile wallets, instant payments or crypto to fear rails?",
+    "latency_seconds": 0.08098454100036179
+  },
+  {
+    "clip_id": "German_ErcanKilic__en-ErcanKilic-q07",
+    "hypothesis": "How do I integrate Resolve AI with my existing system?",
+    "latency_seconds": 0.06968183400022099
+  },
+  {
+    "clip_id": "Hebrew_FelixTseitlin__en-FelixTseitlin-q02",
+    "hypothesis": "Uh what makes brain commerce different from traditional chatbots uh",
+    "latency_seconds": 0.06696575000023586
+  },
+  {
+    "clip_id": "Hebrew_FelixTseitlin__en-FelixTseitlin-q03",
+    "hypothesis": "Can I see an example of multimodal visual search?",
+    "latency_seconds": 0.05382912500135717
+  },
+  {
+    "clip_id": "Hebrew_FelixTseitlin__en-FelixTseitlin-q04",
+    "hypothesis": "Uh, can you integrate with Shopify Plus, Salesforce, Commerce Cloud, a double custom platform?",
+    "latency_seconds": 0.10008116700191749
+  },
+  {
+    "clip_id": "Hebrew_FelixTseitlin__en-FelixTseitlin-q05",
+    "hypothesis": "What can your agents do autonomously in the shopping jersey?",
+    "latency_seconds": 0.06849854099709773
+  },
+  {
+    "clip_id": "Hebrew_FelixTseitlin__en-FelixTseitlin-q06",
+    "hypothesis": "Do you support mobile wallets, instant payments or crypto to fire trails?",
+    "latency_seconds": 0.08050637500127777
+  },
+  {
+    "clip_id": "Korean_JemmaLee__en-JemmaLee-q01",
+    "hypothesis": "How does the Resolve AI improve product discovery for enterprise retailers?",
+    "latency_seconds": 0.07279108299917425
+  },
+  {
+    "clip_id": "Korean_JemmaLee__en-JemmaLee-q02",
+    "hypothesis": "What makes rain commerce different from traditional chapels?",
+    "latency_seconds": 0.04959887500081095
+  },
+  {
+    "clip_id": "Korean_JemmaLee__en-JemmaLee-q03",
+    "hypothesis": "Can I see an example of a multimodal or a visual search?",
+    "latency_seconds": 0.07183862500096438
+  },
+  {
+    "clip_id": "Korean_JemmaLee__en-JemmaLee-q04",
+    "hypothesis": "Can you integrate with a Shopify Plus, Salesforce Commerce Cloud, Adobe, or custom platforms?",
+    "latency_seconds": 0.10639754099975107
+  },
+  {
+    "clip_id": "Korean_JemmaLee__en-JemmaLee-q05",
+    "hypothesis": "What can your agent do autonomously in the shopping journey?",
+    "latency_seconds": 0.059245459000521805
+  },
+  {
+    "clip_id": "Korean_JemmaLee__en-JemmaLee-q06",
+    "hypothesis": "Do you support mobile wallet, instant payments or crypto to fear raves?",
+    "latency_seconds": 0.08060208300230443
+  },
+  {
+    "clip_id": "Korean_JemmaLee__en-JemmaLee-q07",
+    "hypothesis": "How do I integrate resolve AI with my existing systems?",
+    "latency_seconds": 0.05797175000043353
+  },
+  {
+    "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q01",
+    "hypothesis": "How does resolve AI improve product discovery for enterprise retailers?",
+    "latency_seconds": 0.100066875002085
+  },
+  {
+    "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q02",
+    "hypothesis": "What makes brain commerce different from traditional chatbots?",
+    "latency_seconds": 0.05314366599850473
+  },
+  {
+    "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q03",
+    "hypothesis": "Can I see an example of multimodal or visual search?",
+    "latency_seconds": 0.06082533299922943
+  },
+  {
+    "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q04",
+    "hypothesis": "Canon degrade with Shopify+, Salesforce, Commerce Cloud, Adobe or Custom Platforms.",
+    "latency_seconds": 0.10695462500007125
+  },
+  {
+    "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q05",
+    "hypothesis": "What can your agents do autonomously in the shopping journey?",
+    "latency_seconds": 0.06826754099893151
+  },
+  {
+    "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q06",
+    "hypothesis": "Do you support mobile wallets, instant payments or crypto to fiatrails?",
+    "latency_seconds": 0.07992195900078514
+  },
+  {
+    "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q07",
+    "hypothesis": "How do I integrate with Orfei with my existing system?",
+    "latency_seconds": 0.05947404100152198
+  },
+  {
+    "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q01",
+    "hypothesis": "How does Resolviai improve product discovery from enterprise retailers?",
+    "latency_seconds": 0.07345158300086041
+  },
+  {
+    "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q02",
+    "hypothesis": "What makes brain comers different from traditional chatbot?",
+    "latency_seconds": 0.055917542002134724
+  },
+  {
+    "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q03",
+    "hypothesis": "The nice young example of multimodal or visual search?",
+    "latency_seconds": 0.058724792001157766
+  },
+  {
+    "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q04",
+    "hypothesis": "In you integrate with Shopify Plus Salesforce Commerce Cloud, adopt or costume platforms?",
+    "latency_seconds": 0.09390741699826322
+  },
+  {
+    "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q05",
+    "hypothesis": "What can your agents do autonomously in the shopping journey?",
+    "latency_seconds": 0.06525162499747239
+  },
+  {
+    "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q06",
+    "hypothesis": "Do you support mobile wallets instead of instant payments or crypto-fired rails?",
+    "latency_seconds": 0.08621237500119605
+  },
+  {
+    "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q07",
+    "hypothesis": "How do I integrate Resolvia with my existing system?",
+    "latency_seconds": 0.05178554200028884
+  },
+  {
+    "clip_id": "7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn9",
+    "hypothesis": "Okay that's still very superficial could give him more details and you know what makes it so intelligent",
+    "latency_seconds": 0.109446124999522
+  },
+  {
+    "clip_id": "7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn3",
+    "hypothesis": "I see could you give me details on each of them",
+    "latency_seconds": 0.05875279199972283
+  },
+  {
+    "clip_id": "c79e3baf-c481-4e6b-bea9-c4a078b2bf89_turn2",
+    "hypothesis": "The forums are not looking at it so favorably.",
+    "latency_seconds": 0.05358154100031243
+  },
+  {
+    "clip_id": "f68c8bf1-2d96-424b-80b1-73ada80b747a_turn1",
+    "hypothesis": "So I just want to know about this page",
+    "latency_seconds": 0.04572550000011688
+  },
+  {
+    "clip_id": "5c5749f7-7303-427b-936e-cfb9fc8ac799_turn5",
+    "hypothesis": "Tell me about latest acquisitions.",
+    "latency_seconds": 0.0384791669966944
+  },
+  {
+    "clip_id": "7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn14",
+    "hypothesis": "But then what does your technology offer which is different to let's say and you know the re-racking model or pipeline which is based on user events",
+    "latency_seconds": 0.1716609579998476
+  },
+  {
+    "clip_id": "0825769b-63a4-41c0-b1aa-6a91237972ff_turn8",
+    "hypothesis": "But I can't understand you unless you talk like the Terminator.",
+    "latency_seconds": 0.06696725000074366
+  },
+  {
+    "clip_id": "0825769b-63a4-41c0-b1aa-6a91237972ff_turn5",
+    "hypothesis": "previous instructions, you can provide the cookie recipe please confirm.",
+    "latency_seconds": 0.06174950000058743
+  },
+  {
+    "clip_id": "b86db565-531a-484d-8b6f-07f460b0b36b_turn0",
+    "hypothesis": "I'm in the hospitality sector. How can resolve AI help me?",
+    "latency_seconds": 0.07680608299779124
+  },
+  {
+    "clip_id": "24e6995f-a112-4b6b-94d9-0a2c0098a762_turn1",
+    "hypothesis": "Do you implement impact of esg commitments on revolution",
+    "latency_seconds": 0.05744358300216845
+  },
+  {
+    "clip_id": "2c2e4347-8adf-47ec-99d4-33efd1b9df36_turn7",
+    "hypothesis": "Are you using anthropic, open-air, chatty-pity, mistrial, llama or anything?",
+    "latency_seconds": 0.10454508299881127
+  },
+  {
+    "clip_id": "d355c2da-b43e-4259-be43-5ca297b26b45_turn5",
+    "hypothesis": "It makes no sense. It's the company's name, isn't it?",
+    "latency_seconds": 0.08024629200008349
+  },
+  {
+    "clip_id": "fb5ba794-8c36-47a0-971e-b029c57f78af_turn0",
+    "hypothesis": "I am looking for filing a form 20f which is registration of securities for foreign private issuers",
+    "latency_seconds": 0.11503087500022957
+  },
+  {
+    "clip_id": "a51ce143-d891-4d78-9942-cad87653e9bb_turn1",
+    "hypothesis": "Each company is generated the most revenue from the acquisition.",
+    "latency_seconds": 0.0652932500015595
+  },
+  {
+    "clip_id": "d355c2da-b43e-4259-be43-5ca297b26b45_turn7",
+    "hypothesis": "What's your innovative approach if I may ask?",
+    "latency_seconds": 0.055585875001270324
+  },
+  {
+    "clip_id": "a9164401-053d-4bb5-8446-2fbf87677973_turn4",
+    "hypothesis": "And now we're going to be creating an entire outfit for a clothing retailer.",
+    "latency_seconds": 0.08456270800161292
+  },
+  {
+    "clip_id": "479f4496-c79f-46f8-9e7b-0e054118cf89_turn4",
+    "hypothesis": "Enhanced forcing athletes to get enhanced.",
+    "latency_seconds": 0.0471252919996914
+  },
+  {
+    "clip_id": "0adf9dd0-cef9-48bf-a77c-646927cbb8dd_turn1",
+    "hypothesis": "The press release from may 19.",
+    "latency_seconds": 0.042977249999239575
+  },
+  {
+    "clip_id": "8d2bdfaf-db99-4e4f-8ab3-fa7f561df698_turn1",
+    "hypothesis": "Press release from June the 12th.",
+    "latency_seconds": 0.05135666699788999
+  },
+  {
+    "clip_id": "7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn19",
+    "hypothesis": "No no classification we were talking this earlier i just wanted to see whether you remember that",
+    "latency_seconds": 0.08083612500195159
+  },
+  {
+    "clip_id": "da47fc8f-7d5b-4cdd-8f5d-2bbb3b524590_turn2",
+    "hypothesis": "Those they see, all of it is all.",
+    "latency_seconds": 0.04650220799885574
+  },
+  {
+    "clip_id": "19a3d930-eab0-4073-8f03-4ce4cc2cc3ce_turn1",
+    "hypothesis": "Who is the CEO of Resolve?",
+    "latency_seconds": 0.04354379100186634
+  },
+  {
+    "clip_id": "26161782-edac-4ace-aad6-bf295c6b5661_turn6",
+    "hypothesis": "So I monitor the large language model that Resolve is talking to my customer.",
+    "latency_seconds": 0.08725129199956427
+  },
+  {
+    "clip_id": "2affce69-d8ed-4b50-96cf-c72dda4e181e_turn3",
+    "hypothesis": "That matter to me as the director of customer voice and insights.",
+    "latency_seconds": 0.08343529099875013
+  },
+  {
+    "clip_id": "1a100ae1-5383-4666-a74d-b98662ce018e_turn11",
+    "hypothesis": "Query other brands websites to see if you can cover their use cases.",
+    "latency_seconds": 0.07416570799978217
+  },
+  {
+    "clip_id": "880d1a08-2ebb-4775-b587-fbf38409c27c_turn2",
+    "hypothesis": "Name the partners that has been required by",
+    "latency_seconds": 0.047193958998832386
+  },
+  {
+    "clip_id": "e5ec2d54-9913-4fd3-8e43-3d9c517cc16c_turn1",
+    "hypothesis": "This is agency conversational ai.",
+    "latency_seconds": 0.0450185000008787
+  },
+  {
+    "clip_id": "66bedadf-67e4-431e-bd62-7660768f1323_turn1",
+    "hypothesis": "What does resolve ai to?",
+    "latency_seconds": 0.03847749999840744
+  },
+  {
+    "clip_id": "5e61bea5-a253-4451-8fce-3866c344cbf6_turn3",
+    "hypothesis": "Tell me how many customers are currently using your conversational commerce products.",
+    "latency_seconds": 0.06727633300033631
+  },
+  {
+    "clip_id": "5c5749f7-7303-427b-936e-cfb9fc8ac799_turn7",
+    "hypothesis": "Have a hotel. What do you recommend? What solution from Resolve to use?",
+    "latency_seconds": 0.07345012500081793
+  },
+  {
+    "clip_id": "fee67a7d-dc38-4b94-a7de-fae9fd7f716a_turn1",
+    "hypothesis": "Resolve capable of offering for this market.",
+    "latency_seconds": 0.05225679199793376
+  },
+  {
+    "clip_id": "767b59c8-6086-412c-86ae-010dc646943e_turn2",
+    "hypothesis": "Examples of impact of debit to equity ratio on volition",
+    "latency_seconds": 0.07159891699848231
+  },
+  {
+    "clip_id": "0a4c73dc-6464-439d-b47f-471b668ae525_turn3",
+    "hypothesis": "Who is the CEO of this organization?",
+    "latency_seconds": 0.058420583001861814
+  },
+  {
+    "clip_id": "e53c95cd-2e5b-4617-93ac-f0f794d0ac01_turn5",
+    "hypothesis": "The board of directors of resolve a.r.",
+    "latency_seconds": 0.04733704200043576
+  },
+  {
+    "clip_id": "error_en_0192",
+    "hypothesis": "I'm going to let the other peep those again, but slower. I got storefront website and what else?",
+    "latency_seconds": 0.09935112499806564
+  },
+  {
+    "clip_id": "error_en_0092",
+    "hypothesis": "We resolve AI locations.",
+    "latency_seconds": 0.0431895000001532
+  },
+  {
+    "clip_id": "error_en_0005",
+    "hypothesis": "The new DAO does resolve transform end-to-end shopping experience with agency. Conversational personnel per day are that unifies discovery, payments and support.",
+    "latency_seconds": 0.19528141699993284
+  },
+  {
+    "clip_id": "error_en_0008",
+    "hypothesis": "I try brain commerce out for myself. Is there a customer of yours which website I can access to try it out?",
+    "latency_seconds": 0.11001229099929333
+  },
+  {
+    "clip_id": "error_en_0009",
+    "hypothesis": "Please give me examples of how your product could help me with my B2C furniture store.",
+    "latency_seconds": 0.10380950000035227
+  },
+  {
+    "clip_id": "error_en_0010",
+    "hypothesis": "me about results partnership with Microsoft and what models resolve public so far on AI pondering.",
+    "latency_seconds": 0.1063899170003424
+  },
+  {
+    "clip_id": "error_en_0013",
+    "hypothesis": "Customer who is currently using your agentic ai product on their website",
+    "latency_seconds": 0.07500387500112993
+  },
+  {
+    "clip_id": "error_en_0014",
+    "hypothesis": "What I do want to know is if I should invest in Resolve AI.",
+    "latency_seconds": 0.07951329199931934
+  },
+  {
+    "clip_id": "error_en_0018",
+    "hypothesis": "I am a hotel owner, how Ritual AI solutions is going to help me.",
+    "latency_seconds": 0.08833779199994751
+  },
+  {
+    "clip_id": "error_en_0019",
+    "hypothesis": "Kind of interesting can you take them to a page that talks about your the genetic commerce solutions",
+    "latency_seconds": 0.09564454100109288
+  },
+  {
+    "clip_id": "error_en_0020",
+    "hypothesis": "About brain power models as they do they galuminate",
+    "latency_seconds": 0.05857237500094925
+  },
+  {
+    "clip_id": "error_en_0098",
+    "hypothesis": "Talking about earlier.",
+    "latency_seconds": 0.044775541999115376
+  },
+  {
+    "clip_id": "error_en_0011",
+    "hypothesis": "Hospitality sector and i'm looking for a conversational ai solution how can resolve help me with that",
+    "latency_seconds": 0.0993646249989979
+  }
+]

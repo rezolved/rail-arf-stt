@@ -1,0 +1,200 @@
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:92: UserWarning: Clip error_en_0005 has Cyrillic ground truth 'How does Rezolve transform end-to-end shopping experience with agentic conversational first AI that unifies discovery, payments and support?' — known annotation error. Including in run with anomaly flag.
+  clips = load_gold92()
+
+Whisper Large v3 biased inference:   0%|          | 0/93 [00:00<?, ?it/s]/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 0825769b-63a4-41c0-b1aa-6a91237972ff_turn5: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/0825769b-63a4-41c0-b1aa-6a91237972ff_turn5.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 0825769b-63a4-41c0-b1aa-6a91237972ff_turn8: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/0825769b-63a4-41c0-b1aa-6a91237972ff_turn8.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 0a4c73dc-6464-439d-b47f-471b668ae525_turn3: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/0a4c73dc-6464-439d-b47f-471b668ae525_turn3.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 0adf9dd0-cef9-48bf-a77c-646927cbb8dd_turn1: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/0adf9dd0-cef9-48bf-a77c-646927cbb8dd_turn1.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 19a3d930-eab0-4073-8f03-4ce4cc2cc3ce_turn1: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/19a3d930-eab0-4073-8f03-4ce4cc2cc3ce_turn1.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 1a100ae1-5383-4666-a74d-b98662ce018e_turn11: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/1a100ae1-5383-4666-a74d-b98662ce018e_turn11.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 24e6995f-a112-4b6b-94d9-0a2c0098a762_turn1: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/24e6995f-a112-4b6b-94d9-0a2c0098a762_turn1.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 26161782-edac-4ace-aad6-bf295c6b5661_turn6: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/26161782-edac-4ace-aad6-bf295c6b5661_turn6.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 2affce69-d8ed-4b50-96cf-c72dda4e181e_turn3: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/2affce69-d8ed-4b50-96cf-c72dda4e181e_turn3.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 2c2e4347-8adf-47ec-99d4-33efd1b9df36_turn7: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/2c2e4347-8adf-47ec-99d4-33efd1b9df36_turn7.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 479f4496-c79f-46f8-9e7b-0e054118cf89_turn4: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/479f4496-c79f-46f8-9e7b-0e054118cf89_turn4.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 5c5749f7-7303-427b-936e-cfb9fc8ac799_turn5: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/5c5749f7-7303-427b-936e-cfb9fc8ac799_turn5.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 5c5749f7-7303-427b-936e-cfb9fc8ac799_turn7: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/5c5749f7-7303-427b-936e-cfb9fc8ac799_turn7.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 5e61bea5-a253-4451-8fce-3866c344cbf6_turn3: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/5e61bea5-a253-4451-8fce-3866c344cbf6_turn3.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 66bedadf-67e4-431e-bd62-7660768f1323_turn1: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/66bedadf-67e4-431e-bd62-7660768f1323_turn1.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 767b59c8-6086-412c-86ae-010dc646943e_turn2: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/767b59c8-6086-412c-86ae-010dc646943e_turn2.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn14: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn14.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn19: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn19.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn3: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn3.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn9: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn9.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 880d1a08-2ebb-4775-b587-fbf38409c27c_turn2: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/880d1a08-2ebb-4775-b587-fbf38409c27c_turn2.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for 8d2bdfaf-db99-4e4f-8ab3-fa7f561df698_turn1: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/8d2bdfaf-db99-4e4f-8ab3-fa7f561df698_turn1.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for French_NoemieMarciano__en-NoemieMarciano-q01: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/French_NoemieMarciano__en-NoemieMarciano-q01.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for French_NoemieMarciano__en-NoemieMarciano-q02: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/French_NoemieMarciano__en-NoemieMarciano-q02.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for French_NoemieMarciano__en-NoemieMarciano-q03: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/French_NoemieMarciano__en-NoemieMarciano-q03.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for French_NoemieMarciano__en-NoemieMarciano-q04: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/French_NoemieMarciano__en-NoemieMarciano-q04.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for French_NoemieMarciano__en-NoemieMarciano-q05: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/French_NoemieMarciano__en-NoemieMarciano-q05.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for French_NoemieMarciano__en-NoemieMarciano-q06: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/French_NoemieMarciano__en-NoemieMarciano-q06.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q01: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q01.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q02: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q02.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q03: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q03.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q04: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q04.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q05: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q05.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q06: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q06.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q07: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q07.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for German_ErcanKilic__en-ErcanKilic-q01: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/German_ErcanKilic__en-ErcanKilic-q01.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for German_ErcanKilic__en-ErcanKilic-q02: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/German_ErcanKilic__en-ErcanKilic-q02.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for German_ErcanKilic__en-ErcanKilic-q03: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/German_ErcanKilic__en-ErcanKilic-q03.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for German_ErcanKilic__en-ErcanKilic-q04: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/German_ErcanKilic__en-ErcanKilic-q04.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for German_ErcanKilic__en-ErcanKilic-q05: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/German_ErcanKilic__en-ErcanKilic-q05.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for German_ErcanKilic__en-ErcanKilic-q06: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/German_ErcanKilic__en-ErcanKilic-q06.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for German_ErcanKilic__en-ErcanKilic-q07: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/German_ErcanKilic__en-ErcanKilic-q07.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Hebrew_FelixTseitlin__en-FelixTseitlin-q02: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Hebrew_FelixTseitlin__en-FelixTseitlin-q02.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Hebrew_FelixTseitlin__en-FelixTseitlin-q03: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Hebrew_FelixTseitlin__en-FelixTseitlin-q03.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Hebrew_FelixTseitlin__en-FelixTseitlin-q04: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Hebrew_FelixTseitlin__en-FelixTseitlin-q04.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Hebrew_FelixTseitlin__en-FelixTseitlin-q05: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Hebrew_FelixTseitlin__en-FelixTseitlin-q05.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Hebrew_FelixTseitlin__en-FelixTseitlin-q06: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Hebrew_FelixTseitlin__en-FelixTseitlin-q06.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Korean_JemmaLee__en-JemmaLee-q01: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Korean_JemmaLee__en-JemmaLee-q01.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Korean_JemmaLee__en-JemmaLee-q02: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Korean_JemmaLee__en-JemmaLee-q02.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Korean_JemmaLee__en-JemmaLee-q03: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Korean_JemmaLee__en-JemmaLee-q03.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Korean_JemmaLee__en-JemmaLee-q04: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Korean_JemmaLee__en-JemmaLee-q04.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Korean_JemmaLee__en-JemmaLee-q05: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Korean_JemmaLee__en-JemmaLee-q05.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Korean_JemmaLee__en-JemmaLee-q06: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Korean_JemmaLee__en-JemmaLee-q06.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Korean_JemmaLee__en-JemmaLee-q07: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Korean_JemmaLee__en-JemmaLee-q07.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Russian_OlyaShtalberg__en-OlyaShtalberg-q01: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Russian_OlyaShtalberg__en-OlyaShtalberg-q01.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Russian_OlyaShtalberg__en-OlyaShtalberg-q02: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Russian_OlyaShtalberg__en-OlyaShtalberg-q02.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Russian_OlyaShtalberg__en-OlyaShtalberg-q03: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Russian_OlyaShtalberg__en-OlyaShtalberg-q03.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Russian_OlyaShtalberg__en-OlyaShtalberg-q04: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Russian_OlyaShtalberg__en-OlyaShtalberg-q04.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Russian_OlyaShtalberg__en-OlyaShtalberg-q05: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Russian_OlyaShtalberg__en-OlyaShtalberg-q05.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Russian_OlyaShtalberg__en-OlyaShtalberg-q06: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Russian_OlyaShtalberg__en-OlyaShtalberg-q06.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Russian_OlyaShtalberg__en-OlyaShtalberg-q07: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Russian_OlyaShtalberg__en-OlyaShtalberg-q07.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Spanish_StephaniaCesborn__en-StephaniaCesborn-q01: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Spanish_StephaniaCesborn__en-StephaniaCesborn-q01.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Spanish_StephaniaCesborn__en-StephaniaCesborn-q02: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Spanish_StephaniaCesborn__en-StephaniaCesborn-q02.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Spanish_StephaniaCesborn__en-StephaniaCesborn-q03: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Spanish_StephaniaCesborn__en-StephaniaCesborn-q03.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Spanish_StephaniaCesborn__en-StephaniaCesborn-q04: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Spanish_StephaniaCesborn__en-StephaniaCesborn-q04.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Spanish_StephaniaCesborn__en-StephaniaCesborn-q05: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Spanish_StephaniaCesborn__en-StephaniaCesborn-q05.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Spanish_StephaniaCesborn__en-StephaniaCesborn-q06: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Spanish_StephaniaCesborn__en-StephaniaCesborn-q06.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for Spanish_StephaniaCesborn__en-StephaniaCesborn-q07: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/Spanish_StephaniaCesborn__en-StephaniaCesborn-q07.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for a51ce143-d891-4d78-9942-cad87653e9bb_turn1: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/a51ce143-d891-4d78-9942-cad87653e9bb_turn1.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for a9164401-053d-4bb5-8446-2fbf87677973_turn4: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/a9164401-053d-4bb5-8446-2fbf87677973_turn4.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for b86db565-531a-484d-8b6f-07f460b0b36b_turn0: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/b86db565-531a-484d-8b6f-07f460b0b36b_turn0.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for c79e3baf-c481-4e6b-bea9-c4a078b2bf89_turn2: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/c79e3baf-c481-4e6b-bea9-c4a078b2bf89_turn2.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for d355c2da-b43e-4259-be43-5ca297b26b45_turn5: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/d355c2da-b43e-4259-be43-5ca297b26b45_turn5.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for d355c2da-b43e-4259-be43-5ca297b26b45_turn7: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/d355c2da-b43e-4259-be43-5ca297b26b45_turn7.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for da47fc8f-7d5b-4cdd-8f5d-2bbb3b524590_turn2: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/da47fc8f-7d5b-4cdd-8f5d-2bbb3b524590_turn2.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for e53c95cd-2e5b-4617-93ac-f0f794d0ac01_turn5: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/e53c95cd-2e5b-4617-93ac-f0f794d0ac01_turn5.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for e5ec2d54-9913-4fd3-8e43-3d9c517cc16c_turn1: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/e5ec2d54-9913-4fd3-8e43-3d9c517cc16c_turn1.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for error_en_0005: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/error_en_0005.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for error_en_0008: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/error_en_0008.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for error_en_0009: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/error_en_0009.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for error_en_0010: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/error_en_0010.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for error_en_0011: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/error_en_0011.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for error_en_0013: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/error_en_0013.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for error_en_0014: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/error_en_0014.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for error_en_0018: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/error_en_0018.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for error_en_0019: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/error_en_0019.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for error_en_0020: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/error_en_0020.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for error_en_0092: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/error_en_0092.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for error_en_0098: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/error_en_0098.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for error_en_0192: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/error_en_0192.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for f68c8bf1-2d96-424b-80b1-73ada80b747a_turn1: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/f68c8bf1-2d96-424b-80b1-73ada80b747a_turn1.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for fb5ba794-8c36-47a0-971e-b029c57f78af_turn0: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/fb5ba794-8c36-47a0-971e-b029c57f78af_turn0.wav
+  main()
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py:178: UserWarning: Audio file not found for fee67a7d-dc38-4b94-a7de-fae9fd7f716a_turn1: tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/fee67a7d-dc38-4b94-a7de-fae9fd7f716a_turn1.wav
+  main()
+
+Whisper Large v3 biased inference: 100%|██████████| 93/93 [00:00<00:00, 49677.82it/s]
+Traceback (most recent call last):
+  File "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py", line 178, in <module>
+    main()
+    ~~~~^^
+  File "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0004_vocabulary_biasing_experiment/tasks/t0004_vocabulary_biasing_experiment/code/run_whisper_biased.py", line 152, in main
+    raise RuntimeError(
+    ...<3 lines>...
+    )
+RuntimeError: Rejection criterion triggered: only 0/93 clips (0.0%) succeeded. Results are null — check faster-whisper installation and model weights.
