@@ -32,9 +32,9 @@
       "step": 4,
       "name": "research-papers",
       "description": "Review any existing papers in the corpus relevant to entity-aware STT and contextual biasing.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-23T08:09:42Z",
-      "completed_at": null,
+      "completed_at": "2026-06-23T08:35:49Z",
       "log_file": "logs/steps/004_research-papers/"
     },
     {
