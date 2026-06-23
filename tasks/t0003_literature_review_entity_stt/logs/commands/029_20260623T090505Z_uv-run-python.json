@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0003_literature_review_entity_stt",
+  "command": "uv run python -u meta/asset_types/paper/verificator.py 10.48550_arXiv.2602.18966 --task-id t0003_literature_review_entity_stt",
+  "exit_code": 0,
+  "duration_seconds": 0.046,
+  "started_at": "2026-06-23T09:05:05Z",
+  "completed_at": "2026-06-23T09:05:05Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0003_literature_review_entity_stt",
+  "stdout_file": "029_20260623T090505Z_uv-run-python.stdout.txt",
+  "stderr_file": "029_20260623T090505Z_uv-run-python.stderr.txt",
+  "stdout_lines": 5,
+  "stderr_lines": 0,
+  "truncated": false
+}

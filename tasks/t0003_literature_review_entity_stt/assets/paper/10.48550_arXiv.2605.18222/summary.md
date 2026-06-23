@@ -75,6 +75,8 @@ simulated streaming at 160ms/chunk); keyword F-score and overall WER.
 * Latency overhead: incremental commitment adds bounded latency (configurable via β); no specific ms
   figures reported in the abstract
 * No degradation on non-keyword vocabulary (confirmed by WER on unbiased utterances)
+* Chunk size: 160ms streaming window used in evaluation; consistent with real-time voice assistant
+  deployment constraints and Rezolve's 800ms p50 latency budget
 
 ## Innovations
 

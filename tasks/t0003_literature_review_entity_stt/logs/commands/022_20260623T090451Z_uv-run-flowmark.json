@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0003_literature_review_entity_stt",
+  "command": "uv run flowmark --inplace --nobackup tasks/t0003_literature_review_entity_stt/results/results_summary.md",
+  "exit_code": 0,
+  "duration_seconds": 0.086,
+  "started_at": "2026-06-23T09:04:51Z",
+  "completed_at": "2026-06-23T09:04:51Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0003_literature_review_entity_stt",
+  "stdout_file": "022_20260623T090451Z_uv-run-flowmark.stdout.txt",
+  "stderr_file": "022_20260623T090451Z_uv-run-flowmark.stderr.txt",
+  "stdout_lines": 0,
+  "stderr_lines": 0,
+  "truncated": false
+}
