@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0003_literature_review_entity_stt",
+  "command": "python -m arf.scripts.verificators.verify_task_results t0003_literature_review_entity_stt",
+  "exit_code": 0,
+  "duration_seconds": 0.032,
+  "started_at": "2026-06-23T09:12:16Z",
+  "completed_at": "2026-06-23T09:12:16Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0003_literature_review_entity_stt",
+  "stdout_file": "042_20260623T091216Z_python-m-arf-scripts-verificators-verify.stdout.txt",
+  "stderr_file": "042_20260623T091216Z_python-m-arf-scripts-verificators-verify.stderr.txt",
+  "stdout_lines": 5,
+  "stderr_lines": 0,
+  "truncated": false
+}
