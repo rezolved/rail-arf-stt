@@ -1,0 +1,20 @@
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0003_literature_review_entity_stt/tasks/t0003_literature_review_entity_stt/logs
+
+[31m[1mERRORS:[0m
+[31m  LG-E008 error: Step 12 has status 'skipped' but no step log was found[0m
+[31m  LG-E008 error: Step 13 has status 'skipped' but no step log was found[0m
+[31m  LG-E008 error: Step 14 has status 'skipped' but no step log was found[0m
+[31m  LG-E008 error: Step 15 has status 'skipped' but no step log was found[0m
+
+[33m[1mWARNINGS:[0m
+[33m  LG-W004 warning: Command log 041_20260623T091136Z_python-m-arf-scripts-verificators-verify.json has non-zero exit code: 1[0m
+[33m  LG-W004 warning: Command log 048_20260623T091549Z_python-m-arf-scripts-verificators-verify.json has non-zero exit code: 1[0m
+[33m  LG-W006 warning: Step 12 is 'skipped' but log_file is null in step_tracker.json[0m
+[33m  LG-W006 warning: Step 13 is 'skipped' but log_file is null in step_tracker.json[0m
+[33m  LG-W006 warning: Step 14 is 'skipped' but log_file is null in step_tracker.json[0m
+[33m  LG-W006 warning: Step 15 is 'skipped' but log_file is null in step_tracker.json[0m
+[33m  LG-W007 warning: logs/sessions/ contains no captured session transcript JSONL files[0m
+[33m  LG-W008 warning: logs/sessions/capture_report.json does not exist[0m
+
+[31m[1mFAILED[0m — 4 error(s), 8 warning(s)

@@ -95,10 +95,10 @@
       "step": 11,
       "name": "reporting",
       "description": "Run all verificators, capture session transcripts, set task status to completed.",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-06-23T09:15:39Z",
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/011_reporting/"
     },
     {
       "step": 12,
@@ -107,7 +107,7 @@
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/012_setup-machines/"
     },
     {
       "step": 13,
@@ -116,7 +116,7 @@
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/013_teardown/"
     },
     {
       "step": 14,
@@ -125,7 +125,7 @@
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/014_creative-thinking/"
     },
     {
       "step": 15,
@@ -134,7 +134,7 @@
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/015_compare-literature/"
     }
   ]
 }

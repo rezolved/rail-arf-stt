@@ -5,10 +5,10 @@
   "name": "Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026)",
   "short_description": "Survey Jan–Jun 2026 publications on contextual biasing, shallow fusion, entity-aware ASR, and LLM post-correction for named entity accuracy in ecommerce STT.",
   "long_description_file": "task_description.md",
-  "status": "in_progress",
+  "status": "completed",
   "dependencies": [],
   "start_time": "2026-06-23T08:06:23Z",
-  "end_time": null,
+  "end_time": "2026-06-23T09:25:00Z",
   "expected_assets": {
     "paper": 10
   },

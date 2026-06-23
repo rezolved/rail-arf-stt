@@ -1,0 +1,10 @@
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0003_literature_review_entity_stt/tasks/t0003_literature_review_entity_stt
+
+[31m[1mERRORS:[0m
+[31m  FD-E016 error: Unexpected directory in task folder root: 'ctx/' (only assets, code, corrections, data, intervention, logs, plan, research, results allowed)[0m
+
+[33m[1mWARNINGS:[0m
+[33m  FD-W002 warning: logs/searches/ is empty (no search queries were logged)[0m
+
+[31m[1mFAILED[0m — 1 error(s), 1 warning(s)

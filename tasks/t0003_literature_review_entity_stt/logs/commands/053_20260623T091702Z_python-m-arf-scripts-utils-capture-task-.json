@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0003_literature_review_entity_stt",
+  "command": "python -m arf.scripts.utils.capture_task_sessions t0003_literature_review_entity_stt",
+  "exit_code": 2,
+  "duration_seconds": 0.036,
+  "started_at": "2026-06-23T09:17:02Z",
+  "completed_at": "2026-06-23T09:17:02Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0003_literature_review_entity_stt",
+  "stdout_file": "053_20260623T091702Z_python-m-arf-scripts-utils-capture-task-.stdout.txt",
+  "stderr_file": "053_20260623T091702Z_python-m-arf-scripts-utils-capture-task-.stderr.txt",
+  "stdout_lines": 0,
+  "stderr_lines": 3,
+  "truncated": false
+}
