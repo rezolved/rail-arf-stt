@@ -68,10 +68,10 @@
       "step": 8,
       "name": "setup-machines",
       "description": "Provision GPU instance for Whisper Large v3 inference if local CPU is too slow.",
-      "status": "pending",
+      "status": "skipped",
       "started_at": null,
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/008_setup-machines/"
     },
     {
       "step": 9,
@@ -86,10 +86,10 @@
       "step": 10,
       "name": "teardown",
       "description": "Destroy GPU instance and download results after Whisper inference completes.",
-      "status": "pending",
+      "status": "skipped",
       "started_at": null,
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/010_teardown/"
     },
     {
       "step": 11,
