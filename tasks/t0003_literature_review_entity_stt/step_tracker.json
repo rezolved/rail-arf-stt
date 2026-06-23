@@ -77,9 +77,9 @@
       "step": 9,
       "name": "results",
       "description": "Write results_summary.md, results_detailed.md, metrics.json, costs.json.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-23T09:08:41Z",
-      "completed_at": null,
+      "completed_at": "2026-06-23T09:13:21Z",
       "log_file": "logs/steps/009_results/"
     },
     {
