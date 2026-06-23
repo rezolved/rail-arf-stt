@@ -23,10 +23,10 @@
       "step": 3,
       "name": "init-folders",
       "description": "Create task folder structure including assets/predictions/ for two predictions assets.",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-06-23T08:06:38Z",
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/003_init-folders/"
     },
     {
       "step": 4,

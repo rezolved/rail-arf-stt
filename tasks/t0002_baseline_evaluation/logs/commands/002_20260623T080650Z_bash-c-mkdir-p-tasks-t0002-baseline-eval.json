@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0002_baseline_evaluation",
+  "command": "bash -c mkdir -p tasks/t0002_baseline_evaluation/ctx && uv run python -u -m arf.scripts.aggregators.aggregate_task_types --format json > tasks/t0002_baseline_evaluation/ctx/task_types.json && uv run python -u -m arf.scripts.aggregators.aggregate_costs --format json --detail full > tasks/t0002_baseline_evaluation/ctx/costs.json && uv run python -u -m arf.scripts.aggregators.aggregate_tasks --format json --detail short > tasks/t0002_baseline_evaluation/ctx/tasks.json && uv run python -u -m arf.scripts.aggregators.aggregate_metrics --format json --detail full > tasks/t0002_baseline_evaluation/ctx/metrics.json && uv run python -u -m arf.scripts.aggregators.aggregate_suggestions --format json --detail full > tasks/t0002_baseline_evaluation/ctx/suggestions.json",
+  "exit_code": 0,
+  "duration_seconds": 0.366,
+  "started_at": "2026-06-23T08:06:50Z",
+  "completed_at": "2026-06-23T08:06:51Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0002_baseline_evaluation",
+  "stdout_file": "002_20260623T080650Z_bash-c-mkdir-p-tasks-t0002-baseline-eval.stdout.txt",
+  "stderr_file": "002_20260623T080650Z_bash-c-mkdir-p-tasks-t0002-baseline-eval.stderr.txt",
+  "stdout_lines": 0,
+  "stderr_lines": 0,
+  "truncated": false
+}
