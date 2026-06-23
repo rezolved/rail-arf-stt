@@ -77,9 +77,9 @@
       "step": 9,
       "name": "implementation",
       "description": "Run Deepgram Nova-2 and Whisper Large v3 on gold-92; compute all five registered metrics with BCa CIs.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-23T08:36:14Z",
-      "completed_at": null,
+      "completed_at": "2026-06-23T09:16:14Z",
       "log_file": "logs/steps/009_implementation/"
     },
     {
