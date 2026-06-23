@@ -5,9 +5,9 @@
       "step": 1,
       "name": "create-branch",
       "description": "Create task/t0004_vocabulary_biasing_experiment branch from main and set up worktree.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-23T13:40:05Z",
-      "completed_at": null,
+      "completed_at": "2026-06-23T13:42:35Z",
       "log_file": "logs/steps/001_create-branch/"
     },
     {
@@ -31,7 +31,7 @@
     {
       "step": 4,
       "name": "research-papers",
-      "description": "Skipped — all relevant papers already in corpus from t0001-t0003.",
+      "description": "Skipped \u2014 all relevant papers already in corpus from t0001-t0003.",
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
@@ -40,7 +40,7 @@
     {
       "step": 5,
       "name": "research-internet",
-      "description": "Skipped — initial_prompt behaviour documented in faster-whisper and Whisper paper already in corpus.",
+      "description": "Skipped \u2014 initial_prompt behaviour documented in faster-whisper and Whisper paper already in corpus.",
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
@@ -49,7 +49,7 @@
     {
       "step": 6,
       "name": "research-code",
-      "description": "Skipped — t0002 code structure known from prior execution; implementation will copy scripts directly.",
+      "description": "Skipped \u2014 t0002 code structure known from prior execution; implementation will copy scripts directly.",
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
@@ -58,7 +58,7 @@
     {
       "step": 7,
       "name": "planning",
-      "description": "Skipped — approach is a minimal delta on t0002: add initial_prompt parameter to existing inference scripts.",
+      "description": "Skipped \u2014 approach is a minimal delta on t0002: add initial_prompt parameter to existing inference scripts.",
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
@@ -67,7 +67,7 @@
     {
       "step": 8,
       "name": "setup-machines",
-      "description": "Skipped — CPU-only on Apple M5, no remote compute needed.",
+      "description": "Skipped \u2014 CPU-only on Apple M5, no remote compute needed.",
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
@@ -85,7 +85,7 @@
     {
       "step": 10,
       "name": "teardown",
-      "description": "Skipped — no remote machines provisioned.",
+      "description": "Skipped \u2014 no remote machines provisioned.",
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
@@ -94,7 +94,7 @@
     {
       "step": 11,
       "name": "creative-thinking",
-      "description": "Skipped — per user instruction to minimize unnecessary steps.",
+      "description": "Skipped \u2014 per user instruction to minimize unnecessary steps.",
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
@@ -112,7 +112,7 @@
     {
       "step": 13,
       "name": "compare-literature",
-      "description": "Skipped — per user instruction to minimize unnecessary steps.",
+      "description": "Skipped \u2014 per user instruction to minimize unnecessary steps.",
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
