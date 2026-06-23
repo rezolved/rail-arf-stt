@@ -14,9 +14,9 @@
       "step": 2,
       "name": "check-deps",
       "description": "Verify task has no dependencies and is ready to start.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-23T08:08:27Z",
-      "completed_at": null,
+      "completed_at": "2026-06-23T08:08:53Z",
       "log_file": "logs/steps/002_check-deps/"
     },
     {
