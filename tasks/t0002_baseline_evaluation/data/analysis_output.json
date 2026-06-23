@@ -20,6 +20,27 @@
       "intent_preservation_ci_high": 0.956989247311828,
       "intent_preservation_ci_half": 0.06451612903225806,
       "latency_p50_seconds": 5.659832708000067
+    },
+    {
+      "system": "Whisper turbo",
+      "variant_id": "whisper-turbo",
+      "entity_accuracy_gold92": 0.2518115942028985,
+      "entity_accuracy_ci_low": 0.18115942028985504,
+      "entity_accuracy_ci_high": 0.3369565217391304,
+      "entity_accuracy_ci_half": 0.07789855072463767,
+      "wer_gold92": 0.10631895687061184,
+      "wer_ci_low": 0.08945962212397288,
+      "wer_ci_high": 0.14434575518085502,
+      "wer_ci_half": 0.02744306652844107,
+      "action_critical_wer_gold92": 0.3037974683544304,
+      "action_critical_wer_ci_low": 0.13440860215053763,
+      "action_critical_wer_ci_high": 0.26881720430107525,
+      "action_critical_wer_ci_half": 0.06720430107526881,
+      "intent_preservation_gold92": 0.9032258064516129,
+      "intent_preservation_ci_low": 0.8279569892473119,
+      "intent_preservation_ci_high": 0.956989247311828,
+      "intent_preservation_ci_half": 0.06451612903225806,
+      "latency_p50_seconds": 4.250084457999037
     }
   ],
   "accent_breakdown": [
