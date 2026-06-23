@@ -4,6 +4,38 @@ date: "2026-06-23"
 ---
 # Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026)
 
+## Summary
+
+Systematic literature review of Jan–Jun 2026 publications on entity-aware STT. **15 paper assets**
+were created covering contextual biasing, entity-aware ASR architectures, and LLM post-correction.
+The top no-retraining candidates for prototyping on gold-92 are **RECOVER** (33–35% relative E-WER
+reduction, Earnings-21) and **Ron2026** (17% relative WER reduction via Whisper `initial_prompt`).
+Shallow fusion has effectively no 2026 literature — documented as a gap, not a search failure.
+
+## Metrics
+
+* **Paper assets created**: **15** (all passing `verify_paper_asset.py`, 0 errors)
+* **Databases searched**: **9** (arXiv, Semantic Scholar, ACL Anthology, ICASSP 2026, Interspeech
+  2026, Papers With Code, AssemblyAI, Emergent Mind, Google web search)
+* **Search queries run**: **14** (6 required keyword combinations + 8 gap-filling queries)
+* **Best no-retraining entity accuracy gain (RECOVER)**: **33–35% relative E-WER reduction** on
+  Earnings-21 domain, ~+100–200ms latency overhead
+* **Best no-retraining WER gain (Ron2026)**: **17% relative WER reduction** on entity-dense NBA
+  commentary, estimated ~550–650ms total pipeline latency
+* **Lowest B-WER in survey (RLBR, requires retraining)**: **0.59%** at 100 bias words on LibriSpeech
+  test-clean
+
+## Verification
+
+* `verify_research_papers.py t0003_literature_review_entity_stt` — PASSED (0 errors, 0 warnings)
+* `verify_research_internet.py t0003_literature_review_entity_stt` — PASSED (0 errors, 0 warnings)
+* `verify_research_code.py t0003_literature_review_entity_stt` — PASSED (0 errors, 0 warnings)
+* `verify_plan.py t0003_literature_review_entity_stt` — PASSED (0 errors, 1 warning: PL-W009
+  documented)
+* `verify_paper_asset.py` — PASSED for all 15 paper assets (15/15, 0 errors)
+
+* * *
+
 ## Methodology
 
 ### Research Question
