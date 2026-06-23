@@ -50,9 +50,9 @@
       "step": 6,
       "name": "research-code",
       "description": "Review assets and outputs from t0001_stt_benchmark for domain context (gold-92 benchmark schema, entity categories).",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-23T08:45:05Z",
-      "completed_at": null,
+      "completed_at": "2026-06-23T08:50:29Z",
       "log_file": "logs/steps/006_research-code/"
     },
     {
