@@ -1,13 +1,36 @@
 # Suggestions: `entity-correction`
 
-5 suggestion(s) in category [`entity-correction`](../../../meta/categories/entity-correction/)
-**5 open** (2 high, 2 medium, 1 low).
+6 suggestion(s) in category [`entity-correction`](../../../meta/categories/entity-correction/)
+**5 open** (2 high, 2 medium, 1 low), **1 closed**.
 
 [Back to all suggestions](../README.md)
 
 ---
 
 ## High Priority
+
+<details>
+<summary>🔧 <strong>LLM post-correction layer for entity normalization on Whisper
+transcripts</strong> (S-0002-03)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0002-03` |
+| **Kind** | technique |
+| **Date added** | 2026-06-23 |
+| **Source task** | [`t0002_baseline_evaluation`](../../../overview/tasks/task_pages/t0002_baseline_evaluation.md) |
+| **Source paper** | — |
+| **Categories** | [`entity-correction`](../../../meta/categories/entity-correction/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+
+Build a lightweight LLM post-correction pass that takes a Whisper transcript and a domain
+entity glossary (Rezolve, brainpowa, product names, IR terms) and corrects entity-span errors
+without rewriting the full transcript. The baseline shows entity accuracy of 25.2% overall and
+8.8% on production clips — the majority of failures are vocabulary substitutions
+(Rezolve→Hizol, Rezolve→Resolve) that a prompted LLM with glossary access could correct
+cheaply. Target: measure entity accuracy gain and added latency overhead vs the 800 ms p50
+budget. Recommended task types: post-correction-experiment, experiment-run.
+
+</details>
 
 <details>
 <summary>🧪 <strong>Prototype RECOVER N-best + LLM-Select on gold-92</strong>
@@ -29,29 +52,6 @@ all 93 gold-92 clips. RECOVER reported 33-35% relative E-WER reduction on Earnin
 closest public proxy for ecommerce entities. This is the highest expected gain from a
 no-retraining method in the survey. Recommended task types: post-correction-experiment,
 stt-benchmark-run.
-
-</details>
-
-<details>
-<summary>🧪 <strong>Prototype Ron2026 initial_prompt multi-agent pipeline on
-gold-92</strong> (S-0003-02)</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `S-0003-02` |
-| **Kind** | experiment |
-| **Date added** | 2026-06-23 |
-| **Source task** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Source paper** | [`10.48550_arXiv.2602.18966`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2602.18966/) |
-| **Categories** | [`entity-correction`](../../../meta/categories/entity-correction/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
-
-Implement the six-agent LLM pipeline from Ron2026 against Whisper Turbo on gold-92. The
-pipeline processes a first-pass transcript to extract topic labels, named entities, and domain
-jargon, assembles a context prompt (224 tokens max), and feeds it into a second Whisper
-decoding pass via the initial_prompt parameter. Seed the NER agent with Rezolve's
-brand/product catalog. Measure entity accuracy and latency on all 93 clips. Ron2026 reported
-17% relative WER reduction on entity-dense NBA commentary with zero model retraining.
-Recommended task types: post-correction-experiment, stt-benchmark-run.
 
 </details>
 
@@ -125,5 +125,32 @@ monitoring for LOGIC reappearance at Interspeech 2026 or ICASSP 2026 proceedings
 republished, LOGIC's constant-time biasing approach directly addresses context window
 saturation at catalog scale (10,000+ entries) without the retrieval infrastructure required by
 BR-ASR. Recommended task types: internet-research.
+
+</details>
+
+## Closed
+
+<details>
+<summary>✅ <s>Prototype Ron2026 initial_prompt multi-agent pipeline on gold-92</s> —
+covered by <a
+href="../../../tasks/t0004_vocabulary_biasing_experiment/"><code>t0004_vocabulary_biasing_experiment</code></a>
+(S-0003-02)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0003-02` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-23 |
+| **Source task** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
+| **Source paper** | [`10.48550_arXiv.2602.18966`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2602.18966/) |
+| **Categories** | [`entity-correction`](../../../meta/categories/entity-correction/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+
+Implement the six-agent LLM pipeline from Ron2026 against Whisper Turbo on gold-92. The
+pipeline processes a first-pass transcript to extract topic labels, named entities, and domain
+jargon, assembles a context prompt (224 tokens max), and feeds it into a second Whisper
+decoding pass via the initial_prompt parameter. Seed the NER agent with Rezolve's
+brand/product catalog. Measure entity accuracy and latency on all 93 clips. Ron2026 reported
+17% relative WER reduction on entity-dense NBA commentary with zero model retraining.
+Recommended task types: post-correction-experiment, stt-benchmark-run.
 
 </details>

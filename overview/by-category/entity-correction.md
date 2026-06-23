@@ -5,12 +5,12 @@ transcript is produced.
 
 [Back to Dashboard](../README.md)
 
-**Detail pages**: [Papers (13)](../papers/by-category/entity-correction.md) | [Suggestions
-(5)](../suggestions/by-category/entity-correction.md)
+**Detail pages**: [Papers (15)](../papers/by-category/entity-correction.md) | [Suggestions
+(6)](../suggestions/by-category/entity-correction.md)
 
 ---
 
-## Papers (13)
+## Papers (15)
 
 <details>
 <summary>📝 <strong>Retrieval-Augmented Self-Taught Reasoning Model with Adaptive
@@ -563,17 +563,135 @@ accuracy.
 
 </details>
 
-## Tasks (1)
+<details>
+<summary>🏤 <strong>WhisperNER: Unified Open Named Entity and Speech
+Recognition</strong> — Ayache et al., 2024</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `10.1109_ASRU65441.2025.11434797` |
+| **Authors** | Gil Ayache, Menachem Pirchi, Aviv Navon, Aviv Shamsian, Gill Hetz, Joseph Keshet |
+| **Venue** | 2025 IEEE Automatic Speech Recognition and Understanding Workshop (ASRU) (conference) |
+| **DOI** | `10.1109/ASRU65441.2025.11434797` |
+| **URL** | https://arxiv.org/abs/2409.08107 |
+| **Date added** | 2026-06-23 |
+| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../meta/categories/whisper-finetuning/), [`entity-correction`](../../meta/categories/entity-correction/) |
+| **Added by** | [`t0002_baseline_evaluation`](../../overview/tasks/task_pages/t0002_baseline_evaluation.md) |
+| **Full summary** | [`summary.md`](../../tasks/t0002_baseline_evaluation/assets/paper/10.1109_ASRU65441.2025.11434797/summary.md) |
+
+Ayache et al. propose WhisperNER to solve error propagation in pipeline-based speech-NLP
+systems. In standard ASR+NER pipelines, transcription errors in the first stage degrade entity
+recognition in the second stage. The paper also identifies a key gap: existing end-to- end
+NER-from-speech models support only fixed, closed entity sets, limiting their applicability to
+dynamic or domain-specific scenarios where entity vocabularies change over time.
+
+WhisperNER extends Whisper large-v2 by conditioning the decoder on a user-supplied list of
+entity type labels at inference time. The model is trained on 350K samples from the NuNER
+synthetic dataset augmented with TTS-generated audio, spanning 1.8M unique entity types.
+Training incorporates negative entity sampling (~66% negative types per example) and entity
+type dropout to reduce hallucination. Only the decoder is updated; the Whisper encoder is
+frozen. A scalar logit bias on the entity start token provides inference-time precision-recall
+control without retraining.
+
+On zero-shot open-type NER, WhisperNER achieves **53.53 F1** averaged across VoxPopuli-NER,
+LibriSpeech-NER, and Fleurs-NER, outperforming the best pipeline baseline (GLiNER at **52.29
+F1**) while adding no parameters over Whisper large-v2. Pipeline baselines add 248M-459M NLP
+parameters on top of the same Whisper backbone. On supervised fine- tuning, WhisperNER reaches
+**81.35 F1** on MIT-Movie at **2.31% WER**, outperforming all baselines on both metrics
+simultaneously. The WER cost of NER integration is modest at approximately +0.9 pp on
+VoxPopuli.
+
+For the Rezolve STT project, WhisperNER is the most directly relevant paper in the corpus: it
+directly targets the entity accuracy problem by integrating NER into ASR, uses the same
+Whisper architecture targeted for fine-tuning in this project, and its open-type prompt
+interface allows Rezolve-specific entities to be targeted without retraining. The logit-bias
+precision-recall control maps onto the confidence-routing framework. The main open question is
+performance on gold-92 (accented English production audio), given the known acoustic mismatch
+from synthetic TTS training data. A baseline evaluation of the released WhisperNER model on
+gold-92 should be part of t0002_baseline_evaluation.
+
+</details>
+
+<details>
+<summary>🏤 <strong>Where are we in Named Entity Recognition from Speech?</strong>
+— Caubrière et al., 2020</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `no-doi_Caubriere2020_ner-from-speech-survey` |
+| **Authors** | Antoine Caubrière, Sophie Rosset, Yannick Estève, Antoine Laurent, Emmanuel Morin |
+| **Venue** | Proceedings of the 12th Language Resources and Evaluation Conference (LREC 2020) (conference) |
+| **DOI** | — |
+| **URL** | https://aclanthology.org/2020.lrec-1.556/ |
+| **Date added** | 2026-06-23 |
+| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`entity-correction`](../../meta/categories/entity-correction/) |
+| **Added by** | [`t0002_baseline_evaluation`](../../overview/tasks/task_pages/t0002_baseline_evaluation.md) |
+| **Full summary** | [`summary.md`](../../tasks/t0002_baseline_evaluation/assets/paper/no-doi_Caubriere2020_ner-from-speech-survey/summary.md) |
+
+Caubrière et al. (2020) revisit named entity recognition from speech using the French ETAPE
+benchmark, eight years after the original evaluation campaign established the prior state of
+the art. Their central question is how much the combination of modern neural ASR (Kaldi chain
+model, 16.5% WER) and NER systems (bLSTM-CRF) improves entity extraction from spoken French
+compared to 2012-era HMM-GMM and CRF baselines. The paper is motivated by the complete absence
+of new published results on this tree-structured NER-from-speech benchmark since 2012, despite
+major advances in both component technologies.
+
+The methodology centers on two contributions. For pipeline systems, the authors introduce a
+3-pass decomposition that splits the Quaero-style BIO annotation tree into three hierarchical
+levels, each trained as a separate sequence labeler with cascading predictions, reducing the
+tag space from ~1,690 to manageable subsets of 96, 187, and 57 tags. For end-to-end systems,
+they adapt DeepSpeech 2 with Curriculum-based Transfer Learning, encoding NE tags as special
+characters in CTC output and training progressively from ASR to NE-types to full structured
+annotation. All systems are evaluated on the official ETAPE test set using Slot Error Rate
+(SER), which jointly penalizes span boundary errors and entity type errors with calibrated
+weights.
+
+The best pipeline system (3-pass bLSTM-CRF + updated ASR) achieves **51.1% SER**, a **13.8%
+relative improvement** over the 2012 ETAPE state of the art (**59.3% SER**). The best E2E
+system reaches **56.9% SER**, showing a 4% relative improvement over the baseline but
+remaining **10.2% relative** behind the pipeline. Improved ASR alone — reducing WER from 21.8%
+to 16.5% — contributed 4.4–5.0 SER points across all NER configurations.
+
+For this project, the paper is most valuable as a methodological reference for entity-level
+evaluation metrics in STT systems. The SER/EER decomposition (boundary errors vs. type errors,
+weighted separately) directly informs the entity accuracy metric design for the gold-92
+benchmark. The finding that ASR quality improvements translate proportionally into downstream
+entity accuracy gains supports prioritizing Whisper Large v3 over Deepgram as the ASR backbone
+before investing in post-correction layers. The pipeline-beats-E2E result also validates the
+two-stage architecture (STT \+ entity post-correction) planned for this project over a
+hypothetical joint model.
+
+</details>
+
+## Tasks (2)
 
 | # | Task | Status | Completed |
 |---|------|--------|-----------|
+| 0002 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../../overview/tasks/task_pages/t0002_baseline_evaluation.md) | completed | 2026-06-23 10:25 |
 | 0003 | [Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026)](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) | completed | 2026-06-23 09:25 |
 
 ## Answers (0)
 
 No answers in this category.
 
-## Suggestions (5 open, 0 closed)
+## Suggestions (5 open, 1 closed)
+
+<details>
+<summary>🔧 <strong>LLM post-correction layer for entity normalization on Whisper
+transcripts</strong> (S-0002-03)</summary>
+
+**Kind**: technique | **Priority**: high | **Date**: 2026-06-23 | **Source**:
+[t0002_baseline_evaluation](../../tasks/t0002_baseline_evaluation/)
+
+Build a lightweight LLM post-correction pass that takes a Whisper transcript and a domain
+entity glossary (Rezolve, brainpowa, product names, IR terms) and corrects entity-span errors
+without rewriting the full transcript. The baseline shows entity accuracy of 25.2% overall and
+8.8% on production clips — the majority of failures are vocabulary substitutions
+(Rezolve→Hizol, Rezolve→Resolve) that a prompted LLM with glossary access could correct
+cheaply. Target: measure entity accuracy gain and added latency overhead vs the 800 ms p50
+budget. Recommended task types: post-correction-experiment, experiment-run.
+
+</details>
 
 <details>
 <summary>🧪 <strong>Prototype RECOVER N-best + LLM-Select on gold-92</strong>
@@ -589,23 +707,6 @@ all 93 gold-92 clips. RECOVER reported 33-35% relative E-WER reduction on Earnin
 closest public proxy for ecommerce entities. This is the highest expected gain from a
 no-retraining method in the survey. Recommended task types: post-correction-experiment,
 stt-benchmark-run.
-
-</details>
-
-<details>
-<summary>🧪 <strong>Prototype Ron2026 initial_prompt multi-agent pipeline on
-gold-92</strong> (S-0003-02)</summary>
-
-**Kind**: experiment | **Priority**: high | **Date**: 2026-06-23 | **Source**:
-[t0003_literature_review_entity_stt](../../tasks/t0003_literature_review_entity_stt/)
-
-Implement the six-agent LLM pipeline from Ron2026 against Whisper Turbo on gold-92. The
-pipeline processes a first-pass transcript to extract topic labels, named entities, and domain
-jargon, assembles a context prompt (224 tokens max), and feeds it into a second Whisper
-decoding pass via the initial_prompt parameter. Seed the NER agent with Rezolve's
-brand/product catalog. Measure entity accuracy and latency on all 93 clips. Ron2026 reported
-17% relative WER reduction on entity-dense NBA commentary with zero model retraining.
-Recommended task types: post-correction-experiment, stt-benchmark-run.
 
 </details>
 

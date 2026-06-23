@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive preset_id="roadmap" generated_at_utc="2026-06-23T10:13:15Z">
+<llm_context_archive preset_id="roadmap" generated_at_utc="2026-06-23T14:52:24Z">
   <archive_summary>
     <title>Roadmap</title>
     <description>Project planning preset centered on upcoming tasks and open suggestions.</description>
     <use_case>Deciding what to do next, prioritizing experiments, and planning follow-up work.</use_case>
     <section_count>5</section_count>
-    <char_count>20722</char_count>
-    <byte_count>20808</byte_count>
-    <estimated_tokens>5180</estimated_tokens>
+    <char_count>22636</char_count>
+    <byte_count>22711</byte_count>
+    <estimated_tokens>5659</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -103,10 +103,12 @@ gold-92 (`t0002_baseline_evaluation`).
       <source_name>aggregate_tasks_full</source_name>
       <source_ids>
         <id>t0001_stt_benchmark</id>
+        <id>t0002_baseline_evaluation</id>
         <id>t0003_literature_review_entity_stt</id>
+        <id>t0004_vocabulary_biasing_experiment</id>
       </source_ids>
       <content>
-Completed tasks: 2
+Completed tasks: 4
 
 ## STT Benchmark — Gold-92 Dataset Ingestion
 ID: t0001_stt_benchmark
@@ -114,141 +116,30 @@ Completed: 2026-06-22
 Short description: Ingest, annotate, and DVC-track the gold-92 held-out STT benchmark dataset from Rezolve production voice sessions.
 Result summary: Results Summary: t0001_stt_benchmark Outcome Gold-92 STT benchmark dataset successfully ingested and registered. 93 WAV clips with ground-truth annotations are now version-controlled: JSONL files in git, audio in DVC (Azure Blob Storage at `azure://ml-dvc-datasets/datasets/rail-arf-stt`). Assets Produced * Dataset asset `stt-benchmark-gold-92` with 93 clips, 2 JSONL annotation files, and DVC-tracked audio directory. Baseline Observations (from gold_set.jsonl) * Production (Deepgram) transcripts are present for all 93 clips. * Whisper Large v2 transcripts are present for all 93 clips. * Formal WER and entity accuracy evaluation is deferred to `t0002_baseline_evaluation`. Next Steps Task...
 
+## Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92
+ID: t0002_baseline_evaluation
+Completed: 2026-06-23
+Short description: Establish project baselines by running Deepgram Nova-2 and Whisper Large v3 on gold-92, computing all five registered metrics with BCa bootstrap confidence intervals.
+Result summary: Results Summary: Baseline Evaluation — Deepgram and Whisper on Gold-92 Summary Whisper turbo and Whisper large-v3 were benchmarked on the gold-92 STT dataset (93 clips from Rezolve investor-relations production sessions). Both models produced **identical entity accuracy of 25.2%** with matching BCa 95% CIs, ruling out model size as the bottleneck. The production-session subset scored only **8.8% entity accuracy**, exposing a severe gap between lab conditions and real deployment. Deepgram Nova-2 could not be run due to a missing API key; the Whisper results stand as the open-source baseline. The primary implication is that vocabulary biasing — not a larger model — is the highest-ROI next...
+
 ## Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026)
 ID: t0003_literature_review_entity_stt
 Completed: 2026-06-23
 Short description: Survey Jan–Jun 2026 publications on contextual biasing, shallow fusion, entity-aware ASR, and LLM post-correction for named entity accuracy in ecommerce STT.
 Result summary: --- task_id: &quot;t0003_literature_review_entity_stt&quot; date: &quot;2026-06-23&quot; --- Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026) Summary Systematic literature review of Jan–Jun 2026 publications on entity-aware STT. **15 paper assets** were created covering contextual biasing, entity-aware ASR architectures, and LLM post-correction. The top no-retraining candidates for prototyping on gold-92 are **RECOVER** (33–35% relative E-WER reduction, Earnings-21) and **Ron2026** (17% relative WER reduction via Whisper `initial_prompt`). Shallow fusion has effectively no 2026 literature — documented as a gap, not a search failure. Metrics * **Paper assets created**: **15** (all...
+
+## Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy
+ID: t0004_vocabulary_biasing_experiment
+Completed: 2026-06-23
+Short description: Test whether Whisper&#x27;s initial_prompt vocabulary biasing improves entity accuracy on gold-92 domain terms compared to t0002 baselines.
+Result summary: t0004 Results Summary — Vocabulary Biasing Experiment Summary Injecting a 31-term domain vocabulary via Whisper&#x27;s `initial_prompt` parameter produces a **4–5× improvement in domain-entity accuracy** (18% → 87–95%) with no WER degradation. Action-Critical WER dropped from 30% to 2.5% (large-v3 biased), approaching the project success criterion of &lt;2% wrong-action rate. Moonshine base is 80× faster (p50 70ms) but significantly weaker on this domain. Metrics - **entity_accuracy_domain_vocab**: 18.2% → 94.5% (large-v3 biased), 87.3% (turbo biased) — 4–5× improvement; 10.9% for Moonshine base (weaker) - **entity_accuracy_gold92**: 25.2% → 46.0% (large-v3 biased), 43.1% (turbo biased); 21.7%...
       </content>
     </section>
     <section id="planned-tasks" source_kind="aggregator">
       <title>Planned Tasks</title>
       <source_name>aggregate_tasks_full</source_name>
-      <source_ids>
-        <id>t0002_baseline_evaluation</id>
-      </source_ids>
       <content>
-Planned or active tasks: 1
-
-## Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92
-ID: t0002_baseline_evaluation
-Status: in_progress
-Effective date: 2026-06-23
-Short description: Establish project baselines by running Deepgram Nova-2 and Whisper Large v3 on gold-92, computing all five registered metrics with BCa bootstrap confidence intervals.
-Dependencies: t0001_stt_benchmark
-
-#### Motivation
-
-Before pursuing entity-aware post-correction or fine-tuning, the project needs a reliable reference
-point for all five registered metrics on both the production STT system and the leading open-source
-alternative. This task produces the baseline results against which every subsequent improvement is
-judged. Without this baseline, no downstream task can claim a statistically significant improvement.
-
-The gold-92 benchmark (`stt-benchmark-gold-92`, produced by `t0001_stt_benchmark`) contains 93
-annotated WAV clips from Rezolve production voice sessions across the investor-relations domain,
-with accented English speakers. It is the held-out evaluation set for all tasks in this project.
-
-#### Runs
-
-This task evaluates exactly two STT configurations:
-
-1. **Deepgram Nova-2** — the current Rezolve production STT endpoint. Called via the Deepgram cloud
-   API with the `nova-2` model and default settings (no custom vocabulary). This is the production
-   baseline the project is trying to beat.
-
-2. **Whisper Large v3** — the state-of-the-art open-source STT model from OpenAI. Run via the
-   `openai-whisper` Python package (local inference, CPU or GPU). No fine-tuning or prompt
-   injection; pure out-of-the-box transcription. This provides the open-source ceiling before any
-   domain adaptation.
-
-No other STT systems or model variants are evaluated in this task.
-
-#### Metrics
-
-All five registered project metrics must be computed for both runs:
-
-* `entity_accuracy_gold92` — accuracy on action-critical entity spans (brand names, product lines,
-  SKUs, IR terms) after normalisation. Primary success metric.
-* `wer_gold92` — full-transcript WER over all reference words.
-* `action_critical_wer_gold92` — WER restricted to action-critical token spans only.
-* `intent_preservation_gold92` — fraction of utterances where predicted transcript preserves the
-  ground-truth intent (action type + primary slot agreement).
-* `latency_p50_seconds` — p50 end-to-end latency from speech-end to transcription complete.
-
-For each metric, compute BCa bootstrap 95% confidence intervals (n=10,000 resamples, paired
-samples). Run a paired BCa bootstrap significance test comparing Whisper Large v3 vs Deepgram on
-`entity_accuracy_gold92` (the primary metric).
-
-#### Data Handling
-
-* DVC-pull the gold-92 audio from `tasks/t0001_stt_benchmark/` before running any inference.
-* Ground-truth transcripts and entity annotations are in the same DVC-tracked folder.
-* Do not modify or augment the gold-92 data — it is a held-out regression set.
-* Save raw transcription outputs (pre-metric-computation) to `data/` within this task for
-  reproducibility:
-  * `data/deepgram_transcripts.json` — raw Deepgram API responses for all 93 clips
-  * `data/whisper_transcripts.json` — raw Whisper outputs for all 93 clips
-
-#### Compute and Budget
-
-* **Deepgram Nova-2**: API call cost is approximately $0.0043/minute of audio. Gold-92 is roughly
-  15–20 minutes total, so ~$0.09. Negligible.
-* **Whisper Large v3**: local inference on CPU takes ~8–12 min/clip × 93 clips ≈ 12–19 hours. Use a
-  GPU instance if available (A100/H100: ~2–5 minutes total). Prefer a GPU if wall-clock time
-  matters; the per-task budget is $100.
-* Total budget estimate: $5–$20 (GPU instance) + ~$0.09 (Deepgram API). Well within limit.
-
-If GPU is used, include `setup-machines` and `teardown` steps.
-
-#### Output Assets
-
-Two predictions assets, one per STT system:
-
-* `predictions/deepgram-nova2-gold92` — raw transcripts + per-utterance metrics for Deepgram
-* `predictions/whisper-large-v3-gold92` — raw transcripts + per-utterance metrics for Whisper
-
-Each predictions asset includes:
-
-* `predictions.json` — one entry per clip: `clip_id`, `hypothesis`, `reference`,
-  `entity_spans_predicted`, `entity_spans_reference`, per-utterance metric values
-* `metadata.json` — model name, API version or package version, inference date, total latency
-
-#### Charts and Tables
-
-**Required charts** (save to `results/images/`, embed in `results_detailed.md`):
-
-1. Bar chart comparing `entity_accuracy_gold92`, `wer_gold92`, and `action_critical_wer_gold92` for
-   both systems side-by-side, with BCa 95% CI error bars. Caption: &quot;Figure 1: Primary metric
-   comparison — Deepgram Nova-2 vs Whisper Large v3 on gold-92.&quot;
-2. Per-utterance scatter plot of entity accuracy (x = Deepgram, y = Whisper), one point per clip,
-   coloured by speaker accent group. Caption: &quot;Figure 2: Per-utterance entity accuracy correlation —
-   clips above diagonal favour Whisper.&quot;
-
-**Required tables** (in `results_detailed.md`):
-
-1. Summary metrics table: rows = {Deepgram Nova-2, Whisper Large v3}, columns = all 5 metrics (point
-   estimate ± 95% CI).
-2. Per-accent-group breakdown: rows = accent groups, columns = `entity_accuracy_gold92` for each
-   system.
-
-#### Key Research Questions Addressed
-
-1. What is the current WER and entity accuracy of Deepgram (production) and Whisper Large v3 on the
-   gold-92 benchmark, broken down by utterance category and entity type? *(RQ1)*
-2. Does Whisper Large v3 materially outperform Deepgram on entity accuracy with statistical
-   significance (BCa p &lt; 0.05)? *(Sub-question of RQ1)*
-
-#### Dependencies
-
-* `t0001_stt_benchmark` — provides the gold-92 DVC-tracked audio and ground-truth annotations. This
-  task cannot start without the dataset being available via `dvc pull`.
-
-#### Cross-References
-
-* Project description: &quot;What is the current WER and entity accuracy of Deepgram (production) and
-  Whisper Large v3 on the gold-92 benchmark?&quot; (RQ1)
-* Deepgram Nova-2 documentation — current production STT endpoint
-* Radford et al. (2023) — Whisper model paper
+Planned or active tasks: 0
       </content>
     </section>
     <section id="questions-and-answers" source_kind="aggregator">
@@ -262,9 +153,16 @@ Answers: 0
       <title>Open Suggestions</title>
       <source_name>aggregate_suggestions_full</source_name>
       <source_ids>
+        <id>S-0002-01</id>
+        <id>S-0002-02</id>
+        <id>S-0002-03</id>
         <id>S-0003-01</id>
         <id>S-0003-02</id>
         <id>S-0003-03</id>
+        <id>S-0002-04</id>
+        <id>S-0002-05</id>
+        <id>S-0002-06</id>
+        <id>S-0002-07</id>
         <id>S-0003-04</id>
         <id>S-0003-05</id>
         <id>S-0003-06</id>
@@ -272,7 +170,28 @@ Answers: 0
         <id>S-0003-08</id>
       </source_ids>
       <content>
-Open suggestions: 8
+Open suggestions: 15
+
+## Vocabulary-biased Whisper inference via STT_INITIAL_PROMPT on gold-92
+ID: S-0002-01
+Priority: high
+Kind: experiment
+Source task: t0002_baseline_evaluation
+Run Whisper turbo on gold-92 with a domain vocabulary prompt injected via STT_INITIAL_PROMPT (e.g., &#x27;Rezolve, brainpowa, Rezolve AI, Shopify Plus, Salesforce Commerce Cloud, Adobe Commerce, AI Foundry&#x27;). The baseline showed &#x27;Rezolve&#x27; is systematically transcribed as &#x27;Hizol&#x27; or &#x27;Resolve&#x27; — a pure vocabulary gap. Vocabulary biasing via initial_prompt requires zero training and zero API cost. Measure entity accuracy on production clips specifically (baseline: 8.8%) and compare with paired BCa test against the whisper-turbo baseline. Recommended task types: stt-benchmark-run, experiment-run.
+
+## Run Deepgram Nova-2 baseline on gold-92 to complete REQ-1 and paired significance test
+ID: S-0002-02
+Priority: high
+Kind: experiment
+Source task: t0002_baseline_evaluation
+The t0002 baseline evaluation could not run Deepgram Nova-2 because DEEPGRAM_API_KEY was unavailable. This blocked REQ-1, REQ-5 (paired significance test), REQ-9 (Deepgram predictions asset), and the production comparator column in all results tables. Cost is approximately $0.09 for 93 clips. A dedicated task should obtain the key from the team vault, run Deepgram Nova-2 with nova-2 model and default settings on all 93 gold-92 clips, compute all five registered metrics with BCa CIs, run the paired significance test against whisper-turbo, and produce the deepgram-nova2-gold92 predictions asset. Recommended task types: stt-benchmark-run, baseline-evaluation.
+
+## LLM post-correction layer for entity normalization on Whisper transcripts
+ID: S-0002-03
+Priority: high
+Kind: technique
+Source task: t0002_baseline_evaluation
+Build a lightweight LLM post-correction pass that takes a Whisper transcript and a domain entity glossary (Rezolve, brainpowa, product names, IR terms) and corrects entity-span errors without rewriting the full transcript. The baseline shows entity accuracy of 25.2% overall and 8.8% on production clips — the majority of failures are vocabulary substitutions (Rezolve→Hizol, Rezolve→Resolve) that a prompted LLM with glossary access could correct cheaply. Target: measure entity accuracy gain and added latency overhead vs the 800 ms p50 budget. Recommended task types: post-correction-experiment, experiment-run.
 
 ## Prototype RECOVER N-best + LLM-Select on gold-92
 ID: S-0003-01
@@ -294,6 +213,34 @@ Priority: high
 Kind: dataset
 Source task: t0003_literature_review_entity_stt
 Add entity-offset markup to gold-92 ground-truth transcripts, tagging brand names, product names, and SKUs with character-level span annotations. This unblocks computation of E-WER (required to evaluate RECOVER) and Slot F1 (required to evaluate Zheng2026 selective span editing). Without entity spans, only substring-match and overall WER can be reported on gold-92. The annotation should cover all 93 clips and follow a schema compatible with the Contextual Earnings-22 format (Durmus2026) to enable cross-benchmark comparison. Recommended task types: audio-dataset-curation.
+
+## Domain fine-tuning of Whisper turbo on Rezolve investor-relations audio
+ID: S-0002-04
+Priority: medium
+Kind: experiment
+Source task: t0002_baseline_evaluation
+Fine-tune Whisper turbo on Rezolve-domain audio (investor-relations sessions, brand names, product terms) to close the vocabulary gap revealed by the baseline. Both large-v3 and turbo achieved identical entity accuracy (25.2%), confirming model size is not the bottleneck — training data distribution is. The WhisperNER supervised fine-tuning comparison showed 81.35 F1 on a domain-specific corpus vs our 25.2%, indicating large headroom. A fine-tuning task should collect or synthesize domain audio+transcript pairs, run LoRA or full fine-tune on turbo (pragmatic: 25% lower latency than large-v3 with no accuracy loss), and evaluate on gold-92 production clips (baseline: 8.8%). Recommended task...
+
+## Expand gold-92 benchmark with more production clips and fix annotation inconsistencies
+ID: S-0002-05
+Priority: medium
+Kind: dataset
+Source task: t0002_baseline_evaluation
+Three findings motivate benchmark expansion: (1) the 34-clip production subset scores only 8.8% entity accuracy but drives all business-critical decisions; a larger production sample would tighten BCa confidence intervals and reduce the risk of outlier clips dominating results; (2) at least three clips (Examples 10, 13, 14) show verbatim transcript matches scoring 0 entity accuracy due to annotation normalisation mismatches — the annotation schema needs an audit; (3) clip error_en_0005 has Cyrillic ground truth indicating upstream data quality issues. The expanded benchmark should also apply blockwise bootstrap by speaker for the clean_voices subset as recommended by Liu2020. Recommended...
+
+## Add Azure Speech Services as a third STT comparison point on gold-92
+ID: S-0002-06
+Priority: medium
+Kind: experiment
+Source task: t0002_baseline_evaluation
+Azure Cognitive Services Speech-to-Text supports custom keyword lists and phrase boosting natively, making it a strong candidate for domain entity accuracy without fine-tuning. Compare it against Deepgram Nova-2 and Whisper turbo on gold-92 using all five registered metrics. Requires AZURE_SPEECH_API_KEY from the team vault. Azure also offers Custom Speech (domain adaptation) which can be evaluated in a follow-up. Estimated cost: approximately $0.01–$0.05 for 93 clips at standard tier pricing. Recommended task types: stt-benchmark-run, comparative-analysis.
+
+## Implement intent classification metric to replace span-presence proxy
+ID: S-0002-07
+Priority: medium
+Kind: evaluation
+Source task: t0002_baseline_evaluation
+The current intent_preservation_gold92 metric uses a span-presence heuristic that is over-estimated: &#x27;Resolve&#x27; satisfies &#x27;Rezolve&#x27; after normalisation, inflating the 90.3% figure. A proper intent classifier should distinguish entity substitution that changes action target (e.g., wrong company name) from substitution that preserves action type (e.g., generic query intent). This is needed to make intent_preservation_gold92 meaningful for the confidence-routing policy (wrong_action_rate_gold92 goal: &lt;2%). Implement as a lightweight rule-based or LLM-based classifier and re-evaluate on gold-92. Recommended task types: write-library, experiment-run.
 
 ## Add S2ER (sentence-level semantic error rate) metric to the project evaluation harness
 ID: S-0003-04

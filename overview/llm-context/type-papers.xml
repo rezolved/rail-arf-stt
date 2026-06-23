@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive type_id="papers" generated_at_utc="2026-06-23T10:13:15Z">
+<llm_context_archive type_id="papers" generated_at_utc="2026-06-23T14:52:24Z">
   <archive_summary>
     <title>All Papers</title>
     <description>Complete paper corpus with full summaries, metadata, and abstracts.</description>
     <section_count>1</section_count>
-    <char_count>146426</char_count>
-    <byte_count>147108</byte_count>
-    <estimated_tokens>36606</estimated_tokens>
+    <char_count>204288</char_count>
+    <byte_count>205335</byte_count>
+    <estimated_tokens>51072</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -32,9 +32,13 @@
         <id>10.48550_arXiv.2601.21347</id>
         <id>10.48550_arXiv.2601.15397</id>
         <id>10.48550_arXiv.2601.13409</id>
+        <id>10.1109_ASRU65441.2025.11434797</id>
+        <id>10.48550_arXiv.2212.04356</id>
+        <id>no-doi_Caubriere2020_ner-from-speech-survey</id>
+        <id>10.21437_Interspeech.2020-1338</id>
       </source_ids>
       <content>
-Papers: 15
+Papers: 19
 
 ## Towards Deep Contextual Reasoning from Broad Descriptions for ASR with Speech-LLM via Metadata-Driven Reasoning Chains
 ID: 10.48550_arXiv.2606.10838
@@ -2503,6 +2507,978 @@ shaping principle is directly transferable: any RL-based ASR fine-tuning for eco
 brand/product/SKU tokens at alpha=5×. The reference-aware exploration mechanism addresses a
 practical training stability concern that would arise when fine-tuning on a small (~1000 utterance)
 ecommerce entity dataset.
+
+## WhisperNER: Unified Open Named Entity and Speech Recognition
+ID: 10.1109_ASRU65441.2025.11434797
+Year: 2024
+Authors: Gil Ayache, Menachem Pirchi, Aviv Navon, Aviv Shamsian, Gill Hetz, Joseph Keshet
+Venue: 2025 IEEE Automatic Speech Recognition and Understanding Workshop (ASRU)
+Venue type: conference
+DOI: 10.1109/ASRU65441.2025.11434797
+URL: https://arxiv.org/abs/2409.08107
+Categories: stt-evaluation, whisper-finetuning, entity-correction
+Added by task: t0002_baseline_evaluation
+Date added: 2026-06-23
+
+#### Metadata
+
+* **File**: `files/ayache_2024_whisperner-joint-asr-ner.pdf`
+* **Published**: 2024 (arXiv); proceedings published December 2025
+* **Authors**: Gil Ayache 🇮🇱, Menachem Pirchi 🇮🇱, Aviv Navon 🇮🇱,
+  Aviv Shamsian 🇮🇱, Gill Hetz 🇮🇱, Joseph Keshet 🇮🇱
+* **Venue**: 2025 IEEE Automatic Speech Recognition and Understanding
+  Workshop (ASRU)
+* **DOI**: `10.1109/ASRU65441.2025.11434797`
+
+#### Abstract
+
+Integrating named entity recognition (NER) with automatic speech
+recognition (ASR) can significantly enhance transcription accuracy and
+enrich its content. We introduce WhisperNER, a novel model that
+facilitates joint speech transcription and entity recognition.
+WhisperNER supports open-type NER, enabling recognition of various
+entities during inference. Building on recent advancements in open NER
+research, we augment a large synthetic dataset with synthetic speech
+samples. This approach enables us to train WhisperNER on numerous
+examples with various NER tags. During training, the model is prompted
+with NER labels and optimized to produce the transcribed utterance
+alongside the corresponding tagged entities. For evaluation, we generate
+synthetic speech for commonly used NER benchmarks and annotate existing
+ASR datasets with open NER tags. Our experiments show that WhisperNER
+outperforms natural baselines in both out-of-domain open-type NER and
+supervised fine-tuning.
+
+#### Overview
+
+WhisperNER addresses a fundamental limitation of pipeline-based
+speech-NLP systems: error propagation. In standard pipelines an ASR
+model transcribes audio to text and a separate NER model then labels
+entities in that text. Transcription errors compound NER errors because
+the NER component never sees the original audio signal. WhisperNER
+eliminates the intermediate text representation by extending the Whisper
+large-v2 encoder-decoder architecture to produce tagged transcriptions
+directly from audio. The model receives a list of entity type labels as
+a prompt injected into the decoder at inference time and outputs both the
+transcription and any matched entity spans in a single decoding pass.
+
+A critical design feature is open-type NER: the model is not trained to
+recognise a fixed closed set of entities. Instead, it generalises to
+entity types provided at inference time that it has never seen during
+training. This is achieved by training on 350K synthetic examples drawn
+from the NuNER dataset (Bogdanov et al., 2024), augmented with synthetic
+speech generated via text-to-speech. The training set covers 1.8 million
+unique entity types, forcing the decoder to treat entity labels as
+generic instructions rather than memorised class labels.
+
+The paper introduces three evaluation datasets — VoxPopuli-NER,
+LibriSpeech-NER, and Fleurs-NER — created by annotating existing ASR
+benchmarks with open-type NER labels using an LLM-based annotation
+scheme. On zero-shot open-type NER, WhisperNER achieves **56.25 F1**
+on VoxPopuli-NER, outperforming the best pipeline baseline (GLiNER at
+**52.29 F1** average) while requiring no additional parameters beyond
+the Whisper architecture. On supervised fine-tuning using MIT-Movie and
+MIT-Restaurant, WhisperNER reaches **81.35 F1** and **72.74 F1**
+respectively, surpassing pipeline competitors that add 248M-459M params.
+
+The paper also introduces two practical mechanisms: logit-based
+precision-recall control via an entity start-token bias, and negative
+sampling with entity type dropout to reduce hallucination.
+
+#### Architecture, Models and Methods
+
+**Base model.** WhisperNER is built on Whisper large-v2, an
+encoder-decoder transformer. The encoder processes mel-spectrogram
+features from raw audio. The decoder autoregressively generates tokens
+conditioned on encoder hidden states and a user-supplied entity type
+prompt.
+
+**Prompt injection.** A set of entity type labels `t = [t1, t2, ...,
+tk]` is prepended to the decoder context at decoding start. The decoder
+generates tokens conditioned jointly on the audio encoder output and the
+entity type prompt, interleaving transcribed text with entity span
+markers.
+
+**Entity tagging formats.** Two output formats are evaluated:
+* *BIO tagging* (WhisperNER-BIO): each token tagged with B/I/O labels
+  per entity type, e.g., `astronaut(B-occupation)`. Stronger per-token
+  supervision but increases output sequence length substantially.
+* *Start/end marker format* (WhisperNER): entities wrapped with markers,
+  e.g., `&lt;occupation&gt;astronaut&lt;occupation&gt;&gt;`. Adds fewer tokens, keeping
+  sequence length close to the Whisper-only baseline.
+
+**Training objective.** Standard cross-entropy over the full output
+sequence (transcription + entity tags). The Whisper encoder is frozen;
+only the decoder weights are updated. Training: 250K steps, learning
+rate 1e-6, linear decay scheduler.
+
+**Training data.** 350K samples from the NuNER synthetic dataset, each
+augmented with synthetic audio generated via TTS. The dataset spans
+1.8M unique entity types.
+
+**Negative sampling.** Each training example is augmented with negative
+entity labels sampled from a randomly selected other training example
+(approximately 2 negative examples per positive, ~66% negative types).
+This teaches the model to suppress entity tags for absent types. Ablation
+shows this contributes the largest single F1 gain (+7.92 F1 on MIT
+benchmarks from 17.91 to 25.83).
+
+**Entity type dropout.** A random subset of entity types is dropped from
+both the prompt and output sequence during training, reducing entity
+hallucination at inference. Combined with negative sampling, F1 rises
+from 25.83 to 26.44 with improved WER (8.28 to 8.05).
+
+**Precision-recall control.** A scalar bias is added to the entity start
+token `&lt;` logit at inference time. Positive bias raises recall; negative
+bias raises precision. Evaluated on VoxPopuli-NER; shown to give
+significant control over the precision-recall curve without retraining.
+
+**Baselines.** Three pipeline systems: GLiNER-L (encoder transformer,
+zero-shot NER, +459M params), NuNER zero-span (GLiNER architecture on
+NuNER data, +459M params), and GNER-T5-base (generative T5 NER,
++248M params). All use Whisper large-v2 as the ASR frontend.
+
+**Evaluation metrics.** NER F1 (span-level: both transcript text AND NER
+label must be correct — a demanding dual requirement) and WER.
+
+**Evaluation datasets:**
+* VoxPopuli-NER: 879 samples, 2,469 unique entity types (political).
+* LibriSpeech-NER: 1,604 samples, 3,674 unique entity types (audiobook).
+* Fleurs-NER: 441 samples, 1,440 unique entity types (multilingual,
+  English subset).
+* MIT-Movie: ~14K samples, 12 entity types (supervised fine-tuning).
+* MIT-Restaurant: ~10K samples, 8 entity types (supervised fine-tuning).
+
+MIT benchmarks converted to speech using AWS Polly TTS for evaluation.
+
+#### Results
+
+* Zero-shot average F1 (3 benchmarks): WhisperNER **53.53**, GLiNER
+  **52.29**, NuNER **49.64**, GNER-T5-base **42.72**
+* VoxPopuli-NER zero-shot F1: WhisperNER **56.25**, WhisperNER-BIO
+  **55.79**, GLiNER **53.55**, NuNER **52.18**, GNER **45.31**
+* LibriSpeech-NER zero-shot F1: WhisperNER **50.84**, WhisperNER-BIO
+  **50.40**, GLiNER **48.97**, NuNER **43.65**, GNER **35.68**
+* Fleurs-NER zero-shot F1: WhisperNER-BIO **54.42**, WhisperNER
+  **53.50**, GLiNER **54.35**, NuNER **53.11**, GNER **47.15**
+* WER cost of NER (VoxPopuli): WhisperNER **9.22%** vs pipeline
+  baseline **8.32%** — overhead of **+0.90 pp**
+* Supervised fine-tuning MIT-Movie: WhisperNER **81.35 F1** /
+  **2.31% WER**, WhisperNER-BIO **80.91 / 2.64**, GLiNER **75.34 /
+  3.34**, NuNER **75.25 / 3.34**, GNER **61.12 / 3.34**
+* Supervised fine-tuning MIT-Restaurant: WhisperNER-BIO **72.74 F1** /
+  **4.74% WER**, WhisperNER **71.51 / 4.02**, NuNER **71.40 / 5.48**,
+  GLiNER **71.09 / 5.48**, GNER **57.90 / 5.48**
+* Parameter overhead vs pipeline baselines: WhisperNER **0 extra
+  parameters**; GLiNER/NuNER add **459M**; GNER adds **248M**
+* Negative sampling ablation (25K steps, MIT benchmarks): no negatives
+  **17.91 F1**, +negatives **25.83 F1**, +negatives +dropout **26.44 F1**
+* Optimal negative examples: 2 negatives gives best F1 (**26.43**) at
+  near-best WER (**8.31%**)
+* Zero-shot cross-lingual (English-trained model on VoxPopuli):
+  Spanish **29.3 F1 / 4.8% WER**, French **28.6 F1 / 13.9% WER**
+
+#### Innovations
+
+##### Joint ASR + Open-Type NER in a Single Decoder Pass
+
+WhisperNER is the first model to perform open-type NER directly from
+speech in a single autoregressive decoder pass. Prior end-to-end NER-
+from-speech models supported only fixed, closed entity sets. Prompting
+the decoder with entity type labels at inference time allows any entity
+category to be targeted, including types unseen during training.
+
+##### Prompt-Based Entity Generalisation via Synthetic Data
+
+Training on 350K samples spanning 1.8M unique entity types forces the
+model to treat NER labels as generic instructions rather than memorised
+class tokens. This design is the key mechanism for open-type
+generalisation and separates WhisperNER from closed-set SLU models.
+
+##### Logit-Based Precision-Recall Control
+
+Standard discriminative NER models tune precision-recall via
+classification thresholds. Generative autoregressive models do not
+expose such thresholds directly. WhisperNER adds a scalar bias to the
+entity start token logit at inference time, giving users control over
+the tradeoff without retraining — practical for production deployments
+where false-positive and false-negative costs differ.
+
+##### Negative Sampling and Entity Type Dropout
+
+Training with negative entity labels and random entity type dropout
+substantially reduces entity hallucination and improves generalisation.
+The +7.92 F1 gain from negative sampling alone is the largest
+contributor to final model quality.
+
+##### Open-Type NER Speech Benchmarks
+
+VoxPopuli-NER, LibriSpeech-NER, and Fleurs-NER are released as new
+evaluation benchmarks filling a gap in speech-NER evaluation
+infrastructure, enabling future work to measure open-type NER on speech
+without constructing new datasets.
+
+#### Datasets
+
+* **VoxPopuli** (Wang et al., 2021): multilingual speech corpus, English
+  subset. VoxPopuli-NER: 879 samples, 2,469 unique entity types.
+  License: CC0.
+* **LibriSpeech** (Panayotov et al., 2015): audiobook ASR corpus, clean
+  subset. LibriSpeech-NER: 1,604 samples, 3,674 unique entity types.
+  License: CC BY 4.0.
+* **Fleurs** (Conneau et al., 2022): multilingual speech, English subset.
+  Fleurs-NER: 441 samples, 1,440 unique entity types. License: CC BY 4.0.
+* **MIT-Movie / MIT-Restaurant** (Liu et al., 2013): closed-set NER
+  benchmarks; ~14K and ~10K text samples, 12 and 8 entity types. Speech
+  versions generated via AWS Polly TTS.
+* **NuNER synthetic dataset** (Bogdanov et al., 2024): large-scale
+  textual open NER training data; 350K samples selected by WhisperNER
+  authors, 1.8M unique entity types. TTS audio added for training.
+
+All evaluation datasets (VoxPopuli-NER, LibriSpeech-NER, Fleurs-NER,
+augmented NuNER) are released publicly alongside source code and model
+weights at the authors&#x27; repository.
+
+#### Main Ideas
+
+* Joint ASR+NER in a single model eliminates error propagation from the
+  ASR stage and adds zero parameters over the Whisper backbone —
+  directly applicable to Rezolve&#x27;s entity accuracy goal without adding
+  a separate NER component on top of Whisper.
+* Open-type NER via prompt injection means WhisperNER can target
+  Rezolve-specific entity categories (brand names, SKUs, product lines)
+  at inference time by listing them in the entity type prompt — no
+  retraining required to add or change entity types.
+* The logit-based precision-recall control maps directly onto the
+  Rezolve confidence-routing framework: a conservative negative bias
+  raises precision (fewer false entity extractions), supporting an
+  &quot;accept&quot; routing policy; a positive bias raises recall, supporting
+  a &quot;correct/clarify&quot; policy where missing entities are the primary
+  risk.
+* WER overhead is small but real (+0.9 pp on VoxPopuli). This must be
+  measured on gold-92 to confirm it stays within the &lt;8% action-
+  critical WER target.
+* The synthetic-speech training data (TTS-augmented NuNER) introduces
+  acoustic mismatch with natural speech — the paper flags this as a
+  limitation. Rezolve production audio (accented English, ecommerce
+  domain) may show larger WER degradation; domain fine-tuning on
+  production audio would likely be needed before deployment.
+* Publicly released model weights allow low-cost evaluation of
+  WhisperNER on gold-92, making it a strong candidate to include in
+  t0002_baseline_evaluation alongside Deepgram and plain Whisper
+  Large v3.
+
+#### Summary
+
+Ayache et al. propose WhisperNER to solve error propagation in
+pipeline-based speech-NLP systems. In standard ASR+NER pipelines,
+transcription errors in the first stage degrade entity recognition in
+the second stage. The paper also identifies a key gap: existing end-to-
+end NER-from-speech models support only fixed, closed entity sets,
+limiting their applicability to dynamic or domain-specific scenarios
+where entity vocabularies change over time.
+
+WhisperNER extends Whisper large-v2 by conditioning the decoder on a
+user-supplied list of entity type labels at inference time. The model is
+trained on 350K samples from the NuNER synthetic dataset augmented with
+TTS-generated audio, spanning 1.8M unique entity types. Training
+incorporates negative entity sampling (~66% negative types per example)
+and entity type dropout to reduce hallucination. Only the decoder is
+updated; the Whisper encoder is frozen. A scalar logit bias on the
+entity start token provides inference-time precision-recall control
+without retraining.
+
+On zero-shot open-type NER, WhisperNER achieves **53.53 F1** averaged
+across VoxPopuli-NER, LibriSpeech-NER, and Fleurs-NER, outperforming
+the best pipeline baseline (GLiNER at **52.29 F1**) while adding no
+parameters over Whisper large-v2. Pipeline baselines add 248M-459M
+NLP parameters on top of the same Whisper backbone. On supervised fine-
+tuning, WhisperNER reaches **81.35 F1** on MIT-Movie at **2.31% WER**,
+outperforming all baselines on both metrics simultaneously. The WER cost
+of NER integration is modest at approximately +0.9 pp on VoxPopuli.
+
+For the Rezolve STT project, WhisperNER is the most directly relevant
+paper in the corpus: it directly targets the entity accuracy problem by
+integrating NER into ASR, uses the same Whisper architecture targeted
+for fine-tuning in this project, and its open-type prompt interface
+allows Rezolve-specific entities to be targeted without retraining. The
+logit-bias precision-recall control maps onto the confidence-routing
+framework. The main open question is performance on gold-92 (accented
+English production audio), given the known acoustic mismatch from
+synthetic TTS training data. A baseline evaluation of the released
+WhisperNER model on gold-92 should be part of t0002_baseline_evaluation.
+
+## Robust Speech Recognition via Large-Scale Weak Supervision
+ID: 10.48550_arXiv.2212.04356
+Year: 2022
+Authors: Alec Radford, Jong Wook Kim, Tao Xu, Greg Brockman, Christine McLeavey, Ilya Sutskever
+Venue: arXiv preprint
+Venue type: preprint
+DOI: 10.48550/arXiv.2212.04356
+URL: https://arxiv.org/abs/2212.04356
+Categories: stt-evaluation, whisper-finetuning
+Added by task: t0002_baseline_evaluation
+Date added: 2026-06-23
+
+#### Metadata
+
+* **File**: `files/radford_2023_whisper-robust-speech-recognition.pdf`
+* **Published**: 2022
+* **Authors**: Alec Radford 🇺🇸, Jong Wook Kim 🇺🇸, Tao Xu 🇺🇸, Greg Brockman 🇺🇸, Christine McLeavey
+  🇺🇸, Ilya Sutskever 🇺🇸
+* **Venue**: arXiv preprint (eess.AS)
+* **DOI**: `10.48550/arXiv.2212.04356`
+
+#### Abstract
+
+We study the capabilities of speech processing systems trained simply to predict large amounts of
+transcripts of audio on the internet. When scaled to 680,000 hours of multilingual and multitask
+supervision, the resulting models generalize well to standard benchmarks and are often competitive
+with prior fully supervised results but in a zero-shot transfer setting without the need for any
+fine-tuning. When compared to humans, the models approach their accuracy and robustness. We are
+releasing models and inference code to serve as a foundation for further work on robust speech
+processing.
+
+#### Overview
+
+Whisper is OpenAI&#x27;s large-scale weakly supervised speech recognition system, trained on 680,000
+hours of audio paired with transcripts collected from the internet. The central thesis is that prior
+STT work over-relied on small, high-quality supervised datasets and expensive fine-tuning steps,
+leaving a large gap between in-distribution performance and real-world robustness. By scaling weak
+supervision by two orders of magnitude beyond prior work (SpeechStew topped out at 5,140 hours), the
+authors demonstrate that a single model can transfer zero-shot to a broad range of domains without
+any dataset-specific adaptation.
+
+The paper makes a careful distinction between in-distribution and out-of-distribution
+generalization. Supervised LibriSpeech models achieve very low WER on that benchmark but make
+roughly twice as many errors as humans when evaluated on other datasets. Whisper Large V2 achieves a
+**55.2%** average relative error reduction over the best comparable supervised model when evaluated
+on 13 out-of-distribution datasets, despite similar LibriSpeech performance.
+
+Beyond English transcription, Whisper is trained as a multitask model: it handles 99 languages,
+X-to-English speech translation (125,000 hours of training data), language identification, voice
+activity detection, and timestamp-aligned transcription — all from a single model controlled by
+special decoder tokens. The authors release five model sizes (Tiny through Large V2) covering 39M to
+1.55B parameters and open-source the inference code and text normalizer.
+
+A secondary contribution is a detailed text normalizer that avoids penalising Whisper for innocuous
+formatting differences (contractions, punctuation, number representation) versus genuine
+transcription errors. The authors also develop robust long-form transcription heuristics — beam
+search with temperature fallback, voice activity detection, and initial timestamp constraints — that
+reduce average long-form WER from **11.0** (greedy only) to **10.0**.
+
+#### Architecture, Models and Methods
+
+**Architecture**: Encoder-decoder Transformer (Vaswani et al., 2017). Input audio is resampled to 16
+kHz and converted to an 80-channel log-magnitude Mel spectrogram using 25 ms windows with 10 ms
+stride. The encoder uses a 2-layer Conv1D stem (filter width 3, GELU activation, stride 2 on second
+layer) followed by Transformer blocks with sinusoidal position embeddings and pre-activation
+residual connections. The decoder uses learned position embeddings with tied input-output token
+representations. Encoder and decoder share the same width and depth.
+
+**Model family** (Table 1):
+
+| Model | Layers | Width | Heads | Parameters |
+| --- | --- | --- | --- | --- |
+| Tiny | 4 | 384 | 6 | 39M |
+| Base | 6 | 512 | 8 | 74M |
+| Small | 12 | 768 | 12 | 244M |
+| Medium | 24 | 1024 | 16 | 769M |
+| Large | 32 | 1280 | 20 | 1550M |
+
+**Tokenizer**: Byte-level BPE from GPT-2 for English-only models; vocabulary refitted (same size)
+for multilingual models.
+
+**Multitask format**: Tasks are specified via special decoder tokens in sequence:
+`&lt;|startoftranscript|&gt;` → language tag (99 tokens) → `&lt;|transcribe|&gt;` or `&lt;|translate|&gt;` → optional
+`&lt;|notimestamps|&gt;` → output tokens → `&lt;|endoftranscript|&gt;`. The decoder is conditioned on previous
+transcript context with 50% probability.
+
+**Training data**: 680,000 hours of audio-transcript pairs scraped from the internet, split as 65%
+English STT (438,218 h), 18% X→en translation (125,739 h), 17% multilingual STT (117,113 h covering
+96 languages). Machine-generated transcripts are filtered with heuristics (case patterns,
+punctuation absence, language mismatch via CLD2). Audio is segmented into 30-second chunks.
+
+**Training**: AdamW optimiser, β1=0.9, β2=0.98, ε=10⁻⁶, weight decay=0.1, max grad norm=1.0. Linear
+LR decay to zero after 2,048 warmup steps. 2²⁰ updates (~2-3 passes over the dataset). Batch size
+256 segments. FP16 with dynamic loss scaling and activation checkpointing. No data augmentation or
+regularisation for V1 Large. Large V2 adds SpecAugment (LibriSpeech Basic policy), Stochastic Depth
+(0.1), and BPE Dropout (0.1) for 655,360 updates with batch 1024.
+
+**Evaluation**: Zero-shot on all benchmarks — no training splits used. WER computed after extensive
+text normalisation. Effective robustness measured relative to LibriSpeech across 12
+out-of-distribution datasets.
+
+**Long-form heuristics**: Beam search (5 beams), temperature fallback starting at 0 increasing by
+0.2 to 1.0 if log-prob &lt; −1 or gzip compression ratio &gt; 2.4, VAD using no-speech probability
+threshold 0.6 combined with log-prob threshold, previous-text conditioning when temperature &lt; 0.5,
+initial timestamp constrained to [0.0, 1.0] s.
+
+#### Results
+
+* Whisper Large V2 achieves **2.7% WER** on LibriSpeech test-clean (beam search: **2.5%**), matching
+  mid-2019 supervised state of the art.
+* On 13 out-of-distribution datasets, Whisper Large V2 achieves **55.2%** average relative error
+  reduction over the best supervised LibriSpeech model (wav2vec 2.0 Large, no LM).
+* Best zero-shot WER on selected OOD benchmarks for Whisper Large V2: Artie **6.2%**, Common Voice
+  **9.0%**, Fleurs En **4.4%**, TED-LIUM **4.0%**, CHiME-6 **25.5%**, CORAAL **16.2%**.
+* On long-form transcription across 7 datasets, full heuristics reduce average WER from **11.0**
+  (greedy) to **10.0**, outperforming NVIDIA STT Conformer-CTC Large and four commercial services.
+* Human transcriber comparison on 25 Kincaid46 samples: Whisper WER **8.81%**; pure-human services
+  ranged **8.65–10.5%**; computer-assisted best was **7.61%**, only 1.15 points better.
+* On Multilingual LibriSpeech, zero-shot Whisper achieves **7.3 WER** averaged across 8 languages,
+  outperforming fine-tuned XLS-R (**10.9**) and mSLAM-CTC (**9.7**).
+* On CoVoST2 X→en speech translation, Whisper achieves **29.1 BLEU** zero-shot, a new state of the
+  art (vs. Maestro 25.2, mSLAM-CTC 24.8).
+* WER scaling with data: English WER drops from **30.5** (3,405 h) to **9.9** (681,070 h);
+  multilingual WER from **92.4** to **29.2** over the same range.
+* WER halves for approximately every **16×** increase in training data per language (log-log R² =
+  **0.83** on Fleurs).
+* Language identification accuracy on Fleurs: **64.5%** zero-shot vs. supervised SOTA **77.7%**
+  (mSLAM-CTC); on the 82 overlapping languages: **80.3%**.
+
+#### Innovations
+
+##### Large-Scale Weak Supervision at 680,000 Hours
+
+Prior weakly supervised STT datasets topped out at ~30,000 hours. Whisper scales to 680,000 hours by
+sourcing audio-transcript pairs directly from the internet without requiring human-validated gold
+transcripts. This two-order-of-magnitude increase eliminates the need for dataset-specific
+fine-tuning to achieve competitive accuracy.
+
+##### Unified Multitask Format via Decoder Token Sequences
+
+A single model handles transcription, translation, language identification, voice activity
+detection, and timestamp alignment by prepending task-specifier tokens to the decoder input. This
+eliminates the need for separate specialist models at each pipeline stage and enables prompting with
+prior context or custom vocabulary.
+
+##### Zero-Shot Robustness as a Primary Evaluation Target
+
+The paper establishes effective robustness — performance on out-of-distribution datasets relative to
+a reference dataset — as the key metric. The analysis demonstrates that high in-distribution
+accuracy can mask severe brittleness, and that zero-shot evaluation better predicts real-world
+reliability.
+
+##### Text Normalisation for Fair WER Comparison
+
+A detailed English text normaliser handles contractions, number/currency expressions, British vs.
+American spellings, and punctuation differences before WER computation. Released open-source, this
+normaliser enables fairer comparison of zero-shot models that produce natural transcriptions.
+
+##### Long-Form Transcription Heuristics
+
+A practical set of decoding heuristics — beam search, temperature fallback, combined VAD thresholds,
+previous-text conditioning, and initial timestamp constraint — enables reliable transcription of
+arbitrarily long audio. Full heuristics reduce average WER from **11.0** to **10.0** on seven
+long-form datasets.
+
+#### Datasets
+
+**Training data** (collected from the internet, not publicly released):
+
+* 438,218 hours English STT
+* 125,739 hours X→en speech translation (98 source languages)
+* 117,113 hours multilingual STT (96 languages)
+* Total: 680,070 hours of audio-transcript pairs
+
+**Evaluation datasets** (all publicly available, used zero-shot):
+
+* LibriSpeech (Panayotov et al., 2015) — clean read speech, English
+* TED-LIUM 3 (Hernandez et al., 2018) — TED talks, English
+* Common Voice 5.1 / 9.0 (Ardila et al., 2019) — crowd-sourced, multilingual
+* Artie bias corpus (Meyer et al., 2020) — demographic bias subset of Common Voice
+* CallHome + Switchboard (LDC2002S09 / LDC2002T43) — telephone, English
+* WSJ (LDC93S6B / LDC94S13B) — read speech, English
+* CORAAL (Kendall &amp; Farrington, 2021) — African American Language, 231 interviews
+* CHiME-6 (Watanabe et al., 2020) — far-field meeting speech, English
+* AMI-IHM / AMI-SDM1 — meeting speech, English
+* VoxPopuli (Wang et al., 2021) — EU parliament, 16 languages
+* Fleurs (Conneau et al., 2022) — 102 languages, few-shot evaluation
+* Multilingual LibriSpeech (MLS) — 8 languages
+* CoVoST2 (Wang et al., 2020) — X→en translation, 21 languages
+* Kincaid46 — 46 diverse English recordings used for human transcriber comparison
+* Earnings-21 / Earnings-22 (Del Rio et al., 2021) — earnings calls, domain-specific English
+
+#### Main Ideas
+
+* **Whisper Large V2 is the primary open baseline for this project**: it achieves **2.7% WER** on
+  LibriSpeech test-clean and near-human performance in real-world conditions, making it the
+  appropriate open-source comparator to production Deepgram on gold-92.
+* **Zero-shot evaluation is essential**: fine-tuned supervised models overfit to benchmark
+  distributions; Whisper shows a 55.2% relative WER gap vs. supervised models on OOD data. Gold-92
+  must be treated as out-of-distribution for honest baseline numbers.
+* **Domain fine-tuning is the clear path forward**: the paper explicitly flags fine-tuning as a
+  promising unexplored direction; the data scaling law (WER halves every 16× training hours) gives a
+  principled basis for estimating how much Rezolve production audio is needed.
+* **Prompting via previous-text conditioning and custom vocabulary** is natively supported by
+  Whisper&#x27;s decoder — a direct mechanism for injecting Rezolve-specific entity lists (brand names,
+  product lines, SKUs) without full fine-tuning.
+* **Model size vs. latency must be benchmarked on gold-92**: Whisper Small (244M) achieves **3.3%
+  WER** on LibriSpeech with beam search; the right tier for the 800 ms p50 budget needs explicit
+  measurement on Rezolve audio.
+* **Long-form decoding heuristics are required for production use**: raw greedy decoding produces
+  11.0% average WER vs. 10.0% with full heuristics; production deployment must use beam search with
+  temperature fallback.
+
+#### Summary
+
+Radford et al. present Whisper, a speech recognition system trained on 680,000 hours of weakly
+supervised audio-transcript pairs scraped from the internet. The central research question is
+whether scaling weak supervision — using noisy but abundant internet data rather than expensive
+human-validated corpora — can match or surpass fully supervised approaches while achieving
+substantially better real-world robustness. The work is motivated by the observation that prior
+state-of-the-art models trained on LibriSpeech are effectively measuring in-distribution
+generalization, not the out-of-distribution robustness needed for production deployment.
+
+The approach uses a standard encoder-decoder Transformer trained end-to-end on 30-second audio
+segments with a multitask format: all tasks (transcription, translation, language ID, VAD, timestamp
+alignment) are encoded as decoder token sequences, allowing a single model to replace multiple
+pipeline stages. Training uses AdamW with linear LR decay for approximately 2-3 passes over the
+dataset without data augmentation, relying on dataset diversity for robustness. Five model sizes are
+released (39M–1.55B parameters). A text normalizer and long-form decoding heuristics are developed
+as essential practical components.
+
+The key findings are that Whisper Large V2 achieves **55.2%** average relative error reduction over
+the best comparable supervised model on 13 OOD datasets despite similar LibriSpeech performance, and
+its transcription quality approaches professional human transcribers on Kincaid46 (Whisper **8.81%**
+WER vs. best human service **7.61%**). For translation, Whisper achieves **29.1 BLEU** on CoVoST2
+zero-shot, a new state of the art. A strong data scaling law is identified: WER halves for every 16×
+increase in per-language training hours (log-log R² = 0.83 on Fleurs). Multitask and multilingual
+training provides positive transfer at large model sizes.
+
+For this project, Whisper Large V2 is the open-source baseline to benchmark against production
+Deepgram on gold-92. The paper directly supports the research roadmap: fine-tuning Whisper on
+Rezolve production audio is the most direct path to improving entity accuracy on investor-relations
+and ecommerce terms. The custom vocabulary prompting mechanism is immediately actionable for
+injecting brand names and product entities. The model size family gives a latency-accuracy trade-off
+ladder to explore within the 800 ms p50 constraint.
+
+## Where are we in Named Entity Recognition from Speech?
+ID: no-doi_Caubriere2020_ner-from-speech-survey
+Year: 2020
+Authors: Antoine Caubrière, Sophie Rosset, Yannick Estève, Antoine Laurent, Emmanuel Morin
+Venue: Proceedings of the 12th Language Resources and Evaluation Conference (LREC 2020)
+Venue type: conference
+URL: https://aclanthology.org/2020.lrec-1.556/
+Categories: stt-evaluation, entity-correction
+Added by task: t0002_baseline_evaluation
+Date added: 2026-06-23
+
+#### Metadata
+
+* **File**: `files/caubriere_2020_ner-from-speech-survey.pdf`
+* **Published**: 2020
+* **Authors**: Antoine Caubrière 🇫🇷, Sophie Rosset 🇫🇷, Yannick Estève 🇫🇷, Antoine Laurent 🇫🇷,
+  Emmanuel Morin 🇫🇷
+* **Venue**: LREC 2020 (12th Language Resources and Evaluation Conference), Marseille, France
+* **DOI**: N/A (ELRA publication, no DOI assigned)
+
+#### Abstract
+
+Named entity recognition (NER) from speech is usually made through a pipeline process that consists
+in (i) processing audio using an automatic speech recognition system (ASR) and (ii) applying a NER
+to the ASR outputs. The latest data available for named entity extraction from speech in French were
+produced during the ETAPE evaluation campaign in 2012. Since the publication of ETAPE&#x27;s campaign
+results, major improvements were done on NER and ASR systems, especially with the development of
+neural approaches for both of these components. In addition, recent studies have shown the
+capability of End-to-End (E2E) approach for NER / SLU tasks. In this paper, we propose a study of
+the improvements made in speech recognition and named entity recognition for pipeline approaches.
+For this type of systems, we propose an original 3-pass approach. We also explore the capability of
+an E2E system to do structured NER. Finally, we compare the performances of ETAPE&#x27;s systems
+(state-of-the-art systems in 2012) with the performances obtained using current technologies. The
+results show the interest of the E2E approach, which however remains below an updated pipeline
+approach.
+
+#### Overview
+
+This paper revisits NER from speech eight years after the French ETAPE evaluation campaign (2012),
+which had been the last major benchmark for extracting tree-structured named entities from spoken
+French. The authors ask a straightforward question: given the dramatic improvements in both ASR
+(HMM-GMM to HMM-DNN chain models) and NER (CRF to bLSTM-CRF), how much has the state of the art
+actually advanced on the same ETAPE test set?
+
+The paper makes two concrete contributions. First, it introduces a 3-pass decomposition for
+tree-structured NER: instead of concatenating all BIO tags (which balloons to ~1,690 possible labels
+with severe sparsity), the annotation tree is split into three hierarchical levels — root entity
+types, intermediate types/components, and leaf components — each handled by a separate sequence
+labeler. The predictions from each level feed forward as additional features to the next. This
+allows the authors to match the 2012 ETAPE winning system (which used 68 binary CRF models) using
+only 3 CRF models, and to substantially outperform it with modern bLSTM-CRF components.
+
+The second contribution is an end-to-end (E2E) system based on DeepSpeech 2, where NE tags are
+encoded directly into the character-level output sequence. A Curriculum-based Transfer Learning
+(CTL) strategy trains the model progressively: first on ASR, then on NE types only, then on full
+structured annotation. While the E2E system shows clear progress over the 2012 baseline (**56.9%
+SER** vs. **59.3%**), it still falls behind the updated pipeline system (**51.1% SER**), suggesting
+that for tree-structured NER the pipeline approach remains superior with current technology.
+
+The evaluation metric throughout is the Slot Error Rate (SER) from the ETAPE campaign, which counts
+boundary substitutions (weight 0.5), type substitutions (weight 0.5), combined boundary and type
+substitutions (weight 1), deletions (weight 1), and insertions (weight 1), normalized by the number
+of reference slots. Lower SER is better. This metric captures both span detection and type
+classification errors in a single number, making it the primary entity-level error measure for this
+benchmark — directly analogous to Entity Error Rate (EER) used in related NER from speech
+literature.
+
+#### Architecture, Models and Methods
+
+##### Task Definition
+
+Named entities follow the Quaero guideline with 8 main types (amount, event, func, loc, org, pers,
+prod, time), 39 type+subtype combinations (e.g., `loc.adm.town`), and 28 components (e.g., `name`,
+`kind`). Entities have unlimited nesting depth (tree structure), making standard sequence labeling
+intractable without decomposition.
+
+##### Pipeline Systems
+
+**CRF baseline**: Trained with WAPITI using a [-2,+2] word window, character prefixes and suffixes,
+yes/no orthographic features (capitalization, non-alphanumeric), and optional morpho-syntactic
+features from TreeTagger. Trained with the rprop algorithm, max 40 iterations.
+
+**3-pass decomposition**: The BIO annotation tree is split into three levels:
+
+* Level 1 (root): 96 predictable tags; trained first
+* Level 2 (intermediate): 187 predictable tags; receives Level 1 predictions as features
+* Level 3 (leaves): 57 predictable tags; receives Level 1 and Level 2 predictions as features
+
+**bLSTM-CRF (NeuroNlp2)**: Based on Ma and Hovy (2016). Architecture: 1 CNN layer for character
+embeddings, concatenated with word embeddings, fed into 2 bLSTM hidden layers (200 units each), then
+CRF decoder. Dropout on bLSTM input/output and CNN input.
+
+**ASR pipeline component**: Kaldi chain model (lattice-free MMI), TDNN acoustic model with sMBR
+discriminative training. Language model: regular backoff n-gram, 160k vocabulary, 2-gram decoding
+followed by 3-gram and 4-gram rescoring. Trained on approximately 220 hours (ESTER 1&amp;2, REPERE,
+VERA).
+
+##### End-to-End System
+
+Based on DeepSpeech 2: 2 x 2D-CNN layers → 5 bLSTM layers with sequence-wise batch normalization →
+softmax. Loss: CTC over character sequences. Input: log-spectrograms on 20ms windows. NE tags are
+encoded as special characters in the output sequence (start and end delimiters), enabling the model
+to emit both words and NE annotations jointly.
+
+**Curriculum-based Transfer Learning (CTL)**: (1) train ASR task on all ~220 hours of audio; (2)
+transfer to NER with NE types only; (3) transfer to NER with full structured annotation. All model
+parameters except the top softmax layer are retained across transfers. Language model decoding:
+3-gram and 4-gram LMs trained on ETAPE + Quaero train sets applied during beam search.
+
+##### Evaluation Metric
+
+Slot Error Rate (SER) from Makhoul et al. (1999):
+
+```
+SER = (0.5*Sb + 0.5*St + 1*Sbt + 1*D + 1*I) / R
+```
+
+Where Sb = boundary substitutions, St = type substitutions, Sbt = both, D = deletions, I =
+insertions, R = reference slot count. All experiments use the official ETAPE evaluation scripts with
+manual NE annotations projected onto ASR transcripts for comparability.
+
+#### Results
+
+* **2012 ETAPE baseline** (68-CRF-model pipeline on ASR2012): **59.3% SER** — reference point
+* ASR2012 WER: **21.8%**; ASR2019 WER: **16.5%** (**24.3% relative** WER improvement)
+* Sys A (1-pass CRF + ASR2012): **69.4% SER** — worse than 2012 baseline due to label sparsity
+* Sys B (3-pass CRF + ASR2012): **59.5% SER** — matches 2012 baseline with only 3 CRF models vs. 68;
+  **14.3% relative gain** over Sys A
+* Sys C (3-pass CRF + ASR2019): **55.0% SER** — **7.6% relative** gain from better ASR
+* Sys D (3-pass bLSTM-CRF + ASR2012): **56.1% SER** — neural NER improves over CRF
+* Sys E (3-pass bLSTM-CRF + ASR2019): **51.1% SER** — new pipeline state of the art; **13.8%
+  relative** improvement over 2012 ETAPE baseline
+* E2E greedy (ASR → NERstruct): **62.9% SER**
+* E2E greedy with CTL (ASR → NERtypes → NERfull): **61.9% SER** — CTL cuts SER by 1.0 pt
+* E2E with 4-gram LM and CTL: **56.9% SER** — best E2E result
+* Pipeline vs. best E2E: **51.1% vs. 56.9% SER** — pipeline leads by **10.2% relative**
+
+#### Innovations
+
+##### 3-Pass Tree Decomposition for Structured NER
+
+The paper introduces a systematic decomposition of tree-structured BIO annotations into three
+hierarchical levels (root → intermediate → leaf), each handled by a separate sequence labeler with
+cascading predictions. This reduces the label space from ~1,690 concatenated tags with severe
+sparsity to 96, 187, and 57 tags respectively, making standard CRF and bLSTM-CRF models tractable.
+Three models replace a 68-model ensemble while matching its performance, and with modern components
+significantly outperform it.
+
+##### Curriculum-Based Transfer Learning for E2E Structured NER
+
+Applying CTL to tree-structured entities by inserting an intermediate training stage on NE types
+only (before fine-tuning on full structured annotation). This exploits the hierarchical dependency
+between types and components, reducing greedy-decoding SER from **62.9%** to **61.9%** and
+beam-search SER from **57.3%** to **56.9%**.
+
+##### Joint Character-Level NE Tag Encoding for E2E
+
+NE start and end tags are encoded as single special characters within the DeepSpeech 2
+character-sequence output, allowing the CTC-trained model to emit structured NE annotation jointly
+with word transcription. This eliminates the need for a separate NER stage and avoids the
+label-sparsity problem of BIO encoding by representing nested tags as character sequences.
+
+#### Datasets
+
+* **ETAPE corpus** (Gravier et al., 2012): 36 hours of French radio and TV speech (France Inter,
+  LCP, BFMTV, TV8), recorded 2010–2011. Split: 22h train / 7h dev / 7h test. Fully manually
+  transcribed and annotated with Quaero tree-structured named entities. Distributed by ELRA for
+  research purposes.
+* **Quaero corpus** (Grouin et al., 2011): 100 hours of French radio and TV speech, 1998–2004. Used
+  to augment NER training data. Annotated with Quaero guidelines.
+* **ASR training corpora**: ESTER 1&amp;2 (Galliano et al., 2009), REPERE (Giraudel et al., 2012), VERA
+  (Goryainova et al., 2014) — approximately 220 hours total of French speech for acoustic model
+  training.
+* All corpora are French-language, broadcast news/talk show domain. ETAPE and Quaero are available
+  through ELRA (European Language Resources Association).
+
+#### Main Ideas
+
+* The SER (Slot Error Rate) metric from the ETAPE campaign is the standard evaluation measure for
+  structured NER from speech; it penalizes boundary errors, type errors, and combined errors with
+  calibrated weights, providing a more informative entity-level error signal than flat entity F1 for
+  evaluating entity accuracy in ASR output. This directly informs design of an entity accuracy
+  metric for the gold-92 benchmark.
+* ASR quality has a large multiplicative effect on downstream entity extraction: reducing WER from
+  **21.8%** to **16.5%** (24.3% relative) translated to **4.4–5.0 SER point** gains regardless of
+  the NER component used. Improving STT accuracy first — e.g., using Whisper over Deepgram — will
+  produce proportional entity accuracy gains before any post-correction.
+* A pipeline approach (STT followed by entity post-correction) consistently outperforms joint E2E
+  transcription + NER (**51.1% vs. 56.9% SER**), supporting the two-stage architecture planned for
+  this project (Whisper + entity correction pass).
+* The 3-pass cascading idea is transferable: for Rezolve&#x27;s flat entity types (brands, products,
+  SKUs), a single-pass model suffices, but injecting entity-type hypotheses from a first pass as
+  features into a correction model mirrors the hierarchical cascade logic.
+* Domain-adapted neural NER (bLSTM-CRF) on ASR output provides the largest single improvement over
+  legacy CRF systems; the analogous investment for this project is an entity-aware post-correction
+  or contextual boosting layer applied to Whisper output.
+
+#### Summary
+
+Caubrière et al. (2020) revisit named entity recognition from speech using the French ETAPE
+benchmark, eight years after the original evaluation campaign established the prior state of the
+art. Their central question is how much the combination of modern neural ASR (Kaldi chain model,
+16.5% WER) and NER systems (bLSTM-CRF) improves entity extraction from spoken French compared to
+2012-era HMM-GMM and CRF baselines. The paper is motivated by the complete absence of new published
+results on this tree-structured NER-from-speech benchmark since 2012, despite major advances in both
+component technologies.
+
+The methodology centers on two contributions. For pipeline systems, the authors introduce a 3-pass
+decomposition that splits the Quaero-style BIO annotation tree into three hierarchical levels, each
+trained as a separate sequence labeler with cascading predictions, reducing the tag space from
+~1,690 to manageable subsets of 96, 187, and 57 tags. For end-to-end systems, they adapt DeepSpeech
+2 with Curriculum-based Transfer Learning, encoding NE tags as special characters in CTC output and
+training progressively from ASR to NE-types to full structured annotation. All systems are evaluated
+on the official ETAPE test set using Slot Error Rate (SER), which jointly penalizes span boundary
+errors and entity type errors with calibrated weights.
+
+The best pipeline system (3-pass bLSTM-CRF + updated ASR) achieves **51.1% SER**, a **13.8% relative
+improvement** over the 2012 ETAPE state of the art (**59.3% SER**). The best E2E system reaches
+**56.9% SER**, showing a 4% relative improvement over the baseline but remaining **10.2% relative**
+behind the pipeline. Improved ASR alone — reducing WER from 21.8% to 16.5% — contributed 4.4–5.0 SER
+points across all NER configurations.
+
+For this project, the paper is most valuable as a methodological reference for entity-level
+evaluation metrics in STT systems. The SER/EER decomposition (boundary errors vs. type errors,
+weighted separately) directly informs the entity accuracy metric design for the gold-92 benchmark.
+The finding that ASR quality improvements translate proportionally into downstream entity accuracy
+gains supports prioritizing Whisper Large v3 over Deepgram as the ASR backbone before investing in
+post-correction layers. The pipeline-beats-E2E result also validates the two-stage architecture (STT
+\+ entity post-correction) planned for this project over a hypothetical joint model.
+
+## Statistical Testing on ASR Performance via Blockwise Bootstrap
+ID: 10.21437_Interspeech.2020-1338
+Year: 2020
+Authors: Zhe Liu, Fuchun Peng
+Venue: Interspeech 2020
+Venue type: conference
+DOI: 10.21437/Interspeech.2020-1338
+URL: https://www.isca-archive.org/interspeech_2020/liu20c_interspeech.html
+Categories: stt-evaluation
+Added by task: t0002_baseline_evaluation
+Date added: 2026-06-23
+
+#### Metadata
+
+* **File**: `files/liu_2020_blockwise-bootstrap-asr.pdf`
+* **Published**: 2020
+* **Authors**: Zhe Liu 🇺🇸, Fuchun Peng 🇺🇸
+* **Venue**: Interspeech 2020
+* **DOI**: `10.21437/Interspeech.2020-1338`
+
+#### Abstract
+
+A common question being raised in automatic speech recognition (ASR) evaluations is how reliable
+is an observed word error rate (WER) improvement comparing two ASR systems, where statistical
+hypothesis testing and confidence interval (CI) can be utilized to tell whether this improvement is
+real or only due to random chance. The bootstrap resampling method has been popular for such
+significance analysis which is intuitive and easy to use. However, this method fails in dealing
+with dependent data, which is prevalent in speech world - for example, ASR performance on
+utterances from the same speaker could be correlated. In this paper we present blockwise bootstrap
+approach - by dividing evaluation utterances into nonoverlapping blocks, this method resamples
+these blocks instead of original data. We show that the resulting variance estimator of absolute
+WER difference between two ASR systems is consistent under mild conditions. We also demonstrate
+the validity of blockwise bootstrap method on both synthetic and real-world speech data.
+
+#### Overview
+
+Liu and Peng address a practical but under-served problem in ASR research: how to correctly
+quantify statistical uncertainty when comparing two systems&#x27; WERs on an evaluation set. The
+conventional approach — resampling individual utterances using ordinary bootstrap — assumes that
+utterance-level errors are independent and identically distributed. This assumption breaks down
+whenever utterances cluster by speaker, topic, or recording session, which is the rule rather than
+the exception in real evaluation datasets.
+
+The paper introduces blockwise bootstrap for ASR evaluation. The key idea is to partition
+evaluation utterances into semantically coherent, non-overlapping blocks (e.g., by speaker or
+conversation), then resample complete blocks with replacement rather than individual utterances.
+This preserves within-block correlation structure while treating blocks as independent units. The
+authors derive a formal L2-consistency result showing their blockwise variance estimator converges
+to the true variance as the dataset grows, provided both the number of blocks and block size tend
+to infinity. A practical corollary relaxes the strict uncorrelation assumption between blocks to a
+weaker moment condition.
+
+The paper validates the method on two fronts. Simulation experiments with synthetic data show
+conclusively that ordinary bootstrap dramatically undercovers when utterance errors are correlated:
+at block size d=30 and correlation ρ=0.4, ordinary bootstrap CI coverage drops to **41.2%** while
+blockwise bootstrap holds at **95.9%**. Real-data experiments on a Conversational Speech dataset
+(13,987 utterances, 235 blocks) and the AMI Meeting corpus (25,741 utterances, 135 blocks) confirm
+that blockwise CIs are **1.5x** (Conversation) to **2x** (AMI) wider than ordinary bootstrap CIs,
+meaning ordinary bootstrap systematically underestimates uncertainty and risks false-positive
+claims of improvement.
+
+The paper is concise (5 pages), mathematically grounded, and practically focused. It does not
+require code beyond basic resampling loops, and the block structure is simply the set of speaker or
+conversation IDs already present in most evaluation metadata.
+
+#### Architecture, Models and Methods
+
+**Bootstrap baseline.** Standard utterance-level bootstrap (Bisani &amp; Ney, 2004) resamples n
+utterances with replacement B times, recomputes ΔW = WER_B − WER_A on each resample, and reads
+off 2.5/97.5 empirical percentiles as the 95% CI.
+
+**Blockwise bootstrap algorithm.** Given n evaluation utterances partitioned into K non-overlapping
+blocks S_1, …, S_K, the method resamples K blocks with replacement to form each bootstrap
+replicate. For replicate b, the statistic ΔW^(b) is computed over the concatenated utterances of
+the K resampled blocks. With B = 1,000 replicates, the 95% CI is the (2.5th, 97.5th) empirical
+percentile of {ΔW^(b)}. A Gaussian approximation variant using the sample standard deviation of
+{ΔW^(b)} is also presented and shown to produce nearly identical CIs when B is large.
+
+**Consistency theorem.** The blockwise variance estimator σ̂² (standardized sample variance of
+block-level ΔW estimates) is L2-consistent: σ̂² → σ² as n → ∞, provided (1) both K_n (number of
+blocks) and d_n (utterances per block) go to infinity with n, and (2) different blocks are
+uncorrelated. A corollary relaxes the uncorrelated-blocks condition to a fourth-moment condition,
+making the theory applicable to data where cross-block correlations are weak but nonzero.
+
+**Simulation setup.** n = 3,000 utterances, m = 100 words each. True WER_A = 10.0%,
+WER_B = 9.5%, so ΔW = −0.5%. Correlated errors generated via Gaussian copula with block
+correlation ρ ∈ {0, 0.05, 0.1, 0.2, 0.4} and block size d ∈ {5, 30}. Each configuration
+replicated 1,000 times; CI coverage measured as fraction of replicates containing the true ΔW.
+B = 1,000 bootstrap replicates per run.
+
+**Real-data setup.** Two evaluation sets: (1) Conversational Speech — 13,987 utterances,
+160,338 words, 235 conversation-level blocks; (2) AMI Meeting — 25,741 utterances, 189,590 words,
+135 speaker-meeting blocks. An in-house baseline (system A) and improved model (system B) were
+compared. Blocks defined by conversation identity (Conversation data) or by speaker within each
+meeting (AMI).
+
+#### Results
+
+* Ordinary bootstrap CI coverage at d=5, ρ=0.4: **76.9%** (target: 95%); blockwise: **94.0%**
+* Ordinary bootstrap CI coverage at d=30, ρ=0.05: **78.1%**; blockwise: **95.2%**
+* Ordinary bootstrap CI coverage at d=30, ρ=0.4: **41.2%**; blockwise: **95.9%**
+* When ρ=0 (independent data), both methods agree: coverage ~**94.1%** (ordinary) vs ~**94.7%**
+  (blockwise) — confirming no accuracy loss on independent data
+* Ordinary bootstrap CI width: **0.0030** (constant regardless of correlation or block size)
+* Blockwise bootstrap CI width at d=30, ρ=0.4: **0.0105** — **3.5x wider** than ordinary
+* Conversation real data: seboot = **0.074%**, seblockBoot = **0.116%** (**1.57x** larger);
+  ordinary CI (−1.61%, −1.32%) vs blockwise CI (−1.69%, −1.24%)
+* AMI Meeting real data: seboot = **0.067%**, seblockBoot = **0.153%** (**2.28x** larger);
+  ordinary CI (−1.94%, −1.67%) vs blockwise CI (−2.09%, −1.51%)
+* Percentile CIs and Gaussian approximation CIs agree closely in all real-data experiments
+
+#### Innovations
+
+##### First Blockwise Bootstrap for ASR Evaluation
+
+Prior work (Bisani &amp; Ney, 2004) applied standard i.i.d. bootstrap to ASR significance testing.
+This paper is the first to adapt the blockwise bootstrap — originally developed for dependent time
+series (Hall 1985, Carlstein 1986) — to ASR evaluation, where dependence arises from speaker or
+topic clustering rather than temporal autocorrelation. The transfer is non-trivial: blocks are
+defined by evaluation metadata (speaker or session IDs), not by consecutive time indices.
+
+##### Formal Consistency Proof for ASR Setting
+
+The authors derive an L2-consistency theorem for their blockwise variance estimator in the ASR
+context, plus a corollary relaxing strict independence-between-blocks to a fourth-moment condition.
+This is the first theoretical justification for bootstrap-based WER variance estimation under
+dependent speech data, and it sets conditions (both K_n and d_n must grow) that directly inform
+how to size evaluation sets.
+
+##### Quantified Failure Mode of Ordinary Bootstrap
+
+The paper provides the first systematic quantification of how badly ordinary bootstrap fails under
+realistic ASR dependency levels. The simulation table (Table 1) with coverage rates across
+combinations of block size and correlation strength can serve as a reference when deciding whether
+standard bootstrap is safe to use for a given evaluation dataset.
+
+#### Datasets
+
+* **Synthetic simulation data**: 3,000 utterances × 100 words each, generated from Gaussian copula
+  model with configurable block correlation; not a public dataset.
+* **Conversational Speech**: 13,987 utterances, 160,338 words, 235 conversation blocks. Collected
+  via crowd-sourcing and anonymized. Proprietary Facebook AI dataset; not publicly released.
+* **AMI Meeting Corpus**: 25,741 utterances, 189,590 words, 135 speaker-meeting blocks. Publicly
+  available at https://groups.inf.ed.ac.uk/ami/corpus/. Scenario and non-scenario meetings with
+  4 participants each. License: Creative Commons Attribution 4.0.
+
+#### Main Ideas
+
+* Ordinary bootstrap for WER significance testing is **invalid when utterances are correlated** —
+  e.g., grouped by speaker, session, or topic. It produces CIs that are far too narrow, risking
+  false-positive claims of improvement. At moderate real-world correlations coverage can fall below
+  **50%** for a nominal 95% CI.
+* **Blockwise bootstrap fixes this** by resampling speaker/session blocks rather than individual
+  utterances. The procedure requires only that block IDs (e.g., speaker IDs) be present in the
+  evaluation metadata — no distributional assumptions and negligible implementation complexity.
+* The project success criterion requires **BCa bootstrap p &lt; 0.05 on n = 93 paired samples**.
+  The gold-92 benchmark likely contains multiple utterances per speaker from Rezolve production
+  sessions. Blockwise bootstrap (or BCa) with speaker-level blocks should be used; ordinary
+  bootstrap risks a false-positive significance claim.
+* **Block definition matters**: for gold-92, speaker identity is the natural block unit. If
+  multiple clips per speaker are present, grouping by speaker ID gives more valid CIs than treating
+  utterances as independent.
+* The method is computationally trivial: B = 1,000 bootstrap replicates run in seconds even on
+  large datasets. There is no reason to use ordinary bootstrap when speaker IDs are available.
+
+#### Summary
+
+Liu and Peng (2020) address a specific but important methodological gap in ASR evaluation: the
+standard bootstrap procedure for WER confidence intervals assumes utterance-level independence, but
+real evaluation sets almost always contain correlated utterances from the same speakers, sessions,
+or topics. The paper proposes blockwise bootstrap, which resamples groups of correlated utterances
+as atomic units, preserving within-group dependence while treating groups as independent. The
+motivation is to prevent systematically overconfident claims of ASR improvement that arise when
+ordinary bootstrap artificially narrows confidence intervals.
+
+The method partitions utterances into K non-overlapping blocks using existing evaluation metadata
+(e.g., speaker IDs), then resamples blocks with replacement B = 1,000 times. The 95% CI for ΔW is
+the empirical (2.5%, 97.5%) percentile range of the B bootstrap statistics. The authors prove an
+L2-consistency theorem showing the variance estimator converges to the true variance as both K and
+block size grow with n. Simulation experiments with n = 3,000 utterances and correlation ρ up to
+0.4 confirm that ordinary bootstrap coverage collapses to **41.2%** while blockwise bootstrap
+consistently stays near **95%**.
+
+Experiments on two real datasets confirm the failure of ordinary bootstrap in practice: blockwise
+CIs are **1.5–2.3x** wider than ordinary bootstrap CIs. On the Conversational Speech dataset
+(13,987 utterances, 235 blocks), the standard error increases from **0.074%** to **0.116%**; on
+AMI Meeting (25,741 utterances, 135 blocks), from **0.067%** to **0.153%**. Neither method changes
+the sign of the estimated WER difference, but ordinary bootstrap understates uncertainty by a large
+margin, risking false-positive significance results.
+
+For this project, the finding is directly actionable. The gold-92 benchmark likely contains
+multiple utterances per speaker from Rezolve production sessions, creating exactly the within-
+speaker correlation the paper diagnoses. The success criterion — beating Deepgram with BCa
+bootstrap p &lt; 0.05 on n = 93 paired samples — should use blockwise or BCa bootstrap with
+speaker-level blocks rather than ordinary bootstrap. The implementation overhead is minimal: only
+speaker IDs are needed as the block key.
       </content>
     </section>
   </sections>

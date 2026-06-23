@@ -1,34 +1,26 @@
-# Category: Commercial APIs
+# Suggestions: `commercial-apis`
 
-Integration and evaluation of third-party STT APIs, primarily Deepgram Nova-2, as the
-production baseline.
+2 suggestion(s) in category [`commercial-apis`](../../../meta/categories/commercial-apis/) **2
+open** (1 high, 1 medium).
 
-[Back to Dashboard](../README.md)
-
-**Detail pages**: [Suggestions (2)](../suggestions/by-category/commercial-apis.md)
+[Back to all suggestions](../README.md)
 
 ---
 
-## Papers (0)
-
-No papers in this category.
-
-## Tasks (0)
-
-No tasks related to this category.
-
-## Answers (0)
-
-No answers in this category.
-
-## Suggestions (2 open, 0 closed)
+## High Priority
 
 <details>
 <summary>🧪 <strong>Run Deepgram Nova-2 baseline on gold-92 to complete REQ-1 and
 paired significance test</strong> (S-0002-02)</summary>
 
-**Kind**: experiment | **Priority**: high | **Date**: 2026-06-23 | **Source**:
-[t0002_baseline_evaluation](../../tasks/t0002_baseline_evaluation/)
+| Field | Value |
+|---|---|
+| **ID** | `S-0002-02` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-23 |
+| **Source task** | [`t0002_baseline_evaluation`](../../../overview/tasks/task_pages/t0002_baseline_evaluation.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`commercial-apis`](../../../meta/categories/commercial-apis/) |
 
 The t0002 baseline evaluation could not run Deepgram Nova-2 because DEEPGRAM_API_KEY was
 unavailable. This blocked REQ-1, REQ-5 (paired significance test), REQ-9 (Deepgram predictions
@@ -41,12 +33,20 @@ stt-benchmark-run, baseline-evaluation.
 
 </details>
 
+## Medium Priority
+
 <details>
 <summary>🧪 <strong>Add Azure Speech Services as a third STT comparison point on
 gold-92</strong> (S-0002-06)</summary>
 
-**Kind**: experiment | **Priority**: medium | **Date**: 2026-06-23 | **Source**:
-[t0002_baseline_evaluation](../../tasks/t0002_baseline_evaluation/)
+| Field | Value |
+|---|---|
+| **ID** | `S-0002-06` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-23 |
+| **Source task** | [`t0002_baseline_evaluation`](../../../overview/tasks/task_pages/t0002_baseline_evaluation.md) |
+| **Source paper** | — |
+| **Categories** | [`commercial-apis`](../../../meta/categories/commercial-apis/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
 
 Azure Cognitive Services Speech-to-Text supports custom keyword lists and phrase boosting
 natively, making it a strong candidate for domain entity accuracy without fine-tuning. Compare

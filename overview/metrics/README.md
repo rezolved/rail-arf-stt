@@ -1,4 +1,4 @@
-# Metrics (6)
+# Metrics (7)
 
 ## 📊 ratio (3)
 
@@ -52,7 +52,24 @@ below 2%.
 
 </details>
 
-## ✅ accuracy (2)
+## ✅ accuracy (3)
+
+<details>
+<summary>✅ <strong>Entity Accuracy — Domain Vocabulary</strong>
+(<code>entity_accuracy_domain_vocab</code>)</summary>
+
+| Field | Value |
+|---|---|
+| **Key** | `entity_accuracy_domain_vocab` |
+| **Unit** | accuracy |
+| **Value type** | float |
+| **Datasets** | — |
+
+Entity accuracy computed only over the 31 domain-specific terms (brand names, product names,
+person names) from the Rezolve vocabulary list that appear in gold-92 ground truth. A term is
+correct if it appears verbatim in the predicted transcript after normalisation.
+
+</details>
 
 <details>
 <summary>✅ <strong>Entity Accuracy (gold-92)</strong>

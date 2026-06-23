@@ -1,7 +1,7 @@
 # Suggestions: `stt-evaluation`
 
-7 suggestion(s) in category [`stt-evaluation`](../../../meta/categories/stt-evaluation/) **7
-open** (3 high, 3 medium, 1 low).
+13 suggestion(s) in category [`stt-evaluation`](../../../meta/categories/stt-evaluation/) **12
+open** (5 high, 6 medium, 1 low), **1 closed**.
 
 [Back to all suggestions](../README.md)
 
@@ -33,6 +33,29 @@ task types: audio-dataset-curation.
 </details>
 
 <details>
+<summary>🔧 <strong>LLM post-correction layer for entity normalization on Whisper
+transcripts</strong> (S-0002-03)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0002-03` |
+| **Kind** | technique |
+| **Date added** | 2026-06-23 |
+| **Source task** | [`t0002_baseline_evaluation`](../../../overview/tasks/task_pages/t0002_baseline_evaluation.md) |
+| **Source paper** | — |
+| **Categories** | [`entity-correction`](../../../meta/categories/entity-correction/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+
+Build a lightweight LLM post-correction pass that takes a Whisper transcript and a domain
+entity glossary (Rezolve, brainpowa, product names, IR terms) and corrects entity-span errors
+without rewriting the full transcript. The baseline shows entity accuracy of 25.2% overall and
+8.8% on production clips — the majority of failures are vocabulary substitutions
+(Rezolve→Hizol, Rezolve→Resolve) that a prompted LLM with glossary access could correct
+cheaply. Target: measure entity accuracy gain and added latency overhead vs the 800 ms p50
+budget. Recommended task types: post-correction-experiment, experiment-run.
+
+</details>
+
+<details>
 <summary>🧪 <strong>Prototype RECOVER N-best + LLM-Select on gold-92</strong>
 (S-0003-01)</summary>
 
@@ -56,29 +79,76 @@ stt-benchmark-run.
 </details>
 
 <details>
-<summary>🧪 <strong>Prototype Ron2026 initial_prompt multi-agent pipeline on
-gold-92</strong> (S-0003-02)</summary>
+<summary>🧪 <strong>Run Deepgram Nova-2 baseline on gold-92 to complete REQ-1 and
+paired significance test</strong> (S-0002-02)</summary>
 
 | Field | Value |
 |---|---|
-| **ID** | `S-0003-02` |
+| **ID** | `S-0002-02` |
 | **Kind** | experiment |
 | **Date added** | 2026-06-23 |
-| **Source task** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Source paper** | [`10.48550_arXiv.2602.18966`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2602.18966/) |
-| **Categories** | [`entity-correction`](../../../meta/categories/entity-correction/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+| **Source task** | [`t0002_baseline_evaluation`](../../../overview/tasks/task_pages/t0002_baseline_evaluation.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`commercial-apis`](../../../meta/categories/commercial-apis/) |
 
-Implement the six-agent LLM pipeline from Ron2026 against Whisper Turbo on gold-92. The
-pipeline processes a first-pass transcript to extract topic labels, named entities, and domain
-jargon, assembles a context prompt (224 tokens max), and feeds it into a second Whisper
-decoding pass via the initial_prompt parameter. Seed the NER agent with Rezolve's
-brand/product catalog. Measure entity accuracy and latency on all 93 clips. Ron2026 reported
-17% relative WER reduction on entity-dense NBA commentary with zero model retraining.
-Recommended task types: post-correction-experiment, stt-benchmark-run.
+The t0002 baseline evaluation could not run Deepgram Nova-2 because DEEPGRAM_API_KEY was
+unavailable. This blocked REQ-1, REQ-5 (paired significance test), REQ-9 (Deepgram predictions
+asset), and the production comparator column in all results tables. Cost is approximately
+$0.09 for 93 clips. A dedicated task should obtain the key from the team vault, run Deepgram
+Nova-2 with nova-2 model and default settings on all 93 gold-92 clips, compute all five
+registered metrics with BCa CIs, run the paired significance test against whisper-turbo, and
+produce the deepgram-nova2-gold92 predictions asset. Recommended task types:
+stt-benchmark-run, baseline-evaluation.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Vocabulary-biased Whisper inference via STT_INITIAL_PROMPT on
+gold-92</strong> (S-0002-01)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0002-01` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-23 |
+| **Source task** | [`t0002_baseline_evaluation`](../../../overview/tasks/task_pages/t0002_baseline_evaluation.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../../meta/categories/whisper-finetuning/) |
+
+Run Whisper turbo on gold-92 with a domain vocabulary prompt injected via STT_INITIAL_PROMPT
+(e.g., 'Rezolve, brainpowa, Rezolve AI, Shopify Plus, Salesforce Commerce Cloud, Adobe
+Commerce, AI Foundry'). The baseline showed 'Rezolve' is systematically transcribed as 'Hizol'
+or 'Resolve' — a pure vocabulary gap. Vocabulary biasing via initial_prompt requires zero
+training and zero API cost. Measure entity accuracy on production clips specifically
+(baseline: 8.8%) and compare with paired BCa test against the whisper-turbo baseline.
+Recommended task types: stt-benchmark-run, experiment-run.
 
 </details>
 
 ## Medium Priority
+
+<details>
+<summary>🧪 <strong>Add Azure Speech Services as a third STT comparison point on
+gold-92</strong> (S-0002-06)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0002-06` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-23 |
+| **Source task** | [`t0002_baseline_evaluation`](../../../overview/tasks/task_pages/t0002_baseline_evaluation.md) |
+| **Source paper** | — |
+| **Categories** | [`commercial-apis`](../../../meta/categories/commercial-apis/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+
+Azure Cognitive Services Speech-to-Text supports custom keyword lists and phrase boosting
+natively, making it a strong candidate for domain entity accuracy without fine-tuning. Compare
+it against Deepgram Nova-2 and Whisper turbo on gold-92 using all five registered metrics.
+Requires AZURE_SPEECH_API_KEY from the team vault. Azure also offers Custom Speech (domain
+adaptation) which can be evaluated in a follow-up. Estimated cost: approximately $0.01–$0.05
+for 93 clips at standard tier pricing. Recommended task types: stt-benchmark-run,
+comparative-analysis.
+
+</details>
 
 <details>
 <summary>📊 <strong>Add S2ER (sentence-level semantic error rate) metric to the
@@ -100,6 +170,55 @@ Adding S2ER alongside WER and entity accuracy provides a direct proxy for the pr
 metric of wrong-action rate below 2%. Implementation: add an LLM judge (GPT-4o) call per
 utterance that scores semantic equivalence between reference and hypothesis. Recommended task
 types: stt-benchmark-run, write-library.
+
+</details>
+
+<details>
+<summary>📂 <strong>Expand gold-92 benchmark with more production clips and fix
+annotation inconsistencies</strong> (S-0002-05)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0002-05` |
+| **Kind** | dataset |
+| **Date added** | 2026-06-23 |
+| **Source task** | [`t0002_baseline_evaluation`](../../../overview/tasks/task_pages/t0002_baseline_evaluation.md) |
+| **Source paper** | — |
+| **Categories** | [`audio-datasets`](../../../meta/categories/audio-datasets/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+
+Three findings motivate benchmark expansion: (1) the 34-clip production subset scores only
+8.8% entity accuracy but drives all business-critical decisions; a larger production sample
+would tighten BCa confidence intervals and reduce the risk of outlier clips dominating
+results; (2) at least three clips (Examples 10, 13, 14) show verbatim transcript matches
+scoring 0 entity accuracy due to annotation normalisation mismatches — the annotation schema
+needs an audit; (3) clip error_en_0005 has Cyrillic ground truth indicating upstream data
+quality issues. The expanded benchmark should also apply blockwise bootstrap by speaker for
+the clean_voices subset as recommended by Liu2020. Recommended task types:
+audio-dataset-curation, data-analysis.
+
+</details>
+
+<details>
+<summary>📊 <strong>Implement intent classification metric to replace span-presence
+proxy</strong> (S-0002-07)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0002-07` |
+| **Kind** | evaluation |
+| **Date added** | 2026-06-23 |
+| **Source task** | [`t0002_baseline_evaluation`](../../../overview/tasks/task_pages/t0002_baseline_evaluation.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`confidence-routing`](../../../meta/categories/confidence-routing/) |
+
+The current intent_preservation_gold92 metric uses a span-presence heuristic that is
+over-estimated: 'Resolve' satisfies 'Rezolve' after normalisation, inflating the 90.3% figure.
+A proper intent classifier should distinguish entity substitution that changes action target
+(e.g., wrong company name) from substitution that preserves action type (e.g., generic query
+intent). This is needed to make intent_preservation_gold92 meaningful for the
+confidence-routing policy (wrong_action_rate_gold92 goal: <2%). Implement as a lightweight
+rule-based or LLM-based classifier and re-evaluate on gold-92. Recommended task types:
+write-library, experiment-run.
 
 </details>
 
@@ -172,5 +291,32 @@ monitoring for LOGIC reappearance at Interspeech 2026 or ICASSP 2026 proceedings
 republished, LOGIC's constant-time biasing approach directly addresses context window
 saturation at catalog scale (10,000+ entries) without the retrieval infrastructure required by
 BR-ASR. Recommended task types: internet-research.
+
+</details>
+
+## Closed
+
+<details>
+<summary>✅ <s>Prototype Ron2026 initial_prompt multi-agent pipeline on gold-92</s> —
+covered by <a
+href="../../../tasks/t0004_vocabulary_biasing_experiment/"><code>t0004_vocabulary_biasing_experiment</code></a>
+(S-0003-02)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0003-02` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-23 |
+| **Source task** | [`t0003_literature_review_entity_stt`](../../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
+| **Source paper** | [`10.48550_arXiv.2602.18966`](../../../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2602.18966/) |
+| **Categories** | [`entity-correction`](../../../meta/categories/entity-correction/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+
+Implement the six-agent LLM pipeline from Ron2026 against Whisper Turbo on gold-92. The
+pipeline processes a first-pass transcript to extract topic labels, named entities, and domain
+jargon, assembles a context prompt (224 tokens max), and feeds it into a second Whisper
+decoding pass via the initial_prompt parameter. Seed the NER agent with Rezolve's
+brand/product catalog. Measure entity accuracy and latency on all 93 clips. Ron2026 reported
+17% relative WER reduction on entity-dense NBA commentary with zero model retraining.
+Recommended task types: post-correction-experiment, stt-benchmark-run.
 
 </details>

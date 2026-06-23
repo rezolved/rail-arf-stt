@@ -1,6 +1,6 @@
 # Project Costs
 
-Spent $0.00 of $2000.00 USD. $2000.00 remains overall and $2000.00 remains before the 100%
+Spent $2.50 of $2000.00 USD. $1997.50 remains overall and $1997.50 remains before the 100%
 stop threshold.
 
 ## Budget Summary
@@ -8,34 +8,39 @@ stop threshold.
 | Field | Value |
 |-------|-------|
 | Total budget | $2000.00 USD |
-| Total spent | $0.00 USD |
-| Budget left | $2000.00 USD |
-| Budget left before stop threshold | $2000.00 USD |
-| Spent percent | 0.00% |
+| Total spent | $2.50 USD |
+| Budget left | $1997.50 USD |
+| Budget left before stop threshold | $1997.50 USD |
+| Spent percent | 0.12% |
 | Warn threshold | 80% ($1600.00) |
 | Stop threshold | 100% ($2000.00) |
 | Default per-task limit | $100.00 USD |
-| Tasks with cost records | 1 |
-| Tasks with non-zero spend | 0 |
-| Skipped tasks | 2 |
+| Tasks with cost records | 3 |
+| Tasks with non-zero spend | 1 |
+| Skipped tasks | 1 |
 
 ## Service Totals
 
-No entries found.
+| Key | Cost (USD) |
+|-----|------------|
+| `anthropic_api` | $2.50 |
 
 ## Breakdown Totals
 
-No entries found.
+| Key | Cost (USD) |
+|-----|------------|
+| `claude-code-orchestration` | $2.50 |
 
-1 task cost record(s) are zero-cost and omitted from the main spend table.
+2 task cost record(s) are zero-cost and omitted from the main spend table.
 
 ## Task Spend
 
-No task cost records found.
+| Task | Status | Total (USD) | Limit (USD) | Over limit |
+|------|--------|-------------|-------------|------------|
+| [`t0002_baseline_evaluation`](../../overview/tasks/task_pages/t0002_baseline_evaluation.md) | completed | $2.50 | $100.00 | no |
 
 ## Skipped Tasks
 
 | Task ID | Reason |
 |---------|--------|
 | `t0001_stt_benchmark` | results/costs.json missing a numeric total_cost_usd |
-| `t0002_baseline_evaluation` | results/costs.json is missing or invalid |

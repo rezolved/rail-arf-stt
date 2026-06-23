@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive type_id="metrics" generated_at_utc="2026-06-23T10:13:15Z">
+<llm_context_archive type_id="metrics" generated_at_utc="2026-06-23T14:52:24Z">
   <archive_summary>
     <title>All Metrics</title>
     <description>Complete metric definitions with full descriptions, units, and associated datasets.</description>
     <section_count>1</section_count>
-    <char_count>3043</char_count>
-    <byte_count>3043</byte_count>
-    <estimated_tokens>760</estimated_tokens>
+    <char_count>3475</char_count>
+    <byte_count>3477</byte_count>
+    <estimated_tokens>868</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -18,6 +18,7 @@
       <source_name>aggregate_metrics_full</source_name>
       <source_ids>
         <id>action_critical_wer_gold92</id>
+        <id>entity_accuracy_domain_vocab</id>
         <id>entity_accuracy_gold92</id>
         <id>intent_preservation_gold92</id>
         <id>latency_p50_seconds</id>
@@ -25,7 +26,7 @@
         <id>wrong_action_rate_gold92</id>
       </source_ids>
       <content>
-Metrics: 6
+Metrics: 7
 
 ## Action-Critical WER (gold-92)
 Key: action_critical_wer_gold92
@@ -34,6 +35,14 @@ Value type: float
 Version: 1
 
 Word Error Rate restricted to action-critical token spans in the gold-92 benchmark. Computed as (S+D+I) / N_critical where N_critical is the total number of reference words in annotated critical spans.
+
+## Entity Accuracy — Domain Vocabulary
+Key: entity_accuracy_domain_vocab
+Unit: accuracy
+Value type: float
+Version: 1
+
+Entity accuracy computed only over the 31 domain-specific terms (brand names, product names, person names) from the Rezolve vocabulary list that appear in gold-92 ground truth. A term is correct if it appears verbatim in the predicted transcript after normalisation.
 
 ## Entity Accuracy (gold-92)
 Key: entity_accuracy_gold92

@@ -1,10 +1,8 @@
-# Predictions (5)
+# Predictions: `stt-evaluation`
 
 5 predictions asset(s).
 
-**Browse by view**: By category: [`stt-evaluation`](by-category/stt-evaluation.md),
-[`whisper-finetuning`](by-category/whisper-finetuning.md); [By date
-added](by-date-added/README.md)
+[Back to all predictions](../README.md)
 
 ---
 
@@ -21,9 +19,9 @@ added](by-date-added/README.md)
 | **Format** | jsonl |
 | **Instances** | 93 |
 | **Date created** | 2026-06-23 |
-| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../meta/categories/whisper-finetuning/) |
-| **Created by** | [`t0004_vocabulary_biasing_experiment`](../../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) |
-| **Documentation** | [`description.md`](../../tasks/t0004_vocabulary_biasing_experiment/assets/predictions/moonshine-base-gold92/description.md) |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../../meta/categories/whisper-finetuning/) |
+| **Created by** | [`t0004_vocabulary_biasing_experiment`](../../../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) |
+| **Documentation** | [`description.md`](../../../tasks/t0004_vocabulary_biasing_experiment/assets/predictions/moonshine-base-gold92/description.md) |
 
 **Metrics at creation:**
 
@@ -185,9 +183,9 @@ recognition.
 | **Format** | jsonl |
 | **Instances** | 93 |
 | **Date created** | 2026-06-23 |
-| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../meta/categories/whisper-finetuning/) |
-| **Created by** | [`t0004_vocabulary_biasing_experiment`](../../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) |
-| **Documentation** | [`description.md`](../../tasks/t0004_vocabulary_biasing_experiment/assets/predictions/whisper-large-v3-biased/description.md) |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../../meta/categories/whisper-finetuning/) |
+| **Created by** | [`t0004_vocabulary_biasing_experiment`](../../../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) |
+| **Documentation** | [`description.md`](../../../tasks/t0004_vocabulary_biasing_experiment/assets/predictions/whisper-large-v3-biased/description.md) |
 
 **Metrics at creation:**
 
@@ -349,9 +347,9 @@ recognition.
 | **Format** | jsonl |
 | **Instances** | 93 |
 | **Date created** | 2026-06-23 |
-| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../meta/categories/whisper-finetuning/) |
-| **Created by** | [`t0002_baseline_evaluation`](../../overview/tasks/task_pages/t0002_baseline_evaluation.md) |
-| **Documentation** | [`description.md`](../../tasks/t0002_baseline_evaluation/assets/predictions/whisper-large-v3-gold92/description.md) |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../../meta/categories/whisper-finetuning/) |
+| **Created by** | [`t0002_baseline_evaluation`](../../../overview/tasks/task_pages/t0002_baseline_evaluation.md) |
+| **Documentation** | [`description.md`](../../../tasks/t0002_baseline_evaluation/assets/predictions/whisper-large-v3-gold92/description.md) |
 
 **Metrics at creation:**
 
@@ -527,9 +525,9 @@ intervention/deepgram_api_key_missing.md).
 | **Format** | jsonl |
 | **Instances** | 93 |
 | **Date created** | 2026-06-23 |
-| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../meta/categories/whisper-finetuning/) |
-| **Created by** | [`t0004_vocabulary_biasing_experiment`](../../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) |
-| **Documentation** | [`description.md`](../../tasks/t0004_vocabulary_biasing_experiment/assets/predictions/whisper-turbo-biased/description.md) |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../../meta/categories/whisper-finetuning/) |
+| **Created by** | [`t0004_vocabulary_biasing_experiment`](../../../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) |
+| **Documentation** | [`description.md`](../../../tasks/t0004_vocabulary_biasing_experiment/assets/predictions/whisper-turbo-biased/description.md) |
 
 **Metrics at creation:**
 
@@ -691,9 +689,9 @@ recognition.
 | **Format** | jsonl |
 | **Instances** | 93 |
 | **Date created** | 2026-06-23 |
-| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../meta/categories/whisper-finetuning/) |
-| **Created by** | [`t0002_baseline_evaluation`](../../overview/tasks/task_pages/t0002_baseline_evaluation.md) |
-| **Documentation** | [`description.md`](../../tasks/t0002_baseline_evaluation/assets/predictions/whisper-turbo-gold92/description.md) |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../../meta/categories/whisper-finetuning/) |
+| **Created by** | [`t0002_baseline_evaluation`](../../../overview/tasks/task_pages/t0002_baseline_evaluation.md) |
+| **Documentation** | [`description.md`](../../../tasks/t0002_baseline_evaluation/assets/predictions/whisper-turbo-gold92/description.md) |
 
 **Metrics at creation:**
 

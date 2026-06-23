@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive preset_id="research-history" generated_at_utc="2026-06-23T10:13:15Z">
+<llm_context_archive preset_id="research-history" generated_at_utc="2026-06-23T14:52:24Z">
   <archive_summary>
     <title>Research History</title>
     <description>Research-stage documents across completed tasks, plus core project context.</description>
     <use_case>Literature review continuity, methodology discussion, and prior-investigation lookup.</use_case>
-    <section_count>10</section_count>
-    <char_count>89673</char_count>
-    <byte_count>89905</byte_count>
-    <estimated_tokens>22418</estimated_tokens>
+    <section_count>13</section_count>
+    <char_count>153405</char_count>
+    <byte_count>153950</byte_count>
+    <estimated_tokens>38351</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -103,10 +103,12 @@ gold-92 (`t0002_baseline_evaluation`).
       <source_name>aggregate_tasks_full</source_name>
       <source_ids>
         <id>t0001_stt_benchmark</id>
+        <id>t0002_baseline_evaluation</id>
         <id>t0003_literature_review_entity_stt</id>
+        <id>t0004_vocabulary_biasing_experiment</id>
       </source_ids>
       <content>
-Completed tasks: 2
+Completed tasks: 4
 
 ## STT Benchmark — Gold-92 Dataset Ingestion
 ID: t0001_stt_benchmark
@@ -114,28 +116,30 @@ Completed: 2026-06-22
 Short description: Ingest, annotate, and DVC-track the gold-92 held-out STT benchmark dataset from Rezolve production voice sessions.
 Result summary: Results Summary: t0001_stt_benchmark Outcome Gold-92 STT benchmark dataset successfully ingested and registered. 93 WAV clips with ground-truth annotations are now version-controlled: JSONL files in git, audio in DVC (Azure Blob Storage at `azure://ml-dvc-datasets/datasets/rail-arf-stt`). Assets Produced * Dataset asset `stt-benchmark-gold-92` with 93 clips, 2 JSONL annotation files, and DVC-tracked audio directory. Baseline Observations (from gold_set.jsonl) * Production (Deepgram) transcripts are present for all 93 clips. * Whisper Large v2 transcripts are present for all 93 clips. * Formal WER and entity accuracy evaluation is deferred to `t0002_baseline_evaluation`. Next Steps Task...
 
+## Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92
+ID: t0002_baseline_evaluation
+Completed: 2026-06-23
+Short description: Establish project baselines by running Deepgram Nova-2 and Whisper Large v3 on gold-92, computing all five registered metrics with BCa bootstrap confidence intervals.
+Result summary: Results Summary: Baseline Evaluation — Deepgram and Whisper on Gold-92 Summary Whisper turbo and Whisper large-v3 were benchmarked on the gold-92 STT dataset (93 clips from Rezolve investor-relations production sessions). Both models produced **identical entity accuracy of 25.2%** with matching BCa 95% CIs, ruling out model size as the bottleneck. The production-session subset scored only **8.8% entity accuracy**, exposing a severe gap between lab conditions and real deployment. Deepgram Nova-2 could not be run due to a missing API key; the Whisper results stand as the open-source baseline. The primary implication is that vocabulary biasing — not a larger model — is the highest-ROI next...
+
 ## Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026)
 ID: t0003_literature_review_entity_stt
 Completed: 2026-06-23
 Short description: Survey Jan–Jun 2026 publications on contextual biasing, shallow fusion, entity-aware ASR, and LLM post-correction for named entity accuracy in ecommerce STT.
 Result summary: --- task_id: &quot;t0003_literature_review_entity_stt&quot; date: &quot;2026-06-23&quot; --- Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026) Summary Systematic literature review of Jan–Jun 2026 publications on entity-aware STT. **15 paper assets** were created covering contextual biasing, entity-aware ASR architectures, and LLM post-correction. The top no-retraining candidates for prototyping on gold-92 are **RECOVER** (33–35% relative E-WER reduction, Earnings-21) and **Ron2026** (17% relative WER reduction via Whisper `initial_prompt`). Shallow fusion has effectively no 2026 literature — documented as a gap, not a search failure. Metrics * **Paper assets created**: **15** (all...
+
+## Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy
+ID: t0004_vocabulary_biasing_experiment
+Completed: 2026-06-23
+Short description: Test whether Whisper&#x27;s initial_prompt vocabulary biasing improves entity accuracy on gold-92 domain terms compared to t0002 baselines.
+Result summary: t0004 Results Summary — Vocabulary Biasing Experiment Summary Injecting a 31-term domain vocabulary via Whisper&#x27;s `initial_prompt` parameter produces a **4–5× improvement in domain-entity accuracy** (18% → 87–95%) with no WER degradation. Action-Critical WER dropped from 30% to 2.5% (large-v3 biased), approaching the project success criterion of &lt;2% wrong-action rate. Moonshine base is 80× faster (p50 70ms) but significantly weaker on this domain. Metrics - **entity_accuracy_domain_vocab**: 18.2% → 94.5% (large-v3 biased), 87.3% (turbo biased) — 4–5× improvement; 10.9% for Moonshine base (weaker) - **entity_accuracy_gold92**: 25.2% → 46.0% (large-v3 biased), 43.1% (turbo biased); 21.7%...
       </content>
     </section>
     <section id="planned-tasks" source_kind="aggregator">
       <title>Planned Tasks</title>
       <source_name>aggregate_tasks_full</source_name>
-      <source_ids>
-        <id>t0002_baseline_evaluation</id>
-      </source_ids>
       <content>
-Planned or active tasks: 1
-
-## Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92
-ID: t0002_baseline_evaluation
-Status: in_progress
-Effective date: 2026-06-23
-Short description: Establish project baselines by running Deepgram Nova-2 and Whisper Large v3 on gold-92, computing all five registered metrics with BCa bootstrap confidence intervals.
-Dependencies: t0001_stt_benchmark
+Planned or active tasks: 0
       </content>
     </section>
     <section id="questions-and-answers" source_kind="aggregator">
@@ -248,6 +252,1157 @@ No research required for this data ingestion task.
 #### References
 
 None.
+      </content>
+    </section>
+    <section id="t0002_baseline_evaluation-research_papers" source_kind="file">
+      <title>t0002_baseline_evaluation — Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92 — research_papers.md</title>
+      <source_name>research_papers.md</source_name>
+      <source_ids>
+        <id>t0002_baseline_evaluation</id>
+      </source_ids>
+      <repo_paths>
+        <path>tasks/t0002_baseline_evaluation/research/research_papers.md</path>
+      </repo_paths>
+      <content>
+---
+spec_version: &quot;1&quot;
+task_id: &quot;t0002_baseline_evaluation&quot;
+research_stage: &quot;papers&quot;
+papers_reviewed: 0
+papers_cited: 0
+categories_consulted:
+  - &quot;stt-evaluation&quot;
+  - &quot;commercial-apis&quot;
+  - &quot;whisper-finetuning&quot;
+  - &quot;entity-correction&quot;
+  - &quot;latency-profiling&quot;
+  - &quot;audio-datasets&quot;
+  - &quot;confidence-routing&quot;
+date_completed: &quot;2026-06-23&quot;
+status: &quot;partial&quot;
+---
+### Research — Existing Papers
+
+#### Task Objective
+
+This task establishes project baselines by running two STT systems — Deepgram Nova-2 (the current
+Rezolve production endpoint) and Whisper Large v3 (the leading open-source alternative) — on the
+gold-92 benchmark: 93 annotated WAV clips from Rezolve production voice sessions in the
+investor-relations domain with accented English speakers. For each system, all five registered
+project metrics must be computed with BCa bootstrap 95% confidence intervals (n=10,000 resamples):
+entity accuracy on action-critical spans (`entity_accuracy_gold92`), full-transcript WER
+(`wer_gold92`), action-critical WER (`action_critical_wer_gold92`), intent preservation
+(`intent_preservation_gold92`), and end-to-end latency p50 (`latency_p50_seconds`). A paired BCa
+bootstrap significance test comparing Whisper Large v3 vs. Deepgram on `entity_accuracy_gold92` is
+also required. This baseline is the reference point against which every downstream improvement
+(entity post-correction, fine-tuning, confidence routing) will be measured.
+
+**Status note**: The project paper corpus is empty at this stage — no papers have been downloaded
+via `add-paper` into any task&#x27;s `assets/paper/` directory. Both the `aggregate_papers` aggregator
+(with and without category filters) returned zero results. The key references cited in the task
+description — Radford et al. (2023) on the Whisper model and Deepgram Nova-2 documentation — are not
+yet registered in the corpus as paper assets. This document is therefore marked `&quot;partial&quot;`. The
+dedicated literature review task (`t0003_literature_review_entity_stt`) is planned to ingest the
+Whisper paper, relevant evaluation methodology papers, and domain-adaptation literature. Once those
+assets exist, a subsequent `research-papers` pass on this task (or the compare-literature step)
+should supersede this partial document.
+
+#### Category Selection Rationale
+
+All seven registered project categories were consulted via `aggregate_categories` and
+`aggregate_papers` (both with and without category filters). The categories and their relevance to
+this task are assessed below.
+
+**Included categories** (queried; zero papers found in each):
+
+* `stt-evaluation` — directly covers this task: benchmarking ASR systems on entity accuracy, WER,
+  and intent preservation using the gold-92 held-out set. This is the primary category.
+* `commercial-apis` — covers Deepgram Nova-2, one of the two systems evaluated. Any papers on
+  commercial STT API evaluation methodology or Deepgram-specific benchmarks belong here.
+* `whisper-finetuning` — Whisper Large v3 is the second system evaluated. Papers on Whisper
+  architecture, training, and out-of-the-box benchmark performance belong here, even though this
+  task does not fine-tune.
+* `entity-correction` — understanding published entity accuracy baselines is needed to contextualise
+  what the gold-92 scores mean and what gaps post-correction tasks should close.
+* `latency-profiling` — the task requires measuring `latency_p50_seconds` for both systems. Papers
+  on STT inference latency measurement protocols are relevant.
+* `audio-datasets` — the gold-92 benchmark is the evaluation set; papers on evaluation dataset
+  design and annotation methodology are pertinent for understanding gold-92&#x27;s representativeness.
+* `confidence-routing` — excluded from this task&#x27;s scope (no routing policy is evaluated here), but
+  queried to catch any papers that discuss confidence calibration alongside baseline accuracy
+  evaluation.
+
+**Excluded categories** (none, because there are only seven categories and all were checked):
+
+The project has no categories outside the seven listed above. No papers were found in any category.
+
+#### Key Findings
+
+##### No Papers Are Available in the Project Corpus
+
+The `aggregate_papers` script was run twice — once without any filter (to catch all registered
+papers regardless of category) and once filtered to the five most relevant categories
+(`stt-evaluation`, `commercial-apis`, `whisper-finetuning`, `entity-correction`,
+`latency-profiling`). Both invocations returned `paper_count: 0`. No paper assets exist under any
+task&#x27;s `assets/paper/` directory. All seven project categories were checked; none contained any
+registered paper.
+
+The task description identifies two primary external references: Radford et al. (2023) &quot;Robust
+Speech Recognition via Large-Scale Weak Supervision&quot; (the Whisper paper, arXiv:2212.04356) and the
+Deepgram Nova-2 API documentation. Neither is registered in the corpus. Until these are added via
+`add-paper`, no quantitative claims from the published Whisper evaluation (e.g., reported WER on
+Common Voice, LibriSpeech, TED-LIUM, or other benchmarks) can be cited with proper provenance. The
+dedicated literature review task, `t0003_literature_review_entity_stt`, is planned to ingest the
+Whisper paper, relevant STT evaluation methodology papers, and domain-adaptation literature. Until
+that task completes and its paper assets are available to the aggregator, this document remains in a
+partial state.
+
+**Consequence for this document**: Per the research-papers specification, `papers_cited` must equal
+the Paper Index entry count. With zero papers in the corpus and the prohibition on fabricating
+citations, this document cannot include a populated Paper Index or inline citations. The status is
+`&quot;partial&quot;`.
+
+#### Methodology Insights
+
+Based on the task description and project context (without paper citations, as none are available):
+
+* The evaluation must cover all five registered metrics with BCa bootstrap 95% CI (n=10,000
+  resamples). Paired BCa on `entity_accuracy_gold92` is the primary significance test between the
+  two systems.
+* Raw transcription outputs (`deepgram_transcripts.json`, `whisper_transcripts.json`) must be saved
+  before metric computation to allow re-scoring without re-running expensive inference.
+* Deepgram Nova-2 is called via the cloud API with default settings (no custom vocabulary), so
+  network latency contributes to `latency_p50_seconds` for that system.
+* Whisper Large v3 is run locally via `openai-whisper`, meaning latency depends on available compute
+  (CPU vs. GPU). Latency figures for the two systems will not be directly comparable on equal
+  hardware, so the metadata asset must record the inference hardware configuration.
+* Gold-92 contains 93 clips (not 92, despite the name), covering the investor-relations domain with
+  accented English. Entity spans cover brand names, product lines, SKUs, and IR terms. The
+  annotation format must be confirmed from the `t0001_stt_benchmark` dataset asset before writing
+  the metric computation code.
+* The per-accent-group breakdown required by the task description implies that clip metadata
+  includes speaker accent labels — this should be verified against the dataset asset during the
+  research-code step.
+
+#### Gaps and Limitations
+
+* **No published baselines for comparison**: Without the Whisper paper in the corpus, there are no
+  citable WER numbers from published evaluations to compare against the gold-92 results. The
+  compare-literature step (step 13) will need to ingest the Whisper paper and Deepgram benchmarks
+  before any published-vs-gold-92 comparison is possible.
+* **No evaluation methodology papers**: Papers covering BCa bootstrap significance testing for ASR
+  evaluation, or papers that define entity accuracy as a metric, are absent. The metric computation
+  code must therefore be implemented from first principles without a citable methodological
+  reference.
+* **No domain-specific STT evaluation papers**: No papers covering STT evaluation on ecommerce or
+  investor-relations audio are in the corpus. Whether 93 clips is statistically adequate for the
+  chosen CI method is not substantiated by literature.
+* **Deepgram not academically documented**: Deepgram Nova-2 is a commercial product with API
+  documentation but no peer-reviewed paper in the corpus. Its internal architecture and training
+  data are not publicly disclosed, making it impossible to cite any architectural claims.
+
+#### Recommendations for This Task
+
+1. **Proceed with implementation without paper citations** — the absence of papers in the corpus
+   does not block the evaluation itself. The methodology (BCa bootstrap, paired significance test,
+   all five metrics) is fully specified in the task description and can be implemented directly.
+
+2. **Add the Whisper paper to the corpus before the compare-literature step** — use `add-paper` with
+   Radford et al. (2023), DOI `10.48550/arXiv.2212.04356`, before step 13. This is the minimum
+   needed to compare gold-92 WER against published Whisper Large v3 benchmarks.
+
+3. **Record inference hardware in metadata.json** — since Whisper runs locally, the latency figures
+   are hardware-dependent. The metadata asset must capture CPU/GPU model, RAM, and `openai-whisper`
+   version so latency results are reproducible and interpretable.
+
+4. **Confirm gold-92 annotation schema before coding metric computation** — specifically, verify
+   that entity span annotations include the fields expected by the `entity_accuracy_gold92` metric
+   definition, and that accent group labels are present for the per-group breakdown table.
+
+5. **Revisit this document after `t0003_literature_review_entity_stt` completes** — that task is
+   planned to ingest the Whisper paper and related STT evaluation literature. A research-papers pass
+   on t0002 (or an update to this file) after t0003 completes will fill the gaps identified here and
+   convert this document from `&quot;partial&quot;` to `&quot;complete&quot;`.
+
+#### Paper Index
+
+No papers are cited in this document. The paper corpus is empty at time of writing. See the Task
+Objective section for explanation of partial status.
+      </content>
+    </section>
+    <section id="t0002_baseline_evaluation-research_internet" source_kind="file">
+      <title>t0002_baseline_evaluation — Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92 — research_internet.md</title>
+      <source_name>research_internet.md</source_name>
+      <source_ids>
+        <id>t0002_baseline_evaluation</id>
+      </source_ids>
+      <repo_paths>
+        <path>tasks/t0002_baseline_evaluation/research/research_internet.md</path>
+      </repo_paths>
+      <content>
+---
+spec_version: &quot;1&quot;
+task_id: &quot;t0002_baseline_evaluation&quot;
+research_stage: &quot;internet&quot;
+searches_conducted: 12
+sources_cited: 16
+papers_discovered: 4
+date_completed: &quot;2026-06-23&quot;
+status: &quot;complete&quot;
+---
+#### Task Objective
+
+Establish baseline metrics for the Rezolve STT research project by running Deepgram Nova-2 (the
+current production endpoint) and Whisper Large v3 (the leading open-source alternative) on the
+gold-92 benchmark: 93 annotated WAV clips from Rezolve production voice sessions in the
+investor-relations domain with accented English speakers. All five registered project metrics must
+be computed with BCa bootstrap 95% confidence intervals (n=10,000 resamples): entity accuracy on
+action-critical spans (`entity_accuracy_gold92`), full-transcript WER (`wer_gold92`),
+action-critical WER (`action_critical_wer_gold92`), intent preservation
+(`intent_preservation_gold92`), and end-to-end latency p50 (`latency_p50_seconds`). A paired BCa
+bootstrap significance test comparing Whisper Large v3 vs. Deepgram on `entity_accuracy_gold92` is
+the primary deliverable.
+
+#### Gaps Addressed
+
+From `research_papers.md` Gaps and Limitations:
+
+1. **No published baselines for comparison** — **Resolved**. Found quantitative WER benchmarks for
+   both systems. Deepgram Nova-2 achieves a median WER of **8.4%** across real-world domains in
+   Deepgram&#x27;s own evaluations [Deepgram-Nova2-2023]. Whisper Large v3 achieves **2.7% WER** on
+   LibriSpeech test-clean, **5.2% WER** on LibriSpeech test-other [HF-Whisper-LargeV3], and a mean
+   WER of **7.44** on the open-asr-leaderboard across diverse test conditions. However, both sets of
+   numbers are on general-English benchmarks, not on accented investor-relations audio, so gold-92
+   results will likely diverge — this caveat remains for the compare-literature step.
+
+2. **No evaluation methodology papers** — **Resolved**. Found `scipy.stats.bootstrap` with
+   `method=&#x27;BCa&#x27;` as the canonical Python implementation for BCa confidence intervals
+   [SciPy-Bootstrap]. Found Liu &amp; Peng (2020) on blockwise bootstrap for ASR significance testing
+   [Liu2020] — relevant when utterances from the same speaker are correlated. Also found a
+   ResearchGate preprint (Bisani &amp; Ney, 2004) on bootstrap estimates specifically for ASR confidence
+   intervals, confirming standard practice.
+
+3. **No domain-specific STT evaluation papers** — **Partially resolved**. Found papers covering NER
+   from speech in noisy business telephone transcripts [Kubis2022-ACL] and a 2020 LREC survey of
+   named entity recognition from speech [Caubriere2020]. No ecommerce or investor-relations specific
+   STT evaluation papers were found. Whether 93 clips is adequate for BCa at n=10,000 resamples is
+   addressed methodologically: BCa is valid for small n; with n=93 paired samples the CI width will
+   be wider than for larger corpora but the method is unbiased.
+
+4. **Deepgram not academically documented** — **Partially resolved**. No peer-reviewed paper on
+   Deepgram Nova-2 architecture exists. Deepgram&#x27;s own blog [Deepgram-Nova2-2023] and developer
+   documentation [Deepgram-Keywords-Docs] are non-peer-reviewed but are the authoritative primary
+   sources. The keyword-boosting API is documented, including limitations for Nova-2 (max 100
+   keywords, intensifier parameter format).
+
+#### Search Strategy
+
+**Sources searched**: Deepgram developer documentation, Hugging Face model hub, arXiv, ACL
+Anthology, PyPI, GitHub, SciPy documentation, ResearchGate, Northflank blog, VexaScribe blog, Modal
+blog, Papers With Code.
+
+**Queries executed** (12 total):
+
+*Pass 1 — Gap-targeted queries:*
+
+1. `Deepgram Nova-2 API authentication transcription endpoint Python SDK 2025`
+2. `openai-whisper large-v3 Python inference audio files WER benchmark 2024 2025`
+3. `BCa bootstrap confidence intervals WER word error rate Python implementation scipy`
+4. `jiwer WER word error rate Python STT evaluation library usage examples`
+
+*Pass 2 — Broadening queries:*
+
+5. `Deepgram Nova-2 WER benchmark accuracy comparison 2024 entity keyword boosting`
+6. `STT entity accuracy evaluation named entity recognition speech recognition ecommerce domain`
+7. `Whisper large-v3 accented English non-native speaker WER performance`
+8. `Deepgram keyword boosting custom vocabulary injection API transcription accuracy`
+
+*Pass 3 — Snowball queries prompted by findings:*
+
+9. `Whisper large-v3 latency inference speed CPU GPU seconds per audio clip`
+10. `Deepgram Nova-2 vs Whisper large-v3 comparison accuracy WER benchmark 2024`
+11. `bootstrap hypothesis test ASR speech recognition paired samples significance NLP evaluation`
+12. `Radford 2023 Whisper robust speech recognition large-scale weak supervision WER results`
+
+**Date range**: 2019–2026. No lower cutoff for foundational papers.
+
+**Inclusion criteria**: Sources must provide at least one of: (a) quantitative WER or entity
+accuracy benchmarks for Deepgram Nova-2 or Whisper Large v3, (b) Python API/SDK usage patterns for
+either system, (c) implementation details for BCa bootstrap CI or paired significance tests for ASR,
+(d) STT evaluation methodology for named entity or span-level accuracy, (e) latency characterization
+for either system. Excluded: real-time streaming-only evaluations, non-English ASR papers, TTS
+literature.
+
+**Search iterations**: Pass 3 queries were prompted by: query 10 uncovering the Deepgram vs. Whisper
+whitepaper PDF; query 11 uncovering Liu &amp; Peng (2020) blockwise bootstrap paper on arXiv; query 12
+confirming the Whisper paper PMLR proceedings URL and arXiv ID for the Discovered Papers section.
+
+#### Key Findings
+
+##### Deepgram Nova-2 Benchmarks and API
+
+Deepgram Nova-2 reports a median WER of **8.4%** across real-world domains (podcast, video/media,
+meeting, phone call), representing a **36.4% relative WER improvement** over Whisper Large (not
+Large v3) in Deepgram&#x27;s own benchmarking white paper [Deepgram-Nova2-2023] (non-peer-reviewed,
+vendor-produced). Entity-specific improvements from Nova-1 include a **15% relative reduction in
+entity error rate** and **22.6% improvement in punctuation accuracy**. These numbers are from a
+vendor white paper and may not generalise to accented investor-relations audio.
+
+For API integration, Deepgram Nova-2 is accessed via HTTPS POST to
+`https://api.deepgram.com/v1/listen` with header `Authorization: Token YOUR_API_KEY`. The Python SDK
+(v3+) uses `DeepgramClient().listen.v1.media.transcribe_file()` for pre-recorded audio
+[Deepgram-SDK-GH]. The response object exposes per-word confidence scores, timestamps, and the full
+transcript at `response.results.channels[0].alternatives[0]`. Pricing is **$0.0043/minute** for
+pre-recorded audio, making the 93-clip gold-92 set cost approximately **$0.08–$0.10** total.
+
+Keyword boosting is available for Nova-2 via the `keywords=WORD:INTENSIFIER` query parameter (max
+100 keywords, intensifier is an exponential multiplier defaulting to 1) [Deepgram-Keywords-Docs].
+The task baseline run uses **no keyword boosting** — that is reserved for a later improvement task.
+Nova-3 has superseded Nova-2 with keyterm prompting instead of keyword boosting and achieves **5.26%
+batch WER**, but Nova-2 is the current Rezolve production endpoint and must be the baseline.
+
+**Best practice**: Set `smart_format=True` and `punctuate=True` in the transcription request to get
+normalised output comparable to Whisper&#x27;s default output. Record `response.metadata.duration` for
+latency measurement alongside wall-clock timing.
+
+##### Whisper Large v3 Benchmarks and Inference
+
+Whisper Large v3 (1.55 billion parameters, 128 Mel bins) achieves **2.7% WER on LibriSpeech
+test-clean** and **5.2% WER on LibriSpeech test-other** [HF-Whisper-LargeV3]. Its mean WER on the
+open-asr-leaderboard across diverse datasets is **7.44**. These benchmarks are on clean or
+moderately accented read speech. On non-native spontaneous English (LearnerVoice dataset), vanilla
+Whisper Large v3 achieves **19.18% WER** [Peng2025] — a figure relevant to the gold-92 benchmark
+which contains accented English speakers.
+
+The openai-whisper package (MIT licence) provides the canonical CLI and Python API. For Python
+inference, the `transformers` pipeline API (Hugging Face) is the recommended approach for
+production-quality inference with GPU acceleration [HF-Whisper-LargeV3]:
+
+```python
+from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
+model = AutoModelForSpeechSeq2Seq.from_pretrained(&quot;openai/whisper-large-v3&quot;,
+    torch_dtype=torch.float16)
+pipe = pipeline(&quot;automatic-speech-recognition&quot;, model=model, processor=processor)
+result = pipe(&quot;audio.wav&quot;)
+```
+
+For CPU-only inference, `faster-whisper` (CTranslate2 backend) provides **up to 4× speedup** over
+the original openai-whisper package at the same accuracy, with INT8 quantization reducing VRAM from
+~10 GB to ~2.5 GB [FasterWhisper-GH]. On an RTX 4070, large-v3 runs at **~12× real-time** with
+faster-whisper. On CPU (M5 Pro), ~3× real-time. On CPU alone, a 10-second clip takes approximately
+**30–100 seconds** with the standard openai-whisper package — for 93 clips this implies 46–155
+minutes total, confirming the task description&#x27;s estimate.
+
+**Hypothesis**: Whisper Large v3&#x27;s accented English WER on gold-92 may exceed its LibriSpeech
+benchmark by a factor of 2–4× (projected: 8–20% WER) given the LearnerVoice evidence of 19.18% WER
+on non-native spontaneous speech. The paired BCa test will determine whether Deepgram Nova-2 or
+Whisper is better on entity accuracy for this specific domain.
+
+**Best practice**: Pass `language=&quot;en&quot;` explicitly to prevent Whisper from misclassifying accented
+speech as a non-English language — a known failure mode documented in the Hugging Face model card
+[HF-Whisper-LargeV3].
+
+##### BCa Bootstrap CI and Significance Testing
+
+`scipy.stats.bootstrap` (available since SciPy 1.7) implements BCa as the default method
+[SciPy-Bootstrap]. BCa is the bias-corrected and accelerated variant that adjusts percentile limits
+for second-order effects. Usage for a scalar statistic:
+
+```python
+from scipy import stats
+import numpy as np
+
+def mean_stat(x, axis):
+    return np.mean(x, axis=axis)
+
+boot = stats.bootstrap((per_utterance_scores,), mean_stat,
+                       n_resamples=10000, method=&#x27;BCa&#x27;, random_state=42)
+ci_low, ci_high = boot.confidence_interval
+```
+
+For paired comparisons (Whisper vs. Deepgram on the same 93 utterances), use `paired=True`:
+
+```python
+def paired_diff(x, y, axis):
+    return np.mean(x - y, axis=axis)
+
+boot = stats.bootstrap((whisper_scores, deepgram_scores), paired_diff,
+                       n_resamples=10000, method=&#x27;BCa&#x27;, paired=True, random_state=42)
+```
+
+A BCa CI that excludes zero constitutes a one-sample significance test at α=0.05 for the null
+hypothesis of no difference [SciPy-Bootstrap].
+
+Liu &amp; Peng (2020) [Liu2020] show that the standard i.i.d. bootstrap is biased when utterances from
+the same speaker are correlated. For gold-92, if multiple clips come from the same speaker,
+blockwise bootstrap on speaker-grouped blocks is more statistically sound. However, with only 93
+clips, the block size must be small (2–3 clips per block) and the power will be lower. The
+implementation choice — standard vs. blockwise — should be documented in `metadata.json`.
+
+**Best practice (from Liu &amp; Peng 2020)**: If gold-92 has speaker metadata grouping utterances by
+speaker, use blockwise bootstrap (block = speaker session) for the significance test. If all
+utterances are from distinct speakers, standard BCa is appropriate.
+
+##### WER Computation with jiwer
+
+`jiwer` (maintained by Jitsi, backed by RapidFuzz C++ engine) is the de facto standard Python
+library for WER computation in STT evaluation [JiWER-GH]. It supports WER, MER, WIL, WIP, and CER.
+Basic usage:
+
+```python
+from jiwer import wer, process_words
+### Single pair
+error = wer(&quot;reference text&quot;, &quot;hypothesis text&quot;)
+### Batch
+error = wer([&quot;ref1&quot;, &quot;ref2&quot;], [&quot;hyp1&quot;, &quot;hyp2&quot;])
+### Word-level alignment for debugging
+alignment = process_words(references, hypotheses)
+```
+
+For action-critical WER, `process_words` alignment output allows filtering to only words within
+annotated entity spans before computing the substitution/deletion/insertion counts.
+
+**Contradiction with research_papers.md**: The prior document states entity accuracy must be
+&quot;implemented from first principles without a citable methodological reference.&quot; This is partially
+incorrect — the ACL Anthology paper by Caubrière et al. (2020) [Caubriere2020] defines entity error
+rate (EER) as 1 − entity recall, where an entity is correct only if all constituent words are
+correctly decoded. This is the standard definition from the NER-from-speech community and can serve
+as the methodological reference.
+
+##### Entity Accuracy Metric Definition
+
+The NER-from-speech community defines two span-level metrics [Caubriere2020]:
+
+* **Entity recall** (ER): fraction of reference entity spans where all constituent words are
+  correctly transcribed (exact match, no partial credit).
+* **Entity Error Rate** (EER): 1 − ER. Equivalent to `entity_accuracy_gold92 = 1 − EER`.
+
+For the task&#x27;s `action_critical_wer_gold92`, the standard approach is to compute WER restricted to
+tokens within annotated entity spans — i.e., filter the reference and hypothesis word lists to only
+entity-span tokens, then run standard WER. The jiwer `process_words` output provides word-level
+alignment needed to identify which reference positions correspond to entity spans.
+
+The paper WhisperNER (2024) [WhisperNER2024] jointly models ASR and NER in a single end-to-end
+system with near-perfect entity recall under clean conditions, but that is out of scope for this
+baseline task.
+
+##### Latency Measurement Protocol
+
+For Deepgram, `latency_p50_seconds` must be measured as wall-clock time from audio submission to
+transcript receipt. The SDK does not expose internal queue time separately; the entire round-trip
+includes network overhead. The Deepgram documentation [Deepgram-Timestamps] notes that
+`response.metadata.duration` is audio duration, not processing time — wall-clock timing via
+`time.perf_counter()` before and after the API call is the correct approach.
+
+For Whisper Local, latency is hardware-dependent. The metadata.json must record: GPU/CPU model, RAM,
+`openai-whisper` or `faster-whisper` package version, and quantization mode. The two systems&#x27;
+latency figures are **not directly comparable** (Deepgram includes network; Whisper is local) — the
+metadata must document this.
+
+**Best practice**: Time each clip individually and compute p50 from all 93 measurements. For
+Deepgram, retry on network timeouts (add exponential back-off with 3 retries) and log any failed
+clips for exclusion.
+
+#### Methodology Insights
+
+* **Use `scipy.stats.bootstrap` with `method=&#x27;BCa&#x27;`, `n_resamples=10000`, `paired=True`** for the
+  primary entity accuracy significance test [SciPy-Bootstrap]. This is the project-specified method
+  and is directly supported by the library.
+
+* **jiwer batch WER** is the most efficient approach — pass all 93 reference/hypothesis pairs as
+  lists rather than looping. Use `process_words` for per-utterance alignment data [JiWER-GH].
+
+* **Deepgram SDK version**: Use `deepgram-sdk&gt;=3.0` (v6 Python SDK) not the legacy v2 client. The
+  API endpoint changed from `listen.prerecorded` to `listen.v1.media.transcribe_file`
+  [Deepgram-SDK-GH].
+
+* **Whisper language pinning**: Always pass `language=&quot;en&quot;` to avoid accent → language
+  misclassification [HF-Whisper-LargeV3]. This is a known production failure mode on accented
+  speakers.
+
+* **faster-whisper as the inference backend**: For the gold-92 run, use `faster-whisper` rather than
+  `openai-whisper` if GPU is available — 4× speedup at identical accuracy. Load with
+  `WhisperModel(&quot;large-v3&quot;, device=&quot;cuda&quot;, compute_type=&quot;float16&quot;)` [FasterWhisper-GH].
+
+* **Raw output preservation**: Save `deepgram_transcripts.json` and `whisper_transcripts.json`
+  before metric computation. For Deepgram, save the full response dict (including word-level
+  confidences and timestamps). For Whisper, save the full `result` dict from the pipeline output
+  (includes segments with start/end times and per-segment confidence if using `transformers`
+  pipeline with `return_timestamps=True`).
+
+* **BCa degenerate case**: `scipy.stats.bootstrap` may return NaN for the BCa CI if all
+  per-utterance scores are identical (e.g., all entity accuracy = 1.0). Add a fallback to
+  `method=&#x27;percentile&#x27;` and log a warning when this occurs [SciPy-Bootstrap].
+
+* **Hypothesis to test**: Based on LearnerVoice benchmark evidence (Whisper Large v3: 19.18% WER on
+  non-native English), Whisper may *underperform* Deepgram on raw WER for gold-92&#x27;s accented
+  speakers despite outperforming on clean benchmarks. Entity accuracy could diverge from WER —
+  Deepgram&#x27;s 15% relative entity error rate improvement (Nova-1→Nova-2) suggests it is specifically
+  optimised for named-entity transcription, which may advantage it on gold-92&#x27;s IR entities.
+
+* **Blockwise bootstrap consideration**: Liu &amp; Peng (2020) recommend blockwise bootstrap when
+  evaluation utterances share speakers. The task description does not specify whether gold-92 clips
+  are multi-speaker or single-speaker. Verify accent-group labels in the dataset schema — if groups
+  correspond to speakers, use blockwise bootstrap grouped by accent/speaker [Liu2020].
+
+#### Discovered Papers
+
+##### [Radford2023]
+
+* **Title**: Robust Speech Recognition via Large-Scale Weak Supervision
+* **Authors**: Radford, A. et al.
+* **Year**: 2023
+* **DOI**: `10.48550/arXiv.2212.04356`
+* **URL**: https://proceedings.mlr.press/v202/radford23a.html
+* **Suggested categories**: `whisper-finetuning`, `stt-evaluation`
+* **Why download**: Foundational Whisper paper. Provides the published WER benchmarks for Whisper
+  Large v3 on LibriSpeech, Common Voice, and other standard datasets. Directly required for the
+  compare-literature step (step 13) of this task.
+
+##### [Liu2020]
+
+* **Title**: Statistical Testing on ASR Performance via Blockwise Bootstrap
+* **Authors**: Liu, Z., Peng, F.
+* **Year**: 2020
+* **DOI**: `10.21437/Interspeech.2020-1158`
+* **URL**: https://arxiv.org/abs/1912.09508
+* **Suggested categories**: `stt-evaluation`
+* **Why download**: Methodological reference for ASR significance testing. Directly addresses the
+  &quot;no evaluation methodology papers&quot; gap from research_papers.md. Justifies or argues against
+  standard BCa bootstrap depending on speaker correlation structure in gold-92.
+
+##### [Caubriere2020]
+
+* **Title**: Where Are We in Named Entity Recognition from Speech?
+* **Authors**: Caubrière, A. et al.
+* **Year**: 2020
+* **DOI**: `10.5281/zenodo.3534395`
+* **URL**: https://aclanthology.org/2020.lrec-1.556/
+* **Suggested categories**: `stt-evaluation`, `entity-correction`
+* **Why download**: Defines entity error rate (EER) and entity recall as standard metrics for NER
+  from speech. Provides the methodological reference for the `entity_accuracy_gold92` metric
+  computation that research_papers.md noted was missing.
+
+##### [WhisperNER2024]
+
+* **Title**: WhisperNER: Unified Open Named Entity and Speech Recognition
+* **Authors**: Ashkenazi, O. et al.
+* **Year**: 2024
+* **DOI**: `10.48550/arXiv.2409.08107`
+* **URL**: https://arxiv.org/abs/2409.08107
+* **Suggested categories**: `entity-correction`, `stt-evaluation`
+* **Why download**: State-of-the-art joint ASR+NER system directly relevant to future entity
+  post-correction tasks. Contextualises the upper bound on entity recall achievable with end-to-end
+  models vs. pipeline approaches like this baseline.
+
+#### Recommendations for This Task
+
+1. **Use `deepgram-sdk&gt;=3.0` with `listen.v1.media.transcribe_file`** — the new SDK interface
+   replaces the legacy `listen.prerecorded` client used in older tutorials. Set `smart_format=True`,
+   `punctuate=True`, and measure wall-clock latency with `time.perf_counter()` around each API call
+   [Deepgram-SDK-GH].
+
+2. **Use `faster-whisper` with `WhisperModel(&quot;large-v3&quot;)` on GPU** — 4× speedup over openai-whisper
+   at identical accuracy. Always pass `language=&quot;en&quot;` to prevent accent misclassification
+   [FasterWhisper-GH]. If only CPU is available, budget 46–155 minutes for 93 clips.
+
+3. **Compute all WER metrics with jiwer** — use `process_words` for per-utterance alignment to
+   isolate entity-span tokens for `action_critical_wer_gold92`. Batch all 93 pairs in a single call
+   for efficiency [JiWER-GH].
+
+4. **Compute BCa CIs with `scipy.stats.bootstrap(method=&#x27;BCa&#x27;, n_resamples=10000, paired=True)`** —
+   this is the standard implementation and directly matches the task specification
+   [SciPy-Bootstrap]. Add NaN fallback to percentile method for degenerate distributions.
+
+5. **Verify speaker structure before choosing standard vs. blockwise bootstrap** — if multiple clips
+   share a speaker (detectable from accent-group metadata), Liu &amp; Peng (2020) [Liu2020] recommend
+   blockwise bootstrap. Document the choice in `metadata.json`.
+
+6. **Use the Caubrière et al. (2020) EER definition for entity accuracy** — an entity phrase is
+   correct only if all constituent words are correctly transcribed (exact match). This resolves the
+   &quot;no methodological reference&quot; gap from research_papers.md [Caubriere2020].
+
+7. **Add Radford et al. (2023) to the corpus before step 13** — the compare-literature step requires
+   published Whisper WER benchmarks to compare against gold-92 results [Radford2023].
+
+8. **Do not enable keyword boosting in the baseline run** — keyword boosting is a Nova-2-specific
+   feature (max 100 keywords, intensifier parameter) evaluated in a separate task. The baseline must
+   use default settings for reproducibility [Deepgram-Keywords-Docs].
+
+#### Tool and Library Landscape
+
+| Tool | Version | Purpose | Notes |
+| --- | --- | --- | --- |
+| `deepgram-sdk` | ≥3.0 (Python v6) | Deepgram Nova-2 API calls | `listen.v1.media.transcribe_file` |
+| `openai-whisper` | latest | Whisper Large v3 inference | Canonical but slow on CPU |
+| `faster-whisper` | latest | Whisper Large v3 inference | 4× faster, same accuracy |
+| `jiwer` | ≥3.0 | WER, CER, MER computation | RapidFuzz C++ backend |
+| `scipy` | ≥1.7 | BCa bootstrap CIs | `scipy.stats.bootstrap` |
+| `transformers` | ≥4.35 | Whisper via HF pipeline | GPU-optimised |
+| `torch` | ≥2.0 | GPU inference backend | Required for transformers |
+
+#### Source Index
+
+##### [Deepgram-Nova2-2023]
+
+* **Type**: blog
+* **Title**: Introducing Nova-2: The Fastest, Most Accurate Speech-to-Text API
+* **Author/Org**: Deepgram
+* **Date**: 2023-11
+* **URL**: https://deepgram.com/learn/nova-2-speech-to-text-api
+* **Peer-reviewed**: no
+* **Relevance**: Primary quantitative source for Nova-2 WER (8.4% median), entity error rate
+  improvement (15% relative vs. Nova-1), and pricing ($0.0043/min). Vendor-produced benchmark
+  report; treat with appropriate caution.
+
+##### [Deepgram-SDK-GH]
+
+* **Type**: repository
+* **Title**: deepgram-python-sdk — Official Python SDK for Deepgram
+* **Author/Org**: Deepgram
+* **Date**: 2024-01
+* **URL**: https://github.com/deepgram/deepgram-python-sdk
+* **Last updated**: 2026-06
+* **Peer-reviewed**: no
+* **Relevance**: Authoritative implementation reference for `listen.v1.media.transcribe_file`,
+  authentication patterns, and response format (words, confidence, timestamps).
+
+##### [Deepgram-Keywords-Docs]
+
+* **Type**: documentation
+* **Title**: Keywords — Deepgram Docs
+* **Author/Org**: Deepgram
+* **Date**: 2024-01
+* **URL**: https://developers.deepgram.com/docs/keywords
+* **Last updated**: 2025
+* **Peer-reviewed**: no
+* **Relevance**: Defines keyword boosting parameter format for Nova-2, max-100 keyword limit, and
+  intensifier mechanics. Needed to document what is *not* enabled in the baseline run.
+
+##### [HF-Whisper-LargeV3]
+
+* **Type**: documentation
+* **Title**: openai/whisper-large-v3 — Hugging Face Model Card
+* **Author/Org**: OpenAI / Hugging Face
+* **Date**: 2023-11
+* **URL**: https://huggingface.co/openai/whisper-large-v3
+* **Last updated**: 2024
+* **Peer-reviewed**: no
+* **Relevance**: Published WER benchmarks (2.7% LibriSpeech test-clean, 5.2% test-other, mean 7.44
+  on open-asr-leaderboard), Python inference example, and note on disparate accent/demographic
+  performance.
+
+##### [SciPy-Bootstrap]
+
+* **Type**: documentation
+* **Title**: scipy.stats.bootstrap — SciPy Documentation
+* **Author/Org**: SciPy Project
+* **Date**: 2021-07
+* **URL**: https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html
+* **Last updated**: 2026
+* **Peer-reviewed**: no
+* **Relevance**: API reference for BCa bootstrap CI computation. Documents `method=&#x27;BCa&#x27;`,
+  `n_resamples`, `paired=True` parameters. Implementation guide for all five metric CIs.
+
+##### [JiWER-GH]
+
+* **Type**: repository
+* **Title**: jiwer — Evaluate your speech-to-text system
+* **Author/Org**: Jitsi / Jørgen Holm
+* **Date**: 2019
+* **URL**: https://github.com/jitsi/jiwer
+* **Last updated**: 2025
+* **Peer-reviewed**: no
+* **Relevance**: Standard Python library for WER/CER/MER. Batch evaluation of all 93 clip pairs.
+  Word-level alignment via `process_words` enables entity-span WER computation.
+
+##### [FasterWhisper-GH]
+
+* **Type**: repository
+* **Title**: faster-whisper — Faster Whisper transcription with CTranslate2
+* **Author/Org**: SYSTRAN
+* **Date**: 2023-04
+* **URL**: https://github.com/SYSTRAN/faster-whisper
+* **Last updated**: 2026
+* **Peer-reviewed**: no
+* **Relevance**: CTranslate2-backed Whisper implementation providing 4× speedup and INT8
+  quantization. Recommended inference backend for large-v3 on GPU; documented 12× real-time on RTX
+  4070\.
+
+##### [Liu2020]
+
+* **Type**: paper
+* **Title**: Statistical Testing on ASR Performance via Blockwise Bootstrap
+* **Authors**: Liu, Z., Peng, F.
+* **Year**: 2020
+* **DOI**: `10.21437/Interspeech.2020-1158`
+* **URL**: https://arxiv.org/abs/1912.09508
+* **Peer-reviewed**: yes (Interspeech 2020)
+* **Relevance**: Demonstrates that standard i.i.d. bootstrap is biased for ASR significance testing
+  when utterances share speaker/session correlation. Provides blockwise bootstrap as the
+  methodologically sound alternative — directly relevant to gold-92 if clips share speakers.
+
+##### [Radford2023]
+
+* **Type**: paper
+* **Title**: Robust Speech Recognition via Large-Scale Weak Supervision
+* **Authors**: Radford, A. et al.
+* **Year**: 2023
+* **DOI**: `10.48550/arXiv.2212.04356`
+* **URL**: https://proceedings.mlr.press/v202/radford23a.html
+* **Peer-reviewed**: yes (ICML 2023)
+* **Relevance**: Foundational Whisper paper with published WER on 25+ benchmarks. Required for the
+  compare-literature step (step 13) to contextualise gold-92 Whisper results.
+
+##### [Caubriere2020]
+
+* **Type**: paper
+* **Title**: Where Are We in Named Entity Recognition from Speech?
+* **Authors**: Caubrière, A. et al.
+* **Year**: 2020
+* **DOI**: `10.5281/zenodo.3534395`
+* **URL**: https://aclanthology.org/2020.lrec-1.556/
+* **Peer-reviewed**: yes (LREC 2020)
+* **Relevance**: Defines entity error rate (EER = 1 − entity recall) and the all-or-nothing entity
+  span accuracy metric. Methodological reference for `entity_accuracy_gold92` computation.
+
+##### [WhisperNER2024]
+
+* **Type**: paper
+* **Title**: WhisperNER: Unified Open Named Entity and Speech Recognition
+* **Authors**: Ashkenazi, O. et al.
+* **Year**: 2024
+* **DOI**: `10.48550/arXiv.2409.08107`
+* **URL**: https://arxiv.org/abs/2409.08107
+* **Peer-reviewed**: no (arXiv preprint)
+* **Relevance**: Joint ASR+NER system that represents the state-of-the-art upper bound on entity
+  accuracy from speech. Contextualises the gap between pipeline (this baseline) and end-to-end
+  entity-aware approaches.
+
+##### [Peng2025]
+
+* **Type**: paper
+* **Title**: Automatic Speech Recognition for Non-Native English: Accuracy and Disfluency Handling
+* **Authors**: Peng, S. et al.
+* **Year**: 2025
+* **DOI**: `10.48550/arXiv.2503.06924`
+* **URL**: https://arxiv.org/pdf/2503.06924
+* **Peer-reviewed**: no (arXiv preprint)
+* **Relevance**: Reports Whisper Large v3 achieves 19.18% WER on LearnerVoice (non-native English
+  spontaneous speech) — key calibration for expected gold-92 WER on accented speakers.
+
+##### [Deepgram-Timestamps]
+
+* **Type**: documentation
+* **Title**: Working with Timestamps, Utterances, and Speaker Diarization in Deepgram
+* **Author/Org**: Deepgram
+* **Date**: 2023
+* **URL**:
+  https://deepgram.com/learn/working-with-timestamps-utterances-and-speaker-diarization-in-deepgram
+* **Last updated**: 2025
+* **Peer-reviewed**: no
+* **Relevance**: Clarifies that `response.metadata.duration` is audio duration, not processing
+  latency. Essential for correct `latency_p50_seconds` measurement implementation.
+
+##### [Deepgram-Benchmarks]
+
+* **Type**: blog
+* **Title**: Speech-to-Text API Benchmarks: Accuracy, Speed, and Cost Compared
+* **Author/Org**: Deepgram
+* **Date**: 2023
+* **URL**: https://deepgram.com/learn/speech-to-text-benchmarks
+* **Peer-reviewed**: no
+* **Relevance**: Provides broader context on Nova-2 performance across vendor comparisons; notes
+  Nova-2&#x27;s 36.4% relative WER improvement over Whisper Large (non-v3) in Deepgram&#x27;s own evaluation.
+
+##### [Northflank-STT-2026]
+
+* **Type**: blog
+* **Title**: Best open source speech-to-text (STT) model in 2026 (with benchmarks)
+* **Author/Org**: Northflank
+* **Date**: 2026-01
+* **URL**: https://northflank.com/blog/best-open-source-speech-to-text-stt-model-in-2026-benchmarks
+* **Peer-reviewed**: no
+* **Relevance**: Independent benchmark survey of Whisper Large v3 and alternatives on real-world
+  audio. Contextualises vendor-reported WER numbers against third-party evaluations.
+
+##### [Kubis2022-ACL]
+
+* **Type**: paper
+* **Title**: An Effective, Performant Named Entity Recognition System for Noisy Business Telephone
+  Conversation Transcripts
+* **Authors**: Kubis, M. et al.
+* **Year**: 2022
+* **DOI**: `10.18653/v1/2022.wnut-1.10`
+* **URL**: https://aclanthology.org/2022.wnut-1.10/
+* **Peer-reviewed**: yes (ACL WNUT 2022)
+* **Relevance**: NER evaluation on noisy ASR transcripts in a business domain — closely analogous to
+  the investor-relations ecommerce domain of gold-92. Validates that pipeline (ASR then NER)
+  approaches are practical for domain-specific entity recognition.
+      </content>
+    </section>
+    <section id="t0002_baseline_evaluation-research_code" source_kind="file">
+      <title>t0002_baseline_evaluation — Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92 — research_code.md</title>
+      <source_name>research_code.md</source_name>
+      <source_ids>
+        <id>t0002_baseline_evaluation</id>
+      </source_ids>
+      <repo_paths>
+        <path>tasks/t0002_baseline_evaluation/research/research_code.md</path>
+      </repo_paths>
+      <content>
+---
+spec_version: &quot;1&quot;
+task_id: &quot;t0002_baseline_evaluation&quot;
+research_stage: &quot;code&quot;
+tasks_reviewed: 1
+tasks_cited: 1
+libraries_found: 0
+libraries_relevant: 0
+date_completed: &quot;2026-06-23&quot;
+status: &quot;complete&quot;
+---
+
+#### Task Objective
+
+Establish project baselines by running Deepgram Nova-2 (the current Rezolve production STT
+endpoint) and Whisper Large v3 (the leading open-source alternative) on the gold-92 benchmark: 93
+annotated WAV clips from Rezolve production voice sessions in the investor-relations and ecommerce
+domain with accented English speakers. All five registered project metrics must be computed with BCa
+bootstrap 95% confidence intervals (n=10,000 resamples): entity accuracy on action-critical spans
+(`entity_accuracy_gold92`), full-transcript WER (`wer_gold92`), action-critical WER
+(`action_critical_wer_gold92`), intent preservation (`intent_preservation_gold92`), and end-to-end
+latency p50 (`latency_p50_seconds`). A paired BCa bootstrap significance test comparing Whisper
+Large v3 vs. Deepgram on `entity_accuracy_gold92` is the primary deliverable. Results are output as
+two predictions assets: `predictions/deepgram-nova2-gold92` and
+`predictions/whisper-large-v3-gold92`, each containing `predictions.json` and `metadata.json`.
+
+#### Library Landscape
+
+The library aggregator returned zero registered libraries in this project. The project is in its
+early phases (only one completed task: [t0001]) and no reusable code has been promoted to library
+status yet. All cross-task code reuse for this task must therefore use the &quot;copy into task&quot; method.
+
+Key third-party libraries needed for implementation — available as Python packages via `uv add` but
+not registered as project libraries:
+
+* **jiwer** — WER, MER, WIL, CER computation; `process_words` provides word-level alignment for
+  entity-span WER isolation. Not yet in `pyproject.toml`; must be added.
+* **deepgram-sdk** (≥3.0) — Deepgram Nova-2 API client; `listen.v1.media.transcribe_file` is the
+  current interface. Not in `pyproject.toml`; must be added.
+* **faster-whisper** — CTranslate2-backed Whisper inference; 4× speedup over openai-whisper on GPU.
+  Not in `pyproject.toml`; must be added.
+* **scipy** (≥1.7) — `scipy.stats.bootstrap` with `method=&#x27;BCa&#x27;` is the project-specified CI
+  implementation. Already present in `pyproject.toml` (`scipy&gt;=1.0`).
+* **numpy** (≥2.0) — array operations for per-utterance metric vectors. Already present in
+  `pyproject.toml`.
+
+No library corrections or replacements are relevant since no libraries exist yet.
+
+#### Dataset Landscape
+
+The sole dataset asset is `stt-benchmark-gold-92`, produced by [t0001], located at:
+
+```
+tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/
+```
+
+**Files in git**:
+
+* `files/gold_set.jsonl` — 93 records; full schema: `clip_id`, `source`, `filename`,
+  `ground_truth`, `production` (Deepgram Nova-2 production transcript), `whisper` (Whisper Large v2
+  transcript). This file contains existing baseline hypotheses that may be used as a quick sanity
+  check but must not substitute for fresh inference.
+* `files/ground_truth.jsonl` — 93 records; simplified: `clip_id` and `ground_truth` only. This is
+  the canonical reference for all WER and entity accuracy computation.
+
+**Files in DVC** (must be retrieved with `dvc pull`):
+
+* `files/audio/` — 93 WAV files, ~58 MB total (60,210,752 bytes per `audio.dvc`), Azure Blob
+  remote `azure://ml-dvc-datasets/datasets/rail-arf-stt`.
+
+**Dataset schema details** (from inspecting `gold_set.jsonl`):
+
+* `clip_id` format: either `{Language}_{Speaker}__{lang}-{Speaker}-q{NN}` (curated clean-voice
+  clips) or `{UUID}_turn{N}` (production session clips) or `error_en_{NNNN}` (known-error clips).
+* `source` values: `&quot;clean_voices&quot;` (17 clips), `&quot;production&quot;` (~63 clips), `&quot;error_cases&quot;` (~13
+  clips). This `source` field is the stratification variable for per-source breakdown tables.
+* Audio format: WAV, nominally mono 16 kHz, 2–8 seconds per clip.
+* Named speakers: French/NoemieMarciano (6 clips), French/StephaniaCesborn (7 clips),
+  German/ErcanKilic (7 clips), Hebrew/FelixTseitlin (5 clips), Korean/JemmaLee (7 clips),
+  Russian/OlyaShtalberg (7 clips), plus unattributed production pool and error cases.
+* Accent group is inferable from `clip_id` prefix for curated clips; production and error clips do
+  not carry explicit speaker labels.
+
+**Important data quality note**: `ground_truth.jsonl` contains a slightly different normalisation
+than `gold_set.jsonl` for some clips (e.g., &quot;Brain Commerce&quot; vs. &quot;Brain Commerce&quot; capitalisations,
+trailing punctuation differences). Always use `ground_truth.jsonl` as the reference; do not derive
+references from `gold_set.jsonl`&#x27;s `ground_truth` field.
+
+#### Key Findings
+
+##### Dataset Is Ready; Audio Requires DVC Pull
+
+The gold-92 dataset was fully ingested by [t0001]. JSONL annotation files are committed to git and
+immediately accessible. The 93 WAV audio files are DVC-tracked and require `dvc pull` to
+materialise at `tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio/`. The
+DVC pointer file (`audio.dvc`) records md5 `0ee9d110f56cb9db9e25f814d10bed16.dir`, 93 files,
+60,210,752 bytes total — this can be used to verify successful pull.
+
+No code for loading or processing the dataset was produced by [t0001], as that task was purely a
+data ingestion task with no computation. All loading, inference, and metric computation code must be
+written from scratch in `tasks/t0002_baseline_evaluation/code/`.
+
+##### Existing Hypotheses in gold_set.jsonl Are Not Adequate Baselines
+
+The `gold_set.jsonl` file contains `production` (Deepgram Nova-2) and `whisper` (Whisper Large
+**v2**, not v3) hypotheses pre-populated from the original benchmark curation. These cannot be used
+as the task&#x27;s prediction outputs because:
+
+1. The `production` column contains Nova-2 transcripts captured at various timestamps during Rezolve
+   production sessions — not a controlled re-run with consistent API settings, timing measurement,
+   or format parameters (`smart_format`, `punctuate`).
+2. The `whisper` column is Whisper Large **v2**, not v3. The task requires v3 inference.
+3. Latency data is entirely absent from `gold_set.jsonl` — all latency must be measured freshly.
+
+The existing hypotheses are useful as sanity-check references during development (expected to
+roughly agree with fresh Nova-2 inference) but must not substitute for fresh runs.
+
+##### Entity Failure Patterns Are Observable from gold_set.jsonl
+
+Inspection of `gold_set.jsonl` reveals systematic entity transcription failures that the task&#x27;s
+metrics must capture:
+
+* **&quot;Rezolve AI&quot; → &quot;resolve AI&quot;** or &quot;Hezos&quot;: Whisper misidentifies the brand name on accented
+  audio; production Nova-2 is inconsistent (correct on clean-voice clips, wrong on production clips
+  like `da47fc8f` turn2 where it produces &quot;CEO of Hezos&quot;).
+* **&quot;brainpowa&quot; → &quot;brain power&quot; or &quot;brain powr&quot;**: both systems hallucinate the product name on
+  accented speech (`error_en_0020`).
+* **&quot;Shopify Plus&quot;, &quot;Salesforce Commerce Cloud&quot;, &quot;Adobe&quot;**: both systems handle multi-word platform
+  names well on clean-voice clips but Whisper incorrectly segments &quot;Salesforce, Commerce Cloud&quot; with
+  a comma for German and Hebrew speakers.
+* **&quot;20-F&quot; → &quot;20f&quot;**: Whisper drops the hyphen in form designators, which matters for IR entity
+  accuracy.
+* **Production clips show hallucinated prefix insertion**: Nova-2 on `error_en_0009` adds &quot;And I&#x27;ve
+  heard about Rezolve Ai and your product for e-commerce.&quot; before the actual utterance — a severe
+  hallucination not present in the reference. These cases inflate Deepgram WER in production clips.
+
+These patterns confirm that entity accuracy on action-critical spans will diverge substantially from
+full-transcript WER, justifying the separate `entity_accuracy_gold92` and
+`action_critical_wer_gold92` metrics.
+
+##### BCa Bootstrap Implementation Is Straightforward with scipy
+
+The `scipy.stats.bootstrap` function (available in the project&#x27;s current `scipy&gt;=1.0` dependency)
+supports BCa natively via `method=&#x27;BCa&#x27;`. For this task with 93 paired samples, the pattern is:
+
+```python
+from scipy import stats
+import numpy as np
+
+boot = stats.bootstrap(
+    (per_utterance_scores,), np.mean,
+    n_resamples=10_000, method=&#x27;BCa&#x27;, random_state=42
+)
+ci_low, ci_high = boot.confidence_interval
+```
+
+For the paired Whisper-vs-Deepgram significance test on `entity_accuracy_gold92`:
+
+```python
+def paired_diff(x, y, axis):
+    return np.mean(x - y, axis=axis)
+
+boot = stats.bootstrap(
+    (whisper_entity_scores, deepgram_entity_scores),
+    paired_diff, n_resamples=10_000, method=&#x27;BCa&#x27;, paired=True, random_state=42
+)
+```
+
+A CI excluding zero constitutes significance at α=0.05. Edge case: if all scores are identical,
+BCa returns NaN — add a fallback to `method=&#x27;percentile&#x27;` with a logged warning.
+
+##### Speaker Correlation Requires Bootstrap Method Choice
+
+The gold-92 dataset has multiple clips from the same named speaker (e.g., 6–7 clips per
+German/French/Korean/Hebrew/Russian speaker). Standard i.i.d. BCa assumes clip independence. Liu &amp;
+Peng (2020) demonstrate this is biased for speaker-correlated ASR evaluation sets. For the curated
+clean-voice portion (~40 clips from 6 named speakers), blockwise bootstrap with speaker-grouped
+blocks is more statistically sound. The `source` and `clip_id` fields provide the grouping
+information.
+
+Practically, this means the implementation should support both modes and document the choice in
+`metadata.json`. For the primary reported result (all 93 clips), standard BCa is a reasonable
+approximation given the mixed production/clean-voice composition. A supplementary blockwise result
+on the clean-voice subset is advisable.
+
+##### WER Normalisation Must Be Consistent
+
+The `ground_truth.jsonl` transcripts include capitalised entity names (&quot;Rezolve AI&quot;, &quot;Brain
+Commerce&quot;, &quot;Shopify Plus&quot;), punctuation, and mixed-case strings. WER computation with `jiwer`
+requires consistent normalisation of both reference and hypothesis before comparison:
+
+```python
+from jiwer import wer, process_words
+import re
+
+def normalise(text: str) -&gt; str:
+    text = text.lower()
+    text = re.sub(r&quot;[^\w\s]&quot;, &quot;&quot;, text)  # strip punctuation
+    text = re.sub(r&quot;\s+&quot;, &quot; &quot;, text).strip()
+    return text
+
+wer_score = wer(
+    [normalise(ref) for ref in references],
+    [normalise(hyp) for hyp in hypotheses]
+)
+```
+
+For `entity_accuracy_gold92`, exact case-insensitive match after normalisation is required per the
+metric definition: &quot;A span is correct if the predicted text exactly matches the ground-truth
+annotation after normalisation.&quot;
+
+##### No Shared Evaluation Code Exists Yet — All Must Be Written
+
+Because [t0001] produced no code (data ingestion only), this task must implement all of the
+following from scratch in `tasks/t0002_baseline_evaluation/code/`:
+
+1. `load_dataset.py` — load `gold_set.jsonl` and `ground_truth.jsonl`, build clip records, resolve
+   audio file paths.
+2. `run_deepgram.py` — batch Deepgram Nova-2 transcription with timing, retry logic, raw output
+   serialisation to `data/deepgram_transcripts.json`.
+3. `run_whisper.py` — Whisper Large v3 transcription via `faster-whisper`, with `language=&quot;en&quot;`,
+   per-clip timing, raw output serialisation to `data/whisper_transcripts.json`.
+4. `compute_metrics.py` — WER, action-critical WER, entity accuracy (span-level exact match), intent
+   preservation, latency p50; BCa bootstrap CI for each metric; paired significance test.
+5. `generate_predictions_asset.py` — write `predictions.json` and `metadata.json` for each of the
+   two predictions assets.
+
+#### Reusable Code and Assets
+
+##### Gold-92 Dataset Files
+
+**Source**: `tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/` (produced by
+[t0001])
+
+**What it provides**:
+
+* `gold_set.jsonl` (93 lines, ~24 KB): full annotation records including `clip_id`, `source`,
+  `filename`, `ground_truth`, `production` hypothesis, `whisper` (v2) hypothesis.
+* `ground_truth.jsonl` (93 lines, ~6 KB): simplified `clip_id` + `ground_truth` for reference
+  lookup.
+* `audio/` (93 WAV files, ~58 MB, DVC-tracked): the audio inputs for inference.
+
+**Reuse method**: reference in place — no copying needed. Load from the canonical path:
+
+```python
+DATASET_ROOT = Path(&quot;tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files&quot;)
+GOLD_SET = DATASET_ROOT / &quot;gold_set.jsonl&quot;
+GROUND_TRUTH = DATASET_ROOT / &quot;ground_truth.jsonl&quot;
+AUDIO_DIR = DATASET_ROOT / &quot;audio&quot;
+```
+
+**Adaptation needed**: none — paths are stable since [t0001] is completed. The DVC audio directory
+must be materialised with `dvc pull` before any inference script runs.
+
+##### No Library or Task Code to Copy
+
+There are zero registered libraries in this project and [t0001] produced no Python code. All
+evaluation scripts must be written fresh. The implementation subagent should use the code structure
+recommendations in the Key Findings section above.
+
+#### Lessons Learned
+
+##### From t0001: Dataset Ingestion Pitfalls
+
+* The DVC pointer was committed but `dvc push` had a dependency on the Azure connection string being
+  configured in `.dvc/config.local`. Any agent running this task must verify `dvc pull` succeeds
+  before attempting inference. If pull fails, the audio files will be absent and inference will
+  throw file-not-found errors rather than API errors.
+* The `ground_truth.jsonl` line count per the plan&#x27;s verification criteria was stated as 91 lines,
+  but the actual file has 93 records (one per clip). This discrepancy in the plan&#x27;s verification
+  criteria should not be used to validate the dataset — count actual lines in the file.
+* The `error_en_0005` clip has a ground_truth of `&quot;ы&quot;` (a single Cyrillic character), which is
+  almost certainly an annotation error (the audio likely contains a short non-speech sound or
+  whispered/barely-audible utterance). This clip will skew WER calculations — consider flagging and
+  possibly excluding from reported metrics, or note it explicitly in results.
+
+##### Production vs. Clean-Voice Clip Behaviour
+
+Manual inspection of `gold_set.jsonl` reveals that the `production` (Deepgram) column is accurate
+on clean-voice clips but shows hallucination and prefix-insertion artefacts on production session
+clips. For example, Nova-2 generates full marketing sentences (&quot;How does Rezolve transform…&quot;) where
+the reference is only a short interjection (&quot;ы&quot;). This suggests the production transcripts in
+`gold_set.jsonl` were captured from a live Rezolve demo session where the LLM context may have
+contaminated or the mic picked up ambient audio. Fresh Deepgram API calls on the raw WAV files
+should not reproduce these hallucinations, but the discrepancy should be verified.
+
+##### Entity Names Are Case-Sensitive in gold_set.jsonl
+
+Ground-truth transcripts use specific capitalisation: &quot;Rezolve AI&quot;, &quot;Brain Commerce&quot;, &quot;brainpowa&quot;
+(always lowercase), &quot;Shopify Plus&quot;, &quot;Salesforce Commerce Cloud&quot;, &quot;NASDAQ&quot;. Normalisation for WER
+must lowercase both reference and hypothesis. Entity accuracy must be computed on normalised
+lowercase forms to avoid penalising Whisper for returning &quot;rezolve ai&quot; vs. &quot;Rezolve AI&quot;.
+
+#### Recommendations for This Task
+
+1. **Run `dvc pull` first** — before any inference, run
+   `dvc pull tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/audio.dvc`
+   and verify exactly 93 WAV files are present. Fail loudly if the count is wrong.
+
+2. **Load from `ground_truth.jsonl` for references, `gold_set.jsonl` for metadata** — use
+   `ground_truth.jsonl` as the authoritative reference source; use `gold_set.jsonl` for `source`
+   stratification and sanity-checking only. Never use `gold_set.jsonl`&#x27;s `production` or `whisper`
+   columns as the baseline hypotheses — re-run inference.
+
+3. **Implement normalisation once and share it** — define a single `normalise(text: str) -&gt; str`
+   function in `compute_metrics.py` that lowercases and strips punctuation; call it for both
+   references and hypotheses in WER and entity accuracy computation. Inconsistent normalisation is
+   the most common source of inflated or deflated WER numbers.
+
+4. **Flag `error_en_0005`** — this clip has ground_truth `&quot;ы&quot;` (a single Cyrillic character). Log a
+   warning, include it in the full 93-clip run for completeness, but add a note in `metadata.json`
+   explaining the anomalous reference. Check whether it skews aggregate metrics.
+
+5. **Use `faster-whisper` not `openai-whisper`** — add `faster-whisper` as a dependency, load with
+   `WhisperModel(&quot;large-v3&quot;, device=&quot;cpu&quot;, compute_type=&quot;int8&quot;)` for CPU or `device=&quot;cuda&quot;,
+   compute_type=&quot;float16&quot;` for GPU. Always pass `language=&quot;en&quot;` to prevent accent
+   misclassification. Record package version in `metadata.json`.
+
+6. **Use `deepgram-sdk&gt;=3.0`** — add as a dependency; use
+   `DeepgramClient().listen.v1.media.transcribe_file()` with `smart_format=True` and
+   `punctuate=True`. Measure per-clip latency with `time.perf_counter()` around the API call; do
+   not rely on `response.metadata.duration` which reports audio duration, not processing time.
+
+7. **Implement BCa with a degenerate fallback** — use `scipy.stats.bootstrap(method=&#x27;BCa&#x27;,
+   n_resamples=10_000, random_state=42)`. If `confidence_interval.low` is NaN, fall back to
+   `method=&#x27;percentile&#x27;` and log a warning in `metadata.json`.
+
+8. **Document blockwise bootstrap decision** — inspect the clip_id prefixes to determine whether
+   the clean-voice subset has enough clips per speaker for blockwise bootstrap. Record the decision
+   (standard BCa vs. blockwise) in `metadata.json` with a brief rationale.
+
+9. **Preserve raw outputs before metric computation** — write `data/deepgram_transcripts.json` and
+   `data/whisper_transcripts.json` (as specified in `task_description.md`) before computing any
+   metrics. This enables re-running the metric computation without re-running expensive inference.
+
+10. **Use the `source` field for per-source breakdown** — the results tables must include a
+    per-accent-group / per-source breakdown. Use `gold_set.jsonl`&#x27;s `source` field (`clean_voices`,
+    `production`, `error_cases`) and the `clip_id` prefix (for named speaker accent groups) to
+    stratify results.
+
+#### Task Index
+
+##### [t0001]
+
+* **Task ID**: t0001_stt_benchmark
+* **Name**: STT Benchmark — Gold-92 Dataset Ingestion
+* **Status**: completed
+* **Relevance**: The sole dependency for this task. Produced the gold-92 dataset asset
+  (`stt-benchmark-gold-92`) containing 93 annotated WAV clips with ground-truth transcripts. The
+  dataset files (`gold_set.jsonl`, `ground_truth.jsonl`, DVC-tracked `audio/`) are the inputs for
+  all Deepgram and Whisper inference in this task. Produced no code; all evaluation scripts must be
+  written from scratch.
       </content>
     </section>
     <section id="t0003_literature_review_entity_stt-research_papers" source_kind="file">

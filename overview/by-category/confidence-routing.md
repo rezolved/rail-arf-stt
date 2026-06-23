@@ -5,7 +5,8 @@ fallback based on ASR confidence.
 
 [Back to Dashboard](../README.md)
 
-**Detail pages**: [Papers (1)](../papers/by-category/confidence-routing.md)
+**Detail pages**: [Papers (1)](../papers/by-category/confidence-routing.md) | [Suggestions
+(1)](../suggestions/by-category/confidence-routing.md)
 
 ---
 
@@ -60,6 +61,22 @@ appealing but requires latency budgeting — at most 1-2 correction turns are fe
 
 No answers in this category.
 
-## Suggestions (0 open, 0 closed)
+## Suggestions (1 open, 0 closed)
 
-No open suggestions in this category.
+<details>
+<summary>📊 <strong>Implement intent classification metric to replace span-presence
+proxy</strong> (S-0002-07)</summary>
+
+**Kind**: evaluation | **Priority**: medium | **Date**: 2026-06-23 | **Source**:
+[t0002_baseline_evaluation](../../tasks/t0002_baseline_evaluation/)
+
+The current intent_preservation_gold92 metric uses a span-presence heuristic that is
+over-estimated: 'Resolve' satisfies 'Rezolve' after normalisation, inflating the 90.3% figure.
+A proper intent classifier should distinguish entity substitution that changes action target
+(e.g., wrong company name) from substitution that preserves action type (e.g., generic query
+intent). This is needed to make intent_preservation_gold92 meaningful for the
+confidence-routing policy (wrong_action_rate_gold92 goal: <2%). Implement as a lightweight
+rule-based or LLM-based classifier and re-evaluate on gold-92. Recommended task types:
+write-library, experiment-run.
+
+</details>

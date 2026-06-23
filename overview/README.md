@@ -1,21 +1,21 @@
 # Project Dashboard
 
 <p align="center">
-  <a href="papers/"><img src="https://img.shields.io/badge/Papers-15-4169E1" alt="Papers"></a>
+  <a href="papers/"><img src="https://img.shields.io/badge/Papers-19-4169E1" alt="Papers"></a>
   <a href="datasets/"><img src="https://img.shields.io/badge/Datasets-1-2E8B57" alt="Datasets"></a>
   <a href="models/"><img src="https://img.shields.io/badge/Models-0-FF8C00" alt="Models"></a>
-  <a href="predictions/"><img src="https://img.shields.io/badge/Predictions-0-9370DB" alt="Predictions"></a>
+  <a href="predictions/"><img src="https://img.shields.io/badge/Predictions-5-9370DB" alt="Predictions"></a>
   <a href="libraries/"><img src="https://img.shields.io/badge/Libraries-0-20B2AA" alt="Libraries"></a>
   <a href="answers/"><img src="https://img.shields.io/badge/Answers-0-CD853F" alt="Answers"></a>
 </p>
 
 <p align="center">
   <a href="news/"><img src="https://img.shields.io/badge/News-0-FF6347" alt="News"></a>
-  <a href="tasks/"><img src="https://img.shields.io/badge/Tasks-3-4682B4" alt="Tasks"></a>
-  <a href="suggestions/"><img src="https://img.shields.io/badge/Suggestions-8-DAA520" alt="Suggestions"></a>
+  <a href="tasks/"><img src="https://img.shields.io/badge/Tasks-4-4682B4" alt="Tasks"></a>
+  <a href="suggestions/"><img src="https://img.shields.io/badge/Suggestions-15-DAA520" alt="Suggestions"></a>
   <a href="llm-context/"><img src="https://img.shields.io/badge/LLM%20Contexts-8-8B4513" alt="LLM Contexts"></a>
-  <a href="metrics/"><img src="https://img.shields.io/badge/Metrics-6-708090" alt="Metrics"></a>
-  <a href="metrics-results/"><img src="https://img.shields.io/badge/Results-3-DC143C" alt="Results"></a>
+  <a href="metrics/"><img src="https://img.shields.io/badge/Metrics-7-708090" alt="Metrics"></a>
+  <a href="metrics-results/"><img src="https://img.shields.io/badge/Results-9-DC143C" alt="Results"></a>
   <a href="task-types/"><img src="https://img.shields.io/badge/Task%20Types-21-708090" alt="Task%20Types"></a>
 </p>
 
@@ -28,15 +28,15 @@
 [whisper-finetuning](by-category/whisper-finetuning.md)
 
 **[LLM Contexts](llm-context/README.md)**: [overview](llm-context/project-overview.xml) (2K) |
-[full](llm-context/full.xml) (13K) | [roadmap](llm-context/roadmap.xml) (5K) |
-[results](llm-context/results-deep-dive.xml) (7K) |
-[assets](llm-context/literature-and-assets.xml) (6K)
+[full](llm-context/full.xml) (22K) | [roadmap](llm-context/roadmap.xml) (6K) |
+[results](llm-context/results-deep-dive.xml) (17K) |
+[assets](llm-context/literature-and-assets.xml) (8K)
 
-*Last updated: 2026-06-23 10:13 UTC*
+*Last updated: 2026-06-23 14:52 UTC*
 
-* **Budget**: **$0** spent of $2000
-* **Remaining**: **$2000**
-* **Usage**: `░░░░░░░░░░░░░░░░░░░░` 0.0%
+* **Budget**: **$2** spent of $2000
+* **Remaining**: **$1998**
+* **Usage**: `░░░░░░░░░░░░░░░░░░░░` 0.1%
 
 ---
 
@@ -46,11 +46,9 @@ No daily news yet.
 
 ---
 
-## [In Progress (1)](tasks/by-status/in_progress.md)
+## [In Progress (0)](tasks/by-status/in_progress.md)
 
-| # | Task | Started |
-|---|------|---------|
-| 0002 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | 2026-06-23 08:04 |
+No tasks in progress.
 
 ---
 
@@ -66,16 +64,205 @@ No blocked tasks.
 
 ---
 
-## [Recently Completed (2 total)](tasks/by-status/completed.md)
+## [Recently Completed (4 total)](tasks/by-status/completed.md)
 
 | # | Task | Results | Completed |
 |---|------|---------|-----------|
+| 0004 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | [`results`](../tasks/t0004_vocabulary_biasing_experiment/results/results_detailed.md) | 2026-06-23 15:30 |
+| 0002 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | [`results`](../tasks/t0002_baseline_evaluation/results/results_detailed.md) | 2026-06-23 10:25 |
 | 0003 | [Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026)](../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) | [`results`](../tasks/t0003_literature_review_entity_stt/results/results_detailed.md) | 2026-06-23 09:25 |
 | 0001 | [STT Benchmark — Gold-92 Dataset Ingestion](../overview/tasks/task_pages/t0001_stt_benchmark.md) | [`results`](../tasks/t0001_stt_benchmark/results/results_detailed.md) | 2026-06-22 00:00 |
 
 ---
 
-## [Recent Suggestions (8 open)](suggestions/)
+## [Key Metrics Leaderboard](metrics-results/)
+
+### ⚠️ Action-Critical WER (gold-92)
+
+| # | Task | Variant | Value |
+|---|------|---------|-------|
+| 1 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 + vocab bias | **0.025316** |
+| 2 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **0.050633** |
+| 3 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper Large v3 | **0.303797** |
+| 4 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper turbo | **0.303797** |
+| 5 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **0.303797** |
+| 6 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **0.303797** |
+| 7 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.411392** |
+
+### 📖 Entity Accuracy — Domain Vocabulary
+
+| # | Task | Variant | Value |
+|---|------|---------|-------|
+| 1 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 + vocab bias | **0.945455** |
+| 2 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **0.872727** |
+| 3 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **0.181818** |
+| 4 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **0.181818** |
+| 5 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.109091** |
+
+### 🎯 Entity Accuracy (gold-92)
+
+| # | Task | Variant | Value |
+|---|------|---------|-------|
+| 1 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 + vocab bias | **0.460145** |
+| 2 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **0.431159** |
+| 3 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper Large v3 | **0.251812** |
+| 4 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper turbo | **0.251812** |
+| 5 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **0.251812** |
+| 6 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **0.251812** |
+| 7 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.217029** |
+
+### ✅ Intent Preservation (gold-92)
+
+| # | Task | Variant | Value |
+|---|------|---------|-------|
+| 1 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 + vocab bias | **0.989247** |
+| 2 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **0.967742** |
+| 3 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper Large v3 | **0.903226** |
+| 4 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper turbo | **0.903226** |
+| 5 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **0.903226** |
+| 6 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **0.903226** |
+| 7 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.849462** |
+
+### ⚡ Latency p50 (seconds)
+
+| # | Task | Variant | Value |
+|---|------|---------|-------|
+| 1 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.0697** |
+| 2 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper turbo | **4.2501** |
+| 3 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **4.2501** |
+| 4 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper Large v3 | **5.6598** |
+| 5 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **5.6598** |
+| 6 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **5.8598** |
+| 7 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 + vocab bias | **6.6621** |
+
+---
+
+## [Recent Suggestions (14 open)](suggestions/)
+
+<details>
+<summary>🧪 <strong>Vocabulary-biased Whisper inference via STT_INITIAL_PROMPT on
+gold-92</strong> (S-0002-01)</summary>
+
+**Kind**: experiment | **Priority**: high | **Date**: 2026-06-23 | **Source**:
+[t0002_baseline_evaluation](../tasks/t0002_baseline_evaluation/)
+
+Run Whisper turbo on gold-92 with a domain vocabulary prompt injected via STT_INITIAL_PROMPT
+(e.g., 'Rezolve, brainpowa, Rezolve AI, Shopify Plus, Salesforce Commerce Cloud, Adobe
+Commerce, AI Foundry'). The baseline showed 'Rezolve' is systematically transcribed as 'Hizol'
+or 'Resolve' — a pure vocabulary gap. Vocabulary biasing via initial_prompt requires zero
+training and zero API cost. Measure entity accuracy on production clips specifically
+(baseline: 8.8%) and compare with paired BCa test against the whisper-turbo baseline.
+Recommended task types: stt-benchmark-run, experiment-run.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Run Deepgram Nova-2 baseline on gold-92 to complete REQ-1 and
+paired significance test</strong> (S-0002-02)</summary>
+
+**Kind**: experiment | **Priority**: high | **Date**: 2026-06-23 | **Source**:
+[t0002_baseline_evaluation](../tasks/t0002_baseline_evaluation/)
+
+The t0002 baseline evaluation could not run Deepgram Nova-2 because DEEPGRAM_API_KEY was
+unavailable. This blocked REQ-1, REQ-5 (paired significance test), REQ-9 (Deepgram predictions
+asset), and the production comparator column in all results tables. Cost is approximately
+$0.09 for 93 clips. A dedicated task should obtain the key from the team vault, run Deepgram
+Nova-2 with nova-2 model and default settings on all 93 gold-92 clips, compute all five
+registered metrics with BCa CIs, run the paired significance test against whisper-turbo, and
+produce the deepgram-nova2-gold92 predictions asset. Recommended task types:
+stt-benchmark-run, baseline-evaluation.
+
+</details>
+
+<details>
+<summary>🔧 <strong>LLM post-correction layer for entity normalization on Whisper
+transcripts</strong> (S-0002-03)</summary>
+
+**Kind**: technique | **Priority**: high | **Date**: 2026-06-23 | **Source**:
+[t0002_baseline_evaluation](../tasks/t0002_baseline_evaluation/)
+
+Build a lightweight LLM post-correction pass that takes a Whisper transcript and a domain
+entity glossary (Rezolve, brainpowa, product names, IR terms) and corrects entity-span errors
+without rewriting the full transcript. The baseline shows entity accuracy of 25.2% overall and
+8.8% on production clips — the majority of failures are vocabulary substitutions
+(Rezolve→Hizol, Rezolve→Resolve) that a prompted LLM with glossary access could correct
+cheaply. Target: measure entity accuracy gain and added latency overhead vs the 800 ms p50
+budget. Recommended task types: post-correction-experiment, experiment-run.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Domain fine-tuning of Whisper turbo on Rezolve investor-relations
+audio</strong> (S-0002-04)</summary>
+
+**Kind**: experiment | **Priority**: medium | **Date**: 2026-06-23 | **Source**:
+[t0002_baseline_evaluation](../tasks/t0002_baseline_evaluation/)
+
+Fine-tune Whisper turbo on Rezolve-domain audio (investor-relations sessions, brand names,
+product terms) to close the vocabulary gap revealed by the baseline. Both large-v3 and turbo
+achieved identical entity accuracy (25.2%), confirming model size is not the bottleneck —
+training data distribution is. The WhisperNER supervised fine-tuning comparison showed 81.35
+F1 on a domain-specific corpus vs our 25.2%, indicating large headroom. A fine-tuning task
+should collect or synthesize domain audio+transcript pairs, run LoRA or full fine-tune on
+turbo (pragmatic: 25% lower latency than large-v3 with no accuracy loss), and evaluate on
+gold-92 production clips (baseline: 8.8%). Recommended task types: whisper-finetuning-run,
+experiment-run.
+
+</details>
+
+<details>
+<summary>📂 <strong>Expand gold-92 benchmark with more production clips and fix
+annotation inconsistencies</strong> (S-0002-05)</summary>
+
+**Kind**: dataset | **Priority**: medium | **Date**: 2026-06-23 | **Source**:
+[t0002_baseline_evaluation](../tasks/t0002_baseline_evaluation/)
+
+Three findings motivate benchmark expansion: (1) the 34-clip production subset scores only
+8.8% entity accuracy but drives all business-critical decisions; a larger production sample
+would tighten BCa confidence intervals and reduce the risk of outlier clips dominating
+results; (2) at least three clips (Examples 10, 13, 14) show verbatim transcript matches
+scoring 0 entity accuracy due to annotation normalisation mismatches — the annotation schema
+needs an audit; (3) clip error_en_0005 has Cyrillic ground truth indicating upstream data
+quality issues. The expanded benchmark should also apply blockwise bootstrap by speaker for
+the clean_voices subset as recommended by Liu2020. Recommended task types:
+audio-dataset-curation, data-analysis.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Add Azure Speech Services as a third STT comparison point on
+gold-92</strong> (S-0002-06)</summary>
+
+**Kind**: experiment | **Priority**: medium | **Date**: 2026-06-23 | **Source**:
+[t0002_baseline_evaluation](../tasks/t0002_baseline_evaluation/)
+
+Azure Cognitive Services Speech-to-Text supports custom keyword lists and phrase boosting
+natively, making it a strong candidate for domain entity accuracy without fine-tuning. Compare
+it against Deepgram Nova-2 and Whisper turbo on gold-92 using all five registered metrics.
+Requires AZURE_SPEECH_API_KEY from the team vault. Azure also offers Custom Speech (domain
+adaptation) which can be evaluated in a follow-up. Estimated cost: approximately $0.01–$0.05
+for 93 clips at standard tier pricing. Recommended task types: stt-benchmark-run,
+comparative-analysis.
+
+</details>
+
+<details>
+<summary>📊 <strong>Implement intent classification metric to replace span-presence
+proxy</strong> (S-0002-07)</summary>
+
+**Kind**: evaluation | **Priority**: medium | **Date**: 2026-06-23 | **Source**:
+[t0002_baseline_evaluation](../tasks/t0002_baseline_evaluation/)
+
+The current intent_preservation_gold92 metric uses a span-presence heuristic that is
+over-estimated: 'Resolve' satisfies 'Rezolve' after normalisation, inflating the 90.3% figure.
+A proper intent classifier should distinguish entity substitution that changes action target
+(e.g., wrong company name) from substitution that preserves action type (e.g., generic query
+intent). This is needed to make intent_preservation_gold92 meaningful for the
+confidence-routing policy (wrong_action_rate_gold92 goal: <2%). Implement as a lightweight
+rule-based or LLM-based classifier and re-evaluate on gold-92. Recommended task types:
+write-library, experiment-run.
+
+</details>
 
 <details>
 <summary>🧪 <strong>Prototype RECOVER N-best + LLM-Select on gold-92</strong>
@@ -91,23 +278,6 @@ all 93 gold-92 clips. RECOVER reported 33-35% relative E-WER reduction on Earnin
 closest public proxy for ecommerce entities. This is the highest expected gain from a
 no-retraining method in the survey. Recommended task types: post-correction-experiment,
 stt-benchmark-run.
-
-</details>
-
-<details>
-<summary>🧪 <strong>Prototype Ron2026 initial_prompt multi-agent pipeline on
-gold-92</strong> (S-0003-02)</summary>
-
-**Kind**: experiment | **Priority**: high | **Date**: 2026-06-23 | **Source**:
-[t0003_literature_review_entity_stt](../tasks/t0003_literature_review_entity_stt/)
-
-Implement the six-agent LLM pipeline from Ron2026 against Whisper Turbo on gold-92. The
-pipeline processes a first-pass transcript to extract topic labels, named entities, and domain
-jargon, assembles a context prompt (224 tokens max), and feeds it into a second Whisper
-decoding pass via the initial_prompt parameter. Seed the NER agent with Rezolve's
-brand/product catalog. Measure entity accuracy and latency on all 93 clips. Ron2026 reported
-17% relative WER reduction on entity-dense NBA commentary with zero model retraining.
-Recommended task types: post-correction-experiment, stt-benchmark-run.
 
 </details>
 
@@ -145,78 +315,63 @@ types: stt-benchmark-run, write-library.
 
 </details>
 
-<details>
-<summary>🔧 <strong>Implement Novitasari2026 common-word cue injection as a
-zero-latency biasing add-on</strong> (S-0003-05)</summary>
-
-**Kind**: technique | **Priority**: medium | **Date**: 2026-06-23 | **Source**:
-[t0003_literature_review_entity_stt](../tasks/t0003_literature_review_entity_stt/)
-
-Implement the common-word cue approach from Novitasari2026 as a pre-processing step on top of
-Rezolve's existing dynamic context injection. The method maps non-standard brand names and
-SKUs to phonetically similar common-word anchors, adding them to the bias list without G2P.
-Novitasari2026 reported 16.3% reduction in bias-word errors with zero added latency and no
-model retraining, and the method is additive to any existing biasing technique. Evaluate on
-gold-92 entity accuracy and confirm zero latency impact. Recommended task types:
-post-correction-experiment, stt-benchmark-run.
-
-</details>
-
-<details>
-<summary>📊 <strong>Measure end-to-end latency of RECOVER and Ron2026 pipelines on
-Rezolve infrastructure</strong> (S-0003-06)</summary>
-
-**Kind**: evaluation | **Priority**: medium | **Date**: 2026-06-23 | **Source**:
-[t0003_literature_review_entity_stt](../tasks/t0003_literature_review_entity_stt/)
-
-The survey found that latency estimates for both RECOVER (~+100-200ms) and Ron2026 (~550-650ms
-total) are extrapolations from known Whisper Turbo inference speed and GPT-4o API latency, not
-empirical measurements. Before confirming either method fits the 800ms p50 budget, measure
-actual pipeline latency on Rezolve's production infrastructure at p50 and p95. This is a
-prerequisite for any production deployment decision. If GPT-4o API latency exceeds the budget,
-evaluate a local 7B model substitute for the LLM-Select step. Recommended task types:
-latency-profiling, experiment-run.
-
-</details>
-
-<details>
-<summary>📊 <strong>Stratify gold-92 evaluation by speaker accent to quantify
-accent-induced entity errors</strong> (S-0003-07)</summary>
-
-**Kind**: evaluation | **Priority**: medium | **Date**: 2026-06-23 | **Source**:
-[t0003_literature_review_entity_stt](../tasks/t0003_literature_review_entity_stt/)
-
-WildASR (Tay2026) confirmed that model robustness does not transfer across accent conditions
-and that ASR systems hallucinate plausible but unspoken content under degraded inputs. Gold-92
-contains six non-native English speaker clips, making accent-induced entity errors a direct
-project risk. Stratify all gold-92 evaluation results by speaker accent group and compare
-entity accuracy between native and non-native speakers. If accent is the primary driver of
-entity errors rather than lexical ambiguity, post-correction methods (RECOVER, Ron2026) will
-have limited effect and ASR-stage improvements should be prioritized instead. Recommended task
-types: data-analysis, stt-benchmark-run.
-
-</details>
-
-<details>
-<summary>🔧 <strong>Monitor LOGIC (Wang2026) arXiv reappearance for constant-time
-logit-space biasing</strong> (S-0003-08)</summary>
-
-**Kind**: technique | **Priority**: low | **Date**: 2026-06-23 | **Source**:
-[t0003_literature_review_entity_stt](../tasks/t0003_literature_review_entity_stt/)
-
-The LOGIC paper (Wang2026, logit-space entity biasing with constant-time complexity, 9%
-relative Entity WER reduction) was withdrawn from arXiv in February 2026 for institutional
-approval compliance. It cannot be implemented until it reappears at a conference venue. Set up
-monitoring for LOGIC reappearance at Interspeech 2026 or ICASSP 2026 proceedings. Once
-republished, LOGIC's constant-time biasing approach directly addresses context window
-saturation at catalog scale (10,000+ entries) without the retrieval infrastructure required by
-BR-ASR. Recommended task types: internet-research.
-
-</details>
+*4 more open suggestions → [open suggestions](suggestions/)*
 
 ---
 
-## [High Priority Suggestions (3)](suggestions/)
+## [High Priority Suggestions (5)](suggestions/)
+
+<details>
+<summary>🧪 <strong>Vocabulary-biased Whisper inference via STT_INITIAL_PROMPT on
+gold-92</strong> (S-0002-01)</summary>
+
+**Kind**: experiment | **Priority**: high | **Date**: 2026-06-23 | **Source**:
+[t0002_baseline_evaluation](../tasks/t0002_baseline_evaluation/)
+
+Run Whisper turbo on gold-92 with a domain vocabulary prompt injected via STT_INITIAL_PROMPT
+(e.g., 'Rezolve, brainpowa, Rezolve AI, Shopify Plus, Salesforce Commerce Cloud, Adobe
+Commerce, AI Foundry'). The baseline showed 'Rezolve' is systematically transcribed as 'Hizol'
+or 'Resolve' — a pure vocabulary gap. Vocabulary biasing via initial_prompt requires zero
+training and zero API cost. Measure entity accuracy on production clips specifically
+(baseline: 8.8%) and compare with paired BCa test against the whisper-turbo baseline.
+Recommended task types: stt-benchmark-run, experiment-run.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Run Deepgram Nova-2 baseline on gold-92 to complete REQ-1 and
+paired significance test</strong> (S-0002-02)</summary>
+
+**Kind**: experiment | **Priority**: high | **Date**: 2026-06-23 | **Source**:
+[t0002_baseline_evaluation](../tasks/t0002_baseline_evaluation/)
+
+The t0002 baseline evaluation could not run Deepgram Nova-2 because DEEPGRAM_API_KEY was
+unavailable. This blocked REQ-1, REQ-5 (paired significance test), REQ-9 (Deepgram predictions
+asset), and the production comparator column in all results tables. Cost is approximately
+$0.09 for 93 clips. A dedicated task should obtain the key from the team vault, run Deepgram
+Nova-2 with nova-2 model and default settings on all 93 gold-92 clips, compute all five
+registered metrics with BCa CIs, run the paired significance test against whisper-turbo, and
+produce the deepgram-nova2-gold92 predictions asset. Recommended task types:
+stt-benchmark-run, baseline-evaluation.
+
+</details>
+
+<details>
+<summary>🔧 <strong>LLM post-correction layer for entity normalization on Whisper
+transcripts</strong> (S-0002-03)</summary>
+
+**Kind**: technique | **Priority**: high | **Date**: 2026-06-23 | **Source**:
+[t0002_baseline_evaluation](../tasks/t0002_baseline_evaluation/)
+
+Build a lightweight LLM post-correction pass that takes a Whisper transcript and a domain
+entity glossary (Rezolve, brainpowa, product names, IR terms) and corrects entity-span errors
+without rewriting the full transcript. The baseline shows entity accuracy of 25.2% overall and
+8.8% on production clips — the majority of failures are vocabulary substitutions
+(Rezolve→Hizol, Rezolve→Resolve) that a prompted LLM with glossary access could correct
+cheaply. Target: measure entity accuracy gain and added latency overhead vs the 800 ms p50
+budget. Recommended task types: post-correction-experiment, experiment-run.
+
+</details>
 
 <details>
 <summary>🧪 <strong>Prototype RECOVER N-best + LLM-Select on gold-92</strong>
@@ -232,23 +387,6 @@ all 93 gold-92 clips. RECOVER reported 33-35% relative E-WER reduction on Earnin
 closest public proxy for ecommerce entities. This is the highest expected gain from a
 no-retraining method in the survey. Recommended task types: post-correction-experiment,
 stt-benchmark-run.
-
-</details>
-
-<details>
-<summary>🧪 <strong>Prototype Ron2026 initial_prompt multi-agent pipeline on
-gold-92</strong> (S-0003-02)</summary>
-
-**Kind**: experiment | **Priority**: high | **Date**: 2026-06-23 | **Source**:
-[t0003_literature_review_entity_stt](../tasks/t0003_literature_review_entity_stt/)
-
-Implement the six-agent LLM pipeline from Ron2026 against Whisper Turbo on gold-92. The
-pipeline processes a first-pass transcript to extract topic labels, named entities, and domain
-jargon, assembles a context prompt (224 tokens max), and feeds it into a second Whisper
-decoding pass via the initial_prompt parameter. Seed the NER agent with Rezolve's
-brand/product catalog. Measure entity accuracy and latency on all 93 clips. Ron2026 reported
-17% relative WER reduction on entity-dense NBA commentary with zero model retraining.
-Recommended task types: post-correction-experiment, stt-benchmark-run.
 
 </details>
 
@@ -277,7 +415,7 @@ No answers yet.
 
 ---
 
-## [Latest Papers (15 total)](papers/)
+## [Latest Papers (19 total)](papers/)
 
 <details>
 <summary>🏤 <strong>Towards Robust Dysarthric Speech Recognition: LLM-Agent Post-ASR
@@ -594,6 +732,57 @@ addresses a practical training stability concern that would arise when fine-tuni
 </details>
 
 <details>
+<summary>📝 <strong>Robust Speech Recognition via Large-Scale Weak
+Supervision</strong> — Radford et al., 2022</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `10.48550_arXiv.2212.04356` |
+| **Authors** | Alec Radford, Jong Wook Kim, Tao Xu, Greg Brockman, Christine McLeavey, Ilya Sutskever |
+| **Venue** | arXiv preprint (preprint) |
+| **DOI** | `10.48550/arXiv.2212.04356` |
+| **URL** | https://arxiv.org/abs/2212.04356 |
+| **Date added** | 2026-06-23 |
+| **Categories** | [`stt-evaluation`](../meta/categories/stt-evaluation/), [`whisper-finetuning`](../meta/categories/whisper-finetuning/) |
+| **Added by** | [`t0002_baseline_evaluation`](../overview/tasks/task_pages/t0002_baseline_evaluation.md) |
+| **Full summary** | [`summary.md`](../tasks/t0002_baseline_evaluation/assets/paper/10.48550_arXiv.2212.04356/summary.md) |
+
+Radford et al. present Whisper, a speech recognition system trained on 680,000 hours of weakly
+supervised audio-transcript pairs scraped from the internet. The central research question is
+whether scaling weak supervision — using noisy but abundant internet data rather than
+expensive human-validated corpora — can match or surpass fully supervised approaches while
+achieving substantially better real-world robustness. The work is motivated by the observation
+that prior state-of-the-art models trained on LibriSpeech are effectively measuring
+in-distribution generalization, not the out-of-distribution robustness needed for production
+deployment.
+
+The approach uses a standard encoder-decoder Transformer trained end-to-end on 30-second audio
+segments with a multitask format: all tasks (transcription, translation, language ID, VAD,
+timestamp alignment) are encoded as decoder token sequences, allowing a single model to
+replace multiple pipeline stages. Training uses AdamW with linear LR decay for approximately
+2-3 passes over the dataset without data augmentation, relying on dataset diversity for
+robustness. Five model sizes are released (39M–1.55B parameters). A text normalizer and
+long-form decoding heuristics are developed as essential practical components.
+
+The key findings are that Whisper Large V2 achieves **55.2%** average relative error reduction
+over the best comparable supervised model on 13 OOD datasets despite similar LibriSpeech
+performance, and its transcription quality approaches professional human transcribers on
+Kincaid46 (Whisper **8.81%** WER vs. best human service **7.61%**). For translation, Whisper
+achieves **29.1 BLEU** on CoVoST2 zero-shot, a new state of the art. A strong data scaling law
+is identified: WER halves for every 16× increase in per-language training hours (log-log R² =
+0.83 on Fleurs). Multitask and multilingual training provides positive transfer at large model
+sizes.
+
+For this project, Whisper Large V2 is the open-source baseline to benchmark against production
+Deepgram on gold-92. The paper directly supports the research roadmap: fine-tuning Whisper on
+Rezolve production audio is the most direct path to improving entity accuracy on
+investor-relations and ecommerce terms. The custom vocabulary prompting mechanism is
+immediately actionable for injecting brand names and product entities. The model size family
+gives a latency-accuracy trade-off ladder to explore within the 800 ms p50 constraint.
+
+</details>
+
+<details>
 <summary>🏤 <strong>Towards Deep Contextual Reasoning from Broad Descriptions for ASR
 with Speech-LLM via Metadata-Driven Reasoning Chains</strong> — Poncelet
 & hamme, 2026</summary>
@@ -672,47 +861,7 @@ suggesting it would be most valuable as a complementary addition to a retrieval 
 
 </details>
 
-<details>
-<summary>🏤 <strong>RECOVER: Robust Entity Correction via Agentic Orchestration of
-Hypothesis Variants for Evidence-based Recovery</strong> — Kumar &
-Sachdeva, 2026</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `10.48550_arXiv.2603.16411` |
-| **Authors** | Abhishek Kumar, Aashraya Sachdeva |
-| **Venue** | Interspeech 2026 (conference) |
-| **DOI** | `10.48550/arXiv.2603.16411` |
-| **URL** | https://arxiv.org/abs/2603.16411 |
-| **Date added** | 2026-06-23 |
-| **Categories** | [`entity-correction`](../meta/categories/entity-correction/), [`stt-evaluation`](../meta/categories/stt-evaluation/) |
-| **Added by** | [`t0003_literature_review_entity_stt`](../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Full summary** | [`summary.md`](../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2603.16411/summary.md) |
-
-Kumar and Sachdeva address the entity recovery gap in LLM post-correction by exploiting the
-N-best hypothesis diversity from beam search. The core finding is that the 1-best hypothesis
-frequently omits rare entities that appear in hypotheses ranked 2-5, and that collecting this
-diversity significantly improves entity recovery when a smart selection strategy is applied.
-
-RECOVER evaluates four hypothesis selection strategies from trivial (1-Best) to LLM-based
-(LLM-Select with GPT-4o), measuring entity-phrase WER (E-WER) and recall on five diverse
-English domains. LLM-Select is the most robust strategy, achieving the best or near-best E-WER
-on 4 of 5 datasets.
-
-Key results: **8-46% relative E-WER reductions** and **up to +22pp entity recall** across
-datasets. Earnings-21 (closest to Rezolve's entity-rich domain) sees **33-35% relative** E-WER
-reduction. ROVER Ensemble degrades on noisy domains — LLM-based selection is required for
-reliable cross-domain performance.
-
-For Rezolve, RECOVER's multi-hypothesis approach is immediately applicable to the production
-Whisper Turbo pipeline: collecting beam search top-5 is free, and the LLM-Select + correction
-approach adds a post-processing layer with no model retraining. The main obstacle is latency:
-GPT-4o adds 200-500ms per utterance. A distilled local corrector (7B class) would be needed to
-meet the 800ms p50 target.
-
-</details>
-
-*5 more papers → [papers](papers/)*
+*9 more papers → [papers](papers/)*
 
 ---
 
@@ -730,9 +879,15 @@ No models yet.
 
 ---
 
-## [Latest Predictions (0 total)](predictions/)
+## [Latest Predictions (5 total)](predictions/)
 
-No predictions yet.
+| Name | Source | Created |
+|------|--------|---------|
+| [Whisper turbo on Gold-92](../tasks/t0002_baseline_evaluation/assets/predictions/whisper-turbo-gold92/description.md) | [2](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | 2026-06-23 |
+| [Whisper Turbo + Vocabulary Bias on Gold-92](../tasks/t0004_vocabulary_biasing_experiment/assets/predictions/whisper-turbo-biased/description.md) | [4](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | 2026-06-23 |
+| [Whisper Large v3 on Gold-92](../tasks/t0002_baseline_evaluation/assets/predictions/whisper-large-v3-gold92/description.md) | [2](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | 2026-06-23 |
+| [Whisper Large v3 + Vocabulary Bias on Gold-92](../tasks/t0004_vocabulary_biasing_experiment/assets/predictions/whisper-large-v3-biased/description.md) | [4](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | 2026-06-23 |
+| [Moonshine Base on Gold-92 (no vocabulary biasing)](../tasks/t0004_vocabulary_biasing_experiment/assets/predictions/moonshine-base-gold92/description.md) | [4](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | 2026-06-23 |
 
 ---
 
@@ -742,6 +897,8 @@ No libraries yet.
 
 ---
 
-## [Cost Leaders (0 tasks with spend)](costs/)
+## [Cost Leaders (1 tasks with spend)](costs/)
 
-No tasks with non-zero spend.
+| Task | Cost | Date |
+|------|------|------|
+| [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | [`$2.50`](../tasks/t0002_baseline_evaluation/results/costs.json) | 2026-06-23 10:25 |

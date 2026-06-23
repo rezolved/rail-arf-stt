@@ -1,7 +1,7 @@
 # Suggestions: `audio-datasets`
 
-2 suggestion(s) in category [`audio-datasets`](../../../meta/categories/audio-datasets/) **2
-open** (1 high, 1 medium).
+4 suggestion(s) in category [`audio-datasets`](../../../meta/categories/audio-datasets/) **4
+open** (1 high, 3 medium).
 
 [Back to all suggestions](../README.md)
 
@@ -33,6 +33,56 @@ task types: audio-dataset-curation.
 </details>
 
 ## Medium Priority
+
+<details>
+<summary>🧪 <strong>Domain fine-tuning of Whisper turbo on Rezolve investor-relations
+audio</strong> (S-0002-04)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0002-04` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-23 |
+| **Source task** | [`t0002_baseline_evaluation`](../../../overview/tasks/task_pages/t0002_baseline_evaluation.md) |
+| **Source paper** | — |
+| **Categories** | [`whisper-finetuning`](../../../meta/categories/whisper-finetuning/), [`audio-datasets`](../../../meta/categories/audio-datasets/) |
+
+Fine-tune Whisper turbo on Rezolve-domain audio (investor-relations sessions, brand names,
+product terms) to close the vocabulary gap revealed by the baseline. Both large-v3 and turbo
+achieved identical entity accuracy (25.2%), confirming model size is not the bottleneck —
+training data distribution is. The WhisperNER supervised fine-tuning comparison showed 81.35
+F1 on a domain-specific corpus vs our 25.2%, indicating large headroom. A fine-tuning task
+should collect or synthesize domain audio+transcript pairs, run LoRA or full fine-tune on
+turbo (pragmatic: 25% lower latency than large-v3 with no accuracy loss), and evaluate on
+gold-92 production clips (baseline: 8.8%). Recommended task types: whisper-finetuning-run,
+experiment-run.
+
+</details>
+
+<details>
+<summary>📂 <strong>Expand gold-92 benchmark with more production clips and fix
+annotation inconsistencies</strong> (S-0002-05)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0002-05` |
+| **Kind** | dataset |
+| **Date added** | 2026-06-23 |
+| **Source task** | [`t0002_baseline_evaluation`](../../../overview/tasks/task_pages/t0002_baseline_evaluation.md) |
+| **Source paper** | — |
+| **Categories** | [`audio-datasets`](../../../meta/categories/audio-datasets/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+
+Three findings motivate benchmark expansion: (1) the 34-clip production subset scores only
+8.8% entity accuracy but drives all business-critical decisions; a larger production sample
+would tighten BCa confidence intervals and reduce the risk of outlier clips dominating
+results; (2) at least three clips (Examples 10, 13, 14) show verbatim transcript matches
+scoring 0 entity accuracy due to annotation normalisation mismatches — the annotation schema
+needs an audit; (3) clip error_en_0005 has Cyrillic ground truth indicating upstream data
+quality issues. The expanded benchmark should also apply blockwise bootstrap by speaker for
+the clean_voices subset as recommended by Liu2020. Recommended task types:
+audio-dataset-curation, data-analysis.
+
+</details>
 
 <details>
 <summary>📊 <strong>Stratify gold-92 evaluation by speaker accent to quantify

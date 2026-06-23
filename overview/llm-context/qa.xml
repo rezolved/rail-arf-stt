@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive preset_id="qa" generated_at_utc="2026-06-23T10:13:15Z">
+<llm_context_archive preset_id="qa" generated_at_utc="2026-06-23T14:52:24Z">
   <archive_summary>
     <title>Questions and Answers</title>
     <description>Question-centric preset with the full answer corpus and compact project state.</description>
     <use_case>Answer review, follow-up questioning, and project knowledge-base chats.</use_case>
     <section_count>4</section_count>
-    <char_count>8278</char_count>
-    <byte_count>8312</byte_count>
-    <estimated_tokens>2069</estimated_tokens>
+    <char_count>9977</char_count>
+    <byte_count>10038</byte_count>
+    <estimated_tokens>2494</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -102,10 +102,12 @@ gold-92 (`t0002_baseline_evaluation`).
       <source_name>aggregate_tasks_full</source_name>
       <source_ids>
         <id>t0001_stt_benchmark</id>
+        <id>t0002_baseline_evaluation</id>
         <id>t0003_literature_review_entity_stt</id>
+        <id>t0004_vocabulary_biasing_experiment</id>
       </source_ids>
       <content>
-Completed tasks: 2
+Completed tasks: 4
 
 ## STT Benchmark — Gold-92 Dataset Ingestion
 ID: t0001_stt_benchmark
@@ -113,28 +115,30 @@ Completed: 2026-06-22
 Short description: Ingest, annotate, and DVC-track the gold-92 held-out STT benchmark dataset from Rezolve production voice sessions.
 Result summary: Results Summary: t0001_stt_benchmark Outcome Gold-92 STT benchmark dataset successfully ingested and registered. 93 WAV clips with ground-truth annotations are now version-controlled: JSONL files in git, audio in DVC (Azure Blob Storage at `azure://ml-dvc-datasets/datasets/rail-arf-stt`). Assets Produced * Dataset asset `stt-benchmark-gold-92` with 93 clips, 2 JSONL annotation files, and DVC-tracked audio directory. Baseline Observations (from gold_set.jsonl) * Production (Deepgram) transcripts are present for all 93 clips. * Whisper Large v2 transcripts are present for all 93 clips. * Formal WER and entity accuracy evaluation is deferred to `t0002_baseline_evaluation`. Next Steps Task...
 
+## Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92
+ID: t0002_baseline_evaluation
+Completed: 2026-06-23
+Short description: Establish project baselines by running Deepgram Nova-2 and Whisper Large v3 on gold-92, computing all five registered metrics with BCa bootstrap confidence intervals.
+Result summary: Results Summary: Baseline Evaluation — Deepgram and Whisper on Gold-92 Summary Whisper turbo and Whisper large-v3 were benchmarked on the gold-92 STT dataset (93 clips from Rezolve investor-relations production sessions). Both models produced **identical entity accuracy of 25.2%** with matching BCa 95% CIs, ruling out model size as the bottleneck. The production-session subset scored only **8.8% entity accuracy**, exposing a severe gap between lab conditions and real deployment. Deepgram Nova-2 could not be run due to a missing API key; the Whisper results stand as the open-source baseline. The primary implication is that vocabulary biasing — not a larger model — is the highest-ROI next...
+
 ## Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026)
 ID: t0003_literature_review_entity_stt
 Completed: 2026-06-23
 Short description: Survey Jan–Jun 2026 publications on contextual biasing, shallow fusion, entity-aware ASR, and LLM post-correction for named entity accuracy in ecommerce STT.
 Result summary: --- task_id: &quot;t0003_literature_review_entity_stt&quot; date: &quot;2026-06-23&quot; --- Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026) Summary Systematic literature review of Jan–Jun 2026 publications on entity-aware STT. **15 paper assets** were created covering contextual biasing, entity-aware ASR architectures, and LLM post-correction. The top no-retraining candidates for prototyping on gold-92 are **RECOVER** (33–35% relative E-WER reduction, Earnings-21) and **Ron2026** (17% relative WER reduction via Whisper `initial_prompt`). Shallow fusion has effectively no 2026 literature — documented as a gap, not a search failure. Metrics * **Paper assets created**: **15** (all...
+
+## Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy
+ID: t0004_vocabulary_biasing_experiment
+Completed: 2026-06-23
+Short description: Test whether Whisper&#x27;s initial_prompt vocabulary biasing improves entity accuracy on gold-92 domain terms compared to t0002 baselines.
+Result summary: t0004 Results Summary — Vocabulary Biasing Experiment Summary Injecting a 31-term domain vocabulary via Whisper&#x27;s `initial_prompt` parameter produces a **4–5× improvement in domain-entity accuracy** (18% → 87–95%) with no WER degradation. Action-Critical WER dropped from 30% to 2.5% (large-v3 biased), approaching the project success criterion of &lt;2% wrong-action rate. Moonshine base is 80× faster (p50 70ms) but significantly weaker on this domain. Metrics - **entity_accuracy_domain_vocab**: 18.2% → 94.5% (large-v3 biased), 87.3% (turbo biased) — 4–5× improvement; 10.9% for Moonshine base (weaker) - **entity_accuracy_gold92**: 25.2% → 46.0% (large-v3 biased), 43.1% (turbo biased); 21.7%...
       </content>
     </section>
     <section id="planned-tasks" source_kind="aggregator">
       <title>Planned Tasks</title>
       <source_name>aggregate_tasks_full</source_name>
-      <source_ids>
-        <id>t0002_baseline_evaluation</id>
-      </source_ids>
       <content>
-Planned or active tasks: 1
-
-## Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92
-ID: t0002_baseline_evaluation
-Status: in_progress
-Effective date: 2026-06-23
-Short description: Establish project baselines by running Deepgram Nova-2 and Whisper Large v3 on gold-92, computing all five registered metrics with BCa bootstrap confidence intervals.
-Dependencies: t0001_stt_benchmark
+Planned or active tasks: 0
       </content>
     </section>
     <section id="questions-and-answers" source_kind="aggregator">
