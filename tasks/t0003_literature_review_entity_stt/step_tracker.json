@@ -68,9 +68,9 @@
       "step": 8,
       "name": "implementation",
       "description": "Add 8-15 paper assets using /add-paper and /download_paper; write synthesis results_summary.md and search_log.md.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-23T08:58:58Z",
-      "completed_at": null,
+      "completed_at": "2026-06-23T09:06:40Z",
       "log_file": "logs/steps/008_implementation/"
     },
     {
