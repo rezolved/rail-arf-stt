@@ -1,0 +1,68 @@
+{
+  "spec_version": "3",
+  "paper_id": "10.48550_arXiv.2601.21347",
+  "doi": "10.48550/arXiv.2601.21347",
+  "title": "Towards Robust Dysarthric Speech Recognition: LLM-Agent Post-ASR Correction Beyond WER",
+  "url": "https://arxiv.org/abs/2601.21347",
+  "pdf_url": "https://arxiv.org/pdf/2601.21347",
+  "date_published": "2026-01-29",
+  "year": 2026,
+  "authors": [
+    {
+      "name": "Xiuwen Zheng",
+      "country": null,
+      "institution": null,
+      "orcid": null
+    },
+    {
+      "name": "Sixun Dong",
+      "country": null,
+      "institution": null,
+      "orcid": null
+    },
+    {
+      "name": "Bornali Phukon",
+      "country": null,
+      "institution": null,
+      "orcid": null
+    },
+    {
+      "name": "Mark Hasegawa-Johnson",
+      "country": "US",
+      "institution": "University of Illinois at Urbana-Champaign",
+      "orcid": null
+    },
+    {
+      "name": "Chang D. Yoo",
+      "country": "KR",
+      "institution": "Korea Advanced Institute of Science and Technology",
+      "orcid": null
+    }
+  ],
+  "institutions": [
+    {
+      "name": "University of Illinois at Urbana-Champaign",
+      "country": "US"
+    },
+    {
+      "name": "Korea Advanced Institute of Science and Technology",
+      "country": "KR"
+    }
+  ],
+  "journal": "ICASSP 2026",
+  "venue_type": "conference",
+  "categories": [
+    "entity-correction",
+    "stt-evaluation"
+  ],
+  "abstract": "Automatic speech recognition (ASR) systems achieve strong performance on standard benchmarks but struggle with dysarthric speech and domain-specific named entities. This paper proposes an LLM-based Judge-Editor agent for post-ASR correction that operates over the top-k ASR hypotheses. The agent retains high-confidence spans while selectively rewriting or fusing uncertain segments to better capture speaker intent. Both zero-shot and fine-tuned operating modes are evaluated. The paper introduces SAP-Hypo5, a new benchmark dataset for dysarthric speech correction containing 35,000 utterances with top-5 ASR hypotheses and gold references. Experiments demonstrate a 14.51% word error rate reduction, a +7.59 percentage point improvement in MENLI semantic similarity, and a +7.66 percentage point gain in Slot Micro F1 on difficult samples.",
+  "citation_key": "Zheng2026",
+  "summary_path": "summary.md",
+  "files": [
+    "files/zheng_2026_llm-agent-post-asr-correction.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0003_literature_review_entity_stt",
+  "date_added": "2026-06-23"
+}

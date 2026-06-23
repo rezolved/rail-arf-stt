@@ -1,0 +1,46 @@
+{
+  "spec_version": "3",
+  "paper_id": "10.48550_arXiv.2606.10838",
+  "doi": "10.48550/arXiv.2606.10838",
+  "title": "Towards Deep Contextual Reasoning from Broad Descriptions for ASR with Speech-LLM via Metadata-Driven Reasoning Chains",
+  "url": "https://arxiv.org/abs/2606.10838",
+  "pdf_url": "https://arxiv.org/pdf/2606.10838",
+  "date_published": "2026-06-09",
+  "year": 2026,
+  "authors": [
+    {
+      "name": "Jakob Poncelet",
+      "country": "BE",
+      "institution": "KU Leuven",
+      "orcid": null
+    },
+    {
+      "name": "Hugo Van hamme",
+      "country": "BE",
+      "institution": "KU Leuven",
+      "orcid": null
+    }
+  ],
+  "institutions": [
+    {
+      "name": "KU Leuven",
+      "country": "BE"
+    }
+  ],
+  "journal": "Interspeech 2026",
+  "venue_type": "conference",
+  "categories": [
+    "entity-correction",
+    "stt-evaluation"
+  ],
+  "abstract": "Speech recognition fails on rare, domain-specific terms and context-related named entities. Existing contextualization methods bias decoding with keyword or phrase lists, which does not scale to broad contextual descriptions and fails to exploit deeper semantic relationships. This paper trains a speech-LLM to use broad descriptions (e.g., from video metadata) as weak semantic priors for chain-of-thought contextual reasoning. A dataset of 400 hours of reasoning-augmented speech is constructed by pairing erroneous transcripts with video metadata and LLM-generated reasoning explanations. The speech-LLM is fine-tuned to produce: initial transcript, reasoning over context, corrected transcript. On M3AV YouTube-derived test sets, the approach reduces overall WER from 9.4% to 9.3%, rare word WER from 24.0% to 23.1%, and named entity WER from 23.9% to 23.3% vs. the non-reasoning variant.",
+  "citation_key": "Poncelet2026",
+  "summary_path": "summary.md",
+  "files": [
+    "files/poncelet_2026_deep-contextual-reasoning-asr.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0003_literature_review_entity_stt",
+  "date_added": "2026-06-23"
+}

@@ -1,0 +1,9 @@
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0003_literature_review_entity_stt/tasks/t0003_literature_review_entity_stt/results
+
+[31m[1mERRORS:[0m
+[31m  TR-E006 error: results_summary.md is missing mandatory section: ## Summary[0m
+[31m  TR-E006 error: results_summary.md is missing mandatory section: ## Metrics[0m
+[31m  TR-E006 error: results_summary.md is missing mandatory section: ## Verification[0m
+
+[31m[1mFAILED[0m — 3 error(s), 0 warning(s)

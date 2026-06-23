@@ -1,0 +1,3 @@
+usage: capture_task_sessions.py [-h] (--task-id TASK_ID | --skill SKILL |
+                                --current)
+capture_task_sessions.py: error: one of the arguments --task-id --skill --current is required

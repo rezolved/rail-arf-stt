@@ -1,0 +1,75 @@
+{
+  "spec_version": "3",
+  "paper_id": "10.48550_arXiv.2605.29430",
+  "doi": "10.48550/arXiv.2605.29430",
+  "title": "Towards Human-Like Interactive Speech Recognition With Agentic Correction and Semantic Evaluation",
+  "url": "https://arxiv.org/abs/2605.29430",
+  "pdf_url": "https://arxiv.org/pdf/2605.29430",
+  "date_published": "2026-05-28",
+  "year": 2026,
+  "authors": [
+    {
+      "name": "Zixuan Jiang",
+      "country": "CN",
+      "institution": null,
+      "orcid": null
+    },
+    {
+      "name": "Yanqiao Zhu",
+      "country": "CN",
+      "institution": null,
+      "orcid": null
+    },
+    {
+      "name": "Peng Wang",
+      "country": "CN",
+      "institution": null,
+      "orcid": null
+    },
+    {
+      "name": "Qinyuan Chen",
+      "country": "CN",
+      "institution": null,
+      "orcid": null
+    },
+    {
+      "name": "Xipeng Qiu",
+      "country": "CN",
+      "institution": "Fudan University",
+      "orcid": null
+    },
+    {
+      "name": "Kai Yu",
+      "country": "CN",
+      "institution": "Shanghai Jiao Tong University",
+      "orcid": null
+    }
+  ],
+  "institutions": [
+    {
+      "name": "Fudan University",
+      "country": "CN"
+    },
+    {
+      "name": "Shanghai Jiao Tong University",
+      "country": "CN"
+    }
+  ],
+  "journal": "arXiv preprint",
+  "venue_type": "preprint",
+  "categories": [
+    "entity-correction",
+    "stt-evaluation",
+    "confidence-routing"
+  ],
+  "abstract": "Current ASR evaluation relies on WER/CER, which treats all token errors equally and fails to capture semantic meaning preservation. This paper proposes Agentic ASR, a closed-loop framework combining a single-pass ASR front-end with semantic correction, intent routing, and reasoning-based editing. The system introduces S2ER (Sentence-level Semantic Error Rate) as a new metric assessed via three-round bidirectional LLM voting. An Interactive Simulation System benchmarks multi-turn refinement. On GigaSpeech, WenetSpeech, and AISHELL-NER datasets, iterative interaction reduces S2ER from 19-28% to under 2% across 10 loops, while WER decreases only modestly from 10-12% to 9-10%, demonstrating that semantic errors are corrected far more efficiently than token errors.",
+  "citation_key": "Jiang2026",
+  "summary_path": "summary.md",
+  "files": [
+    "files/jiang_2026_agentic-asr-interactive.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0003_literature_review_entity_stt",
+  "date_added": "2026-06-23"
+}

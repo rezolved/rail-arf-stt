@@ -1,0 +1,58 @@
+{
+  "spec_version": "3",
+  "paper_id": "10.48550_arXiv.2602.12241",
+  "doi": "10.48550/arXiv.2602.12241",
+  "title": "Moonshine v2: Ergodic Streaming Encoder ASR for Latency-Critical Speech Applications",
+  "url": "https://arxiv.org/abs/2602.12241",
+  "pdf_url": "https://arxiv.org/pdf/2602.12241",
+  "date_published": "2026-02-12",
+  "year": 2026,
+  "authors": [
+    {
+      "name": "Manjunath Kudlur",
+      "country": "US",
+      "institution": "Useful Sensors",
+      "orcid": null
+    },
+    {
+      "name": "Evan King",
+      "country": "US",
+      "institution": "Useful Sensors",
+      "orcid": null
+    },
+    {
+      "name": "James Wang",
+      "country": "US",
+      "institution": "Useful Sensors",
+      "orcid": null
+    },
+    {
+      "name": "Pete Warden",
+      "country": "US",
+      "institution": "Useful Sensors",
+      "orcid": null
+    }
+  ],
+  "institutions": [
+    {
+      "name": "Useful Sensors",
+      "country": "US"
+    }
+  ],
+  "journal": "arXiv preprint",
+  "venue_type": "preprint",
+  "categories": [
+    "latency-profiling",
+    "stt-evaluation"
+  ],
+  "abstract": "Moonshine v2 introduces an ergodic streaming encoder for ASR using sliding-window self-attention to achieve bounded, low-latency inference while maintaining strong contextual understanding. The models (Tiny: 33.57M, Small: 123.36M, Medium: 244.93M parameters) achieve state-of-the-art word error rates on standard benchmarks while running significantly faster than comparably accurate models. On Apple M3, the Medium model achieves 258ms latency at 28.95% compute load, while Tiny achieves 50ms at 8.03% compute load. The Medium model runs 43.7x faster than Whisper Large v3 at comparable accuracy.",
+  "citation_key": "Kudlur2026",
+  "summary_path": "summary.md",
+  "files": [
+    "files/kudlur_2026_moonshine-v2-streaming-asr.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0003_literature_review_entity_stt",
+  "date_added": "2026-06-23"
+}

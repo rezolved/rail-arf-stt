@@ -1,0 +1,85 @@
+{
+  "spec_version": "2",
+  "suggestions": [
+    {
+      "id": "S-0003-01",
+      "title": "Prototype RECOVER N-best + LLM-Select on gold-92",
+      "description": "Implement the RECOVER pipeline (Kumar2026) on Whisper Turbo: enable beam-width-5 decoding, collect top-5 hypotheses, and use GPT-4o LLM-Select to choose the most entity-accurate hypothesis. Measure entity accuracy (substring match), overall WER, and end-to-end latency on all 93 gold-92 clips. RECOVER reported 33-35% relative E-WER reduction on Earnings-21, the closest public proxy for ecommerce entities. This is the highest expected gain from a no-retraining method in the survey. Recommended task types: post-correction-experiment, stt-benchmark-run.",
+      "kind": "experiment",
+      "priority": "high",
+      "source_task": "t0003_literature_review_entity_stt",
+      "source_paper": "10.48550_arXiv.2603.16411",
+      "categories": ["entity-correction", "stt-evaluation"]
+    },
+    {
+      "id": "S-0003-02",
+      "title": "Prototype Ron2026 initial_prompt multi-agent pipeline on gold-92",
+      "description": "Implement the six-agent LLM pipeline from Ron2026 against Whisper Turbo on gold-92. The pipeline processes a first-pass transcript to extract topic labels, named entities, and domain jargon, assembles a context prompt (224 tokens max), and feeds it into a second Whisper decoding pass via the initial_prompt parameter. Seed the NER agent with Rezolve's brand/product catalog. Measure entity accuracy and latency on all 93 clips. Ron2026 reported 17% relative WER reduction on entity-dense NBA commentary with zero model retraining. Recommended task types: post-correction-experiment, stt-benchmark-run.",
+      "kind": "experiment",
+      "priority": "high",
+      "source_task": "t0003_literature_review_entity_stt",
+      "source_paper": "10.48550_arXiv.2602.18966",
+      "categories": ["entity-correction", "stt-evaluation"]
+    },
+    {
+      "id": "S-0003-03",
+      "title": "Annotate gold-92 with entity span offsets to enable E-WER and Slot F1",
+      "description": "Add entity-offset markup to gold-92 ground-truth transcripts, tagging brand names, product names, and SKUs with character-level span annotations. This unblocks computation of E-WER (required to evaluate RECOVER) and Slot F1 (required to evaluate Zheng2026 selective span editing). Without entity spans, only substring-match and overall WER can be reported on gold-92. The annotation should cover all 93 clips and follow a schema compatible with the Contextual Earnings-22 format (Durmus2026) to enable cross-benchmark comparison. Recommended task types: audio-dataset-curation.",
+      "kind": "dataset",
+      "priority": "high",
+      "source_task": "t0003_literature_review_entity_stt",
+      "source_paper": null,
+      "categories": ["stt-evaluation", "audio-datasets"]
+    },
+    {
+      "id": "S-0003-04",
+      "title": "Add S2ER (sentence-level semantic error rate) metric to the project evaluation harness",
+      "description": "Register and implement the S2ER metric from Jiang2026 in the project's evaluation harness. S2ER is an LLM-judged metric that better correlates with wrong-action rate than WER: it collapsed from 19-28% to under 2% over correction turns while WER changed only marginally. Adding S2ER alongside WER and entity accuracy provides a direct proxy for the project's target metric of wrong-action rate below 2%. Implementation: add an LLM judge (GPT-4o) call per utterance that scores semantic equivalence between reference and hypothesis. Recommended task types: stt-benchmark-run, write-library.",
+      "kind": "evaluation",
+      "priority": "medium",
+      "source_task": "t0003_literature_review_entity_stt",
+      "source_paper": "10.48550_arXiv.2605.29430",
+      "categories": ["stt-evaluation", "entity-correction"]
+    },
+    {
+      "id": "S-0003-05",
+      "title": "Implement Novitasari2026 common-word cue injection as a zero-latency biasing add-on",
+      "description": "Implement the common-word cue approach from Novitasari2026 as a pre-processing step on top of Rezolve's existing dynamic context injection. The method maps non-standard brand names and SKUs to phonetically similar common-word anchors, adding them to the bias list without G2P. Novitasari2026 reported 16.3% reduction in bias-word errors with zero added latency and no model retraining, and the method is additive to any existing biasing technique. Evaluate on gold-92 entity accuracy and confirm zero latency impact. Recommended task types: post-correction-experiment, stt-benchmark-run.",
+      "kind": "technique",
+      "priority": "medium",
+      "source_task": "t0003_literature_review_entity_stt",
+      "source_paper": "10.48550_arXiv.2604.12398",
+      "categories": ["entity-correction", "latency-profiling"]
+    },
+    {
+      "id": "S-0003-06",
+      "title": "Measure end-to-end latency of RECOVER and Ron2026 pipelines on Rezolve infrastructure",
+      "description": "The survey found that latency estimates for both RECOVER (~+100-200ms) and Ron2026 (~550-650ms total) are extrapolations from known Whisper Turbo inference speed and GPT-4o API latency, not empirical measurements. Before confirming either method fits the 800ms p50 budget, measure actual pipeline latency on Rezolve's production infrastructure at p50 and p95. This is a prerequisite for any production deployment decision. If GPT-4o API latency exceeds the budget, evaluate a local 7B model substitute for the LLM-Select step. Recommended task types: latency-profiling, experiment-run.",
+      "kind": "evaluation",
+      "priority": "medium",
+      "source_task": "t0003_literature_review_entity_stt",
+      "source_paper": null,
+      "categories": ["latency-profiling", "stt-evaluation"]
+    },
+    {
+      "id": "S-0003-07",
+      "title": "Stratify gold-92 evaluation by speaker accent to quantify accent-induced entity errors",
+      "description": "WildASR (Tay2026) confirmed that model robustness does not transfer across accent conditions and that ASR systems hallucinate plausible but unspoken content under degraded inputs. Gold-92 contains six non-native English speaker clips, making accent-induced entity errors a direct project risk. Stratify all gold-92 evaluation results by speaker accent group and compare entity accuracy between native and non-native speakers. If accent is the primary driver of entity errors rather than lexical ambiguity, post-correction methods (RECOVER, Ron2026) will have limited effect and ASR-stage improvements should be prioritized instead. Recommended task types: data-analysis, stt-benchmark-run.",
+      "kind": "evaluation",
+      "priority": "medium",
+      "source_task": "t0003_literature_review_entity_stt",
+      "source_paper": "10.48550_arXiv.2603.25727",
+      "categories": ["stt-evaluation", "audio-datasets"]
+    },
+    {
+      "id": "S-0003-08",
+      "title": "Monitor LOGIC (Wang2026) arXiv reappearance for constant-time logit-space biasing",
+      "description": "The LOGIC paper (Wang2026, logit-space entity biasing with constant-time complexity, 9% relative Entity WER reduction) was withdrawn from arXiv in February 2026 for institutional approval compliance. It cannot be implemented until it reappears at a conference venue. Set up monitoring for LOGIC reappearance at Interspeech 2026 or ICASSP 2026 proceedings. Once republished, LOGIC's constant-time biasing approach directly addresses context window saturation at catalog scale (10,000+ entries) without the retrieval infrastructure required by BR-ASR. Recommended task types: internet-research.",
+      "kind": "technique",
+      "priority": "low",
+      "source_task": "t0003_literature_review_entity_stt",
+      "source_paper": "10.48550_arXiv.2601.15397",
+      "categories": ["entity-correction", "stt-evaluation"]
+    }
+  ]
+}
