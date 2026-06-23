@@ -14,10 +14,10 @@
       "step": 2,
       "name": "check-deps",
       "description": "Verify t0001_stt_benchmark is completed and gold-92 dataset is available.",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-06-23T08:06:17Z",
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/002_check-deps/"
     },
     {
       "step": 3,
