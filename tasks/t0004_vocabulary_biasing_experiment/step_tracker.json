@@ -122,9 +122,9 @@
       "step": 14,
       "name": "suggestions",
       "description": "Generate follow-on suggestions based on per-term biasing results.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-23T14:48:12Z",
-      "completed_at": null,
+      "completed_at": "2026-06-23T14:49:51Z",
       "log_file": "logs/steps/014_suggestions/"
     },
     {
