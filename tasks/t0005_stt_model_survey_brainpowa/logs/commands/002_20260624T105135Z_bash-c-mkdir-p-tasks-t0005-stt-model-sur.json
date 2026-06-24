@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0005_stt_model_survey_brainpowa",
+  "command": "bash -c mkdir -p tasks/t0005_stt_model_survey_brainpowa/ctx &&     uv run python -u -m arf.scripts.aggregators.aggregate_task_types --format json > tasks/t0005_stt_model_survey_brainpowa/ctx/task_types.json &&     uv run python -u -m arf.scripts.aggregators.aggregate_costs --format json --detail full > tasks/t0005_stt_model_survey_brainpowa/ctx/costs.json &&     uv run python -u -m arf.scripts.aggregators.aggregate_tasks --format json --detail short > tasks/t0005_stt_model_survey_brainpowa/ctx/tasks.json &&     uv run python -u -m arf.scripts.aggregators.aggregate_metrics --format json --detail full > tasks/t0005_stt_model_survey_brainpowa/ctx/metrics.json &&     uv run python -u -m arf.scripts.aggregators.aggregate_suggestions --format json --detail full > tasks/t0005_stt_model_survey_brainpowa/ctx/suggestions.json",
+  "exit_code": 0,
+  "duration_seconds": 0.558,
+  "started_at": "2026-06-24T10:51:35Z",
+  "completed_at": "2026-06-24T10:51:36Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0005_stt_model_survey_brainpowa",
+  "stdout_file": "002_20260624T105135Z_bash-c-mkdir-p-tasks-t0005-stt-model-sur.stdout.txt",
+  "stderr_file": "002_20260624T105135Z_bash-c-mkdir-p-tasks-t0005-stt-model-sur.stderr.txt",
+  "stdout_lines": 0,
+  "stderr_lines": 0,
+  "truncated": false
+}

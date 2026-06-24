@@ -23,10 +23,10 @@
       "step": 3,
       "name": "init-folders",
       "description": "Initialize task folder structure",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-06-24T10:51:34Z",
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/003_init-folders/"
     },
     {
       "step": 4,
