@@ -32,10 +32,10 @@
       "step": 4,
       "name": "research-internet",
       "description": "Execute internet research skill to survey STT models",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-06-24T10:51:47Z",
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/004_research-internet/"
     },
     {
       "step": 5,
