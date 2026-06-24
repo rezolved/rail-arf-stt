@@ -4,11 +4,137 @@
     {
       "step": 1,
       "name": "create-branch",
-      "description": "Create task/t0005_stt_model_survey_brainpowa branch from main.",
+      "description": "Create task/t0005_stt_model_survey_brainpowa branch from main",
       "status": "completed",
       "started_at": "2026-06-24T10:48:27Z",
       "completed_at": "2026-06-24T10:50:51Z",
       "log_file": "logs/steps/001_create-branch/"
+    },
+    {
+      "step": 2,
+      "name": "check-deps",
+      "description": "Verify task dependencies are completed (none for t0005)",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 3,
+      "name": "init-folders",
+      "description": "Initialize task folder structure",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 4,
+      "name": "research-internet",
+      "description": "Execute internet research skill to survey STT models",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 5,
+      "name": "implementation",
+      "description": "Implementation stage (no-op for research-only task)",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 6,
+      "name": "results",
+      "description": "Write results_summary.md and results_detailed.md",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 7,
+      "name": "suggestions",
+      "description": "Generate follow-up suggestions from research findings",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 8,
+      "name": "reporting",
+      "description": "Final reporting, verificators, PR, merge",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 9,
+      "name": "research-papers",
+      "description": "Skipped: internet-research type does not require paper corpus review",
+      "status": "skipped",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 10,
+      "name": "research-code",
+      "description": "Skipped: research-internet captures all needed context",
+      "status": "skipped",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 11,
+      "name": "planning",
+      "description": "Skipped: research-internet skill includes its own query planning",
+      "status": "skipped",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 12,
+      "name": "setup-machines",
+      "description": "Skipped: local internet research only, no remote compute",
+      "status": "skipped",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 13,
+      "name": "teardown",
+      "description": "Skipped: no remote machines used",
+      "status": "skipped",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 14,
+      "name": "creative-thinking",
+      "description": "Skipped: research task, no hypothesis testing",
+      "status": "skipped",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 15,
+      "name": "compare-literature",
+      "description": "Skipped: research output is not quantitative results to compare",
+      "status": "skipped",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
     }
   ]
 }
