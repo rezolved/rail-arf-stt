@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0005_stt_model_survey_brainpowa",
+  "command": "uv run python -m arf.scripts.verificators.verify_research_internet t0005_stt_model_survey_brainpowa",
+  "exit_code": 0,
+  "duration_seconds": 0.081,
+  "started_at": "2026-06-24T11:00:26Z",
+  "completed_at": "2026-06-24T11:00:26Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0005_stt_model_survey_brainpowa",
+  "stdout_file": "003_20260624T110026Z_uv-run-python.stdout.txt",
+  "stderr_file": "003_20260624T110026Z_uv-run-python.stderr.txt",
+  "stdout_lines": 5,
+  "stderr_lines": 0,
+  "truncated": false
+}
