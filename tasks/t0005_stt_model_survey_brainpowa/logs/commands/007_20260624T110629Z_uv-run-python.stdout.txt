@@ -1,0 +1,2 @@
+Captured 0 session transcript(s) into /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0005_stt_model_survey_brainpowa/tasks/t0005_stt_model_survey_brainpowa/logs/sessions.
+Wrote capture report to /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0005_stt_model_survey_brainpowa/tasks/t0005_stt_model_survey_brainpowa/logs/sessions/capture_report.json.
