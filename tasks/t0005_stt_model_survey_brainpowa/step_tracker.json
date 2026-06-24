@@ -5,9 +5,9 @@
       "step": 1,
       "name": "create-branch",
       "description": "Create task/t0005_stt_model_survey_brainpowa branch from main.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-24T10:48:27Z",
-      "completed_at": null,
+      "completed_at": "2026-06-24T10:50:51Z",
       "log_file": "logs/steps/001_create-branch/"
     }
   ]
