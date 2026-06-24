@@ -1,0 +1,17 @@
+{
+  "spec_version": 4,
+  "task_id": "t0005_stt_model_survey_brainpowa",
+  "task_index": 5,
+  "name": "STT Model Survey: Open-Source Candidates for the brainpowa Pipeline",
+  "short_description": "Survey open-source/open-weight STT models that fit the brainpowa STTAdapter brick and could improve entity accuracy under the 800ms voice-to-action latency budget.",
+  "long_description_file": "task_description.md",
+  "status": "in_progress",
+  "dependencies": [],
+  "start_time": "2026-06-24T10:48:13Z",
+  "end_time": null,
+  "expected_assets": {},
+  "task_types": [
+    "internet-research"
+  ],
+  "source_suggestion": null
+}
