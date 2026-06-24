@@ -14,9 +14,9 @@
       "step": 2,
       "name": "check-deps",
       "description": "Verify task dependencies are completed (none for t0005)",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-24T10:51:21Z",
-      "completed_at": null,
+      "completed_at": "2026-06-24T10:51:26Z",
       "log_file": "logs/steps/002_check-deps/"
     },
     {
