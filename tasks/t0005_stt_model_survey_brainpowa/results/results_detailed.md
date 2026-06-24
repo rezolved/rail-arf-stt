@@ -30,85 +30,43 @@ exclusions.
    closed/commercial).
 6. Ranked top 3 by entity-accuracy fit + latency + biasing support.
 
-**Search coverage:**
-- HuggingFace Open ASR Leaderboard (WER, model card metadata)
-- Papers-with-Code ASR benchmark
-- Artificial Analysis speech-to-text
-- GitHub repos + official documentation
-- arXiv recent papers (2024–2026)
-- Release announcements (NVIDIA, Alibaba, Kyutai, Useful Sensors)
-
 ## Key Findings
 
 ### Top 3 Shortlist
 
 **1. IBM Granite Speech 4.1 2B** — **PRIMARY CANDIDATE**
-- Metric: #1 on Open ASR Leaderboard (5.33% WER, best-in-class)
-- Entity accuracy: Native keyword biasing with published F1 metrics
-- Latency: ~100–150 ms TTFT (under 800ms budget)
-- License: Apache 2.0 (self-hostable, no restrictions)
-- Integration: HF Transformers API, PCM-16 mono input native
-- **Verdict:** Highest priority for gold-92 benchmark run
+- #1 on Open ASR Leaderboard (5.33% WER)
+- Native keyword biasing with published F1 metrics
+- ~100–150 ms TTFT (under 800ms budget)
+- Apache 2.0 license, self-hostable
+- Highest priority for gold-92 benchmark run
 
-**2. FunASR Paraformer (SenseVoice/SeACo variant)** — **SECONDARY CANDIDATE**
-- Entity accuracy: 1.8% Entity WER (EWER) with contextual biasing on ~1,800 entities
-- Biasing: Shallow fusion + entity embeddings, +20–30% entity recall reported
-- Latency: 480–600 ms segment latency (feasible but tight under 800ms total)
-- License: Apache 2.0 (self-hostable)
-- Integration: Requires NeMo wrapper or HF port
-- **Verdict:** Strong if TTFT latency <200ms achievable; test concurrent load
+**2. FunASR Paraformer** — **SECONDARY CANDIDATE**
+- 1.8% Entity WER with contextual biasing on ~1,800 entities
+- 480–600 ms segment latency
+- Apache 2.0 license
+- Test if TTFT <200ms achievable under concurrent load
 
 **3. Moonshine v2 Medium** — **EDGE-DEPLOYMENT CANDIDATE**
-- Latency: ~258 ms (fastest), no GPU required (MIT license)
-- WER: 5.3% with 6× fewer parameters than Whisper turbo
-- Entity accuracy: No native biasing; requires external shallow-fusion adapter
-- Integration: Python inference simple, but biasing layer needed
-- **Verdict:** Viable for edge if external biasing cost acceptable
-
-### Excluded High-Priority Candidates
-
-- **Canary (NVIDIA Qwen 2.5B)**: Good WER (4.8%) but no contextual biasing; ~3s latency too high
-- **Kyutai STT 2.6B**: 2.5s output delay inherent; incompatible with 800ms latency budget
-- **Whisper large-v3**: 7.4% WER, no contextual biasing (only initial_prompt); t0004 already tested
-  upper bound
-- **wav2vec2/XLSR**: Fine-tuning base, no ready-to-run model; not production-ready
-
-## Task Requirement Coverage
-
-**REQ-1: Survey open-source STT models**
-- ✓ Surveyed 20+ models across 10 families (NVIDIA, Whisper variants, Moonshine, Kyutai, FunASR,
-  Granite, etc.)
-- ✓ Documented all candidate dimensions (license, weights, biasing, latency, entity-accuracy)
-- Deliverable: `research/research_internet.md` (478 lines, comparison table)
-
-**REQ-2: Shortlist top candidates ranked by fit to brainpowa brick + entity accuracy**
-- ✓ Ranked top 3 (Granite, Paraformer, Moonshine) with fit rationale
-- ✓ Explicitly compared against current parakeet/Whisper/Azure providers
-- ✓ Documented integration effort + latency implications
-- Deliverable: `research/research_internet.md` § "Shortlist & Recommendations"
-
-**REQ-3: Recommend 1–2 candidates for follow-on gold-92 benchmark**
-- ✓ Primary recommendation: IBM Granite 4.1 2B (highest confidence, ready-to-integrate)
-- ✓ Secondary: FunASR Paraformer (if latency constraint validated under load)
-- Deliverable: research_internet.md § "Next Steps: 4-Week Roadmap"
+- ~258 ms latency, no GPU required
+- 5.3% WER with 6× fewer parameters than Whisper turbo
+- No native biasing; requires external shallow-fusion adapter
+- Viable if external biasing cost acceptable
 
 ## Verification
 
 - `verify_research_internet.py` — **PASSED**
-  - 478 lines of synthesis (well above 400-word minimum)
-  - 20+ sources cited with complete metadata
-  - 4 papers identified for future download
-  - 13 search queries documented with exact text
-  - All inline citations mapped to Source Index
+  - 478 lines of synthesis
+  - 20+ sources cited
+  - 13 search queries documented
+  - 4 papers identified for download
 
 ## Limitations
 
-- Entity-accuracy claims for Granite/Paraformer sourced from published papers; not independently
-  verified on gold-92 (reserved for next benchmark task).
-- Latency measurements from published benchmarks assume batch sizes and hardware specific to each
-  paper; concurrent real-time latency may differ.
-- No hands-on code integration testing; integration effort estimates based on documentation + GitHub
-  repo structure (not execution).
+- Entity-accuracy claims sourced from published papers; not independently verified on gold-92.
+- Latency measurements assume batch sizes and hardware specific to each paper; concurrent real-time
+  latency may differ.
+- Integration effort estimates based on documentation + GitHub repo structure, not execution.
 - Moonshine's external-biasing approach speculative; not yet implemented/benchmarked on domain
   vocabulary.
 
@@ -116,12 +74,20 @@ exclusions.
 
 - `research/research_internet.md` — comprehensive survey document (23 KB)
 - `research/search_log.md` — audit trail of 13 search queries + sources (9 KB)
+- `results/suggestions.json` — 10 follow-up suggestions (2 KB)
 
-## Next Steps
+## Task Requirement Coverage
 
-**Recommended benchmarking roadmap (4 weeks):**
-1. **Week 1:** Set up Python async wrappers for Granite 4.1 and current Parakeet (STTAdapter
-   Protocol)
-2. **Week 2:** Benchmark on 10–20 gold-92 clips (entity accuracy + latency, concurrent load test)
-3. **Week 3:** Full gold-92 run if promising; evaluate FunASR Paraformer if needed
-4. **Week 4:** Finalize integration + implement external biasing adapter if Moonshine selected
+**REQ-1: Survey open-source STT models for brainpowa** — **Done**. Deliverable:
+`research/research_internet.md` with 20+ models surveyed across 8 evaluation dimensions. Evidence:
+research/research_internet.md (23 KB, 478 lines, comparison table, sources).
+
+**REQ-2: Shortlist top candidates ranked by brainpowa fit** — **Done**. Deliverable:
+`research/research_internet.md` with top-3 candidates (Granite 4.1, Paraformer, Moonshine) ranked by
+entity accuracy + latency fit + biasing support. Evidence: research/research_internet.md §
+"Shortlist & Recommendations" with explicit comparison vs current parakeet/Whisper/Azure.
+
+**REQ-3: Recommend 1–2 candidates for follow-on gold-92 benchmark** — **Done**. Deliverable:
+`research/research_internet.md` § "Next Steps: 4-Week Roadmap" with primary (Granite 4.1 2B) and
+secondary (FunASR Paraformer) recommendations. Evidence: research/research_internet.md "Next Steps"
+section with 4-week benchmarking roadmap.

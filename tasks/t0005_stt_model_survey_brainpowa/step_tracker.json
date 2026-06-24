@@ -68,10 +68,10 @@
       "step": 8,
       "name": "reporting",
       "description": "Final reporting, verificators, PR, merge",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-06-24T11:05:33Z",
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/008_reporting/"
     },
     {
       "step": 9,

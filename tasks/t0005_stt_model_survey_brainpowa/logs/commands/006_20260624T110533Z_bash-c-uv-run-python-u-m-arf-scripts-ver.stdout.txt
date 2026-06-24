@@ -1,0 +1,43 @@
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0005_stt_model_survey_brainpowa/tasks/t0005_stt_model_survey_brainpowa/task.json
+
+[33m[1mWARNINGS:[0m
+[33m  TF-W005 warning: expected_assets is empty (task produces no assets)[0m
+
+[33m[1mPASSED[0m — 0 error(s), 1 warning(s)
+
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0005_stt_model_survey_brainpowa/tasks/t0005_stt_model_survey_brainpowa/task.json
+
+[32m[1mPASSED[0m — no errors or warnings
+
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0005_stt_model_survey_brainpowa/tasks/t0005_stt_model_survey_brainpowa/results/suggestions.json
+
+[32m[1mPASSED[0m — no errors or warnings
+
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0005_stt_model_survey_brainpowa/tasks/t0005_stt_model_survey_brainpowa/results/metrics.json
+
+[32m[1mPASSED[0m — no errors or warnings
+
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0005_stt_model_survey_brainpowa/tasks/t0005_stt_model_survey_brainpowa/results
+
+[33m[1mWARNINGS:[0m
+[33m  TR-W011 warning: ## Task Requirement Coverage does not mention `Done`, `Partial`, or `Not done` statuses[0m
+[33m  TR-W012 warning: ## Task Requirement Coverage is not the final `##` section in results_detailed.md[0m
+
+[33m[1mPASSED[0m — 0 error(s), 2 warning(s)
+
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0005_stt_model_survey_brainpowa/tasks/t0005_stt_model_survey_brainpowa
+
+[31m[1mERRORS:[0m
+[31m  FD-E016 error: Unexpected directory in task folder root: 'ctx/' (only assets, code, corrections, data, intervention, logs, plan, research, results allowed)[0m
+
+[33m[1mWARNINGS:[0m
+[33m  FD-W002 warning: logs/searches/ is empty (no search queries were logged)[0m
+[33m  FD-W004 warning: assets/ contains no asset subdirectories with content[0m
+
+[31m[1mFAILED[0m — 1 error(s), 2 warning(s)
