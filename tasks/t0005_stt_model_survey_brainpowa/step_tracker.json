@@ -50,10 +50,10 @@
       "step": 6,
       "name": "results",
       "description": "Write results_summary.md and results_detailed.md",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-06-24T11:01:42Z",
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/006_results/"
     },
     {
       "step": 7,
