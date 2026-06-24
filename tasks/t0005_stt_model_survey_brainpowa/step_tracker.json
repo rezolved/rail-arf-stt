@@ -41,7 +41,7 @@
       "step": 5,
       "name": "implementation",
       "description": "Implementation stage (no-op for research-only task)",
-      "status": "pending",
+      "status": "skipped",
       "started_at": null,
       "completed_at": null,
       "log_file": null
