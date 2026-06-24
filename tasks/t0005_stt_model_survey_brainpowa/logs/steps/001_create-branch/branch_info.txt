@@ -1,0 +1,5 @@
+branch: task/t0005_stt_model_survey_brainpowa
+base_branch: main
+base_commit: 8d0ccf15a3d65c8d01507c01d3c2d19484e5b5a4
+worktree_path: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0005_stt_model_survey_brainpowa
+created_at: 2026-06-24T10:48:27Z
