@@ -1,7 +1,7 @@
 # Suggestions: `entity-correction`
 
-6 suggestion(s) in category [`entity-correction`](../../../meta/categories/entity-correction/)
-**5 open** (2 high, 2 medium, 1 low), **1 closed**.
+8 suggestion(s) in category [`entity-correction`](../../../meta/categories/entity-correction/)
+**7 open** (2 high, 4 medium, 1 low), **1 closed**.
 
 [Back to all suggestions](../README.md)
 
@@ -81,6 +81,30 @@ types: stt-benchmark-run, write-library.
 </details>
 
 <details>
+<summary>🧪 <strong>Evaluate fallback strategy if top candidates underperform on
+accented English</strong> (S-0005-08)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0005-08` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-24 |
+| **Source task** | [`t0005_stt_model_survey_brainpowa`](../../../overview/tasks/task_pages/t0005_stt_model_survey_brainpowa.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`entity-correction`](../../../meta/categories/entity-correction/) |
+
+Gold-92 is weighted toward investor-relations domain (accented English, financial jargon). The
+survey reports that real-world performance on noisy/accented audio degrades 3–7x vs. clean
+benchmarks. If Granite and Paraformer achieve <5% WER on LibriSpeech but >15% entity WER on
+gold-92 accented clips, design a fallback strategy: (1) ensemble hybrid (fast transducer + LLM
+correction), (2) domain fine-tuning Granite/Paraformer on accented audio samples, or (3)
+pre-emphasis + speech-enhancement preprocessing before STT. Prototype and benchmark the top 2
+fallback approaches on gold-92. Recommended task types: experiment-run,
+post-correction-experiment.
+
+</details>
+
+<details>
 <summary>🔧 <strong>Implement Novitasari2026 common-word cue injection as a
 zero-latency biasing add-on</strong> (S-0003-05)</summary>
 
@@ -100,6 +124,31 @@ Novitasari2026 reported 16.3% reduction in bias-word errors with zero added late
 model retraining, and the method is additive to any existing biasing technique. Evaluate on
 gold-92 entity accuracy and confirm zero latency impact. Recommended task types:
 post-correction-experiment, stt-benchmark-run.
+
+</details>
+
+<details>
+<summary>🔧 <strong>Implement shallow-fusion contextual biasing adapter for Moonshine
+v2</strong> (S-0005-04)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0005-04` |
+| **Kind** | technique |
+| **Date added** | 2026-06-24 |
+| **Source task** | [`t0005_stt_model_survey_brainpowa`](../../../overview/tasks/task_pages/t0005_stt_model_survey_brainpowa.md) |
+| **Source paper** | — |
+| **Categories** | [`entity-correction`](../../../meta/categories/entity-correction/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+
+Moonshine v2 achieves 5.3% WER with 258ms latency and CPU-only requirements, enabling edge
+deployment. However, it lacks native contextual biasing. Implement a post-processing
+shallow-fusion adapter that rescores Moonshine's top-3 beam hypotheses against a domain
+vocabulary list (Rezolve, brainpowa, product names, SKUs) and selects the hypothesis with
+highest entity-overlap score. Estimate +2–5ms latency. Evaluate on gold-92: measure whether
+external biasing + Moonshine latency (263ms+) remains under 800ms total voice-to-action
+budget, and whether entity accuracy is competitive with Granite. If successful, Moonshine
+becomes a viable edge-deployment alternative. Recommended task types:
+post-correction-experiment, write-library.
 
 </details>
 

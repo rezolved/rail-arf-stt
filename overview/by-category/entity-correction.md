@@ -6,7 +6,7 @@ transcript is produced.
 [Back to Dashboard](../README.md)
 
 **Detail pages**: [Papers (15)](../papers/by-category/entity-correction.md) | [Suggestions
-(6)](../suggestions/by-category/entity-correction.md)
+(8)](../suggestions/by-category/entity-correction.md)
 
 ---
 
@@ -674,7 +674,44 @@ hypothetical joint model.
 
 No answers in this category.
 
-## Suggestions (5 open, 1 closed)
+## Suggestions (7 open, 1 closed)
+
+<details>
+<summary>🔧 <strong>Implement shallow-fusion contextual biasing adapter for Moonshine
+v2</strong> (S-0005-04)</summary>
+
+**Kind**: technique | **Priority**: medium | **Date**: 2026-06-24 | **Source**:
+[t0005_stt_model_survey_brainpowa](../../tasks/t0005_stt_model_survey_brainpowa/)
+
+Moonshine v2 achieves 5.3% WER with 258ms latency and CPU-only requirements, enabling edge
+deployment. However, it lacks native contextual biasing. Implement a post-processing
+shallow-fusion adapter that rescores Moonshine's top-3 beam hypotheses against a domain
+vocabulary list (Rezolve, brainpowa, product names, SKUs) and selects the hypothesis with
+highest entity-overlap score. Estimate +2–5ms latency. Evaluate on gold-92: measure whether
+external biasing + Moonshine latency (263ms+) remains under 800ms total voice-to-action
+budget, and whether entity accuracy is competitive with Granite. If successful, Moonshine
+becomes a viable edge-deployment alternative. Recommended task types:
+post-correction-experiment, write-library.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Evaluate fallback strategy if top candidates underperform on
+accented English</strong> (S-0005-08)</summary>
+
+**Kind**: experiment | **Priority**: medium | **Date**: 2026-06-24 | **Source**:
+[t0005_stt_model_survey_brainpowa](../../tasks/t0005_stt_model_survey_brainpowa/)
+
+Gold-92 is weighted toward investor-relations domain (accented English, financial jargon). The
+survey reports that real-world performance on noisy/accented audio degrades 3–7x vs. clean
+benchmarks. If Granite and Paraformer achieve <5% WER on LibriSpeech but >15% entity WER on
+gold-92 accented clips, design a fallback strategy: (1) ensemble hybrid (fast transducer + LLM
+correction), (2) domain fine-tuning Granite/Paraformer on accented audio samples, or (3)
+pre-emphasis + speech-enhancement preprocessing before STT. Prototype and benchmark the top 2
+fallback approaches on gold-92. Recommended task types: experiment-run,
+post-correction-experiment.
+
+</details>
 
 <details>
 <summary>🔧 <strong>LLM post-correction layer for entity normalization on Whisper

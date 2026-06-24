@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive preset_id="results-deep-dive" generated_at_utc="2026-06-23T14:52:24Z">
+<llm_context_archive preset_id="results-deep-dive" generated_at_utc="2026-06-24T11:08:56Z">
   <archive_summary>
     <title>Results Deep Dive</title>
     <description>Completed-task result summaries plus all detailed results reports.</description>
     <use_case>Performance analysis, experiment comparison, and result interpretation.</use_case>
-    <section_count>8</section_count>
-    <char_count>68532</char_count>
-    <byte_count>68938</byte_count>
-    <estimated_tokens>17133</estimated_tokens>
+    <section_count>9</section_count>
+    <char_count>74433</char_count>
+    <byte_count>74878</byte_count>
+    <estimated_tokens>18608</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -106,9 +106,10 @@ gold-92 (`t0002_baseline_evaluation`).
         <id>t0002_baseline_evaluation</id>
         <id>t0003_literature_review_entity_stt</id>
         <id>t0004_vocabulary_biasing_experiment</id>
+        <id>t0005_stt_model_survey_brainpowa</id>
       </source_ids>
       <content>
-Completed tasks: 4
+Completed tasks: 5
 
 ## STT Benchmark — Gold-92 Dataset Ingestion
 ID: t0001_stt_benchmark
@@ -133,6 +134,12 @@ ID: t0004_vocabulary_biasing_experiment
 Completed: 2026-06-23
 Short description: Test whether Whisper&#x27;s initial_prompt vocabulary biasing improves entity accuracy on gold-92 domain terms compared to t0002 baselines.
 Result summary: t0004 Results Summary — Vocabulary Biasing Experiment Summary Injecting a 31-term domain vocabulary via Whisper&#x27;s `initial_prompt` parameter produces a **4–5× improvement in domain-entity accuracy** (18% → 87–95%) with no WER degradation. Action-Critical WER dropped from 30% to 2.5% (large-v3 biased), approaching the project success criterion of &lt;2% wrong-action rate. Moonshine base is 80× faster (p50 70ms) but significantly weaker on this domain. Metrics - **entity_accuracy_domain_vocab**: 18.2% → 94.5% (large-v3 biased), 87.3% (turbo biased) — 4–5× improvement; 10.9% for Moonshine base (weaker) - **entity_accuracy_gold92**: 25.2% → 46.0% (large-v3 biased), 43.1% (turbo biased); 21.7%...
+
+## STT Model Survey: Open-Source Candidates for the brainpowa Pipeline
+ID: t0005_stt_model_survey_brainpowa
+Completed: 2026-06-24
+Short description: Survey open-source/open-weight STT models that fit the brainpowa STTAdapter brick and could improve entity accuracy under the 800ms voice-to-action latency budget.
+Result summary: Results Summary: STT Model Survey for brainpowa Pipeline Summary Comprehensive internet research identified and ranked 20+ open-source/open-weight STT models suitable for integration as a brainpowa STTAdapter brick candidate. Top 3 shortlist: **IBM Granite 4.1 2B** (highest entity accuracy + latency fit), **FunASR Paraformer** (best entity-specific metrics), **Moonshine v2** (fastest, CPU-only). Research revealed entity-biasing capability gaps in standard Whisper/Canary and positioned Granite + Paraformer as primary next-step benchmarking candidates for gold-92 evaluation against current Whisper turbo + initial_prompt baseline. Metrics - **Models surveyed**: 20+ (15 detailed, 5 excluded with...
       </content>
     </section>
     <section id="planned-tasks" source_kind="aggregator">
@@ -1149,6 +1156,111 @@ with bias:     &quot;What is Christian Angermayer&#x27;s stake in Rezolve?&quot;
 - `assets/predictions/whisper-turbo-biased/` — prediction asset (93 clips)
 - `assets/predictions/moonshine-base-gold92/` — prediction asset (93 clips)
 - `meta/metrics/entity_accuracy_domain_vocab/description.json` — new metric registered
+      </content>
+    </section>
+    <section id="t0005_stt_model_survey_brainpowa-results-detailed" source_kind="file">
+      <title>t0005_stt_model_survey_brainpowa — STT Model Survey: Open-Source Candidates for the brainpowa Pipeline — results_detailed.md</title>
+      <source_name>results_detailed.md</source_name>
+      <source_ids>
+        <id>t0005_stt_model_survey_brainpowa</id>
+      </source_ids>
+      <repo_paths>
+        <path>tasks/t0005_stt_model_survey_brainpowa/results/results_detailed.md</path>
+      </repo_paths>
+      <content>
+---
+spec_version: &quot;2&quot;
+task_id: &quot;t0005_stt_model_survey_brainpowa&quot;
+---
+### Results Detailed: STT Model Survey for brainpowa Pipeline
+
+#### Summary
+
+Executed the `/research-internet` skill to survey open-source/open-weight STT models (2020–2026,
+emphasis 2024–2026) for integration as a brainpowa STTAdapter brick candidate. Conducted 13
+structured internet searches across official documentation, GitHub repos, arXiv, HF Open ASR
+Leaderboard, and independent benchmarks. Evaluated 20+ models against 8 per-candidate dimensions
+(family, license, weights, streaming, biasing, GPU/latency, WER+entity-recall, integration effort).
+Produced ranked shortlist of 3 top candidates and documented all search queries + rationale for
+exclusions.
+
+#### Methodology
+
+**Research process:**
+1. Defined 8 per-candidate evaluation dimensions based on brainpowa STTAdapter Protocol and product
+   constraints (800ms p50, entity accuracy, contextual biasing).
+2. Executed 13 structured search queries covering model families (NVIDIA, HuggingFace, FunASR,
+   Moonshine, Kyutai), biasing mechanisms, latency benchmarks, 2025-2026 releases, and integration
+   pathways.
+3. Conducted deep reads on 7 authoritative sources (HF ASR Leaderboard, GitHub repos, benchmark
+   papers, official docs).
+4. Cross-referenced accuracy/latency claims across ≥2 independent sources; flagged single-source
+   claims.
+5. Excluded candidates with clear disqualifiers (no contextual biasing, &lt;800ms infeasible, or
+   closed/commercial).
+6. Ranked top 3 by entity-accuracy fit + latency + biasing support.
+
+#### Key Findings
+
+##### Top 3 Shortlist
+
+**1. IBM Granite Speech 4.1 2B** — **PRIMARY CANDIDATE**
+- #1 on Open ASR Leaderboard (5.33% WER)
+- Native keyword biasing with published F1 metrics
+- ~100–150 ms TTFT (under 800ms budget)
+- Apache 2.0 license, self-hostable
+- Highest priority for gold-92 benchmark run
+
+**2. FunASR Paraformer** — **SECONDARY CANDIDATE**
+- 1.8% Entity WER with contextual biasing on ~1,800 entities
+- 480–600 ms segment latency
+- Apache 2.0 license
+- Test if TTFT &lt;200ms achievable under concurrent load
+
+**3. Moonshine v2 Medium** — **EDGE-DEPLOYMENT CANDIDATE**
+- ~258 ms latency, no GPU required
+- 5.3% WER with 6× fewer parameters than Whisper turbo
+- No native biasing; requires external shallow-fusion adapter
+- Viable if external biasing cost acceptable
+
+#### Verification
+
+- `verify_research_internet.py` — **PASSED**
+  - 478 lines of synthesis
+  - 20+ sources cited
+  - 13 search queries documented
+  - 4 papers identified for download
+
+#### Limitations
+
+- Entity-accuracy claims sourced from published papers; not independently verified on gold-92.
+- Latency measurements assume batch sizes and hardware specific to each paper; concurrent real-time
+  latency may differ.
+- Integration effort estimates based on documentation + GitHub repo structure, not execution.
+- Moonshine&#x27;s external-biasing approach speculative; not yet implemented/benchmarked on domain
+  vocabulary.
+
+#### Files Created
+
+- `research/research_internet.md` — comprehensive survey document (23 KB)
+- `research/search_log.md` — audit trail of 13 search queries + sources (9 KB)
+- `results/suggestions.json` — 10 follow-up suggestions (2 KB)
+
+#### Task Requirement Coverage
+
+**REQ-1: Survey open-source STT models for brainpowa** — **Done**. Deliverable:
+`research/research_internet.md` with 20+ models surveyed across 8 evaluation dimensions. Evidence:
+research/research_internet.md (23 KB, 478 lines, comparison table, sources).
+
+**REQ-2: Shortlist top candidates ranked by brainpowa fit** — **Done**. Deliverable:
+`research/research_internet.md` with top-3 candidates (Granite 4.1, Paraformer, Moonshine) ranked by
+entity accuracy + latency fit + biasing support. Evidence: research/research_internet.md §
+&quot;Shortlist &amp; Recommendations&quot; with explicit comparison vs current parakeet/Whisper/Azure.
+
+**REQ-3: Recommend 1–2 candidates for follow-on gold-92 benchmark** — **Done**. Deliverable:
+`research/research_internet.md` § &quot;Next Steps: 4-Week Roadmap&quot; with primary (Granite 4.1 2B) and
+secondary (FunASR Paraformer) recommendations. Evidence: research/research_internet.md &quot;Next Steps&quot;
+section with 4-week benchmarking roadmap.
       </content>
     </section>
   </sections>

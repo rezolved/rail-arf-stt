@@ -6,7 +6,7 @@ candidate STT pipeline configurations.
 [Back to Dashboard](../README.md)
 
 **Detail pages**: [Papers (5)](../papers/by-category/latency-profiling.md) | [Suggestions
-(2)](../suggestions/by-category/latency-profiling.md)
+(5)](../suggestions/by-category/latency-profiling.md)
 
 ---
 
@@ -255,7 +255,59 @@ WER.
 
 No answers in this category.
 
-## Suggestions (2 open, 0 closed)
+## Suggestions (5 open, 0 closed)
+
+<details>
+<summary>📊 <strong>Profile Granite 4.1, Paraformer, and Whisper latency under
+concurrent request load</strong> (S-0005-05)</summary>
+
+**Kind**: evaluation | **Priority**: high | **Date**: 2026-06-24 | **Source**:
+[t0005_stt_model_survey_brainpowa](../../tasks/t0005_stt_model_survey_brainpowa/)
+
+The survey reports single-request latencies; production voice-to-action pipelines receive
+concurrent requests. Profile all three candidates (Granite, Paraformer, Whisper turbo) on
+Rezolve's production infrastructure under 10, 50, and 100 concurrent sessions. Measure TTFT
+(time-to-first-token), total latency, p50/p95/p99 percentiles, and VRAM utilization at each
+concurrency level. This determines whether Granite/Paraformer can sustain the latency budget
+under realistic load, and whether GPU memory becomes the bottleneck. If latency degrades
+significantly at >10 concurrent sessions, batch-processing or model quantization strategies
+become necessary. Recommended task types: experiment-run, data-analysis.
+
+</details>
+
+<details>
+<summary>📊 <strong>Test entity-biasing mechanisms at scale (1,000+ entity
+vocabulary)</strong> (S-0005-06)</summary>
+
+**Kind**: evaluation | **Priority**: medium | **Date**: 2026-06-24 | **Source**:
+[t0005_stt_model_survey_brainpowa](../../tasks/t0005_stt_model_survey_brainpowa/)
+
+The survey reports contextual biasing results on 50–1,800 entity lists. Rezolve's product
+catalog scales to 10,000+ SKUs. Test whether Granite 4.1 keyword biasing and Paraformer
+deep-biasing maintain performance (latency, entity accuracy) when biasing context grows from
+1,800 to 10,000 entities. Measure latency scaling curve and F1 degradation if any. If latency
+exceeds budget at production scale, design a retrieval-based filtering pre-pass (e.g.,
+retrieve top-100 entities relevant to the speaker/context before biasing) to cap the active
+biasing vocabulary. Recommended task types: experiment-run, data-analysis.
+
+</details>
+
+<details>
+<summary>🔧 <strong>Implement quantized variants of Granite/Paraformer for edge and
+latency optimization</strong> (S-0005-10)</summary>
+
+**Kind**: technique | **Priority**: low | **Date**: 2026-06-24 | **Source**:
+[t0005_stt_model_survey_brainpowa](../../tasks/t0005_stt_model_survey_brainpowa/)
+
+If benchmarking shows that Granite or Paraformer meet accuracy targets but exceed VRAM or
+latency budgets at scale, implement quantized (int8/float16) variants using ONNX, TensorRT, or
+vLLM to reduce model size and improve inference speed. Moonshine already ships as a
+245M-parameter model optimized for edge; quantization could reduce Granite (2B) and Paraformer
+(varies) to similar footprints. Measure quantization impact on entity accuracy and latency. If
+quantization preserves accuracy within 1–2% while halving latency, quantized variants become
+the recommended production deployment. Recommended task types: experiment-run, build-model.
+
+</details>
 
 <details>
 <summary>🔧 <strong>Implement Novitasari2026 common-word cue injection as a

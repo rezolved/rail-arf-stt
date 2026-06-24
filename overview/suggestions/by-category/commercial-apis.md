@@ -1,7 +1,7 @@
 # Suggestions: `commercial-apis`
 
-2 suggestion(s) in category [`commercial-apis`](../../../meta/categories/commercial-apis/) **2
-open** (1 high, 1 medium).
+3 suggestion(s) in category [`commercial-apis`](../../../meta/categories/commercial-apis/) **3
+open** (1 high, 2 medium).
 
 [Back to all suggestions](../README.md)
 
@@ -54,6 +54,29 @@ it against Deepgram Nova-2 and Whisper turbo on gold-92 using all five registere
 Requires AZURE_SPEECH_API_KEY from the team vault. Azure also offers Custom Speech (domain
 adaptation) which can be evaluated in a follow-up. Estimated cost: approximately $0.01–$0.05
 for 93 clips at standard tier pricing. Recommended task types: stt-benchmark-run,
+comparative-analysis.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Compare Granite/Paraformer against Deepgram Nova-2 and Azure
+Speech on gold-92</strong> (S-0005-07)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0005-07` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-24 |
+| **Source task** | [`t0005_stt_model_survey_brainpowa`](../../../overview/tasks/task_pages/t0005_stt_model_survey_brainpowa.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`commercial-apis`](../../../meta/categories/commercial-apis/) |
+
+The survey did not include closed-API baselines (Deepgram Nova-2, Azure Speech Services). Both
+support contextual biasing and have lower latency than Whisper. Run a comparative benchmark to
+establish whether open-source candidates (Granite, Paraformer) can match or exceed the
+accuracy and latency of production-quality closed APIs. This context is critical for
+production decision-making if open-source candidates fall short. Azure Speech and Deepgram API
+costs are approximately $0.01–$0.10 for 93 clips. Recommended task types: stt-benchmark-run,
 comparative-analysis.
 
 </details>

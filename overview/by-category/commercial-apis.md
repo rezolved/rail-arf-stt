@@ -5,7 +5,7 @@ production baseline.
 
 [Back to Dashboard](../README.md)
 
-**Detail pages**: [Suggestions (2)](../suggestions/by-category/commercial-apis.md)
+**Detail pages**: [Suggestions (3)](../suggestions/by-category/commercial-apis.md)
 
 ---
 
@@ -21,7 +21,24 @@ No tasks related to this category.
 
 No answers in this category.
 
-## Suggestions (2 open, 0 closed)
+## Suggestions (3 open, 0 closed)
+
+<details>
+<summary>🧪 <strong>Compare Granite/Paraformer against Deepgram Nova-2 and Azure
+Speech on gold-92</strong> (S-0005-07)</summary>
+
+**Kind**: experiment | **Priority**: medium | **Date**: 2026-06-24 | **Source**:
+[t0005_stt_model_survey_brainpowa](../../tasks/t0005_stt_model_survey_brainpowa/)
+
+The survey did not include closed-API baselines (Deepgram Nova-2, Azure Speech Services). Both
+support contextual biasing and have lower latency than Whisper. Run a comparative benchmark to
+establish whether open-source candidates (Granite, Paraformer) can match or exceed the
+accuracy and latency of production-quality closed APIs. This context is critical for
+production decision-making if open-source candidates fall short. Azure Speech and Deepgram API
+costs are approximately $0.01–$0.10 for 93 clips. Recommended task types: stt-benchmark-run,
+comparative-analysis.
+
+</details>
 
 <details>
 <summary>🧪 <strong>Run Deepgram Nova-2 baseline on gold-92 to complete REQ-1 and

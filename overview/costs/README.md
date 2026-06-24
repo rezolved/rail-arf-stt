@@ -15,7 +15,7 @@ stop threshold.
 | Warn threshold | 80% ($1600.00) |
 | Stop threshold | 100% ($2000.00) |
 | Default per-task limit | $100.00 USD |
-| Tasks with cost records | 3 |
+| Tasks with cost records | 4 |
 | Tasks with non-zero spend | 1 |
 | Skipped tasks | 1 |
 
@@ -31,7 +31,7 @@ stop threshold.
 |-----|------------|
 | `claude-code-orchestration` | $2.50 |
 
-2 task cost record(s) are zero-cost and omitted from the main spend table.
+3 task cost record(s) are zero-cost and omitted from the main spend table.
 
 ## Task Spend
 

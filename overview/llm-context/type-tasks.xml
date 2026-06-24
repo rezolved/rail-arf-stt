@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive type_id="tasks" generated_at_utc="2026-06-23T14:52:24Z">
+<llm_context_archive type_id="tasks" generated_at_utc="2026-06-24T11:08:56Z">
   <archive_summary>
     <title>All Tasks</title>
     <description>Complete task data with full descriptions, results summaries, dependencies, and status.</description>
     <section_count>1</section_count>
-    <char_count>57694</char_count>
-    <byte_count>58020</byte_count>
-    <estimated_tokens>14423</estimated_tokens>
+    <char_count>68668</char_count>
+    <byte_count>69048</byte_count>
+    <estimated_tokens>17167</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -21,9 +21,10 @@
         <id>t0002_baseline_evaluation</id>
         <id>t0003_literature_review_entity_stt</id>
         <id>t0004_vocabulary_biasing_experiment</id>
+        <id>t0005_stt_model_survey_brainpowa</id>
       </source_ids>
       <content>
-Total tasks: 4
+Total tasks: 5
 
 ## STT Benchmark — Gold-92 Dataset Ingestion
 ID: t0001_stt_benchmark
@@ -1074,6 +1075,212 @@ All verificators passed:
   metric)
 - `mypy`: 0 issues found in task code package
 - `ruff`: 0 errors after auto-fix
+
+## STT Model Survey: Open-Source Candidates for the brainpowa Pipeline
+ID: t0005_stt_model_survey_brainpowa
+Status: completed
+Effective date: 2026-06-24
+Short description: Survey open-source/open-weight STT models that fit the brainpowa STTAdapter brick and could improve entity accuracy under the 800ms voice-to-action latency budget.
+Task types: internet-research
+Start time: 2026-06-24T10:48:13Z
+End time: 2026-06-24T11:06:19Z
+
+#### Motivation
+
+Rezolve&#x27;s voice-commerce assistant runs on the `brainpowa-realtime-api`, an OpenAI-compatible
+realtime server with a pluggable STT brick. Production today uses Whisper Turbo (via faster-whisper)
+with runtime context injection; the pipeline also ships Azure Speech and NVIDIA Parakeet
+(`parakeet-tdt-0.6b-v3` via NeMo, the current default, which unlocks GPU phrase-boosting /
+contextual biasing) plus omni-LLM transcriber modes (Qwen3-Omni).
+
+The gold-92 benchmark (`t0001_stt_benchmark`) confirmed that the dominant failure mode is **entity
+accuracy** — brand names, product names, and SKUs are mangled or dropped, pushing the wrong-action
+rate above the 2% target. `t0003_literature_review_entity_stt` surveyed *techniques* (contextual
+biasing, shallow fusion, entity-aware ASR, LLM post-correction) and
+`t0004_vocabulary_biasing_experiment` tested initial-prompt biasing on Whisper. Those tasks answered
+&quot;what methods help&quot;; they did **not** answer &quot;which concrete, integratable model should we run.&quot;
+
+This task closes that gap: a structured survey of **open-source / open-weight STT models** that
+could be dropped into the brainpowa STT brick as a candidate to improve entity accuracy over the
+current production baseline. GPU-requiring models are explicitly in scope — self-hosting on GPU is
+acceptable.
+
+#### Research Question
+
+Which open-source / open-weight STT models (released or actively maintained, including recent
+2025–2026 releases) are the best candidates to integrate as a brainpowa STT brick to improve
+**entity accuracy** over the current production baseline under an **800 ms p50 voice-to-action**
+latency budget — weighed on contextual-biasing support, streaming capability, GPU footprint,
+license, and English / accented-English accuracy?
+
+This is **not** a generic &quot;best STT models&quot; listicle. Every candidate must be assessed against our
+concrete integration interface and product constraints below. A model that tops a WER leaderboard
+but cannot do contextual biasing or stream is a weaker fit than a slightly-worse model that can.
+
+#### Constraints (the bar every candidate is measured against)
+
+##### Integration interface
+
+The brainpowa STT brick is defined by the `STTAdapter` Protocol
+(`src/brainpowa_realtime_api/pipeline/stt/base.py`):
+
+* `async transcribe(pcm16_mono_bytes, *, options, session_id) -&gt; TranscriptionResult(text, no_speech_prob, segment_count)`
+  — mandatory.
+* `async transcribe_stream(audio_queue) -&gt; AsyncGenerator[(delta, result)]` — optional, for **true
+  incremental** recognition. The default base implementation buffers the whole segment and calls
+  `transcribe` once; only override-capable models give low-latency streaming UX.
+* Input is **raw PCM-16 mono** at the configured sample rate. Must run as a self-hosted Python
+  service brick (importable inference, not a closed cloud-only API).
+* Existing providers for comparison: faster-whisper (`whisper turbo`), Azure Speech, and
+  `nvidia/parakeet-tdt-0.6b-v3` via `nemo_toolkit[asr]`. Use these as the integration-effort and
+  accuracy reference points.
+
+##### Product constraints
+
+* Primary goal: improve entity accuracy (brands, products, SKUs) and intent preservation over the
+  current production STT baseline.
+* Latency: **&lt; 800 ms p50** voice-to-action. STT is one stage of that budget, so per-segment STT
+  latency / real-time-factor matters a lot.
+* Language: **English, accented** (investor-relations domain in gold-92).
+* Must support **contextual biasing / hotwords / initial_prompt** for domain vocabulary, and ideally
+  streaming/incremental decoding for low latency.
+* Open weights strongly preferred; permissive license (Apache-2.0 / MIT / CC-BY) is a plus, copyleft
+  or non-commercial is a minus to flag.
+
+#### Scope
+
+##### Candidates to evaluate (not exhaustive)
+
+* **NVIDIA Parakeet / Canary family** — Parakeet TDT/RNNT/CTC variants, Canary, FastConformer.
+  Already partly integrated; establish the upgrade ceiling within this family.
+* **Whisper variants** — large-v3, turbo, distil-whisper, whisper.cpp, WhisperX.
+* **Moonshine** — fast English-focused streaming ASR.
+* **Kyutai / Moshi STT** — streaming speech-to-text.
+* **FunASR family** — Paraformer, SenseVoice.
+* **Conformer / FastConformer** CTC/transducer baselines.
+* **wav2vec2 / MMS**.
+* **IBM Granite Speech**.
+* **Microsoft Phi-4-multimodal** (audio).
+* **Qwen-Omni / Qwen-Audio** (already referenced by the omni transcriber path).
+* **Any newer 2025–2026 open ASR releases** surfaced during search.
+
+##### Per-candidate dimensions to record
+
+For every shortlisted model, capture (mark &quot;unknown / not reported&quot; rather than guessing):
+
+1. Model family, sizes available, parameter count.
+2. License + weights availability (HF repo / GitHub), and any commercial-use restriction.
+3. Streaming vs batch; native incremental decoding support (maps to `transcribe_stream`).
+4. Contextual biasing / hotword / initial-prompt / phrase-boost support and the mechanism.
+5. GPU / VRAM footprint and reported latency or real-time-factor (RTF) at a stated batch/segment
+   size.
+6. Reported WER (English + accented if available) and any **entity / keyword-recall** numbers.
+7. Integration effort into the `STTAdapter` brick (existing Python inference path? NeMo / HF /
+   ctranslate2? PCM-16 mono input handling?).
+8. Fit verdict vs the current parakeet / whisper / Azure providers.
+
+##### Inclusions
+
+* Open-source / open-weight models with self-hostable inference.
+* GPU-requiring models (acceptable; record the footprint).
+* English or multilingual-with-English-results models.
+
+##### Exclusions
+
+* Closed cloud-only APIs with no downloadable weights (Azure, Google, AssemblyAI, etc.) — except as
+  **named comparison baselines**, not candidates.
+* Pure TTS / diarization / VAD-only systems.
+* Models with no English results and no path to English use.
+
+#### Approach
+
+Follow the `internet-research` task type guidelines.
+
+##### Search strategy
+
+Define queries before searching; log every query + result count in `research/search_log.md`. Cover
+at least these angles:
+
+* Open ASR leaderboards — Hugging Face Open ASR Leaderboard, Papers-with-Code ASR/WER, Artificial
+  Analysis speech-to-text.
+* &quot;contextual biasing&quot; / &quot;hotword&quot; / &quot;keyword boosting&quot; + each model family.
+* &quot;streaming ASR&quot; / &quot;low latency&quot; / &quot;RTF&quot; + each model family.
+* 2025–2026 release announcements (NVIDIA, Kyutai, Useful Sensors/Moonshine, Alibaba FunASR, IBM,
+  Microsoft, Qwen).
+* GitHub repos + model cards for license, input format, and inference API.
+
+**Sources**: official model cards / GitHub repos / docs (authoritative for license, API, footprint);
+HF Open ASR Leaderboard (WER); arXiv (architecture + entity/biasing results); independent benchmarks
+(cross-check, never sole source).
+
+##### Process
+
+* Broad landscape pass first, then narrow per candidate.
+* Record every URL immediately with date accessed, source org, and a one-line contribution note.
+* Cross-reference accuracy/latency claims across ≥2 independent sources; flag single-source claims.
+* Write `research/research_internet.md` incrementally, structured **by dimension/candidate**, not by
+  search.
+
+##### Stopping criterion
+
+Stop when the candidate set covers the families above plus any newer releases found, each scored on
+all eight dimensions, and ≥3 candidates are ranked with enough evidence to justify a follow-on
+benchmark task. Do not expand into technique re-surveys already covered by `t0003`.
+
+#### Expected Outputs
+
+* `research/research_internet.md` — the survey, containing:
+  * A **comparison table** (rows = candidate models, columns = the eight per-candidate dimensions).
+  * A ranked **shortlist** (top 3–5) of candidates by fit to the brainpowa brick + entity-accuracy /
+    latency goals, each with a one-paragraph rationale and source URLs.
+  * An explicit comparison of the shortlist against the currently-integrated parakeet / whisper /
+    Azure providers.
+  * A short &quot;recommended next experiment&quot; note pointing at which 1–2 candidates merit a gold-92
+    benchmark run.
+* `research/search_log.md` — every query and result count.
+
+No model assets, datasets, or paper assets are required (`expected_assets: {}`). No model training
+or paid compute beyond LLM / search usage; budget is low.
+
+#### Cross-References
+
+* `t0001_stt_benchmark` — gold-92 held-out regression set; defines the entity-accuracy metric the
+  candidates must eventually beat. **Never tune on gold-92.**
+* `t0003_literature_review_entity_stt` — technique survey; this task supplies the concrete models
+  that implement those techniques. Do not re-survey techniques.
+* `t0004_vocabulary_biasing_experiment` — established initial-prompt biasing baseline on Whisper;
+  informs the contextual-biasing dimension.
+* Integration target: `brainpowa-realtime-api` STT brick
+  (`src/brainpowa_realtime_api/pipeline/stt/`).
+
+Dependencies are intentionally empty: this is internet research that can start without any other
+task&#x27;s concrete file output. The prior tasks above are motivation and context, not blocking inputs.
+
+### Results Summary
+
+#### Summary
+
+Comprehensive internet research identified and ranked 20+ open-source/open-weight STT models
+suitable for integration as a brainpowa STTAdapter brick candidate. Top 3 shortlist: **IBM Granite
+4.1 2B** (highest entity accuracy + latency fit), **FunASR Paraformer** (best entity-specific
+metrics), **Moonshine v2** (fastest, CPU-only). Research revealed entity-biasing capability gaps in
+standard Whisper/Canary and positioned Granite + Paraformer as primary next-step benchmarking
+candidates for gold-92 evaluation against current Whisper turbo + initial_prompt baseline.
+
+#### Metrics
+
+- **Models surveyed**: 20+ (15 detailed, 5 excluded with rationale)
+- **Search queries executed**: 13 structured queries with 50+ consulted sources
+- **Top candidates shortlisted**: 3 (Granite, Paraformer, Moonshine)
+- **Verified citations**: 20 sources with complete metadata, 4 papers identified for download
+- **Entity-accuracy candidates**: 2 with native biasing (Granite, Paraformer)
+- **Latency-optimized candidates**: 2 under 800ms (Moonshine &lt;300ms, Granite ~150ms)
+
+#### Verification
+
+- `verify_research_internet.py` — **PASSED** (478 lines, 20+ sources, 13 queries documented)
+- Task requirement coverage: REQ-1 (model survey completed) ✓, REQ-2 (shortlist with fit rationale)
+  ✓
       </content>
     </section>
   </sections>

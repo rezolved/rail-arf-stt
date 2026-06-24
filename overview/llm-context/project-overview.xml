@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive preset_id="project-overview" generated_at_utc="2026-06-23T14:52:24Z">
+<llm_context_archive preset_id="project-overview" generated_at_utc="2026-06-24T11:08:56Z">
   <archive_summary>
     <title>Project Overview</title>
     <description>Compact starter context for general project chats.</description>
     <use_case>General orientation, quick status questions, and lightweight strategy chats.</use_case>
     <section_count>4</section_count>
-    <char_count>9977</char_count>
-    <byte_count>10038</byte_count>
-    <estimated_tokens>2494</estimated_tokens>
+    <char_count>11062</char_count>
+    <byte_count>11123</byte_count>
+    <estimated_tokens>2765</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -105,9 +105,10 @@ gold-92 (`t0002_baseline_evaluation`).
         <id>t0002_baseline_evaluation</id>
         <id>t0003_literature_review_entity_stt</id>
         <id>t0004_vocabulary_biasing_experiment</id>
+        <id>t0005_stt_model_survey_brainpowa</id>
       </source_ids>
       <content>
-Completed tasks: 4
+Completed tasks: 5
 
 ## STT Benchmark — Gold-92 Dataset Ingestion
 ID: t0001_stt_benchmark
@@ -132,6 +133,12 @@ ID: t0004_vocabulary_biasing_experiment
 Completed: 2026-06-23
 Short description: Test whether Whisper&#x27;s initial_prompt vocabulary biasing improves entity accuracy on gold-92 domain terms compared to t0002 baselines.
 Result summary: t0004 Results Summary — Vocabulary Biasing Experiment Summary Injecting a 31-term domain vocabulary via Whisper&#x27;s `initial_prompt` parameter produces a **4–5× improvement in domain-entity accuracy** (18% → 87–95%) with no WER degradation. Action-Critical WER dropped from 30% to 2.5% (large-v3 biased), approaching the project success criterion of &lt;2% wrong-action rate. Moonshine base is 80× faster (p50 70ms) but significantly weaker on this domain. Metrics - **entity_accuracy_domain_vocab**: 18.2% → 94.5% (large-v3 biased), 87.3% (turbo biased) — 4–5× improvement; 10.9% for Moonshine base (weaker) - **entity_accuracy_gold92**: 25.2% → 46.0% (large-v3 biased), 43.1% (turbo biased); 21.7%...
+
+## STT Model Survey: Open-Source Candidates for the brainpowa Pipeline
+ID: t0005_stt_model_survey_brainpowa
+Completed: 2026-06-24
+Short description: Survey open-source/open-weight STT models that fit the brainpowa STTAdapter brick and could improve entity accuracy under the 800ms voice-to-action latency budget.
+Result summary: Results Summary: STT Model Survey for brainpowa Pipeline Summary Comprehensive internet research identified and ranked 20+ open-source/open-weight STT models suitable for integration as a brainpowa STTAdapter brick candidate. Top 3 shortlist: **IBM Granite 4.1 2B** (highest entity accuracy + latency fit), **FunASR Paraformer** (best entity-specific metrics), **Moonshine v2** (fastest, CPU-only). Research revealed entity-biasing capability gaps in standard Whisper/Canary and positioned Granite + Paraformer as primary next-step benchmarking candidates for gold-92 evaluation against current Whisper turbo + initial_prompt baseline. Metrics - **Models surveyed**: 20+ (15 detailed, 5 excluded with...
       </content>
     </section>
     <section id="planned-tasks" source_kind="aggregator">
