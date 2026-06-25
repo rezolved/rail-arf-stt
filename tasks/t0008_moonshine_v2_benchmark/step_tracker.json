@@ -60,9 +60,9 @@
       "step": 7,
       "name": "compare-literature",
       "description": "Compare Moonshine v2 results against published results and alternative STT models.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-25T09:32:29Z",
-      "completed_at": null,
+      "completed_at": "2026-06-25T09:38:08Z",
       "log_file": "logs/steps/007_compare-literature/"
     },
     {
