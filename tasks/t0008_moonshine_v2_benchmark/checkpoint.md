@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0008_moonshine_v2_benchmark"
-updated_at: "2026-06-25T10:10:00Z"
-completed_steps: 13
-next_step_number: 8
-next_step_id: "suggestions"
+updated_at: "2026-06-25T11:00:00Z"
+completed_steps: 14
+next_step_number: 9
+next_step_id: "reporting"
 ---
 # Task Objective
 
@@ -106,6 +106,15 @@ fallback.
   via HuggingFace Transformers (`MoonshineStreamingForConditionalGeneration`) as the v2 Medium
   equivalent. Documented in code/paths.py.
 
+### Step 8 — suggestions
+
+3 suggestions generated and written to `results/suggestions.json`. Verificator passed with 0 errors
+and 0 warnings. Suggestions: S-0008-01 (Moonshine ONNX Medium latency benchmark, medium priority),
+S-0008-02 (Moonshine model-size entity accuracy ablation, medium priority), S-0008-03 (Rezolve IR
+transcript corpus preprocessing for KenLM, medium priority). Deduplicated against 23 existing
+uncovered suggestions and 8 existing tasks — no duplicates found. S-0005-04 covers shallow fusion
+implementation; all three new suggestions are non-overlapping.
+
 ## Next Step Notes
 
-Step 7 (compare-literature) completed. Proceed to step 8 (suggestions).
+Step 8 (suggestions) completed. Proceed to step 9 (reporting).
