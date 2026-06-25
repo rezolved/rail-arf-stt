@@ -59,9 +59,9 @@
       "step": 7,
       "name": "planning",
       "description": "Design GPU inference pipeline for two Granite 4.1 2B runs (no-biasing and keyword-biased), estimate compute cost, and specify prediction asset schema.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-25T07:42:02Z",
-      "completed_at": null,
+      "completed_at": "2026-06-25T07:47:49Z",
       "log_file": "logs/steps/007_planning/"
     },
     {
