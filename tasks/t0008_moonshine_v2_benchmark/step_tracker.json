@@ -15,9 +15,9 @@
       "step": 2,
       "name": "check-deps",
       "description": "Verify all dependencies (t0001_stt_benchmark, t0004_vocabulary_biasing_experiment) are completed.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-25T08:52:59Z",
-      "completed_at": null,
+      "completed_at": "2026-06-25T08:54:28Z",
       "log_file": "logs/steps/002_check-deps/"
     },
     {
