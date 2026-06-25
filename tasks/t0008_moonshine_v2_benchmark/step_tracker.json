@@ -78,9 +78,9 @@
       "step": 9,
       "name": "reporting",
       "description": "Final verification pass, run all verificators, and prepare for merge.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-25T09:43:19Z",
-      "completed_at": null,
+      "completed_at": "2026-06-25T09:49:32Z",
       "log_file": "logs/steps/009_reporting/"
     },
     {
