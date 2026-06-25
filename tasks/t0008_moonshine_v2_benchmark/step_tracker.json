@@ -42,9 +42,9 @@
       "step": 5,
       "name": "implementation",
       "description": "Run Moonshine v2 Medium on gold-92 clips, compute metrics, assess shallow-fusion feasibility.",
-      "status": "completed",
+      "status": "in_progress",
       "started_at": "2026-06-25T09:02:17Z",
-      "completed_at": "2026-06-25T12:30:00Z",
+      "completed_at": null,
       "log_file": "logs/steps/005_implementation/"
     },
     {
