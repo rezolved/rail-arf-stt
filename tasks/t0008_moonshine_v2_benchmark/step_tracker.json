@@ -6,9 +6,9 @@
       "step": 1,
       "name": "create-branch",
       "description": "Create task/t0008_moonshine_v2_benchmark branch from main.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-25T08:30:29Z",
-      "completed_at": null,
+      "completed_at": "2026-06-25T08:31:51Z",
       "log_file": "logs/steps/001_create-branch/"
     },
     {
@@ -86,7 +86,7 @@
     {
       "step": 10,
       "name": "research-papers",
-      "description": "SKIPPED — No relevant papers in corpus for STT shallow-fusion benchmarking beyond t0004 and t0005.",
+      "description": "SKIPPED \u2014 No relevant papers in corpus for STT shallow-fusion benchmarking beyond t0004 and t0005.",
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
@@ -95,7 +95,7 @@
     {
       "step": 11,
       "name": "research-internet",
-      "description": "SKIPPED — Task scope is limited to benchmarking and feasibility assessment; sufficient domain knowledge from t0004 and t0005.",
+      "description": "SKIPPED \u2014 Task scope is limited to benchmarking and feasibility assessment; sufficient domain knowledge from t0004 and t0005.",
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
@@ -104,7 +104,7 @@
     {
       "step": 12,
       "name": "research-code",
-      "description": "SKIPPED — Task does not require research into prior task code; uses t0004 predictions and t0001 benchmark data directly.",
+      "description": "SKIPPED \u2014 Task does not require research into prior task code; uses t0004 predictions and t0001 benchmark data directly.",
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
@@ -113,7 +113,7 @@
     {
       "step": 13,
       "name": "setup-machines",
-      "description": "SKIPPED — All computation runs on local CPU; no remote machines required.",
+      "description": "SKIPPED \u2014 All computation runs on local CPU; no remote machines required.",
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
@@ -122,7 +122,7 @@
     {
       "step": 14,
       "name": "teardown",
-      "description": "SKIPPED — No remote machines to tear down.",
+      "description": "SKIPPED \u2014 No remote machines to tear down.",
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
@@ -131,7 +131,7 @@
     {
       "step": 15,
       "name": "creative-thinking",
-      "description": "SKIPPED — Task scope is well-defined; creative alternatives addressed in planning phase.",
+      "description": "SKIPPED \u2014 Task scope is well-defined; creative alternatives addressed in planning phase.",
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
