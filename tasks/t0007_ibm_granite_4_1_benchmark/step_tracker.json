@@ -1,0 +1,140 @@
+{
+  "task_id": "t0007_ibm_granite_4_1_benchmark",
+  "steps": [
+    {
+      "step": 1,
+      "name": "create-branch",
+      "description": "Create task/t0007_ibm_granite_4_1_benchmark branch from main and plan all task steps.",
+      "status": "in_progress",
+      "started_at": "2026-06-25T07:30:11Z",
+      "completed_at": null,
+      "log_file": "logs/steps/001_create-branch/"
+    },
+    {
+      "step": 2,
+      "name": "check-deps",
+      "description": "Verify t0001_stt_benchmark and t0004_vocabulary_biasing_experiment are completed.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 3,
+      "name": "init-folders",
+      "description": "Create task folder structure, aggregator cache, and .gitkeep files.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 4,
+      "name": "research-papers",
+      "description": "Skipped: stt-benchmark-run task type does not list research-papers as an optional step.",
+      "status": "skipped",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 5,
+      "name": "research-internet",
+      "description": "Skipped: stt-benchmark-run task type does not list research-internet as an optional step.",
+      "status": "skipped",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 6,
+      "name": "research-code",
+      "description": "Review t0004 keyword vocabulary list, t0001 benchmark dataset loader, and t0006 parallel benchmark code for reuse in Granite inference scripts.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 7,
+      "name": "planning",
+      "description": "Design GPU inference pipeline for two Granite 4.1 2B runs (no-biasing and keyword-biased), estimate compute cost, and specify prediction asset schema.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 8,
+      "name": "setup-machines",
+      "description": "Provision A100 or H100 GPU instance (6-8 GB VRAM required for Granite 4.1 2B) on Vast.ai or equivalent.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 9,
+      "name": "implementation",
+      "description": "Run Granite 4.1 2B batch inference (no-biasing and keyword-biased) on all 93 gold-92 clips, compute all registered metrics with BCa bootstrap CIs, and produce two predictions assets.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 10,
+      "name": "teardown",
+      "description": "Destroy GPU instance after implementation, update machine_log.json and costs.json with final usage.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 11,
+      "name": "creative-thinking",
+      "description": "Skipped: stt-benchmark-run task type does not list creative-thinking as an optional step.",
+      "status": "skipped",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 12,
+      "name": "results",
+      "description": "Write results_summary.md, results_detailed.md, metrics.json, costs.json, and comparison charts for Granite no-biasing vs. keyword-biased vs. Whisper baseline.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 13,
+      "name": "compare-literature",
+      "description": "Compare Granite 4.1 2B metrics against published HuggingFace Open ASR Leaderboard results and prior t0004 Whisper baseline.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 14,
+      "name": "suggestions",
+      "description": "Generate suggestions.json for follow-up tasks based on Granite benchmark findings (e.g., fine-tuning, streaming path, production integration).",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    },
+    {
+      "step": 15,
+      "name": "reporting",
+      "description": "Run all verificators, capture session transcripts, set task.json status to completed, and finalize the task.",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": null
+    }
+  ]
+}
