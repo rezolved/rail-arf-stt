@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0008_moonshine_v2_benchmark"
-updated_at: "2026-06-25T12:30:00Z"
-completed_steps: 11
-next_step_number: 6
-next_step_id: "results"
+updated_at: "2026-06-25T09:35:00Z"
+completed_steps: 12
+next_step_number: 7
+next_step_id: "compare-literature"
 ---
 # Task Objective
 
@@ -94,10 +94,19 @@ action_critical_wer=34.2%, intent_preservation=87.1%, wrong_action_rate=12.9%, l
 
 * * *
 
+### Step 6 — results
+
+All required results files written: results_summary.md, results_detailed.md (13-REQ coverage table,
+10 examples, analysis), metrics.json (7 keys, all verified), costs.json ($0),
+remote_machines_used.json ([]). `verify_task_results` and `verify_task_metrics` both passed.
+
+* * *
+
 ## Next Step Notes
 
-Step 5 (implementation) completed. Proceed to step 6 (results): write `results/results_summary.md`,
-`results/results_detailed.md`, and `results/costs.json` using measured metrics from
-`results/metrics.json` and `data/analysis_output.json`. All 13 REQ items have evidence. Key finding:
-Moonshine v2 Medium entity_accuracy_domain_vocab=9.1% is far below Whisper 94.5% baseline. Shallow
-fusion verdict: "needs research". Latency is excellent: warmed p50=0.233s.
+Step 6 (results) completed. Proceed to step 7 (compare-literature): spawn a subagent to execute the
+`/compare-literature` skill. Key metrics to compare against literature: WER=16.6%,
+entity_accuracy_gold92=21.7%, entity_accuracy_domain_vocab=9.1%, latency_p50=0.232s. The model is
+`UsefulSensors/moonshine-streaming-medium` (266M params). The primary comparator from t0004 is
+Whisper large-v3 + initial_prompt. Papers in the project corpus may include work on Moonshine,
+Whisper, or shallow-fusion STT biasing.

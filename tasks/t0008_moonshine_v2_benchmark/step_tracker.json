@@ -51,8 +51,8 @@
       "step": 6,
       "name": "results",
       "description": "Write results_summary.md, results_detailed.md, metrics.json with all registered metrics and comparisons vs. Whisper baseline.",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-06-25T09:28:45Z",
       "completed_at": null,
       "log_file": "logs/steps/006_results/"
     },
