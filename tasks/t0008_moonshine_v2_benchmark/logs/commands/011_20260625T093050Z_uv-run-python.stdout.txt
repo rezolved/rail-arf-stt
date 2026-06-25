@@ -1,0 +1,4 @@
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark/tasks/t0008_moonshine_v2_benchmark/results
+
+[32m[1mPASSED[0m — no errors or warnings
