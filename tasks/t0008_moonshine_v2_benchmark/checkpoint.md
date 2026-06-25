@@ -83,14 +83,17 @@ remote_machines_used.json ([]). `verify_task_results` and `verify_task_metrics` 
 ### Step 7 — compare-literature
 
 `results/compare_literature.md` written and verified (0 errors, 0 warnings). Compared Moonshine v2
-Medium against: (1) Kudlur2026 (arXiv 2602.12241): published WER=6.65% on Open ASR Leaderboard vs.
-gold-92 WER=16.6% (+9.95pp domain mismatch); latency 258ms (ONNX/M3) vs. 232ms (Transformers/CPU),
-directionally consistent. (2) t0004 Whisper large-v3 + initial_prompt: entity_accuracy_domain_vocab
-94.5% vs. 9.1% (−85.4pp, biased vs. unbiased cross-model); latency 6.66s vs. 0.232s (Moonshine 29x
-faster). (3) t0004 Moonshine base: entity_accuracy identical at 21.7% (0pp delta), confirming entity
-failure is vocabulary-driven not capacity-driven. Key finding: v2 Medium adds no entity accuracy
-over base despite 7x more parameters; biasing is required before Moonshine can serve as an edge
-fallback.
+Medium against Kudlur2026 (WER gap +9.95pp, domain mismatch), t0004 Whisper biased baseline
+(entity_accuracy_domain_vocab 9.1% vs. 94.5%), and t0004 Moonshine base (entity accuracy identical
+at 21.7% — vocabulary-driven not capacity-driven). Moonshine 29x faster on latency.
+
+### Step 8 — suggestions
+
+3 suggestions generated and written to `results/suggestions.json`. Verificator passed with 0 errors
+and 0 warnings. Suggestions: S-0008-01 (Moonshine ONNX Medium latency benchmark, medium priority),
+S-0008-02 (Moonshine model-size entity accuracy ablation, medium priority), S-0008-03 (Rezolve IR
+transcript corpus preprocessing for KenLM, medium priority). Deduplicated against 23 existing
+uncovered suggestions and 8 existing tasks — no duplicates found.
 
 * * *
 
@@ -105,15 +108,6 @@ fallback.
 - Model: moonshine_onnx only supports v1 tiny/base. Using `UsefulSensors/moonshine-streaming-medium`
   via HuggingFace Transformers (`MoonshineStreamingForConditionalGeneration`) as the v2 Medium
   equivalent. Documented in code/paths.py.
-
-### Step 8 — suggestions
-
-3 suggestions generated and written to `results/suggestions.json`. Verificator passed with 0 errors
-and 0 warnings. Suggestions: S-0008-01 (Moonshine ONNX Medium latency benchmark, medium priority),
-S-0008-02 (Moonshine model-size entity accuracy ablation, medium priority), S-0008-03 (Rezolve IR
-transcript corpus preprocessing for KenLM, medium priority). Deduplicated against 23 existing
-uncovered suggestions and 8 existing tasks — no duplicates found. S-0005-04 covers shallow fusion
-implementation; all three new suggestions are non-overlapping.
 
 ## Next Step Notes
 
