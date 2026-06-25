@@ -1,0 +1,11 @@
+{
+  "task_id": "t0008_moonshine_v2_benchmark",
+  "checked_at": "2026-06-25T08:53:00Z",
+  "result": "passed",
+  "dependencies": [
+    {"task_id": "t0001_stt_benchmark", "status": "completed", "satisfied": true},
+    {"task_id": "t0004_vocabulary_biasing_experiment", "status": "completed", "satisfied": true}
+  ],
+  "errors": 0,
+  "warnings": 0
+}
