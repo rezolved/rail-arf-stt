@@ -50,10 +50,10 @@
       "step": 6,
       "name": "research-code",
       "description": "Review t0004 keyword vocabulary list, t0001 benchmark dataset loader, and t0006 parallel benchmark code for reuse in Granite inference scripts.",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-06-25T07:35:17Z",
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/006_research-code/"
     },
     {
       "step": 7,

@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0007_ibm_granite_4_1_benchmark"
-updated_at: "2026-06-25T07:34:00Z"
-completed_steps: 6
-next_step_number: 6
-next_step_id: "research-code"
+updated_at: "2026-06-25T07:42:00Z"
+completed_steps: 7
+next_step_number: 7
+next_step_id: "planning"
 ---
 # Task Objective
 
@@ -47,6 +47,15 @@ script; key output is `logs/steps/003_init-folders/folders_created.txt`. Aggrega
 in `tasks/t0007_ibm_granite_4_1_benchmark/ctx/` (task_types.json, costs.json, tasks.json,
 metrics.json, suggestions.json) for subagent reuse throughout the task.
 
+### Step 6 — research-code
+
+Reviewed all completed task code (t0001, t0002, t0004, t0005) — no registered libraries exist in
+this project; all harness code must be copied from t0004 into `code/`. Primary reuse target is t0004
+with five files identified: `load_dataset.py`, `compute_metrics_biased.py`, `constants.py`,
+`write_predictions.py`, and `run_whisper_biased.py`. Baseline to beat: 94.5% domain-vocab entity
+accuracy, 8.5% WER, 6.66s p50 latency (Whisper large-v3 + initial_prompt). Research summary
+compressed to `research/research_summary.md` (6.5 KB) for downstream agent use.
+
 * * *
 
 ## Cross-Step Decisions
@@ -55,8 +64,9 @@ metrics.json, suggestions.json) for subagent reuse throughout the task.
 
 ## Next Step Notes
 
-Step 3 (init-folders) completed successfully. Proceed to step 6 (research-code) to review reusable
-code from t0004 (keyword vocabulary biasing implementation) and t0001 (gold-92 dataset loader) and
-any t0006 parallel benchmark scripts. The aggregator cache in `ctx/` is now populated and should be
-used by downstream subagents instead of re-running aggregators. Both dependency task outputs
-(gold-92 WAV clips and vocabulary biasing baseline predictions) are available via DVC pull.
+Step 6 (research-code) completed successfully with research summary produced. Proceed to step 7
+(planning): the plan must specify which t0004 scripts to copy verbatim vs. adapt for Granite Speech
+4.1 2B, confirm the Granite keyword biasing API parameter (flagged as the top implementation risk),
+estimate GPU cost on A100/H100 to achieve target ≤200 ms p50 latency, and define the prediction
+asset variant structure for side-by-side comparison with the t0004 Whisper baseline. Load
+`research/research_summary.md` instead of the full research files.
