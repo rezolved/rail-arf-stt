@@ -28,31 +28,31 @@ Both dependencies verified as completed: `t0001_stt_benchmark` and
 `t0004_vocabulary_biasing_experiment`. Result written to
 `logs/steps/002_check-deps/deps_report.json` with 0 errors and 0 warnings.
 
-### Step 10 — research-papers (skipped)
+### Step 10 — research-papers
 
-No relevant papers in corpus for STT shallow-fusion benchmarking beyond t0004 and t0005.
+Skipped — no relevant papers in corpus for STT shallow-fusion benchmarking beyond t0004 and t0005.
 
-### Step 11 — research-internet (skipped)
+### Step 11 — research-internet
 
-Task scope is limited to benchmarking and feasibility assessment; sufficient domain knowledge from
-t0004 and t0005.
+Skipped — task scope is limited to benchmarking and feasibility assessment; sufficient domain
+knowledge from t0004 and t0005.
 
-### Step 12 — research-code (skipped)
+### Step 12 — research-code
 
-Task does not require research into prior task code; uses t0004 predictions and t0001 benchmark data
-directly.
+Skipped — task does not require research into prior task code; uses t0004 predictions and t0001
+benchmark data directly.
 
-### Step 13 — setup-machines (skipped)
+### Step 13 — setup-machines
 
-All computation runs on local CPU; no remote machines required.
+Skipped — all computation runs on local CPU; no remote machines required.
 
-### Step 14 — teardown (skipped)
+### Step 14 — teardown
 
-No remote machines to tear down.
+Skipped — no remote machines to tear down.
 
-### Step 15 — creative-thinking (skipped)
+### Step 15 — creative-thinking
 
-Task scope is well-defined; creative alternatives addressed in planning phase.
+Skipped — task scope is well-defined; creative alternatives addressed in planning phase.
 
 * * *
 
