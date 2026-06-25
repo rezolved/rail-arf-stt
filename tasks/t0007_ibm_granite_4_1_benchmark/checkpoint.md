@@ -2,7 +2,7 @@
 spec_version: "1"
 task_id: "t0007_ibm_granite_4_1_benchmark"
 updated_at: "2026-06-25T07:33:00Z"
-completed_steps: 2
+completed_steps: 5
 next_step_number: 3
 next_step_id: "init-folders"
 ---
@@ -27,6 +27,18 @@ mechanical setup step with no research output.
 Both dependencies verified as completed: t0001_stt_benchmark (gold-92 dataset ingestion) and
 t0004_vocabulary_biasing_experiment (Whisper initial_prompt biasing baseline). Result written to
 `logs/steps/002_check-deps/deps_report.json` with 0 errors and 0 warnings.
+
+### Step 4 — research-papers
+
+Skipped: stt-benchmark-run task type does not list research-papers as an optional step.
+
+### Step 5 — research-internet
+
+Skipped: stt-benchmark-run task type does not list research-internet as an optional step.
+
+### Step 11 — creative-thinking
+
+Skipped: stt-benchmark-run task type does not list creative-thinking as an optional step.
 
 * * *
 
