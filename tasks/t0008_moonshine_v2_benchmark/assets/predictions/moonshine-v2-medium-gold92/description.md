@@ -1,4 +1,5 @@
 ---
+spec_version: "1"
 predictions_id: moonshine-v2-medium-gold92
 task: t0008_moonshine_v2_benchmark
 date_created: "2026-06-25"
@@ -62,6 +63,14 @@ Each line in `files/predictions-gold92.jsonl` is a JSON object with:
 | Intent preservation | 0.8710 |
 | Wrong-action rate | 0.1290 |
 | Latency p50 (warmed) | 0.233s |
+
+## Main Ideas
+
+- Moonshine v2 Medium (CPU) achieves WER=16.6% on gold-92, 2x worse than Whisper large-v3 (8.5%)
+- Domain-vocabulary entity accuracy is 9.1% vs 94.5% for Whisper with biasing — 85pp gap
+- Excellent warmed latency: 0.233s p50 (29x faster than Whisper 6.66s)
+- Entity recognition failures are vocabulary-driven (OOV domain terms), not capacity-driven
+- Model is not production-ready for Rezolve's voice commerce use case without vocabulary biasing
 
 ## Summary
 

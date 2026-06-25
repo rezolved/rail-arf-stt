@@ -1,4 +1,5 @@
 ---
+spec_version: "1"
 predictions_id: moonshine-v2-medium-gold92-biasing-assessment
 task: t0008_moonshine_v2_benchmark
 date_created: "2026-06-25"
@@ -38,6 +39,17 @@ Assessment document only. See `files/shallow_fusion_feasibility.md` for the full
 ## Metrics
 
 Not applicable (no inference run for this asset).
+
+## Main Ideas
+
+- Moonshine v2 Medium uses an encoder-decoder architecture that blocks the easiest shallow-fusion
+  path (CTC hotword boosting via pyctcdecode)
+- Log-linear N-best rescoring (KenLM domain LM) is the recommended approach: ~3-5 days effort,
+  +50-80ms latency overhead per clip
+- Feasibility verdict: "needs research" — the approach is architecturally viable but 85pp entity
+  accuracy gap vs Whisper biased is unlikely to close fully from shallow fusion alone
+- Hybrid routing (Moonshine for latency-critical queries, Whisper for entity-critical) may offer the
+  best production trade-off
 
 ## Summary
 
