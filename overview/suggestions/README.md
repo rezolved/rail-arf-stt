@@ -1,6 +1,6 @@
 # Research Suggestions Backlog
 
-25 suggestions **24 open** (9 high, 13 medium, 2 low), **1 closed**.
+28 suggestions **26 open** (8 high, 16 medium, 2 low), **2 closed**.
 
 **Browse by view**: By category: [`audio-datasets`](by-category/audio-datasets.md),
 [`commercial-apis`](by-category/commercial-apis.md),
@@ -58,30 +58,6 @@ latency under concurrent load. Test both shallow-fusion (low-latency) and deep-b
 variants if available. If TTFT <200ms achievable and entity accuracy competitive with Granite,
 Paraformer becomes a strong alternative. Also measure integration complexity vs. Granite to
 inform production selection. Recommended task types: stt-benchmark-run, experiment-run.
-
-</details>
-
-<details>
-<summary>🧪 <strong>Benchmark IBM Granite Speech 4.1 2B on gold-92 for entity
-accuracy and latency</strong> (S-0005-01)</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `S-0005-01` |
-| **Kind** | experiment |
-| **Date added** | 2026-06-24 |
-| **Source task** | [`t0005_stt_model_survey_brainpowa`](../../overview/tasks/task_pages/t0005_stt_model_survey_brainpowa.md) |
-| **Source paper** | — |
-| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/) |
-
-IBM Granite Speech 4.1 2B ranks #1 on the Open ASR Leaderboard (5.33% WER) and includes native
-keyword biasing with published F1 metrics. Run a controlled benchmark on gold-92 against the
-current Whisper turbo + initial_prompt baseline. Measure entity accuracy (substring match),
-overall WER, keyword recall (F1), and end-to-end latency on both p50 and p95 percentiles. If
-entity accuracy improves >10% and latency remains <800ms p50, Granite becomes the recommended
-primary candidate for production integration. If entity biasing falls short, test variant
-configurations (e.g., larger biasing context window). Recommended task types:
-stt-benchmark-run, experiment-run.
 
 </details>
 
@@ -271,6 +247,28 @@ Adding S2ER alongside WER and entity accuracy provides a direct proxy for the pr
 metric of wrong-action rate below 2%. Implementation: add an LLM judge (GPT-4o) call per
 utterance that scores semantic equivalence between reference and hypothesis. Recommended task
 types: stt-benchmark-run, write-library.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Benchmark Moonshine ONNX Medium on gold-92 when UsefulSensors
+ships the ONNX export</strong> (S-0008-01)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0008-01` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-25 |
+| **Source task** | [`t0008_moonshine_v2_benchmark`](../../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`latency-profiling`](../../meta/categories/latency-profiling/) |
+
+t0008 used the HuggingFace Transformers CPU backend because moonshine_onnx does not include a
+Medium variant. The ONNX export is expected to be ~30ms faster per clip, which would bring
+warmed p50 from 233ms to ~200ms and potentially meet the project latency target. Once
+UsefulSensors ships an ONNX Medium model, run it on all 93 gold-92 clips using the same
+inference harness as t0008 and compare latency p50/p95/p99 and entity accuracy. Recommended
+task types: stt-benchmark-run.
 
 </details>
 
@@ -467,6 +465,54 @@ latency-profiling, experiment-run.
 </details>
 
 <details>
+<summary>🧪 <strong>Moonshine model-size ablation: benchmark tiny, base, and large
+variants on gold-92 entity accuracy</strong> (S-0008-02)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0008-02` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-25 |
+| **Source task** | [`t0008_moonshine_v2_benchmark`](../../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`latency-profiling`](../../meta/categories/latency-profiling/) |
+
+t0008 found that Moonshine v2 Medium (266M params) achieves exactly the same
+entity_accuracy_gold92 (21.7%) and entity_accuracy_domain_vocab (9.1%) as the base model (38M
+params) from t0004. This contradicts the assumption that a larger model would improve entity
+recall. A controlled ablation across all published Moonshine variants (tiny, base,
+streaming-medium, and any large variant) would confirm whether the entity accuracy plateau is
+a training-distribution gap or a tokenizer/decoder limit, and would determine the optimal
+model size for latency/accuracy trade-off before investing in S-0005-04 shallow fusion work.
+Recommended task types: stt-benchmark-run, comparative-analysis.
+
+</details>
+
+<details>
+<summary>📂 <strong>Preprocess Rezolve investor-relations transcript corpus for KenLM
+domain language model training</strong> (S-0008-03)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0008-03` |
+| **Kind** | dataset |
+| **Date added** | 2026-06-25 |
+| **Source task** | [`t0008_moonshine_v2_benchmark`](../../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |
+| **Source paper** | — |
+| **Categories** | [`audio-datasets`](../../meta/categories/audio-datasets/), [`entity-correction`](../../meta/categories/entity-correction/) |
+
+The t0008 shallow fusion feasibility assessment (Approach 1) identified that implementing
+log-linear N-best rescoring for Moonshine requires a domain LM trained on Rezolve
+investor-relations text. The corpus exists (annual reports, investor presentations, brainpowa
+session transcripts) but is noted as not yet preprocessed. Curate and clean this corpus into a
+plaintext format suitable for KenLM trigram training, covering at minimum the 31-term domain
+vocabulary and surrounding IR context. Estimated size: 50k–500k tokens. This unblocks both the
+Moonshine shallow fusion task (S-0005-04) and any future domain adaptation work. Recommended
+task types: audio-dataset-curation.
+
+</details>
+
+<details>
 <summary>📊 <strong>Quantify entity accuracy gain vs. integration effort for Granite
 vs. Paraformer</strong> (S-0005-09)</summary>
 
@@ -585,6 +631,32 @@ BR-ASR. Recommended task types: internet-research.
 </details>
 
 ## Closed
+
+<details>
+<summary>✅ <s>Benchmark IBM Granite Speech 4.1 2B on gold-92 for entity accuracy and
+latency</s> — covered by <a
+href="../../tasks/t0007_ibm_granite_4_1_benchmark/"><code>t0007_ibm_granite_4_1_benchmark</code></a>
+(S-0005-01)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0005-01` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-24 |
+| **Source task** | [`t0005_stt_model_survey_brainpowa`](../../overview/tasks/task_pages/t0005_stt_model_survey_brainpowa.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/) |
+
+IBM Granite Speech 4.1 2B ranks #1 on the Open ASR Leaderboard (5.33% WER) and includes native
+keyword biasing with published F1 metrics. Run a controlled benchmark on gold-92 against the
+current Whisper turbo + initial_prompt baseline. Measure entity accuracy (substring match),
+overall WER, keyword recall (F1), and end-to-end latency on both p50 and p95 percentiles. If
+entity accuracy improves >10% and latency remains <800ms p50, Granite becomes the recommended
+primary candidate for production integration. If entity biasing falls short, test variant
+configurations (e.g., larger biasing context window). Recommended task types:
+stt-benchmark-run, experiment-run.
+
+</details>
 
 <details>
 <summary>✅ <s>Prototype Ron2026 initial_prompt multi-agent pipeline on gold-92</s> —

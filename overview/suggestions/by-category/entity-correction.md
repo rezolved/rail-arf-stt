@@ -1,7 +1,7 @@
 # Suggestions: `entity-correction`
 
-8 suggestion(s) in category [`entity-correction`](../../../meta/categories/entity-correction/)
-**7 open** (2 high, 4 medium, 1 low), **1 closed**.
+9 suggestion(s) in category [`entity-correction`](../../../meta/categories/entity-correction/)
+**8 open** (2 high, 5 medium, 1 low), **1 closed**.
 
 [Back to all suggestions](../README.md)
 
@@ -149,6 +149,30 @@ external biasing + Moonshine latency (263ms+) remains under 800ms total voice-to
 budget, and whether entity accuracy is competitive with Granite. If successful, Moonshine
 becomes a viable edge-deployment alternative. Recommended task types:
 post-correction-experiment, write-library.
+
+</details>
+
+<details>
+<summary>📂 <strong>Preprocess Rezolve investor-relations transcript corpus for KenLM
+domain language model training</strong> (S-0008-03)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0008-03` |
+| **Kind** | dataset |
+| **Date added** | 2026-06-25 |
+| **Source task** | [`t0008_moonshine_v2_benchmark`](../../../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |
+| **Source paper** | — |
+| **Categories** | [`audio-datasets`](../../../meta/categories/audio-datasets/), [`entity-correction`](../../../meta/categories/entity-correction/) |
+
+The t0008 shallow fusion feasibility assessment (Approach 1) identified that implementing
+log-linear N-best rescoring for Moonshine requires a domain LM trained on Rezolve
+investor-relations text. The corpus exists (annual reports, investor presentations, brainpowa
+session transcripts) but is noted as not yet preprocessed. Curate and clean this corpus into a
+plaintext format suitable for KenLM trigram training, covering at minimum the 31-term domain
+vocabulary and surrounding IR context. Estimated size: 50k–500k tokens. This unblocks both the
+Moonshine shallow fusion task (S-0005-04) and any future domain adaptation work. Recommended
+task types: audio-dataset-curation.
 
 </details>
 

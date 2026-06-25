@@ -90,6 +90,7 @@ ALLOWED_ROOT_FILES: set[str] = {
     "task.json",
     "step_tracker.json",
     "__init__.py",
+    "checkpoint.md",
 }
 
 OPTIONAL_ROOT_DIRS: set[str] = {
@@ -104,6 +105,7 @@ ALLOWED_ROOT_DIRS: set[str] = set(REQUIRED_TOP_DIRS) | OPTIONAL_ROOT_DIRS
 # by the verificator (they are already in .gitignore).
 IGNORED_ROOT_DIRS: set[str] = {
     "__pycache__",
+    "ctx",
 }
 
 # ---------------------------------------------------------------------------

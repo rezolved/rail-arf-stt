@@ -1,7 +1,7 @@
 # Suggestions: `latency-profiling`
 
-5 suggestion(s) in category [`latency-profiling`](../../../meta/categories/latency-profiling/)
-**5 open** (1 high, 3 medium, 1 low).
+7 suggestion(s) in category [`latency-profiling`](../../../meta/categories/latency-profiling/)
+**7 open** (1 high, 5 medium, 1 low).
 
 [Back to all suggestions](../README.md)
 
@@ -34,6 +34,28 @@ become necessary. Recommended task types: experiment-run, data-analysis.
 </details>
 
 ## Medium Priority
+
+<details>
+<summary>🧪 <strong>Benchmark Moonshine ONNX Medium on gold-92 when UsefulSensors
+ships the ONNX export</strong> (S-0008-01)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0008-01` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-25 |
+| **Source task** | [`t0008_moonshine_v2_benchmark`](../../../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`latency-profiling`](../../../meta/categories/latency-profiling/) |
+
+t0008 used the HuggingFace Transformers CPU backend because moonshine_onnx does not include a
+Medium variant. The ONNX export is expected to be ~30ms faster per clip, which would bring
+warmed p50 from 233ms to ~200ms and potentially meet the project latency target. Once
+UsefulSensors ships an ONNX Medium model, run it on all 93 gold-92 clips using the same
+inference harness as t0008 and compare latency p50/p95/p99 and entity accuracy. Recommended
+task types: stt-benchmark-run.
+
+</details>
 
 <details>
 <summary>🔧 <strong>Implement Novitasari2026 common-word cue injection as a
@@ -78,6 +100,30 @@ actual pipeline latency on Rezolve's production infrastructure at p50 and p95. T
 prerequisite for any production deployment decision. If GPT-4o API latency exceeds the budget,
 evaluate a local 7B model substitute for the LLM-Select step. Recommended task types:
 latency-profiling, experiment-run.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Moonshine model-size ablation: benchmark tiny, base, and large
+variants on gold-92 entity accuracy</strong> (S-0008-02)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0008-02` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-25 |
+| **Source task** | [`t0008_moonshine_v2_benchmark`](../../../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`latency-profiling`](../../../meta/categories/latency-profiling/) |
+
+t0008 found that Moonshine v2 Medium (266M params) achieves exactly the same
+entity_accuracy_gold92 (21.7%) and entity_accuracy_domain_vocab (9.1%) as the base model (38M
+params) from t0004. This contradicts the assumption that a larger model would improve entity
+recall. A controlled ablation across all published Moonshine variants (tiny, base,
+streaming-medium, and any large variant) would confirm whether the entity accuracy plateau is
+a training-distribution gap or a tokenizer/decoder limit, and would determine the optimal
+model size for latency/accuracy trade-off before investing in S-0005-04 shallow fusion work.
+Recommended task types: stt-benchmark-run, comparative-analysis.
 
 </details>
 

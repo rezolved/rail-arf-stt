@@ -5,7 +5,7 @@ STT experiments.
 
 [Back to Dashboard](../README.md)
 
-**Detail pages**: [Suggestions (4)](../suggestions/by-category/audio-datasets.md) | [Datasets
+**Detail pages**: [Suggestions (5)](../suggestions/by-category/audio-datasets.md) | [Datasets
 (1)](../datasets/by-category/audio-datasets.md)
 
 ---
@@ -22,7 +22,25 @@ No tasks related to this category.
 
 No answers in this category.
 
-## Suggestions (4 open, 0 closed)
+## Suggestions (5 open, 0 closed)
+
+<details>
+<summary>📂 <strong>Preprocess Rezolve investor-relations transcript corpus for KenLM
+domain language model training</strong> (S-0008-03)</summary>
+
+**Kind**: dataset | **Priority**: medium | **Date**: 2026-06-25 | **Source**:
+[t0008_moonshine_v2_benchmark](../../tasks/t0008_moonshine_v2_benchmark/)
+
+The t0008 shallow fusion feasibility assessment (Approach 1) identified that implementing
+log-linear N-best rescoring for Moonshine requires a domain LM trained on Rezolve
+investor-relations text. The corpus exists (annual reports, investor presentations, brainpowa
+session transcripts) but is noted as not yet preprocessed. Curate and clean this corpus into a
+plaintext format suitable for KenLM trigram training, covering at minimum the 31-term domain
+vocabulary and surrounding IR context. Estimated size: 50k–500k tokens. This unblocks both the
+Moonshine shallow fusion task (S-0005-04) and any future domain adaptation work. Recommended
+task types: audio-dataset-curation.
+
+</details>
 
 <details>
 <summary>🧪 <strong>Domain fine-tuning of Whisper turbo on Rezolve investor-relations

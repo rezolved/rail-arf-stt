@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive type_id="suggestions" generated_at_utc="2026-06-24T11:08:56Z">
+<llm_context_archive type_id="suggestions" generated_at_utc="2026-06-25T09:59:24Z">
   <archive_summary>
     <title>All Suggestions</title>
     <description>Complete suggestion list with full descriptions, priority, and status.</description>
     <section_count>1</section_count>
-    <char_count>24166</char_count>
-    <byte_count>24192</byte_count>
-    <estimated_tokens>6041</estimated_tokens>
+    <char_count>26910</char_count>
+    <byte_count>26938</byte_count>
+    <estimated_tokens>6727</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -42,9 +42,12 @@
         <id>S-0005-08</id>
         <id>S-0005-09</id>
         <id>S-0005-10</id>
+        <id>S-0008-01</id>
+        <id>S-0008-02</id>
+        <id>S-0008-03</id>
       </source_ids>
       <content>
-Suggestions: 25
+Suggestions: 28
 
 ## Vocabulary-biased Whisper inference via STT_INITIAL_PROMPT on gold-92
 ID: S-0002-01
@@ -326,6 +329,39 @@ Categories: latency-profiling, stt-evaluation
 Date added: 2026-06-24
 
 If benchmarking shows that Granite or Paraformer meet accuracy targets but exceed VRAM or latency budgets at scale, implement quantized (int8/float16) variants using ONNX, TensorRT, or vLLM to reduce model size and improve inference speed. Moonshine already ships as a 245M-parameter model optimized for edge; quantization could reduce Granite (2B) and Paraformer (varies) to similar footprints. Measure quantization impact on entity accuracy and latency. If quantization preserves accuracy within 1–2% while halving latency, quantized variants become the recommended production deployment. Recommended task types: experiment-run, build-model.
+
+## Benchmark Moonshine ONNX Medium on gold-92 when UsefulSensors ships the ONNX export
+ID: S-0008-01
+Status: active
+Priority: medium
+Kind: experiment
+Source task: t0008_moonshine_v2_benchmark
+Categories: stt-evaluation, latency-profiling
+Date added: 2026-06-25
+
+t0008 used the HuggingFace Transformers CPU backend because moonshine_onnx does not include a Medium variant. The ONNX export is expected to be ~30ms faster per clip, which would bring warmed p50 from 233ms to ~200ms and potentially meet the project latency target. Once UsefulSensors ships an ONNX Medium model, run it on all 93 gold-92 clips using the same inference harness as t0008 and compare latency p50/p95/p99 and entity accuracy. Recommended task types: stt-benchmark-run.
+
+## Moonshine model-size ablation: benchmark tiny, base, and large variants on gold-92 entity accuracy
+ID: S-0008-02
+Status: active
+Priority: medium
+Kind: experiment
+Source task: t0008_moonshine_v2_benchmark
+Categories: stt-evaluation, latency-profiling
+Date added: 2026-06-25
+
+t0008 found that Moonshine v2 Medium (266M params) achieves exactly the same entity_accuracy_gold92 (21.7%) and entity_accuracy_domain_vocab (9.1%) as the base model (38M params) from t0004. This contradicts the assumption that a larger model would improve entity recall. A controlled ablation across all published Moonshine variants (tiny, base, streaming-medium, and any large variant) would confirm whether the entity accuracy plateau is a training-distribution gap or a tokenizer/decoder limit, and would determine the optimal model size for latency/accuracy trade-off before investing in S-0005-04 shallow fusion work. Recommended task types: stt-benchmark-run, comparative-analysis.
+
+## Preprocess Rezolve investor-relations transcript corpus for KenLM domain language model training
+ID: S-0008-03
+Status: active
+Priority: medium
+Kind: dataset
+Source task: t0008_moonshine_v2_benchmark
+Categories: audio-datasets, entity-correction
+Date added: 2026-06-25
+
+The t0008 shallow fusion feasibility assessment (Approach 1) identified that implementing log-linear N-best rescoring for Moonshine requires a domain LM trained on Rezolve investor-relations text. The corpus exists (annual reports, investor presentations, brainpowa session transcripts) but is noted as not yet preprocessed. Curate and clean this corpus into a plaintext format suitable for KenLM trigram training, covering at minimum the 31-term domain vocabulary and surrounding IR context. Estimated size: 50k–500k tokens. This unblocks both the Moonshine shallow fusion task (S-0005-04) and any future domain adaptation work. Recommended task types: audio-dataset-curation.
       </content>
     </section>
   </sections>

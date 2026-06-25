@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive type_id="predictions" generated_at_utc="2026-06-24T11:08:56Z">
+<llm_context_archive type_id="predictions" generated_at_utc="2026-06-25T09:59:24Z">
   <archive_summary>
     <title>All Predictions</title>
     <description>Complete predictions inventory with full descriptions, metrics, and model references.</description>
     <section_count>1</section_count>
-    <char_count>46073</char_count>
-    <byte_count>46223</byte_count>
-    <estimated_tokens>11518</estimated_tokens>
+    <char_count>52947</char_count>
+    <byte_count>53105</byte_count>
+    <estimated_tokens>13236</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -22,9 +22,11 @@
         <id>whisper-large-v3-gold92</id>
         <id>whisper-turbo-biased</id>
         <id>whisper-turbo-gold92</id>
+        <id>moonshine-v2-medium-gold92</id>
+        <id>moonshine-v2-medium-gold92-biasing-assessment</id>
       </source_ids>
       <content>
-Predictions: 5
+Predictions: 7
 
 ## Moonshine Base on Gold-92 (no vocabulary biasing)
 ID: moonshine-base-gold92
@@ -788,6 +790,157 @@ subsequent fine-tuning and post-correction experiments. The 10.6% WER baseline a
 latency define the starting point that domain adaptation must beat. Both WER and latency
 improvements require GPU infrastructure or specialised lightweight models rather than model-size
 changes within the Whisper family.
+
+## Moonshine v2 Medium on Gold-92
+ID: moonshine-v2-medium-gold92
+Created by task: t0008_moonshine_v2_benchmark
+Date created: 2026-06-25
+Format: jsonl
+Schema: clip_id (string), ground_truth (string), prediction (string), wer_local (float), entity_accuracy_local (float or null), latency_ms (float), latency_stage (string: cold_start|warmup|warmed)
+Model description: Moonshine Streaming Medium (UsefulSensors/moonshine-streaming-medium), transformers CPU inference, ~266M params, sliding-window Transformer encoder
+Datasets: stt-benchmark-gold-92
+Instance count: 93
+Metrics at creation: {&quot;wer_gold92&quot;: 0.165496, &quot;entity_accuracy_gold92&quot;: 0.217029, &quot;entity_accuracy_domain_vocab&quot;: 0.090909, &quot;intent_preservation_gold92&quot;: 0.870968, &quot;latency_p50_seconds&quot;: 0.2321}
+Categories: stt-evaluation
+
+- **Model:** UsefulSensors/moonshine-streaming-medium
+- **Task:** t0008_moonshine_v2_benchmark
+- **Dataset:** stt-benchmark-gold-92 (93 clips)
+- **Inference:** CPU, transformers 5.12.1, no biasing
+- **Date:** 2026-06-25
+
+#### Overview
+
+This asset contains per-clip predictions from Moonshine Streaming Medium on the gold-92 benchmark.
+Moonshine is a streaming Transformer encoder-decoder STT model from UsefulSensors, optimised for
+edge and low-latency deployment. The medium variant has approximately 266M parameters and uses a
+sliding-window encoder architecture.
+
+#### Model
+
+- **HuggingFace ID:** UsefulSensors/moonshine-streaming-medium
+- **Architecture:** Sliding-window Transformer encoder + auto-regressive decoder
+- **Params:** ~266M
+- **Framework:** HuggingFace Transformers (MoonshineStreamingForConditionalGeneration)
+- **Hardware:** CPU inference
+- **Biasing:** None (no vocabulary boosting or prompt injection)
+
+#### Data
+
+The gold-92 benchmark consists of 93 WAV audio clips from Rezolve production investor-relations
+sessions with accented English speech. Ground truth transcripts are from
+`tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/ground_truth.jsonl`.
+
+One anomaly clip (`error_en_0005`) has Cyrillic ground truth due to an annotation error; it is
+included in WER computation but excluded from entity accuracy aggregates.
+
+#### Prediction Format
+
+Each line in `files/predictions-gold92.jsonl` is a JSON object with:
+
+- `clip_id`: string identifier
+- `ground_truth`: reference transcript
+- `prediction`: Moonshine v2 Medium hypothesis
+- `wer_local`: per-clip word error rate (float)
+- `entity_accuracy_local`: per-clip entity accuracy (float or null for anomaly clip)
+- `latency_ms`: inference latency in milliseconds (float)
+- `latency_stage`: one of `cold_start`, `warmup`, `warmed`
+
+#### Metrics
+
+| Metric | Value |
+| --- | --- |
+| WER (gold-92) | 0.1655 |
+| Entity accuracy (gold-92) | 0.2170 |
+| Entity accuracy (domain vocab) | 0.0909 |
+| Action-critical WER | 0.3418 |
+| Intent preservation | 0.8710 |
+| Wrong-action rate | 0.1290 |
+| Latency p50 (warmed) | 0.233s |
+
+#### Main Ideas
+
+- Moonshine v2 Medium (CPU) achieves WER=16.6% on gold-92, 2x worse than Whisper large-v3 (8.5%)
+- Domain-vocabulary entity accuracy is 9.1% vs 94.5% for Whisper with biasing — 85pp gap
+- Excellent warmed latency: 0.233s p50 (29x faster than Whisper 6.66s)
+- Entity recognition failures are vocabulary-driven (OOV domain terms), not capacity-driven
+- Model is not production-ready for Rezolve&#x27;s voice commerce use case without vocabulary biasing
+
+#### Summary
+
+Moonshine v2 Medium achieves reasonable general WER (16.6%) but significantly underperforms Whisper
+on domain-specific entity accuracy (9.1% vs 94.5% domain-vocab accuracy). The model does not support
+vocabulary biasing or initial prompt injection, which explains the poor performance on
+Rezolve-specific entity terms. Warmed-up latency p50 is 0.233s, which is excellent for the streaming
+use case. The model is not recommended for production deployment without vocabulary biasing or
+fine-tuning.
+
+## Moonshine v2 Medium Shallow-Fusion Feasibility Assessment
+ID: moonshine-v2-medium-gold92-biasing-assessment
+Created by task: t0008_moonshine_v2_benchmark
+Date created: 2026-06-25
+Format: jsonl
+Schema: Assessment document only — no per-clip predictions. See files/shallow_fusion_feasibility.md.
+Model description: Moonshine v2 Medium — shallow fusion feasibility assessment (no inference run)
+Datasets: stt-benchmark-gold-92
+Categories: stt-evaluation
+
+- **Model:** UsefulSensors/moonshine-streaming-medium
+- **Task:** t0008_moonshine_v2_benchmark
+- **Type:** Feasibility assessment (no per-clip predictions)
+- **Date:** 2026-06-25
+
+#### Overview
+
+This asset documents a feasibility assessment for adding shallow-fusion vocabulary biasing to
+Moonshine v2 Medium. The assessment was motivated by the model&#x27;s low domain-vocabulary entity
+accuracy (9.1%) compared to Whisper with vocabulary biasing (94.5%). No inference was run for this
+asset; it is an architectural analysis only.
+
+#### Model
+
+- **HuggingFace ID:** UsefulSensors/moonshine-streaming-medium
+- **Architecture:** Sliding-window Transformer encoder-decoder (not CTC)
+- **Key constraint:** No `initial_prompt` support; no built-in hotword boosting
+
+#### Data
+
+References the gold-92 benchmark and Rezolve domain vocabulary (31 terms) from
+`tasks/t0004_vocabulary_biasing_experiment/code/constants.py`.
+
+#### Prediction Format
+
+Assessment document only. See `files/shallow_fusion_feasibility.md` for the full analysis.
+
+#### Metrics
+
+Not applicable (no inference run for this asset).
+
+#### Main Ideas
+
+- Moonshine v2 Medium uses an encoder-decoder architecture that blocks the easiest shallow-fusion
+  path (CTC hotword boosting via pyctcdecode)
+- Log-linear N-best rescoring (KenLM domain LM) is the recommended approach: ~3-5 days effort,
+  +50-80ms latency overhead per clip
+- Feasibility verdict: &quot;needs research&quot; — the approach is architecturally viable but 85pp entity
+  accuracy gap vs Whisper biased is unlikely to close fully from shallow fusion alone
+- Hybrid routing (Moonshine for latency-critical queries, Whisper for entity-critical) may offer the
+  best production trade-off
+
+#### Summary
+
+Three shallow-fusion approaches were assessed:
+
+1. **Log-linear N-best rescoring** (recommended): Rescore top-4 beams with a KenLM domain LM.
+   Effort: 3-5 days. Latency overhead: +50-80ms.
+2. **pyctcdecode CTC hotword boosting**: Requires CTC-head surgery or an official CTC variant.
+   Blocked by encoder-decoder architecture.
+3. **Lattice rescoring**: Similar to approach 1 but with full lattice; higher complexity for
+   marginal gain.
+
+**Verdict:** Viable for production (with effort), but the entity accuracy gap vs. Whisper is large.
+A hybrid routing strategy (Moonshine for latency-critical, Whisper for entity-critical) may be
+optimal.
       </content>
     </section>
   </sections>

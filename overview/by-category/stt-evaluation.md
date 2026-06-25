@@ -6,9 +6,9 @@ held-out set.
 [Back to Dashboard](../README.md)
 
 **Detail pages**: [Papers (17)](../papers/by-category/stt-evaluation.md) | [Suggestions
-(23)](../suggestions/by-category/stt-evaluation.md) | [Datasets
+(25)](../suggestions/by-category/stt-evaluation.md) | [Datasets
 (1)](../datasets/by-category/stt-evaluation.md) | [Predictions
-(5)](../predictions/by-category/stt-evaluation.md)
+(7)](../predictions/by-category/stt-evaluation.md)
 
 ---
 
@@ -768,23 +768,39 @@ only speaker IDs are needed as the block key.
 
 No answers in this category.
 
-## Suggestions (22 open, 1 closed)
+## Suggestions (23 open, 2 closed)
 
 <details>
-<summary>🧪 <strong>Benchmark IBM Granite Speech 4.1 2B on gold-92 for entity
-accuracy and latency</strong> (S-0005-01)</summary>
+<summary>🧪 <strong>Benchmark Moonshine ONNX Medium on gold-92 when UsefulSensors
+ships the ONNX export</strong> (S-0008-01)</summary>
 
-**Kind**: experiment | **Priority**: high | **Date**: 2026-06-24 | **Source**:
-[t0005_stt_model_survey_brainpowa](../../tasks/t0005_stt_model_survey_brainpowa/)
+**Kind**: experiment | **Priority**: medium | **Date**: 2026-06-25 | **Source**:
+[t0008_moonshine_v2_benchmark](../../tasks/t0008_moonshine_v2_benchmark/)
 
-IBM Granite Speech 4.1 2B ranks #1 on the Open ASR Leaderboard (5.33% WER) and includes native
-keyword biasing with published F1 metrics. Run a controlled benchmark on gold-92 against the
-current Whisper turbo + initial_prompt baseline. Measure entity accuracy (substring match),
-overall WER, keyword recall (F1), and end-to-end latency on both p50 and p95 percentiles. If
-entity accuracy improves >10% and latency remains <800ms p50, Granite becomes the recommended
-primary candidate for production integration. If entity biasing falls short, test variant
-configurations (e.g., larger biasing context window). Recommended task types:
-stt-benchmark-run, experiment-run.
+t0008 used the HuggingFace Transformers CPU backend because moonshine_onnx does not include a
+Medium variant. The ONNX export is expected to be ~30ms faster per clip, which would bring
+warmed p50 from 233ms to ~200ms and potentially meet the project latency target. Once
+UsefulSensors ships an ONNX Medium model, run it on all 93 gold-92 clips using the same
+inference harness as t0008 and compare latency p50/p95/p99 and entity accuracy. Recommended
+task types: stt-benchmark-run.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Moonshine model-size ablation: benchmark tiny, base, and large
+variants on gold-92 entity accuracy</strong> (S-0008-02)</summary>
+
+**Kind**: experiment | **Priority**: medium | **Date**: 2026-06-25 | **Source**:
+[t0008_moonshine_v2_benchmark](../../tasks/t0008_moonshine_v2_benchmark/)
+
+t0008 found that Moonshine v2 Medium (266M params) achieves exactly the same
+entity_accuracy_gold92 (21.7%) and entity_accuracy_domain_vocab (9.1%) as the base model (38M
+params) from t0004. This contradicts the assumption that a larger model would improve entity
+recall. A controlled ablation across all published Moonshine variants (tiny, base,
+streaming-medium, and any large variant) would confirm whether the entity accuracy plateau is
+a training-distribution gap or a tokenizer/decoder limit, and would determine the optimal
+model size for latency/accuracy trade-off before investing in S-0005-04 shallow fusion work.
+Recommended task types: stt-benchmark-run, comparative-analysis.
 
 </details>
 

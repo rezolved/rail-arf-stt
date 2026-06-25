@@ -4,18 +4,18 @@
   <a href="papers/"><img src="https://img.shields.io/badge/Papers-19-4169E1" alt="Papers"></a>
   <a href="datasets/"><img src="https://img.shields.io/badge/Datasets-1-2E8B57" alt="Datasets"></a>
   <a href="models/"><img src="https://img.shields.io/badge/Models-0-FF8C00" alt="Models"></a>
-  <a href="predictions/"><img src="https://img.shields.io/badge/Predictions-5-9370DB" alt="Predictions"></a>
+  <a href="predictions/"><img src="https://img.shields.io/badge/Predictions-7-9370DB" alt="Predictions"></a>
   <a href="libraries/"><img src="https://img.shields.io/badge/Libraries-0-20B2AA" alt="Libraries"></a>
   <a href="answers/"><img src="https://img.shields.io/badge/Answers-0-CD853F" alt="Answers"></a>
 </p>
 
 <p align="center">
   <a href="news/"><img src="https://img.shields.io/badge/News-0-FF6347" alt="News"></a>
-  <a href="tasks/"><img src="https://img.shields.io/badge/Tasks-5-4682B4" alt="Tasks"></a>
-  <a href="suggestions/"><img src="https://img.shields.io/badge/Suggestions-25-DAA520" alt="Suggestions"></a>
+  <a href="tasks/"><img src="https://img.shields.io/badge/Tasks-8-4682B4" alt="Tasks"></a>
+  <a href="suggestions/"><img src="https://img.shields.io/badge/Suggestions-28-DAA520" alt="Suggestions"></a>
   <a href="llm-context/"><img src="https://img.shields.io/badge/LLM%20Contexts-8-8B4513" alt="LLM Contexts"></a>
   <a href="metrics/"><img src="https://img.shields.io/badge/Metrics-7-708090" alt="Metrics"></a>
-  <a href="metrics-results/"><img src="https://img.shields.io/badge/Results-9-DC143C" alt="Results"></a>
+  <a href="metrics-results/"><img src="https://img.shields.io/badge/Results-10-DC143C" alt="Results"></a>
   <a href="task-types/"><img src="https://img.shields.io/badge/Task%20Types-21-708090" alt="Task%20Types"></a>
 </p>
 
@@ -28,11 +28,11 @@
 [whisper-finetuning](by-category/whisper-finetuning.md)
 
 **[LLM Contexts](llm-context/README.md)**: [overview](llm-context/project-overview.xml) (3K) |
-[full](llm-context/full.xml) (24K) | [roadmap](llm-context/roadmap.xml) (8K) |
-[results](llm-context/results-deep-dive.xml) (19K) |
+[full](llm-context/full.xml) (33K) | [roadmap](llm-context/roadmap.xml) (14K) |
+[results](llm-context/results-deep-dive.xml) (23K) |
 [assets](llm-context/literature-and-assets.xml) (8K)
 
-*Last updated: 2026-06-24 11:08 UTC*
+*Last updated: 2026-06-25 09:59 UTC*
 
 * **Budget**: **$2** spent of $2000
 * **Remaining**: **$1998**
@@ -46,15 +46,19 @@ No daily news yet.
 
 ---
 
-## [In Progress (0)](tasks/by-status/in_progress.md)
+## [In Progress (1)](tasks/by-status/in_progress.md)
 
-No tasks in progress.
+| # | Task | Started |
+|---|------|---------|
+| 0007 | [Benchmark IBM Granite Speech 4.1 2B on Gold-92](../overview/tasks/task_pages/t0007_ibm_granite_4_1_benchmark.md) | 2026-06-25 07:29 |
 
 ---
 
-## [Ready to Start (0)](tasks/by-status/not_started.md)
+## [Ready to Start (1)](tasks/by-status/not_started.md)
 
-No tasks ready to start.
+| # | Task | Description | Date Added |
+|---|------|-------------|------------|
+| 0006 | [Benchmark NVIDIA Nemotron 3.5 ASR on Gold-92](../overview/tasks/task_pages/t0006_nemotron_3_5_benchmark.md) | [`description`](../tasks/t0006_nemotron_3_5_benchmark/task_description.md) | 2026-06-24 |
 
 ---
 
@@ -64,10 +68,11 @@ No blocked tasks.
 
 ---
 
-## [Recently Completed (5 total)](tasks/by-status/completed.md)
+## [Recently Completed (6 total)](tasks/by-status/completed.md)
 
 | # | Task | Results | Completed |
 |---|------|---------|-----------|
+| 0008 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) | [`results`](../tasks/t0008_moonshine_v2_benchmark/results/results_detailed.md) | 2026-06-25 09:55 |
 | 0005 | [STT Model Survey: Open-Source Candidates for the brainpowa Pipeline](../overview/tasks/task_pages/t0005_stt_model_survey_brainpowa.md) | [`results`](../tasks/t0005_stt_model_survey_brainpowa/results/results_detailed.md) | 2026-06-24 11:06 |
 | 0004 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | [`results`](../tasks/t0004_vocabulary_biasing_experiment/results/results_detailed.md) | 2026-06-23 15:30 |
 | 0002 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | [`results`](../tasks/t0002_baseline_evaluation/results/results_detailed.md) | 2026-06-23 10:25 |
@@ -88,7 +93,8 @@ No blocked tasks.
 | 4 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper turbo | **0.303797** |
 | 5 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **0.303797** |
 | 6 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **0.303797** |
-| 7 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.411392** |
+| 7 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |  | **0.341772** |
+| 8 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.411392** |
 
 ### 📖 Entity Accuracy — Domain Vocabulary
 
@@ -99,6 +105,7 @@ No blocked tasks.
 | 3 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **0.181818** |
 | 4 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **0.181818** |
 | 5 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.109091** |
+| 6 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |  | **0.090909** |
 
 ### 🎯 Entity Accuracy (gold-92)
 
@@ -111,6 +118,7 @@ No blocked tasks.
 | 5 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **0.251812** |
 | 6 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **0.251812** |
 | 7 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.217029** |
+| 8 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |  | **0.217029** |
 
 ### ✅ Intent Preservation (gold-92)
 
@@ -122,39 +130,81 @@ No blocked tasks.
 | 4 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper turbo | **0.903226** |
 | 5 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **0.903226** |
 | 6 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **0.903226** |
-| 7 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.849462** |
+| 7 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |  | **0.870968** |
+| 8 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.849462** |
 
 ### ⚡ Latency p50 (seconds)
 
 | # | Task | Variant | Value |
 |---|------|---------|-------|
 | 1 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.0697** |
-| 2 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper turbo | **4.2501** |
-| 3 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **4.2501** |
-| 4 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper Large v3 | **5.6598** |
-| 5 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **5.6598** |
-| 6 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **5.8598** |
-| 7 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 + vocab bias | **6.6621** |
+| 2 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |  | **0.2321** |
+| 3 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper turbo | **4.2501** |
+| 4 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **4.2501** |
+| 5 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper Large v3 | **5.6598** |
+| 6 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **5.6598** |
+| 7 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **5.8598** |
+| 8 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 + vocab bias | **6.6621** |
+
+### 🚫 Wrong Action Rate (gold-92)
+
+| # | Task | Variant | Value |
+|---|------|---------|-------|
+| 1 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |  | **0.129032** |
 
 ---
 
-## [Recent Suggestions (24 open)](suggestions/)
+## [Recent Suggestions (26 open)](suggestions/)
 
 <details>
-<summary>🧪 <strong>Benchmark IBM Granite Speech 4.1 2B on gold-92 for entity
-accuracy and latency</strong> (S-0005-01)</summary>
+<summary>🧪 <strong>Benchmark Moonshine ONNX Medium on gold-92 when UsefulSensors
+ships the ONNX export</strong> (S-0008-01)</summary>
 
-**Kind**: experiment | **Priority**: high | **Date**: 2026-06-24 | **Source**:
-[t0005_stt_model_survey_brainpowa](../tasks/t0005_stt_model_survey_brainpowa/)
+**Kind**: experiment | **Priority**: medium | **Date**: 2026-06-25 | **Source**:
+[t0008_moonshine_v2_benchmark](../tasks/t0008_moonshine_v2_benchmark/)
 
-IBM Granite Speech 4.1 2B ranks #1 on the Open ASR Leaderboard (5.33% WER) and includes native
-keyword biasing with published F1 metrics. Run a controlled benchmark on gold-92 against the
-current Whisper turbo + initial_prompt baseline. Measure entity accuracy (substring match),
-overall WER, keyword recall (F1), and end-to-end latency on both p50 and p95 percentiles. If
-entity accuracy improves >10% and latency remains <800ms p50, Granite becomes the recommended
-primary candidate for production integration. If entity biasing falls short, test variant
-configurations (e.g., larger biasing context window). Recommended task types:
-stt-benchmark-run, experiment-run.
+t0008 used the HuggingFace Transformers CPU backend because moonshine_onnx does not include a
+Medium variant. The ONNX export is expected to be ~30ms faster per clip, which would bring
+warmed p50 from 233ms to ~200ms and potentially meet the project latency target. Once
+UsefulSensors ships an ONNX Medium model, run it on all 93 gold-92 clips using the same
+inference harness as t0008 and compare latency p50/p95/p99 and entity accuracy. Recommended
+task types: stt-benchmark-run.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Moonshine model-size ablation: benchmark tiny, base, and large
+variants on gold-92 entity accuracy</strong> (S-0008-02)</summary>
+
+**Kind**: experiment | **Priority**: medium | **Date**: 2026-06-25 | **Source**:
+[t0008_moonshine_v2_benchmark](../tasks/t0008_moonshine_v2_benchmark/)
+
+t0008 found that Moonshine v2 Medium (266M params) achieves exactly the same
+entity_accuracy_gold92 (21.7%) and entity_accuracy_domain_vocab (9.1%) as the base model (38M
+params) from t0004. This contradicts the assumption that a larger model would improve entity
+recall. A controlled ablation across all published Moonshine variants (tiny, base,
+streaming-medium, and any large variant) would confirm whether the entity accuracy plateau is
+a training-distribution gap or a tokenizer/decoder limit, and would determine the optimal
+model size for latency/accuracy trade-off before investing in S-0005-04 shallow fusion work.
+Recommended task types: stt-benchmark-run, comparative-analysis.
+
+</details>
+
+<details>
+<summary>📂 <strong>Preprocess Rezolve investor-relations transcript corpus for KenLM
+domain language model training</strong> (S-0008-03)</summary>
+
+**Kind**: dataset | **Priority**: medium | **Date**: 2026-06-25 | **Source**:
+[t0008_moonshine_v2_benchmark](../tasks/t0008_moonshine_v2_benchmark/)
+
+The t0008 shallow fusion feasibility assessment (Approach 1) identified that implementing
+log-linear N-best rescoring for Moonshine requires a domain LM trained on Rezolve
+investor-relations text. The corpus exists (annual reports, investor presentations, brainpowa
+session transcripts) but is noted as not yet preprocessed. Curate and clean this corpus into a
+plaintext format suitable for KenLM trigram training, covering at minimum the 31-term domain
+vocabulary and surrounding IR context. Estimated size: 50k–500k tokens. This unblocks both the
+Moonshine shallow fusion task (S-0005-04) and any future domain adaptation work. Recommended
+task types: audio-dataset-curation.
 
 </details>
 
@@ -282,63 +332,11 @@ post-correction-experiment.
 
 </details>
 
-<details>
-<summary>📊 <strong>Quantify entity accuracy gain vs. integration effort for Granite
-vs. Paraformer</strong> (S-0005-09)</summary>
-
-**Kind**: evaluation | **Priority**: medium | **Date**: 2026-06-24 | **Source**:
-[t0005_stt_model_survey_brainpowa](../tasks/t0005_stt_model_survey_brainpowa/)
-
-After benchmarking both Granite and Paraformer on gold-92 (suggestions S-0005-01, S-0005-02),
-create a cost-benefit matrix: entity accuracy gain (%) vs. integration complexity (days),
-latency under load (ms), and VRAM (GB). Use this to make a final production selection. If
-Granite delivers +12% entity accuracy with 2-day integration and Paraformer delivers +10% with
-4-day integration, the decision favors Granite. This task synthesizes the experimental
-findings into a decision frame for the team. Recommended task types: comparative-analysis,
-data-analysis.
-
-</details>
-
-<details>
-<summary>🔧 <strong>Implement quantized variants of Granite/Paraformer for edge and
-latency optimization</strong> (S-0005-10)</summary>
-
-**Kind**: technique | **Priority**: low | **Date**: 2026-06-24 | **Source**:
-[t0005_stt_model_survey_brainpowa](../tasks/t0005_stt_model_survey_brainpowa/)
-
-If benchmarking shows that Granite or Paraformer meet accuracy targets but exceed VRAM or
-latency budgets at scale, implement quantized (int8/float16) variants using ONNX, TensorRT, or
-vLLM to reduce model size and improve inference speed. Moonshine already ships as a
-245M-parameter model optimized for edge; quantization could reduce Granite (2B) and Paraformer
-(varies) to similar footprints. Measure quantization impact on entity accuracy and latency. If
-quantization preserves accuracy within 1–2% while halving latency, quantized variants become
-the recommended production deployment. Recommended task types: experiment-run, build-model.
-
-</details>
-
-*14 more open suggestions → [open suggestions](suggestions/)*
+*16 more open suggestions → [open suggestions](suggestions/)*
 
 ---
 
-## [High Priority Suggestions (9)](suggestions/)
-
-<details>
-<summary>🧪 <strong>Benchmark IBM Granite Speech 4.1 2B on gold-92 for entity
-accuracy and latency</strong> (S-0005-01)</summary>
-
-**Kind**: experiment | **Priority**: high | **Date**: 2026-06-24 | **Source**:
-[t0005_stt_model_survey_brainpowa](../tasks/t0005_stt_model_survey_brainpowa/)
-
-IBM Granite Speech 4.1 2B ranks #1 on the Open ASR Leaderboard (5.33% WER) and includes native
-keyword biasing with published F1 metrics. Run a controlled benchmark on gold-92 against the
-current Whisper turbo + initial_prompt baseline. Measure entity accuracy (substring match),
-overall WER, keyword recall (F1), and end-to-end latency on both p50 and p95 percentiles. If
-entity accuracy improves >10% and latency remains <800ms p50, Granite becomes the recommended
-primary candidate for production integration. If entity biasing falls short, test variant
-configurations (e.g., larger biasing context window). Recommended task types:
-stt-benchmark-run, experiment-run.
-
-</details>
+## [High Priority Suggestions (8)](suggestions/)
 
 <details>
 <summary>🧪 <strong>Benchmark FunASR Paraformer with contextual biasing on
@@ -951,10 +949,12 @@ No models yet.
 
 ---
 
-## [Latest Predictions (5 total)](predictions/)
+## [Latest Predictions (7 total)](predictions/)
 
 | Name | Source | Created |
 |------|--------|---------|
+| [Moonshine v2 Medium on Gold-92](../tasks/t0008_moonshine_v2_benchmark/assets/predictions/moonshine-v2-medium-gold92/description.md) | [8](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) | 2026-06-25 |
+| [Moonshine v2 Medium Shallow-Fusion Feasibility Assessment](../tasks/t0008_moonshine_v2_benchmark/assets/predictions/moonshine-v2-medium-gold92-biasing-assessment/description.md) | [8](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) | 2026-06-25 |
 | [Whisper turbo on Gold-92](../tasks/t0002_baseline_evaluation/assets/predictions/whisper-turbo-gold92/description.md) | [2](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | 2026-06-23 |
 | [Whisper Turbo + Vocabulary Bias on Gold-92](../tasks/t0004_vocabulary_biasing_experiment/assets/predictions/whisper-turbo-biased/description.md) | [4](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | 2026-06-23 |
 | [Whisper Large v3 on Gold-92](../tasks/t0002_baseline_evaluation/assets/predictions/whisper-large-v3-gold92/description.md) | [2](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | 2026-06-23 |

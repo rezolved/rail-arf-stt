@@ -1,6 +1,6 @@
 # 🎯 Entity Accuracy (gold-92)
 
-**Key**: `entity_accuracy_gold92` | **Unit**: accuracy | **Results**: 7
+**Key**: `entity_accuracy_gold92` | **Unit**: accuracy | **Results**: 8
 
 [Back to all metrics](README.md)
 
@@ -13,3 +13,4 @@
 | 5 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../../../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **0.251812** |
 | 6 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../../../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **0.251812** |
 | 7 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../../../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.217029** |
+| 8 | [Benchmark Moonshine v2 on Gold-92](../../../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) | — | **0.217029** |
