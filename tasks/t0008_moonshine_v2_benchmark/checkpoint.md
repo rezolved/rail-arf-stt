@@ -74,9 +74,11 @@ ONNX package only supports v1 (tiny/base); used the Transformers streaming-mediu
 equivalent. All 7 metrics computed with BCa bootstrap CIs. 4 charts generated. 2 prediction assets
 created and DVC-tracked. Shallow-fusion feasibility assessed (verdict: "needs research").
 
-Key metrics: WER=16.6%, entity_accuracy_gold92=21.7%, entity_accuracy_domain_vocab=9.1%,
-action_critical_wer=34.2%, intent_preservation=87.1%, wrong_action_rate=12.9%, latency_p50=0.232s
-(all clips median).
+### Step 6 — results
+
+All required results files written: results_summary.md, results_detailed.md (13-REQ coverage table,
+10 examples, analysis), metrics.json (7 keys, all verified), costs.json ($0),
+remote_machines_used.json ([]). `verify_task_results` and `verify_task_metrics` both passed.
 
 * * *
 
@@ -91,14 +93,6 @@ action_critical_wer=34.2%, intent_preservation=87.1%, wrong_action_rate=12.9%, l
 - Model: moonshine_onnx only supports v1 tiny/base. Using `UsefulSensors/moonshine-streaming-medium`
   via HuggingFace Transformers (`MoonshineStreamingForConditionalGeneration`) as the v2 Medium
   equivalent. Documented in code/paths.py.
-
-* * *
-
-### Step 6 — results
-
-All required results files written: results_summary.md, results_detailed.md (13-REQ coverage table,
-10 examples, analysis), metrics.json (7 keys, all verified), costs.json ($0),
-remote_machines_used.json ([]). `verify_task_results` and `verify_task_metrics` both passed.
 
 * * *
 
