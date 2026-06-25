@@ -39,10 +39,28 @@ Two external published results were compared:
 - Entity accuracy vs. t0004 Moonshine base: **21.7% vs. 21.7% (0pp)** — v2 Medium adds no entity
   accuracy over base despite being 7x larger; vocabulary gap is architectural.
 
-## Verificator
+## Actions Taken
 
-`verify_compare_literature t0008_moonshine_v2_benchmark` — PASSED, 0 errors, 0 warnings.
+1. Read `arf/skills/compare-literature/SKILL.md` and
+   `arf/specifications/compare_literature_specification.md`.
+2. Read task.json, metrics.json, results_detailed.md, results_summary.md, and task_description.md.
+3. Confirmed research steps 10/11/12 were all skipped; no research_papers.md or research_internet.md
+   exist.
+4. Located Kudlur2026 paper asset in t0003
+   (`tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2602.12241/`).
+5. Read t0004 metrics.json for Moonshine base and Whisper biased variant numbers.
+6. Wrote `results/compare_literature.md` with 10-row comparison table, Methodology Differences,
+   Analysis (including Prior Task Comparison subsection), and Limitations.
+7. Ran `verify_compare_literature t0008_moonshine_v2_benchmark` — PASSED, 0 errors, 0 warnings.
+8. Ran `flowmark --inplace --nobackup` on compare_literature.md.
 
-## Files Written
+## Outputs
 
 - `tasks/t0008_moonshine_v2_benchmark/results/compare_literature.md`
+
+## Issues
+
+No issues. Research steps had been skipped, but the project paper corpus (t0003) contained the
+Kudlur2026 Moonshine v2 paper with verified citation key and specific table references, satisfying
+the requirement for at least 2 published comparisons (Kudlur2026 provides 4 rows; t0004 prior tasks
+provide 6 rows).
