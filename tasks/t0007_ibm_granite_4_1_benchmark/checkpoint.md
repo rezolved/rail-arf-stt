@@ -1,8 +1,8 @@
 ---
 spec_version: "1"
 task_id: "t0007_ibm_granite_4_1_benchmark"
-updated_at: "2026-06-25T07:47:00Z"
-completed_steps: 8
+updated_at: "2026-06-25T07:55:00Z"
+completed_steps: 7
 next_step_number: 8
 next_step_id: "setup-machines"
 ---
@@ -64,6 +64,14 @@ Granite-specific inference scripts; Granite keyword biasing API parameter is unc
 as top risk requiring explicit verification in Step 3 of the plan. Verificator passed with zero
 errors and zero warnings.
 
+### Step 8 — setup-machines (blocked — intervention required)
+
+Blocked at Phase 1 pre-flight: Vast.ai API key absent from all checked credential locations
+(`~/.config/vastai/vast_api_key`, `VAST_API_KEY` env var, project `.env` files). Nebius provider
+also unavailable — `nebius` CLI binary not installed despite key being present in `REZOLVE AI/.env`.
+Key output: `tasks/t0007_ibm_granite_4_1_benchmark/intervention/vast_ai_api_key_missing.md` with
+three resolution options. No machine provisioned; no costs incurred.
+
 * * *
 
 ## Cross-Step Decisions
@@ -75,9 +83,10 @@ authorized against $1997.50 remaining budget.
 
 ## Next Step Notes
 
-Step 7 (planning) completed with `plan/plan.md` verified clean. Proceed to step 8 (setup-machines):
-provision an A100 80 GB GPU instance (or H100 with 6-8 GB VRAM minimum) per `## Remote Machines` in
-`plan/plan.md`. The implementation agent will need to confirm the Granite keyword biasing API
-parameter before writing `run_granite_biased.py` — this is flagged as the top implementation risk.
-Load `plan/plan.md` for full GPU and environment setup requirements including the HuggingFace model
-ID `ibm-granite/granite-speech-4.1-2b` and required Python dependencies.
+Step 8 (setup-machines) is blocked pending human intervention. The three resolution options are
+documented in `tasks/t0007_ibm_granite_4_1_benchmark/intervention/vast_ai_api_key_missing.md`:
+Option A — configure Vast.ai key via `uv run vastai set api-key YOUR_KEY`; Option B — export
+`VAST_API_KEY` env var; Option C — install the Nebius CLI (key already in `REZOLVE AI/.env`) and
+amend `plan/plan.md` Section 5 to `provider: nebius`. After credentials are configured, re-run the
+setup-machines step — the plan specifies A100 80 GB at ~$1.50-2.00/hr, expected 1-hour job, $3-8
+total compute cost within the $1,997.50 remaining budget.
