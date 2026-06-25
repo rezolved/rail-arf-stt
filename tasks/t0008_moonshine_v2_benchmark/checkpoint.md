@@ -80,6 +80,18 @@ All required results files written: results_summary.md, results_detailed.md (13-
 10 examples, analysis), metrics.json (7 keys, all verified), costs.json ($0),
 remote_machines_used.json ([]). `verify_task_results` and `verify_task_metrics` both passed.
 
+### Step 7 — compare-literature
+
+`results/compare_literature.md` written and verified (0 errors, 0 warnings). Compared Moonshine v2
+Medium against: (1) Kudlur2026 (arXiv 2602.12241): published WER=6.65% on Open ASR Leaderboard vs.
+gold-92 WER=16.6% (+9.95pp domain mismatch); latency 258ms (ONNX/M3) vs. 232ms (Transformers/CPU),
+directionally consistent. (2) t0004 Whisper large-v3 + initial_prompt: entity_accuracy_domain_vocab
+94.5% vs. 9.1% (−85.4pp, biased vs. unbiased cross-model); latency 6.66s vs. 0.232s (Moonshine 29x
+faster). (3) t0004 Moonshine base: entity_accuracy identical at 21.7% (0pp delta), confirming entity
+failure is vocabulary-driven not capacity-driven. Key finding: v2 Medium adds no entity accuracy
+over base despite 7x more parameters; biasing is required before Moonshine can serve as an edge
+fallback.
+
 * * *
 
 ## Cross-Step Decisions
@@ -93,20 +105,6 @@ remote_machines_used.json ([]). `verify_task_results` and `verify_task_metrics` 
 - Model: moonshine_onnx only supports v1 tiny/base. Using `UsefulSensors/moonshine-streaming-medium`
   via HuggingFace Transformers (`MoonshineStreamingForConditionalGeneration`) as the v2 Medium
   equivalent. Documented in code/paths.py.
-
-* * *
-
-### Step 7 — compare-literature
-
-`results/compare_literature.md` written and verified (0 errors, 0 warnings). Compared Moonshine v2
-Medium against: (1) Kudlur2026 (arXiv 2602.12241): published WER=6.65% on Open ASR Leaderboard vs.
-gold-92 WER=16.6% (+9.95pp domain mismatch); latency 258ms (ONNX/M3) vs. 232ms (Transformers/CPU),
-directionally consistent. (2) t0004 Whisper large-v3 + initial_prompt: entity_accuracy_domain_vocab
-94.5% vs. 9.1% (−85.4pp, biased vs. unbiased cross-model); latency 6.66s vs. 0.232s (Moonshine 29x
-faster). (3) t0004 Moonshine base: entity_accuracy identical at 21.7% (0pp delta), confirming entity
-failure is vocabulary-driven not capacity-driven. Key finding: v2 Medium adds no entity accuracy
-over base despite 7x more parameters; biasing is required before Moonshine can serve as an edge
-fallback.
 
 ## Next Step Notes
 
