@@ -1,0 +1,9 @@
+{
+  "wer_gold92": 0.165496,
+  "entity_accuracy_gold92": 0.217029,
+  "entity_accuracy_domain_vocab": 0.090909,
+  "action_critical_wer_gold92": 0.341772,
+  "intent_preservation_gold92": 0.870968,
+  "latency_p50_seconds": 0.2321,
+  "wrong_action_rate_gold92": 0.129032
+}

@@ -1,0 +1,5 @@
+branch: task/t0008_moonshine_v2_benchmark
+base_branch: main
+base_commit: fec56274e926dca3a3f202e01fc2b3868010eaa0
+worktree_path: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark
+created_at: 2026-06-25T08:30:29Z

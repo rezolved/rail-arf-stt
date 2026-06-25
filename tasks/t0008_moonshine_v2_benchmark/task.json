@@ -5,13 +5,13 @@
   "name": "Benchmark Moonshine v2 on Gold-92",
   "short_description": "Benchmark Moonshine v2 (CPU-only) on gold-92 to validate entity accuracy and latency without GPU requirements, comparing entity recall and biasing feasibility vs. Whisper baseline.",
   "long_description_file": "task_description.md",
-  "status": "in_progress",
+  "status": "completed",
   "dependencies": [
     "t0001_stt_benchmark",
     "t0004_vocabulary_biasing_experiment"
   ],
   "start_time": "2026-06-25T08:30:15Z",
-  "end_time": null,
+  "end_time": "2026-06-25T09:55:00Z",
   "expected_assets": {
     "predictions": 2
   },

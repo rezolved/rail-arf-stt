@@ -1,0 +1,6 @@
+Saved: tasks/t0008_moonshine_v2_benchmark/results/images/entity_accuracy_domain_vocab_comparison.png
+Saved: tasks/t0008_moonshine_v2_benchmark/results/images/wer_comparison.png
+Saved: tasks/t0008_moonshine_v2_benchmark/results/images/action_critical_wer_comparison.png
+Saved: tasks/t0008_moonshine_v2_benchmark/results/images/latency_distribution.png
+
+All charts generated.

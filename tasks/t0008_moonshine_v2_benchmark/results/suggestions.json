@@ -1,0 +1,44 @@
+{
+  "spec_version": "2",
+  "suggestions": [
+    {
+      "id": "S-0008-01",
+      "title": "Benchmark Moonshine ONNX Medium on gold-92 when UsefulSensors ships the ONNX export",
+      "description": "t0008 used the HuggingFace Transformers CPU backend because moonshine_onnx does not include a Medium variant. The ONNX export is expected to be ~30ms faster per clip, which would bring warmed p50 from 233ms to ~200ms and potentially meet the project latency target. Once UsefulSensors ships an ONNX Medium model, run it on all 93 gold-92 clips using the same inference harness as t0008 and compare latency p50/p95/p99 and entity accuracy. Recommended task types: stt-benchmark-run.",
+      "kind": "experiment",
+      "priority": "medium",
+      "source_task": "t0008_moonshine_v2_benchmark",
+      "source_paper": null,
+      "categories": [
+        "stt-evaluation",
+        "latency-profiling"
+      ]
+    },
+    {
+      "id": "S-0008-02",
+      "title": "Moonshine model-size ablation: benchmark tiny, base, and large variants on gold-92 entity accuracy",
+      "description": "t0008 found that Moonshine v2 Medium (266M params) achieves exactly the same entity_accuracy_gold92 (21.7%) and entity_accuracy_domain_vocab (9.1%) as the base model (38M params) from t0004. This contradicts the assumption that a larger model would improve entity recall. A controlled ablation across all published Moonshine variants (tiny, base, streaming-medium, and any large variant) would confirm whether the entity accuracy plateau is a training-distribution gap or a tokenizer/decoder limit, and would determine the optimal model size for latency/accuracy trade-off before investing in S-0005-04 shallow fusion work. Recommended task types: stt-benchmark-run, comparative-analysis.",
+      "kind": "experiment",
+      "priority": "medium",
+      "source_task": "t0008_moonshine_v2_benchmark",
+      "source_paper": null,
+      "categories": [
+        "stt-evaluation",
+        "latency-profiling"
+      ]
+    },
+    {
+      "id": "S-0008-03",
+      "title": "Preprocess Rezolve investor-relations transcript corpus for KenLM domain language model training",
+      "description": "The t0008 shallow fusion feasibility assessment (Approach 1) identified that implementing log-linear N-best rescoring for Moonshine requires a domain LM trained on Rezolve investor-relations text. The corpus exists (annual reports, investor presentations, brainpowa session transcripts) but is noted as not yet preprocessed. Curate and clean this corpus into a plaintext format suitable for KenLM trigram training, covering at minimum the 31-term domain vocabulary and surrounding IR context. Estimated size: 50k–500k tokens. This unblocks both the Moonshine shallow fusion task (S-0005-04) and any future domain adaptation work. Recommended task types: audio-dataset-curation.",
+      "kind": "dataset",
+      "priority": "medium",
+      "source_task": "t0008_moonshine_v2_benchmark",
+      "source_paper": null,
+      "categories": [
+        "audio-datasets",
+        "entity-correction"
+      ]
+    }
+  ]
+}

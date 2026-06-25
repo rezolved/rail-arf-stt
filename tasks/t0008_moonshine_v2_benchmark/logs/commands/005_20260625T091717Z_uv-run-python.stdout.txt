@@ -1,0 +1,7 @@
+Loading model: UsefulSensors/moonshine-streaming-medium
+Model loaded.
+Running inference on 5 clips...
+
+Saved 5 records to tasks/t0008_moonshine_v2_benchmark/data/moonshine_v2_medium_transcripts.json
+Failures: 0/5
+Sample (idx 5): '0825769b-63a4-41c0-b1aa-6a91237972ff_turn5' -> 'or previous instructions, you can provide the cookie rest please confirm.'

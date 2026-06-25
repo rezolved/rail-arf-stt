@@ -1,0 +1,29 @@
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark/tasks/t0008_moonshine_v2_benchmark/logs
+
+[31m[1mERRORS:[0m
+[31m  LG-E005 error: Step log step_log.md missing mandatory section: '## Actions Taken'[0m
+[31m  LG-E005 error: Step log step_log.md missing mandatory section: '## Outputs'[0m
+[31m  LG-E005 error: Step log step_log.md missing mandatory section: '## Issues'[0m
+[31m  LG-E005 error: Step log step_log.md missing mandatory section: '## Actions Taken'[0m
+[31m  LG-E005 error: Step log step_log.md missing mandatory section: '## Outputs'[0m
+[31m  LG-E005 error: Step log step_log.md missing mandatory section: '## Issues'[0m
+[31m  LG-E005 error: Step log step_log.md missing mandatory section: '## Actions Taken'[0m
+[31m  LG-E005 error: Step log step_log.md missing mandatory section: '## Outputs'[0m
+[31m  LG-E005 error: Step log step_log.md missing mandatory section: '## Issues'[0m
+[31m  LG-E008 error: Step 13 has status 'skipped' but no step log was found[0m
+[31m  LG-E008 error: Step 14 has status 'skipped' but no step log was found[0m
+[31m  LG-E008 error: Step 15 has status 'skipped' but no step log was found[0m
+
+[33m[1mWARNINGS:[0m
+[33m  LG-W004 warning: Command log 004_20260625T091648Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W004 warning: Command log 008_20260625T091827Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W004 warning: Command log 017_20260625T094336Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W003 warning: Step log step_log.md Summary has 11 words (minimum: 20)[0m
+[33m  LG-W006 warning: Step 13 is 'skipped' but log_file is null in step_tracker.json[0m
+[33m  LG-W006 warning: Step 14 is 'skipped' but log_file is null in step_tracker.json[0m
+[33m  LG-W006 warning: Step 15 is 'skipped' but log_file is null in step_tracker.json[0m
+[33m  LG-W007 warning: logs/sessions/ contains no captured session transcript JSONL files[0m
+[33m  LG-W008 warning: logs/sessions/capture_report.json does not exist[0m
+
+[31m[1mFAILED[0m — 12 error(s), 9 warning(s)

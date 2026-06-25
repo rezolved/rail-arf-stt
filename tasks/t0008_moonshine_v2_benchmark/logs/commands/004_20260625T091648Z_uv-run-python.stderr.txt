@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark/tasks/t0008_moonshine_v2_benchmark/code/run_inference.py", line 178, in <module>
+    main(limit=args.limit)
+    ~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark/tasks/t0008_moonshine_v2_benchmark/code/run_inference.py", line 93, in main
+    write_heartbeat("t0008_moonshine_v2_benchmark", "implementation")
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: write_heartbeat() takes 0 positional arguments but 2 were given

@@ -1,0 +1,2 @@
+Captured 0 session transcript(s) into /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark/tasks/t0008_moonshine_v2_benchmark/logs/sessions.
+Wrote capture report to /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark/tasks/t0008_moonshine_v2_benchmark/logs/sessions/capture_report.json.

@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0008_moonshine_v2_benchmark",
+  "command": "bash -c mkdir -p tasks/t0008_moonshine_v2_benchmark/ctx && uv run python -u -m arf.scripts.aggregators.aggregate_task_types --format json > tasks/t0008_moonshine_v2_benchmark/ctx/task_types.json && uv run python -u -m arf.scripts.aggregators.aggregate_costs --format json --detail full > tasks/t0008_moonshine_v2_benchmark/ctx/costs.json && uv run python -u -m arf.scripts.aggregators.aggregate_tasks --format json --detail short > tasks/t0008_moonshine_v2_benchmark/ctx/tasks.json && uv run python -u -m arf.scripts.aggregators.aggregate_metrics --format json --detail full > tasks/t0008_moonshine_v2_benchmark/ctx/metrics.json && uv run python -u -m arf.scripts.aggregators.aggregate_suggestions --format json --detail full > tasks/t0008_moonshine_v2_benchmark/ctx/suggestions.json",
+  "exit_code": 0,
+  "duration_seconds": 0.438,
+  "started_at": "2026-06-25T08:54:47Z",
+  "completed_at": "2026-06-25T08:54:48Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark",
+  "stdout_file": "003_20260625T085447Z_bash-c-mkdir-p-tasks-t0008-moonshine-v2-.stdout.txt",
+  "stderr_file": "003_20260625T085447Z_bash-c-mkdir-p-tasks-t0008-moonshine-v2-.stderr.txt",
+  "stdout_lines": 0,
+  "stderr_lines": 0,
+  "truncated": false
+}
