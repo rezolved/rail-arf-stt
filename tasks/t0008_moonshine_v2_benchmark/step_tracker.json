@@ -69,8 +69,8 @@
       "step": 8,
       "name": "suggestions",
       "description": "Generate suggestions for follow-up research and optimization paths.",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-06-25T09:38:24Z",
       "completed_at": null,
       "log_file": "logs/steps/008_suggestions/"
     },
