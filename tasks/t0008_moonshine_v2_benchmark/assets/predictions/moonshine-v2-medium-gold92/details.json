@@ -1,0 +1,30 @@
+{
+  "spec_version": "2",
+  "predictions_id": "moonshine-v2-medium-gold92",
+  "name": "Moonshine v2 Medium on Gold-92",
+  "short_description": "Per-clip STT predictions from Moonshine Streaming Medium (UsefulSensors/moonshine-streaming-medium) on all 93 gold-92 benchmark clips, CPU-only inference, no vocabulary biasing.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "Moonshine Streaming Medium (UsefulSensors/moonshine-streaming-medium), transformers CPU inference, ~266M params, sliding-window Transformer encoder",
+  "dataset_ids": ["stt-benchmark-gold-92"],
+  "prediction_format": "jsonl",
+  "prediction_schema": "clip_id (string), ground_truth (string), prediction (string), wer_local (float), entity_accuracy_local (float or null), latency_ms (float), latency_stage (string: cold_start|warmup|warmed)",
+  "instance_count": 93,
+  "metrics_at_creation": {
+    "wer_gold92": 0.165496,
+    "entity_accuracy_gold92": 0.217029,
+    "entity_accuracy_domain_vocab": 0.090909,
+    "intent_preservation_gold92": 0.870968,
+    "latency_p50_seconds": 0.2321
+  },
+  "files": [
+    {
+      "path": "files/predictions-gold92.jsonl",
+      "description": "Per-clip STT predictions on all 93 gold-92 benchmark clips. Each line: clip_id, ground_truth, prediction, wer_local, entity_accuracy_local, latency_ms, latency_stage.",
+      "format": "jsonl"
+    }
+  ],
+  "categories": ["stt-evaluation"],
+  "created_by_task": "t0008_moonshine_v2_benchmark",
+  "date_created": "2026-06-25"
+}

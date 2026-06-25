@@ -1,0 +1,37 @@
+Loading transcripts...
+Loading gold-92 clips...
+Loaded 93 clips, 93 transcripts
+Transcription failures: 1/93 (1.1%)
+Computing entity accuracy...
+  entity_accuracy_gold92: 0.2170 (0.1504-0.2949)
+Computing WER...
+  wer_gold92: 0.1655 (0.1477-0.2261)
+Computing action-critical WER...
+  action_critical_wer_gold92: 0.3418
+Computing intent preservation...
+  intent_preservation_gold92: 0.8710
+  wrong_action_rate_gold92: 0.1290
+  latency_p50_seconds: 0.232s
+Computing domain vocab entity accuracy...
+  entity_accuracy_domain_vocab: 0.0909 (0.0541-0.2703)
+
+Wrote tasks/t0008_moonshine_v2_benchmark/results/metrics.json
+
+Production clips: 34, Clean-voice clips: 59
+Wrote tasks/t0008_moonshine_v2_benchmark/data/analysis_output.json
+
+=== SUMMARY ===
+Metric                                   Value
+-------------------------------------------------------
+  wer_gold92                             0.1655
+  entity_accuracy_gold92                 0.2170
+  entity_accuracy_domain_vocab           0.0909
+  action_critical_wer_gold92             0.3418
+  intent_preservation_gold92             0.8710
+  latency_p50_seconds                    0.2321
+  wrong_action_rate_gold92               0.1290
+
+Latency by stage:
+  cold_start: p50=1.327s, p95=1.327s, n=1
+  warmup: p50=0.173s, p95=0.228s, n=4
+  warmed: p50=0.233s, p95=0.363s, n=88

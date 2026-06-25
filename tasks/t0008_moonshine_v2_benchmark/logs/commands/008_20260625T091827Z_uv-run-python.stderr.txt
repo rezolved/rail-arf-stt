@@ -1,0 +1,39 @@
+Traceback (most recent call last):
+  File "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark/tasks/t0008_moonshine_v2_benchmark/code/generate_charts.py", line 251, in <module>
+    main()
+    ~~~~^^
+  File "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark/tasks/t0008_moonshine_v2_benchmark/code/generate_charts.py", line 223, in main
+    make_bar_comparison(
+    ~~~~~~~~~~~~~~~~~~~^
+        title="Action-Critical WER — Moonshine v2 Medium vs Whisper Baseline",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+        baseline_label="Whisper Baseline",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark/tasks/t0008_moonshine_v2_benchmark/code/generate_charts.py", line 63, in make_bar_comparison
+    bars = ax.bar(
+        x,
+    ...<6 lines>...
+        alpha=0.85,
+    )
+  File "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark/.venv/lib/python3.13/site-packages/matplotlib/__init__.py", line 1528, in inner
+    return func(
+        ax,
+        *map(cbook.sanitize_sequence, args),
+        **{k: cbook.sanitize_sequence(v) for k, v in kwargs.items()})
+  File "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark/.venv/lib/python3.13/site-packages/matplotlib/axes/_axes.py", line 2633, in bar
+    errorbar = self.errorbar(ex, ey, yerr=yerr, xerr=xerr, fmt='none',
+                             **error_kw)
+  File "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark/.venv/lib/python3.13/site-packages/matplotlib/_api/deprecation.py", line 477, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark/.venv/lib/python3.13/site-packages/matplotlib/__init__.py", line 1528, in inner
+    return func(
+        ax,
+        *map(cbook.sanitize_sequence, args),
+        **{k: cbook.sanitize_sequence(v) for k, v in kwargs.items()})
+  File "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark/.venv/lib/python3.13/site-packages/matplotlib/axes/_axes.py", line 4232, in errorbar
+    raise ValueError(
+        f"'{dep_axis}err' must not contain negative values")
+ValueError: 'yerr' must not contain negative values

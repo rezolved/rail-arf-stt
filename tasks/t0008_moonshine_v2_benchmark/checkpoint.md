@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0008_moonshine_v2_benchmark"
-updated_at: "2026-06-25T09:01:00Z"
-completed_steps: 10
-next_step_number: 5
-next_step_id: "implementation"
+updated_at: "2026-06-25T12:30:00Z"
+completed_steps: 11
+next_step_number: 6
+next_step_id: "results"
 ---
 # Task Objective
 
@@ -66,23 +66,38 @@ Plan produced at `plan/plan.md` with 13 REQ items, 7 milestones, and 4 rejection
 decision: wrong_action_rate_gold92 computed as `1 - intent_preservation` (proxy, documented). Two
 prediction assets specified: batch-inference predictions and shallow-fusion feasibility doc.
 
+### Step 5 — implementation
+
+Full Moonshine v2 Medium benchmark completed. All 93 clips transcribed using
+`UsefulSensors/moonshine-streaming-medium` (HuggingFace Transformers, CPU). Key finding: Moonshine
+ONNX package only supports v1 (tiny/base); used the Transformers streaming-medium model as the v2
+equivalent. All 7 metrics computed with BCa bootstrap CIs. 4 charts generated. 2 prediction assets
+created and DVC-tracked. Shallow-fusion feasibility assessed (verdict: "needs research").
+
+Key metrics: WER=16.6%, entity_accuracy_gold92=21.7%, entity_accuracy_domain_vocab=9.1%,
+action_critical_wer=34.2%, intent_preservation=87.1%, wrong_action_rate=12.9%, latency_p50=0.232s
+(all clips median).
+
 * * *
 
 ## Cross-Step Decisions
 
-- wrong_action_rate_gold92 metric will be computed as proxy `1 - intent_preservation_gold92` (no
-  gold action labels available).
-- Two prediction assets: `moonshine_v2_batch_predictions` (primary inference) and
-  `moonshine_v2_shallow_fusion_feasibility` (feasibility assessment doc, not full inference run).
+- wrong_action_rate_gold92 metric computed as proxy `1 - intent_preservation_gold92` (no gold action
+  labels available).
+- Two prediction assets: `moonshine-v2-medium-gold92` (primary inference) and
+  `moonshine-v2-medium-gold92-biasing-assessment` (feasibility assessment doc, not full inference
+  run).
 - Legacy flat metrics.json format (single run variant, all 7 registered keys).
+- Model: moonshine_onnx only supports v1 tiny/base. Using `UsefulSensors/moonshine-streaming-medium`
+  via HuggingFace Transformers (`MoonshineStreamingForConditionalGeneration`) as the v2 Medium
+  equivalent. Documented in code/paths.py.
 
 * * *
 
 ## Next Step Notes
 
-Step 4 (planning) completed — plan/plan.md verified with 0 errors. Proceed to step 5
-(implementation): spawn a subagent to execute the `/implementation` skill. The implementation must
-run Moonshine v2 Medium via OnnxRuntime CPU on all 93 gold-92 clips, compute all 7 registered
-metrics, produce 2 prediction assets, and generate at least 2 charts in results/images/. Read
-plan/plan.md for the full step-by-step, REQ checklist, and code design. Audio clips are in
-tasks/t0001_stt_benchmark/. The 31-term biasing vocabulary is in t0004. Budget: $0 (CPU-only).
+Step 5 (implementation) completed. Proceed to step 6 (results): write `results/results_summary.md`,
+`results/results_detailed.md`, and `results/costs.json` using measured metrics from
+`results/metrics.json` and `data/analysis_output.json`. All 13 REQ items have evidence. Key finding:
+Moonshine v2 Medium entity_accuracy_domain_vocab=9.1% is far below Whisper 94.5% baseline. Shallow
+fusion verdict: "needs research". Latency is excellent: warmed p50=0.233s.

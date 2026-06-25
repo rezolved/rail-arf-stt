@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0008_moonshine_v2_benchmark",
+  "command": "uv run python -u tasks/t0008_moonshine_v2_benchmark/code/run_inference.py --limit 5",
+  "exit_code": 1,
+  "duration_seconds": 3.131,
+  "started_at": "2026-06-25T09:16:48Z",
+  "completed_at": "2026-06-25T09:16:51Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark",
+  "stdout_file": "004_20260625T091648Z_uv-run-python.stdout.txt",
+  "stderr_file": "004_20260625T091648Z_uv-run-python.stderr.txt",
+  "stdout_lines": 0,
+  "stderr_lines": 8,
+  "truncated": false
+}

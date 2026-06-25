@@ -1,0 +1,23 @@
+{
+  "spec_version": "2",
+  "predictions_id": "moonshine-v2-medium-gold92-biasing-assessment",
+  "name": "Moonshine v2 Medium Shallow-Fusion Feasibility Assessment",
+  "short_description": "Shallow-fusion biasing feasibility assessment for Moonshine Streaming Medium on gold-92, documenting 3 candidate approaches, effort estimates, and a feasibility verdict. No per-clip inference run.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "Moonshine v2 Medium — shallow fusion feasibility assessment (no inference run)",
+  "dataset_ids": ["stt-benchmark-gold-92"],
+  "prediction_format": "jsonl",
+  "prediction_schema": "Assessment document only — no per-clip predictions. See files/shallow_fusion_feasibility.md.",
+  "instance_count": null,
+  "files": [
+    {
+      "path": "files/shallow_fusion_feasibility.md",
+      "description": "Shallow-fusion feasibility assessment covering 3 candidate approaches (log-linear LM, CTC beam-search hotword boosting, N-best rescoring), effort estimates, and feasibility verdict.",
+      "format": "markdown"
+    }
+  ],
+  "categories": ["stt-evaluation"],
+  "created_by_task": "t0008_moonshine_v2_benchmark",
+  "date_created": "2026-06-25"
+}

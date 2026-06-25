@@ -1,0 +1,16 @@
+Loading model: UsefulSensors/moonshine-streaming-medium
+Model loaded.
+Running inference on 93 clips...
+  [10/93] Last: '2c2e4347-8adf-47ec-99d4-33efd1b9df36_turn7' -> 'Are you using anthropic, open AI, chat GPT, Mistral, Lama or'
+  [20/93] Last: '7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn9' -> "Okay that's still very superficial could give you more detai"
+  [30/93] Last: 'French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q02' -> 'What makes braincombers different from the traditional chatb'
+  [40/93] Last: 'German_ErcanKilic__en-ErcanKilic-q05' -> 'What can your agents do autonomously in the shopping journey'
+  [50/93] Last: 'Korean_JemmaLee__en-JemmaLee-q03' -> 'Can I see an example of a multi-model or visual search?'
+  [60/93] Last: 'Russian_OlyaShtalberg__en-OlyaShtalberg-q06' -> 'Do you support mobile wallets, instant payments or crypto to'
+  [70/93] Last: 'a9164401-053d-4bb5-8446-2fbf87677973_turn4' -> "I'm creating an entire outfit for a clothing retailer."
+  [80/93] Last: 'error_en_0009' -> 'Please give me examples of how your product could help me wi'
+  [90/93] Last: 'error_en_0192' -> "I'm gonna get to repeat those again, but slower. I got store"
+
+Saved 93 records to tasks/t0008_moonshine_v2_benchmark/data/moonshine_v2_medium_transcripts.json
+Failures: 0/93
+Sample (idx 5): '1a100ae1-5383-4666-a74d-b98662ce018e_turn11' -> 'query other brands websites to see if you can cover their use cases.'
