@@ -1,0 +1,11 @@
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark/tasks/t0008_moonshine_v2_benchmark
+
+[31m[1mERRORS:[0m
+[31m  FD-E016 error: Unexpected file in task folder root: 'checkpoint.md' (only __init__.py, step_tracker.json, task.json, task_description.md allowed)[0m
+[31m  FD-E016 error: Unexpected directory in task folder root: 'ctx/' (only assets, code, corrections, data, intervention, logs, plan, research, results allowed)[0m
+
+[33m[1mWARNINGS:[0m
+[33m  FD-W002 warning: logs/searches/ is empty (no search queries were logged)[0m
+
+[31m[1mFAILED[0m — 2 error(s), 1 warning(s)

@@ -78,8 +78,8 @@
       "step": 9,
       "name": "reporting",
       "description": "Final verification pass, run all verificators, and prepare for merge.",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-06-25T09:43:19Z",
       "completed_at": null,
       "log_file": "logs/steps/009_reporting/"
     },
@@ -117,7 +117,7 @@
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/013_setup-machines/"
     },
     {
       "step": 14,
@@ -126,7 +126,7 @@
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/014_teardown/"
     },
     {
       "step": 15,
@@ -135,7 +135,7 @@
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/015_creative-thinking/"
     }
   ]
 }

@@ -1,0 +1,13 @@
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark/tasks/t0008_moonshine_v2_benchmark/logs
+
+[33m[1mWARNINGS:[0m
+[33m  LG-W004 warning: Command log 004_20260625T091648Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W004 warning: Command log 008_20260625T091827Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W004 warning: Command log 017_20260625T094336Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W004 warning: Command log 019_20260625T094436Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W004 warning: Command log 020_20260625T094437Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W004 warning: Command log 021_20260625T094440Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W003 warning: Step log step_log.md Summary has 11 words (minimum: 20)[0m
+
+[33m[1mPASSED[0m — 0 error(s), 7 warning(s)

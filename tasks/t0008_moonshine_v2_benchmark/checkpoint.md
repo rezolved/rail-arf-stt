@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0008_moonshine_v2_benchmark"
-updated_at: "2026-06-25T11:00:00Z"
-completed_steps: 14
-next_step_number: 9
-next_step_id: "reporting"
+updated_at: "2026-06-25T09:55:00Z"
+completed_steps: 15
+next_step_number: null
+next_step_id: null
 ---
 # Task Objective
 
@@ -109,6 +109,17 @@ uncovered suggestions and 8 existing tasks — no duplicates found.
   via HuggingFace Transformers (`MoonshineStreamingForConditionalGeneration`) as the v2 Medium
   equivalent. Documented in code/paths.py.
 
+### Step 9 — reporting
+
+All verificators run. verify_logs PASSED (0 errors), verify_task_results PASSED, verify_task_metrics
+PASSED, verify_suggestions PASSED, verify_task_file PASSED, verify_task_dependencies PASSED. Known
+infrastructure gap: verify_task_folder FD-E016 errors for checkpoint.md and ctx/ — these are v25
+additions not yet reflected in the verificator's allowed-files list; deferred to main branch fix.
+Session capture ran (0 transcripts found). task.json updated to status=completed.
+
+* * *
+
 ## Next Step Notes
 
-Step 8 (suggestions) completed. Proceed to step 9 (reporting).
+Task completed. All 9 active steps (create-branch through reporting) and 6 skipped steps are done.
+No further steps required.

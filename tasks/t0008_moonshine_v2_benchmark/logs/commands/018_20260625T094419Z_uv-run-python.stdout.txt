@@ -1,0 +1,8 @@
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0008_moonshine_v2_benchmark/tasks/t0004_vocabulary_biasing_experiment
+
+[33m[1mWARNINGS:[0m
+[33m  FD-W002 warning: logs/searches/ is empty (no search queries were logged)[0m
+[33m  FD-W006 warning: logs/sessions/ contains no captured session transcript JSONL files[0m
+
+[33m[1mPASSED[0m — 0 error(s), 2 warning(s)
