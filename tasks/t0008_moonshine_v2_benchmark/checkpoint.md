@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0008_moonshine_v2_benchmark"
-updated_at: "2026-06-25T08:54:00Z"
-completed_steps: 8
-next_step_number: 3
-next_step_id: "init-folders"
+updated_at: "2026-06-25T08:55:30Z"
+completed_steps: 9
+next_step_number: 4
+next_step_id: "planning"
 ---
 # Task Objective
 
@@ -27,6 +27,12 @@ setup-machines, teardown, creative-thinking). CPU-only task with no remote compu
 Both dependencies verified as completed: `t0001_stt_benchmark` and
 `t0004_vocabulary_biasing_experiment`. Result written to
 `logs/steps/002_check-deps/deps_report.json` with 0 errors and 0 warnings.
+
+### Step 3 — init-folders
+
+Task folder structure created (12 directories with `.gitkeep`); `__init__.py` and `code/__init__.py`
+written. Aggregator cache populated in `ctx/` (5 files: task_types, costs, tasks, metrics,
+suggestions). Key output: `logs/steps/003_init-folders/folders_created.txt`.
 
 ### Step 10 — research-papers
 
@@ -62,7 +68,8 @@ Skipped — task scope is well-defined; creative alternatives addressed in plann
 
 ## Next Step Notes
 
-Step 2 (check-deps) completed successfully — both required dependencies are satisfied. Proceed to
-step 3 (init-folders): run `init_task_folders` with `--step-log-dir` flag, then populate the
-aggregator cache in `ctx/` with all 5 aggregators (task_types, costs, tasks, metrics, suggestions).
-Do not commit `ctx/` — these files are gitignored and local-only.
+Step 3 (init-folders) completed — all required directories created and aggregator cache populated in
+`ctx/`. Proceed to step 4 (planning): spawn a subagent to execute the `/planning` skill. This is a
+CPU-only task with $0 budget; 2 runs planned (batch no-biasing + shallow-fusion feasibility
+assessment). All 7 registered metrics are required. Load `ctx/metrics.json` for available metric
+keys and `ctx/tasks.json` for dependency context.

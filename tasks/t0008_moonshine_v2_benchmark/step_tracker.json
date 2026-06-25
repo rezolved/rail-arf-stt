@@ -24,8 +24,8 @@
       "step": 3,
       "name": "init-folders",
       "description": "Create task folder structure, logs, and initialize assets directories.",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-06-25T08:54:36Z",
       "completed_at": null,
       "log_file": "logs/steps/003_init-folders/"
     },
