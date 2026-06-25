@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0008_moonshine_v2_benchmark"
-updated_at: "2026-06-25T09:35:00Z"
-completed_steps: 12
-next_step_number: 7
-next_step_id: "compare-literature"
+updated_at: "2026-06-25T10:10:00Z"
+completed_steps: 13
+next_step_number: 8
+next_step_id: "suggestions"
 ---
 # Task Objective
 
@@ -96,11 +96,18 @@ remote_machines_used.json ([]). `verify_task_results` and `verify_task_metrics` 
 
 * * *
 
+### Step 7 — compare-literature
+
+`results/compare_literature.md` written and verified (0 errors, 0 warnings). Compared Moonshine v2
+Medium against: (1) Kudlur2026 (arXiv 2602.12241): published WER=6.65% on Open ASR Leaderboard vs.
+gold-92 WER=16.6% (+9.95pp domain mismatch); latency 258ms (ONNX/M3) vs. 232ms (Transformers/CPU),
+directionally consistent. (2) t0004 Whisper large-v3 + initial_prompt: entity_accuracy_domain_vocab
+94.5% vs. 9.1% (−85.4pp, biased vs. unbiased cross-model); latency 6.66s vs. 0.232s (Moonshine 29x
+faster). (3) t0004 Moonshine base: entity_accuracy identical at 21.7% (0pp delta), confirming entity
+failure is vocabulary-driven not capacity-driven. Key finding: v2 Medium adds no entity accuracy
+over base despite 7x more parameters; biasing is required before Moonshine can serve as an edge
+fallback.
+
 ## Next Step Notes
 
-Step 6 (results) completed. Proceed to step 7 (compare-literature): spawn a subagent to execute the
-`/compare-literature` skill. Key metrics to compare against literature: WER=16.6%,
-entity_accuracy_gold92=21.7%, entity_accuracy_domain_vocab=9.1%, latency_p50=0.232s. The model is
-`UsefulSensors/moonshine-streaming-medium` (266M params). The primary comparator from t0004 is
-Whisper large-v3 + initial_prompt. Papers in the project corpus may include work on Moonshine,
-Whisper, or shallow-fusion STT biasing.
+Step 7 (compare-literature) completed. Proceed to step 8 (suggestions).
