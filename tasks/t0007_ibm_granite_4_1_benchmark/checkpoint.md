@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0007_ibm_granite_4_1_benchmark"
-updated_at: "2026-06-25T07:32:00Z"
-completed_steps: 1
-next_step_number: 2
-next_step_id: "check-deps"
+updated_at: "2026-06-25T07:33:00Z"
+completed_steps: 2
+next_step_number: 3
+next_step_id: "init-folders"
 ---
 # Task Objective
 
@@ -22,6 +22,12 @@ steps: research-papers, research-internet, creative-thinking skipped; research-c
 setup-machines, teardown, compare-literature included per stt-benchmark-run task type). Step 1 is a
 mechanical setup step with no research output.
 
+### Step 2 — check-deps
+
+Both dependencies verified as completed: t0001_stt_benchmark (gold-92 dataset ingestion) and
+t0004_vocabulary_biasing_experiment (Whisper initial_prompt biasing baseline). Result written to
+`logs/steps/002_check-deps/deps_report.json` with 0 errors and 0 warnings.
+
 * * *
 
 ## Cross-Step Decisions
@@ -30,6 +36,7 @@ mechanical setup step with no research output.
 
 ## Next Step Notes
 
-Step 1 completed successfully. The task branch and folder are ready. Proceed to step 2 (check-deps)
-per step_tracker.json — verify t0001_stt_benchmark and t0004_vocabulary_biasing_experiment are both
-completed before continuing.
+Step 2 (check-deps) passed with all dependencies satisfied. Proceed to step 3 (init-folders) to
+create the mandatory task folder structure, populate aggregator cache files, and add .gitkeep files
+to empty directories. The gold-92 benchmark dataset from t0001 and the vocabulary biasing results
+from t0004 are both available for use in subsequent research-code and implementation steps.
