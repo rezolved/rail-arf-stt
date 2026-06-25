@@ -95,6 +95,13 @@ S-0008-02 (Moonshine model-size entity accuracy ablation, medium priority), S-00
 transcript corpus preprocessing for KenLM, medium priority). Deduplicated against 23 existing
 uncovered suggestions and 8 existing tasks — no duplicates found.
 
+### Step 9 — reporting
+
+All verificators run. verify_logs PASSED (0 errors), verify_task_results PASSED, verify_task_metrics
+PASSED, verify_suggestions PASSED, verify_task_file PASSED, verify_task_dependencies PASSED. Known
+infrastructure gap: verify_task_folder FD-E016 for checkpoint.md and ctx/ (v25 gap, deferred).
+Session capture ran (0 transcripts). task.json updated to status=completed.
+
 * * *
 
 ## Cross-Step Decisions
@@ -108,14 +115,6 @@ uncovered suggestions and 8 existing tasks — no duplicates found.
 - Model: moonshine_onnx only supports v1 tiny/base. Using `UsefulSensors/moonshine-streaming-medium`
   via HuggingFace Transformers (`MoonshineStreamingForConditionalGeneration`) as the v2 Medium
   equivalent. Documented in code/paths.py.
-
-### Step 9 — reporting
-
-All verificators run. verify_logs PASSED (0 errors), verify_task_results PASSED, verify_task_metrics
-PASSED, verify_suggestions PASSED, verify_task_file PASSED, verify_task_dependencies PASSED. Known
-infrastructure gap: verify_task_folder FD-E016 errors for checkpoint.md and ctx/ — these are v25
-additions not yet reflected in the verificator's allowed-files list; deferred to main branch fix.
-Session capture ran (0 transcripts found). task.json updated to status=completed.
 
 * * *
 
