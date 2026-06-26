@@ -5,13 +5,13 @@
   "name": "Benchmark NVIDIA Nemotron 3.5 ASR on Gold-92",
   "short_description": "Benchmark NVIDIA Nemotron 3.5 ASR (streaming native) on gold-92 to validate entity accuracy and latency vs. Whisper baseline.",
   "long_description_file": "task_description.md",
-  "status": "not_started",
+  "status": "completed",
   "dependencies": [
     "t0001_stt_benchmark",
     "t0004_vocabulary_biasing_experiment"
   ],
-  "start_time": null,
-  "end_time": null,
+  "start_time": "2026-06-25T06:00:00Z",
+  "end_time": "2026-06-25T12:00:00Z",
   "expected_assets": {
     "predictions": 2
   },

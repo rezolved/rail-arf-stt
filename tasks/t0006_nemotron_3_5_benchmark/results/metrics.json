@@ -1,0 +1,51 @@
+{
+  "variants": [
+    {
+      "variant_id": "nemotron-3.5-batch",
+      "label": "Nemotron 3.5 ASR \u2014 batch (no biasing)",
+      "metrics": {
+        "entity_accuracy_gold92": 0.247464,
+        "entity_accuracy_domain_vocab": 0.181818,
+        "wer_gold92": 0.175527,
+        "action_critical_wer_gold92": 0.316456,
+        "intent_preservation_gold92": 0.903226,
+        "latency_p50_seconds": 0.7186,
+        "latency_p95_seconds": 0.7186,
+        "latency_p99_seconds": 0.7186
+      }
+    },
+    {
+      "variant_id": "nemotron-3.5-word-boosted",
+      "label": "Nemotron 3.5 ASR \u2014 streaming + word boosting",
+      "metrics": {
+        "entity_accuracy_gold92": 0.187319,
+        "entity_accuracy_domain_vocab": 0.127273,
+        "wer_gold92": 0.198596,
+        "action_critical_wer_gold92": 0.424051,
+        "intent_preservation_gold92": 0.849462,
+        "latency_p50_seconds": 0.723,
+        "latency_p95_seconds": 0.723,
+        "latency_p99_seconds": 0.723
+      }
+    },
+    {
+      "variant_id": "whisper-large-v3-biased",
+      "label": "Whisper Large v3 + initial_prompt (t0004 baseline)",
+      "metrics": {
+        "entity_accuracy_gold92": 0.460145,
+        "entity_accuracy_domain_vocab": 0.945455,
+        "wer_gold92": 0.085256,
+        "action_critical_wer_gold92": 0.025316,
+        "intent_preservation_gold92": 0.989247,
+        "latency_p50_seconds": 6.6621,
+        "latency_p95_seconds": 7.9805,
+        "latency_p99_seconds": 8.3811
+      }
+    }
+  ],
+  "streaming_degradation": {
+    "delta_wer": 0.023069,
+    "delta_entity_accuracy": -0.060145,
+    "delta_entity_accuracy_domain_vocab": -0.054545
+  }
+}

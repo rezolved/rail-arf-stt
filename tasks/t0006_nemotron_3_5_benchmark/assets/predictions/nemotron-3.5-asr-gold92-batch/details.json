@@ -1,0 +1,31 @@
+{
+  "spec_version": "2",
+  "predictions_id": "nemotron-3.5-asr-gold92-batch",
+  "name": "Nemotron 3.5 ASR — Batch (no biasing) on Gold-92",
+  "short_description": "Per-clip STT predictions from NVIDIA Nemotron 3.5 ASR in batch mode (no word boosting) on all 93 gold-92 benchmark clips.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "NVIDIA Nemotron 3.5 ASR (FastConformer-CTC), NeMo/Riva NIM, GPU inference, batch mode, no vocabulary biasing",
+  "dataset_ids": ["stt-benchmark-gold-92"],
+  "prediction_format": "jsonl",
+  "prediction_schema": "clip_id (string), hypothesis (string), latency_seconds (float)",
+  "instance_count": 93,
+  "metrics_at_creation": {
+    "wer_gold92": 0.175527,
+    "entity_accuracy_gold92": 0.247464,
+    "entity_accuracy_domain_vocab": 0.181818,
+    "action_critical_wer_gold92": 0.316456,
+    "intent_preservation_gold92": 0.903226,
+    "latency_p50_seconds": 0.7186
+  },
+  "files": [
+    {
+      "path": "files/predictions-gold92.jsonl",
+      "description": "Per-clip STT predictions on all 93 gold-92 benchmark clips. Each line: clip_id, hypothesis, latency_seconds.",
+      "format": "jsonl"
+    }
+  ],
+  "categories": ["stt-evaluation"],
+  "created_by_task": "t0006_nemotron_3_5_benchmark",
+  "date_created": "2026-06-25"
+}

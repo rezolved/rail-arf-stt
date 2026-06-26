@@ -1,0 +1,31 @@
+{
+  "spec_version": "2",
+  "predictions_id": "nemotron-3.5-asr-gold92-word-boosted",
+  "name": "Nemotron 3.5 ASR — Streaming + Word Boosting on Gold-92",
+  "short_description": "Per-clip STT predictions from NVIDIA Nemotron 3.5 ASR in streaming mode with word-boosting API on all 93 gold-92 benchmark clips. Word boosting degraded all accuracy metrics vs. batch.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "NVIDIA Nemotron 3.5 ASR (FastConformer-CTC), NeMo/Riva NIM, GPU inference, streaming mode with word-boosting API using DOMAIN_VOCAB",
+  "dataset_ids": ["stt-benchmark-gold-92"],
+  "prediction_format": "jsonl",
+  "prediction_schema": "clip_id (string), hypothesis (string), latency_seconds (float), chunk_seconds (float)",
+  "instance_count": 93,
+  "metrics_at_creation": {
+    "wer_gold92": 0.198596,
+    "entity_accuracy_gold92": 0.187319,
+    "entity_accuracy_domain_vocab": 0.127273,
+    "action_critical_wer_gold92": 0.424051,
+    "intent_preservation_gold92": 0.849462,
+    "latency_p50_seconds": 0.723
+  },
+  "files": [
+    {
+      "path": "files/predictions-gold92.jsonl",
+      "description": "Per-clip STT predictions on all 93 gold-92 benchmark clips. Each line: clip_id, hypothesis, latency_seconds, chunk_seconds.",
+      "format": "jsonl"
+    }
+  ],
+  "categories": ["stt-evaluation"],
+  "created_by_task": "t0006_nemotron_3_5_benchmark",
+  "date_created": "2026-06-25"
+}
