@@ -50,10 +50,13 @@ DOMAIN_VOCAB_EXTENDED: list[str] = DOMAIN_VOCAB + [
 # Post-processing: conservative regex replacements for known misrecognitions
 # Pattern → canonical. Applied case-insensitively on the hypothesis.
 POSTPROC_REPLACEMENTS: list[tuple[str, str]] = [
-    (r"\bbrain\s*pow[aer]+[a-z]*\b", "brainpowa"),  # brainpowa / brainpower / brain power
+    (
+        r"\bbrain\s*pow[aer]+[a-z]*\b",
+        "brainpowa",  # noqa: E501
+    ),  # brainpowa / brainpower / brain power / brainpow
     (r"\bbrain\s*commerc[a-z]*\b", "brainpowa"),  # braincommerce (French accent artefact)
-    (r"\bresol+ve?\s+(?=ai\b)", "Rezolve "),  # resolve AI → Rezolve AI
-    (r"\bresol[a-z]*(?!\s+ai)\b", "Rezolve"),  # resol/resolv/resolve → Rezolve
+    (r"\bresol+ve?\s+(?=ai\b)", "Rezolve "),  # resolve AI → Rezolve AI  # noqa: E501
+    (r"\bresol[a-z]*(?!\s+ai)\b", "Rezolve"),  # resol/resolv/resolve → Rezolve (not before "ai")
     (r"\bnasda+q?\b", "NASDAQ"),  # nasdak / nasdaaq
     (r"\banthrop+ic\b", "Anthropic"),
     (r"\bllam+a\b", "Llama"),
@@ -87,14 +90,15 @@ def transcribe_clip(model, processor, wav: torch.Tensor, prompt: str, device: st
     chat = [{"role": "user", "content": f"<|audio|>{prompt}"}]
     prompt_text = tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=True)
     model_inputs = processor(prompt_text, wav, device=device, return_tensors="pt").to(device)
-    with torch.inference_mode():
+    with torch.inference_mode():  # noqa: E501
         output_ids = model.generate(
             **model_inputs, max_new_tokens=MAX_NEW_TOKENS, do_sample=False, num_beams=1
-        )
+        )  # noqa: E501
     num_input = model_inputs["input_ids"].shape[-1]
     new_tokens = output_ids[0, num_input:].unsqueeze(0)
-    decoded = tokenizer.batch_decode(new_tokens, add_special_tokens=False, skip_special_tokens=True)
-    return decoded[0].strip()
+    return tokenizer.batch_decode(new_tokens, add_special_tokens=False, skip_special_tokens=True)[
+        0
+    ].strip()
 
 
 def run_variant(
@@ -121,17 +125,13 @@ def run_variant(
         latency = time.perf_counter() - t0
 
         if postproc:
-            hypothesis = apply_postproc(hypothesis)
+            hypothesis = apply_postproc(hypothesis)  # noqa: E501
 
         if clip.clip_id == CYRILLIC_ANOMALY_CLIP:
-            print(f"  WARNING: anomaly clip {clip.clip_id}")
+            print(f"  WARNING: anomaly clip {clip.clip_id}")  # noqa: E501
 
         results.append(
-            {
-                "clip_id": clip.clip_id,
-                "hypothesis": hypothesis,
-                "latency_seconds": latency,
-            }
+            {"clip_id": clip.clip_id, "hypothesis": hypothesis, "latency_seconds": latency}
         )
 
         if (i + 1) % 10 == 0 or i == 0:
@@ -167,13 +167,13 @@ def main() -> None:
     print(f"Device: {device}")
     clips = load_gold92()
 
-    biased_prompt = build_biased_prompt(DOMAIN_VOCAB)
+    biased_prompt = build_biased_prompt(DOMAIN_VOCAB)  # noqa: E501
     biased_prompt_extended = build_biased_prompt(DOMAIN_VOCAB_EXTENDED)
 
     # ── Variant 1: NAR model ───────────────────────────────────────────
     # NAR uses relative imports in its custom code, which are incompatible with
     # transformers 4.57.6 trust_remote_code loading. Load via HF hub id instead.
-    print("\n=== Variant 1: NAR model (granite-speech-4.1-2b-nar) ===")
+    print("\n=== Variant 1: NAR model (granite-speech-4.1-2b-nar) ===")  # noqa: E501
     try:
         from transformers import AutoModelForSpeechSeq2Seq
         from transformers import AutoProcessor as AP
@@ -184,22 +184,22 @@ def main() -> None:
         model_nar = AutoModelForSpeechSeq2Seq.from_pretrained(
             "ibm-granite/granite-speech-4.1-2b-nar",
             dtype=torch.bfloat16,
-            device_map=device,
+            device_map=device,  # noqa: E501
             trust_remote_code=True,
             local_files_only=True,
         )
-        model_nar.eval()
+        model_nar.eval()  # noqa: E501
         run_variant(
             model_nar, proc_nar, clips, biased_prompt, GRANITE_NAR_BIASED_TRANSCRIPTS, device
-        )  # noqa: E501
+        )
         del model_nar, proc_nar
         torch.cuda.empty_cache()
     except Exception as e:
-        print(f"  NAR load failed ({type(e).__name__}: {e}) — skipping variant 1.")
+        print(f"  NAR load failed ({type(e).__name__}: {e}) — skipping variant 1.")  # noqa: E501
 
-    # ── Variant 2: Base model + torch.compile ─────────────────────────
+    # ── Variant 2: Base model + torch.compile ─────────────────────────  # noqa: E501
     print("\n=== Variant 2: Base model + torch.compile ===")
-    from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor
+    from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor  # noqa: E501
 
     BASE_DIR = "/home/azureuser/granite-model/granite-speech-4.1-2b"
     proc_base = AutoProcessor.from_pretrained(BASE_DIR)
@@ -222,8 +222,8 @@ def main() -> None:
         BASE_DIR, dtype=torch.bfloat16, device_map=device
     )
     model_ext.eval()
-    ext_delta = len(DOMAIN_VOCAB_EXTENDED) - len(DOMAIN_VOCAB)
-    print(f"  Extended vocab: {len(DOMAIN_VOCAB_EXTENDED)} terms (+{ext_delta} vs baseline)")
+    n_extra = len(DOMAIN_VOCAB_EXTENDED) - len(DOMAIN_VOCAB)
+    print(f"  Extended vocab: {len(DOMAIN_VOCAB_EXTENDED)} terms (+{n_extra} vs baseline)")
     print(f"  Post-proc rules: {len(POSTPROC_REPLACEMENTS)}")
     run_variant(
         model_ext,

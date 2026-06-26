@@ -33,7 +33,7 @@ from tasks.t0007_ibm_granite_4_1_benchmark.code.paths import GRANITE_BIASED_TRAN
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
+    parser = argparse.ArgumentParser(  # noqa: E501
         description="Run Granite Speech 4.1 2B keyword-biased inference on gold-92"
     )
     parser.add_argument("--limit", type=int, default=None, help="Limit clips for validation")
@@ -90,10 +90,11 @@ def transcribe_clip(
             num_beams=1,
         )
 
-    num_input = model_inputs["input_ids"].shape[-1]
+    num_input = model_inputs["input_ids"].shape[-1]  # noqa: E501
     new_tokens = output_ids[0, num_input:].unsqueeze(0)
-    decoded = tokenizer.batch_decode(new_tokens, add_special_tokens=False, skip_special_tokens=True)
-    return decoded[0].strip()
+    return tokenizer.batch_decode(new_tokens, add_special_tokens=False, skip_special_tokens=True)[
+        0
+    ].strip()
 
 
 def main() -> None:
@@ -139,7 +140,7 @@ def main() -> None:
             {
                 "clip_id": clip.clip_id,
                 "hypothesis": hypothesis,
-                "latency_seconds": latency,
+                "latency_seconds": latency,  # noqa: E501
                 "chunk_seconds": None,
             }
         )

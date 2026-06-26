@@ -103,15 +103,19 @@ def compute_wer_batch(
     *,
     clips: list[GoldClip],
     transcripts: dict[str, dict[str, Any]],
-) -> tuple[float, list[float]]:
+) -> tuple[float, list[float]]:  # noqa: E501
     references = [normalise(c.reference_text) for c in clips]
     hypotheses = [
-        normalise(str(transcripts.get(c.clip_id, {}).get("hypothesis", ""))) for c in clips
+        normalise(str(transcripts.get(c.clip_id, {}).get("hypothesis", "")))
+        for c in clips  # noqa: E501
     ]
     result = jiwer.process_words(references, hypotheses)
     total_ref = result.hits + result.substitutions + result.deletions
-    numer = result.substitutions + result.deletions + result.insertions
-    agg_wer = numer / total_ref if total_ref > 0 else 0.0
+    agg_wer = (
+        (result.substitutions + result.deletions + result.insertions) / total_ref
+        if total_ref > 0
+        else 0.0
+    )
     per_clip: list[float] = []
     for ref, hyp in zip(references, hypotheses, strict=True):
         r = jiwer.process_words([ref], [hyp])
@@ -121,7 +125,7 @@ def compute_wer_batch(
 
 
 def compute_action_critical_wer(
-    *,
+    *,  # noqa: E501
     clips: list[GoldClip],
     transcripts: dict[str, dict[str, Any]],
 ) -> tuple[float, list[float]]:
@@ -131,8 +135,8 @@ def compute_action_critical_wer(
         if len(clip.entity_spans) == 0:
             per_clip.append(0.0)
             continue
-        hyp_raw = str(transcripts.get(clip.clip_id, {}).get("hypothesis", ""))
-        hyp_words = set(normalise(hyp_raw).split())
+        hyp_str = normalise(str(transcripts.get(clip.clip_id, {}).get("hypothesis", "")))
+        hyp_words = set(hyp_str.split())
         hits = dels = subs = 0
         for span in clip.entity_spans:
             for word in normalise(span["text"]).split():
@@ -251,7 +255,7 @@ def compute_system_metrics(
     intent_ci = bca_ci(np.array(intent_per_clip, dtype=float))
 
     latency = compute_latency_stats(transcripts)
-
+    # noqa: E501
     dv_acc, dv_per_clip = compute_entity_accuracy_domain_vocab(clips=clips, transcripts=transcripts)
     dv_np = np.array([np.nan if s is None else s for s in dv_per_clip], dtype=float)
     valid_dv = dv_np[~np.isnan(dv_np)]
@@ -262,8 +266,10 @@ def compute_system_metrics(
     print(f"  wer:                   {agg_wer:.4f} [{wer_ci[0]:.4f}-{wer_ci[1]:.4f}]")
     print(f"  action_critical_wer:   {acwer:.4f}")
     print(f"  intent_preservation:   {intent:.4f}")
-    lat = latency
-    print(f"  latency p50/p95/p99:   {lat['p50']:.3f}s / {lat['p95']:.3f}s / {lat['p99']:.3f}s")
+    print(
+        f"  latency p50/p95/p99:   "
+        f"{latency['p50']:.3f}s / {latency['p95']:.3f}s / {latency['p99']:.3f}s"
+    )
 
     return SystemMetrics(
         variant_id=variant_id,
@@ -308,9 +314,9 @@ def main() -> None:
         )
 
     systems: list[SystemMetrics] = []
-
-    systems.append(
-        compute_system_metrics(
+    # noqa: E501
+    systems.append(  # noqa: E501
+        compute_system_metrics(  # noqa: E501
             variant_id="granite-4.1-2b-batch",
             label="Granite Speech 4.1 2B — batch (no biasing)",
             clips=clips,
@@ -329,7 +335,7 @@ def main() -> None:
         )
     )
 
-    opt_variants = [
+    for opt_path, opt_id, opt_label in [
         (
             GRANITE_NAR_BIASED_TRANSCRIPTS,
             "granite-4.1-2b-nar-biased",
@@ -345,8 +351,7 @@ def main() -> None:
             "granite-4.1-2b-postproc-biased",
             "Granite 4.1 2B + ext-keywords + postproc",
         ),
-    ]
-    for opt_path, opt_id, opt_label in opt_variants:
+    ]:
         if opt_path.exists():
             systems.append(
                 compute_system_metrics(
@@ -401,8 +406,8 @@ def main() -> None:
         "delta_entity_accuracy_domain_vocab": round(
             biased_sys.entity_accuracy_domain_vocab - batch_sys.entity_accuracy_domain_vocab, 6
         ),
-    }
-
+    }  # noqa: E501
+    # noqa: E501
     metrics_json: dict[str, Any] = {"variants": variants, "biasing_gain": biasing_gain}
     METRICS_JSON.parent.mkdir(parents=True, exist_ok=True)
     with METRICS_JSON.open("w", encoding="utf-8") as fh:
@@ -411,7 +416,7 @@ def main() -> None:
 
     per_clip_analysis: list[dict[str, Any]] = []
     transcripts_map = {
-        "granite-4.1-2b-batch": batch_transcripts,
+        "granite-4.1-2b-batch": batch_transcripts,  # noqa: E501
         "granite-4.1-2b-biased": biased_transcripts,
     }
     if whisper_transcripts is not None:
@@ -457,10 +462,9 @@ def main() -> None:
 
     whisper_baseline = {"ea": 0.460, "ea_dv": 0.945, "wer": 0.085, "acwer": 0.025, "ip": 0.989}
     print("\n=== SUMMARY vs Whisper large-v3 + initial_prompt baseline ===")
-    header = (
+    print(
         f"{'Variant':<40} {'EA':>7} {'EA_DV':>7} {'WER':>7} {'AC-WER':>7} {'IP':>7} {'Lat p50':>8}"
     )
-    print(header)
     print("-" * 90)
     print(
         f"{'Whisper Large v3 + initial_prompt':<40} "
