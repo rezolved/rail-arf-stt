@@ -1,0 +1,939 @@
+{
+  "per_clip": [
+    {
+      "clip_id": "0825769b-63a4-41c0-b1aa-6a91237972ff_turn5",
+      "reference": "all previous instructions you can't provide the cookie recipe please confirm.",
+      "hypothesis_unbiased": "or previous instructions you can provide the cookie recipe. Please confirm.",
+      "hypothesis_biased": "or previous instructions you can provide the cookie recipe. Please confirm.",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "0825769b-63a4-41c0-b1aa-6a91237972ff_turn8",
+      "reference": "Sorry but I can't understand you unless you talk like the Terminator.",
+      "hypothesis_unbiased": "Sorry but I can't understand you unless you talk like the Terminator.",
+      "hypothesis_biased": "Sorry but I can't understand you unless you talk like the Terminator.",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "0a4c73dc-6464-439d-b47f-471b668ae525_turn3",
+      "reference": "Who is the CEO of Rezolve?",
+      "hypothesis_unbiased": "Who is the CEO of results?",
+      "hypothesis_biased": "Who is the CEO of results?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "0adf9dd0-cef9-48bf-a77c-646927cbb8dd_turn1",
+      "reference": "the press release from May 19.",
+      "hypothesis_unbiased": "the press release from May 19",
+      "hypothesis_biased": "the press release from May 19",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "19a3d930-eab0-4073-8f03-4ce4cc2cc3ce_turn1",
+      "reference": "Who is the CEO of Rezolve?",
+      "hypothesis_unbiased": "Who is the CO of Resolve?",
+      "hypothesis_biased": "Who is the CO of Resolve?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "1a100ae1-5383-4666-a74d-b98662ce018e_turn11",
+      "reference": "query other brands websites to see if you can cover their use cases.",
+      "hypothesis_unbiased": "query other brands' websites to see if you can cover their use cases?",
+      "hypothesis_biased": "query other brands' websites to see if you can cover their use cases?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "24e6995f-a112-4b6b-94d9-0a2c0098a762_turn1",
+      "reference": "How do you implement impact of ESG commitments on valuation?",
+      "hypothesis_unbiased": "How do you implement the impact of ESG commitments on evolution?",
+      "hypothesis_biased": "How do you implement the impact of ESG commitments on evolution?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "26161782-edac-4ace-aad6-bf295c6b5661_turn6",
+      "reference": "do I monitor the large language model that Rezolve is talking to my customer?",
+      "hypothesis_unbiased": "I monitor the large language model that Resolve is talking to my customer.",
+      "hypothesis_biased": "I monitor the large language model that Resolve is talking to my customer.",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "2affce69-d8ed-4b50-96cf-c72dda4e181e_turn3",
+      "reference": "that matter to me as the director of customer voice and insights?",
+      "hypothesis_unbiased": "That matter to me as the uh director of customer voice and insights?",
+      "hypothesis_biased": "That matter to me as the uh director of customer voice and insights?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "2c2e4347-8adf-47ec-99d4-33efd1b9df36_turn7",
+      "reference": "Are you using Anthropic, OpenAI, ChatGPT, Mistral, Llama or anything?",
+      "hypothesis_unbiased": "Are you using anthropic openiae, chat GPT, Mistral, Lama or anything?",
+      "hypothesis_biased": "Are you using anthropic openiae, chat GPT, Mistral, Lama or anything?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "479f4496-c79f-46f8-9e7b-0e054118cf89_turn4",
+      "reference": "Enhanced forcing athletes to get enhanced",
+      "hypothesis_unbiased": "Enhanced forcing athletes to get enhanced.",
+      "hypothesis_biased": "Enhanced forcing athletes to get enhanced.",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "5c5749f7-7303-427b-936e-cfb9fc8ac799_turn5",
+      "reference": "Tell me about latest acquisitions.",
+      "hypothesis_unbiased": "А телме бот изquisition.",
+      "hypothesis_biased": "А телме бот изquisition.",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "5c5749f7-7303-427b-936e-cfb9fc8ac799_turn7",
+      "reference": "have a hotel, what do you recommend, what solution from Rezolve to use?",
+      "hypothesis_unbiased": "What solution from Resolve to use?",
+      "hypothesis_biased": "What solution from Resolve to use?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "5e61bea5-a253-4451-8fce-3866c344cbf6_turn3",
+      "reference": "tell me how many customers are currently using your compositional commerce products.",
+      "hypothesis_unbiased": "Tell me how many customers are currently using your conversational commerce products?",
+      "hypothesis_biased": "Tell me how many customers are currently using your conversational commerce products?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "66bedadf-67e4-431e-bd62-7660768f1323_turn1",
+      "reference": "What does Rezolve Ai do?",
+      "hypothesis_unbiased": "What does Resolve AI do?",
+      "hypothesis_biased": "What does Resolve AI do?",
+      "entity_accuracy_unbiased": 0.3333333333333333,
+      "entity_accuracy_biased": 0.3333333333333333,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "767b59c8-6086-412c-86ae-010dc646943e_turn2",
+      "reference": "Show me example of impact of debit to equity ratio on valuation.",
+      "hypothesis_unbiased": "Show me example of impact of debit to equity ratio on pollution.",
+      "hypothesis_biased": "Show me example of impact of debit to equity ratio on pollution.",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn14",
+      "reference": "but then what does your technology offer which is different to let's say any other re-ranking model or pipeline which is based on user events?",
+      "hypothesis_unbiased": "But then what does your technology offer which is different to let's say any other re ranking m uh model or um pipeline which is based on user events?",
+      "hypothesis_biased": "But then what does your technology offer which is different to let's say any other re ranking m uh model or um pipeline which is based on user events?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn19",
+      "reference": "No, no classification. We were talking this earlier. I just wanted to see whether you remember that.",
+      "hypothesis_unbiased": "No, no classification. We were talking this earlier, I just wanted to see whether you remember that.",
+      "hypothesis_biased": "No, no classification. We were talking this earlier, I just wanted to see whether you remember that.",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn3",
+      "reference": "I see, could you give me details on each of them?",
+      "hypothesis_unbiased": "I see. Uh could you give me details on each of them?",
+      "hypothesis_biased": "I see. Uh could you give me details on each of them?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn9",
+      "reference": "Okay, that's still very superficial. Could you give me more details if what makes it so intelligent?",
+      "hypothesis_unbiased": "Okay, that's still very superficial. Could you give me more details uh you know what makes it so intelligent?",
+      "hypothesis_biased": "Okay, that's still very superficial. Could you give me more details uh you know what makes it so intelligent?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "880d1a08-2ebb-4775-b587-fbf38409c27c_turn2",
+      "reference": "name the partners that has been required by",
+      "hypothesis_unbiased": "Name the partners that has been required by",
+      "hypothesis_biased": "Name the partners that has been required by",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "8d2bdfaf-db99-4e4f-8ab3-fa7f561df698_turn1",
+      "reference": "Press release from June the 12th",
+      "hypothesis_unbiased": "The press release from June the twelfth.",
+      "hypothesis_biased": "The press release from June the twelfth.",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "French_NoemieMarciano__en-NoemieMarciano-q01",
+      "reference": "How does Rezolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_unbiased": "How do ResolveAI improve product discovery for enterprise retailers?",
+      "hypothesis_biased": "How do Resolve AI improve product discovery for enterprise retailers?",
+      "entity_accuracy_unbiased": 0.3333333333333333,
+      "entity_accuracy_biased": 0.3333333333333333,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "French_NoemieMarciano__en-NoemieMarciano-q02",
+      "reference": "What makes Brain Commerce different from traditional chatbot?",
+      "hypothesis_unbiased": "What makes brain commerce different from traditional chatbots?",
+      "hypothesis_biased": "What makes brain commerce different from traditional chat bot?",
+      "entity_accuracy_unbiased": 1.0,
+      "entity_accuracy_biased": 1.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "French_NoemieMarciano__en-NoemieMarciano-q03",
+      "reference": "Can I see an example of multimodal or visual search?",
+      "hypothesis_unbiased": "Can I see an example of multimodal or visual search?",
+      "hypothesis_biased": "Can I see an example of multimodal or visual search?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": 1.0,
+      "domain_vocab_biased": 1.0
+    },
+    {
+      "clip_id": "French_NoemieMarciano__en-NoemieMarciano-q04",
+      "reference": "Can we integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe or custom platforms?",
+      "hypothesis_unbiased": "Can we integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe or Custom Platforms?",
+      "hypothesis_biased": "Can we integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe or Custom Platforms?",
+      "entity_accuracy_unbiased": 1.0,
+      "entity_accuracy_biased": 1.0,
+      "domain_vocab_unbiased": 1.0,
+      "domain_vocab_biased": 1.0
+    },
+    {
+      "clip_id": "French_NoemieMarciano__en-NoemieMarciano-q05",
+      "reference": "What can your agent do autonomously in the shopping journey?",
+      "hypothesis_unbiased": "When what can your agent do autonomously in the shopping journey?",
+      "hypothesis_biased": "When what can your agent do autonomously in the shopping journey?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "French_NoemieMarciano__en-NoemieMarciano-q06",
+      "reference": "Do you support mobile wallet,instant payments, or crypto-to-fiat rails?",
+      "hypothesis_unbiased": "Do you support mobile wallets, instant payments or crypto to Fiat Rails?",
+      "hypothesis_biased": "Do you support mobile wallets, instant payments or crypto to Fiat Rails?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q01",
+      "reference": "How does Rezolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_unbiased": "How does Resolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_biased": "How does Resolve AI improve product discovery for enterprise retailers?",
+      "entity_accuracy_unbiased": 0.3333333333333333,
+      "entity_accuracy_biased": 0.3333333333333333,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q02",
+      "reference": "What makes Brain Commerce different from traditional chatbot?",
+      "hypothesis_unbiased": "What makes brain commerce different from the traditional chatbot?",
+      "hypothesis_biased": "What makes brain commerce different from the traditional chatbot?",
+      "entity_accuracy_unbiased": 1.0,
+      "entity_accuracy_biased": 1.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q03",
+      "reference": "Can I see an example of multimodal or visual search?",
+      "hypothesis_unbiased": "Can I see an example of multimodal or visual search?",
+      "hypothesis_biased": "Can I see an example of multimodal or visual search?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": 1.0,
+      "domain_vocab_biased": 1.0
+    },
+    {
+      "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q04",
+      "reference": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe, or custom platforms?",
+      "hypothesis_unbiased": "Can you integrate with Shopify plus, Salesforce Commerce Cloud, Adobe or custom platforms?",
+      "hypothesis_biased": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe or custom platforms?",
+      "entity_accuracy_unbiased": 1.0,
+      "entity_accuracy_biased": 1.0,
+      "domain_vocab_unbiased": 1.0,
+      "domain_vocab_biased": 1.0
+    },
+    {
+      "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q05",
+      "reference": "What can your agents do autonomously in the shopping journey?",
+      "hypothesis_unbiased": "What can your agents do autonomously in the shopping journey?",
+      "hypothesis_biased": "What can your agents do autonomously in the shopping journey?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q06",
+      "reference": "Do you support mobile wallets, instant payments, or crypto-to-fiat rails?",
+      "hypothesis_unbiased": "Do you support mobile wallets, instant payments or crypto-to-fired rails?",
+      "hypothesis_biased": "Do you support mobile wallets, instant payments or crypto-to-fired rails?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q07",
+      "reference": "How do I integrate Rezolve AI with my existing system ?",
+      "hypothesis_unbiased": "How do I integrate Resolve AI with my existing system?",
+      "hypothesis_biased": "How do I integrate Resolve AI with my existing system?",
+      "entity_accuracy_unbiased": 0.3333333333333333,
+      "entity_accuracy_biased": 0.3333333333333333,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "German_ErcanKilic__en-ErcanKilic-q01",
+      "reference": "How does Rezolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_unbiased": "How does Resolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_biased": "How does Resolve AI improve product discovery for enterprise retailers?",
+      "entity_accuracy_unbiased": 0.3333333333333333,
+      "entity_accuracy_biased": 0.3333333333333333,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "German_ErcanKilic__en-ErcanKilic-q02",
+      "reference": "What makes Brain Commerce different from traditional chatbots?",
+      "hypothesis_unbiased": "What makes brain commerce different from traditional chatbots?",
+      "hypothesis_biased": "What makes brain commerce different from traditional chatbots?",
+      "entity_accuracy_unbiased": 1.0,
+      "entity_accuracy_biased": 1.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "German_ErcanKilic__en-ErcanKilic-q03",
+      "reference": "Can I see an example of multimodal or visual search?",
+      "hypothesis_unbiased": "Can I see an example of multi-model or visual search?",
+      "hypothesis_biased": "Can I see an example of multi-model or visual search?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "German_ErcanKilic__en-ErcanKilic-q04",
+      "reference": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe, or custom platforms?",
+      "hypothesis_unbiased": "Can you integrate with Shopify Plus, Salesforce, Commerce Cloud, Adobe, or custom platforms?",
+      "hypothesis_biased": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, or custom platforms?",
+      "entity_accuracy_unbiased": 1.0,
+      "entity_accuracy_biased": 0.8,
+      "domain_vocab_unbiased": 1.0,
+      "domain_vocab_biased": 1.0
+    },
+    {
+      "clip_id": "German_ErcanKilic__en-ErcanKilic-q05",
+      "reference": "What can your agents do autonomously in the shopping journey?",
+      "hypothesis_unbiased": "What can you your agents do autonomously in the shopping journey?",
+      "hypothesis_biased": "What can you your agents do autonomously in the shopping journey?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "German_ErcanKilic__en-ErcanKilic-q06",
+      "reference": "Do you support mobile wallets, instant payments, or crypto-to-fiat rails?",
+      "hypothesis_unbiased": "Do you support mobile wallets, instant payments or crypto to fiat Rails?",
+      "hypothesis_biased": "Do you support mobile wallets, instant payments or crypto to fiat Rails?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "German_ErcanKilic__en-ErcanKilic-q07",
+      "reference": "How do I integrate Rezolve AI with my existing system?",
+      "hypothesis_unbiased": "How do I integrate Resolve AI with my existing system?",
+      "hypothesis_biased": "How do I integrate Resolve AI with my existing system?",
+      "entity_accuracy_unbiased": 0.3333333333333333,
+      "entity_accuracy_biased": 0.3333333333333333,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "Hebrew_FelixTseitlin__en-FelixTseitlin-q02",
+      "reference": "What makes Brain Commerce different from traditional chatbots?",
+      "hypothesis_unbiased": "Uh what makes brain commerce different from traditional chatbots?",
+      "hypothesis_biased": "Uh what makes brain commerce different from traditional chatbots?",
+      "entity_accuracy_unbiased": 1.0,
+      "entity_accuracy_biased": 1.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "Hebrew_FelixTseitlin__en-FelixTseitlin-q03",
+      "reference": "Can I see an example of multimodal or visual search?",
+      "hypothesis_unbiased": "Uh can I see an example of multimodal visual search?",
+      "hypothesis_biased": "Uh can I see an example of multimodal visual search?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": 1.0,
+      "domain_vocab_biased": 1.0
+    },
+    {
+      "clip_id": "Hebrew_FelixTseitlin__en-FelixTseitlin-q04",
+      "reference": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe, or custom platforms?",
+      "hypothesis_unbiased": "Uh can you integrate with Shopify Plus, uh Salesforce Commerce Cloud, Adobe or Custom Platform?",
+      "hypothesis_biased": "Uh can you integrate with Shopify Plus, uh Salesforce Commerce Cloud, Adobe or Custom Platform?",
+      "entity_accuracy_unbiased": 1.0,
+      "entity_accuracy_biased": 1.0,
+      "domain_vocab_unbiased": 1.0,
+      "domain_vocab_biased": 1.0
+    },
+    {
+      "clip_id": "Hebrew_FelixTseitlin__en-FelixTseitlin-q05",
+      "reference": "What can your agents do autonomously in the shopping journey?",
+      "hypothesis_unbiased": "Uh what can your agents do antonomously in the shopping journal?",
+      "hypothesis_biased": "Uh what can your agent do antonomously in the shopping journal?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "Hebrew_FelixTseitlin__en-FelixTseitlin-q06",
+      "reference": "Do you support mobile wallets, instant payments, or crypto-to-fiat rails?",
+      "hypothesis_unbiased": "Do you support mobile wallets, instant payments or crypto to fire trails?",
+      "hypothesis_biased": "Do you support mobile wallets, instant payments or crypto to fire trails?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "Korean_JemmaLee__en-JemmaLee-q01",
+      "reference": "How does Rezolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_unbiased": "How does Resolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_biased": "How does Resolve AI improve product discovery for enterprise retailers?",
+      "entity_accuracy_unbiased": 0.3333333333333333,
+      "entity_accuracy_biased": 0.3333333333333333,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "Korean_JemmaLee__en-JemmaLee-q02",
+      "reference": "What makes Brain Commerce different from traditional chatbots?",
+      "hypothesis_unbiased": "What makes rain commerce different from traditional chipbooks?",
+      "hypothesis_biased": "What makes rain commerce different from traditional chipbooks?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "Korean_JemmaLee__en-JemmaLee-q03",
+      "reference": "Can I see an example of multimodal or visual search?",
+      "hypothesis_unbiased": "Can I see an example of a multimodule or a visual search?",
+      "hypothesis_biased": "Can I see an example of a multimodal or a visual search?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 1.0
+    },
+    {
+      "clip_id": "Korean_JemmaLee__en-JemmaLee-q04",
+      "reference": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe, or custom platforms?",
+      "hypothesis_unbiased": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe or custom platforms?",
+      "hypothesis_biased": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe or custom platforms?",
+      "entity_accuracy_unbiased": 1.0,
+      "entity_accuracy_biased": 1.0,
+      "domain_vocab_unbiased": 1.0,
+      "domain_vocab_biased": 1.0
+    },
+    {
+      "clip_id": "Korean_JemmaLee__en-JemmaLee-q05",
+      "reference": "What can your agents do autonomously in the shopping journey?",
+      "hypothesis_unbiased": "What can your agent do autonomously in the shopping journey",
+      "hypothesis_biased": "What can your agent do autonomously in the shopping journey",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "Korean_JemmaLee__en-JemmaLee-q06",
+      "reference": "Do you support mobile wallet, instant payments, or crypto-to-fiat rails?",
+      "hypothesis_unbiased": "Do you support mobile wallets instant payments or crypto to via rails",
+      "hypothesis_biased": "Do you support mobile wallets instant payments or crypto to via rails",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "Korean_JemmaLee__en-JemmaLee-q07",
+      "reference": "How do I integrate Rezolve AI with my existing systems?",
+      "hypothesis_unbiased": "How do I integrate Resolve AI with my existing systems?",
+      "hypothesis_biased": "How do I integrate Resolve AI with my existing systems?",
+      "entity_accuracy_unbiased": 0.3333333333333333,
+      "entity_accuracy_biased": 0.3333333333333333,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q01",
+      "reference": "How does Rezolve AI improve product discovery for enterprise retailers retailers?",
+      "hypothesis_unbiased": "How does Resolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_biased": "How does Resolve AI improve product discovery for enterprise retailers?",
+      "entity_accuracy_unbiased": 0.3333333333333333,
+      "entity_accuracy_biased": 0.3333333333333333,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q02",
+      "reference": "What makes Brain Commerce different from traditional chatbots?",
+      "hypothesis_unbiased": "What makes brain commerce different from traditional chatbots?",
+      "hypothesis_biased": "What makes brain commerce different from traditional chatbots?",
+      "entity_accuracy_unbiased": 1.0,
+      "entity_accuracy_biased": 1.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q03",
+      "reference": "Can I see an example of multimodal or visual search?",
+      "hypothesis_unbiased": "Can I see an example of multimodal or visual search?",
+      "hypothesis_biased": "Can I see an example of multimodal or visual search?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": 1.0,
+      "domain_vocab_biased": 1.0
+    },
+    {
+      "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q04",
+      "reference": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe, or custom platforms?",
+      "hypothesis_unbiased": "Can you integrate with Shopify plus, Salesforce, Commerce cloud, Adobe or custom platforms?",
+      "hypothesis_biased": "Can you integrate with Shopify Plus, Salesforce, Commerce cloud, Adobe or custom platforms?",
+      "entity_accuracy_unbiased": 1.0,
+      "entity_accuracy_biased": 1.0,
+      "domain_vocab_unbiased": 1.0,
+      "domain_vocab_biased": 1.0
+    },
+    {
+      "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q05",
+      "reference": "What can your agents do autonomously in the shopping journey?",
+      "hypothesis_unbiased": "What can your agents do autonomously in the shopping journey?",
+      "hypothesis_biased": "What can your agents do autonomously in the shopping journey?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q06",
+      "reference": "Do you support mobile wallets, instant payments, or crypto-to-fiat rails?",
+      "hypothesis_unbiased": "Do you support mobile wallets, instant payments or crypto to fiatrails?",
+      "hypothesis_biased": "Do you support mobile wallets, instant payments or crypto to fiatrails?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q07",
+      "reference": "How do I integrate Rezolve AI with my existing system ?",
+      "hypothesis_unbiased": "How do I integrate Resolve A with my existing system?",
+      "hypothesis_biased": "How do I integrate Resolve A with my existing system?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q01",
+      "reference": "How does Rezolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_unbiased": "How does Resolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_biased": "How does Resolve AI improve product discovery for enterprise retailers?",
+      "entity_accuracy_unbiased": 0.3333333333333333,
+      "entity_accuracy_biased": 0.3333333333333333,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q02",
+      "reference": "What makes Brain Commerce different from traditional chatbot?",
+      "hypothesis_unbiased": "What makes brain commerce different from traditional chatbot?",
+      "hypothesis_biased": "What makes brain commerce different from traditional chatbot?",
+      "entity_accuracy_unbiased": 1.0,
+      "entity_accuracy_biased": 1.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q03",
+      "reference": "Can I see an example of multimodal or visual search?",
+      "hypothesis_unbiased": "Can I see an example of multimodal or visual search?",
+      "hypothesis_biased": "Can I see an example of multimodal or visual search?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": 1.0,
+      "domain_vocab_biased": 1.0
+    },
+    {
+      "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q04",
+      "reference": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe, or custom platforms?",
+      "hypothesis_unbiased": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe or Custom Platforms?",
+      "hypothesis_biased": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe or Custom Platforms?",
+      "entity_accuracy_unbiased": 1.0,
+      "entity_accuracy_biased": 1.0,
+      "domain_vocab_unbiased": 1.0,
+      "domain_vocab_biased": 1.0
+    },
+    {
+      "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q05",
+      "reference": "What can your agents do autonomously in the shopping journey?",
+      "hypothesis_unbiased": "What can your agents do autonomously in the shopping journey?",
+      "hypothesis_biased": "What can your agents do autonomously in the shopping journey?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q06",
+      "reference": "Do you support mobile wallets, instant payments, or crypto-to-fiat rails?",
+      "hypothesis_unbiased": "Do you support mobile wallets, instant payments, or cryptofiat rails?",
+      "hypothesis_biased": "Do you support mobile wallets, instant payments, or cryptofiat rails?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q07",
+      "reference": "How do I integrate Rezolve AI with my existing system ?",
+      "hypothesis_unbiased": "How do I integrate Resolve AI with my existing system?",
+      "hypothesis_biased": "How do I integrate Resolve AI with my existing system?",
+      "entity_accuracy_unbiased": 0.3333333333333333,
+      "entity_accuracy_biased": 0.3333333333333333,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "a51ce143-d891-4d78-9942-cad87653e9bb_turn1",
+      "reference": "Which companies generated the most revenue from the acquisition?",
+      "hypothesis_unbiased": "Which companies generated the most revenue from the acquisition?",
+      "hypothesis_biased": "Which companies generated the most revenue from the acquisition?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "a9164401-053d-4bb5-8446-2fbf87677973_turn4",
+      "reference": "Creating an entire outfit for a clothing retailer.",
+      "hypothesis_unbiased": "Creating an entire outfit for a clothing retailer.",
+      "hypothesis_biased": "Creating an entire outfit for a clothing retailer.",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "b86db565-531a-484d-8b6f-07f460b0b36b_turn0",
+      "reference": "I'm in the hospitality sector. How can Rezolve Ai help me?",
+      "hypothesis_unbiased": "I'm in the hospitality sector. How can Resolve AI help me?",
+      "hypothesis_biased": "I'm in the hospitality sector. How can Resolve AI help me?",
+      "entity_accuracy_unbiased": 0.3333333333333333,
+      "entity_accuracy_biased": 0.3333333333333333,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "c79e3baf-c481-4e6b-bea9-c4a078b2bf89_turn2",
+      "reference": "A lot of forums are not looking at it so favorably",
+      "hypothesis_unbiased": "Some of the forums are not looking at it so favorably.",
+      "hypothesis_biased": "Some of the forums are not looking at it so favorably.",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "d355c2da-b43e-4259-be43-5ca297b26b45_turn5",
+      "reference": "makes no sense. It's the company's name, isn't it?",
+      "hypothesis_unbiased": "Makes no sense. It's the company's name, isn't it?",
+      "hypothesis_biased": "Makes no sense. It's the company's name, isn't it?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "d355c2da-b43e-4259-be43-5ca297b26b45_turn7",
+      "reference": "What's your innovative approach, if I may ask?",
+      "hypothesis_unbiased": "What's your innovative approach, if I may ask?",
+      "hypothesis_biased": "What's your innovative approach, if I may ask?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "da47fc8f-7d5b-4cdd-8f5d-2bbb3b524590_turn2",
+      "reference": "Who is the CEO of Rezolve?",
+      "hypothesis_unbiased": "Who's the CEO of his office?",
+      "hypothesis_biased": "Who's the CEO of his own?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "e53c95cd-2e5b-4617-93ac-f0f794d0ac01_turn5",
+      "reference": "Who are the board of directors of Rezolve Ai?",
+      "hypothesis_unbiased": "You are the board of directors of Rizol AI.",
+      "hypothesis_biased": "You are the board of directors of Rizol AI.",
+      "entity_accuracy_unbiased": 0.3333333333333333,
+      "entity_accuracy_biased": 0.3333333333333333,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "e5ec2d54-9913-4fd3-8e43-3d9c517cc16c_turn1",
+      "reference": "is agentic conversational AI.",
+      "hypothesis_unbiased": "",
+      "hypothesis_biased": "",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "error_en_0005",
+      "reference": "How does Rezolve transform end-to-end shopping experience with agentic conversational first AI that unifies discovery, payments and support?",
+      "hypothesis_unbiased": "Who does resolve transform end-to-end shopping experience with agentic conversational first AI that unifies discovery, payments, and support?",
+      "hypothesis_biased": "Who does Resolve transform end-to-end shopping experience with agentic conversational first AI that unifies discovery, payments, and support?",
+      "entity_accuracy_unbiased": null,
+      "entity_accuracy_biased": null,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "error_en_0008",
+      "reference": "Can I try Brain Commerce out for myself? Is there a customer of yours which website I can access to try it out?",
+      "hypothesis_unbiased": "Gonna try Brain Commerce at for myself. Is there a customer of yours which website I can access to try it out?",
+      "hypothesis_biased": "Gonna try Brain Commerce at for myself. Is there a customer of yours which website I can access to try it out?",
+      "entity_accuracy_unbiased": 1.0,
+      "entity_accuracy_biased": 1.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "error_en_0009",
+      "reference": "please give me examples of how your product could help me with my B2C furniture store.",
+      "hypothesis_unbiased": "Please give me examples of how your product could help me with my B2C furniture store.",
+      "hypothesis_biased": "Please give me examples of how your product could help me with my B2C furniture store.",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "error_en_0010",
+      "reference": "tell me about Rezolve's partnership with Microsoft and what models Rezolve published so far on AI Foundry?",
+      "hypothesis_unbiased": "Tell me about Resolve's partnership with Microsoft and what models Resolve published so far on AI Foundry.",
+      "hypothesis_biased": "Tell me about Resolve's partnership with Microsoft and what models Resolve published so far on AI Foundry.",
+      "entity_accuracy_unbiased": 0.5,
+      "entity_accuracy_biased": 0.5,
+      "domain_vocab_unbiased": 0.5,
+      "domain_vocab_biased": 0.5
+    },
+    {
+      "clip_id": "error_en_0011",
+      "reference": "hospitality sector and I'm looking for a conversational AI solution. How can Resolve help me with that?",
+      "hypothesis_unbiased": "Hospitality sector, and I'm looking for a conversational AI solution. How can Resolve help me with that?",
+      "hypothesis_biased": "Hospitality sector, and I'm looking for a conversational AI solution. How can Resolve help me with that?",
+      "entity_accuracy_unbiased": 1.0,
+      "entity_accuracy_biased": 1.0,
+      "domain_vocab_unbiased": 1.0,
+      "domain_vocab_biased": 1.0
+    },
+    {
+      "clip_id": "error_en_0013",
+      "reference": "customer who is currently using your agentic AI product on their website.",
+      "hypothesis_unbiased": "Customer who is currently using your agentic AI product on their website.",
+      "hypothesis_biased": "Customer who is currently using your agentic AI product on their website.",
+      "entity_accuracy_unbiased": 1.0,
+      "entity_accuracy_biased": 1.0,
+      "domain_vocab_unbiased": 1.0,
+      "domain_vocab_biased": 1.0
+    },
+    {
+      "clip_id": "error_en_0014",
+      "reference": "uh what I do want to know is if I should invest in Rezolve Ai",
+      "hypothesis_unbiased": "Uh what I do wanna know is if I should invest in Resolve AI.",
+      "hypothesis_biased": "Uh what I do wanna know is if I should invest in Resolve AI.",
+      "entity_accuracy_unbiased": 0.3333333333333333,
+      "entity_accuracy_biased": 0.3333333333333333,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "error_en_0018",
+      "reference": "I am a hotel owner. How Rezolve Ai solutions is going to help me?",
+      "hypothesis_unbiased": "Uh I am a hotel owner. How Resolve AI Solutions is going to help me?",
+      "hypothesis_biased": "Uh I am a hotel owner. How Resolve AI Solutions is going to help me?",
+      "entity_accuracy_unbiased": 0.3333333333333333,
+      "entity_accuracy_biased": 0.3333333333333333,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "error_en_0019",
+      "reference": "That's kind of interesting. Can you take me to a page that talks about your agentic commerce solutions?",
+      "hypothesis_unbiased": "That's kind of interesting. Can you take me to a page that talks about your uh gentic commerce solutions?",
+      "hypothesis_biased": "That's kind of interesting. Can you take me to a page that talks about your uh gentic commerce solutions?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "error_en_0020",
+      "reference": "Tell me about brainpowa models, let's say, do they hallucinate?",
+      "hypothesis_unbiased": "about brain power models are they do they hallucinate",
+      "hypothesis_biased": "About brainpower models are they do they hallucinate?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "error_en_0092",
+      "reference": "Where are Rezolve AI locations",
+      "hypothesis_unbiased": "",
+      "hypothesis_biased": "",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    },
+    {
+      "clip_id": "error_en_0098",
+      "reference": "talking about earlier.",
+      "hypothesis_unbiased": "",
+      "hypothesis_biased": "",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "error_en_0192",
+      "reference": "and to repeat those again, but slower. I got storefront website and what else.",
+      "hypothesis_unbiased": "I got storefront website and what else?",
+      "hypothesis_biased": "I got storefront website and what else?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "f68c8bf1-2d96-424b-80b1-73ada80b747a_turn1",
+      "reference": "So I just want to know about this page.",
+      "hypothesis_unbiased": "So I just want to know about this page.",
+      "hypothesis_biased": "So I just want to know about this page.",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "fb5ba794-8c36-47a0-971e-b029c57f78af_turn0",
+      "reference": "I am looking for filing of form 20-F which is registration of securities for foreign private issuers.",
+      "hypothesis_unbiased": "Now I am looking for filing of form twenty f which is registration of securities for foreign private issuers.",
+      "hypothesis_biased": "Now I am looking for filing a form twenty f which is registration of securities for foreign private issuers.",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": null,
+      "domain_vocab_biased": null
+    },
+    {
+      "clip_id": "fee67a7d-dc38-4b94-a7de-fae9fd7f716a_turn1",
+      "reference": "Is Rezolve capable of offering to this for this market?",
+      "hypothesis_unbiased": "Is Resolve capable of offering to this uh for this market?",
+      "hypothesis_biased": "Is Resolve capable of offering to this uh for this market?",
+      "entity_accuracy_unbiased": 0.0,
+      "entity_accuracy_biased": 0.0,
+      "domain_vocab_unbiased": 0.0,
+      "domain_vocab_biased": 0.0
+    }
+  ],
+  "biasing_gain": {
+    "delta_wer": 0.001003,
+    "delta_entity_accuracy": -0.002174,
+    "delta_domain_vocab_accuracy": 0.014493
+  }
+}
