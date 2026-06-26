@@ -1,0 +1,31 @@
+{
+  "spec_version": "2",
+  "predictions_id": "parakeet-tdt-0.6b-v3-gold92-unbiased",
+  "name": "Parakeet TDT 0.6b-v3 — Unbiased on Gold-92",
+  "short_description": "Per-clip STT predictions from nvidia/parakeet-tdt-0.6b-v3 in standard inference mode (no keyword injection) on all 93 gold-92 benchmark clips.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "nvidia/parakeet-tdt-0.6b-v3, Token-and-Duration Transducer, NeMo/Riva SDK, GPU inference, no vocabulary biasing",
+  "dataset_ids": ["stt-benchmark-gold-92"],
+  "prediction_format": "jsonl",
+  "prediction_schema": "clip_id (string), hypothesis (string), latency_seconds (float)",
+  "instance_count": 93,
+  "metrics_at_creation": {
+    "wer_gold92": 0.151454,
+    "entity_accuracy_gold92": 0.233696,
+    "entity_accuracy_domain_vocab": 0.318841,
+    "action_critical_wer_gold92": 0.341772,
+    "intent_preservation_gold92": 0.870968,
+    "latency_p50_seconds": 0.0388
+  },
+  "files": [
+    {
+      "path": "files/predictions-gold92.jsonl",
+      "description": "Per-clip STT predictions on all 93 gold-92 benchmark clips. Each line: clip_id, hypothesis, latency_seconds.",
+      "format": "jsonl"
+    }
+  ],
+  "categories": ["stt-evaluation"],
+  "created_by_task": "t0009_parakeet_production_baseline",
+  "date_created": "2026-06-25"
+}

@@ -1,0 +1,33 @@
+{
+  "variants": [
+    {
+      "variant_id": "parakeet-tdt-0.6b-v3-unbiased",
+      "label": "Parakeet TDT 0.6b-v3 \u2014 unbiased",
+      "metrics": {
+        "entity_accuracy_gold92": 0.233696,
+        "entity_accuracy_domain_vocab": 0.318841,
+        "wer_gold92": 0.151454,
+        "action_critical_wer_gold92": 0.341772,
+        "intent_preservation_gold92": 0.870968,
+        "latency_p50_seconds": 0.0388
+      }
+    },
+    {
+      "variant_id": "parakeet-tdt-0.6b-v3-biased",
+      "label": "Parakeet TDT 0.6b-v3 \u2014 biased (production config)",
+      "metrics": {
+        "entity_accuracy_gold92": 0.231522,
+        "entity_accuracy_domain_vocab": 0.333333,
+        "wer_gold92": 0.152457,
+        "action_critical_wer_gold92": 0.335443,
+        "intent_preservation_gold92": 0.870968,
+        "latency_p50_seconds": 0.0378
+      }
+    }
+  ],
+  "biasing_gain": {
+    "delta_wer": 0.001003,
+    "delta_entity_accuracy": -0.002174,
+    "delta_domain_vocab_accuracy": 0.014493
+  }
+}

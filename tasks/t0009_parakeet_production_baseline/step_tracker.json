@@ -1,0 +1,33 @@
+{
+  "task_id": "t0009_parakeet_production_baseline",
+  "created_at": "2026-06-25T00:00:00Z",
+  "steps": [
+    {
+      "step": 1,
+      "name": "check-deps",
+      "description": "Verify all dependencies (t0001_stt_benchmark) are completed.",
+      "status": "completed",
+      "started_at": "2026-06-25T00:00:00Z",
+      "completed_at": "2026-06-25T00:10:00Z",
+      "log_file": "logs/steps/001_check-deps/"
+    },
+    {
+      "step": 2,
+      "name": "implementation",
+      "description": "Run Parakeet TDT 0.6b-v3 unbiased and production-config biased variants on all 93 gold-92 clips; compute metrics.",
+      "status": "completed",
+      "started_at": "2026-06-25T00:10:00Z",
+      "completed_at": "2026-06-25T04:00:00Z",
+      "log_file": "logs/steps/002_implementation/"
+    },
+    {
+      "step": 3,
+      "name": "reporting",
+      "description": "Write results_summary.md, results_detailed.md, metrics.json, prediction assets, and mark task completed.",
+      "status": "completed",
+      "started_at": "2026-06-25T04:00:00Z",
+      "completed_at": "2026-06-25T06:00:00Z",
+      "log_file": "logs/steps/003_reporting/"
+    }
+  ]
+}
