@@ -1,0 +1,46 @@
+{
+  "variants": [
+    {
+      "variant_id": "parakeet-tdt-0.6b-v3-streaming-biased",
+      "label": "Parakeet TDT 0.6b-v3 \u2014 streaming biased",
+      "metrics": {
+        "entity_accuracy_gold92": 0.231522,
+        "entity_accuracy_domain_vocab": 0.333333,
+        "wer_gold92": 0.152457,
+        "action_critical_wer_gold92": 0.335443,
+        "intent_preservation_gold92": 0.870968,
+        "latency_p50_seconds": 0.0413
+      }
+    },
+    {
+      "variant_id": "granite-speech-4.1-2b-streaming-biased",
+      "label": "Granite Speech 4.1 2B \u2014 streaming biased",
+      "metrics": {
+        "entity_accuracy_gold92": 0.41087,
+        "entity_accuracy_domain_vocab": 0.971014,
+        "wer_gold92": 0.088265,
+        "action_critical_wer_gold92": 0.075949,
+        "intent_preservation_gold92": 0.935484,
+        "latency_p50_seconds": 0.2497
+      }
+    }
+  ],
+  "streaming_vs_batch_delta": {
+    "parakeet": {
+      "delta_entity_accuracy": -0.000478,
+      "delta_entity_accuracy_dv": 0.000333,
+      "delta_wer": 0.000457,
+      "delta_action_critical_wer": 0.000443,
+      "delta_intent_preservation": -3.2e-05,
+      "delta_latency_p50": 0.003265
+    },
+    "granite": {
+      "delta_entity_accuracy": 0.008696,
+      "delta_entity_accuracy_dv": -0.014493,
+      "delta_wer": -0.0,
+      "delta_action_critical_wer": -0.006329,
+      "delta_intent_preservation": 0.010753,
+      "delta_latency_p50": 0.001265
+    }
+  }
+}

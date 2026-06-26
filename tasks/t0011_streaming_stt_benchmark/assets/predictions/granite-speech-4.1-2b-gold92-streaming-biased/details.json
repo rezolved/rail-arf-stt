@@ -1,0 +1,31 @@
+{
+  "spec_version": "2",
+  "predictions_id": "granite-speech-4.1-2b-gold92-streaming-biased",
+  "name": "Granite Speech 4.1 2B — Streaming Keyword-Biased on Gold-92",
+  "short_description": "Per-clip predictions from Granite Speech 4.1 2B with keyword prompt injection under 32 kB PCM streaming simulation on all 93 gold-92 clips.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "ibm-granite/granite-speech-4.1-2b, HuggingFace Transformers BF16, GPU inference, keyword prompt injection (31 domain terms)",
+  "dataset_ids": ["stt-benchmark-gold-92"],
+  "prediction_format": "jsonl",
+  "prediction_schema": "clip_id (string), hypothesis (string), latency_seconds (float), num_chunks (int), audio_duration_seconds (float)",
+  "instance_count": 93,
+  "metrics_at_creation": {
+    "wer_gold92": 0.088265,
+    "entity_accuracy_gold92": 0.410870,
+    "entity_accuracy_domain_vocab": 0.971014,
+    "action_critical_wer_gold92": 0.075949,
+    "intent_preservation_gold92": 0.935484,
+    "latency_p50_seconds": 0.250
+  },
+  "files": [
+    {
+      "path": "files/predictions-gold92-streaming.jsonl",
+      "description": "Per-clip STT predictions under streaming simulation. Each line: clip_id, hypothesis, latency_seconds, num_chunks, audio_duration_seconds.",
+      "format": "jsonl"
+    }
+  ],
+  "categories": ["stt-evaluation"],
+  "created_by_task": "t0011_streaming_stt_benchmark",
+  "date_created": "2026-06-26"
+}
