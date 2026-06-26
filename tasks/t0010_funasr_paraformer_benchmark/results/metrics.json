@@ -1,0 +1,37 @@
+{
+  "variants": [
+    {
+      "variant_id": "paraformer-large-batch",
+      "label": "Paraformer-large \u2014 batch (no biasing)",
+      "metrics": {
+        "entity_accuracy_gold92": 0.021739,
+        "entity_accuracy_domain_vocab": 0.0,
+        "wer_gold92": 1.22668,
+        "action_critical_wer_gold92": 1.0,
+        "intent_preservation_gold92": 0.55914,
+        "latency_p50_seconds": 0.0478,
+        "latency_p95_seconds": 0.0565,
+        "latency_p99_seconds": 0.0587
+      }
+    },
+    {
+      "variant_id": "seaco-paraformer-large-biased",
+      "label": "SeACo-Paraformer-large \u2014 contextual biased",
+      "metrics": {
+        "entity_accuracy_gold92": 0.021739,
+        "entity_accuracy_domain_vocab": 0.0,
+        "wer_gold92": 1.221665,
+        "action_critical_wer_gold92": 1.0,
+        "intent_preservation_gold92": 0.55914,
+        "latency_p50_seconds": 0.0472,
+        "latency_p95_seconds": 0.0534,
+        "latency_p99_seconds": 0.0559
+      }
+    }
+  ],
+  "biasing_gain": {
+    "delta_wer": -0.005015,
+    "delta_entity_accuracy": 0.0,
+    "delta_entity_accuracy_domain_vocab": 0.0
+  }
+}

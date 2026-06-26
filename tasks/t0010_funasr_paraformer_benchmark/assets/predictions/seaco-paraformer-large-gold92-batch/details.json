@@ -1,0 +1,31 @@
+{
+  "spec_version": "2",
+  "predictions_id": "seaco-paraformer-large-gold92-batch",
+  "name": "SeACo-Paraformer-en — Batch (no biasing) on Gold-92",
+  "short_description": "Per-clip STT predictions from FunASR SeACo-Paraformer-en in batch mode on all 93 gold-92 benchmark clips. Model produces near-random tokens; WER=122.7% — complete transcription failure.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "iic/speech_seaco_paraformer_asr_nat-en-16k-common-vocab10020, Paraformer-CTC with SeACo module, FunASR Python SDK, GPU inference, no contextual biasing",
+  "dataset_ids": ["stt-benchmark-gold-92"],
+  "prediction_format": "jsonl",
+  "prediction_schema": "clip_id (string), hypothesis (string), latency_seconds (float)",
+  "instance_count": 93,
+  "metrics_at_creation": {
+    "wer_gold92": 1.22668,
+    "entity_accuracy_gold92": 0.021739,
+    "entity_accuracy_domain_vocab": 0.0,
+    "action_critical_wer_gold92": 1.0,
+    "intent_preservation_gold92": 0.55914,
+    "latency_p50_seconds": 0.0478
+  },
+  "files": [
+    {
+      "path": "files/predictions-gold92.jsonl",
+      "description": "Per-clip STT predictions on all 93 gold-92 benchmark clips. Each line: clip_id, hypothesis, latency_seconds.",
+      "format": "jsonl"
+    }
+  ],
+  "categories": ["stt-evaluation"],
+  "created_by_task": "t0010_funasr_paraformer_benchmark",
+  "date_created": "2026-06-25"
+}
