@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0007_ibm_granite_4_1_benchmark",
+  "command": "uv run python -m arf.scripts.utils.vast_machines acquire t0007_ibm_granite_4_1_benchmark --gpu-name A100_SXM4_80GB --num-gpus 1 --min-gpu-ram 80 --min-disk 100 --min-reliability 0.95 --estimated-hours-reference 1.5 --image pytorch/pytorch:2.3.0-cuda12.1-cudnn8-devel --disk-gb 100 --label-prefix rail-arf-stt",
+  "exit_code": 1,
+  "duration_seconds": 0.045,
+  "started_at": "2026-06-25T07:50:04Z",
+  "completed_at": "2026-06-25T07:50:04Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0007_ibm_granite_4_1_benchmark",
+  "stdout_file": "005_20260625T075004Z_uv-run-python.stdout.txt",
+  "stderr_file": "005_20260625T075004Z_uv-run-python.stderr.txt",
+  "stdout_lines": 0,
+  "stderr_lines": 1,
+  "truncated": false
+}

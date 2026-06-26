@@ -1,0 +1,65 @@
+{
+  "variants": [
+    {
+      "variant_id": "granite-4.1-2b-batch",
+      "label": "Granite Speech 4.1 2B \u2014 batch (no biasing)",
+      "metrics": {
+        "entity_accuracy_gold92": 0.19529,
+        "entity_accuracy_domain_vocab": 0.318841,
+        "wer_gold92": 0.12337,
+        "action_critical_wer_gold92": 0.43038,
+        "intent_preservation_gold92": 0.849462,
+        "latency_p50_seconds": 0.2497,
+        "latency_p95_seconds": 0.4206,
+        "latency_p99_seconds": 0.5041
+      }
+    },
+    {
+      "variant_id": "granite-4.1-2b-biased",
+      "label": "Granite Speech 4.1 2B \u2014 keyword biased",
+      "metrics": {
+        "entity_accuracy_gold92": 0.402174,
+        "entity_accuracy_domain_vocab": 0.985507,
+        "wer_gold92": 0.088265,
+        "action_critical_wer_gold92": 0.082278,
+        "intent_preservation_gold92": 0.924731,
+        "latency_p50_seconds": 0.2484,
+        "latency_p95_seconds": 0.4003,
+        "latency_p99_seconds": 0.4619
+      }
+    },
+    {
+      "variant_id": "granite-4.1-2b-compiled-biased",
+      "label": "Granite 4.1 2B + torch.compile \u2014 biased",
+      "metrics": {
+        "entity_accuracy_gold92": 0.402174,
+        "entity_accuracy_domain_vocab": 0.985507,
+        "wer_gold92": 0.088265,
+        "action_critical_wer_gold92": 0.082278,
+        "intent_preservation_gold92": 0.924731,
+        "latency_p50_seconds": 0.2455,
+        "latency_p95_seconds": 0.3958,
+        "latency_p99_seconds": 0.4552
+      }
+    },
+    {
+      "variant_id": "granite-4.1-2b-postproc-biased",
+      "label": "Granite 4.1 2B + ext-keywords + postproc",
+      "metrics": {
+        "entity_accuracy_gold92": 0.391304,
+        "entity_accuracy_domain_vocab": 1.0,
+        "wer_gold92": 0.092277,
+        "action_critical_wer_gold92": 0.101266,
+        "intent_preservation_gold92": 0.913978,
+        "latency_p50_seconds": 0.2299,
+        "latency_p95_seconds": 0.3836,
+        "latency_p99_seconds": 0.4557
+      }
+    }
+  ],
+  "biasing_gain": {
+    "delta_wer": -0.035105,
+    "delta_entity_accuracy": 0.206884,
+    "delta_entity_accuracy_domain_vocab": 0.666667
+  }
+}

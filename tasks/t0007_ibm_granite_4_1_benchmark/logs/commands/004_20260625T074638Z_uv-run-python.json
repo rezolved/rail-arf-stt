@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0007_ibm_granite_4_1_benchmark",
+  "command": "uv run python -m arf.scripts.verificators.verify_plan t0007_ibm_granite_4_1_benchmark",
+  "exit_code": 0,
+  "duration_seconds": 0.05,
+  "started_at": "2026-06-25T07:46:38Z",
+  "completed_at": "2026-06-25T07:46:38Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0007_ibm_granite_4_1_benchmark",
+  "stdout_file": "004_20260625T074638Z_uv-run-python.stdout.txt",
+  "stderr_file": "004_20260625T074638Z_uv-run-python.stderr.txt",
+  "stdout_lines": 5,
+  "stderr_lines": 0,
+  "truncated": false
+}

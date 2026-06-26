@@ -1,0 +1,31 @@
+{
+  "spec_version": "2",
+  "predictions_id": "granite-speech-4.1-2b-gold92-biased",
+  "name": "Granite Speech 4.1 2B — Keyword Biased on Gold-92",
+  "short_description": "Per-clip STT predictions from IBM Granite Speech 4.1 2B with keyword biasing on all 93 gold-92 benchmark clips. Primary production-candidate variant.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "ibm-granite/granite-speech-4.1-2b, GraniteSpeechForConditionalGeneration, HuggingFace Transformers 4.57.6, GPU bfloat16, keyword biasing via chat template prompt",
+  "dataset_ids": ["stt-benchmark-gold-92"],
+  "prediction_format": "jsonl",
+  "prediction_schema": "clip_id (string), hypothesis (string), latency_seconds (float)",
+  "instance_count": 93,
+  "metrics_at_creation": {
+    "wer_gold92": 0.088265,
+    "entity_accuracy_gold92": 0.402174,
+    "entity_accuracy_domain_vocab": 0.985507,
+    "action_critical_wer_gold92": 0.082278,
+    "intent_preservation_gold92": 0.924731,
+    "latency_p50_seconds": 0.2484
+  },
+  "files": [
+    {
+      "path": "files/predictions-gold92.jsonl",
+      "description": "Per-clip STT predictions on all 93 gold-92 benchmark clips. Each line: clip_id, hypothesis, latency_seconds.",
+      "format": "jsonl"
+    }
+  ],
+  "categories": ["stt-evaluation"],
+  "created_by_task": "t0007_ibm_granite_4_1_benchmark",
+  "date_created": "2026-06-25"
+}

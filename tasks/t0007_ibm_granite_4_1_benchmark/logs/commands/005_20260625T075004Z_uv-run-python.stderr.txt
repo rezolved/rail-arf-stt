@@ -1,0 +1,1 @@
+error: Vast.ai API key not provided and VAST_API_KEY env var is not set.

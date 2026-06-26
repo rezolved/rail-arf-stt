@@ -1,0 +1,5 @@
+branch: task/t0007_ibm_granite_4_1_benchmark
+base_branch: main
+base_commit: 8e855943febe04af45de1b9df5e1525d5169ef2e
+worktree_path: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0007_ibm_granite_4_1_benchmark
+created_at: 2026-06-25T07:30:11Z

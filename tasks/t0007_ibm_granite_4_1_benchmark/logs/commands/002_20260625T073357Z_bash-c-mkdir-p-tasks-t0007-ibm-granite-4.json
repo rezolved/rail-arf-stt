@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0007_ibm_granite_4_1_benchmark",
+  "command": "bash -c mkdir -p tasks/t0007_ibm_granite_4_1_benchmark/ctx && uv run python -u -m arf.scripts.aggregators.aggregate_task_types --format json > tasks/t0007_ibm_granite_4_1_benchmark/ctx/task_types.json && uv run python -u -m arf.scripts.aggregators.aggregate_costs --format json --detail full > tasks/t0007_ibm_granite_4_1_benchmark/ctx/costs.json && uv run python -u -m arf.scripts.aggregators.aggregate_tasks --format json --detail short > tasks/t0007_ibm_granite_4_1_benchmark/ctx/tasks.json && uv run python -u -m arf.scripts.aggregators.aggregate_metrics --format json --detail full > tasks/t0007_ibm_granite_4_1_benchmark/ctx/metrics.json && uv run python -u -m arf.scripts.aggregators.aggregate_suggestions --format json --detail full > tasks/t0007_ibm_granite_4_1_benchmark/ctx/suggestions.json",
+  "exit_code": 0,
+  "duration_seconds": 0.413,
+  "started_at": "2026-06-25T07:33:57Z",
+  "completed_at": "2026-06-25T07:33:58Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0007_ibm_granite_4_1_benchmark",
+  "stdout_file": "002_20260625T073357Z_bash-c-mkdir-p-tasks-t0007-ibm-granite-4.stdout.txt",
+  "stderr_file": "002_20260625T073357Z_bash-c-mkdir-p-tasks-t0007-ibm-granite-4.stderr.txt",
+  "stdout_lines": 0,
+  "stderr_lines": 0,
+  "truncated": false
+}
