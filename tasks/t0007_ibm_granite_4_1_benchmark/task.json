@@ -5,13 +5,13 @@
   "name": "Benchmark IBM Granite Speech 4.1 2B on Gold-92",
   "short_description": "Benchmark IBM Granite Speech 4.1 2B with keyword biasing on gold-92 to validate entity accuracy and latency vs. Whisper large-v3 + initial_prompt baseline.",
   "long_description_file": "task_description.md",
-  "status": "in_progress",
+  "status": "completed",
   "dependencies": [
     "t0001_stt_benchmark",
     "t0004_vocabulary_biasing_experiment"
   ],
   "start_time": "2026-06-25T07:29:50Z",
-  "end_time": null,
+  "end_time": "2026-06-25T18:00:00Z",
   "expected_assets": {
     "predictions": 2
   },

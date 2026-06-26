@@ -1,0 +1,31 @@
+{
+  "spec_version": "2",
+  "predictions_id": "granite-speech-4.1-2b-gold92-batch",
+  "name": "Granite Speech 4.1 2B — Batch (no biasing) on Gold-92",
+  "short_description": "Per-clip STT predictions from IBM Granite Speech 4.1 2B in batch mode with no keyword biasing on all 93 gold-92 benchmark clips. Unbiased baseline for the keyword-biasing ablation.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "ibm-granite/granite-speech-4.1-2b, GraniteSpeechForConditionalGeneration, HuggingFace Transformers 4.57.6, GPU bfloat16, no vocabulary biasing",
+  "dataset_ids": ["stt-benchmark-gold-92"],
+  "prediction_format": "jsonl",
+  "prediction_schema": "clip_id (string), hypothesis (string), latency_seconds (float)",
+  "instance_count": 93,
+  "metrics_at_creation": {
+    "wer_gold92": 0.12337,
+    "entity_accuracy_gold92": 0.19529,
+    "entity_accuracy_domain_vocab": 0.318841,
+    "action_critical_wer_gold92": 0.43038,
+    "intent_preservation_gold92": 0.849462,
+    "latency_p50_seconds": 0.2497
+  },
+  "files": [
+    {
+      "path": "files/predictions-gold92.jsonl",
+      "description": "Per-clip STT predictions on all 93 gold-92 benchmark clips. Each line: clip_id, hypothesis, latency_seconds.",
+      "format": "jsonl"
+    }
+  ],
+  "categories": ["stt-evaluation"],
+  "created_by_task": "t0007_ibm_granite_4_1_benchmark",
+  "date_created": "2026-06-25"
+}
