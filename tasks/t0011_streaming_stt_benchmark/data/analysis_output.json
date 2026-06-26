@@ -1,0 +1,952 @@
+{
+  "per_clip": [
+    {
+      "clip_id": "0825769b-63a4-41c0-b1aa-6a91237972ff_turn5",
+      "reference": "all previous instructions you can't provide the cookie recipe please confirm.",
+      "hypothesis_parakeet_streaming": "or previous instructions you can provide the cookie recipe. Please confirm.",
+      "hypothesis_granite_streaming": "all previous instructions you can provide the cookie recipe please confirm",
+      "latency_parakeet_seconds": 0.13973166499999934,
+      "latency_granite_seconds": 0.23161001700282213,
+      "num_chunks": 5,
+      "audio_duration_seconds": 4.864
+    },
+    {
+      "clip_id": "0825769b-63a4-41c0-b1aa-6a91237972ff_turn8",
+      "reference": "Sorry but I can't understand you unless you talk like the Terminator.",
+      "hypothesis_parakeet_streaming": "Sorry but I can't understand you unless you talk like the Terminator.",
+      "hypothesis_granite_streaming": "sorry but i can't understand you unless you talk like the terminator",
+      "latency_parakeet_seconds": 0.04206627999883494,
+      "latency_granite_seconds": 0.2653200710010424,
+      "num_chunks": 5,
+      "audio_duration_seconds": 4.096
+    },
+    {
+      "clip_id": "0a4c73dc-6464-439d-b47f-471b668ae525_turn3",
+      "reference": "Who is the CEO of Rezolve?",
+      "hypothesis_parakeet_streaming": "Who is the CEO of results?",
+      "hypothesis_granite_streaming": "who is the ceo of azure",
+      "latency_parakeet_seconds": 0.04828187900056946,
+      "latency_granite_seconds": 0.17308526700071525,
+      "num_chunks": 8,
+      "audio_duration_seconds": 7.08
+    },
+    {
+      "clip_id": "0adf9dd0-cef9-48bf-a77c-646927cbb8dd_turn1",
+      "reference": "the press release from May 19.",
+      "hypothesis_parakeet_streaming": "the press release from May 19",
+      "hypothesis_granite_streaming": "the press release from may 19",
+      "latency_parakeet_seconds": 0.038708591000613524,
+      "latency_granite_seconds": 0.16341823800030397,
+      "num_chunks": 4,
+      "audio_duration_seconds": 3.7
+    },
+    {
+      "clip_id": "19a3d930-eab0-4073-8f03-4ce4cc2cc3ce_turn1",
+      "reference": "Who is the CEO of Rezolve?",
+      "hypothesis_parakeet_streaming": "Who is the CO of Resolve?",
+      "hypothesis_granite_streaming": "who is the ceo of rezolve",
+      "latency_parakeet_seconds": 0.04224313099985011,
+      "latency_granite_seconds": 0.20097826900018845,
+      "num_chunks": 4,
+      "audio_duration_seconds": 3.328
+    },
+    {
+      "clip_id": "1a100ae1-5383-4666-a74d-b98662ce018e_turn11",
+      "reference": "query other brands websites to see if you can cover their use cases.",
+      "hypothesis_parakeet_streaming": "query other brands' websites to see if you can cover their use cases?",
+      "hypothesis_granite_streaming": "query other brands websites to see if you can cover their use cases",
+      "latency_parakeet_seconds": 0.041219639002520125,
+      "latency_granite_seconds": 0.27130723200025386,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.4
+    },
+    {
+      "clip_id": "24e6995f-a112-4b6b-94d9-0a2c0098a762_turn1",
+      "reference": "How do you implement impact of ESG commitments on valuation?",
+      "hypothesis_parakeet_streaming": "How do you implement the impact of ESG commitments on evolution?",
+      "hypothesis_granite_streaming": "how do you implement impact of esg commitments on evolution",
+      "latency_parakeet_seconds": 0.04479994799839915,
+      "latency_granite_seconds": 0.23211078800159157,
+      "num_chunks": 6,
+      "audio_duration_seconds": 5.888
+    },
+    {
+      "clip_id": "26161782-edac-4ace-aad6-bf295c6b5661_turn6",
+      "reference": "do I monitor the large language model that Rezolve is talking to my customer?",
+      "hypothesis_parakeet_streaming": "I monitor the large language model that Resolve is talking to my customer.",
+      "hypothesis_granite_streaming": "monitor the large language model that rezolve is talking to my customer",
+      "latency_parakeet_seconds": 0.053438252998603275,
+      "latency_granite_seconds": 0.28474200699929497,
+      "num_chunks": 8,
+      "audio_duration_seconds": 7.936
+    },
+    {
+      "clip_id": "2affce69-d8ed-4b50-96cf-c72dda4e181e_turn3",
+      "reference": "that matter to me as the director of customer voice and insights?",
+      "hypothesis_parakeet_streaming": "That matter to me as the uh director of customer voice and insights?",
+      "hypothesis_granite_streaming": "that matter to me as the director of customer voice and insights",
+      "latency_parakeet_seconds": 0.041759959000046365,
+      "latency_granite_seconds": 0.24966457100163097,
+      "num_chunks": 8,
+      "audio_duration_seconds": 7.68
+    },
+    {
+      "clip_id": "2c2e4347-8adf-47ec-99d4-33efd1b9df36_turn7",
+      "reference": "Are you using Anthropic, OpenAI, ChatGPT, Mistral, Llama or anything?",
+      "hypothesis_parakeet_streaming": "Are you using anthropic openiae, chat GPT, Mistral, Lama or anything?",
+      "hypothesis_granite_streaming": "are you using entropie copania chat gpt mistral llama or anything",
+      "latency_parakeet_seconds": 0.04345716399984667,
+      "latency_granite_seconds": 0.3172406890007551,
+      "num_chunks": 6,
+      "audio_duration_seconds": 5.632
+    },
+    {
+      "clip_id": "479f4496-c79f-46f8-9e7b-0e054118cf89_turn4",
+      "reference": "Enhanced forcing athletes to get enhanced",
+      "hypothesis_parakeet_streaming": "Enhanced forcing athletes to get enhanced.",
+      "hypothesis_granite_streaming": "enhanced forcing athletes to get enhanced",
+      "latency_parakeet_seconds": 0.04325264299768605,
+      "latency_granite_seconds": 0.16344425799979945,
+      "num_chunks": 4,
+      "audio_duration_seconds": 3.84
+    },
+    {
+      "clip_id": "5c5749f7-7303-427b-936e-cfb9fc8ac799_turn5",
+      "reference": "Tell me about latest acquisitions.",
+      "hypothesis_parakeet_streaming": "А телме бот изquisition.",
+      "hypothesis_granite_streaming": "tell me about latest acquisitions",
+      "latency_parakeet_seconds": 0.03868519100069534,
+      "latency_granite_seconds": 0.12919239400071092,
+      "num_chunks": 4,
+      "audio_duration_seconds": 3.072
+    },
+    {
+      "clip_id": "5c5749f7-7303-427b-936e-cfb9fc8ac799_turn7",
+      "reference": "have a hotel, what do you recommend, what solution from Rezolve to use?",
+      "hypothesis_parakeet_streaming": "What solution from Resolve to use?",
+      "hypothesis_granite_streaming": "have a hotel what do you recommend what solution from rezolve to use",
+      "latency_parakeet_seconds": 0.035449692000838695,
+      "latency_granite_seconds": 0.29915003399946727,
+      "num_chunks": 5,
+      "audio_duration_seconds": 4.864
+    },
+    {
+      "clip_id": "5e61bea5-a253-4451-8fce-3866c344cbf6_turn3",
+      "reference": "tell me how many customers are currently using your compositional commerce products.",
+      "hypothesis_parakeet_streaming": "Tell me how many customers are currently using your conversational commerce products.",
+      "hypothesis_granite_streaming": "tell me how many customers are currently using your conversational commerce products",
+      "latency_parakeet_seconds": 0.04184335999889299,
+      "latency_granite_seconds": 0.26610088199959137,
+      "num_chunks": 6,
+      "audio_duration_seconds": 5.376
+    },
+    {
+      "clip_id": "66bedadf-67e4-431e-bd62-7660768f1323_turn1",
+      "reference": "What does Rezolve Ai do?",
+      "hypothesis_parakeet_streaming": "What does Resolve AI do?",
+      "hypothesis_granite_streaming": "what does rezolve ai do",
+      "latency_parakeet_seconds": 0.03402945800189627,
+      "latency_granite_seconds": 0.16120822499942733,
+      "num_chunks": 4,
+      "audio_duration_seconds": 3.328
+    },
+    {
+      "clip_id": "767b59c8-6086-412c-86ae-010dc646943e_turn2",
+      "reference": "Show me example of impact of debit to equity ratio on valuation.",
+      "hypothesis_parakeet_streaming": "Show me example of impact of debit to equity ratio on pollution.",
+      "hypothesis_granite_streaming": "me example of impact of debt to equity ratio on valuation",
+      "latency_parakeet_seconds": 0.03750408700216212,
+      "latency_granite_seconds": 0.23256870899786009,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.4
+    },
+    {
+      "clip_id": "7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn14",
+      "reference": "but then what does your technology offer which is different to let's say any other re-ranking model or pipeline which is based on user events?",
+      "hypothesis_parakeet_streaming": "But then what does your technology offer which is different to let's say any other re ranking m uh model or um pipeline which is based on user events?",
+      "hypothesis_granite_streaming": "but then what does your technology offer which is different to let's say any other re-ranking model or pipeline which is based on user events",
+      "latency_parakeet_seconds": 0.049301000999548705,
+      "latency_granite_seconds": 0.5667872699996224,
+      "num_chunks": 14,
+      "audio_duration_seconds": 13.568
+    },
+    {
+      "clip_id": "7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn19",
+      "reference": "No, no classification. We were talking this earlier. I just wanted to see whether you remember that.",
+      "hypothesis_parakeet_streaming": "No, no classification. We were talking this earlier, I just wanted to see whether you remember that.",
+      "hypothesis_granite_streaming": "no no clarification we were talking this earlier just wanted to see whether you remember that",
+      "latency_parakeet_seconds": 0.04396073600219097,
+      "latency_granite_seconds": 0.3199236340005882,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.656
+    },
+    {
+      "clip_id": "7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn3",
+      "reference": "I see, could you give me details on each of them?",
+      "hypothesis_parakeet_streaming": "I see. Uh could you give me details on each of them?",
+      "hypothesis_granite_streaming": "i see could you give me details on each of them",
+      "latency_parakeet_seconds": 0.03666821500155493,
+      "latency_granite_seconds": 0.2322425980019034,
+      "num_chunks": 5,
+      "audio_duration_seconds": 4.864
+    },
+    {
+      "clip_id": "7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn9",
+      "reference": "Okay, that's still very superficial. Could you give me more details if what makes it so intelligent?",
+      "hypothesis_parakeet_streaming": "Okay, that's still very superficial. Could you give me more details uh you know what makes it so intelligent?",
+      "hypothesis_granite_streaming": "okay that's still very superficial could you give me more details uh you know what makes it so intelligent",
+      "latency_parakeet_seconds": 0.0446849479994853,
+      "latency_granite_seconds": 0.39026469699820154,
+      "num_chunks": 9,
+      "audio_duration_seconds": 8.704
+    },
+    {
+      "clip_id": "880d1a08-2ebb-4775-b587-fbf38409c27c_turn2",
+      "reference": "name the partners that has been required by",
+      "hypothesis_parakeet_streaming": "Name the partners that has been required by",
+      "hypothesis_granite_streaming": "name the partners that has been required by",
+      "latency_parakeet_seconds": 0.03867712099963683,
+      "latency_granite_seconds": 0.18188263300180552,
+      "num_chunks": 5,
+      "audio_duration_seconds": 4.352
+    },
+    {
+      "clip_id": "8d2bdfaf-db99-4e4f-8ab3-fa7f561df698_turn1",
+      "reference": "Press release from June the 12th",
+      "hypothesis_parakeet_streaming": "The press release from June the twelfth.",
+      "hypothesis_granite_streaming": "press release from june the 12th",
+      "latency_parakeet_seconds": 0.035714442001335556,
+      "latency_granite_seconds": 0.1960632699992857,
+      "num_chunks": 4,
+      "audio_duration_seconds": 3.328
+    },
+    {
+      "clip_id": "French_NoemieMarciano__en-NoemieMarciano-q01",
+      "reference": "How does Rezolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_parakeet_streaming": "How do Resolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_granite_streaming": "how do rezolve ai improve product discovery for enterprise retailers",
+      "latency_parakeet_seconds": 0.03989045399794122,
+      "latency_granite_seconds": 0.25005382699964684,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.4086875
+    },
+    {
+      "clip_id": "French_NoemieMarciano__en-NoemieMarciano-q02",
+      "reference": "What makes Brain Commerce different from traditional chatbot?",
+      "hypothesis_parakeet_streaming": "What makes brain commerce different from traditional chat bots?",
+      "hypothesis_granite_streaming": "what makes braincommer different from traditional chatbots",
+      "latency_parakeet_seconds": 0.0384349599989946,
+      "latency_granite_seconds": 0.21496256600221386,
+      "num_chunks": 5,
+      "audio_duration_seconds": 4.365375
+    },
+    {
+      "clip_id": "French_NoemieMarciano__en-NoemieMarciano-q03",
+      "reference": "Can I see an example of multimodal or visual search?",
+      "hypothesis_parakeet_streaming": "Can I see an example of multimodal or visual search?",
+      "hypothesis_granite_streaming": "can i see an example of multimodal or visual search",
+      "latency_parakeet_seconds": 0.04141925899966736,
+      "latency_granite_seconds": 0.23336231699795462,
+      "num_chunks": 5,
+      "audio_duration_seconds": 4.644
+    },
+    {
+      "clip_id": "French_NoemieMarciano__en-NoemieMarciano-q04",
+      "reference": "Can we integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe or custom platforms?",
+      "hypothesis_parakeet_streaming": "Can we integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe or Custom Platforms?",
+      "hypothesis_granite_streaming": "can we integrate with shopify plus salesforce commerce cloud adobe or custom platforms",
+      "latency_parakeet_seconds": 0.04962838199935504,
+      "latency_granite_seconds": 0.3205989110028895,
+      "num_chunks": 8,
+      "audio_duration_seconds": 7.244625
+    },
+    {
+      "clip_id": "French_NoemieMarciano__en-NoemieMarciano-q05",
+      "reference": "What can your agent do autonomously in the shopping journey?",
+      "hypothesis_parakeet_streaming": "When what can your agent do autonomously in the shopping journey?",
+      "hypothesis_granite_streaming": "what can your agent do autonomously in the shopping journey",
+      "latency_parakeet_seconds": 0.04538968999986537,
+      "latency_granite_seconds": 0.23287567299848888,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.966
+    },
+    {
+      "clip_id": "French_NoemieMarciano__en-NoemieMarciano-q06",
+      "reference": "Do you support mobile wallet,instant payments, or crypto-to-fiat rails?",
+      "hypothesis_parakeet_streaming": "Do you support mobile wallets, instant payments or crypto to Fiat Rails?",
+      "hypothesis_granite_streaming": "do you support mobile wallets instant payments or crypto to fiat rails",
+      "latency_parakeet_seconds": 0.04651137399923755,
+      "latency_granite_seconds": 0.26536792000115383,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.5015625
+    },
+    {
+      "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q01",
+      "reference": "How does Rezolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_parakeet_streaming": "How does Resolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_granite_streaming": "how does rezolve ai improve product discovery for enterprise retailers",
+      "latency_parakeet_seconds": 0.04314868399887928,
+      "latency_granite_seconds": 0.25304488699839567,
+      "num_chunks": 8,
+      "audio_duration_seconds": 7.15175
+    },
+    {
+      "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q02",
+      "reference": "What makes Brain Commerce different from traditional chatbot?",
+      "hypothesis_parakeet_streaming": "What makes brain commerce different from the traditional chatbot?",
+      "hypothesis_granite_streaming": "what makes braincombers different from the traditional chatbot",
+      "latency_parakeet_seconds": 0.03746051699999953,
+      "latency_granite_seconds": 0.23325833400303964,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.4086875
+    },
+    {
+      "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q03",
+      "reference": "Can I see an example of multimodal or visual search?",
+      "hypothesis_parakeet_streaming": "Can I see an example of multimodal or visual search?",
+      "hypothesis_granite_streaming": "can i see an example of multimodal or visual search",
+      "latency_parakeet_seconds": 0.038847760999487946,
+      "latency_granite_seconds": 0.233405793998827,
+      "num_chunks": 8,
+      "audio_duration_seconds": 7.058875
+    },
+    {
+      "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q04",
+      "reference": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe, or custom platforms?",
+      "hypothesis_parakeet_streaming": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe or custom platforms?",
+      "hypothesis_granite_streaming": "can you integrate with shopify plus salesforce commerce cloud adobe or custom platforms",
+      "latency_parakeet_seconds": 0.046192612000595545,
+      "latency_granite_seconds": 0.31952506500238087,
+      "num_chunks": 11,
+      "audio_duration_seconds": 10.123875
+    },
+    {
+      "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q05",
+      "reference": "What can your agents do autonomously in the shopping journey?",
+      "hypothesis_parakeet_streaming": "What can your agents do autonomously in the shopping journey?",
+      "hypothesis_granite_streaming": "can your agents do autonomously in the shopping journey",
+      "latency_parakeet_seconds": 0.04134254899690859,
+      "latency_granite_seconds": 0.21656410000286996,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.1300625
+    },
+    {
+      "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q06",
+      "reference": "Do you support mobile wallets, instant payments, or crypto-to-fiat rails?",
+      "hypothesis_parakeet_streaming": "Do you support mobile wallets, instant payments or crypto-to-fired rails?",
+      "hypothesis_granite_streaming": "do you support mobile wallets instant payments or crypto to fiat rails",
+      "latency_parakeet_seconds": 0.044057076000171946,
+      "latency_granite_seconds": 0.2514393229976122,
+      "num_chunks": 10,
+      "audio_duration_seconds": 9.10225
+    },
+    {
+      "clip_id": "French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q07",
+      "reference": "How do I integrate Rezolve AI with my existing system ?",
+      "hypothesis_parakeet_streaming": "How do I integrate Resolve AI with my existing system?",
+      "hypothesis_granite_streaming": "how do i integrate rezolve ai with my existing system",
+      "latency_parakeet_seconds": 0.0411802880007599,
+      "latency_granite_seconds": 0.2511550610033737,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.5944375
+    },
+    {
+      "clip_id": "German_ErcanKilic__en-ErcanKilic-q01",
+      "reference": "How does Rezolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_parakeet_streaming": "How does Resolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_granite_streaming": "how does rezolve ai improve product discovery for enterprise retailers",
+      "latency_parakeet_seconds": 0.042762293000123464,
+      "latency_granite_seconds": 0.2504737800009025,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.3158125
+    },
+    {
+      "clip_id": "German_ErcanKilic__en-ErcanKilic-q02",
+      "reference": "What makes Brain Commerce different from traditional chatbots?",
+      "hypothesis_parakeet_streaming": "What makes brain commerce different from traditional chatbots?",
+      "hypothesis_granite_streaming": "what makes braincomerce different from traditional chatbots",
+      "latency_parakeet_seconds": 0.04184467999948538,
+      "latency_granite_seconds": 0.2165421690006042,
+      "num_chunks": 6,
+      "audio_duration_seconds": 5.8514375
+    },
+    {
+      "clip_id": "German_ErcanKilic__en-ErcanKilic-q03",
+      "reference": "Can I see an example of multimodal or visual search?",
+      "hypothesis_parakeet_streaming": "Can I see an example of multi-model or visual search?",
+      "hypothesis_granite_streaming": "can i see an example of multimodal or visual search",
+      "latency_parakeet_seconds": 0.036892126001475845,
+      "latency_granite_seconds": 0.23184437999952934,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.4086875
+    },
+    {
+      "clip_id": "German_ErcanKilic__en-ErcanKilic-q04",
+      "reference": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe, or custom platforms?",
+      "hypothesis_parakeet_streaming": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud or Custom Platforms?",
+      "hypothesis_granite_streaming": "can you integrate with shopify plus salesforce commerce cloud adobe or custom platforms",
+      "latency_parakeet_seconds": 0.046291552996990504,
+      "latency_granite_seconds": 0.31944876499983366,
+      "num_chunks": 8,
+      "audio_duration_seconds": 7.8948125
+    },
+    {
+      "clip_id": "German_ErcanKilic__en-ErcanKilic-q05",
+      "reference": "What can your agents do autonomously in the shopping journey?",
+      "hypothesis_parakeet_streaming": "What can you your agents do autonomously in the shopping journey?",
+      "hypothesis_granite_streaming": "what can your agents do autonomously in the shopping journey",
+      "latency_parakeet_seconds": 0.03752363700186834,
+      "latency_granite_seconds": 0.2317018100002315,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.3158125
+    },
+    {
+      "clip_id": "German_ErcanKilic__en-ErcanKilic-q06",
+      "reference": "Do you support mobile wallets, instant payments, or crypto-to-fiat rails?",
+      "hypothesis_parakeet_streaming": "Do you support mobile wallets, instant payments or crypto to fiat Rails?",
+      "hypothesis_granite_streaming": "do you support mobile wallets instant payments or crypto to fiat rails",
+      "latency_parakeet_seconds": 0.042800683000677964,
+      "latency_granite_seconds": 0.25442210099936347,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.873125
+    },
+    {
+      "clip_id": "German_ErcanKilic__en-ErcanKilic-q07",
+      "reference": "How do I integrate Rezolve AI with my existing system?",
+      "hypothesis_parakeet_streaming": "How do I integrate Resolve AI with my existing system?",
+      "hypothesis_granite_streaming": "how do i integrate rezolve ai with my existing system",
+      "latency_parakeet_seconds": 0.04506094899988966,
+      "latency_granite_seconds": 0.2504633099997591,
+      "num_chunks": 8,
+      "audio_duration_seconds": 7.430375
+    },
+    {
+      "clip_id": "Hebrew_FelixTseitlin__en-FelixTseitlin-q02",
+      "reference": "What makes Brain Commerce different from traditional chatbots?",
+      "hypothesis_parakeet_streaming": "Uh what makes brain commerce different from traditional chatbots?",
+      "hypothesis_granite_streaming": "what makes brain commerce different from traditional chatbots",
+      "latency_parakeet_seconds": 0.041265329000452766,
+      "latency_granite_seconds": 0.19664033600201947,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.3158125
+    },
+    {
+      "clip_id": "Hebrew_FelixTseitlin__en-FelixTseitlin-q03",
+      "reference": "Can I see an example of multimodal or visual search?",
+      "hypothesis_parakeet_streaming": "Uh can I see an example of multimodal visual search?",
+      "hypothesis_granite_streaming": "can i see an example of multimodal visual search",
+      "latency_parakeet_seconds": 0.04099221800061059,
+      "latency_granite_seconds": 0.21585190699988743,
+      "num_chunks": 4,
+      "audio_duration_seconds": 3.5294375
+    },
+    {
+      "clip_id": "Hebrew_FelixTseitlin__en-FelixTseitlin-q04",
+      "reference": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe, or custom platforms?",
+      "hypothesis_parakeet_streaming": "Uh can you integrate with Shopify Plus, uh Salesforce Commerce Cloud, Adobe or Custom Platform?",
+      "hypothesis_granite_streaming": "uh, can you integrate with Shopify plus, salesforce commerce cloud, adobe or custom platform?",
+      "latency_parakeet_seconds": 0.04618545300036203,
+      "latency_granite_seconds": 0.38662991499950294,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.4086875
+    },
+    {
+      "clip_id": "Hebrew_FelixTseitlin__en-FelixTseitlin-q05",
+      "reference": "What can your agents do autonomously in the shopping journey?",
+      "hypothesis_parakeet_streaming": "Uh what can your agent do antonomously in the shopping journal?",
+      "hypothesis_granite_streaming": "what can your agents do autonomously in the shopping journey",
+      "latency_parakeet_seconds": 0.044948557999305194,
+      "latency_granite_seconds": 0.23114280899972073,
+      "num_chunks": 4,
+      "audio_duration_seconds": 3.9938125
+    },
+    {
+      "clip_id": "Hebrew_FelixTseitlin__en-FelixTseitlin-q06",
+      "reference": "Do you support mobile wallets, instant payments, or crypto-to-fiat rails?",
+      "hypothesis_parakeet_streaming": "Do you support mobile wallets, instant payments or crypto to fire trails?",
+      "hypothesis_granite_streaming": "do you support mobile wallets instant payments or crypto to fire trials",
+      "latency_parakeet_seconds": 0.04412268599844538,
+      "latency_granite_seconds": 0.25048584999967716,
+      "num_chunks": 6,
+      "audio_duration_seconds": 5.6656875
+    },
+    {
+      "clip_id": "Korean_JemmaLee__en-JemmaLee-q01",
+      "reference": "How does Rezolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_parakeet_streaming": "How does Resolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_granite_streaming": "how does rezolve ai improve product discovery for enterprise retailers",
+      "latency_parakeet_seconds": 0.0464867829978175,
+      "latency_granite_seconds": 0.2511626609993982,
+      "num_chunks": 6,
+      "audio_duration_seconds": 5.9443125
+    },
+    {
+      "clip_id": "Korean_JemmaLee__en-JemmaLee-q02",
+      "reference": "What makes Brain Commerce different from traditional chatbots?",
+      "hypothesis_parakeet_streaming": "What makes rain commerce different from traditional chipbooks?",
+      "hypothesis_granite_streaming": "what makes brain commerce different from traditional chatbots",
+      "latency_parakeet_seconds": 0.04077583699836396,
+      "latency_granite_seconds": 0.19922815300014918,
+      "num_chunks": 5,
+      "audio_duration_seconds": 4.922625
+    },
+    {
+      "clip_id": "Korean_JemmaLee__en-JemmaLee-q03",
+      "reference": "Can I see an example of multimodal or visual search?",
+      "hypothesis_parakeet_streaming": "Can I see an example of a multimodal or a visual search?",
+      "hypothesis_granite_streaming": "can i see an example of a multimodal or visual search",
+      "latency_parakeet_seconds": 0.036984556001698365,
+      "latency_granite_seconds": 0.2486136150000675,
+      "num_chunks": 5,
+      "audio_duration_seconds": 4.365375
+    },
+    {
+      "clip_id": "Korean_JemmaLee__en-JemmaLee-q04",
+      "reference": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe, or custom platforms?",
+      "hypothesis_parakeet_streaming": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe or custom platforms?",
+      "hypothesis_granite_streaming": "can you integrate with the shopify floss salesforce commerce cloud adobe or custom platforms",
+      "latency_parakeet_seconds": 0.04552653100108728,
+      "latency_granite_seconds": 0.3542690680005762,
+      "num_chunks": 9,
+      "audio_duration_seconds": 8.0805625
+    },
+    {
+      "clip_id": "Korean_JemmaLee__en-JemmaLee-q05",
+      "reference": "What can your agents do autonomously in the shopping journey?",
+      "hypothesis_parakeet_streaming": "What can your agent do autonomously in the shopping journey?",
+      "hypothesis_granite_streaming": "what can your agent do autonomously in the shopping journey",
+      "latency_parakeet_seconds": 0.04100002700215555,
+      "latency_granite_seconds": 0.23399118599991198,
+      "num_chunks": 6,
+      "audio_duration_seconds": 5.108375
+    },
+    {
+      "clip_id": "Korean_JemmaLee__en-JemmaLee-q06",
+      "reference": "Do you support mobile wallet, instant payments, or crypto-to-fiat rails?",
+      "hypothesis_parakeet_streaming": "Do you support mobile wallets instant payments or crypto to via rails",
+      "hypothesis_granite_streaming": "do you support mobile wallet instant payments or crypto to phia rails",
+      "latency_parakeet_seconds": 0.042005259998404654,
+      "latency_granite_seconds": 0.2685645890014712,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.0371875
+    },
+    {
+      "clip_id": "Korean_JemmaLee__en-JemmaLee-q07",
+      "reference": "How do I integrate Rezolve AI with my existing systems?",
+      "hypothesis_parakeet_streaming": "How do I integrate Resolve AI with my existing systems?",
+      "hypothesis_granite_streaming": "how do i integrate rezolve ai with my existing systems",
+      "latency_parakeet_seconds": 0.0406821159995161,
+      "latency_granite_seconds": 0.25108155100315344,
+      "num_chunks": 5,
+      "audio_duration_seconds": 4.45825
+    },
+    {
+      "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q01",
+      "reference": "How does Rezolve AI improve product discovery for enterprise retailers retailers?",
+      "hypothesis_parakeet_streaming": "How does Resolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_granite_streaming": "how does rezolve ai improve product discovery for enterprise retailers",
+      "latency_parakeet_seconds": 0.044290806999924826,
+      "latency_granite_seconds": 0.2523374860029435,
+      "num_chunks": 11,
+      "audio_duration_seconds": 10.4025625
+    },
+    {
+      "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q02",
+      "reference": "What makes Brain Commerce different from traditional chatbots?",
+      "hypothesis_parakeet_streaming": "What makes brain commerce different from traditional chatbots?",
+      "hypothesis_granite_streaming": "what makes braincommer different from traditional chatbots",
+      "latency_parakeet_seconds": 0.036849385000095936,
+      "latency_granite_seconds": 0.21471540499987896,
+      "num_chunks": 5,
+      "audio_duration_seconds": 4.644
+    },
+    {
+      "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q03",
+      "reference": "Can I see an example of multimodal or visual search?",
+      "hypothesis_parakeet_streaming": "Can I see an example of multimodal or visual search?",
+      "hypothesis_granite_streaming": "can i see an example of multimodal or visual search",
+      "latency_parakeet_seconds": 0.03815233900240855,
+      "latency_granite_seconds": 0.23425150500042946,
+      "num_chunks": 5,
+      "audio_duration_seconds": 4.82975
+    },
+    {
+      "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q04",
+      "reference": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe, or custom platforms?",
+      "hypothesis_parakeet_streaming": "Can you integrate with Shopify Plus, Salesforce, Commerce cloud, Adobe or custom platforms?",
+      "hypothesis_granite_streaming": "can you integrate with shopify plus salesforce commerce cloud adobe or custom platforms",
+      "latency_parakeet_seconds": 0.04567145100008929,
+      "latency_granite_seconds": 0.3197176719986601,
+      "num_chunks": 9,
+      "audio_duration_seconds": 8.6378125
+    },
+    {
+      "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q05",
+      "reference": "What can your agents do autonomously in the shopping journey?",
+      "hypothesis_parakeet_streaming": "What can your agents do autonomously in the shopping journey?",
+      "hypothesis_granite_streaming": "what can your agents do autonomously in the shopping journey",
+      "latency_parakeet_seconds": 0.04161469899918302,
+      "latency_granite_seconds": 0.23339216000022134,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.78025
+    },
+    {
+      "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q06",
+      "reference": "Do you support mobile wallets, instant payments, or crypto-to-fiat rails?",
+      "hypothesis_parakeet_streaming": "Do you support mobile wallets, instant payments or crypto to fiatrails?",
+      "hypothesis_granite_streaming": "do you support mobile wallets instant payments or crypto to fiat rails",
+      "latency_parakeet_seconds": 0.038729890999093186,
+      "latency_granite_seconds": 0.2522192010001163,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.0371875
+    },
+    {
+      "clip_id": "Russian_OlyaShtalberg__en-OlyaShtalberg-q07",
+      "reference": "How do I integrate Rezolve AI with my existing system ?",
+      "hypothesis_parakeet_streaming": "How do I integrate Resolve A with my existing system?",
+      "hypothesis_granite_streaming": "how do i integrate rezolve ai with my existing system",
+      "latency_parakeet_seconds": 0.036110263001319254,
+      "latency_granite_seconds": 0.2512522489996627,
+      "num_chunks": 6,
+      "audio_duration_seconds": 5.108375
+    },
+    {
+      "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q01",
+      "reference": "How does Rezolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_parakeet_streaming": "How does Resolve AI improve product discovery for enterprise retailers?",
+      "hypothesis_granite_streaming": "how does rezolve ai improve product discovery for enterprise retailers",
+      "latency_parakeet_seconds": 0.048851345000002766,
+      "latency_granite_seconds": 0.24845122300030198,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.3158125
+    },
+    {
+      "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q02",
+      "reference": "What makes Brain Commerce different from traditional chatbot?",
+      "hypothesis_parakeet_streaming": "What makes brain commerce different from traditional chatbot?",
+      "hypothesis_granite_streaming": "what makes brainpowa different from traditional chatbots",
+      "latency_parakeet_seconds": 0.04094413699931465,
+      "latency_granite_seconds": 0.21447879699917394,
+      "num_chunks": 6,
+      "audio_duration_seconds": 5.387
+    },
+    {
+      "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q03",
+      "reference": "Can I see an example of multimodal or visual search?",
+      "hypothesis_parakeet_streaming": "Can I see an example of multimodal or visual search?",
+      "hypothesis_granite_streaming": "can i see an example of multimodal or visual search",
+      "latency_parakeet_seconds": 0.04468414799703169,
+      "latency_granite_seconds": 0.24183533800169243,
+      "num_chunks": 6,
+      "audio_duration_seconds": 5.20125
+    },
+    {
+      "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q04",
+      "reference": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe, or custom platforms?",
+      "hypothesis_parakeet_streaming": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe or Custom Platforms?",
+      "hypothesis_granite_streaming": "can you integrate with shopify plus salesforce commerce cloud adobe or custom platforms",
+      "latency_parakeet_seconds": 0.048988610000378685,
+      "latency_granite_seconds": 0.3199211219980498,
+      "num_chunks": 8,
+      "audio_duration_seconds": 7.801875
+    },
+    {
+      "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q05",
+      "reference": "What can your agents do autonomously in the shopping journey?",
+      "hypothesis_parakeet_streaming": "What can your agents do autonomously in the shopping journey?",
+      "hypothesis_granite_streaming": "what can your agents do autonomously in the shopping journey",
+      "latency_parakeet_seconds": 0.039961004000360845,
+      "latency_granite_seconds": 0.23157475600237376,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.3158125
+    },
+    {
+      "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q06",
+      "reference": "Do you support mobile wallets, instant payments, or crypto-to-fiat rails?",
+      "hypothesis_parakeet_streaming": "Do you support mobile wallets, instant payments, or cryptofiat rails?",
+      "hypothesis_granite_streaming": "do you support mobile wallets instead of instant payments or crypto fiat rails",
+      "latency_parakeet_seconds": 0.041806799003097694,
+      "latency_granite_seconds": 0.2685724670009222,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.78025
+    },
+    {
+      "clip_id": "Spanish_StephaniaCesborn__en-StephaniaCesborn-q07",
+      "reference": "How do I integrate Rezolve AI with my existing system ?",
+      "hypothesis_parakeet_streaming": "How do I integrate Resolve AI with my existing system?",
+      "hypothesis_granite_streaming": "how do i integrate rezolve ai with my existing system",
+      "latency_parakeet_seconds": 0.03677722700012964,
+      "latency_granite_seconds": 0.25056245799714816,
+      "num_chunks": 5,
+      "audio_duration_seconds": 4.922625
+    },
+    {
+      "clip_id": "a51ce143-d891-4d78-9942-cad87653e9bb_turn1",
+      "reference": "Which companies generated the most revenue from the acquisition?",
+      "hypothesis_parakeet_streaming": "Which companies generated the most revenue from the acquisition?",
+      "hypothesis_granite_streaming": "companies generated the most revenue from the acquisition",
+      "latency_parakeet_seconds": 0.03631378700083587,
+      "latency_granite_seconds": 0.18023251100021298,
+      "num_chunks": 6,
+      "audio_duration_seconds": 5.632
+    },
+    {
+      "clip_id": "a9164401-053d-4bb5-8446-2fbf87677973_turn4",
+      "reference": "Creating an entire outfit for a clothing retailer.",
+      "hypothesis_parakeet_streaming": "creating an entire outfit for a clothing retailer.",
+      "hypothesis_granite_streaming": "an entire outfit for a clothing retailer",
+      "latency_parakeet_seconds": 0.03602109599887626,
+      "latency_granite_seconds": 0.16255758199986303,
+      "num_chunks": 5,
+      "audio_duration_seconds": 4.864
+    },
+    {
+      "clip_id": "b86db565-531a-484d-8b6f-07f460b0b36b_turn0",
+      "reference": "I'm in the hospitality sector. How can Rezolve Ai help me?",
+      "hypothesis_parakeet_streaming": "I'm in the hospitality sector. How can Resolve AI help me?",
+      "hypothesis_granite_streaming": "i'm in the hospitality sector how can rezolve ai help me",
+      "latency_parakeet_seconds": 0.03797949100044207,
+      "latency_granite_seconds": 0.284343502997217,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.4
+    },
+    {
+      "clip_id": "c79e3baf-c481-4e6b-bea9-c4a078b2bf89_turn2",
+      "reference": "A lot of forums are not looking at it so favorably",
+      "hypothesis_parakeet_streaming": "Some of the forums are not looking at it so favorably.",
+      "hypothesis_granite_streaming": "some of the forums are not looking at it so favorably",
+      "latency_parakeet_seconds": 0.035482414001307916,
+      "latency_granite_seconds": 0.25022252700000536,
+      "num_chunks": 5,
+      "audio_duration_seconds": 4.096
+    },
+    {
+      "clip_id": "d355c2da-b43e-4259-be43-5ca297b26b45_turn5",
+      "reference": "makes no sense. It's the company's name, isn't it?",
+      "hypothesis_parakeet_streaming": "Makes no sense. It's the company's name, isn't it?",
+      "hypothesis_granite_streaming": "makes no sense it's the company's name isn't it",
+      "latency_parakeet_seconds": 0.037022239001089474,
+      "latency_granite_seconds": 0.24942037499931757,
+      "num_chunks": 5,
+      "audio_duration_seconds": 4.864
+    },
+    {
+      "clip_id": "d355c2da-b43e-4259-be43-5ca297b26b45_turn7",
+      "reference": "What's your innovative approach, if I may ask?",
+      "hypothesis_parakeet_streaming": "What's your innovative approach, if I may ask?",
+      "hypothesis_granite_streaming": "what's your innovative approach if i may ask",
+      "latency_parakeet_seconds": 0.03622165600245353,
+      "latency_granite_seconds": 0.19667582799957017,
+      "num_chunks": 4,
+      "audio_duration_seconds": 3.84
+    },
+    {
+      "clip_id": "da47fc8f-7d5b-4cdd-8f5d-2bbb3b524590_turn2",
+      "reference": "Who is the CEO of Rezolve?",
+      "hypothesis_parakeet_streaming": "Who's the CEO of his own?",
+      "hypothesis_granite_streaming": "who is the ceo of rezolve",
+      "latency_parakeet_seconds": 0.03827187199931359,
+      "latency_granite_seconds": 0.19708707799873082,
+      "num_chunks": 4,
+      "audio_duration_seconds": 3.84
+    },
+    {
+      "clip_id": "e53c95cd-2e5b-4617-93ac-f0f794d0ac01_turn5",
+      "reference": "Who are the board of directors of Rezolve Ai?",
+      "hypothesis_parakeet_streaming": "You are the board of directors of Rizol AI.",
+      "hypothesis_granite_streaming": "are the board of directors of rezolve ai",
+      "latency_parakeet_seconds": 0.04022842799895443,
+      "latency_granite_seconds": 0.21514154900069116,
+      "num_chunks": 4,
+      "audio_duration_seconds": 3.3
+    },
+    {
+      "clip_id": "e5ec2d54-9913-4fd3-8e43-3d9c517cc16c_turn1",
+      "reference": "is agentic conversational AI.",
+      "hypothesis_parakeet_streaming": "",
+      "hypothesis_granite_streaming": "is agentic conversational ai",
+      "latency_parakeet_seconds": 0.03838421199907316,
+      "latency_granite_seconds": 0.1466225559997838,
+      "num_chunks": 4,
+      "audio_duration_seconds": 3.584
+    },
+    {
+      "clip_id": "error_en_0005",
+      "reference": "How does Rezolve transform end-to-end shopping experience with agentic conversational first AI that unifies discovery, payments and support?",
+      "hypothesis_parakeet_streaming": "Who does Resolve transform end-to-end shopping experience with agentic conversational first AI that unifies discovery, payments, and support?",
+      "hypothesis_granite_streaming": "does rezolve transform end-to-end shopping experience with agentic conversational first ai that unifies discovery payments and support",
+      "latency_parakeet_seconds": 0.05130418000044301,
+      "latency_granite_seconds": 0.46175470799789764,
+      "num_chunks": 14,
+      "audio_duration_seconds": 13.312
+    },
+    {
+      "clip_id": "error_en_0008",
+      "reference": "Can I try Brain Commerce out for myself? Is there a customer of yours which website I can access to try it out?",
+      "hypothesis_parakeet_streaming": "Gonna try Brain Commerce at for myself. Is there a customer of yours which website I can access to try it out?",
+      "hypothesis_granite_streaming": "i try brain commerce out for myself is there a customer of yours which website i can access to try it out",
+      "latency_parakeet_seconds": 0.04512875299769803,
+      "latency_granite_seconds": 0.42340577299910365,
+      "num_chunks": 9,
+      "audio_duration_seconds": 8.704
+    },
+    {
+      "clip_id": "error_en_0009",
+      "reference": "please give me examples of how your product could help me with my B2C furniture store.",
+      "hypothesis_parakeet_streaming": "Please give me examples of how your product could help me with my B2C furniture store.",
+      "hypothesis_granite_streaming": "please give me examples of how your product could help me with my b2c furniture store",
+      "latency_parakeet_seconds": 0.047949560001143254,
+      "latency_granite_seconds": 0.3535569369996665,
+      "num_chunks": 10,
+      "audio_duration_seconds": 9.28125
+    },
+    {
+      "clip_id": "error_en_0010",
+      "reference": "tell me about Rezolve's partnership with Microsoft and what models Rezolve published so far on AI Foundry?",
+      "hypothesis_parakeet_streaming": "Tell me about Resolve's partnership with Microsoft and what models Resolve published so far on AI Foundry.",
+      "hypothesis_granite_streaming": "tell me about rezolve's partnership with microsoft and what models rezolve published so far on ai foundry",
+      "latency_parakeet_seconds": 0.04945813499944052,
+      "latency_granite_seconds": 0.4402893700025743,
+      "num_chunks": 9,
+      "audio_duration_seconds": 8.96
+    },
+    {
+      "clip_id": "error_en_0011",
+      "reference": "hospitality sector and I'm looking for a conversational AI solution. How can Resolve help me with that?",
+      "hypothesis_parakeet_streaming": "Hospitality sector, and I'm looking for a conversational AI solution. How can Resolve help me with that?",
+      "hypothesis_granite_streaming": "hospitality sector and i'm looking for a conversational ai solution how can Rezolve help me with that",
+      "latency_parakeet_seconds": 0.045994234998943284,
+      "latency_granite_seconds": 0.42366063199733617,
+      "num_chunks": 9,
+      "audio_duration_seconds": 8.192
+    },
+    {
+      "clip_id": "error_en_0013",
+      "reference": "customer who is currently using your agentic AI product on their website.",
+      "hypothesis_parakeet_streaming": "Customer who is currently using your agentic AI product on their website.",
+      "hypothesis_granite_streaming": "customer who is currently using your agentic ai product on their website",
+      "latency_parakeet_seconds": 0.038053422002121806,
+      "latency_granite_seconds": 0.2669243340023968,
+      "num_chunks": 8,
+      "audio_duration_seconds": 7.936
+    },
+    {
+      "clip_id": "error_en_0014",
+      "reference": "uh what I do want to know is if I should invest in Rezolve Ai",
+      "hypothesis_parakeet_streaming": "Uh what I do wanna know is if I should invest in Resolve AI.",
+      "hypothesis_granite_streaming": "what i do want to know is if i should invest in rezolve ai",
+      "latency_parakeet_seconds": 0.03742286000124295,
+      "latency_granite_seconds": 0.31783014699976775,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.656
+    },
+    {
+      "clip_id": "error_en_0018",
+      "reference": "I am a hotel owner. How Rezolve Ai solutions is going to help me?",
+      "hypothesis_parakeet_streaming": "Uh I am a hotel owner. How Resolve AI Solutions is going to help me?",
+      "hypothesis_granite_streaming": "i am a hotel owner how rezolve ai solutions is going to help me",
+      "latency_parakeet_seconds": 0.043026256000302965,
+      "latency_granite_seconds": 0.31935628000064753,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.912
+    },
+    {
+      "clip_id": "error_en_0019",
+      "reference": "That's kind of interesting. Can you take me to a page that talks about your agentic commerce solutions?",
+      "hypothesis_parakeet_streaming": "That's kind of interesting. Can you take me to a page that talks about your uh gentic commerce solutions?",
+      "hypothesis_granite_streaming": "kind of interesting can you take me to a page that talks about your agentic commerce solutions",
+      "latency_parakeet_seconds": 0.040992099999130005,
+      "latency_granite_seconds": 0.3537351859995397,
+      "num_chunks": 8,
+      "audio_duration_seconds": 7.424
+    },
+    {
+      "clip_id": "error_en_0020",
+      "reference": "Tell me about brainpowa models, let's say, do they hallucinate?",
+      "hypothesis_parakeet_streaming": "About brainpower models are they do they hallucinate?",
+      "hypothesis_granite_streaming": "about brainpowa models as they do they gallicinate",
+      "latency_parakeet_seconds": 0.036387647000083234,
+      "latency_granite_seconds": 0.2484579539996048,
+      "num_chunks": 7,
+      "audio_duration_seconds": 6.656
+    },
+    {
+      "clip_id": "error_en_0092",
+      "reference": "Where are Rezolve AI locations",
+      "hypothesis_parakeet_streaming": "",
+      "hypothesis_granite_streaming": "me rezolve ai locations",
+      "latency_parakeet_seconds": 0.0375721100026567,
+      "latency_granite_seconds": 0.13049417300135246,
+      "num_chunks": 6,
+      "audio_duration_seconds": 5.12
+    },
+    {
+      "clip_id": "error_en_0098",
+      "reference": "talking about earlier.",
+      "hypothesis_parakeet_streaming": "",
+      "hypothesis_granite_streaming": "talking about earlier",
+      "latency_parakeet_seconds": 0.03530096299800789,
+      "latency_granite_seconds": 0.1105158999998821,
+      "num_chunks": 6,
+      "audio_duration_seconds": 5.376
+    },
+    {
+      "clip_id": "error_en_0192",
+      "reference": "and to repeat those again, but slower. I got storefront website and what else.",
+      "hypothesis_parakeet_streaming": "I got storefront website and what else?",
+      "hypothesis_granite_streaming": "to repeat those again but slower i got storefront website and what else",
+      "latency_parakeet_seconds": 0.03594892500041169,
+      "latency_granite_seconds": 0.2658264890014834,
+      "num_chunks": 6,
+      "audio_duration_seconds": 5.376
+    },
+    {
+      "clip_id": "f68c8bf1-2d96-424b-80b1-73ada80b747a_turn1",
+      "reference": "So I just want to know about this page.",
+      "hypothesis_parakeet_streaming": "So I just want to know about this page.",
+      "hypothesis_granite_streaming": "so i just want to know about this page",
+      "latency_parakeet_seconds": 0.033909690002474235,
+      "latency_granite_seconds": 0.19670523700187914,
+      "num_chunks": 4,
+      "audio_duration_seconds": 3.584
+    },
+    {
+      "clip_id": "fb5ba794-8c36-47a0-971e-b029c57f78af_turn0",
+      "reference": "I am looking for filing of form 20-F which is registration of securities for foreign private issuers.",
+      "hypothesis_parakeet_streaming": "Now I am looking for filing a form twenty f which is registration of securities for foreign private issuers.",
+      "hypothesis_granite_streaming": "now i am looking for filing of form 20f which is registration of securities for foreign private insurers",
+      "latency_parakeet_seconds": 0.04458798000268871,
+      "latency_granite_seconds": 0.38916968400008045,
+      "num_chunks": 10,
+      "audio_duration_seconds": 9.728
+    },
+    {
+      "clip_id": "fee67a7d-dc38-4b94-a7de-fae9fd7f716a_turn1",
+      "reference": "Is Rezolve capable of offering to this for this market?",
+      "hypothesis_parakeet_streaming": "Is Resolve capable of offering to this uh for this market?",
+      "hypothesis_granite_streaming": "is rezolve capable of offering for this market",
+      "latency_parakeet_seconds": 0.036410106000403175,
+      "latency_granite_seconds": 0.2144763639989833,
+      "num_chunks": 6,
+      "audio_duration_seconds": 5.376
+    }
+  ],
+  "streaming_vs_batch_delta": {
+    "parakeet": {
+      "delta_entity_accuracy": -0.000478,
+      "delta_entity_accuracy_dv": 0.000333,
+      "delta_wer": 0.000457,
+      "delta_action_critical_wer": 0.000443,
+      "delta_intent_preservation": -3.2e-05,
+      "delta_latency_p50": 0.003265
+    },
+    "granite": {
+      "delta_entity_accuracy": 0.008696,
+      "delta_entity_accuracy_dv": -0.014493,
+      "delta_wer": -0.0,
+      "delta_action_critical_wer": -0.006329,
+      "delta_intent_preservation": 0.010753,
+      "delta_latency_p50": 0.001265
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "spec_version": "2",
+  "predictions_id": "parakeet-tdt-0.6b-v3-gold92-streaming-biased",
+  "name": "Parakeet TDT 0.6b-v3 — Streaming Biased on Gold-92",
+  "short_description": "Per-clip predictions from Parakeet TDT 0.6b-v3 with production NeMo GPU-PB boosting under 32 kB PCM streaming simulation on all 93 gold-92 clips.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "nvidia/parakeet-tdt-0.6b-v3, Token-and-Duration Transducer, NeMo/Riva SDK, GPU inference, NeMo GPU-PB boosting alpha=1.0",
+  "dataset_ids": ["stt-benchmark-gold-92"],
+  "prediction_format": "jsonl",
+  "prediction_schema": "clip_id (string), hypothesis (string), latency_seconds (float), num_chunks (int), audio_duration_seconds (float)",
+  "instance_count": 93,
+  "metrics_at_creation": {
+    "wer_gold92": 0.152457,
+    "entity_accuracy_gold92": 0.231522,
+    "entity_accuracy_domain_vocab": 0.333333,
+    "action_critical_wer_gold92": 0.335443,
+    "intent_preservation_gold92": 0.871011,
+    "latency_p50_seconds": 0.041
+  },
+  "files": [
+    {
+      "path": "files/predictions-gold92-streaming.jsonl",
+      "description": "Per-clip STT predictions under streaming simulation. Each line: clip_id, hypothesis, latency_seconds, num_chunks, audio_duration_seconds.",
+      "format": "jsonl"
+    }
+  ],
+  "categories": ["stt-evaluation"],
+  "created_by_task": "t0011_streaming_stt_benchmark",
+  "date_created": "2026-06-26"
+}
