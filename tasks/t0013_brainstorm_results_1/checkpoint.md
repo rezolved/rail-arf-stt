@@ -3,8 +3,8 @@ spec_version: "1"
 task_id: "t0013_brainstorm_results_1"
 updated_at: "2026-06-29T00:00:00Z"
 completed_steps: 4
-next_step_number: 5
-next_step_id: "done"
+next_step_number: null
+next_step_id: null
 ---
 # Task Objective
 
