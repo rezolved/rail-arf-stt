@@ -59,10 +59,10 @@
       "step": 7,
       "name": "planning",
       "description": "Design 4-part experiment plan: synthetic dataset synthesis, GPU inference via transcribe_stream(), stratified analysis, and answer asset.",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-06-29T13:19:00Z",
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/007_planning/"
     },
     {
       "step": 8,

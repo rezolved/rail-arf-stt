@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0014_granite_short_clip_robustness"
-updated_at: "2026-06-29T12:55:00Z"
-completed_steps: 5
-next_step_number: 6
-next_step_id: "research-code"
+updated_at: "2026-06-29T13:40:00Z"
+completed_steps: 7
+next_step_number: 8
+next_step_id: "setup-machines"
 ---
 # Task Objective
 
@@ -14,6 +14,20 @@ simulation, and assess production fit as a Parakeet replacement in brainpowa.
 * * *
 
 ## Step History
+
+### Step 7 — planning
+
+Plan specifies a four-milestone GPU experiment on Azure H100 NVL: (1) synthesize 40-60 short clips
+at 6 duration bins (0.5-3 s) from gold-92 audio, (2) run all 3 models via
+`STTAdapter.transcribe_stream()` with 32kB PCM-16 chunk queues, (3) compute stratified `empty_rate`,
+`hallucination_rate`, WER, EA, and latency across 6 duration strata with BCa bootstrap CIs, (4)
+produce answer asset with explicit YES/NO/CONDITIONAL recommendation on Granite replacing Parakeet.
+Verificator passed 0 errors, 0 warnings.
+
+### Step 6 — research-code
+
+Skipped: researcher requested fast path to experiment; t0012 streaming harness and brainpowa
+STTAdapter already reviewed in t0013 brainstorm session context.
 
 ### Step 5 — research-internet
 
@@ -61,10 +75,10 @@ task types). Step 1 is a mechanical setup step with no research output.
 
 ## Next Step Notes
 
-For the research-code step (step 6), focus on reviewing t0012 code and predictions (the streaming
-harness and Granite/Parakeet inference scripts), t0009 baselines (entity accuracy evaluation code),
-t0011 streaming harness implementation, and the brainpowa STTAdapter interface in the production
-codebase. Key questions: does the existing streaming harness already handle sub-2 s clip injection,
-what metrics/utilities can be reused, and does the brainpowa ParakeetSTT adapter override
-`chunk_secs` from NeMo's default of 2 s. Three add-paper subagents (Baranski2025, Wang2025,
-Saon2025) are running in parallel and must complete before compare-literature and reporting steps.
+For setup-machines (step 8): provision Azure H100 NVL instance (`gpu-azure` profile,
+`azureuser@llm-t1-nc80`), activate conda env `stt`, verify all three model paths exist
+(`/home/azureuser/parakeet-model/parakeet-tdt-0.6b-v3`,
+`/home/azureuser/granite-model/granite-speech-4.1-2b`), run `dvc pull` for gold-92 source audio, and
+confirm `transcribe_stream()` works with a single test clip for each model. The plan
+(`tasks/t0014_granite_short_clip_robustness/plan/plan.md`) is the authoritative reference for all
+implementation steps; read it fresh before starting setup-machines.
