@@ -5,9 +5,9 @@
       "step": 1,
       "name": "create-branch",
       "description": "Create task/t0014_granite_short_clip_robustness branch from main.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-29T12:13:31Z",
-      "completed_at": null,
+      "completed_at": "2026-06-29T12:17:17Z",
       "log_file": "logs/steps/001_create-branch/"
     },
     {
