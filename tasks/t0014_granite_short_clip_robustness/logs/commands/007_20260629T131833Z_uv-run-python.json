@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0014_granite_short_clip_robustness",
+  "command": "uv run python -m arf.scripts.utils.skip_step t0014_granite_short_clip_robustness creative-thinking Researcher requested fast path to experiment; no creative analysis needed at this stage. compare-literature Researcher requested fast path to experiment; literature comparison deferred.",
+  "exit_code": 0,
+  "duration_seconds": 0.049,
+  "started_at": "2026-06-29T13:18:33Z",
+  "completed_at": "2026-06-29T13:18:33Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0014_granite_short_clip_robustness",
+  "stdout_file": "007_20260629T131833Z_uv-run-python.stdout.txt",
+  "stderr_file": "007_20260629T131833Z_uv-run-python.stderr.txt",
+  "stdout_lines": 4,
+  "stderr_lines": 0,
+  "truncated": false
+}

@@ -50,10 +50,10 @@
       "step": 6,
       "name": "research-code",
       "description": "Review t0012 code and predictions, t0009 baselines, t0011 streaming harness, and brainpowa STTAdapter interface for reuse.",
-      "status": "pending",
+      "status": "skipped",
       "started_at": null,
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/006_research-code/"
     },
     {
       "step": 7,
@@ -95,10 +95,10 @@
       "step": 11,
       "name": "creative-thinking",
       "description": "Explore alternative analyses: latency-accuracy tradeoff curves, failure mode clustering, and brainpowa routing strategies.",
-      "status": "pending",
+      "status": "skipped",
       "started_at": null,
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/011_creative-thinking/"
     },
     {
       "step": 12,
@@ -113,10 +113,10 @@
       "step": 13,
       "name": "compare-literature",
       "description": "Compare Granite and Parakeet stratified accuracy results against published baselines from the corpus.",
-      "status": "pending",
+      "status": "skipped",
       "started_at": null,
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/013_compare-literature/"
     },
     {
       "step": 14,

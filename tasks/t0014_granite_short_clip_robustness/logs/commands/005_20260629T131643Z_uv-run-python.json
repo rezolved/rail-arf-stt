@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0014_granite_short_clip_robustness",
+  "command": "uv run python -m arf.scripts.utils.skip_step t0014_granite_short_clip_robustness research-code Researcher requested fast path to experiment; t0012 streaming harness and brainpowa STTAdapter already reviewed in t0013 brainstorm session context.",
+  "exit_code": 1,
+  "duration_seconds": 0.05,
+  "started_at": "2026-06-29T13:16:43Z",
+  "completed_at": "2026-06-29T13:16:43Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0014_granite_short_clip_robustness",
+  "stdout_file": "005_20260629T131643Z_uv-run-python.stdout.txt",
+  "stderr_file": "005_20260629T131643Z_uv-run-python.stderr.txt",
+  "stdout_lines": 0,
+  "stderr_lines": 1,
+  "truncated": false
+}

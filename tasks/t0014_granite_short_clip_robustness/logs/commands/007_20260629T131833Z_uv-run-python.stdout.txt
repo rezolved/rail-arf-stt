@@ -1,0 +1,4 @@
+Skipped step 011_creative-thinking -> logs/steps/011_creative-thinking/
+Skipped step 013_compare-literature -> logs/steps/013_compare-literature/
+
+2 step(s) skipped.
