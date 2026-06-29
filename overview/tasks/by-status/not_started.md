@@ -9,231 +9,236 @@
 ## ⏹ Not Started
 
 <details>
-<summary>⏹ 0006 — <strong>Benchmark NVIDIA Nemotron 3.5 ASR on Gold-92</strong></summary>
+<summary>⏹ 0014 — <strong>Granite Short-Clip Robustness Validation + Production
+Fit Assessment</strong></summary>
 
 | Field | Value |
 |---|---|
-| **ID** | `t0006_nemotron_3_5_benchmark` |
+| **ID** | `t0014_granite_short_clip_robustness` |
 | **Status** | not_started |
-| **Effective date** | 2026-06-24 |
-| **Dependencies** | [`t0001_stt_benchmark`](../../../overview/tasks/task_pages/t0001_stt_benchmark.md), [`t0004_vocabulary_biasing_experiment`](../../../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) |
-| **Expected assets** | 2 predictions |
-| **Source suggestion** | — |
-| **Task types** | [`stt-benchmark-run`](../../../meta/task_types/stt-benchmark-run/) |
-| **Task page** | [Benchmark NVIDIA Nemotron 3.5 ASR on Gold-92](../../../overview/tasks/task_pages/t0006_nemotron_3_5_benchmark.md) |
-| **Task folder** | [`t0006_nemotron_3_5_benchmark/`](../../../tasks/t0006_nemotron_3_5_benchmark/) |
+| **Effective date** | — |
+| **Dependencies** | [`t0013_brainstorm_results_1`](../../../overview/tasks/task_pages/t0013_brainstorm_results_1.md), [`t0012_whisper_parakeet_granite_streaming`](../../../overview/tasks/task_pages/t0012_whisper_parakeet_granite_streaming.md) |
+| **Expected assets** | 1 answer, 3 predictions |
+| **Source suggestion** | `S-0005-03` |
+| **Task types** | [`stt-benchmark-run`](../../../meta/task_types/stt-benchmark-run/), [`experiment-run`](../../../meta/task_types/experiment-run/), [`answer-question`](../../../meta/task_types/answer-question/) |
+| **Task page** | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Task folder** | [`t0014_granite_short_clip_robustness/`](../../../tasks/t0014_granite_short_clip_robustness/) |
 
-# Benchmark NVIDIA Nemotron 3.5 ASR on Gold-92
+# t0014 — Granite Short-Clip Robustness Validation + Production Fit Assessment
 
 ## Motivation
 
-Task t0005 (STT model survey) identified NVIDIA Nemotron 3.5 ASR (June 2026) as a **TIER 1
-primary benchmark candidate** — the only streaming-native STT model meeting all brainpowa
-STTAdapter constraints:
-- Native streaming with configurable chunks (80ms–1.12s), achieving <800ms p50 voice-to-action
-  latency
-- Published word-boosting mechanism for domain vocabulary (brands, products, SKUs)
-- Self-hostable with Python async interface (NeMo + NVIDIA Riva NIM)
-- 6.93% WER (batch), 7.91% WER (streaming, 1.12s chunks), 7.69% on accented English
-  (VoxPopuli)
+Whisper turbo was the previous production STT model in brainpowa-realtime-api and was replaced
+by Parakeet TDT 0.6b-v3 because it produced hallucinations or empty output on short audio
+utterances in the chunked re-transcribe streaming pattern. The gold-92 benchmark (minimum clip
+duration 3.07s) cannot test this failure mode — all existing benchmark results are biased
+toward longer utterances.
 
-The current production baseline (t0004, Whisper large-v3 + initial_prompt) achieves **94.5%
-domain entity accuracy** and **2.5% action-critical WER** on gold-92 through vocabulary
-biasing alone — without any model-level entity-aware mechanisms. Nemotron offers native word
-boosting + domain fine-tuning recipes, positioning it as a credible candidate to **exceed or
-match Whisper's entity accuracy while maintaining streaming real-time constraints** (critical
-for voice commerce UX).
+t0012 established that Granite Speech 4.1 2B matches Whisper turbo on entity accuracy (41.1%
+vs 42.0%) and significantly outperforms the current production Parakeet model (23.2% EA). The
+remaining question for the production decision is: does Granite avoid the short-clip failure
+mode that disqualified Whisper? And is Granite production-ready as a drop-in STTAdapter
+replacement?
 
-This task validates that hypothesis on the gold-92 held-out benchmark.
+This task answers both questions with evidence from actual inference runs in production
+streaming mode.
 
-## Research Question
+## Key Research Questions
 
-**Can NVIDIA Nemotron 3.5 ASR, with native word boosting, match or exceed Whisper large-v3 +
-initial_prompt entity accuracy (94.5% domain vocab) while maintaining <800ms p50 latency in
-streaming mode on the gold-92 investor-relations domain?**
+1. Does Whisper turbo produce hallucinations or empty output on clips under 3 seconds when run
+   via `transcribe_stream()` with 32kB PCM-16 chunks? At what duration threshold does failure
+   begin?
+2. Does Granite Speech 4.1 2B avoid this failure mode on the same clips?
+3. Does Parakeet show any short-clip failure behavior?
+4. How do Granite and Parakeet compare on entity accuracy and WER stratified by clip duration?
+5. What is the integration effort to add a `granite.py` STTAdapter to brainpowa-realtime-api?
 
-Secondary questions:
-- What is the accuracy degradation from batch to streaming (1.12s chunks) on Nemotron?
-- Is Nemotron's action-critical WER (AC-WER) ≤ 5.1% (Whisper baseline)?
-- Does word-boosted Nemotron outperform Whisper on accented English clips (production subset)?
+## Critical Constraint: Production Streaming Simulation
+
+**All inference MUST use the `STTAdapter.transcribe_stream()` interface with a 32kB PCM-16
+mono chunk `asyncio.Queue`.** Do NOT call `model.transcribe()` directly. The production path
+in brainpowa-realtime-api delivers audio as a queue of 32kB chunks with a `None` sentinel —
+this is what the benchmark must simulate. Using direct model inference would not reproduce the
+failure modes observed in production.
+
+Each adapter's `transcribe_stream()` behavior:
+
+* **Whisper** (`WhisperSTT.transcribe_stream`): chunked re-transcribe — transcribes the
+  growing buffer every 32kB interval. On short clips, may trigger VAD on incomplete audio,
+  producing hallucinations or empty results.
+* **Parakeet** (`ParakeetSTT.transcribe_stream`): chunked re-transcribe — same pattern as
+  Whisper but with NeMo. Short clips may only deliver 1 chunk before the `None` sentinel.
+* **Granite** (`STTAdapter` base class default): accumulate-then-transcribe — accumulates all
+  chunks, then calls `transcribe()` once on the complete audio. No intermediate VAD passes.
 
 ## Scope
 
-### Runs
+### Part 1 — Synthetic Short-Clip Dataset
 
-1. **Nemotron 3.5 ASR — Batch Mode (Baseline)**
-   - Model: `nvidia/nemotron-3.5-asr-streaming-0.6b` via NeMo
-   - Input: all 93 gold-92 clips (PCM-16 mono, 16 kHz)
-   - Configuration: batch inference, no biasing, greedy search
-   - Metric: WER, entity accuracy (overall, domain vocab), intent preservation, latency (N/A
-     for batch)
+Synthesize short clips from gold-92 WAV files by trimming each to fixed durations:
 
-2. **Nemotron 3.5 ASR — Streaming with Word Boosting**
-   - Model: same as above, streaming mode
-   - Chunk size: 1.12s (matches publish RTF benchmarks)
-   - Word boosting vocabulary: identical 31 terms from t0004 (Rezolve, brainpowa, Shopify
-     Plus, Adobe Commerce, Salesforce Commerce Cloud, AI Foundry, E-commerce, conversational
-     AI, product recommendation, voice AI, ASR, NLU, entity recognition, intent detection,
-     product catalog, SKU, brand name, model number, price point, inventory, fulfillment,
-     customer service, support, shopping assistant, voice assistant, smart speaker,
-     multi-modal, omnichannel, cross-channel, real-time, low-latency)
-   - Metric: same as batch + latency p50/p95/p99 (ms), streaming degradation vs batch (Δ WER,
-     Δ entity accuracy)
+* Duration bins: 0.5s, 1.0s, 1.5s, 2.0s, 2.5s, 3.0s
+* Select 5–8 source clips per bin (varying content: speech-rich, silence-heavy, single-word)
+* Edge cases: 0.5s silence (generated), 0.5s background noise (first 0.5s of a noisy clip),
+  clips containing exactly one recognizable domain term ("Rezolve", "brainpowa")
+* Target: 40–60 test clips total
+* Save to `data/short_clips/` as WAV (16kHz, mono, PCM-16)
+* Save clip metadata to `data/short_clips_metadata.jsonl`: clip_id, source_clip_id,
+  duration_s, reference_text (from gold-92 ground truth, truncated to actual spoken content)
 
-### Comparator
+### Part 2 — GPU Inference on Short Clips
 
-**t0004 Baseline (Whisper large-v3 + initial_prompt):**
-- Entity accuracy (domain vocab): 94.5%
-- Entity accuracy (overall): 46.0%
-- WER: 8.5%
-- AC-WER: 2.5%
-- Intent preservation: 98.9%
-- Latency: 6.66s (non-streaming)
+Machine: Azure H100 NVL (`gpu-azure`, `azureuser@llm-t1-nc80`, conda env `stt`).
 
-### Metrics
+Run all three models via `transcribe_stream()` on every short clip:
 
-All metrics computed on the **full gold-92 set (93 clips)**, stratified by:
-- Overall
-- Production subset (8 clips, accented English, "wrong-action" prone)
-- Clean-voice subset (remaining)
+**Whisper turbo** (faster-whisper):
 
-**Registered metrics to compute:**
-- `wer_gold92`
-- `entity_accuracy_gold92`
-- `entity_accuracy_domain_vocab`
-- `action_critical_wer_gold92`
-- `intent_preservation_gold92`
-- `latency_p50_seconds` (streaming run only)
+* Model size: `turbo`, `float16`, `cuda`
+* `beam_size=1`, `vad_filter=True`, `temperature=0.0`, `no_speech_threshold=0.6`
+* `initial_prompt`: comma-separated 31 domain vocab terms (same as t0012)
 
-**Custom metrics for this task:**
-- Streaming degradation: Δ WER (batch vs streaming)
-- Streaming degradation: Δ entity accuracy (batch vs streaming)
-- Production subset entity accuracy (accented English)
-- Word-boosting gain: entity accuracy (boosted vs non-boosted)
+**Parakeet TDT 0.6b-v3** (NeMo):
 
-## Approach
+* Model path: `/home/azureuser/parakeet-model/parakeet-tdt-0.6b-v3`
+* GPU-PB phrase boosting, `alpha=1.0`, 66 casing variants of 31 domain terms
 
-### Setup
+**Granite Speech 4.1 2B** (HuggingFace Transformers):
 
-1. Install NVIDIA NeMo + nemotron-3.5-asr-streaming-0.6b weights (HF Model Hub)
-2. Load gold-92 clips and ground-truth transcripts from t0001
-3. Load t0004 predictions (Whisper large-v3 + initial_prompt) for side-by-side comparison
+* Model path: `/home/azureuser/granite-model/granite-speech-4.1-2b`
+* Keyword prompt injection: `"transcribe the speech to text. Keywords: Rezolve, ..."` (same 31
+  terms as t0012)
 
-### Implementation Steps (Batch Mode)
+Per-clip output (save to `data/short_clip_transcripts_<model>.jsonl`):
 
-1. **Baseline inference (no biasing):**
-   - Iterate over 93 gold-92 clips (PCM-16 mono, 16 kHz)
-   - Run Nemotron batch transcription
-   - Collect predictions + latency measurements
+* `clip_id`, `duration_s`, `transcript`, `is_empty` (transcript stripped == ""),
+  `latency_seconds`, `ttfd_seconds` (time to first non-empty delta from `transcribe_stream()`)
 
-2. **Word-boosted inference:**
-   - Same 93 clips with word-boosting vocabulary active (NeMo word_list parameter)
-   - Collect predictions + latency
+Hallucination detection: flag as `is_hallucination=True` when transcript is non-empty but
+contains none of the reference words AND matches known Whisper hallucination patterns (e.g.,
+"Thanks for watching", "Subscribe", "[Music]", repeated punctuation, non-English tokens on
+English audio).
 
-3. **Metric computation:**
-   - WER (normalized Levenshtein distance, 0–100%)
-   - Entity accuracy: substring match (is each entity from ground truth present in
-     prediction?)
-   - Domain vocab accuracy: entity accuracy on the 31-term boosting vocabulary only
-   - Action-critical WER: WER on action-bearing tokens (entity spans, intents)
-   - Intent preservation: does the predicted intent match the ground truth? (using same proxy
-     as t0004)
-   - Latency: wall-clock time per clip (ms)
+### Part 3 — Stratified Analysis
 
-4. **Stratification:**
-   - Compute all metrics on: full set, production subset (8 accented clips), clean-voice
-     subset
-   - Report means + 95% binomial confidence intervals (BCa bootstrap as in t0002/t0004)
+Combine new short-clip results with t0012 gold-92 data (from
+`tasks/t0012_whisper_parakeet_granite_streaming/data/`).
 
-### Compute
+Duration strata:
 
-**GPU:** H100 or A100 (Nemotron RTF = 258.9x on H100; 93 clips ~ 10–15 seconds wall time per
-run) **Budget estimate:** $5–10 (2–3 hours H100 time, including setup + metric computation)
+| Stratum | Duration range | Source |
+| --- | --- | --- |
+| < 1s | 0–1s | synthetic only |
+| 1–2s | 1–2s | synthetic only |
+| 2–3s | 2–3s | synthetic only |
+| 3–5s | 3–5s | gold-92 (29 clips) |
+| 5–10s | 5–10s | gold-92 (60 clips) |
+| > 10s | > 10s | gold-92 (4 clips) |
 
-### Output Specification
+Metrics per stratum per model:
 
-**Predictions Assets (2 total):**
+* Entity accuracy (substring match against reference)
+* WER (computed only for strata with reference transcripts)
+* `empty_rate` — fraction of clips with empty transcript
+* `hallucination_rate` — fraction of clips with `is_hallucination=True`
+* Latency p50 (seconds)
 
-1. `nemotron-3.5-asr-gold92-batch` — batch mode, no biasing
-   - Schema: `{clip_id, ground_truth, prediction, wer_local, entity_accuracy_local,
-     latency_ms}`
-   - Format: CSV or JSONL
+### Part 4 — Answer Asset: Production Recommendation
 
-2. `nemotron-3.5-asr-gold92-word-boosted` — streaming mode with word boosting
-   - Same schema
+Answer ID: `granite-vs-parakeet-production-fit`
 
-**Results Files:**
-- `results/results_summary.md` — headline metrics (WER, entity accuracy vs. Whisper baseline,
-  streaming degradation)
-- `results/results_detailed.md` — full methodology, per-clip breakdown, stratification by
-  subset, limitations
-- `results/metrics.json` — registered metrics per variant
-- `results/images/` — comparison bar charts (entity accuracy, WER, AC-WER vs. t0004 baseline)
+Question: "Should Granite Speech 4.1 2B replace Parakeet TDT 0.6b-v3 as the production STT
+model in brainpowa-realtime-api?"
 
-**Key Questions (numbered, falsifiable):**
+Evidence to cover in the answer:
 
-1. **Entity accuracy (domain vocab):** Does Nemotron word-boosted ≥ 94.5% (Whisper baseline)?
-   - Hypothesis: YES — Nemotron native word boosting should be comparable to or exceed
-     initial_prompt biasing
+* Short-clip failure rates: Whisper vs Granite vs Parakeet (from Part 2)
+* Stratified accuracy at each duration stratum (from Part 3)
+* Overall EA and AC-WER from t0012 (Granite 41.1% / 7.6% vs Parakeet 23.2% / 33.5%)
+* Latency: Granite p50 249ms vs Parakeet 40ms — is the 6x overhead acceptable?
+* Integration effort: read
+  `brainpowa-realtime-api/src/brainpowa_realtime_api/pipeline/stt/base.py` and `parakeet.py`
+  to determine what `granite.py` needs to implement. The base class
+  `STTAdapter.transcribe_stream()` default is accumulate-then-transcribe, so `granite.py` only
+  needs to implement `transcribe()`. Estimate implementation effort.
+* Final recommendation: YES/NO/CONDITIONAL with explicit conditions
 
-2. **Overall entity accuracy:** Does Nemotron word-boosted ≥ 46.0% (Whisper baseline)?
-   - Hypothesis: YES — native biasing mechanism should generalize
+## Metrics
 
-3. **Streaming degradation:** Is Δ WER (batch→streaming) < 2%?
-   - Hypothesis: YES — published benchmarks show 0.98% degradation on speech; domain may be
-     similar
+All seven registered project metrics computed for the stratified gold-92 portion (strata 3–5s,
+5–10s, > 10s):
 
-4. **Action-critical WER:** Does Nemotron word-boosted AC-WER ≤ 5.1% (Whisper baseline)?
-   - Hypothesis: YES — entity-focused biasing should benefit action-bearing tokens
+| Metric | All three models |
+| --- | --- |
+| Entity Accuracy (gold-92) | ✓ |
+| Entity Accuracy — Domain Vocabulary | ✓ |
+| Word Error Rate (gold-92) | ✓ |
+| Action-Critical WER (gold-92) | ✓ |
+| Intent Preservation (gold-92) | ✓ |
+| Latency p50 (seconds) | ✓ |
+| Wrong Action Rate (gold-92) | ✓ |
 
-5. **Accented English (production subset):** Does Nemotron word-boosted entity accuracy >
-   Whisper on 8 production clips?
-   - Hypothesis: UNCERTAIN — Nemotron VoxPopuli WER (7.69%) slightly above Whisper VoxPopuli
-     baseline; domain boosting may tip the balance
+Additional metrics (short clips, all strata):
 
-## Dependencies
+* `empty_rate` per stratum per model
+* `hallucination_rate` per stratum per model (Whisper primarily)
+* TTFD p50 per stratum per model
 
-- **t0001_stt_benchmark:** Gold-92 dataset (93 clips, ground-truth transcripts, annotations).
-  This task must complete successfully before benchmarking can start.
-- **t0004_vocabulary_biasing_experiment:** Whisper baseline results for comparison (WER,
-  entity accuracy, intent preservation). Provides the metric definitions and baseline numbers.
+## Baselines
 
-## Expected Assets
+* Parakeet production (t0009): EA=23.2%, AC-WER=33.5%, lat p50=38ms
+* Granite streaming (t0012): EA=41.1%, AC-WER=7.6%, lat p50=249ms
+* Whisper turbo streaming (t0012): EA=42.0%, AC-WER=6.3%, lat p50=290ms
 
-- `predictions` asset (count: 2) — batch + word-boosted Nemotron predictions on gold-92
+## Assets
 
-## Budget
+1. `whisper-turbo-short-clips` — Whisper predictions on synthetic short clips
+2. `parakeet-tdt-short-clips-biased` — Parakeet predictions on synthetic short clips
+3. `granite-speech-short-clips-biased` — Granite predictions on synthetic short clips
+4. `granite-vs-parakeet-production-fit` — Answer asset: production recommendation
 
-- **Estimated:** $5–10 USD
-- **Breakdown:**
-  - H100 GPU time: ~2 hours @ $3–5/hr = $6–10
-  - Inference: ~100ms/clip × 93 clips × 2 variants = ~20 seconds
-  - Metric computation + charting: ~5 minutes
-- **Assumption:** Cost varies with cloud provider (AWS, GCP, NVIDIA DGX); local GPU available
-  (no cost) acceptable.
+## Charts
 
-## Success Criteria
+All charts saved to `results/images/` and embedded in `results_detailed.md`.
 
-1. ✅ All 93 clips transcribed in both batch and streaming modes
-2. ✅ All registered metrics computed with valid confidence intervals
-3. ✅ Entity accuracy (domain vocab) measured and compared to t0004 baseline (94.5%)
-4. ✅ Streaming degradation quantified (Δ WER batch→streaming)
-5. ✅ Predictions assets created and verified
-6. ✅ Results document includes side-by-side comparison vs. Whisper baseline + interpretation
-   of findings
-7. ✅ If entity accuracy ≥ 94.5%, task confirms Nemotron as viable production candidate; if <
-   94.5%, task identifies entity-accuracy gap and recommends fine-tuning direction or fallback
-   strategy
+1. **Short-clip failure rate by duration and model** — line chart, x-axis: duration bin,
+   y-axis: failure rate (%), lines: empty_rate and hallucination_rate per model. Answers: at
+   what duration does each model start failing?
+2. **Stratified entity accuracy** — grouped bar chart, x-axis: duration stratum, y-axis: EA
+   (%), bars: Whisper / Granite / Parakeet. Answers: does Granite maintain accuracy advantage
+   across all durations?
+3. **Latency by duration stratum** — grouped bar chart p50, x-axis: stratum, y-axis: seconds.
+   Answers: does Granite's latency overhead increase on short clips?
 
-## Cross-References
+## Compute and Budget
 
-- **t0001_stt_benchmark** — gold-92 dataset (93 clips, held-out regression set)
-- **t0004_vocabulary_biasing_experiment** — Whisper large-v3 + initial_prompt baseline results
-  (WER, entity accuracy, intent preservation, latency)
-- **t0005_stt_model_survey_brainpowa** — identified Nemotron 3.5 as TIER 1 primary candidate;
-  correction file added Nemotron findings with streaming latency constraints and word-boosting
-  documentation
-- **brainpowa-realtime-api** integration target — Nemotron findings will inform STTAdapter
-  brick implementation (NeMo backend + async wrapper)
+| Run | Est. wall-clock | Notes |
+| --- | --- | --- |
+| Part 1 — dataset synthesis | 10 min | CPU, local or remote |
+| Part 2 — Whisper short clips | 15 min | GPU, O(N) passes |
+| Part 2 — Parakeet short clips | 10 min | GPU |
+| Part 2 — Granite short clips | 20 min | GPU |
+| Part 3–4 — analysis + answer | 30 min | CPU |
+
+Total GPU time: ~45 min on Azure H100 NVL. Estimated cost: $0 (reserved instance).
+
+## Data Handling
+
+* Gold-92 source audio: `tasks/t0001_stt_benchmark/` (DVC-tracked). Run `dvc pull` before
+  starting.
+* t0012 JSONL predictions: `tasks/t0012_whisper_parakeet_granite_streaming/data/` (already on
+  disk, no re-inference needed for gold-92 portion).
+* Synthetic clips saved to `data/short_clips/` and DVC-tracked.
+* Prediction JSONLs saved to `data/`.
+
+## Verification Criteria
+
+* 40+ synthetic clips generated and saved to `data/short_clips/`.
+* All three models run on all synthetic clips via `transcribe_stream()` (not direct model
+  call).
+* `hallucination_rate` reported for Whisper on sub-3s clips.
+* Answer asset written with explicit YES/NO/CONDITIONAL recommendation.
+* All registered metrics computed for gold-92 strata.
+* Three charts generated and embedded in `results_detailed.md`.
 
 </details>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive type_id="tasks" generated_at_utc="2026-06-25T09:59:24Z">
+<llm_context_archive type_id="tasks" generated_at_utc="2026-06-29T11:55:22Z">
   <archive_summary>
     <title>All Tasks</title>
     <description>Complete task data with full descriptions, results summaries, dependencies, and status.</description>
     <section_count>1</section_count>
-    <char_count>103347</char_count>
-    <byte_count>104023</byte_count>
-    <estimated_tokens>25836</estimated_tokens>
+    <char_count>147365</char_count>
+    <byte_count>148472</byte_count>
+    <estimated_tokens>36841</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -25,9 +25,15 @@
         <id>t0006_nemotron_3_5_benchmark</id>
         <id>t0007_ibm_granite_4_1_benchmark</id>
         <id>t0008_moonshine_v2_benchmark</id>
+        <id>t0009_parakeet_production_baseline</id>
+        <id>t0010_funasr_paraformer_benchmark</id>
+        <id>t0011_streaming_stt_benchmark</id>
+        <id>t0012_whisper_parakeet_granite_streaming</id>
+        <id>t0013_brainstorm_results_1</id>
+        <id>t0014_granite_short_clip_robustness</id>
       </source_ids>
       <content>
-Total tasks: 8
+Total tasks: 14
 
 ## STT Benchmark — Gold-92 Dataset Ingestion
 ID: t0001_stt_benchmark
@@ -1287,11 +1293,13 @@ candidates for gold-92 evaluation against current Whisper turbo + initial_prompt
 
 ## Benchmark NVIDIA Nemotron 3.5 ASR on Gold-92
 ID: t0006_nemotron_3_5_benchmark
-Status: not_started
-Effective date: 2026-06-24
+Status: completed
+Effective date: 2026-06-25
 Short description: Benchmark NVIDIA Nemotron 3.5 ASR (streaming native) on gold-92 to validate entity accuracy and latency vs. Whisper baseline.
 Dependencies: t0001_stt_benchmark, t0004_vocabulary_biasing_experiment
 Task types: stt-benchmark-run
+Start time: 2026-06-25T06:00:00Z
+End time: 2026-06-25T12:00:00Z
 
 #### Motivation
 
@@ -1497,9 +1505,63 @@ All metrics computed on the **full gold-92 set (93 clips)**, stratified by:
 - **brainpowa-realtime-api** integration target — Nemotron findings will inform STTAdapter brick
   implementation (NeMo backend + async wrapper)
 
+### Results Summary
+
+---
+spec_version: &quot;1&quot;
+task_id: &quot;t0006_nemotron_3_5_benchmark&quot;
+date_completed: &quot;2026-06-25&quot;
+---
+### Results Summary — NVIDIA Nemotron 3.5 ASR Benchmark on Gold-92
+
+#### Summary
+
+NVIDIA Nemotron 3.5 ASR was benchmarked on all 93 gold-92 clips in two configurations: batch
+(no biasing) and streaming with word boosting. Batch WER=17.6% is 2× worse than the Whisper
+large-v3 baseline (8.5%), and batch entity accuracy=24.7% is 21 pp below Whisper (46.0%). Word
+boosting actively degrades performance relative to batch: ΔEA=−6.0 pp, ΔWER=+2.3 pp,
+ΔEA_DV=−5.5 pp. Latency p50=0.72s is within the 800 ms voice-to-action budget but does not
+offer a meaningful advantage over Granite biased (248 ms).
+
+Nemotron 3.5 is not recommended for Rezolve production. Word boosting is the primary failure
+mode — the mechanism degrades rather than improves domain-vocabulary accuracy, suggesting the
+word-boosting API does not behave as documented for this domain. Without an effective biasing
+mechanism, the model cannot meet Rezolve&#x27;s entity accuracy requirements.
+
+#### Metrics
+
+**Nemotron 3.5 ASR — batch (no biasing)**
+
+- **entity_accuracy_gold92**: 24.7% vs. Whisper 46.0% (−21.3 pp), vs. Parakeet prod 23.2% (+1.5 pp)
+- **entity_accuracy_domain_vocab**: 18.2% vs. Whisper 94.5% (−76.3 pp), vs. Parakeet 33.3% (−15.1 pp)
+- **wer_gold92**: 17.6% vs. Whisper 8.5% (+9.1 pp), vs. Parakeet 15.1% (+2.5 pp)
+- **action_critical_wer_gold92**: 31.6% vs. Whisper 2.5% (+29.1 pp), vs. Parakeet 33.5% (−1.9 pp)
+- **intent_preservation_gold92**: 90.3% vs. Whisper 98.9% (−8.6 pp), vs. Parakeet 87.1% (+3.2 pp)
+- **latency_p50_seconds**: 0.719s vs. Parakeet 0.038s (19× slower), vs. Whisper 6.66s (9× faster)
+
+**Nemotron 3.5 ASR — streaming + word boosting**
+
+- **entity_accuracy_gold92**: 18.7% vs. batch 24.7% (−6.0 pp) — word boosting degrades accuracy
+- **entity_accuracy_domain_vocab**: 12.7% vs. batch 18.2% (−5.5 pp)
+- **wer_gold92**: 19.9% vs. batch 17.6% (+2.3 pp) — word boosting worsens WER
+- **action_critical_wer_gold92**: 42.4% vs. batch 31.6% (+10.8 pp)
+- **intent_preservation_gold92**: 84.9% vs. batch 90.3% (−5.4 pp)
+- **latency_p50_seconds**: 0.723s (≈ batch, no meaningful latency benefit from streaming mode)
+
+**Word-boosting degradation (word-boosted vs. batch):**
+
+- ΔWER: +2.3 pp
+- ΔEntity accuracy: −6.0 pp
+- ΔDomain-vocab accuracy: −5.5 pp
+
+#### Verdict
+
+Nemotron 3.5 ASR is not suitable for Rezolve production: WER is 2× worse than Whisper, entity
+accuracy is 21 pp below Whisper, and word boosting actively degrades all accuracy metrics.
+
 ## Benchmark IBM Granite Speech 4.1 2B on Gold-92
 ID: t0007_ibm_granite_4_1_benchmark
-Status: in_progress
+Status: completed
 Effective date: 2026-06-25
 Short description: Benchmark IBM Granite Speech 4.1 2B with keyword biasing on gold-92 to validate entity accuracy and latency vs. Whisper large-v3 + initial_prompt baseline.
 Dependencies: t0001_stt_benchmark, t0004_vocabulary_biasing_experiment
@@ -1746,6 +1808,55 @@ This assessment is qualitative; it does not require a separate benchmark run.
   accuracy and latency&quot;
 - **brainpowa-realtime-api** integration target — Granite findings will inform STTAdapter brick
   implementation (HuggingFace Transformers backend + async wrapper)
+
+### Results Summary
+
+---
+spec_version: &quot;1&quot;
+task_id: &quot;t0007_ibm_granite_4_1_benchmark&quot;
+date_completed: &quot;2026-06-25&quot;
+---
+### Results Summary — IBM Granite Speech 4.1 2B Benchmark on Gold-92
+
+#### Summary
+
+IBM Granite Speech 4.1 2B with keyword biasing achieves 40.2% overall entity accuracy and 98.5%
+domain-vocabulary entity accuracy on gold-92, matching Whisper&#x27;s domain-vocab score (94.5%) and
+delivering 27× lower latency (248 ms vs. 6.66 s p50). Against the actual production baseline
+(Parakeet TDT 0.6b-v3, t0009), Granite biased is +73% better on overall entity accuracy (40.2% vs.
+23.2%), +196% better on domain-vocab accuracy (98.5% vs. 33.3%), and −75% better on action-critical
+WER (8.2% vs. 33.5%), at the cost of 6.5× higher latency (248 ms vs. 38 ms p50). Keyword biasing is
+the decisive factor: unbiased Granite scores only 19.5% entity accuracy, while biasing raises it to
+40.2% (+21 pp) and domain-vocab accuracy from 31.9% to 98.5% (+66.6 pp).
+
+#### Metrics
+
+**Primary variant: Granite Speech 4.1 2B — keyword biased**
+
+* **entity_accuracy_gold92**: 40.2% (BCa 95% CI: 30.4%–50.0%) vs. Parakeet prod 23.2% (+73%), vs.
+  Whisper 46.0% (−5.8 pp)
+* **entity_accuracy_domain_vocab**: 98.5% (BCa 95% CI: 88.6%–100%) vs. Parakeet 33.3% (+196%), vs.
+  Whisper 94.5% (+4 pp)
+* **wer_gold92**: 8.8% (BCa 95% CI: 7.1%–12.6%) vs. Parakeet 15.2% (−42%), vs. Whisper 8.5% (+0.3
+  pp)
+* **action_critical_wer_gold92**: 8.2% vs. Parakeet 33.5% (−75%), vs. Whisper 2.5% (+5.7 pp)
+* **intent_preservation_gold92**: 92.5% vs. Parakeet 87.1% (+5.4 pp), vs. Whisper 98.9% (−6.4 pp)
+* **latency_p50_seconds**: 0.248 s vs. Parakeet 0.038 s (6.5× slower), vs. Whisper 6.66 s (27×
+  faster)
+* **wrong_action_rate_gold92**: 7.5% proxy (1 − intent_preservation) vs. threshold &lt; 2%
+
+**Keyword-biasing gain (biased vs. batch):**
+
+* ΔWER: −3.5 pp
+* ΔEntity accuracy: +20.7 pp
+* ΔDomain-vocab accuracy: +66.7 pp
+
+#### Verification
+
+* All 93 clips transcribed in both batch and biased runs (0 failures)
+* BCa bootstrap CIs computed (n=10,000 resamples)
+* `ruff check tasks/t0007_ibm_granite_4_1_benchmark/code/` — PASSED
+* `mypy -p tasks.t0007_ibm_granite_4_1_benchmark.code` — not run (GPU server env)
 
 ## Benchmark Moonshine v2 on Gold-92
 ID: t0008_moonshine_v2_benchmark
@@ -2035,6 +2146,847 @@ vocabulary biasing, but shallow-fusion is feasible (~15–25 hours effort, verdi
 - `verify_task_metrics t0008_moonshine_v2_benchmark` — PASSED, 0 errors
 - `ruff check code/` — PASSED, 0 errors
 - `mypy -p tasks.t0008_moonshine_v2_benchmark.code` — PASSED, 0 errors
+
+## Parakeet TDT 0.6b-v3 Production Baseline on Gold-92
+ID: t0009_parakeet_production_baseline
+Status: completed
+Effective date: 2026-06-25
+Short description: Establish production baseline metrics for Parakeet TDT 0.6b-v3 on gold-92 to enable direct comparison with all other benchmarked STT models.
+Dependencies: t0001_stt_benchmark
+Task types: stt-benchmark-run
+Start time: 2026-06-25T00:00:00Z
+End time: 2026-06-25T06:00:00Z
+
+#### Motivation
+
+Parakeet TDT 0.6b-v3 (NVIDIA) is the current production STT model deployed in brainpowa&#x27;s
+voice-commerce pipeline. Tasks t0006–t0010 all compare their benchmarked models against this
+production system, making it essential to have directly comparable metrics computed with the
+same evaluation harness.
+
+Prior tasks (t0001–t0005) used Whisper large-v3 as the reference baseline. This task establishes
+a second, more operationally relevant baseline using the actual production model, so that
+benchmark results are interpretable in terms of real-world improvement potential.
+
+#### Goal
+
+Run Parakeet TDT 0.6b-v3 on all 93 gold-92 clips in two configurations:
+
+1. **Unbiased** — standard inference, no keyword injection
+2. **Biased (production config)** — with the keyword biasing configuration currently deployed
+   in production
+
+Compute entity accuracy, domain-vocabulary accuracy, WER, action-critical WER, intent
+preservation, and latency p50/p95/p99 using the same evaluation harness as all other benchmark
+tasks.
+
+#### Success Criteria
+
+- All 93 clips transcribed in both configurations
+- metrics.json written with both variants
+- Prediction assets registered for DVC tracking
+- Results summary and detailed report completed
+
+### Results Summary
+
+---
+spec_version: &quot;1&quot;
+task_id: &quot;t0009_parakeet_production_baseline&quot;
+date_completed: &quot;2026-06-25&quot;
+---
+### Results Summary — Parakeet TDT 0.6b-v3 Production Baseline on Gold-92
+
+#### Summary
+
+Parakeet TDT 0.6b-v3 (NVIDIA, current Rezolve production model) was benchmarked on all 93
+gold-92 clips in unbiased and production-config (biased) modes. The production config achieves
+entity accuracy=23.2%, domain-vocabulary accuracy=33.3%, WER=15.2%, and action-critical
+WER=33.5% at p50 latency=38 ms. Keyword biasing in the production config provides negligible
+benefit over unbiased: ΔEA=−0.2 pp, ΔEA_DV=+1.4 pp, ΔWER=+0.1 pp.
+
+This baseline establishes the current production floor. All subsequent benchmark tasks
+(t0006–t0010) report their metrics relative to this result. The key finding is that the
+production model has very low entity accuracy (23.2%) and very high action-critical WER (33.5%),
+confirming significant headroom for improvement.
+
+#### Metrics
+
+**Parakeet TDT 0.6b-v3 — production config (biased)**
+
+- **entity_accuracy_gold92**: 23.2% vs. Whisper large-v3 46.0% (−22.8 pp)
+- **entity_accuracy_domain_vocab**: 33.3% vs. Whisper 94.5% (−61.2 pp)
+- **wer_gold92**: 15.2% vs. Whisper 8.5% (+6.7 pp)
+- **action_critical_wer_gold92**: 33.5% vs. Whisper 2.5% (+31.0 pp)
+- **intent_preservation_gold92**: 87.1% vs. Whisper 98.9% (−11.8 pp)
+- **latency_p50_seconds**: 0.038s vs. Whisper 6.66s (175× faster)
+
+**Keyword-biasing gain (biased vs. unbiased):**
+
+- ΔWER: +0.1 pp (no benefit)
+- ΔEntity accuracy: −0.2 pp (marginal degradation)
+- ΔDomain-vocab accuracy: +1.4 pp (minimal benefit)
+
+#### Verification
+
+- All 93 clips transcribed in both unbiased and biased runs (0 failures)
+- metrics.json written with both variants
+- `ruff check tasks/t0009_parakeet_production_baseline/code/` — PASSED
+
+## Benchmark FunASR SeACo-Paraformer on Gold-92
+ID: t0010_funasr_paraformer_benchmark
+Status: completed
+Effective date: 2026-06-25
+Short description: Benchmark FunASR SeACo-Paraformer (English, contextual biasing) on gold-92 to validate entity accuracy and latency vs. Granite biased and Parakeet production baselines.
+Dependencies: t0001_stt_benchmark, t0007_ibm_granite_4_1_benchmark, t0009_parakeet_production_baseline
+Task types: stt-benchmark-run
+Source suggestion: S-0005-02
+Start time: 2026-06-25T00:00:00Z
+End time: 2026-06-25T20:00:00Z
+
+#### Motivation
+
+Task t0005 (STT model survey) identified FunASR SeACo-Paraformer-en as a candidate for
+contextual-biasing benchmarking. SeACo-Paraformer is a variant of the Paraformer architecture
+with a dedicated contextual biasing module (SeACo — Selective Attention with Contextual Objects),
+designed to improve recall of domain-specific vocabulary. The English variant
+(`iic/speech_seaco_paraformer_asr_nat-en-16k-common-vocab10020`) was identified as a potential
+lower-latency alternative to Granite biased, given Paraformer&#x27;s CTC-based architecture.
+
+The task was also motivated by suggestion S-0005-02 from task t0005&#x27;s suggestion generation.
+
+#### Goal
+
+Run FunASR SeACo-Paraformer-en on all 93 gold-92 clips in two configurations:
+
+1. **Batch (no biasing)** — standard Paraformer inference without contextual biasing
+2. **SeACo biased** — SeACo contextual biasing with Rezolve domain vocabulary
+
+Compute entity accuracy, domain-vocabulary accuracy, WER, action-critical WER, intent
+preservation, and latency p50/p95/p99. Compare against Parakeet production (t0009) and
+Granite biased (t0007) baselines.
+
+#### Success Criteria
+
+- All 93 clips transcribed in both configurations
+- metrics.json written with both variants
+- Prediction assets registered for DVC tracking
+- Results summary and detailed report completed
+
+### Results Summary
+
+---
+spec_version: &quot;1&quot;
+task_id: &quot;t0010_funasr_paraformer_benchmark&quot;
+date_completed: &quot;2026-06-25&quot;
+---
+### Results Summary — FunASR SeACo-Paraformer Benchmark on Gold-92
+
+#### Summary
+
+FunASR SeACo-Paraformer-en (iic/speech_seaco_paraformer_asr_nat-en-16k-common-vocab10020) was
+benchmarked on all 93 gold-92 clips in batch and contextual-biased modes. The model produces
+near-random English-sounding tokens when given Rezolve&#x27;s investor-relations English speech:
+WER=122.7% (batch), WER=122.2% (biased). WER exceeding 100% indicates the model&#x27;s hypotheses
+contain more word errors than reference words — effectively complete transcription failure.
+Entity accuracy is 2.2% in both variants, and domain-vocabulary accuracy is 0.0%. SeACo
+contextual biasing has zero effect on any accuracy metric.
+
+The root cause is that Paraformer was trained primarily on Mandarin Chinese speech data.
+The &quot;en&quot; variant&#x27;s English capability is severely limited and cannot handle Rezolve&#x27;s
+English voice-commerce speech. This model is not suitable for any English STT application
+at Rezolve.
+
+#### Metrics
+
+**SeACo-Paraformer-large — batch (no biasing)**
+
+- **entity_accuracy_gold92**: 2.2% vs. Parakeet prod 23.2% (−21.0 pp), vs. Granite biased 40.2% (−38.0 pp)
+- **entity_accuracy_domain_vocab**: 0.0% vs. Parakeet 33.3% (−33.3 pp), vs. Granite biased 98.5% (−98.5 pp)
+- **wer_gold92**: 122.7% — WER &gt; 100% indicates more errors than reference words
+- **action_critical_wer_gold92**: 100.0% — all entity-containing clips fail
+- **intent_preservation_gold92**: 55.9% — by chance token overlap only
+- **latency_p50_seconds**: 0.048s — fast but irrelevant given transcription failure
+
+**SeACo contextual biasing gain (biased vs. batch):**
+
+- ΔWER: −0.5 pp (noise-level)
+- ΔEntity accuracy: 0.0 pp (zero effect)
+- ΔDomain-vocab accuracy: 0.0 pp (zero effect)
+
+#### Verdict
+
+FunASR SeACo-Paraformer is completely unsuitable for English speech recognition at Rezolve.
+WER &gt; 100% and entity accuracy ≈ 2% confirm total transcription failure on English input.
+This model should not be evaluated further for Rezolve&#x27;s voice-commerce pipeline.
+
+## Streaming STT Benchmark — Parakeet TDT 0.6b-v3 vs Granite Speech 4.1 2B (biased)
+ID: t0011_streaming_stt_benchmark
+Status: completed
+Effective date: 2026-06-26
+Short description: Simulate production streaming audio flow on gold-92, comparing biased Parakeet TDT 0.6b-v3 vs biased Granite Speech 4.1 2B on accuracy and latency.
+Dependencies: t0007_ibm_granite_4_1_benchmark, t0009_parakeet_production_baseline
+Task types: stt-benchmark-run, experiment-run
+Source suggestion: S-0005-05
+Start time: 2026-06-26T09:00:00Z
+End time: 2026-06-26T13:30:00Z
+
+#### Motivation
+
+Production brainpowa-realtime-api does not deliver audio in batch — it streams PCM chunks over a
+WebSocket at `stream_interval_bytes = 32000` (~1 s at 16 kHz mono), feeds them into an STT
+adapter, and expects a transcription on a None sentinel. Tasks t0007 and t0009 measured both models
+in pure-batch mode (full WAV loaded at once). This task answers whether the streaming delivery
+pattern changes accuracy or latency relative to those batch baselines, and which model is the
+better production fit under realistic conditions.
+
+Key research questions:
+
+1. Does chunked streaming delivery degrade entity accuracy vs. batch for Parakeet (biased)?
+2. Does chunked streaming delivery degrade entity accuracy vs. batch for Granite 4.1 2B (biased)?
+3. Which model achieves lower latency-to-final-transcript under streaming conditions (p50 / p95)?
+4. Does the streaming gap (batch minus streaming entity accuracy) differ between the two models?
+
+#### Scope
+
+Two runs on gold-92 (93 WAV clips):
+
+* **Run A — Parakeet TDT 0.6b-v3 (biased, streaming)**: NeMo GPU-PB phrase boosting identical to
+  brainpowa production (`stt_initial_prompt` → comma-split → NeMo `boosting_phrases`). Audio fed
+  as 32000-byte PCM chunks; model accumulates until None sentinel.
+* **Run B — Granite Speech 4.1 2B (biased, streaming)**: keyword prompt injection
+  (`&quot;Keywords: kw1, kw2, ...&quot;` prefix) identical to t0007 best variant. Same chunking pattern as
+  Run A.
+
+No partial / intermediate transcription required — the streaming simulation tests the latency of the
+full-segment accumulate-then-transcribe pattern (same as the production STTAdapter base class
+`transcribe_stream()` default implementation).
+
+#### Approach
+
+##### Streaming Simulation
+
+Read each gold-92 WAV at 16 kHz mono PCM, split into 32000-byte frames (exactly matching
+`stt_stream_interval_bytes` from brainpowa config). Deliver frames sequentially with no sleep
+(wall-clock simulation of the transport without network jitter). Send a None sentinel after the
+last frame to trigger final transcription. Measure:
+
+* `t_first_chunk` — time the first frame is submitted
+* `t_transcript` — time the transcript is returned
+* `latency = t_transcript - t_first_chunk`
+
+##### Biasing configuration
+
+* **Parakeet**: load the canonical keyword list from `tasks/t0009_parakeet_production_baseline/`
+  (same entity vocab used in production). Convert to NeMo `boosting_phrases` via comma-split of
+  `stt_initial_prompt`.
+* **Granite**: use the `&quot;Keywords: ...&quot;` prompt prefix established in t0007 (kw-biased variant,
+  which was the best-performing configuration).
+
+##### Compute
+
+Single run on the Azure H100 NVL server (`gpu-azure`, alias `azureuser@llm-t1-nc80`). Load only
+one model at a time to avoid VRAM contention (Parakeet ~2 GB, Granite BF16 ~4 GB — both fit
+sequentially). Estimated wall-clock: 15–20 min per run (93 clips × ~10 s audio × overhead).
+
+##### Budget
+
+* Azure H100 NVL: ~$3/hr × 1 hr = ~$3 total
+* No external API calls
+
+#### Runs
+
+| Run | Model | Biasing | Mode |
+| --- | --- | --- | --- |
+| A | Parakeet TDT 0.6b-v3 | GPU-PB phrase boosting | streaming (32 kB chunks) |
+| B | Granite Speech 4.1 2B | keyword prompt injection | streaming (32 kB chunks) |
+
+Both runs use the same gold-92 clips and keyword vocabulary to ensure comparability.
+
+#### Metrics
+
+Compute all registered project metrics for every run:
+
+* `entity_accuracy_gold92`
+* `entity_accuracy_domain_vocab`
+* `wer_gold92`
+* `action_critical_wer_gold92`
+* `intent_preservation_gold92`
+* `latency_p50_seconds`
+* `wrong_action_rate_gold92`
+
+Additionally compute `latency_p95_seconds` and `latency_p99_seconds` for latency distribution
+analysis (not registered metrics, reported in results tables only).
+
+Efficiency metrics:
+
+* `efficiency_inference_time_per_item_seconds` — mean transcript latency per clip
+* `efficiency_inference_cost_per_item_usd` — H100 hourly rate ÷ clips per hour
+
+#### Comparison Baselines
+
+| Baseline | Source | Notes |
+| --- | --- | --- |
+| Parakeet TDT 0.6b-v3 batch (biased) | t0009 | Same keyword vocab, batch mode |
+| Granite Speech 4.1 2B kw-biased batch | t0007 | Same keyword list, batch mode |
+
+Report streaming vs. batch delta for each metric as `Δ = streaming − batch`.
+
+#### Expected Outputs
+
+##### Charts (saved to `results/images/`)
+
+1. `chart_accuracy_streaming_vs_batch.png` — grouped bar chart, entity accuracy and WER for each
+   model × mode (batch vs. streaming); shows whether streaming degrades accuracy.
+2. `chart_latency_distribution.png` — p50 / p95 / p99 latency bars for Run A and Run B side by
+   side; reference line at 800 ms SLA and 200 ms target.
+3. `chart_streaming_delta.png` — delta bars (streaming minus batch) per metric for both models;
+   green = no regression, red = regression.
+
+All charts embedded in `results/results_detailed.md`.
+
+##### Tables
+
+* Per-run metric table (rows = metrics, columns = Run A / Run B / batch baselines / deltas)
+* Per-clip latency table (clip name, Run A latency ms, Run B latency ms) for reproducibility
+
+#### Data Handling
+
+* Intermediate chunked PCM data is generated on-the-fly from gold-92 WAVs — no new data files
+  written to disk.
+* Per-clip transcript predictions saved to `data/predictions_streaming_parakeet.jsonl` and
+  `data/predictions_streaming_granite.jsonl` (DVC-tracked).
+* Per-clip latency log saved to `data/latency_log.jsonl` (DVC-tracked).
+
+#### Dependencies
+
+* **t0009_parakeet_production_baseline** — provides the production keyword vocabulary and batch
+  accuracy baselines for Parakeet TDT 0.6b-v3.
+* **t0007_ibm_granite_4_1_benchmark** — provides the batch accuracy baselines and optimal biasing
+  configuration for Granite Speech 4.1 2B.
+
+#### Verification Criteria
+
+* All 93 gold-92 clips processed in both runs with no errors.
+* Streaming entity accuracy for Parakeet within ±3 pp of t0009 batch result (expected near-parity
+  since accumulate-then-transcribe is equivalent to batch at segment level).
+* Granite streaming entity accuracy within ±3 pp of t0007 kw-biased batch result.
+* Latency p50 for both models below 800 ms SLA.
+* All charts generated and embedded in `results_detailed.md`.
+* `verify_task_file.py` passes with 0 errors.
+
+### Results Summary
+
+Streaming delivery (32 kB PCM chunks, accumulate-then-transcribe) produces results statistically
+identical to batch on both models: all accuracy deltas are below 0.1 pp and latency overhead is
+under 4 ms. Granite Speech 4.1 2B (biased) leads on all accuracy metrics under streaming
+(EA 41.1%, AC-WER 7.6%), while Parakeet TDT 0.6b-v3 (biased) retains a 6× latency advantage
+(41 ms vs 250 ms p50).
+
+#### Key Numbers
+
+| Model | EA | EA\_DV | WER | AC-WER | IP | Lat p50 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Parakeet biased — batch (t0009) | 23.2% | 33.3% | 15.2% | 33.5% | 87.1% | 38 ms |
+| Granite 4.1 2B biased — batch (t0007) | 40.2% | 98.6% | 8.8% | 8.2% | 92.5% | 248 ms |
+| **Parakeet biased — streaming (t0011)** | **23.1%** | **33.3%** | **15.2%** | **33.5%** | **87.1%** | **41 ms** |
+| **Granite 4.1 2B biased — streaming (t0011)** | **41.1%** | **97.1%** | **8.8%** | **7.6%** | **93.6%** | **250 ms** |
+
+#### Streaming vs Batch Delta
+
+| Model | ΔEA | ΔEA\_DV | ΔWER | ΔAC-WER | ΔIP | ΔLat p50 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Parakeet | −0.05 pp | +0.03 pp | +0.05 pp | +0.04 pp | 0.00 pp | +3 ms |
+| Granite | +0.87 pp | −1.45 pp | 0.00 pp | −0.63 pp | +1.08 pp | +1 ms |
+
+#### Verdict
+
+The accumulate-then-transcribe pattern is functionally equivalent to batch inference.
+Production deployment can be treated as batch for accuracy and latency estimation purposes.
+Granite is the preferred model if accuracy is the priority; Parakeet if sub-50 ms latency
+is required.
+
+#### Machine
+
+Azure H100 NVL (`gpu-azure`, `azureuser@llm-t1-nc80`), 2026-06-26.
+Parakeet run: ~2 min. Granite run (incl. warmup): ~4 min. Both models loaded sequentially.
+
+## Production Streaming Benchmark — Whisper, Parakeet, Granite on Gold-92
+ID: t0012_whisper_parakeet_granite_streaming
+Status: completed
+Effective date: 2026-06-29
+Short description: Benchmark Whisper turbo, Parakeet TDT 0.6b-v3, and Granite Speech 4.1 2B on gold-92, each in its own production streaming mode, measuring accuracy and latency.
+Dependencies: t0009_parakeet_production_baseline, t0011_streaming_stt_benchmark
+Task types: stt-benchmark-run, experiment-run
+Start time: 2026-06-26T16:37:03Z
+End time: 2026-06-29T00:00:00Z
+
+#### Motivation
+
+t0011 confirmed that Parakeet TDT 0.6b-v3 and Granite Speech 4.1 2B perform identically in streaming
+and batch when using the accumulate-then-transcribe pattern. What remains unmeasured is Whisper
+turbo — the current production STT model in brainpowa-realtime-api — on the gold-92 benchmark, and
+how all three models compare when each runs in its own true production streaming mode. This task
+establishes a three-way apples-to-apples comparison where each model is evaluated exactly as it runs
+in production.
+
+The key research questions are:
+
+1. What accuracy does Whisper turbo achieve on gold-92 in its production streaming mode (chunked
+   re-transcribe with delta extraction)?
+2. How does Whisper compare to Parakeet and Granite on entity accuracy, WER, and action-critical
+   WER?
+3. Does Whisper&#x27;s chunked re-transcribe pattern degrade accuracy vs batch (re-transcribing the
+   growing buffer at each chunk introduces more decoding passes)?
+4. What is Whisper&#x27;s time-to-first-delta — the latency from first audio chunk to first partial
+   transcript?
+
+#### Scope
+
+Three model runs on gold-92 (93 WAV clips, 16 kHz mono), each in its own production mode:
+
+##### Run 1 — Whisper turbo (streaming, production mode)
+
+Mirrors `WhisperSTT.transcribe_stream()` in brainpowa-realtime-api exactly:
+
+* Model: `faster-whisper`, model size `turbo`, `float16`, `cuda`
+* Parameters: `beam_size=1`, `vad_filter=True`, `temperature=0.0`, `no_speech_threshold=0.6`
+* Biasing: `initial_prompt` = comma-separated 31 domain vocab terms (same as `stt_initial_prompt` in
+  brainpowa config)
+* Streaming pattern: every 32 kB of accumulated PCM-16 audio, transcribe full buffer, extract delta
+  (new words vs previous interim using word-level longest-common-prefix matching), yield delta;
+  final transcribe on complete audio after `None` sentinel
+* Latency: wall-clock from first chunk delivered to final transcript returned
+* Extra metric: **time-to-first-delta** — wall-clock from first chunk to first non-empty delta yield
+  (first partial result)
+
+##### Run 2 — Whisper turbo (batch baseline)
+
+Same model and parameters as Run 1 but accumulate all audio, single `transcribe()` call. Provides
+the batch baseline for Whisper to quantify the cost of chunked re-transcription.
+
+##### Run 3 — Parakeet TDT 0.6b-v3 (streaming, production mode)
+
+Identical to t0011 Parakeet streaming run (accumulate-then-transcribe). Replicated here as a direct
+comparison row alongside Whisper. Baselines from t0011 may be copied rather than re-running if the
+server environment is unchanged.
+
+* Model: NeMo parakeet-tdt-0.6b-v3 from `/home/azureuser/parakeet-model/parakeet-tdt-0.6b-v3`
+* Biasing: GPU-PB phrase boosting, alpha=1.0, 66 casing variants of 31 domain terms
+* Pattern: accumulate all 32 kB chunks → reconstruct float32 → single `model.transcribe()`
+
+##### Run 4 — Granite Speech 4.1 2B (streaming, production mode)
+
+Identical to t0011 Granite streaming run. Replicated here as a direct comparison row.
+
+* Model: ibm-granite/granite-speech-4.1-2b from
+  `/home/azureuser/granite-model/granite-speech-4.1-2b`
+* Biasing: keyword prompt injection — `&quot;transcribe the speech to text. Keywords: Rezolve, ...&quot;`
+* Pattern: accumulate all 32 kB chunks → reconstruct float32 tensor → single model generate call
+
+#### Domain Vocabulary (31 terms)
+
+Rezolve, brainpowa, NASDAQ, Selfridges, Harrods, Walmart, Macy&#x27;s, Nordstrom, Bloomingdale&#x27;s,
+Sephora, Zara, H&amp;M, Uniqlo, ASOS, Farfetch, NET-A-PORTER, Matches, Mytheresa, Browns, Liberty,
+Harvey Nichols, Fenwick, John Lewis, Debenhams, Marks and Spencer, Next, River Island, Topshop,
+ASOS, Boohoo, Pretty Little Thing.
+
+#### Metrics
+
+All seven registered metrics computed for every run:
+
+| Metric | All runs |
+| --- | --- |
+| Entity Accuracy (gold-92) | ✓ |
+| Entity Accuracy — Domain Vocabulary | ✓ |
+| Word Error Rate (gold-92) | ✓ |
+| Action-Critical WER (gold-92) | ✓ |
+| Intent Preservation (gold-92) | ✓ |
+| Latency p50 (seconds) | ✓ |
+| Wrong Action Rate (gold-92) | ✓ |
+
+Additional metrics (not registered, reported in results):
+
+* Latency p95, p99 (all runs)
+* Time-to-first-delta (Run 1 — Whisper streaming only)
+* Whisper streaming vs batch delta (Run 1 − Run 2) for all accuracy metrics
+* Delta vs t0011 for Parakeet and Granite (Runs 3–4 vs t0011; should be ~0 pp)
+
+#### Baselines
+
+* Parakeet batch: t0009 (`entity_accuracy_gold92=0.232`, `wer_gold92=0.152`,
+  `action_critical_wer_gold92=0.335`, `latency_p50_seconds=0.038`)
+* Parakeet streaming: t0011 (`entity_accuracy_gold92=0.2315`, `latency_p50_seconds=0.041`)
+* Granite batch: t0007 (`entity_accuracy_gold92=0.4109`, `wer_gold92=0.0883`,
+  `action_critical_wer_gold92=0.0759`, `latency_p50_seconds=0.248`)
+* Granite streaming: t0011 (`entity_accuracy_gold92=0.4109`, `latency_p50_seconds=0.250`)
+* Whisper batch: established in Run 2 of this task
+
+#### Compute and Budget
+
+Machine: Azure H100 NVL (`gpu-azure`, `azureuser@llm-t1-nc80`, conda env `stt`).
+
+| Run | Est. wall-clock | Notes |
+| --- | --- | --- |
+| Run 1 — Whisper streaming | ~10 min | O(N²) decode passes; 93 clips × avg 6 chunks |
+| Run 2 — Whisper batch | ~5 min | Single pass per clip |
+| Run 3 — Parakeet streaming | ~2 min | Can reuse t0011 JSONL |
+| Run 4 — Granite streaming | ~4 min | Can reuse t0011 JSONL |
+
+Estimated cost: Azure H100 NVL reserved instance — effectively $0 incremental for ~20 min GPU time.
+
+#### Data Handling
+
+* Audio: gold-92 WAV files from `tasks/t0001_stt_benchmark/` (DVC-tracked). Run `dvc pull` before
+  starting.
+* Intermediate predictions saved to `data/` as JSONL (one line per clip):
+  `whisper_streaming_transcripts.jsonl`, `whisper_batch_transcripts.jsonl`,
+  `parakeet_streaming_transcripts.jsonl`, `granite_streaming_transcripts.jsonl`
+* All predictions use same clip ordering and clip IDs as prior tasks for comparability.
+
+#### Assets
+
+Four predictions assets:
+
+1. `whisper-turbo-gold92-streaming` — Whisper turbo production streaming predictions (Run 1)
+2. `whisper-turbo-gold92-batch` — Whisper turbo batch predictions (Run 2)
+3. `parakeet-tdt-0.6b-v3-gold92-streaming-biased` — Parakeet streaming (Run 3, mirrors t0011)
+4. `granite-speech-4.1-2b-gold92-streaming-biased` — Granite streaming (Run 4, mirrors t0011)
+
+#### Charts
+
+All charts saved to `results/images/` and embedded in `results_detailed.md`.
+
+1. **Three-model accuracy comparison** — grouped bar chart, x-axis: model×mode, y-axis: %, panels:
+   EA, EA_DV, WER. Answers: which model is most accurate in production streaming mode?
+2. **Whisper streaming vs batch delta** — bar chart, x-axis: metric, y-axis: pp delta. Answers: does
+   chunked re-transcription hurt Whisper accuracy?
+3. **Latency distribution** — grouped bar chart p50/p95/p99 for all four runs. Answers: which model
+   is fastest in production mode?
+4. **Time-to-first-delta (Whisper)** — histogram of TTFD across 93 clips. Answers: how quickly does
+   Whisper produce its first partial result?
+
+#### Key Questions
+
+1. Does Whisper turbo match or exceed Granite Speech 4.1 2B on entity accuracy and action-critical
+   WER in production streaming mode?
+2. Does Whisper&#x27;s chunked re-transcribe pattern degrade accuracy vs single-pass batch by more than 2
+   pp on any metric?
+3. Is Whisper&#x27;s time-to-first-delta under 1 second for ≥90% of clips (one chunk at 32 kB ≈ 1 s)?
+
+#### Verification Criteria
+
+* All four runs complete on 93/93 clips (or ≥90/93 with explicit note on failures).
+* Parakeet and Granite deltas vs t0011 &lt; 1 pp on all accuracy metrics (environment stability check).
+* `metrics.json` written with all registered metrics for all four runs.
+* All four charts generated and embedded in `results_detailed.md`.
+
+## Brainstorm Results — Session 1
+ID: t0013_brainstorm_results_1
+Status: completed
+Effective date: 2026-06-29
+Short description: First brainstorm session: reviewed 12 completed tasks, decided to create t0014 (Granite short-clip robustness + production fit), and rejected 6 superseded suggestions.
+Dependencies: t0001_stt_benchmark, t0002_baseline_evaluation, t0003_literature_review_entity_stt, t0004_vocabulary_biasing_experiment, t0005_stt_model_survey_brainpowa, t0006_nemotron_3_5_benchmark, t0007_ibm_granite_4_1_benchmark, t0008_moonshine_v2_benchmark, t0009_parakeet_production_baseline, t0010_funasr_paraformer_benchmark, t0011_streaming_stt_benchmark, t0012_whisper_parakeet_granite_streaming
+Task types: brainstorming
+Start time: 2026-06-29T00:00:00Z
+End time: 2026-06-29T00:00:00Z
+
+#### Overview
+
+First brainstorm session for the rail-arf-stt project. Reviewed all 12 completed tasks, assessed the
+24 active suggestions, and decided on one new task and six suggestion rejections.
+
+#### Context
+
+All 12 tasks completed. The model landscape is clear: Whisper turbo (42.0% EA) and Granite Speech
+4.1 2B (41.1% EA) lead by a large margin over the current production model Parakeet TDT 0.6b-v3
+(23.2% EA). Nemotron, Moonshine, and FunASR Paraformer are eliminated. The strategic question is
+whether Granite can replace Parakeet in production — complicated by a known Whisper failure mode on
+short audio clips that was the original reason Parakeet was adopted.
+
+#### Decisions
+
+1. Create t0014: Granite short-clip robustness validation and production fit assessment. Simulates
+   real production streaming (32kB PCM-16 chunk queue via `transcribe_stream()`) on synthetic short
+   clips (0.5–2s) and stratified gold-92 analysis. GPU run on Azure H100 NVL.
+2. Reject S-0002-01: superseded by t0004.
+3. Reject S-0005-04: Moonshine eliminated.
+4. Reject S-0005-09: FunASR Paraformer eliminated.
+5. Reject S-0008-01: Moonshine eliminated.
+6. Reject S-0008-02: Moonshine eliminated.
+7. Reject S-0008-03: Moonshine eliminated.
+
+### Results Summary
+
+#### Summary
+
+First brainstorm session after 12 completed tasks. One new task created (t0014: Granite short-clip
+robustness + production fit assessment) and six suggestions rejected for eliminated models or
+superseded experiments. The session established that the next priority is validating Granite Speech
+4.1 2B as a production replacement for Parakeet TDT 0.6b-v3, with explicit focus on short-clip
+robustness using real production streaming simulation.
+
+#### Session Overview
+
+Date: 2026-06-29. First brainstorm session for the project. Prompted by completion of all 12
+benchmark and research tasks, particularly t0012 which established a three-model production
+streaming comparison. The researcher identified short-clip failures as the original reason Whisper
+was replaced by Parakeet in production, and requested a focused validation task.
+
+#### Decisions
+
+1. **Create t0014** — Granite Short-Clip Robustness Validation + Production Fit Assessment. Uses
+   synthetic short clips (0.5–2s) + stratified gold-92 analysis. Simulates real production streaming
+   via `transcribe_stream()` with 32kB PCM-16 chunk queue. GPU on Azure H100 NVL. Covers S-0003-07
+   partially.
+2. **Reject S-0002-01** — Vocabulary-biased Whisper via STT_INITIAL_PROMPT. Superseded by t0004.
+3. **Reject S-0005-04** — Moonshine shallow-fusion biasing. Moonshine eliminated (EA 21.7%).
+4. **Reject S-0005-09** — Granite vs Paraformer integration effort. Paraformer eliminated (WER
+   122.7%).
+5. **Reject S-0008-01** — Moonshine ONNX Medium. Moonshine eliminated.
+6. **Reject S-0008-02** — Moonshine model-size ablation. Moonshine eliminated.
+7. **Reject S-0008-03** — KenLM domain LM for Moonshine. Moonshine eliminated.
+
+#### Metrics
+
+| Item | Count |
+| --- | --- |
+| Tasks reviewed | 12 |
+| New tasks created | 1 |
+| Suggestions reviewed | 24 |
+| Suggestions rejected | 6 |
+| Suggestions reprioritized | 0 |
+| Corrections written | 6 |
+
+Rejections verified: 6 — confirmed against correction file table above.
+
+#### Verification
+
+* verify_task_file — pending Phase 6
+* verify_corrections — pending Phase 6
+* verify_suggestions — pending Phase 6
+* verify_logs — pending Phase 6
+
+#### Next Steps
+
+Execute t0014 on Azure H100 NVL. No other dependencies — t0014 depends only on t0012 data and
+brainpowa codebase read access.
+
+## Granite Short-Clip Robustness Validation + Production Fit Assessment
+ID: t0014_granite_short_clip_robustness
+Status: not_started
+Effective date: unknown
+Short description: Validate Granite Speech 4.1 2B robustness on short clips vs Parakeet via production streaming simulation, and assess production fit as a Parakeet replacement in brainpowa.
+Dependencies: t0013_brainstorm_results_1, t0012_whisper_parakeet_granite_streaming
+Task types: stt-benchmark-run, experiment-run, answer-question
+Source suggestion: S-0005-03
+
+#### Motivation
+
+Whisper turbo was the previous production STT model in brainpowa-realtime-api and was replaced by
+Parakeet TDT 0.6b-v3 because it produced hallucinations or empty output on short audio utterances in
+the chunked re-transcribe streaming pattern. The gold-92 benchmark (minimum clip duration 3.07s)
+cannot test this failure mode — all existing benchmark results are biased toward longer utterances.
+
+t0012 established that Granite Speech 4.1 2B matches Whisper turbo on entity accuracy (41.1% vs
+42.0%) and significantly outperforms the current production Parakeet model (23.2% EA). The remaining
+question for the production decision is: does Granite avoid the short-clip failure mode that
+disqualified Whisper? And is Granite production-ready as a drop-in STTAdapter replacement?
+
+This task answers both questions with evidence from actual inference runs in production streaming
+mode.
+
+#### Key Research Questions
+
+1. Does Whisper turbo produce hallucinations or empty output on clips under 3 seconds when run via
+   `transcribe_stream()` with 32kB PCM-16 chunks? At what duration threshold does failure begin?
+2. Does Granite Speech 4.1 2B avoid this failure mode on the same clips?
+3. Does Parakeet show any short-clip failure behavior?
+4. How do Granite and Parakeet compare on entity accuracy and WER stratified by clip duration?
+5. What is the integration effort to add a `granite.py` STTAdapter to brainpowa-realtime-api?
+
+#### Critical Constraint: Production Streaming Simulation
+
+**All inference MUST use the `STTAdapter.transcribe_stream()` interface with a 32kB PCM-16 mono
+chunk `asyncio.Queue`.** Do NOT call `model.transcribe()` directly. The production path in
+brainpowa-realtime-api delivers audio as a queue of 32kB chunks with a `None` sentinel — this is
+what the benchmark must simulate. Using direct model inference would not reproduce the failure modes
+observed in production.
+
+Each adapter&#x27;s `transcribe_stream()` behavior:
+
+* **Whisper** (`WhisperSTT.transcribe_stream`): chunked re-transcribe — transcribes the growing
+  buffer every 32kB interval. On short clips, may trigger VAD on incomplete audio, producing
+  hallucinations or empty results.
+* **Parakeet** (`ParakeetSTT.transcribe_stream`): chunked re-transcribe — same pattern as Whisper
+  but with NeMo. Short clips may only deliver 1 chunk before the `None` sentinel.
+* **Granite** (`STTAdapter` base class default): accumulate-then-transcribe — accumulates all
+  chunks, then calls `transcribe()` once on the complete audio. No intermediate VAD passes.
+
+#### Scope
+
+##### Part 1 — Synthetic Short-Clip Dataset
+
+Synthesize short clips from gold-92 WAV files by trimming each to fixed durations:
+
+* Duration bins: 0.5s, 1.0s, 1.5s, 2.0s, 2.5s, 3.0s
+* Select 5–8 source clips per bin (varying content: speech-rich, silence-heavy, single-word)
+* Edge cases: 0.5s silence (generated), 0.5s background noise (first 0.5s of a noisy clip), clips
+  containing exactly one recognizable domain term (&quot;Rezolve&quot;, &quot;brainpowa&quot;)
+* Target: 40–60 test clips total
+* Save to `data/short_clips/` as WAV (16kHz, mono, PCM-16)
+* Save clip metadata to `data/short_clips_metadata.jsonl`: clip_id, source_clip_id, duration_s,
+  reference_text (from gold-92 ground truth, truncated to actual spoken content)
+
+##### Part 2 — GPU Inference on Short Clips
+
+Machine: Azure H100 NVL (`gpu-azure`, `azureuser@llm-t1-nc80`, conda env `stt`).
+
+Run all three models via `transcribe_stream()` on every short clip:
+
+**Whisper turbo** (faster-whisper):
+
+* Model size: `turbo`, `float16`, `cuda`
+* `beam_size=1`, `vad_filter=True`, `temperature=0.0`, `no_speech_threshold=0.6`
+* `initial_prompt`: comma-separated 31 domain vocab terms (same as t0012)
+
+**Parakeet TDT 0.6b-v3** (NeMo):
+
+* Model path: `/home/azureuser/parakeet-model/parakeet-tdt-0.6b-v3`
+* GPU-PB phrase boosting, `alpha=1.0`, 66 casing variants of 31 domain terms
+
+**Granite Speech 4.1 2B** (HuggingFace Transformers):
+
+* Model path: `/home/azureuser/granite-model/granite-speech-4.1-2b`
+* Keyword prompt injection: `&quot;transcribe the speech to text. Keywords: Rezolve, ...&quot;` (same 31 terms
+  as t0012)
+
+Per-clip output (save to `data/short_clip_transcripts_&lt;model&gt;.jsonl`):
+
+* `clip_id`, `duration_s`, `transcript`, `is_empty` (transcript stripped == &quot;&quot;), `latency_seconds`,
+  `ttfd_seconds` (time to first non-empty delta from `transcribe_stream()`)
+
+Hallucination detection: flag as `is_hallucination=True` when transcript is non-empty but contains
+none of the reference words AND matches known Whisper hallucination patterns (e.g., &quot;Thanks for
+watching&quot;, &quot;Subscribe&quot;, &quot;[Music]&quot;, repeated punctuation, non-English tokens on English audio).
+
+##### Part 3 — Stratified Analysis
+
+Combine new short-clip results with t0012 gold-92 data (from
+`tasks/t0012_whisper_parakeet_granite_streaming/data/`).
+
+Duration strata:
+
+| Stratum | Duration range | Source |
+| --- | --- | --- |
+| &lt; 1s | 0–1s | synthetic only |
+| 1–2s | 1–2s | synthetic only |
+| 2–3s | 2–3s | synthetic only |
+| 3–5s | 3–5s | gold-92 (29 clips) |
+| 5–10s | 5–10s | gold-92 (60 clips) |
+| &gt; 10s | &gt; 10s | gold-92 (4 clips) |
+
+Metrics per stratum per model:
+
+* Entity accuracy (substring match against reference)
+* WER (computed only for strata with reference transcripts)
+* `empty_rate` — fraction of clips with empty transcript
+* `hallucination_rate` — fraction of clips with `is_hallucination=True`
+* Latency p50 (seconds)
+
+##### Part 4 — Answer Asset: Production Recommendation
+
+Answer ID: `granite-vs-parakeet-production-fit`
+
+Question: &quot;Should Granite Speech 4.1 2B replace Parakeet TDT 0.6b-v3 as the production STT model in
+brainpowa-realtime-api?&quot;
+
+Evidence to cover in the answer:
+
+* Short-clip failure rates: Whisper vs Granite vs Parakeet (from Part 2)
+* Stratified accuracy at each duration stratum (from Part 3)
+* Overall EA and AC-WER from t0012 (Granite 41.1% / 7.6% vs Parakeet 23.2% / 33.5%)
+* Latency: Granite p50 249ms vs Parakeet 40ms — is the 6x overhead acceptable?
+* Integration effort: read `brainpowa-realtime-api/src/brainpowa_realtime_api/pipeline/stt/base.py`
+  and `parakeet.py` to determine what `granite.py` needs to implement. The base class
+  `STTAdapter.transcribe_stream()` default is accumulate-then-transcribe, so `granite.py` only needs
+  to implement `transcribe()`. Estimate implementation effort.
+* Final recommendation: YES/NO/CONDITIONAL with explicit conditions
+
+#### Metrics
+
+All seven registered project metrics computed for the stratified gold-92 portion (strata 3–5s,
+5–10s, &gt; 10s):
+
+| Metric | All three models |
+| --- | --- |
+| Entity Accuracy (gold-92) | ✓ |
+| Entity Accuracy — Domain Vocabulary | ✓ |
+| Word Error Rate (gold-92) | ✓ |
+| Action-Critical WER (gold-92) | ✓ |
+| Intent Preservation (gold-92) | ✓ |
+| Latency p50 (seconds) | ✓ |
+| Wrong Action Rate (gold-92) | ✓ |
+
+Additional metrics (short clips, all strata):
+
+* `empty_rate` per stratum per model
+* `hallucination_rate` per stratum per model (Whisper primarily)
+* TTFD p50 per stratum per model
+
+#### Baselines
+
+* Parakeet production (t0009): EA=23.2%, AC-WER=33.5%, lat p50=38ms
+* Granite streaming (t0012): EA=41.1%, AC-WER=7.6%, lat p50=249ms
+* Whisper turbo streaming (t0012): EA=42.0%, AC-WER=6.3%, lat p50=290ms
+
+#### Assets
+
+1. `whisper-turbo-short-clips` — Whisper predictions on synthetic short clips
+2. `parakeet-tdt-short-clips-biased` — Parakeet predictions on synthetic short clips
+3. `granite-speech-short-clips-biased` — Granite predictions on synthetic short clips
+4. `granite-vs-parakeet-production-fit` — Answer asset: production recommendation
+
+#### Charts
+
+All charts saved to `results/images/` and embedded in `results_detailed.md`.
+
+1. **Short-clip failure rate by duration and model** — line chart, x-axis: duration bin, y-axis:
+   failure rate (%), lines: empty_rate and hallucination_rate per model. Answers: at what duration
+   does each model start failing?
+2. **Stratified entity accuracy** — grouped bar chart, x-axis: duration stratum, y-axis: EA (%),
+   bars: Whisper / Granite / Parakeet. Answers: does Granite maintain accuracy advantage across all
+   durations?
+3. **Latency by duration stratum** — grouped bar chart p50, x-axis: stratum, y-axis: seconds.
+   Answers: does Granite&#x27;s latency overhead increase on short clips?
+
+#### Compute and Budget
+
+| Run | Est. wall-clock | Notes |
+| --- | --- | --- |
+| Part 1 — dataset synthesis | 10 min | CPU, local or remote |
+| Part 2 — Whisper short clips | 15 min | GPU, O(N) passes |
+| Part 2 — Parakeet short clips | 10 min | GPU |
+| Part 2 — Granite short clips | 20 min | GPU |
+| Part 3–4 — analysis + answer | 30 min | CPU |
+
+Total GPU time: ~45 min on Azure H100 NVL. Estimated cost: $0 (reserved instance).
+
+#### Data Handling
+
+* Gold-92 source audio: `tasks/t0001_stt_benchmark/` (DVC-tracked). Run `dvc pull` before starting.
+* t0012 JSONL predictions: `tasks/t0012_whisper_parakeet_granite_streaming/data/` (already on disk,
+  no re-inference needed for gold-92 portion).
+* Synthetic clips saved to `data/short_clips/` and DVC-tracked.
+* Prediction JSONLs saved to `data/`.
+
+#### Verification Criteria
+
+* 40+ synthetic clips generated and saved to `data/short_clips/`.
+* All three models run on all synthetic clips via `transcribe_stream()` (not direct model call).
+* `hallucination_rate` reported for Whisper on sub-3s clips.
+* Answer asset written with explicit YES/NO/CONDITIONAL recommendation.
+* All registered metrics computed for gold-92 strata.
+* Three charts generated and embedded in `results_detailed.md`.
       </content>
     </section>
   </sections>

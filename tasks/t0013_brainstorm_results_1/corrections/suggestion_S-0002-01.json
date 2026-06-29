@@ -1,0 +1,13 @@
+{
+  "spec_version": "3",
+  "correction_id": "C-0013-01",
+  "correcting_task": "t0013_brainstorm_results_1",
+  "target_task": "t0002_baseline_evaluation",
+  "target_kind": "suggestion",
+  "target_id": "S-0002-01",
+  "action": "update",
+  "changes": {
+    "status": "rejected"
+  },
+  "rationale": "Superseded by t0004_vocabulary_biasing_experiment, which ran Whisper turbo on gold-92 with initial_prompt vocabulary biasing and measured entity accuracy. The experiment is complete; no separate task needed."
+}

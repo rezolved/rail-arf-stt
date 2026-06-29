@@ -1,37 +1,11 @@
 # Suggestions: `latency-profiling`
 
 7 suggestion(s) in category [`latency-profiling`](../../../meta/categories/latency-profiling/)
-**7 open** (1 high, 5 medium, 1 low).
+**6 open** (5 medium, 1 low), **1 closed**.
 
 [Back to all suggestions](../README.md)
 
 ---
-
-## High Priority
-
-<details>
-<summary>📊 <strong>Profile Granite 4.1, Paraformer, and Whisper latency under
-concurrent request load</strong> (S-0005-05)</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `S-0005-05` |
-| **Kind** | evaluation |
-| **Date added** | 2026-06-24 |
-| **Source task** | [`t0005_stt_model_survey_brainpowa`](../../../overview/tasks/task_pages/t0005_stt_model_survey_brainpowa.md) |
-| **Source paper** | — |
-| **Categories** | [`latency-profiling`](../../../meta/categories/latency-profiling/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
-
-The survey reports single-request latencies; production voice-to-action pipelines receive
-concurrent requests. Profile all three candidates (Granite, Paraformer, Whisper turbo) on
-Rezolve's production infrastructure under 10, 50, and 100 concurrent sessions. Measure TTFT
-(time-to-first-token), total latency, p50/p95/p99 percentiles, and VRAM utilization at each
-concurrency level. This determines whether Granite/Paraformer can sustain the latency budget
-under realistic load, and whether GPU memory becomes the bottleneck. If latency degrades
-significantly at >10 concurrent sessions, batch-processing or model quantization strategies
-become necessary. Recommended task types: experiment-run, data-analysis.
-
-</details>
 
 ## Medium Priority
 
@@ -172,5 +146,33 @@ vLLM to reduce model size and improve inference speed. Moonshine already ships a
 (varies) to similar footprints. Measure quantization impact on entity accuracy and latency. If
 quantization preserves accuracy within 1–2% while halving latency, quantized variants become
 the recommended production deployment. Recommended task types: experiment-run, build-model.
+
+</details>
+
+## Closed
+
+<details>
+<summary>✅ <s>Profile Granite 4.1, Paraformer, and Whisper latency under concurrent
+request load</s> — covered by <a
+href="../../../tasks/t0011_streaming_stt_benchmark/"><code>t0011_streaming_stt_benchmark</code></a>
+(S-0005-05)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0005-05` |
+| **Kind** | evaluation |
+| **Date added** | 2026-06-24 |
+| **Source task** | [`t0005_stt_model_survey_brainpowa`](../../../overview/tasks/task_pages/t0005_stt_model_survey_brainpowa.md) |
+| **Source paper** | — |
+| **Categories** | [`latency-profiling`](../../../meta/categories/latency-profiling/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+
+The survey reports single-request latencies; production voice-to-action pipelines receive
+concurrent requests. Profile all three candidates (Granite, Paraformer, Whisper turbo) on
+Rezolve's production infrastructure under 10, 50, and 100 concurrent sessions. Measure TTFT
+(time-to-first-token), total latency, p50/p95/p99 percentiles, and VRAM utilization at each
+concurrency level. This determines whether Granite/Paraformer can sustain the latency budget
+under realistic load, and whether GPU memory becomes the bottleneck. If latency degrades
+significantly at >10 concurrent sessions, batch-processing or model quantization strategies
+become necessary. Recommended task types: experiment-run, data-analysis.
 
 </details>

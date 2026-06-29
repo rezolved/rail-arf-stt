@@ -1,0 +1,13 @@
+{
+  "spec_version": "3",
+  "correction_id": "C-0013-04",
+  "correcting_task": "t0013_brainstorm_results_1",
+  "target_task": "t0008_moonshine_v2_benchmark",
+  "target_kind": "suggestion",
+  "target_id": "S-0008-01",
+  "action": "update",
+  "changes": {
+    "status": "rejected"
+  },
+  "rationale": "Moonshine v2 eliminated in t0008 (EA 21.7%, EA_DV 9.1%). Waiting for an ONNX export of a model that cannot meet accuracy requirements is not a good use of project budget."
+}

@@ -4,14 +4,14 @@
   <a href="papers/"><img src="https://img.shields.io/badge/Papers-19-4169E1" alt="Papers"></a>
   <a href="datasets/"><img src="https://img.shields.io/badge/Datasets-1-2E8B57" alt="Datasets"></a>
   <a href="models/"><img src="https://img.shields.io/badge/Models-0-FF8C00" alt="Models"></a>
-  <a href="predictions/"><img src="https://img.shields.io/badge/Predictions-7-9370DB" alt="Predictions"></a>
+  <a href="predictions/"><img src="https://img.shields.io/badge/Predictions-17-9370DB" alt="Predictions"></a>
   <a href="libraries/"><img src="https://img.shields.io/badge/Libraries-0-20B2AA" alt="Libraries"></a>
   <a href="answers/"><img src="https://img.shields.io/badge/Answers-0-CD853F" alt="Answers"></a>
 </p>
 
 <p align="center">
   <a href="news/"><img src="https://img.shields.io/badge/News-0-FF6347" alt="News"></a>
-  <a href="tasks/"><img src="https://img.shields.io/badge/Tasks-8-4682B4" alt="Tasks"></a>
+  <a href="tasks/"><img src="https://img.shields.io/badge/Tasks-14-4682B4" alt="Tasks"></a>
   <a href="suggestions/"><img src="https://img.shields.io/badge/Suggestions-28-DAA520" alt="Suggestions"></a>
   <a href="llm-context/"><img src="https://img.shields.io/badge/LLM%20Contexts-8-8B4513" alt="LLM Contexts"></a>
   <a href="metrics/"><img src="https://img.shields.io/badge/Metrics-7-708090" alt="Metrics"></a>
@@ -27,12 +27,12 @@
 [stt-evaluation](by-category/stt-evaluation.md) |
 [whisper-finetuning](by-category/whisper-finetuning.md)
 
-**[LLM Contexts](llm-context/README.md)**: [overview](llm-context/project-overview.xml) (3K) |
-[full](llm-context/full.xml) (33K) | [roadmap](llm-context/roadmap.xml) (14K) |
-[results](llm-context/results-deep-dive.xml) (23K) |
-[assets](llm-context/literature-and-assets.xml) (8K)
+**[LLM Contexts](llm-context/README.md)**: [overview](llm-context/project-overview.xml) (5K) |
+[full](llm-context/full.xml) (46K) | [roadmap](llm-context/roadmap.xml) (12K) |
+[results](llm-context/results-deep-dive.xml) (38K) |
+[assets](llm-context/literature-and-assets.xml) (10K)
 
-*Last updated: 2026-06-25 09:59 UTC*
+*Last updated: 2026-06-29 11:55 UTC*
 
 * **Budget**: **$2** spent of $2000
 * **Remaining**: **$1998**
@@ -46,11 +46,9 @@ No daily news yet.
 
 ---
 
-## [In Progress (1)](tasks/by-status/in_progress.md)
+## [In Progress (0)](tasks/by-status/in_progress.md)
 
-| # | Task | Started |
-|---|------|---------|
-| 0007 | [Benchmark IBM Granite Speech 4.1 2B on Gold-92](../overview/tasks/task_pages/t0007_ibm_granite_4_1_benchmark.md) | 2026-06-25 07:29 |
+No tasks in progress.
 
 ---
 
@@ -58,7 +56,7 @@ No daily news yet.
 
 | # | Task | Description | Date Added |
 |---|------|-------------|------------|
-| 0006 | [Benchmark NVIDIA Nemotron 3.5 ASR on Gold-92](../overview/tasks/task_pages/t0006_nemotron_3_5_benchmark.md) | [`description`](../tasks/t0006_nemotron_3_5_benchmark/task_description.md) | 2026-06-24 |
+| 0014 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | [`description`](../tasks/t0014_granite_short_clip_robustness/task_description.md) | — |
 
 ---
 
@@ -68,16 +66,22 @@ No blocked tasks.
 
 ---
 
-## [Recently Completed (6 total)](tasks/by-status/completed.md)
+## [Recently Completed (13 total)](tasks/by-status/completed.md)
 
 | # | Task | Results | Completed |
 |---|------|---------|-----------|
+| 0012 | [Production Streaming Benchmark — Whisper, Parakeet, Granite on Gold-92](../overview/tasks/task_pages/t0012_whisper_parakeet_granite_streaming.md) | [`results`](../tasks/t0012_whisper_parakeet_granite_streaming/results/results_detailed.md) | 2026-06-29 00:00 |
+| 0013 | [Brainstorm Results — Session 1](../overview/tasks/task_pages/t0013_brainstorm_results_1.md) | [`results`](../tasks/t0013_brainstorm_results_1/results/results_detailed.md) | 2026-06-29 00:00 |
+| 0011 | [Streaming STT Benchmark — Parakeet TDT 0.6b-v3 vs Granite Speech 4.1 2B (biased)](../overview/tasks/task_pages/t0011_streaming_stt_benchmark.md) | [`results`](../tasks/t0011_streaming_stt_benchmark/results/results_detailed.md) | 2026-06-26 13:30 |
+| 0010 | [Benchmark FunASR SeACo-Paraformer on Gold-92](../overview/tasks/task_pages/t0010_funasr_paraformer_benchmark.md) | [`results`](../tasks/t0010_funasr_paraformer_benchmark/results/results_detailed.md) | 2026-06-25 20:00 |
+| 0006 | [Benchmark NVIDIA Nemotron 3.5 ASR on Gold-92](../overview/tasks/task_pages/t0006_nemotron_3_5_benchmark.md) | [`results`](../tasks/t0006_nemotron_3_5_benchmark/results/results_detailed.md) | 2026-06-25 12:00 |
 | 0008 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) | [`results`](../tasks/t0008_moonshine_v2_benchmark/results/results_detailed.md) | 2026-06-25 09:55 |
+| 0007 | [Benchmark IBM Granite Speech 4.1 2B on Gold-92](../overview/tasks/task_pages/t0007_ibm_granite_4_1_benchmark.md) | [`results`](../tasks/t0007_ibm_granite_4_1_benchmark/results/results_detailed.md) | 2026-06-25 |
+| 0009 | [Parakeet TDT 0.6b-v3 Production Baseline on Gold-92](../overview/tasks/task_pages/t0009_parakeet_production_baseline.md) | [`results`](../tasks/t0009_parakeet_production_baseline/results/results_detailed.md) | 2026-06-25 06:00 |
 | 0005 | [STT Model Survey: Open-Source Candidates for the brainpowa Pipeline](../overview/tasks/task_pages/t0005_stt_model_survey_brainpowa.md) | [`results`](../tasks/t0005_stt_model_survey_brainpowa/results/results_detailed.md) | 2026-06-24 11:06 |
 | 0004 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | [`results`](../tasks/t0004_vocabulary_biasing_experiment/results/results_detailed.md) | 2026-06-23 15:30 |
-| 0002 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | [`results`](../tasks/t0002_baseline_evaluation/results/results_detailed.md) | 2026-06-23 10:25 |
-| 0003 | [Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026)](../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) | [`results`](../tasks/t0003_literature_review_entity_stt/results/results_detailed.md) | 2026-06-23 09:25 |
-| 0001 | [STT Benchmark — Gold-92 Dataset Ingestion](../overview/tasks/task_pages/t0001_stt_benchmark.md) | [`results`](../tasks/t0001_stt_benchmark/results/results_detailed.md) | 2026-06-22 00:00 |
+
+*3 more completed tasks → [completed tasks](tasks/by-status/completed.md)*
 
 ---
 
@@ -154,7 +158,7 @@ No blocked tasks.
 
 ---
 
-## [Recent Suggestions (26 open)](suggestions/)
+## [Recent Suggestions (23 open)](suggestions/)
 
 <details>
 <summary>🧪 <strong>Benchmark Moonshine ONNX Medium on gold-92 when UsefulSensors
@@ -209,41 +213,6 @@ task types: audio-dataset-curation.
 </details>
 
 <details>
-<summary>🧪 <strong>Benchmark FunASR Paraformer with contextual biasing on
-gold-92</strong> (S-0005-02)</summary>
-
-**Kind**: experiment | **Priority**: high | **Date**: 2026-06-24 | **Source**:
-[t0005_stt_model_survey_brainpowa](../tasks/t0005_stt_model_survey_brainpowa/)
-
-FunASR Paraformer (SenseVoice/SeACo variant) achieves 1.8% Entity WER (EWER) with
-shallow-fusion contextual biasing on ~1,800 entities, and Apache 2.0 license. As the secondary
-candidate from the survey, benchmark it on gold-92 to validate entity accuracy and measure
-latency under concurrent load. Test both shallow-fusion (low-latency) and deep-biasing
-variants if available. If TTFT <200ms achievable and entity accuracy competitive with Granite,
-Paraformer becomes a strong alternative. Also measure integration complexity vs. Granite to
-inform production selection. Recommended task types: stt-benchmark-run, experiment-run.
-
-</details>
-
-<details>
-<summary>🔧 <strong>Integrate IBM Granite Speech 4.1 into brainpowa STTAdapter brick
-(async wrapper)</strong> (S-0005-03)</summary>
-
-**Kind**: technique | **Priority**: high | **Date**: 2026-06-24 | **Source**:
-[t0005_stt_model_survey_brainpowa](../tasks/t0005_stt_model_survey_brainpowa/)
-
-Create a production-ready Python async wrapper for IBM Granite Speech 4.1 that implements the
-STTAdapter Protocol (async transcribe, optional async transcribe_stream, PCM-16 mono input
-handling). Start from the Hugging Face Transformers API and reference Granite's
-keyword-biasing generate() kwargs. Test end-to-end with Rezolve's context injection
-infrastructure and validate that biasing context can be programmatically updated per session.
-Integration effort estimated at 2–3 days. Deliverable: new brick class in
-`src/brainpowa_realtime_api/pipeline/stt/granite_adapter.py` with unit tests and latency
-profiling. Recommended task types: infrastructure-setup, write-library.
-
-</details>
-
-<details>
 <summary>🔧 <strong>Implement shallow-fusion contextual biasing adapter for Moonshine
 v2</strong> (S-0005-04)</summary>
 
@@ -259,24 +228,6 @@ external biasing + Moonshine latency (263ms+) remains under 800ms total voice-to
 budget, and whether entity accuracy is competitive with Granite. If successful, Moonshine
 becomes a viable edge-deployment alternative. Recommended task types:
 post-correction-experiment, write-library.
-
-</details>
-
-<details>
-<summary>📊 <strong>Profile Granite 4.1, Paraformer, and Whisper latency under
-concurrent request load</strong> (S-0005-05)</summary>
-
-**Kind**: evaluation | **Priority**: high | **Date**: 2026-06-24 | **Source**:
-[t0005_stt_model_survey_brainpowa](../tasks/t0005_stt_model_survey_brainpowa/)
-
-The survey reports single-request latencies; production voice-to-action pipelines receive
-concurrent requests. Profile all three candidates (Granite, Paraformer, Whisper turbo) on
-Rezolve's production infrastructure under 10, 50, and 100 concurrent sessions. Measure TTFT
-(time-to-first-token), total latency, p50/p95/p99 percentiles, and VRAM utilization at each
-concurrency level. This determines whether Granite/Paraformer can sustain the latency budget
-under realistic load, and whether GPU memory becomes the bottleneck. If latency degrades
-significantly at >10 concurrent sessions, batch-processing or model quantization strategies
-become necessary. Recommended task types: experiment-run, data-analysis.
 
 </details>
 
@@ -332,64 +283,62 @@ post-correction-experiment.
 
 </details>
 
-*16 more open suggestions → [open suggestions](suggestions/)*
+<details>
+<summary>📊 <strong>Quantify entity accuracy gain vs. integration effort for Granite
+vs. Paraformer</strong> (S-0005-09)</summary>
+
+**Kind**: evaluation | **Priority**: medium | **Date**: 2026-06-24 | **Source**:
+[t0005_stt_model_survey_brainpowa](../tasks/t0005_stt_model_survey_brainpowa/)
+
+After benchmarking both Granite and Paraformer on gold-92 (suggestions S-0005-01, S-0005-02),
+create a cost-benefit matrix: entity accuracy gain (%) vs. integration complexity (days),
+latency under load (ms), and VRAM (GB). Use this to make a final production selection. If
+Granite delivers +12% entity accuracy with 2-day integration and Paraformer delivers +10% with
+4-day integration, the decision favors Granite. This task synthesizes the experimental
+findings into a decision frame for the team. Recommended task types: comparative-analysis,
+data-analysis.
+
+</details>
+
+<details>
+<summary>🔧 <strong>Implement quantized variants of Granite/Paraformer for edge and
+latency optimization</strong> (S-0005-10)</summary>
+
+**Kind**: technique | **Priority**: low | **Date**: 2026-06-24 | **Source**:
+[t0005_stt_model_survey_brainpowa](../tasks/t0005_stt_model_survey_brainpowa/)
+
+If benchmarking shows that Granite or Paraformer meet accuracy targets but exceed VRAM or
+latency budgets at scale, implement quantized (int8/float16) variants using ONNX, TensorRT, or
+vLLM to reduce model size and improve inference speed. Moonshine already ships as a
+245M-parameter model optimized for edge; quantization could reduce Granite (2B) and Paraformer
+(varies) to similar footprints. Measure quantization impact on entity accuracy and latency. If
+quantization preserves accuracy within 1–2% while halving latency, quantized variants become
+the recommended production deployment. Recommended task types: experiment-run, build-model.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Vocabulary-biased Whisper inference via STT_INITIAL_PROMPT on
+gold-92</strong> (S-0002-01)</summary>
+
+**Kind**: experiment | **Priority**: high | **Date**: 2026-06-23 | **Source**:
+[t0002_baseline_evaluation](../tasks/t0002_baseline_evaluation/)
+
+Run Whisper turbo on gold-92 with a domain vocabulary prompt injected via STT_INITIAL_PROMPT
+(e.g., 'Rezolve, brainpowa, Rezolve AI, Shopify Plus, Salesforce Commerce Cloud, Adobe
+Commerce, AI Foundry'). The baseline showed 'Rezolve' is systematically transcribed as 'Hizol'
+or 'Resolve' — a pure vocabulary gap. Vocabulary biasing via initial_prompt requires zero
+training and zero API cost. Measure entity accuracy on production clips specifically
+(baseline: 8.8%) and compare with paired BCa test against the whisper-turbo baseline.
+Recommended task types: stt-benchmark-run, experiment-run.
+
+</details>
+
+*13 more open suggestions → [open suggestions](suggestions/)*
 
 ---
 
-## [High Priority Suggestions (8)](suggestions/)
-
-<details>
-<summary>🧪 <strong>Benchmark FunASR Paraformer with contextual biasing on
-gold-92</strong> (S-0005-02)</summary>
-
-**Kind**: experiment | **Priority**: high | **Date**: 2026-06-24 | **Source**:
-[t0005_stt_model_survey_brainpowa](../tasks/t0005_stt_model_survey_brainpowa/)
-
-FunASR Paraformer (SenseVoice/SeACo variant) achieves 1.8% Entity WER (EWER) with
-shallow-fusion contextual biasing on ~1,800 entities, and Apache 2.0 license. As the secondary
-candidate from the survey, benchmark it on gold-92 to validate entity accuracy and measure
-latency under concurrent load. Test both shallow-fusion (low-latency) and deep-biasing
-variants if available. If TTFT <200ms achievable and entity accuracy competitive with Granite,
-Paraformer becomes a strong alternative. Also measure integration complexity vs. Granite to
-inform production selection. Recommended task types: stt-benchmark-run, experiment-run.
-
-</details>
-
-<details>
-<summary>🔧 <strong>Integrate IBM Granite Speech 4.1 into brainpowa STTAdapter brick
-(async wrapper)</strong> (S-0005-03)</summary>
-
-**Kind**: technique | **Priority**: high | **Date**: 2026-06-24 | **Source**:
-[t0005_stt_model_survey_brainpowa](../tasks/t0005_stt_model_survey_brainpowa/)
-
-Create a production-ready Python async wrapper for IBM Granite Speech 4.1 that implements the
-STTAdapter Protocol (async transcribe, optional async transcribe_stream, PCM-16 mono input
-handling). Start from the Hugging Face Transformers API and reference Granite's
-keyword-biasing generate() kwargs. Test end-to-end with Rezolve's context injection
-infrastructure and validate that biasing context can be programmatically updated per session.
-Integration effort estimated at 2–3 days. Deliverable: new brick class in
-`src/brainpowa_realtime_api/pipeline/stt/granite_adapter.py` with unit tests and latency
-profiling. Recommended task types: infrastructure-setup, write-library.
-
-</details>
-
-<details>
-<summary>📊 <strong>Profile Granite 4.1, Paraformer, and Whisper latency under
-concurrent request load</strong> (S-0005-05)</summary>
-
-**Kind**: evaluation | **Priority**: high | **Date**: 2026-06-24 | **Source**:
-[t0005_stt_model_survey_brainpowa](../tasks/t0005_stt_model_survey_brainpowa/)
-
-The survey reports single-request latencies; production voice-to-action pipelines receive
-concurrent requests. Profile all three candidates (Granite, Paraformer, Whisper turbo) on
-Rezolve's production infrastructure under 10, 50, and 100 concurrent sessions. Measure TTFT
-(time-to-first-token), total latency, p50/p95/p99 percentiles, and VRAM utilization at each
-concurrency level. This determines whether Granite/Paraformer can sustain the latency budget
-under realistic load, and whether GPU memory becomes the bottleneck. If latency degrades
-significantly at >10 concurrent sessions, batch-processing or model quantization strategies
-become necessary. Recommended task types: experiment-run, data-analysis.
-
-</details>
+## [High Priority Suggestions (5)](suggestions/)
 
 <details>
 <summary>🧪 <strong>Vocabulary-biased Whisper inference via STT_INITIAL_PROMPT on
@@ -949,17 +898,22 @@ No models yet.
 
 ---
 
-## [Latest Predictions (7 total)](predictions/)
+## [Latest Predictions (17 total)](predictions/)
 
 | Name | Source | Created |
 |------|--------|---------|
+| [Parakeet TDT 0.6b-v3 — Streaming Biased on Gold-92](../tasks/t0011_streaming_stt_benchmark/assets/predictions/parakeet-tdt-0.6b-v3-gold92-streaming-biased/description.md) | [11](../overview/tasks/task_pages/t0011_streaming_stt_benchmark.md) | 2026-06-26 |
+| [Granite Speech 4.1 2B — Streaming Keyword-Biased on Gold-92](../tasks/t0011_streaming_stt_benchmark/assets/predictions/granite-speech-4.1-2b-gold92-streaming-biased/description.md) | [11](../overview/tasks/task_pages/t0011_streaming_stt_benchmark.md) | 2026-06-26 |
+| [SeACo-Paraformer-en — Contextual Biased on Gold-92](../tasks/t0010_funasr_paraformer_benchmark/assets/predictions/seaco-paraformer-large-gold92-biased/description.md) | [10](../overview/tasks/task_pages/t0010_funasr_paraformer_benchmark.md) | 2026-06-25 |
+| [SeACo-Paraformer-en — Batch (no biasing) on Gold-92](../tasks/t0010_funasr_paraformer_benchmark/assets/predictions/seaco-paraformer-large-gold92-batch/description.md) | [10](../overview/tasks/task_pages/t0010_funasr_paraformer_benchmark.md) | 2026-06-25 |
+| [Parakeet TDT 0.6b-v3 — Unbiased on Gold-92](../tasks/t0009_parakeet_production_baseline/assets/predictions/parakeet-tdt-0.6b-v3-gold92-unbiased/description.md) | [9](../overview/tasks/task_pages/t0009_parakeet_production_baseline.md) | 2026-06-25 |
+| [Parakeet TDT 0.6b-v3 — Production Config (biased) on Gold-92](../tasks/t0009_parakeet_production_baseline/assets/predictions/parakeet-tdt-0.6b-v3-gold92-production/description.md) | [9](../overview/tasks/task_pages/t0009_parakeet_production_baseline.md) | 2026-06-25 |
+| [Nemotron 3.5 ASR — Streaming + Word Boosting on Gold-92](../tasks/t0006_nemotron_3_5_benchmark/assets/predictions/nemotron-3.5-asr-gold92-word-boosted/description.md) | [6](../overview/tasks/task_pages/t0006_nemotron_3_5_benchmark.md) | 2026-06-25 |
+| [Nemotron 3.5 ASR — Batch (no biasing) on Gold-92](../tasks/t0006_nemotron_3_5_benchmark/assets/predictions/nemotron-3.5-asr-gold92-batch/description.md) | [6](../overview/tasks/task_pages/t0006_nemotron_3_5_benchmark.md) | 2026-06-25 |
 | [Moonshine v2 Medium on Gold-92](../tasks/t0008_moonshine_v2_benchmark/assets/predictions/moonshine-v2-medium-gold92/description.md) | [8](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) | 2026-06-25 |
 | [Moonshine v2 Medium Shallow-Fusion Feasibility Assessment](../tasks/t0008_moonshine_v2_benchmark/assets/predictions/moonshine-v2-medium-gold92-biasing-assessment/description.md) | [8](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) | 2026-06-25 |
-| [Whisper turbo on Gold-92](../tasks/t0002_baseline_evaluation/assets/predictions/whisper-turbo-gold92/description.md) | [2](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | 2026-06-23 |
-| [Whisper Turbo + Vocabulary Bias on Gold-92](../tasks/t0004_vocabulary_biasing_experiment/assets/predictions/whisper-turbo-biased/description.md) | [4](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | 2026-06-23 |
-| [Whisper Large v3 on Gold-92](../tasks/t0002_baseline_evaluation/assets/predictions/whisper-large-v3-gold92/description.md) | [2](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | 2026-06-23 |
-| [Whisper Large v3 + Vocabulary Bias on Gold-92](../tasks/t0004_vocabulary_biasing_experiment/assets/predictions/whisper-large-v3-biased/description.md) | [4](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | 2026-06-23 |
-| [Moonshine Base on Gold-92 (no vocabulary biasing)](../tasks/t0004_vocabulary_biasing_experiment/assets/predictions/moonshine-base-gold92/description.md) | [4](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | 2026-06-23 |
+
+*7 more predictions → [predictions](predictions/)*
 
 ---
 

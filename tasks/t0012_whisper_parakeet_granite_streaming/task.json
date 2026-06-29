@@ -1,0 +1,23 @@
+{
+  "spec_version": 4,
+  "task_id": "t0012_whisper_parakeet_granite_streaming",
+  "task_index": 12,
+  "name": "Production Streaming Benchmark — Whisper, Parakeet, Granite on Gold-92",
+  "short_description": "Benchmark Whisper turbo, Parakeet TDT 0.6b-v3, and Granite Speech 4.1 2B on gold-92, each in its own production streaming mode, measuring accuracy and latency.",
+  "long_description_file": "task_description.md",
+  "status": "completed",
+  "dependencies": [
+    "t0009_parakeet_production_baseline",
+    "t0011_streaming_stt_benchmark"
+  ],
+  "start_time": "2026-06-26T16:37:03Z",
+  "end_time": "2026-06-29T00:00:00Z",
+  "expected_assets": {
+    "predictions": 6
+  },
+  "task_types": [
+    "stt-benchmark-run",
+    "experiment-run"
+  ],
+  "source_suggestion": null
+}

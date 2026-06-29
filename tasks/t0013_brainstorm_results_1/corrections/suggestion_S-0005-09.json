@@ -1,0 +1,13 @@
+{
+  "spec_version": "3",
+  "correction_id": "C-0013-03",
+  "correcting_task": "t0013_brainstorm_results_1",
+  "target_task": "t0005_stt_model_survey_brainpowa",
+  "target_kind": "suggestion",
+  "target_id": "S-0005-09",
+  "action": "update",
+  "changes": {
+    "status": "rejected"
+  },
+  "rationale": "FunASR SeACo-Paraformer eliminated in t0010: WER 122.7%, entity accuracy 2.2%. Comparing integration effort against an eliminated model is pointless. The comparison reduces to Granite vs Parakeet only, which is addressed by t0014."
+}

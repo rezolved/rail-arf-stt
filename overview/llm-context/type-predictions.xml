@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive type_id="predictions" generated_at_utc="2026-06-25T09:59:24Z">
+<llm_context_archive type_id="predictions" generated_at_utc="2026-06-29T11:55:22Z">
   <archive_summary>
     <title>All Predictions</title>
     <description>Complete predictions inventory with full descriptions, metrics, and model references.</description>
     <section_count>1</section_count>
-    <char_count>52947</char_count>
-    <byte_count>53105</byte_count>
-    <estimated_tokens>13236</estimated_tokens>
+    <char_count>81781</char_count>
+    <byte_count>82021</byte_count>
+    <estimated_tokens>20445</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -22,11 +22,21 @@
         <id>whisper-large-v3-gold92</id>
         <id>whisper-turbo-biased</id>
         <id>whisper-turbo-gold92</id>
+        <id>granite-speech-4.1-2b-gold92-batch</id>
+        <id>granite-speech-4.1-2b-gold92-biased</id>
         <id>moonshine-v2-medium-gold92</id>
         <id>moonshine-v2-medium-gold92-biasing-assessment</id>
+        <id>nemotron-3.5-asr-gold92-batch</id>
+        <id>nemotron-3.5-asr-gold92-word-boosted</id>
+        <id>parakeet-tdt-0.6b-v3-gold92-production</id>
+        <id>parakeet-tdt-0.6b-v3-gold92-unbiased</id>
+        <id>seaco-paraformer-large-gold92-batch</id>
+        <id>seaco-paraformer-large-gold92-biased</id>
+        <id>granite-speech-4.1-2b-gold92-streaming-biased</id>
+        <id>parakeet-tdt-0.6b-v3-gold92-streaming-biased</id>
       </source_ids>
       <content>
-Predictions: 7
+Predictions: 17
 
 ## Moonshine Base on Gold-92 (no vocabulary biasing)
 ID: moonshine-base-gold92
@@ -791,6 +801,143 @@ latency define the starting point that domain adaptation must beat. Both WER and
 improvements require GPU infrastructure or specialised lightweight models rather than model-size
 changes within the Whisper family.
 
+## Granite Speech 4.1 2B — Batch (no biasing) on Gold-92
+ID: granite-speech-4.1-2b-gold92-batch
+Created by task: t0007_ibm_granite_4_1_benchmark
+Date created: 2026-06-25
+Format: jsonl
+Schema: clip_id (string), hypothesis (string), latency_seconds (float)
+Model description: ibm-granite/granite-speech-4.1-2b, GraniteSpeechForConditionalGeneration, HuggingFace Transformers 4.57.6, GPU bfloat16, no vocabulary biasing
+Datasets: stt-benchmark-gold-92
+Instance count: 93
+Metrics at creation: {&quot;wer_gold92&quot;: 0.12337, &quot;entity_accuracy_gold92&quot;: 0.19529, &quot;entity_accuracy_domain_vocab&quot;: 0.318841, &quot;action_critical_wer_gold92&quot;: 0.43038, &quot;intent_preservation_gold92&quot;: 0.849462, &quot;latency_p50_seconds&quot;: 0.2497}
+Categories: stt-evaluation
+
+- **Model:** IBM Granite Speech 4.1 2B — batch (no biasing)
+- **Task:** t0007_ibm_granite_4_1_benchmark
+- **Dataset:** stt-benchmark-gold-92 (93 clips)
+- **Inference:** GPU (bfloat16), HuggingFace Transformers 4.57.6, no vocabulary biasing
+- **Date:** 2026-06-25
+
+#### Overview
+
+Per-clip predictions from IBM Granite Speech 4.1 2B in batch mode with no keyword biasing on
+the gold-92 benchmark. This variant establishes the Granite unbiased baseline to quantify the
+contribution of keyword biasing.
+
+#### Model
+
+- **HuggingFace ID:** ibm-granite/granite-speech-4.1-2b
+- **Architecture:** GraniteSpeechForConditionalGeneration + AutoProcessor
+- **Params:** ~2B
+- **Framework:** HuggingFace Transformers 4.57.6
+- **Hardware:** GPU, bfloat16, ~4 GB VRAM
+- **Biasing:** None
+
+#### Data
+
+The gold-92 benchmark consists of 93 WAV audio clips from Rezolve production investor-relations
+sessions with accented English speech. Ground truth transcripts are from
+`tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/ground_truth.jsonl`.
+
+Stereo clips pre-converted to mono via soundfile channel-averaging. Anomaly clip `error_en_0005`
+(Cyrillic ground truth) excluded from entity accuracy aggregates.
+
+#### Prediction Format
+
+Each record in `files/predictions-gold92.jsonl`:
+
+- `clip_id`: string clip identifier
+- `hypothesis`: Granite Speech transcript
+- `latency_seconds`: per-clip wall-clock inference latency (float)
+
+#### Metrics
+
+| Metric | Value |
+| --- | --- |
+| WER (gold-92) | 12.3% |
+| Entity accuracy (gold-92) | 19.5% |
+| Entity accuracy (domain vocab) | 31.9% |
+| Action-critical WER | 43.0% |
+| Intent preservation | 84.9% |
+| Latency p50 | 0.250s |
+
+#### Main Ideas
+
+- Without biasing, Granite achieves only 19.5% entity accuracy and 31.9% domain-vocab accuracy
+- Keyword biasing raises EA from 19.5% to 40.2% (+20.7 pp) and EA_DV from 31.9% to 98.5% (+66.6 pp)
+- Biasing is the decisive mechanism; unbiased Granite is not production-ready
+
+## Granite Speech 4.1 2B — Keyword Biased on Gold-92
+ID: granite-speech-4.1-2b-gold92-biased
+Created by task: t0007_ibm_granite_4_1_benchmark
+Date created: 2026-06-25
+Format: jsonl
+Schema: clip_id (string), hypothesis (string), latency_seconds (float)
+Model description: ibm-granite/granite-speech-4.1-2b, GraniteSpeechForConditionalGeneration, HuggingFace Transformers 4.57.6, GPU bfloat16, keyword biasing via chat template prompt
+Datasets: stt-benchmark-gold-92
+Instance count: 93
+Metrics at creation: {&quot;wer_gold92&quot;: 0.088265, &quot;entity_accuracy_gold92&quot;: 0.402174, &quot;entity_accuracy_domain_vocab&quot;: 0.985507, &quot;action_critical_wer_gold92&quot;: 0.082278, &quot;intent_preservation_gold92&quot;: 0.924731, &quot;latency_p50_seconds&quot;: 0.2484}
+Categories: stt-evaluation
+
+- **Model:** IBM Granite Speech 4.1 2B — keyword biased
+- **Task:** t0007_ibm_granite_4_1_benchmark
+- **Dataset:** stt-benchmark-gold-92 (93 clips)
+- **Inference:** GPU (bfloat16), HuggingFace Transformers 4.57.6, keyword biasing via chat prompt
+- **Date:** 2026-06-25
+
+#### Overview
+
+Per-clip predictions from IBM Granite Speech 4.1 2B with keyword biasing on the gold-92
+benchmark. Keyword biasing is injected via the chat template prompt (`&lt;|audio|&gt;{prompt}`) with
+Rezolve domain vocabulary terms. This is the primary production-candidate variant for this task.
+
+#### Model
+
+- **HuggingFace ID:** ibm-granite/granite-speech-4.1-2b
+- **Architecture:** GraniteSpeechForConditionalGeneration + AutoProcessor
+- **Params:** ~2B
+- **Framework:** HuggingFace Transformers 4.57.6
+- **Hardware:** GPU, bfloat16, ~4 GB VRAM
+- **Biasing:** Keyword injection via chat template prompt
+
+#### Data
+
+The gold-92 benchmark consists of 93 WAV audio clips from Rezolve production investor-relations
+sessions with accented English speech. Ground truth transcripts are from
+`tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/ground_truth.jsonl`.
+
+Stereo clips pre-converted to mono via soundfile channel-averaging. Anomaly clip `error_en_0005`
+(Cyrillic ground truth) excluded from entity accuracy aggregates.
+
+#### Prediction Format
+
+Each record in `files/predictions-gold92.jsonl`:
+
+- `clip_id`: string clip identifier
+- `hypothesis`: Granite Speech transcript
+- `latency_seconds`: per-clip wall-clock inference latency (float)
+
+#### Metrics
+
+| Metric | Value |
+| --- | --- |
+| WER (gold-92) | 8.8% |
+| Entity accuracy (gold-92) | 40.2% |
+| Entity accuracy (domain vocab) | 98.5% |
+| Action-critical WER | 8.2% |
+| Intent preservation | 92.5% |
+| Latency p50 | 0.248s |
+
+#### Main Ideas
+
+- Granite biased achieves 98.5% domain-vocabulary entity accuracy, matching Whisper (94.5%)
+- 40.2% overall entity accuracy — +17 pp vs. batch, −5.8 pp vs. Whisper
+- WER=8.8%, matching Whisper large-v3 (8.5%)
+- Latency 248 ms p50 — 27× faster than Whisper (6.66s), within 800ms voice-to-action budget
+- +73% better overall entity accuracy vs. Parakeet production (23.2%)
+- Credible production replacement for Parakeet on accuracy; fine-tuning could close remaining gap vs. Whisper
+
 ## Moonshine v2 Medium on Gold-92
 ID: moonshine-v2-medium-gold92
 Created by task: t0008_moonshine_v2_benchmark
@@ -941,6 +1088,535 @@ Three shallow-fusion approaches were assessed:
 **Verdict:** Viable for production (with effort), but the entity accuracy gap vs. Whisper is large.
 A hybrid routing strategy (Moonshine for latency-critical, Whisper for entity-critical) may be
 optimal.
+
+## Nemotron 3.5 ASR — Batch (no biasing) on Gold-92
+ID: nemotron-3.5-asr-gold92-batch
+Created by task: t0006_nemotron_3_5_benchmark
+Date created: 2026-06-25
+Format: jsonl
+Schema: clip_id (string), hypothesis (string), latency_seconds (float)
+Model description: NVIDIA Nemotron 3.5 ASR (FastConformer-CTC), NeMo/Riva NIM, GPU inference, batch mode, no vocabulary biasing
+Datasets: stt-benchmark-gold-92
+Instance count: 93
+Metrics at creation: {&quot;wer_gold92&quot;: 0.175527, &quot;entity_accuracy_gold92&quot;: 0.247464, &quot;entity_accuracy_domain_vocab&quot;: 0.181818, &quot;action_critical_wer_gold92&quot;: 0.316456, &quot;intent_preservation_gold92&quot;: 0.903226, &quot;latency_p50_seconds&quot;: 0.7186}
+Categories: stt-evaluation
+
+- **Model:** NVIDIA Nemotron 3.5 ASR (batch, no biasing)
+- **Task:** t0006_nemotron_3_5_benchmark
+- **Dataset:** stt-benchmark-gold-92 (93 clips)
+- **Inference:** GPU, NeMo / Riva NIM, batch mode, no word boosting
+- **Date:** 2026-06-25
+
+#### Overview
+
+Per-clip predictions from NVIDIA Nemotron 3.5 ASR in batch (offline) mode on the gold-92
+benchmark. No word boosting or domain biasing applied. This variant establishes the Nemotron
+baseline without any vocabulary injection.
+
+#### Model
+
+- **Architecture:** FastConformer-CTC, streaming-native
+- **Framework:** NVIDIA NeMo / Riva NIM
+- **Biasing:** None
+
+#### Data
+
+The gold-92 benchmark consists of 93 WAV audio clips from Rezolve production investor-relations
+sessions with accented English speech. Ground truth transcripts are from
+`tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/ground_truth.jsonl`.
+
+Anomaly clip `error_en_0005` has Cyrillic ground truth due to an annotation error; it is
+included in WER computation but excluded from entity accuracy aggregates.
+
+#### Prediction Format
+
+Each record in `files/predictions-gold92.jsonl`:
+
+- `clip_id`: string clip identifier
+- `hypothesis`: Nemotron ASR transcript
+- `latency_seconds`: per-clip wall-clock inference latency (float)
+
+#### Metrics
+
+| Metric | Value |
+| --- | --- |
+| WER (gold-92) | 17.6% |
+| Entity accuracy (gold-92) | 24.7% |
+| Entity accuracy (domain vocab) | 18.2% |
+| Action-critical WER | 31.6% |
+| Intent preservation | 90.3% |
+| Latency p50 | 0.719s |
+
+#### Main Ideas
+
+- Nemotron 3.5 batch WER=17.6%, 2× worse than Whisper large-v3 (8.5%)
+- Entity accuracy 24.7%, 21 pp below Whisper (46.0%)
+- Domain-vocab accuracy 18.2%, 76 pp below Whisper (94.5%)
+- Latency 0.72s within 800 ms budget but not competitive with Granite biased (248 ms)
+- Word boosting (see word-boosted variant) degrades all accuracy metrics vs. this baseline
+
+## Nemotron 3.5 ASR — Streaming + Word Boosting on Gold-92
+ID: nemotron-3.5-asr-gold92-word-boosted
+Created by task: t0006_nemotron_3_5_benchmark
+Date created: 2026-06-25
+Format: jsonl
+Schema: clip_id (string), hypothesis (string), latency_seconds (float), chunk_seconds (float)
+Model description: NVIDIA Nemotron 3.5 ASR (FastConformer-CTC), NeMo/Riva NIM, GPU inference, streaming mode with word-boosting API using DOMAIN_VOCAB
+Datasets: stt-benchmark-gold-92
+Instance count: 93
+Metrics at creation: {&quot;wer_gold92&quot;: 0.198596, &quot;entity_accuracy_gold92&quot;: 0.187319, &quot;entity_accuracy_domain_vocab&quot;: 0.127273, &quot;action_critical_wer_gold92&quot;: 0.424051, &quot;intent_preservation_gold92&quot;: 0.849462, &quot;latency_p50_seconds&quot;: 0.723}
+Categories: stt-evaluation
+
+- **Model:** NVIDIA Nemotron 3.5 ASR (streaming + word boosting)
+- **Task:** t0006_nemotron_3_5_benchmark
+- **Dataset:** stt-benchmark-gold-92 (93 clips)
+- **Inference:** GPU, NeMo / Riva NIM, streaming mode with word-boosting API
+- **Date:** 2026-06-25
+
+#### Overview
+
+Per-clip predictions from NVIDIA Nemotron 3.5 ASR in streaming mode with the word-boosting API
+applied using Rezolve domain vocabulary (brands, products, SKUs). This variant was expected to
+improve entity accuracy, but instead degraded all accuracy metrics relative to batch.
+
+#### Model
+
+- **Architecture:** FastConformer-CTC, streaming-native
+- **Framework:** NVIDIA NeMo / Riva NIM, streaming mode
+- **Biasing:** Word-boosting API with DOMAIN_VOCAB terms from constants.py
+
+#### Data
+
+The gold-92 benchmark consists of 93 WAV audio clips from Rezolve production investor-relations
+sessions with accented English speech. Ground truth transcripts are from
+`tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/ground_truth.jsonl`.
+
+Anomaly clip `error_en_0005` has Cyrillic ground truth due to an annotation error; it is
+included in WER computation but excluded from entity accuracy aggregates.
+
+#### Prediction Format
+
+Each record in `files/predictions-gold92.jsonl`:
+
+- `clip_id`: string clip identifier
+- `hypothesis`: Nemotron ASR transcript
+- `latency_seconds`: per-clip wall-clock inference latency (float)
+- `chunk_seconds`: streaming chunk size used (float)
+
+#### Metrics
+
+| Metric | Value | vs. batch |
+| --- | --- | --- |
+| WER (gold-92) | 19.9% | +2.3 pp |
+| Entity accuracy (gold-92) | 18.7% | −6.0 pp |
+| Entity accuracy (domain vocab) | 12.7% | −5.5 pp |
+| Action-critical WER | 42.4% | +10.8 pp |
+| Intent preservation | 84.9% | −5.4 pp |
+| Latency p50 | 0.723s | +0.004s |
+
+#### Main Ideas
+
+- Word boosting degrades all accuracy metrics vs. batch: ΔEA=−6.0 pp, ΔWER=+2.3 pp
+- Domain-vocab accuracy drops from 18.2% to 12.7% — the opposite of the intended effect
+- The word-boosting API failure cause is undiagnosed; likely multi-token entity handling issue
+- Not recommended for production; batch mode is strictly better on all accuracy metrics
+
+## Parakeet TDT 0.6b-v3 — Production Config (biased) on Gold-92
+ID: parakeet-tdt-0.6b-v3-gold92-production
+Created by task: t0009_parakeet_production_baseline
+Date created: 2026-06-25
+Format: jsonl
+Schema: clip_id (string), hypothesis (string), latency_seconds (float)
+Model description: nvidia/parakeet-tdt-0.6b-v3, Token-and-Duration Transducer, NeMo/Riva SDK, GPU inference, keyword biasing matching current production config
+Datasets: stt-benchmark-gold-92
+Instance count: 93
+Metrics at creation: {&quot;wer_gold92&quot;: 0.152457, &quot;entity_accuracy_gold92&quot;: 0.231522, &quot;entity_accuracy_domain_vocab&quot;: 0.333333, &quot;action_critical_wer_gold92&quot;: 0.335443, &quot;intent_preservation_gold92&quot;: 0.870968, &quot;latency_p50_seconds&quot;: 0.0378}
+Categories: stt-evaluation
+
+- **Model:** Parakeet TDT 0.6b-v3 — biased (production config)
+- **Task:** t0009_parakeet_production_baseline
+- **Dataset:** stt-benchmark-gold-92 (93 clips)
+- **Inference:** GPU, NeMo / Riva SDK, keyword injection matching current production deployment
+- **Date:** 2026-06-25
+
+#### Overview
+
+Per-clip predictions from nvidia/parakeet-tdt-0.6b-v3 with the keyword biasing configuration
+currently deployed in Rezolve&#x27;s brainpowa production pipeline. This is the canonical production
+baseline used for comparison across all t0006–t0010 benchmark tasks.
+
+#### Model
+
+- **HuggingFace ID / Model ID:** nvidia/parakeet-tdt-0.6b-v3
+- **Architecture:** Token-and-Duration Transducer (TDT), 0.6B params
+- **Framework:** NeMo / Riva SDK
+- **Hardware:** GPU
+- **Biasing:** Keyword injection matching current production deployment
+
+#### Data
+
+The gold-92 benchmark consists of 93 WAV audio clips from Rezolve production investor-relations
+sessions with accented English speech. Ground truth transcripts are from
+`tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/ground_truth.jsonl`.
+
+Anomaly clip `error_en_0005` (Cyrillic ground truth) excluded from entity accuracy aggregates.
+
+#### Prediction Format
+
+Each record in `files/predictions-gold92.jsonl`:
+
+- `clip_id`: string clip identifier
+- `hypothesis`: Parakeet transcript
+- `latency_seconds`: per-clip wall-clock inference latency (float)
+
+#### Metrics
+
+| Metric | Value |
+| --- | --- |
+| WER (gold-92) | 15.2% |
+| Entity accuracy (gold-92) | 23.2% |
+| Entity accuracy (domain vocab) | 33.3% |
+| Action-critical WER | 33.5% |
+| Intent preservation | 87.1% |
+| Latency p50 | 0.038s |
+
+#### Main Ideas
+
+- This is the production baseline used for all t0006–t0010 comparisons
+- Keyword biasing provides negligible benefit vs. unbiased: ΔEA=−0.2 pp, ΔEA_DV=+1.4 pp
+- Ultra-low latency (38 ms) is the model&#x27;s decisive strength for production deployment
+- Entity accuracy 23.2% and AC-WER 33.5% set the floor all benchmark models must exceed
+
+## Parakeet TDT 0.6b-v3 — Unbiased on Gold-92
+ID: parakeet-tdt-0.6b-v3-gold92-unbiased
+Created by task: t0009_parakeet_production_baseline
+Date created: 2026-06-25
+Format: jsonl
+Schema: clip_id (string), hypothesis (string), latency_seconds (float)
+Model description: nvidia/parakeet-tdt-0.6b-v3, Token-and-Duration Transducer, NeMo/Riva SDK, GPU inference, no vocabulary biasing
+Datasets: stt-benchmark-gold-92
+Instance count: 93
+Metrics at creation: {&quot;wer_gold92&quot;: 0.151454, &quot;entity_accuracy_gold92&quot;: 0.233696, &quot;entity_accuracy_domain_vocab&quot;: 0.318841, &quot;action_critical_wer_gold92&quot;: 0.341772, &quot;intent_preservation_gold92&quot;: 0.870968, &quot;latency_p50_seconds&quot;: 0.0388}
+Categories: stt-evaluation
+
+- **Model:** Parakeet TDT 0.6b-v3 — unbiased
+- **Task:** t0009_parakeet_production_baseline
+- **Dataset:** stt-benchmark-gold-92 (93 clips)
+- **Inference:** GPU, NeMo / Riva SDK, standard inference, no keyword injection
+- **Date:** 2026-06-25
+
+#### Overview
+
+Per-clip predictions from nvidia/parakeet-tdt-0.6b-v3 in standard inference mode (no keyword
+biasing) on the gold-92 benchmark. This variant establishes the unbiased baseline for Rezolve&#x27;s
+current production STT model.
+
+#### Model
+
+- **HuggingFace ID / Model ID:** nvidia/parakeet-tdt-0.6b-v3
+- **Architecture:** Token-and-Duration Transducer (TDT), 0.6B params
+- **Framework:** NeMo / Riva SDK
+- **Hardware:** GPU
+- **Biasing:** None
+
+#### Data
+
+The gold-92 benchmark consists of 93 WAV audio clips from Rezolve production investor-relations
+sessions with accented English speech. Ground truth transcripts are from
+`tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/ground_truth.jsonl`.
+
+Anomaly clip `error_en_0005` (Cyrillic ground truth) excluded from entity accuracy aggregates.
+
+#### Prediction Format
+
+Each record in `files/predictions-gold92.jsonl`:
+
+- `clip_id`: string clip identifier
+- `hypothesis`: Parakeet transcript
+- `latency_seconds`: per-clip wall-clock inference latency (float)
+
+#### Metrics
+
+| Metric | Value |
+| --- | --- |
+| WER (gold-92) | 15.1% |
+| Entity accuracy (gold-92) | 23.4% |
+| Entity accuracy (domain vocab) | 31.9% |
+| Action-critical WER | 34.2% |
+| Intent preservation | 87.1% |
+| Latency p50 | 0.039s |
+
+## SeACo-Paraformer-en — Batch (no biasing) on Gold-92
+ID: seaco-paraformer-large-gold92-batch
+Created by task: t0010_funasr_paraformer_benchmark
+Date created: 2026-06-25
+Format: jsonl
+Schema: clip_id (string), hypothesis (string), latency_seconds (float)
+Model description: iic/speech_seaco_paraformer_asr_nat-en-16k-common-vocab10020, Paraformer-CTC with SeACo module, FunASR Python SDK, GPU inference, no contextual biasing
+Datasets: stt-benchmark-gold-92
+Instance count: 93
+Metrics at creation: {&quot;wer_gold92&quot;: 1.22668, &quot;entity_accuracy_gold92&quot;: 0.021739, &quot;entity_accuracy_domain_vocab&quot;: 0.0, &quot;action_critical_wer_gold92&quot;: 1.0, &quot;intent_preservation_gold92&quot;: 0.55914, &quot;latency_p50_seconds&quot;: 0.0478}
+Categories: stt-evaluation
+
+- **Model:** FunASR SeACo-Paraformer-en — batch (no biasing)
+- **Task:** t0010_funasr_paraformer_benchmark
+- **Dataset:** stt-benchmark-gold-92 (93 clips)
+- **Inference:** GPU, FunASR Python SDK, standard Paraformer inference, no SeACo biasing
+- **Date:** 2026-06-25
+
+#### Overview
+
+Per-clip predictions from FunASR SeACo-Paraformer-en in standard batch mode (no contextual
+biasing) on the gold-92 benchmark. The model produces near-random English-sounding tokens on
+English input; WER=122.7% indicates complete transcription failure. This variant establishes
+the unbiased baseline for the SeACo ablation.
+
+#### Model
+
+- **Model ID:** iic/speech_seaco_paraformer_asr_nat-en-16k-common-vocab10020
+- **Architecture:** Paraformer (CTC) with SeACo contextual biasing module
+- **Framework:** FunASR Python SDK
+- **Hardware:** GPU
+- **Biasing:** None
+
+#### Data
+
+93 WAV clips from `tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/`.
+Anomaly clip `error_en_0005` excluded from entity accuracy aggregates.
+
+#### Prediction Format
+
+Each record in `files/predictions-gold92.jsonl`:
+
+- `clip_id`: string clip identifier
+- `hypothesis`: Paraformer transcript
+- `latency_seconds`: per-clip wall-clock inference latency (float)
+
+#### Metrics
+
+| Metric | Value |
+| --- | --- |
+| WER (gold-92) | 122.7% |
+| Entity accuracy (gold-92) | 2.2% |
+| Entity accuracy (domain vocab) | 0.0% |
+| Action-critical WER | 100.0% |
+| Intent preservation | 55.9% |
+| Latency p50 | 0.048s |
+
+#### Main Ideas
+
+- WER &gt; 100% confirms complete transcription failure on English input
+- Model produces Chinese-phoneme-adjacent English syllable sequences, not transcriptions
+- Not suitable for any English STT use case at Rezolve
+
+## SeACo-Paraformer-en — Contextual Biased on Gold-92
+ID: seaco-paraformer-large-gold92-biased
+Created by task: t0010_funasr_paraformer_benchmark
+Date created: 2026-06-25
+Format: jsonl
+Schema: clip_id (string), hypothesis (string), latency_seconds (float)
+Model description: iic/speech_seaco_paraformer_asr_nat-en-16k-common-vocab10020, Paraformer-CTC with SeACo module, FunASR Python SDK, GPU inference, SeACo contextual biasing with DOMAIN_VOCAB
+Datasets: stt-benchmark-gold-92
+Instance count: 93
+Metrics at creation: {&quot;wer_gold92&quot;: 1.221665, &quot;entity_accuracy_gold92&quot;: 0.021739, &quot;entity_accuracy_domain_vocab&quot;: 0.0, &quot;action_critical_wer_gold92&quot;: 1.0, &quot;intent_preservation_gold92&quot;: 0.55914, &quot;latency_p50_seconds&quot;: 0.0472}
+Categories: stt-evaluation
+
+- **Model:** FunASR SeACo-Paraformer-en — contextual biased
+- **Task:** t0010_funasr_paraformer_benchmark
+- **Dataset:** stt-benchmark-gold-92 (93 clips)
+- **Inference:** GPU, FunASR Python SDK, SeACo contextual biasing with DOMAIN_VOCAB
+- **Date:** 2026-06-25
+
+#### Overview
+
+Per-clip predictions from FunASR SeACo-Paraformer-en with SeACo contextual biasing activated
+using Rezolve domain vocabulary terms. The model produces near-random English-sounding tokens
+on English input; WER=122.2% indicates complete transcription failure. SeACo biasing has zero
+measurable effect vs. batch (ΔEA=0.0pp, ΔEA_DV=0.0pp, ΔWER=−0.5pp).
+
+#### Model
+
+- **Model ID:** iic/speech_seaco_paraformer_asr_nat-en-16k-common-vocab10020
+- **Architecture:** Paraformer (CTC) with SeACo contextual biasing module
+- **Framework:** FunASR Python SDK
+- **Hardware:** GPU
+- **Biasing:** SeACo module with DOMAIN_VOCAB terms from constants.py
+
+#### Data
+
+93 WAV clips from `tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/`.
+Anomaly clip `error_en_0005` excluded from entity accuracy aggregates.
+
+#### Prediction Format
+
+Each record in `files/predictions-gold92.jsonl`:
+
+- `clip_id`: string clip identifier
+- `hypothesis`: Paraformer transcript (SeACo biased)
+- `latency_seconds`: per-clip wall-clock inference latency (float)
+
+#### Metrics
+
+| Metric | Value |
+| --- | --- |
+| WER (gold-92) | 122.2% |
+| Entity accuracy (gold-92) | 2.2% |
+| Entity accuracy (domain vocab) | 0.0% |
+| Action-critical WER | 100.0% |
+| Intent preservation | 55.9% |
+| Latency p50 | 0.047s |
+
+#### Main Ideas
+
+- SeACo biasing has zero effect: ΔEA=0.0pp, ΔEA_DV=0.0pp vs. batch
+- WER &gt; 100% confirms complete transcription failure; biasing cannot rescue a broken base model
+- Not suitable for any English STT use case at Rezolve
+
+## Granite Speech 4.1 2B — Streaming Keyword-Biased on Gold-92
+ID: granite-speech-4.1-2b-gold92-streaming-biased
+Created by task: t0011_streaming_stt_benchmark
+Date created: 2026-06-26
+Format: jsonl
+Schema: clip_id (string), hypothesis (string), latency_seconds (float), num_chunks (int), audio_duration_seconds (float)
+Model description: ibm-granite/granite-speech-4.1-2b, HuggingFace Transformers BF16, GPU inference, keyword prompt injection (31 domain terms)
+Datasets: stt-benchmark-gold-92
+Instance count: 93
+Metrics at creation: {&quot;wer_gold92&quot;: 0.088265, &quot;entity_accuracy_gold92&quot;: 0.41087, &quot;entity_accuracy_domain_vocab&quot;: 0.971014, &quot;action_critical_wer_gold92&quot;: 0.075949, &quot;intent_preservation_gold92&quot;: 0.935484, &quot;latency_p50_seconds&quot;: 0.25}
+Categories: stt-evaluation
+
+- **Model:** Granite Speech 4.1 2B — keyword biased, streaming simulation
+- **Task:** t0011_streaming_stt_benchmark
+- **Dataset:** stt-benchmark-gold-92 (93 clips)
+- **Inference:** Azure H100 NVL, Transformers BF16, 32 kB PCM chunk streaming simulation
+- **Date:** 2026-06-26
+
+#### Overview
+
+Per-clip predictions from ibm-granite/granite-speech-4.1-2b with keyword prompt injection
+(`&quot;transcribe the speech to text. Keywords: Rezolve, Rezolve Ai, ...&quot;`, 31 domain terms) under
+production-style streaming: audio delivered as 32 kB PCM int16 chunks (~1 s at 16 kHz),
+accumulated in memory, transcribed on None sentinel. Mirrors `STTAdapter.transcribe_stream()`.
+
+#### Model
+
+- **HuggingFace ID / Model ID:** ibm-granite/granite-speech-4.1-2b
+- **Architecture:** Granite Speech 4.1 2B (encoder-decoder), ~2B params
+- **Framework:** HuggingFace Transformers, BF16
+- **Hardware:** Azure H100 NVL (GPU)
+- **Biasing:** Keyword prompt injection — 31 domain vocabulary terms
+
+#### Streaming Simulation
+
+- Chunk size: 32,000 bytes = 16,000 samples = ~1 s at 16 kHz int16
+- Mean chunks/clip: 6.7 (avg audio duration ~6.7 s)
+- Latency clock: starts at first chunk delivery, ends when transcription returns
+- Accumulate-then-transcribe: all chunks buffered, single model call at end
+
+#### Data
+
+Gold-92 benchmark: 93 WAV clips from Rezolve production investor-relations sessions.
+Anomaly clip `error_en_0005` (Cyrillic ground truth) excluded from entity accuracy aggregates.
+
+#### Prediction Format
+
+Each record in `files/predictions-gold92-streaming.jsonl`:
+
+- `clip_id`: string clip identifier
+- `hypothesis`: Granite transcript
+- `latency_seconds`: wall-clock from first chunk to transcript (float)
+- `num_chunks`: number of 32 kB chunks delivered
+- `audio_duration_seconds`: clip audio duration
+
+#### Metrics
+
+| Metric | Streaming | Batch (t0007) | Delta |
+| --- | --- | --- | --- |
+| WER (gold-92) | 8.8% | 8.8% | 0.00 pp |
+| Entity accuracy (gold-92) | 41.1% | 40.2% | +0.87 pp |
+| Entity accuracy (domain vocab) | 97.1% | 98.6% | −1.45 pp |
+| Action-critical WER | 7.6% | 8.2% | −0.63 pp |
+| Intent preservation | 93.6% | 92.5% | +1.08 pp |
+| Latency p50 | 0.250 s | 0.248 s | +0.001 s |
+
+#### Main Ideas
+
+- Streaming delivery has no measurable effect on accuracy (all deltas within noise)
+- Granite streaming outperforms Parakeet streaming on all accuracy metrics
+- Latency overhead from streaming is negligible (+1 ms)
+- Granite p50 latency 250 ms well within 800 ms SLA
+
+## Parakeet TDT 0.6b-v3 — Streaming Biased on Gold-92
+ID: parakeet-tdt-0.6b-v3-gold92-streaming-biased
+Created by task: t0011_streaming_stt_benchmark
+Date created: 2026-06-26
+Format: jsonl
+Schema: clip_id (string), hypothesis (string), latency_seconds (float), num_chunks (int), audio_duration_seconds (float)
+Model description: nvidia/parakeet-tdt-0.6b-v3, Token-and-Duration Transducer, NeMo/Riva SDK, GPU inference, NeMo GPU-PB boosting alpha=1.0
+Datasets: stt-benchmark-gold-92
+Instance count: 93
+Metrics at creation: {&quot;wer_gold92&quot;: 0.152457, &quot;entity_accuracy_gold92&quot;: 0.231522, &quot;entity_accuracy_domain_vocab&quot;: 0.333333, &quot;action_critical_wer_gold92&quot;: 0.335443, &quot;intent_preservation_gold92&quot;: 0.871011, &quot;latency_p50_seconds&quot;: 0.041}
+Categories: stt-evaluation
+
+- **Model:** Parakeet TDT 0.6b-v3 — biased (production config), streaming simulation
+- **Task:** t0011_streaming_stt_benchmark
+- **Dataset:** stt-benchmark-gold-92 (93 clips)
+- **Inference:** Azure H100 NVL, NeMo / Riva SDK, 32 kB PCM chunk streaming simulation
+- **Date:** 2026-06-26
+
+#### Overview
+
+Per-clip predictions from nvidia/parakeet-tdt-0.6b-v3 with production keyword biasing (NeMo
+GPU-PB phrase boosting, alpha=1.0) under production-style streaming: audio delivered as
+32 kB PCM int16 chunks (~1 s at 16 kHz), accumulated in memory, transcribed on None sentinel.
+Mirrors the `STTAdapter.transcribe_stream()` default accumulate-then-transcribe pattern.
+
+#### Model
+
+- **HuggingFace ID / Model ID:** nvidia/parakeet-tdt-0.6b-v3
+- **Architecture:** Token-and-Duration Transducer (TDT), 0.6B params
+- **Framework:** NeMo / Riva SDK
+- **Hardware:** Azure H100 NVL (GPU)
+- **Biasing:** NeMo GPU-PB phrase boosting, 66 casing variants, alpha=1.0
+
+#### Streaming Simulation
+
+- Chunk size: 32,000 bytes = 16,000 samples = ~1 s at 16 kHz int16
+- Mean chunks/clip: 6.7 (avg audio duration ~6.7 s)
+- Latency clock: starts at first chunk delivery, ends when transcription returns
+- Accumulate-then-transcribe: all chunks buffered, single model call at end
+
+#### Data
+
+Gold-92 benchmark: 93 WAV clips from Rezolve production investor-relations sessions.
+Anomaly clip `error_en_0005` (Cyrillic ground truth) excluded from entity accuracy aggregates.
+
+#### Prediction Format
+
+Each record in `files/predictions-gold92-streaming.jsonl`:
+
+- `clip_id`: string clip identifier
+- `hypothesis`: Parakeet transcript
+- `latency_seconds`: wall-clock from first chunk to transcript (float)
+- `num_chunks`: number of 32 kB chunks delivered
+- `audio_duration_seconds`: clip audio duration
+
+#### Metrics
+
+| Metric | Streaming | Batch (t0009) | Delta |
+| --- | --- | --- | --- |
+| WER (gold-92) | 15.2% | 15.2% | +0.05 pp |
+| Entity accuracy (gold-92) | 23.1% | 23.2% | −0.05 pp |
+| Entity accuracy (domain vocab) | 33.3% | 33.3% | +0.03 pp |
+| Action-critical WER | 33.5% | 33.5% | +0.04 pp |
+| Intent preservation | 87.1% | 87.1% | 0.00 pp |
+| Latency p50 | 0.041 s | 0.038 s | +0.003 s |
+
+#### Main Ideas
+
+- Streaming delivery has no measurable effect on accuracy (all deltas &lt; 0.1 pp)
+- Accumulate-then-transcribe is functionally equivalent to batch at segment level
+- Latency overhead from streaming is negligible (+3 ms) — chunk iteration is near-instant
+- Parakeet remains the fastest model at 41 ms p50, 6× faster than Granite under streaming
       </content>
     </section>
   </sections>
