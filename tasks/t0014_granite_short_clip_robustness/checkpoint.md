@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0014_granite_short_clip_robustness"
-updated_at: "2026-06-29T12:17:00Z"
-completed_steps: 1
-next_step_number: 2
-next_step_id: "check-deps"
+updated_at: "2026-06-29T12:18:30Z"
+completed_steps: 2
+next_step_number: 3
+next_step_id: "init-folders"
 ---
 # Task Objective
 
@@ -14,6 +14,12 @@ simulation, and assess production fit as a Parakeet replacement in brainpowa.
 * * *
 
 ## Step History
+
+### Step 2 — check-deps
+
+Both dependencies (`t0013_brainstorm_results_1` and `t0012_whisper_parakeet_granite_streaming`) are
+`completed` and satisfied. Key output: `logs/steps/002_check-deps/deps_report.json` (0 errors, 0
+warnings).
 
 ### Step 1 — create-branch
 
@@ -30,5 +36,8 @@ task types). Step 1 is a mechanical setup step with no research output.
 
 ## Next Step Notes
 
-Step 1 completed successfully. The task branch and folder are ready. Proceed to step 2 (check-deps)
-per `step_tracker.json`.
+Step 2 (check-deps) completed successfully. Both task dependencies are confirmed completed and all
+verificator checks passed with zero errors and zero warnings. Proceed to step 3 (init-folders) per
+`step_tracker.json`. The init-folders step should create the standard task folder structure
+including research/, plan/, results/, and logs/ subdirectories, then populate the aggregator cache
+in ctx/.
