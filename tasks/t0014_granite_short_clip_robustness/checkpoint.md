@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0014_granite_short_clip_robustness"
-updated_at: "2026-06-29T12:18:30Z"
-completed_steps: 2
-next_step_number: 3
-next_step_id: "init-folders"
+updated_at: "2026-06-29T12:22:00Z"
+completed_steps: 3
+next_step_number: 4
+next_step_id: "research-papers"
 ---
 # Task Objective
 
@@ -14,6 +14,13 @@ simulation, and assess production fit as a Parakeet replacement in brainpowa.
 * * *
 
 ## Step History
+
+### Step 3 — init-folders
+
+Standard task folder structure created (plan/, research/, results/, results/images/, corrections/,
+intervention/, code/, logs/ subdirs, assets/answer/, assets/predictions/). Key output:
+`logs/steps/003_init-folders/folders_created.txt`. Aggregator cache populated in ctx/ (task_types,
+costs, tasks, metrics, suggestions).
 
 ### Step 2 — check-deps
 
@@ -36,8 +43,9 @@ task types). Step 1 is a mechanical setup step with no research output.
 
 ## Next Step Notes
 
-Step 2 (check-deps) completed successfully. Both task dependencies are confirmed completed and all
-verificator checks passed with zero errors and zero warnings. Proceed to step 3 (init-folders) per
-`step_tracker.json`. The init-folders step should create the standard task folder structure
-including research/, plan/, results/, and logs/ subdirectories, then populate the aggregator cache
-in ctx/.
+Step 3 (init-folders) completed successfully. All mandatory task directories were created with
+.gitkeep files, and the aggregator cache in ctx/ was fully populated (task_types.json, costs.json,
+tasks.json, metrics.json, suggestions.json). Proceed to step 4 (research-papers) per
+step_tracker.json. The research-papers step should review existing STT papers in the corpus relevant
+to short-clip robustness and model comparisons; read ctx/tasks.json for prior task context and
+ctx/task_types.json to understand the task types.
