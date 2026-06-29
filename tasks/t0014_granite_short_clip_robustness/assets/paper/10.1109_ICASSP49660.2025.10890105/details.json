@@ -1,0 +1,69 @@
+{
+  "spec_version": "3",
+  "paper_id": "10.1109_ICASSP49660.2025.10890105",
+  "doi": "10.1109/ICASSP49660.2025.10890105",
+  "title": "Investigation of Whisper ASR Hallucinations Induced by Non-Speech Audio",
+  "url": "https://arxiv.org/abs/2501.11378",
+  "pdf_url": "https://arxiv.org/pdf/2501.11378",
+  "date_published": "2025-04-06",
+  "year": 2025,
+  "authors": [
+    {
+      "name": "Mateusz Barański",
+      "country": "PL",
+      "institution": "AGH University of Krakow",
+      "orcid": null
+    },
+    {
+      "name": "Jan Jasiński",
+      "country": "PL",
+      "institution": "AGH University of Krakow",
+      "orcid": null
+    },
+    {
+      "name": "Julitta Bartolewska",
+      "country": "PL",
+      "institution": "AGH University of Krakow",
+      "orcid": null
+    },
+    {
+      "name": "Stanisław Kacprzak",
+      "country": "PL",
+      "institution": "AGH University of Krakow",
+      "orcid": null
+    },
+    {
+      "name": "Marcin Witkowski",
+      "country": "PL",
+      "institution": "AGH University of Krakow",
+      "orcid": null
+    },
+    {
+      "name": "Konrad Kowalczyk",
+      "country": "PL",
+      "institution": "AGH University of Krakow",
+      "orcid": null
+    }
+  ],
+  "institutions": [
+    {
+      "name": "AGH University of Krakow",
+      "country": "PL"
+    }
+  ],
+  "journal": "ICASSP 2025 - 2025 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)",
+  "venue_type": "conference",
+  "categories": [
+    "stt-evaluation"
+  ],
+  "abstract": "Hallucinations of deep neural models are amongst key challenges in automatic speech recognition (ASR). In this paper, we investigate hallucinations of the Whisper ASR model induced by non-speech audio segments present during inference. By inducting hallucinations with various types of sounds, we show that there exists a set of hallucinations that appear frequently. We then study hallucinations caused by the augmentation of speech with such sounds. Finally, we describe the creation of a bag of hallucinations (BoH) that allows to remove the effect of hallucinations through the post-processing of text transcriptions. The results of our experiments show that such post-processing is capable of reducing word error rate (WER) and acts as a good safeguard against problematic hallucinations.",
+  "citation_key": "Baranski2025",
+  "summary_path": "summary.md",
+  "files": [
+    "files/baranski_2025_whisper-hallucinations-nonspeech.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0014_granite_short_clip_robustness",
+  "date_added": "2026-06-29"
+}
