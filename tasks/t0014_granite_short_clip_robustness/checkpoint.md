@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0014_granite_short_clip_robustness"
-updated_at: "2026-06-29T12:27:00Z"
-completed_steps: 4
-next_step_number: 5
-next_step_id: "research-internet"
+updated_at: "2026-06-29T12:55:00Z"
+completed_steps: 5
+next_step_number: 6
+next_step_id: "research-code"
 ---
 # Task Objective
 
@@ -14,6 +14,16 @@ simulation, and assess production fit as a Parakeet replacement in brainpowa.
 * * *
 
 ## Step History
+
+### Step 5 — research-internet
+
+Conducted 12 web searches across arXiv, GitHub, and official IBM/NVIDIA docs; 3 new papers
+discovered (Baranski2025 Whisper BoH, Wang2025 Calm-Whisper, Saon2025 Granite-speech architecture)
+and add-paper subagents launched in parallel. Key findings: Granite 4.1 2B uses a 4-second
+block-attention window (so sub-4 s clips process in one Conformer pass with expected empty-output
+failure mode, not hallucination), Parakeet default `chunk_secs=2` means all sub-2 s bins are
+degenerate single-chunk cases, and brainpowa-realtime-api has no public docs (must be assessed from
+source). Output: `research/research_internet.md` (verificator passed 0 errors, 0 warnings).
 
 ### Step 4 — research-papers
 
@@ -51,11 +61,10 @@ task types). Step 1 is a mechanical setup step with no research output.
 
 ## Next Step Notes
 
-Step 4 (research-papers) completed successfully. The research corpus contained 19 relevant papers; 6
-were cited in `research/research_papers.md`. The literature establishes that short clips (sub-6-word
-commands) are the highest-risk failure zone for ASR models, with WildASR documenting 38–74% WER and
-synthetic TTS underestimating failures by 5.9×. Whisper's VAD heuristics (`no_speech_threshold=0.6`,
-temperature fallback) are the mechanistic cause of short-clip drop failures. For the internet
-research step (step 5), focus on brainpowa streaming adapter integration details, Granite Speech 4.1
-2B release notes and known short-clip behavior, and any production deployment documentation not
-captured in the paper corpus.
+For the research-code step (step 6), focus on reviewing t0012 code and predictions (the streaming
+harness and Granite/Parakeet inference scripts), t0009 baselines (entity accuracy evaluation code),
+t0011 streaming harness implementation, and the brainpowa STTAdapter interface in the production
+codebase. Key questions: does the existing streaming harness already handle sub-2 s clip injection,
+what metrics/utilities can be reused, and does the brainpowa ParakeetSTT adapter override
+`chunk_secs` from NeMo's default of 2 s. Three add-paper subagents (Baranski2025, Wang2025,
+Saon2025) are running in parallel and must complete before compare-literature and reporting steps.

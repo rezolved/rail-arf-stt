@@ -41,10 +41,10 @@
       "step": 5,
       "name": "research-internet",
       "description": "Search for brainpowa-realtime-api integration details, Granite STTAdapter patterns, and short-clip failure mode documentation.",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-06-29T12:29:03Z",
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/005_research-internet/"
     },
     {
       "step": 6,
