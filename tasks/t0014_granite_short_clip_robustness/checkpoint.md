@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0014_granite_short_clip_robustness"
-updated_at: "2026-06-29T12:22:00Z"
-completed_steps: 3
-next_step_number: 4
-next_step_id: "research-papers"
+updated_at: "2026-06-29T12:27:00Z"
+completed_steps: 4
+next_step_number: 5
+next_step_id: "research-internet"
 ---
 # Task Objective
 
@@ -14,6 +14,14 @@ simulation, and assess production fit as a Parakeet replacement in brainpowa.
 * * *
 
 ## Step History
+
+### Step 4 — research-papers
+
+Reviewed 19 papers across stt-evaluation, latency-profiling, and audio-datasets categories; 6 cited
+in `research/research_papers.md`. Key finding: short utterances are the primary failure zone (WER
+38–74% on sub-6-word commands per WildASR), Whisper VAD heuristics (`no_speech_threshold=0.6`) are
+the mechanistic cause of short-clip failures, and hallucination rate must be tracked separately from
+empty-output rate. Verificator passed with zero errors.
 
 ### Step 3 — init-folders
 
@@ -43,9 +51,11 @@ task types). Step 1 is a mechanical setup step with no research output.
 
 ## Next Step Notes
 
-Step 3 (init-folders) completed successfully. All mandatory task directories were created with
-.gitkeep files, and the aggregator cache in ctx/ was fully populated (task_types.json, costs.json,
-tasks.json, metrics.json, suggestions.json). Proceed to step 4 (research-papers) per
-step_tracker.json. The research-papers step should review existing STT papers in the corpus relevant
-to short-clip robustness and model comparisons; read ctx/tasks.json for prior task context and
-ctx/task_types.json to understand the task types.
+Step 4 (research-papers) completed successfully. The research corpus contained 19 relevant papers; 6
+were cited in `research/research_papers.md`. The literature establishes that short clips (sub-6-word
+commands) are the highest-risk failure zone for ASR models, with WildASR documenting 38–74% WER and
+synthetic TTS underestimating failures by 5.9×. Whisper's VAD heuristics (`no_speech_threshold=0.6`,
+temperature fallback) are the mechanistic cause of short-clip drop failures. For the internet
+research step (step 5), focus on brainpowa streaming adapter integration details, Granite Speech 4.1
+2B release notes and known short-clip behavior, and any production deployment documentation not
+captured in the paper corpus.
