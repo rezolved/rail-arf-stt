@@ -1,0 +1,13 @@
+{
+  "spec_version": "3",
+  "correction_id": "C-0013-05",
+  "correcting_task": "t0013_brainstorm_results_1",
+  "target_task": "t0008_moonshine_v2_benchmark",
+  "target_kind": "suggestion",
+  "target_id": "S-0008-02",
+  "action": "update",
+  "changes": {
+    "status": "rejected"
+  },
+  "rationale": "Moonshine v2 eliminated in t0008. Model-size ablation on an eliminated model adds no project value."
+}

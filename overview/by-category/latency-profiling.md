@@ -255,7 +255,7 @@ WER.
 
 No answers in this category.
 
-## Suggestions (7 open, 0 closed)
+## Suggestions (6 open, 1 closed)
 
 <details>
 <summary>🧪 <strong>Benchmark Moonshine ONNX Medium on gold-92 when UsefulSensors
@@ -288,24 +288,6 @@ streaming-medium, and any large variant) would confirm whether the entity accura
 a training-distribution gap or a tokenizer/decoder limit, and would determine the optimal
 model size for latency/accuracy trade-off before investing in S-0005-04 shallow fusion work.
 Recommended task types: stt-benchmark-run, comparative-analysis.
-
-</details>
-
-<details>
-<summary>📊 <strong>Profile Granite 4.1, Paraformer, and Whisper latency under
-concurrent request load</strong> (S-0005-05)</summary>
-
-**Kind**: evaluation | **Priority**: high | **Date**: 2026-06-24 | **Source**:
-[t0005_stt_model_survey_brainpowa](../../tasks/t0005_stt_model_survey_brainpowa/)
-
-The survey reports single-request latencies; production voice-to-action pipelines receive
-concurrent requests. Profile all three candidates (Granite, Paraformer, Whisper turbo) on
-Rezolve's production infrastructure under 10, 50, and 100 concurrent sessions. Measure TTFT
-(time-to-first-token), total latency, p50/p95/p99 percentiles, and VRAM utilization at each
-concurrency level. This determines whether Granite/Paraformer can sustain the latency budget
-under realistic load, and whether GPU memory becomes the bottleneck. If latency degrades
-significantly at >10 concurrent sessions, batch-processing or model quantization strategies
-become necessary. Recommended task types: experiment-run, data-analysis.
 
 </details>
 

@@ -1,7 +1,7 @@
 # Suggestions: `stt-evaluation`
 
-25 suggestion(s) in category [`stt-evaluation`](../../../meta/categories/stt-evaluation/) **23
-open** (8 high, 13 medium, 2 low), **2 closed**.
+25 suggestion(s) in category [`stt-evaluation`](../../../meta/categories/stt-evaluation/) **20
+open** (5 high, 13 medium, 2 low), **5 closed**.
 
 [Back to all suggestions](../README.md)
 
@@ -33,53 +33,6 @@ task types: audio-dataset-curation.
 </details>
 
 <details>
-<summary>🧪 <strong>Benchmark FunASR Paraformer with contextual biasing on
-gold-92</strong> (S-0005-02)</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `S-0005-02` |
-| **Kind** | experiment |
-| **Date added** | 2026-06-24 |
-| **Source task** | [`t0005_stt_model_survey_brainpowa`](../../../overview/tasks/task_pages/t0005_stt_model_survey_brainpowa.md) |
-| **Source paper** | — |
-| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
-
-FunASR Paraformer (SenseVoice/SeACo variant) achieves 1.8% Entity WER (EWER) with
-shallow-fusion contextual biasing on ~1,800 entities, and Apache 2.0 license. As the secondary
-candidate from the survey, benchmark it on gold-92 to validate entity accuracy and measure
-latency under concurrent load. Test both shallow-fusion (low-latency) and deep-biasing
-variants if available. If TTFT <200ms achievable and entity accuracy competitive with Granite,
-Paraformer becomes a strong alternative. Also measure integration complexity vs. Granite to
-inform production selection. Recommended task types: stt-benchmark-run, experiment-run.
-
-</details>
-
-<details>
-<summary>🔧 <strong>Integrate IBM Granite Speech 4.1 into brainpowa STTAdapter brick
-(async wrapper)</strong> (S-0005-03)</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `S-0005-03` |
-| **Kind** | technique |
-| **Date added** | 2026-06-24 |
-| **Source task** | [`t0005_stt_model_survey_brainpowa`](../../../overview/tasks/task_pages/t0005_stt_model_survey_brainpowa.md) |
-| **Source paper** | — |
-| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
-
-Create a production-ready Python async wrapper for IBM Granite Speech 4.1 that implements the
-STTAdapter Protocol (async transcribe, optional async transcribe_stream, PCM-16 mono input
-handling). Start from the Hugging Face Transformers API and reference Granite's
-keyword-biasing generate() kwargs. Test end-to-end with Rezolve's context injection
-infrastructure and validate that biasing context can be programmatically updated per session.
-Integration effort estimated at 2–3 days. Deliverable: new brick class in
-`src/brainpowa_realtime_api/pipeline/stt/granite_adapter.py` with unit tests and latency
-profiling. Recommended task types: infrastructure-setup, write-library.
-
-</details>
-
-<details>
 <summary>🔧 <strong>LLM post-correction layer for entity normalization on Whisper
 transcripts</strong> (S-0002-03)</summary>
 
@@ -99,30 +52,6 @@ without rewriting the full transcript. The baseline shows entity accuracy of 25.
 (Rezolve→Hizol, Rezolve→Resolve) that a prompted LLM with glossary access could correct
 cheaply. Target: measure entity accuracy gain and added latency overhead vs the 800 ms p50
 budget. Recommended task types: post-correction-experiment, experiment-run.
-
-</details>
-
-<details>
-<summary>📊 <strong>Profile Granite 4.1, Paraformer, and Whisper latency under
-concurrent request load</strong> (S-0005-05)</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `S-0005-05` |
-| **Kind** | evaluation |
-| **Date added** | 2026-06-24 |
-| **Source task** | [`t0005_stt_model_survey_brainpowa`](../../../overview/tasks/task_pages/t0005_stt_model_survey_brainpowa.md) |
-| **Source paper** | — |
-| **Categories** | [`latency-profiling`](../../../meta/categories/latency-profiling/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
-
-The survey reports single-request latencies; production voice-to-action pipelines receive
-concurrent requests. Profile all three candidates (Granite, Paraformer, Whisper turbo) on
-Rezolve's production infrastructure under 10, 50, and 100 concurrent sessions. Measure TTFT
-(time-to-first-token), total latency, p50/p95/p99 percentiles, and VRAM utilization at each
-concurrency level. This determines whether Granite/Paraformer can sustain the latency budget
-under realistic load, and whether GPU memory becomes the bottleneck. If latency degrades
-significantly at >10 concurrent sessions, batch-processing or model quantization strategies
-become necessary. Recommended task types: experiment-run, data-analysis.
 
 </details>
 
@@ -555,6 +484,31 @@ BR-ASR. Recommended task types: internet-research.
 ## Closed
 
 <details>
+<summary>✅ <s>Benchmark FunASR Paraformer with contextual biasing on gold-92</s> —
+covered by <a
+href="../../../tasks/t0010_funasr_paraformer_benchmark/"><code>t0010_funasr_paraformer_benchmark</code></a>
+(S-0005-02)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0005-02` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-24 |
+| **Source task** | [`t0005_stt_model_survey_brainpowa`](../../../overview/tasks/task_pages/t0005_stt_model_survey_brainpowa.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+
+FunASR Paraformer (SenseVoice/SeACo variant) achieves 1.8% Entity WER (EWER) with
+shallow-fusion contextual biasing on ~1,800 entities, and Apache 2.0 license. As the secondary
+candidate from the survey, benchmark it on gold-92 to validate entity accuracy and measure
+latency under concurrent load. Test both shallow-fusion (low-latency) and deep-biasing
+variants if available. If TTFT <200ms achievable and entity accuracy competitive with Granite,
+Paraformer becomes a strong alternative. Also measure integration complexity vs. Granite to
+inform production selection. Recommended task types: stt-benchmark-run, experiment-run.
+
+</details>
+
+<details>
 <summary>✅ <s>Benchmark IBM Granite Speech 4.1 2B on gold-92 for entity accuracy and
 latency</s> — covered by <a
 href="../../../tasks/t0007_ibm_granite_4_1_benchmark/"><code>t0007_ibm_granite_4_1_benchmark</code></a>
@@ -577,6 +531,58 @@ entity accuracy improves >10% and latency remains <800ms p50, Granite becomes th
 primary candidate for production integration. If entity biasing falls short, test variant
 configurations (e.g., larger biasing context window). Recommended task types:
 stt-benchmark-run, experiment-run.
+
+</details>
+
+<details>
+<summary>✅ <s>Integrate IBM Granite Speech 4.1 into brainpowa STTAdapter brick
+(async wrapper)</s> — covered by <a
+href="../../../tasks/t0014_granite_short_clip_robustness/"><code>t0014_granite_short_clip_robustness</code></a>
+(S-0005-03)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0005-03` |
+| **Kind** | technique |
+| **Date added** | 2026-06-24 |
+| **Source task** | [`t0005_stt_model_survey_brainpowa`](../../../overview/tasks/task_pages/t0005_stt_model_survey_brainpowa.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+
+Create a production-ready Python async wrapper for IBM Granite Speech 4.1 that implements the
+STTAdapter Protocol (async transcribe, optional async transcribe_stream, PCM-16 mono input
+handling). Start from the Hugging Face Transformers API and reference Granite's
+keyword-biasing generate() kwargs. Test end-to-end with Rezolve's context injection
+infrastructure and validate that biasing context can be programmatically updated per session.
+Integration effort estimated at 2–3 days. Deliverable: new brick class in
+`src/brainpowa_realtime_api/pipeline/stt/granite_adapter.py` with unit tests and latency
+profiling. Recommended task types: infrastructure-setup, write-library.
+
+</details>
+
+<details>
+<summary>✅ <s>Profile Granite 4.1, Paraformer, and Whisper latency under concurrent
+request load</s> — covered by <a
+href="../../../tasks/t0011_streaming_stt_benchmark/"><code>t0011_streaming_stt_benchmark</code></a>
+(S-0005-05)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0005-05` |
+| **Kind** | evaluation |
+| **Date added** | 2026-06-24 |
+| **Source task** | [`t0005_stt_model_survey_brainpowa`](../../../overview/tasks/task_pages/t0005_stt_model_survey_brainpowa.md) |
+| **Source paper** | — |
+| **Categories** | [`latency-profiling`](../../../meta/categories/latency-profiling/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+
+The survey reports single-request latencies; production voice-to-action pipelines receive
+concurrent requests. Profile all three candidates (Granite, Paraformer, Whisper turbo) on
+Rezolve's production infrastructure under 10, 50, and 100 concurrent sessions. Measure TTFT
+(time-to-first-token), total latency, p50/p95/p99 percentiles, and VRAM utilization at each
+concurrency level. This determines whether Granite/Paraformer can sustain the latency budget
+under realistic load, and whether GPU memory becomes the bottleneck. If latency degrades
+significantly at >10 concurrent sessions, batch-processing or model quantization strategies
+become necessary. Recommended task types: experiment-run, data-analysis.
 
 </details>
 

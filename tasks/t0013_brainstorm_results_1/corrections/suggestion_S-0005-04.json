@@ -1,0 +1,13 @@
+{
+  "spec_version": "3",
+  "correction_id": "C-0013-02",
+  "correcting_task": "t0013_brainstorm_results_1",
+  "target_task": "t0005_stt_model_survey_brainpowa",
+  "target_kind": "suggestion",
+  "target_id": "S-0005-04",
+  "action": "update",
+  "changes": {
+    "status": "rejected"
+  },
+  "rationale": "Moonshine v2 eliminated in t0008: entity accuracy 21.7%, domain-vocab accuracy 9.1%, action-critical WER 34.2%. Investing effort in shallow-fusion biasing for a model this far below the accuracy floor is not justified."
+}

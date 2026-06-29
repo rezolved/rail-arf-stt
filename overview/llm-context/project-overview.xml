@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive preset_id="project-overview" generated_at_utc="2026-06-25T09:59:24Z">
+<llm_context_archive preset_id="project-overview" generated_at_utc="2026-06-29T11:55:22Z">
   <archive_summary>
     <title>Project Overview</title>
     <description>Compact starter context for general project chats.</description>
     <use_case>General orientation, quick status questions, and lightweight strategy chats.</use_case>
     <section_count>4</section_count>
-    <char_count>13012</char_count>
-    <byte_count>13077</byte_count>
-    <estimated_tokens>3253</estimated_tokens>
+    <char_count>19513</char_count>
+    <byte_count>19620</byte_count>
+    <estimated_tokens>4878</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -106,10 +106,17 @@ gold-92 (`t0002_baseline_evaluation`).
         <id>t0003_literature_review_entity_stt</id>
         <id>t0004_vocabulary_biasing_experiment</id>
         <id>t0005_stt_model_survey_brainpowa</id>
+        <id>t0006_nemotron_3_5_benchmark</id>
+        <id>t0007_ibm_granite_4_1_benchmark</id>
         <id>t0008_moonshine_v2_benchmark</id>
+        <id>t0009_parakeet_production_baseline</id>
+        <id>t0010_funasr_paraformer_benchmark</id>
+        <id>t0011_streaming_stt_benchmark</id>
+        <id>t0012_whisper_parakeet_granite_streaming</id>
+        <id>t0013_brainstorm_results_1</id>
       </source_ids>
       <content>
-Completed tasks: 6
+Completed tasks: 13
 
 ## STT Benchmark — Gold-92 Dataset Ingestion
 ID: t0001_stt_benchmark
@@ -141,36 +148,70 @@ Completed: 2026-06-24
 Short description: Survey open-source/open-weight STT models that fit the brainpowa STTAdapter brick and could improve entity accuracy under the 800ms voice-to-action latency budget.
 Result summary: Results Summary: STT Model Survey for brainpowa Pipeline Summary Comprehensive internet research identified and ranked 20+ open-source/open-weight STT models suitable for integration as a brainpowa STTAdapter brick candidate. Top 3 shortlist: **IBM Granite 4.1 2B** (highest entity accuracy + latency fit), **FunASR Paraformer** (best entity-specific metrics), **Moonshine v2** (fastest, CPU-only). Research revealed entity-biasing capability gaps in standard Whisper/Canary and positioned Granite + Paraformer as primary next-step benchmarking candidates for gold-92 evaluation against current Whisper turbo + initial_prompt baseline. Metrics - **Models surveyed**: 20+ (15 detailed, 5 excluded with...
 
+## Benchmark NVIDIA Nemotron 3.5 ASR on Gold-92
+ID: t0006_nemotron_3_5_benchmark
+Completed: 2026-06-25
+Short description: Benchmark NVIDIA Nemotron 3.5 ASR (streaming native) on gold-92 to validate entity accuracy and latency vs. Whisper baseline.
+Result summary: --- spec_version: &quot;1&quot; task_id: &quot;t0006_nemotron_3_5_benchmark&quot; date_completed: &quot;2026-06-25&quot; --- Results Summary — NVIDIA Nemotron 3.5 ASR Benchmark on Gold-92 Summary NVIDIA Nemotron 3.5 ASR was benchmarked on all 93 gold-92 clips in two configurations: batch (no biasing) and streaming with word boosting. Batch WER=17.6% is 2× worse than the Whisper large-v3 baseline (8.5%), and batch entity accuracy=24.7% is 21 pp below Whisper (46.0%). Word boosting actively degrades performance relative to batch: ΔEA=−6.0 pp, ΔWER=+2.3 pp, ΔEA_DV=−5.5 pp. Latency p50=0.72s is within the 800 ms voice-to-action budget but does not offer a meaningful advantage over Granite biased (248 ms). Nemotron 3.5 is not...
+
+## Benchmark IBM Granite Speech 4.1 2B on Gold-92
+ID: t0007_ibm_granite_4_1_benchmark
+Completed: 2026-06-25
+Short description: Benchmark IBM Granite Speech 4.1 2B with keyword biasing on gold-92 to validate entity accuracy and latency vs. Whisper large-v3 + initial_prompt baseline.
+Result summary: --- spec_version: &quot;1&quot; task_id: &quot;t0007_ibm_granite_4_1_benchmark&quot; date_completed: &quot;2026-06-25&quot; --- Results Summary — IBM Granite Speech 4.1 2B Benchmark on Gold-92 Summary IBM Granite Speech 4.1 2B with keyword biasing achieves 40.2% overall entity accuracy and 98.5% domain-vocabulary entity accuracy on gold-92, matching Whisper&#x27;s domain-vocab score (94.5%) and delivering 27× lower latency (248 ms vs. 6.66 s p50). Against the actual production baseline (Parakeet TDT 0.6b-v3, t0009), Granite biased is +73% better on overall entity accuracy (40.2% vs. 23.2%), +196% better on domain-vocab accuracy (98.5% vs. 33.3%), and −75% better on action-critical WER (8.2% vs. 33.5%), at the cost of 6.5×...
+
 ## Benchmark Moonshine v2 on Gold-92
 ID: t0008_moonshine_v2_benchmark
 Completed: 2026-06-25
 Short description: Benchmark Moonshine v2 (CPU-only) on gold-92 to validate entity accuracy and latency without GPU requirements, comparing entity recall and biasing feasibility vs. Whisper baseline.
 Result summary: --- spec_version: &quot;1&quot; task_id: &quot;t0008_moonshine_v2_benchmark&quot; date_completed: &quot;2026-06-25&quot; --- Results Summary — Moonshine v2 Benchmark on Gold-92 Summary Moonshine v2 Medium (UsefulSensors/moonshine-streaming-medium, 266M params, CPU) was benchmarked on all 93 gold-92 clips. It achieves WER=16.6% and entity accuracy (domain vocab) of 9.1%, both significantly worse than the Whisper large-v3 baseline (8.5% WER, 94.5% domain-vocab entity accuracy). Warmed latency p50 of 233ms is close to the 200ms target but does not meet it; cold-start latency is 1.33s. Moonshine is not production-ready for Rezolve&#x27;s voice commerce use case without vocabulary biasing, but shallow-fusion is feasible (~15–25...
+
+## Parakeet TDT 0.6b-v3 Production Baseline on Gold-92
+ID: t0009_parakeet_production_baseline
+Completed: 2026-06-25
+Short description: Establish production baseline metrics for Parakeet TDT 0.6b-v3 on gold-92 to enable direct comparison with all other benchmarked STT models.
+Result summary: --- spec_version: &quot;1&quot; task_id: &quot;t0009_parakeet_production_baseline&quot; date_completed: &quot;2026-06-25&quot; --- Results Summary — Parakeet TDT 0.6b-v3 Production Baseline on Gold-92 Summary Parakeet TDT 0.6b-v3 (NVIDIA, current Rezolve production model) was benchmarked on all 93 gold-92 clips in unbiased and production-config (biased) modes. The production config achieves entity accuracy=23.2%, domain-vocabulary accuracy=33.3%, WER=15.2%, and action-critical WER=33.5% at p50 latency=38 ms. Keyword biasing in the production config provides negligible benefit over unbiased: ΔEA=−0.2 pp, ΔEA_DV=+1.4 pp, ΔWER=+0.1 pp. This baseline establishes the current production floor. All subsequent benchmark tasks...
+
+## Benchmark FunASR SeACo-Paraformer on Gold-92
+ID: t0010_funasr_paraformer_benchmark
+Completed: 2026-06-25
+Short description: Benchmark FunASR SeACo-Paraformer (English, contextual biasing) on gold-92 to validate entity accuracy and latency vs. Granite biased and Parakeet production baselines.
+Result summary: --- spec_version: &quot;1&quot; task_id: &quot;t0010_funasr_paraformer_benchmark&quot; date_completed: &quot;2026-06-25&quot; --- Results Summary — FunASR SeACo-Paraformer Benchmark on Gold-92 Summary FunASR SeACo-Paraformer-en (iic/speech_seaco_paraformer_asr_nat-en-16k-common-vocab10020) was benchmarked on all 93 gold-92 clips in batch and contextual-biased modes. The model produces near-random English-sounding tokens when given Rezolve&#x27;s investor-relations English speech: WER=122.7% (batch), WER=122.2% (biased). WER exceeding 100% indicates the model&#x27;s hypotheses contain more word errors than reference words — effectively complete transcription failure. Entity accuracy is 2.2% in both variants, and domain-vocabulary...
+
+## Streaming STT Benchmark — Parakeet TDT 0.6b-v3 vs Granite Speech 4.1 2B (biased)
+ID: t0011_streaming_stt_benchmark
+Completed: 2026-06-26
+Short description: Simulate production streaming audio flow on gold-92, comparing biased Parakeet TDT 0.6b-v3 vs biased Granite Speech 4.1 2B on accuracy and latency.
+Result summary: t0011 — Streaming STT Benchmark: Results Summary Streaming delivery (32 kB PCM chunks, accumulate-then-transcribe) produces results statistically identical to batch on both models: all accuracy deltas are below 0.1 pp and latency overhead is under 4 ms. Granite Speech 4.1 2B (biased) leads on all accuracy metrics under streaming (EA 41.1%, AC-WER 7.6%), while Parakeet TDT 0.6b-v3 (biased) retains a 6× latency advantage (41 ms vs 250 ms p50). Key Numbers | Model | EA | EA\_DV | WER | AC-WER | IP | Lat p50 | | --- | --- | --- | --- | --- | --- | --- | | Parakeet biased — batch (t0009) | 23.2% | 33.3% | 15.2% | 33.5% | 87.1% | 38 ms | | Granite 4.1 2B biased — batch (t0007) | 40.2% | 98.6% |...
+
+## Production Streaming Benchmark — Whisper, Parakeet, Granite on Gold-92
+ID: t0012_whisper_parakeet_granite_streaming
+Completed: 2026-06-29
+Short description: Benchmark Whisper turbo, Parakeet TDT 0.6b-v3, and Granite Speech 4.1 2B on gold-92, each in its own production streaming mode, measuring accuracy and latency.
+Result summary: No summary available.
+
+## Brainstorm Results — Session 1
+ID: t0013_brainstorm_results_1
+Completed: 2026-06-29
+Short description: First brainstorm session: reviewed 12 completed tasks, decided to create t0014 (Granite short-clip robustness + production fit), and rejected 6 superseded suggestions.
+Result summary: Results Summary — t0013 Brainstorm Session 1 Summary First brainstorm session after 12 completed tasks. One new task created (t0014: Granite short-clip robustness + production fit assessment) and six suggestions rejected for eliminated models or superseded experiments. The session established that the next priority is validating Granite Speech 4.1 2B as a production replacement for Parakeet TDT 0.6b-v3, with explicit focus on short-clip robustness using real production streaming simulation. Session Overview Date: 2026-06-29. First brainstorm session for the project. Prompted by completion of all 12 benchmark and research tasks, particularly t0012 which established a three-model production...
       </content>
     </section>
     <section id="planned-tasks" source_kind="aggregator">
       <title>Planned Tasks</title>
       <source_name>aggregate_tasks_full</source_name>
       <source_ids>
-        <id>t0006_nemotron_3_5_benchmark</id>
-        <id>t0007_ibm_granite_4_1_benchmark</id>
+        <id>t0014_granite_short_clip_robustness</id>
       </source_ids>
       <content>
-Planned or active tasks: 2
+Planned or active tasks: 1
 
-## Benchmark NVIDIA Nemotron 3.5 ASR on Gold-92
-ID: t0006_nemotron_3_5_benchmark
+## Granite Short-Clip Robustness Validation + Production Fit Assessment
+ID: t0014_granite_short_clip_robustness
 Status: not_started
-Effective date: 2026-06-24
-Short description: Benchmark NVIDIA Nemotron 3.5 ASR (streaming native) on gold-92 to validate entity accuracy and latency vs. Whisper baseline.
-Dependencies: t0001_stt_benchmark, t0004_vocabulary_biasing_experiment
-
-## Benchmark IBM Granite Speech 4.1 2B on Gold-92
-ID: t0007_ibm_granite_4_1_benchmark
-Status: in_progress
-Effective date: 2026-06-25
-Short description: Benchmark IBM Granite Speech 4.1 2B with keyword biasing on gold-92 to validate entity accuracy and latency vs. Whisper large-v3 + initial_prompt baseline.
-Dependencies: t0001_stt_benchmark, t0004_vocabulary_biasing_experiment
+Effective date: unknown
+Short description: Validate Granite Speech 4.1 2B robustness on short clips vs Parakeet via production streaming simulation, and assess production fit as a Parakeet replacement in brainpowa.
+Dependencies: t0013_brainstorm_results_1, t0012_whisper_parakeet_granite_streaming
       </content>
     </section>
     <section id="questions-and-answers" source_kind="aggregator">

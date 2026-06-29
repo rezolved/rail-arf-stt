@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive type_id="suggestions" generated_at_utc="2026-06-25T09:59:24Z">
+<llm_context_archive type_id="suggestions" generated_at_utc="2026-06-29T11:55:22Z">
   <archive_summary>
     <title>All Suggestions</title>
     <description>Complete suggestion list with full descriptions, priority, and status.</description>
     <section_count>1</section_count>
-    <char_count>26910</char_count>
-    <byte_count>26938</byte_count>
-    <estimated_tokens>6727</estimated_tokens>
+    <char_count>26922</char_count>
+    <byte_count>26950</byte_count>
+    <estimated_tokens>6730</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -51,7 +51,7 @@ Suggestions: 28
 
 ## Vocabulary-biased Whisper inference via STT_INITIAL_PROMPT on gold-92
 ID: S-0002-01
-Status: active
+Status: rejected
 Priority: high
 Kind: experiment
 Source task: t0002_baseline_evaluation
@@ -255,7 +255,7 @@ Create a production-ready Python async wrapper for IBM Granite Speech 4.1 that i
 
 ## Implement shallow-fusion contextual biasing adapter for Moonshine v2
 ID: S-0005-04
-Status: active
+Status: rejected
 Priority: medium
 Kind: technique
 Source task: t0005_stt_model_survey_brainpowa
@@ -310,7 +310,7 @@ Gold-92 is weighted toward investor-relations domain (accented English, financia
 
 ## Quantify entity accuracy gain vs. integration effort for Granite vs. Paraformer
 ID: S-0005-09
-Status: active
+Status: rejected
 Priority: medium
 Kind: evaluation
 Source task: t0005_stt_model_survey_brainpowa
@@ -332,7 +332,7 @@ If benchmarking shows that Granite or Paraformer meet accuracy targets but excee
 
 ## Benchmark Moonshine ONNX Medium on gold-92 when UsefulSensors ships the ONNX export
 ID: S-0008-01
-Status: active
+Status: rejected
 Priority: medium
 Kind: experiment
 Source task: t0008_moonshine_v2_benchmark
@@ -343,7 +343,7 @@ t0008 used the HuggingFace Transformers CPU backend because moonshine_onnx does 
 
 ## Moonshine model-size ablation: benchmark tiny, base, and large variants on gold-92 entity accuracy
 ID: S-0008-02
-Status: active
+Status: rejected
 Priority: medium
 Kind: experiment
 Source task: t0008_moonshine_v2_benchmark
@@ -354,7 +354,7 @@ t0008 found that Moonshine v2 Medium (266M params) achieves exactly the same ent
 
 ## Preprocess Rezolve investor-relations transcript corpus for KenLM domain language model training
 ID: S-0008-03
-Status: active
+Status: rejected
 Priority: medium
 Kind: dataset
 Source task: t0008_moonshine_v2_benchmark

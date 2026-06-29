@@ -1,0 +1,124 @@
+{
+  "variants": [
+    {
+      "variant_id": "whisper-turbo-streaming",
+      "label": "Whisper turbo \u2014 streaming",
+      "metrics": {
+        "entity_accuracy_gold92": 0.42029,
+        "entity_accuracy_domain_vocab": 0.898551,
+        "wer_gold92": 0.090271,
+        "action_critical_wer_gold92": 0.063291,
+        "intent_preservation_gold92": 0.956989,
+        "latency_p50_seconds": 0.2896,
+        "latency_p95_seconds": 0.5845,
+        "latency_p99_seconds": 1.0054
+      }
+    },
+    {
+      "variant_id": "whisper-turbo-batch",
+      "label": "Whisper turbo \u2014 batch",
+      "metrics": {
+        "entity_accuracy_gold92": 0.42029,
+        "entity_accuracy_domain_vocab": 0.898551,
+        "wer_gold92": 0.090271,
+        "action_critical_wer_gold92": 0.063291,
+        "intent_preservation_gold92": 0.956989,
+        "latency_p50_seconds": 0.0549,
+        "latency_p95_seconds": 0.0915,
+        "latency_p99_seconds": 0.1768
+      }
+    },
+    {
+      "variant_id": "parakeet-tdt-0.6b-v3-streaming-biased",
+      "label": "Parakeet TDT 0.6b-v3 \u2014 streaming biased",
+      "metrics": {
+        "entity_accuracy_gold92": 0.231522,
+        "entity_accuracy_domain_vocab": 0.333333,
+        "wer_gold92": 0.152457,
+        "action_critical_wer_gold92": 0.335443,
+        "intent_preservation_gold92": 0.870968,
+        "latency_p50_seconds": 0.0404,
+        "latency_p95_seconds": 0.0465,
+        "latency_p99_seconds": 0.0489
+      }
+    },
+    {
+      "variant_id": "granite-speech-4.1-2b-streaming-biased",
+      "label": "Granite Speech 4.1 2B \u2014 streaming biased",
+      "metrics": {
+        "entity_accuracy_gold92": 0.41087,
+        "entity_accuracy_domain_vocab": 0.971014,
+        "wer_gold92": 0.088265,
+        "action_critical_wer_gold92": 0.075949,
+        "intent_preservation_gold92": 0.935484,
+        "latency_p50_seconds": 0.2494,
+        "latency_p95_seconds": 0.4013,
+        "latency_p99_seconds": 0.4622
+      }
+    },
+    {
+      "variant_id": "parakeet-tdt-0.6b-v3-chunked-biased",
+      "label": "Parakeet TDT 0.6b-v3 \u2014 chunked re-transcribe biased",
+      "metrics": {
+        "entity_accuracy_gold92": 0.231522,
+        "entity_accuracy_domain_vocab": 0.333333,
+        "wer_gold92": 0.152457,
+        "action_critical_wer_gold92": 0.335443,
+        "intent_preservation_gold92": 0.870968,
+        "latency_p50_seconds": 0.2428,
+        "latency_p95_seconds": 0.3692,
+        "latency_p99_seconds": 0.551
+      }
+    },
+    {
+      "variant_id": "granite-speech-4.1-2b-chunked-biased",
+      "label": "Granite Speech 4.1 2B \u2014 chunked re-transcribe biased",
+      "metrics": {
+        "entity_accuracy_gold92": 0.41087,
+        "entity_accuracy_domain_vocab": 0.971014,
+        "wer_gold92": 0.088265,
+        "action_critical_wer_gold92": 0.075949,
+        "intent_preservation_gold92": 0.935484,
+        "latency_p50_seconds": 1.1697,
+        "latency_p95_seconds": 2.6831,
+        "latency_p99_seconds": 4.6088
+      }
+    }
+  ],
+  "whisper_ttfd": {
+    "p50": 0.029409541999484645,
+    "p95": 0.0372946072013292,
+    "p99": 0.059844753482029577,
+    "mean": 0.031191233118255286
+  },
+  "parakeet_ttfd": {
+    "p50": 0.03291947800244088,
+    "p95": 0.12249347539982398,
+    "p99": 0.1977950261598744,
+    "mean": 0.05325084051610345
+  },
+  "granite_ttfd": {
+    "p50": 0.07657575899793301,
+    "p95": 0.12848128239857032,
+    "p99": 0.14589233871753093,
+    "mean": 0.08824991443007778
+  },
+  "whisper_streaming_vs_batch_delta": {
+    "delta_entity_accuracy": 0.0,
+    "delta_entity_accuracy_dv": 0.0,
+    "delta_wer": 0.0,
+    "delta_action_critical_wer": 0.0,
+    "delta_intent_preservation": 0.0,
+    "delta_latency_p50": 0.234712
+  },
+  "parakeet_vs_t0011_delta": {
+    "delta_entity_accuracy": 2.2e-05,
+    "delta_wer": -4.3e-05,
+    "delta_latency_p50": -0.000626
+  },
+  "granite_vs_t0011_delta": {
+    "delta_entity_accuracy": -3e-05,
+    "delta_wer": -3.5e-05,
+    "delta_latency_p50": -0.000649
+  }
+}
