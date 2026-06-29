@@ -32,9 +32,9 @@
       "step": 4,
       "name": "research-papers",
       "description": "Review existing STT papers in the corpus relevant to short-clip robustness and model comparisons.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-29T12:22:41Z",
-      "completed_at": null,
+      "completed_at": "2026-06-29T12:28:32Z",
       "log_file": "logs/steps/004_research-papers/"
     },
     {
