@@ -2,7 +2,7 @@
 spec_version: "1"
 task_id: "t0014_granite_short_clip_robustness"
 updated_at: "2026-06-29T13:40:00Z"
-completed_steps: 7
+completed_steps: 9
 next_step_number: 8
 next_step_id: "setup-machines"
 ---
@@ -14,6 +14,15 @@ simulation, and assess production fit as a Parakeet replacement in brainpowa.
 * * *
 
 ## Step History
+
+### Step 13 — compare-literature
+
+Skipped: researcher requested fast path to experiment; literature comparison deferred to after
+implementation results are available.
+
+### Step 11 — creative-thinking
+
+Skipped: researcher requested fast path to experiment; no creative analysis needed at this stage.
 
 ### Step 7 — planning
 
