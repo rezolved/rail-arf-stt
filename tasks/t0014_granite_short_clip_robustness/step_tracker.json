@@ -23,9 +23,9 @@
       "step": 3,
       "name": "init-folders",
       "description": "Create task folder structure, step_tracker.json, logs/, and cache aggregator outputs.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-29T12:19:47Z",
-      "completed_at": null,
+      "completed_at": "2026-06-29T12:22:09Z",
       "log_file": "logs/steps/003_init-folders/"
     },
     {
