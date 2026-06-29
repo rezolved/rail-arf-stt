@@ -14,9 +14,9 @@
       "step": 2,
       "name": "check-deps",
       "description": "Verify t0012_whisper_parakeet_granite_streaming and t0013_brainstorm_results_1 are completed.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-29T12:18:11Z",
-      "completed_at": null,
+      "completed_at": "2026-06-29T12:19:04Z",
       "log_file": "logs/steps/002_check-deps/"
     },
     {
