@@ -68,9 +68,9 @@
       "step": 8,
       "name": "setup-machines",
       "description": "Provision Azure H100 NVL GPU machine and prepare conda stt environment with all three model paths.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-29T13:32:44Z",
-      "completed_at": null,
+      "completed_at": "2026-06-30T06:38:18Z",
       "log_file": "logs/steps/008_setup-machines/"
     },
     {
