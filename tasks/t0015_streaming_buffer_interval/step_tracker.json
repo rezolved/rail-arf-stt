@@ -68,9 +68,9 @@
       "step": 8,
       "name": "setup-machines",
       "description": "Provision GPU machine for inference (H100 NVL preferred, same as t0014).",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-30T10:59:32Z",
-      "completed_at": null,
+      "completed_at": "2026-06-30T11:12:22Z",
       "log_file": "logs/steps/008_setup-machines/"
     },
     {
