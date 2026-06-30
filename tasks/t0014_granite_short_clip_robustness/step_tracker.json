@@ -104,10 +104,10 @@
       "step": 12,
       "name": "results",
       "description": "Write results_summary.md, results_detailed.md with 3 charts, metrics.json for all 7 registered metrics, and costs.json.",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-06-30T07:38:28Z",
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/012_results/"
     },
     {
       "step": 13,

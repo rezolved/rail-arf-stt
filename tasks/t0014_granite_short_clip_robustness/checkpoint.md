@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0014_granite_short_clip_robustness"
-updated_at: "2026-06-30T14:05:00Z"
-completed_steps: 12
-next_step_number: 12
-next_step_id: "results"
+updated_at: "2026-06-30T07:55:00Z"
+completed_steps: 13
+next_step_number: 14
+next_step_id: "suggestions"
 ---
 # Task Objective
 
@@ -14,6 +14,14 @@ simulation, and assess production fit as a Parakeet replacement in brainpowa.
 * * *
 
 ## Step History
+
+### Step 12 — results
+
+Wrote `results_summary.md` and `results_detailed.md` with all mandatory sections, 12 concrete
+examples from prediction JSONLs (with fenced code blocks showing raw JSON outputs), and full REQ-1
+through REQ-13 coverage. Key finding confirmed: Granite 0% empty rate vs Parakeet 27.3% on short
+clips; Granite 94.8% EA vs Parakeet 65.0% on gold-92. `verify_task_results` passed 0 errors, 0
+warnings. RM-E001 documented in Limitations (reserved instance not destroyed, expected).
 
 ### Step 10 — teardown
 
@@ -109,10 +117,11 @@ task types). Step 1 is a mechanical setup step with no research output.
 
 ## Next Step Notes
 
-For results (step 12): all data is local. `results/` already has `stratified_analysis.json`,
-`metrics.json`, and 3 chart PNGs. Write `results_summary.md` (headline: Granite 0% empty rate vs
-Parakeet 27.3%, Granite 94.8% EA vs Parakeet 65.0% on gold-92), `results_detailed.md` with
-methodology, examples, and `## Task Requirement Coverage`. Embed all 3 charts. `costs.json` is
-already written ($0, reserved instance). `remote_machines_used.json` is written. Note that
-`verify_machines_destroyed.py` will emit `RM-E001` (reserved instance not destroyed) — document this
-in the verification section of `results_detailed.md`.
+Step 14 is `suggestions`. Run `prestep t0014_granite_short_clip_robustness suggestions`, then invoke
+the `/generate-suggestions` skill to create `results/suggestions.json`. Key inputs for the
+suggestions agent: Granite 0% empty rate vs Parakeet 27.3%, CONDITIONAL YES production
+recommendation with 2.0 s minimum clip gate, 6× latency premium (251 ms vs 41 ms), RM-E001 noted.
+The suggestions agent should look at existing suggestions to avoid duplicates, and prioritize
+actionable follow-up tasks for the brainpowa integration (e.g., implementing `granite.py`
+STTAdapter, setting up minimum clip gate in production, measuring latency impact in end-to-end
+streaming tests).
