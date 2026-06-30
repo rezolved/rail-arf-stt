@@ -5,14 +5,15 @@ held-out set.
 
 [Back to Dashboard](../README.md)
 
-**Detail pages**: [Papers (17)](../papers/by-category/stt-evaluation.md) | [Suggestions
-(25)](../suggestions/by-category/stt-evaluation.md) | [Datasets
+**Detail pages**: [Papers (20)](../papers/by-category/stt-evaluation.md) | [Answers
+(1)](../answers/by-category/stt-evaluation.md) | [Suggestions
+(31)](../suggestions/by-category/stt-evaluation.md) | [Datasets
 (1)](../datasets/by-category/stt-evaluation.md) | [Predictions
-(17)](../predictions/by-category/stt-evaluation.md)
+(20)](../predictions/by-category/stt-evaluation.md)
 
 ---
 
-## Papers (17)
+## Papers (20)
 
 <details>
 <summary>📝 <strong>Retrieval-Augmented Self-Taught Reasoning Model with Adaptive
@@ -558,6 +559,163 @@ accuracy.
 </details>
 
 <details>
+<summary>🏤 <strong>Investigation of Whisper ASR Hallucinations Induced by Non-Speech
+Audio</strong> — Barański et al., 2025</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `10.1109_ICASSP49660.2025.10890105` |
+| **Authors** | Mateusz Barański, Jan Jasiński, Julitta Bartolewska, Stanisław Kacprzak, Marcin Witkowski, Konrad Kowalczyk |
+| **Venue** | ICASSP 2025 - 2025 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP) (conference) |
+| **DOI** | `10.1109/ICASSP49660.2025.10890105` |
+| **URL** | https://arxiv.org/abs/2501.11378 |
+| **Date added** | 2026-06-29 |
+| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/) |
+| **Added by** | [`t0014_granite_short_clip_robustness`](../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Full summary** | [`summary.md`](../../tasks/t0014_granite_short_clip_robustness/assets/paper/10.1109_ICASSP49660.2025.10890105/summary.md) |
+
+Barański et al. investigate a well-known but under-characterised failure mode of Whisper ASR:
+the generation of hallucinated text when the input audio contains no speech. Rather than
+relying on imprecise phonetic similarity measures to define hallucinations, the paper
+constructs a controlled setting — running Whisper exclusively on verified non-speech audio —
+where every output is definitionally a hallucination. This clean experimental design enables a
+large-scale empirical characterisation across 301,317 audio files from four public sound
+datasets, with additional experiments on speech augmented with non-speech sounds.
+
+The methodology proceeds through six experiment groups. Experiment 1 collects an exhaustive
+hallucination list from non-speech audio; Experiments 2–3 examine how clip duration and sound
+category affect hallucination rate. The authors construct the Bag of Hallucinations (BoH) by
+filtering the raw list using an n-gram language model (log probability < −10) and a frequency
+threshold (> 4 occurrences). Experiments 4–5 extend to augmented speech with different noise
+durations and positions. Experiment 6 evaluates Whisper's internal parameters (beam size,
+hallucination silence threshold). Experiment 7 benchmarks full mitigation strategies
+end-to-end using WER on held-out Freesound material.
+
+The headline results show hallucinations are surprisingly predictable: **40.3%** of non-speech
+clips trigger a hallucination, but **35%** of all hallucinations are just two strings. The
+30-second Whisper segment boundary is identified as a primary trigger for elevated
+hallucination rates. Among mitigation strategies, SileroVAD + delooping + BoH achieves the
+best WER of **6.5%** (non-overlap) versus a raw baseline of **104.8%**, while BoH alone
+(without VAD) achieves **17.1% WER** — a strong result for a purely text-side, model-agnostic
+filter.
+
+For this project (t0014, Granite short-clip robustness), the paper is directly relevant at two
+levels. First, the hallucination patterns it documents for Whisper provide a benchmark against
+which Granite's behaviour on short, potentially noisy clips can be compared — if Granite
+exhibits lower hallucination rates on non-speech clips, that is a concrete robustness
+advantage. Second, the BoH post-processing pipeline is immediately applicable as a defensive
+layer for the Rezolve STT harness regardless of which model is used, offering measurable WER
+improvement with no model changes.
+
+</details>
+
+<details>
+<summary>📝 <strong>Granite-speech: open-source speech-aware LLMs with strong English
+ASR capabilities</strong> — Saon et al., 2025</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `10.48550_arXiv.2505.08699` |
+| **Authors** | George Saon, Avihu Dekel, Alexander Brooks, Tohru Nagano, Abraham Daniels, Aharon Satt, Ashish Mittal, Brian Kingsbury, David Haws, Edmilson Morais, Gakuto Kurata, Hagai Aronowitz, Ibrahim Ibrahim, Jeff Kuo, Kate Soule, Luis Lastras, Masayuki Suzuki, Ron Hoory, Samuel Thomas, Sashi Novitasari, Takashi Fukuda, Vishal Sunder, Xiaodong Cui, Zvi Kons |
+| **Venue** | arXiv preprint (preprint) |
+| **DOI** | `10.48550/arXiv.2505.08699` |
+| **URL** | https://arxiv.org/abs/2505.08699 |
+| **Date added** | 2026-06-29 |
+| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`latency-profiling`](../../meta/categories/latency-profiling/) |
+| **Added by** | [`t0014_granite_short_clip_robustness`](../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Full summary** | [`summary.md`](../../tasks/t0014_granite_short_clip_robustness/assets/paper/10.48550_arXiv.2505.08699/summary.md) |
+
+Saon et al. (IBM Research, 2025) introduce Granite-speech-3.3, a family of open-source
+speech-aware LLMs in 2B and 8B parameter variants, designed primarily for English ASR. The
+central research question is whether compact models trained exclusively on publicly licensed
+audio corpora (~76K hours Apache 2.0 compatible data) can match or surpass models trained on
+orders of magnitude more proprietary data. The motivation is both scientific — advancing
+open-source speech models — and practical, enabling commercial deployment without licensing
+barriers.
+
+The architecture integrates three components trained sequentially: a 10-layer conformer CTC
+encoder with block attention and self-conditioned CTC (1.5M updates, 275M parameters), a
+windowed Q-former speech modality adapter achieving 10x total acoustic compression (660K
+updates, 32 H100 GPUs), and LoRA adapters (rank 64) applied to all LLM attention layers. The
+design supports dual-mode inference: the same model weights serve as the base
+granite-3.3-instruct text LLM (LoRA off) or as a speech-aware model (encoder + Q-former + LoRA
+active) depending on whether an `<|audio|>` token appears in the prompt. Key training
+innovations include character-level CTC tokenization, balanced corpus sampling with α=0.6, and
+ensemble-based MT filtering for synthetic AST data that retains under 50% of examples but
+improves BLEU by more than 10 points.
+
+The 8B model achieves the lowest WER among all sub-8B parameter models on 7 of 9 English ASR
+benchmarks, including **1.5% WER** on LibriSpeech clean, **3.0%** on LibriSpeech other,
+**9.2%** on AMI IHM, **26.1%** on AMI SDM, and **5.8%** on VoxPopuli — beating Whisper Large
+v3, Gemini 2.0 Flash, Qwen2-Audio, and Phi-4-mm. The 2B model is competitive, especially on
+AMI SDM (**26.7% WER**), suggesting robustness to adverse acoustic conditions at smaller
+scale. Ablations confirm that character-level CTC tokenization outperforms BPE variants after
+joint LLM training, and the windowed Q-former outperforms MLP and cross-attention projectors.
+
+For the Rezolve STT project, Granite-speech-3.3 is a high-priority candidate for the gold-92
+benchmark evaluation. Its strong performance on conversational and meeting corpora (AMI,
+VoxPopuli) that share acoustic characteristics with Rezolve production call-center audio makes
+it directly relevant for entity accuracy benchmarking. The dual-mode design is particularly
+attractive: a single model instance could handle both transcription and entity-aware
+post-correction, potentially collapsing the two-step Deepgram + LLM correction pipeline and
+reducing voice-to-action latency below the 800 ms p50 budget. The Apache 2.0 license removes
+all commercial deployment barriers, and the planned future work on contextual biasing aligns
+directly with the Rezolve entity boosting objective.
+
+</details>
+
+<details>
+<summary>🏤 <strong>Calm-Whisper: Reduce Whisper Hallucination On Non-Speech By
+Calming Crazy Heads Down</strong> — Wang et al., 2025</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `10.48550_arXiv.2505.12969` |
+| **Authors** | Yingzhi Wang, Anas Alhmoud, Saad Alsahly, Muhammad Alqurishi, Mirco Ravanelli |
+| **Venue** | Interspeech 2025 (conference) |
+| **DOI** | `10.48550/arXiv.2505.12969` |
+| **URL** | https://arxiv.org/abs/2505.12969 |
+| **Date added** | 2026-06-29 |
+| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../meta/categories/whisper-finetuning/) |
+| **Added by** | [`t0014_granite_short_clip_robustness`](../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Full summary** | [`summary.md`](../../tasks/t0014_granite_short_clip_robustness/assets/paper/10.48550_arXiv.2505.12969/summary.md) |
+
+This paper targets a severe and practically important failure mode of Whisper-large-v3:
+hallucination on non-speech audio. With a baseline hallucination rate of **99.97%** on
+UrbanSound8K — meaning virtually every non-speech clip produces fabricated text — Whisper is
+unsafe to deploy in production pipelines that handle mixed-content audio without external VAD
+safeguards. The authors set out to eliminate this hallucination from within the model, without
+adding inference-time complexity or external pre/post-processing.
+
+The technical approach proceeds in two stages. First, a head-wise masking study isolates which
+of Whisper-large-v3's 20 decoder self-attention heads contributes most to hallucination. Three
+heads (#1, #6, #11) are identified as responsible for over **75%** of the problem. Second,
+only the weights of those three heads are fine-tuned on 105 hours of pure non-speech audio
+(AudioSet, DEMAND, MUSAN) paired with blank target labels. All other weights remain frozen,
+preventing regression on standard speech transcription tasks.
+
+The results are striking: the best model (5-epoch fine-tune) reduces hallucination on
+UrbanSound8K from **99.97%** to **15.51%** — an **84.5%** relative reduction — while WER on
+LibriSpeech test-clean rises by only **+0.07%** (from **2.12%** to **2.19%**). Long
+hallucinations exceeding 5 tokens drop from **742** instances to **91**. The paper also
+demonstrates that broader fine-tuning (full decoder) completely destroys transcription quality
+(**100% WER**), confirming that surgical head-level targeting is essential. The Calm-Whisper
+hallucination rate of **15.51%** approaches the **13.52%** of Conformer-CTC-large — a
+CTC-based model fundamentally less prone to autoregressive hallucination — validating that the
+gap can be largely closed through targeted fine-tuning.
+
+For this project, Calm-Whisper is directly relevant to the robustness goal of evaluating
+Whisper-class models on short production audio clips from Rezolve voice commerce sessions.
+Short clips, silences, and background noise are common in that setting, and the **99.97%**
+baseline hallucination rate means any such segment would produce spurious transcripts
+corrupting downstream entity recognition and intent parsing. Adopting the Calm-Whisper
+fine-tuning recipe — or applying an equivalent head-attribution study to Granite STT or
+another Whisper-variant — could be a low-cost, high-impact robustness improvement for the
+Rezolve pipeline, with negligible WER regression cost.
+
+</details>
+
+<details>
 <summary>🏤 <strong>WhisperNER: Unified Open Named Entity and Speech
 Recognition</strong> — Ayache et al., 2024</summary>
 
@@ -757,18 +915,133 @@ only speaker IDs are needed as the block key.
 
 </details>
 
-## Tasks (2)
+## Tasks (3)
 
 | # | Task | Status | Completed |
 |---|------|--------|-----------|
 | 0002 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../../overview/tasks/task_pages/t0002_baseline_evaluation.md) | completed | 2026-06-23 10:25 |
 | 0003 | [Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026)](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) | completed | 2026-06-23 09:25 |
+| 0014 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | completed | 2026-06-30 07:53 |
 
-## Answers (0)
+## Answers (1)
 
-No answers in this category.
+<details>
+<summary><strong>Should Granite Speech 4.1 2B replace Parakeet TDT 0.6b-v3 as the
+production STT model in brainpowa-realtime-api?</strong></summary>
 
-## Suggestions (20 open, 5 closed)
+**Confidence**: high | **Date**: 2026-06-30 | **Full answer**:
+[`granite-vs-parakeet-production-fit`](../../tasks/t0014_granite_short_clip_robustness/assets/answer/granite-vs-parakeet-production-fit/)
+
+YES, with a minimum clip duration gate of 2.0 s recommended for the first deployment. Granite
+Speech 4.1 2B produces 0% empty output and 0% hallucination across all 44 short clips tested
+(0.5–3.0 s), while Parakeet fails on 27.3% of short clips (55.6% empty rate at sub-1 s bins) —
+directly matching the failure mode that disqualified Whisper from production. On gold-92
+(clips 3–13 s), Granite achieves 94.8% entity accuracy versus Parakeet's 65.0%, with
+comparable latency (125–215 ms p50 vs 32–46 ms); both well within the 800 ms production
+constraint. Integration effort is low: reading brainpowa-realtime-api base.py confirms the
+STTAdapter base class already implements transcribe_stream() as accumulate-then-transcribe, so
+a granite.py adapter only needs to implement transcribe() and model loading — approximately
+60–80 lines of Python.
+
+</details>
+
+## Suggestions (26 open, 5 closed)
+
+<details>
+<summary>🧪 <strong>Implement granite.py STTAdapter and deploy Granite as production
+STT in brainpowa-realtime-api</strong> (S-0014-01)</summary>
+
+**Kind**: experiment | **Priority**: high | **Date**: 2026-06-30 | **Source**:
+[t0014_granite_short_clip_robustness](../../tasks/t0014_granite_short_clip_robustness/)
+
+t0014 confirmed CONDITIONAL YES: replace Parakeet with Granite Speech 4.1 2B, gating on a 2.0
+s minimum clip duration. The integration effort is ~50-100 lines (only transcribe() needs
+implementing). This task should implement granite.py, add the 2.0 s minimum clip gate to the
+streaming pipeline, run the existing brainpowa STT evals, and merge to production. Recommended
+task types: experiment-run, answer-question.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Investigate Parakeet empty-output failure at 2.5 s and 3.0 s
+clips beyond the chunk_secs=2 boundary</strong> (S-0014-02)</summary>
+
+**Kind**: experiment | **Priority**: medium | **Date**: 2026-06-30 | **Source**:
+[t0014_granite_short_clip_robustness](../../tasks/t0014_granite_short_clip_robustness/)
+
+t0014 found Parakeet emits empty transcripts at 2.5 s (12.5%) and 3.0 s (16.7%), which are
+above the chunk_secs=2 threshold and cannot be explained by the single-chunk degenerate path.
+This suggests additional failure modes in the NeMo streaming stack (possibly NeMo-Issue14714
+or NeMo-Issue15143). A targeted experiment should isolate whether these failures are
+deterministic or stochastic, and whether patching the NeMo adapter would fix them. Recommended
+task types: experiment-run, answer-question.
+
+</details>
+
+<details>
+<summary>📂 <strong>Expand short-clip robustness benchmark to 200+ clips with real
+production audio diversity</strong> (S-0014-03)</summary>
+
+**Kind**: dataset | **Priority**: medium | **Date**: 2026-06-30 | **Source**:
+[t0014_granite_short_clip_robustness](../../tasks/t0014_granite_short_clip_robustness/)
+
+The synthetic short-clip dataset (44 clips, 7-14 per bin) is underpowered for stratum-level
+significance testing (MDD ±20 pp for empty rate). Expanding to 200+ clips from a wider variety
+of production audio sessions, accents, and domain terms would enable statistically reliable
+per-bin comparisons and better characterize Granite behavior in the <1 s and 1-2 s strata
+where entity accuracy is near zero for all models. Recommended task types:
+audio-dataset-curation.
+
+</details>
+
+<details>
+<summary>📊 <strong>Improve Whisper hallucination detection for sub-1 s clips by
+refining the BoH reference-word check</strong> (S-0014-04)</summary>
+
+**Kind**: evaluation | **Priority**: medium | **Date**: 2026-06-30 | **Source**:
+[t0014_granite_short_clip_robustness](../../tasks/t0014_granite_short_clip_robustness/)
+
+t0014 found Whisper returns 'Thank you.' on silence and Korean-accented sub-1 s clips —
+patterns that match BoH top-30 but were not flagged as hallucinations because the
+reference-word overlap check was satisfied by partial gold-92 transcripts. Refining
+hallucination detection to use only the actual audio duration's expected spoken content (not
+the full clip transcript) would improve precision. This would also yield a cleaner
+hallucination rate for comparing Whisper and Granite in production monitoring. Recommended
+task types: experiment-run.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Benchmark Granite Speech 4.1 2B vs Deepgram Nova-2 and Azure
+Speech on gold-92 to complete the competitive landscape</strong>
+(S-0014-05)</summary>
+
+**Kind**: experiment | **Priority**: high | **Date**: 2026-06-30 | **Source**:
+[t0014_granite_short_clip_robustness](../../tasks/t0014_granite_short_clip_robustness/)
+
+Granite now leads all tested open-source models (EA 94.8%), but no direct comparison with
+commercial APIs (Deepgram Nova-2, Azure Speech) has been run in production streaming mode with
+the full domain biasing setup. S-0005-07 covers this but predates the t0012/t0014 findings
+confirming Granite's edge. Running Granite against commercial APIs would determine whether
+Granite already beats production Deepgram, answering the final commercial vs open-source
+question. Recommended task types: stt-benchmark-run, answer-question.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Measure Granite latency on brainpowa production hardware (CPU
+inference path) for edge deployment</strong> (S-0014-06)</summary>
+
+**Kind**: experiment | **Priority**: medium | **Date**: 2026-06-30 | **Source**:
+[t0014_granite_short_clip_robustness](../../tasks/t0014_granite_short_clip_robustness/)
+
+All Granite latency measurements in t0012 and t0014 used Azure H100 NVL GPU (p50 249-251 ms).
+The brainpowa-realtime-api production deployment may use CPU inference or a smaller GPU.
+Measuring Granite's CPU latency on the actual production server would determine whether the
+800 ms p50 constraint holds outside the H100 environment and whether quantization (S-0005-10)
+is needed. Recommended task types: experiment-run, answer-question.
+
+</details>
 
 <details>
 <summary>🧪 <strong>Benchmark Moonshine ONNX Medium on gold-92 when UsefulSensors

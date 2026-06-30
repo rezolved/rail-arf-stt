@@ -1,6 +1,6 @@
-# Papers: `whisper-finetuning` (3)
+# Papers: `whisper-finetuning` (4)
 
-3 papers across 3 year(s).
+4 papers across 4 year(s).
 
 [Back to all papers](../README.md)
 
@@ -44,6 +44,59 @@ Whisper Turbo checkpoint and adds an LLM-based prompt generation step with no mo
 The NBA domain closely parallels ecommerce in entity density and proper noun challenges. The
 main engineering work is tuning the fuzzy matching threshold for Rezolve's brand/product
 vocabulary and ensuring the multi-agent latency fits within the 800ms p50 budget.
+
+</details>
+
+## 2025 (1)
+
+<details>
+<summary>🏤 Calm-Whisper: Reduce Whisper Hallucination On Non-Speech By Calming Crazy
+Heads Down — Wang et al., 2025</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `10.48550_arXiv.2505.12969` |
+| **Authors** | Yingzhi Wang, Anas Alhmoud, Saad Alsahly, Muhammad Alqurishi, Mirco Ravanelli |
+| **Venue** | Interspeech 2025 (conference) |
+| **DOI** | `10.48550/arXiv.2505.12969` |
+| **URL** | https://arxiv.org/abs/2505.12969 |
+| **Date added** | 2026-06-29 |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../../meta/categories/whisper-finetuning/) |
+| **Added by** | [`t0014_granite_short_clip_robustness`](../../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Full summary** | [`summary.md`](../../../tasks/t0014_granite_short_clip_robustness/assets/paper/10.48550_arXiv.2505.12969/summary.md) |
+
+This paper targets a severe and practically important failure mode of Whisper-large-v3:
+hallucination on non-speech audio. With a baseline hallucination rate of **99.97%** on
+UrbanSound8K — meaning virtually every non-speech clip produces fabricated text — Whisper is
+unsafe to deploy in production pipelines that handle mixed-content audio without external VAD
+safeguards. The authors set out to eliminate this hallucination from within the model, without
+adding inference-time complexity or external pre/post-processing.
+
+The technical approach proceeds in two stages. First, a head-wise masking study isolates which
+of Whisper-large-v3's 20 decoder self-attention heads contributes most to hallucination. Three
+heads (#1, #6, #11) are identified as responsible for over **75%** of the problem. Second,
+only the weights of those three heads are fine-tuned on 105 hours of pure non-speech audio
+(AudioSet, DEMAND, MUSAN) paired with blank target labels. All other weights remain frozen,
+preventing regression on standard speech transcription tasks.
+
+The results are striking: the best model (5-epoch fine-tune) reduces hallucination on
+UrbanSound8K from **99.97%** to **15.51%** — an **84.5%** relative reduction — while WER on
+LibriSpeech test-clean rises by only **+0.07%** (from **2.12%** to **2.19%**). Long
+hallucinations exceeding 5 tokens drop from **742** instances to **91**. The paper also
+demonstrates that broader fine-tuning (full decoder) completely destroys transcription quality
+(**100% WER**), confirming that surgical head-level targeting is essential. The Calm-Whisper
+hallucination rate of **15.51%** approaches the **13.52%** of Conformer-CTC-large — a
+CTC-based model fundamentally less prone to autoregressive hallucination — validating that the
+gap can be largely closed through targeted fine-tuning.
+
+For this project, Calm-Whisper is directly relevant to the robustness goal of evaluating
+Whisper-class models on short production audio clips from Rezolve voice commerce sessions.
+Short clips, silences, and background noise are common in that setting, and the **99.97%**
+baseline hallucination rate means any such segment would produce spurious transcripts
+corrupting downstream entity recognition and intent parsing. Adopting the Calm-Whisper
+fine-tuning recipe — or applying an equivalent head-attribution study to Granite STT or
+another Whisper-variant — could be a low-cost, high-impact robustness improvement for the
+Rezolve pipeline, with negligible WER regression cost.
 
 </details>
 

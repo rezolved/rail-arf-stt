@@ -1,44 +1,40 @@
 # Project Tasks
 
-14 tasks. ⏹ **1 not_started**, ✅ **13 completed**.
+14 tasks. ✅ **14 completed**.
 
-**Browse by view**: By status: [⏹ `not_started`](by-status/not_started.md), [✅
-`completed`](by-status/completed.md); [By date added](by-date-added/README.md)
+**Browse by view**: By status: [✅ `completed`](by-status/completed.md); [By date
+added](by-date-added/README.md)
 
 ---
 
 ## Dependency Graph
 
-```mermaid
-graph LR
-    t0012_whisper_parakeet_granite_streaming["✅ t0012_whisper_parakeet_granite_streaming"]
-    t0013_brainstorm_results_1["✅ t0013_brainstorm_results_1"]
-    t0014_granite_short_clip_robustness["⏹ t0014_granite_short_clip_robustness"]
-
-    t0012_whisper_parakeet_granite_streaming --> t0013_brainstorm_results_1
-    t0013_brainstorm_results_1 --> t0014_granite_short_clip_robustness
-    t0012_whisper_parakeet_granite_streaming --> t0014_granite_short_clip_robustness
-```
+All tasks completed.
 
 ---
 
-## ⏹ Not Started
+## ✅ Completed
 
 <details>
-<summary>⏹ 0014 — <strong>Granite Short-Clip Robustness Validation + Production
+<summary>✅ 0014 — <strong>Granite Short-Clip Robustness Validation + Production
 Fit Assessment</strong></summary>
 
 | Field | Value |
 |---|---|
 | **ID** | `t0014_granite_short_clip_robustness` |
-| **Status** | not_started |
-| **Effective date** | — |
+| **Status** | completed |
+| **Effective date** | 2026-06-30 |
 | **Dependencies** | [`t0013_brainstorm_results_1`](../../overview/tasks/task_pages/t0013_brainstorm_results_1.md), [`t0012_whisper_parakeet_granite_streaming`](../../overview/tasks/task_pages/t0012_whisper_parakeet_granite_streaming.md) |
 | **Expected assets** | 1 answer, 3 predictions |
 | **Source suggestion** | `S-0005-03` |
 | **Task types** | [`stt-benchmark-run`](../../meta/task_types/stt-benchmark-run/), [`experiment-run`](../../meta/task_types/experiment-run/), [`answer-question`](../../meta/task_types/answer-question/) |
+| **Start time** | 2026-06-29T12:13:17Z |
+| **End time** | 2026-06-30T07:53:00Z |
+| **Step progress** | 12/15 |
+| **Key metrics** | ⚠️ Action-Critical WER (gold-92): **0.0744**, 📖 Entity Accuracy — Domain Vocabulary: **0.9666**, 🎯 Entity Accuracy (gold-92): **0.9481**, ✅ Intent Preservation (gold-92): **0.9892**, ⚡ Latency p50 (seconds): **0.0409**, 🚫 Wrong Action Rate (gold-92): **0.0108** |
 | **Task page** | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
 | **Task folder** | [`t0014_granite_short_clip_robustness/`](../../tasks/t0014_granite_short_clip_robustness/) |
+| **Detailed report** | [results_detailed.md](../../tasks/t0014_granite_short_clip_robustness/results/results_detailed.md) |
 
 # t0014 — Granite Short-Clip Robustness Validation + Production Fit Assessment
 
@@ -257,9 +253,40 @@ Total GPU time: ~45 min on Azure H100 NVL. Estimated cost: $0 (reserved instance
 * All registered metrics computed for gold-92 strata.
 * Three charts generated and embedded in `results_detailed.md`.
 
-</details>
+**Results summary:**
 
-## ✅ Completed
+> **Results Summary: Granite Short-Clip Robustness Validation + Production Fit Assessment**
+>
+> **Summary**
+>
+> Granite Speech 4.1 2B achieves **0% empty output rate** on all short clips (0.5–3 s)
+> compared to
+> Parakeet TDT 0.6b-v3's **27.3% failure rate** on sub-2 s clips (55.6% on sub-1 s),
+> confirming
+> Granite avoids Parakeet's key short-clip failure mode. On the gold-92 benchmark Granite
+> leads with
+> **entity accuracy 94.8%** vs Whisper 92.3% and Parakeet 65.0%, with a wrong-action rate of
+> **1.1% vs
+> Parakeet's 30.1%**. The production recommendation is **CONDITIONAL YES**: replace Parakeet
+> with
+> Granite in brainpowa, gating production use on a minimum 2.0 s clip duration to avoid the
+> degenerate
+> single-chunk path that affects all Parakeet clips under 2 s.
+>
+> **Metrics**
+>
+> - **Granite entity accuracy (gold-92, all strata)**: **94.8%** vs Parakeet **65.0%** vs
+>   Whisper
+> **92.3%**
+> - **Granite empty rate (short clips, all bins)**: **0.0%** vs Parakeet **27.3%** (sub-2 s
+>   clips) vs
+> Whisper **0.0%**
+> - **Granite wrong-action rate (gold-92)**: **1.1%** vs Parakeet **30.1%** vs Whisper
+>   **5.4%**
+> - **Granite entity accuracy domain vocab (gold-92)**: **96.7%** vs Parakeet **35.2%** vs
+>   Whisper
+
+</details>
 
 <details>
 <summary>✅ 0013 — <strong>Brainstorm Results — Session 1</strong></summary>

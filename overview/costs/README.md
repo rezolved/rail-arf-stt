@@ -15,9 +15,9 @@ stop threshold.
 | Warn threshold | 80% ($1600.00) |
 | Stop threshold | 100% ($2000.00) |
 | Default per-task limit | $100.00 USD |
-| Tasks with cost records | 6 |
+| Tasks with cost records | 7 |
 | Tasks with non-zero spend | 1 |
-| Skipped tasks | 8 |
+| Skipped tasks | 7 |
 
 ## Service Totals
 
@@ -31,7 +31,7 @@ stop threshold.
 |-----|------------|
 | `claude-code-orchestration` | $2.50 |
 
-5 task cost record(s) are zero-cost and omitted from the main spend table.
+6 task cost record(s) are zero-cost and omitted from the main spend table.
 
 ## Task Spend
 
@@ -50,4 +50,3 @@ stop threshold.
 | `t0010_funasr_paraformer_benchmark` | results/costs.json is missing or invalid |
 | `t0011_streaming_stt_benchmark` | results/costs.json is missing or invalid |
 | `t0012_whisper_parakeet_granite_streaming` | results/costs.json is missing or invalid |
-| `t0014_granite_short_clip_robustness` | results/costs.json is missing or invalid |

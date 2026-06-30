@@ -1,9 +1,8 @@
-# Answers (1)
+# Answers: `entity-correction` (1)
 
 1 answer(s).
 
-**Browse by view**: By category: [`entity-correction`](by-category/entity-correction.md),
-[`stt-evaluation`](by-category/stt-evaluation.md); [By date added](by-date-added/README.md)
+[Back to all answers](../README.md)
 
 ---
 
@@ -26,16 +25,16 @@ a granite.py adapter only needs to implement transcribe() and model loading — 
 
 | Field | Value |
 |---|---|
-| **Full answer** | [`full_answer.md`](../../tasks/t0014_granite_short_clip_robustness/assets/answer/granite-vs-parakeet-production-fit/full_answer.md) |
-| **ID** | [`granite-vs-parakeet-production-fit`](../../tasks/t0014_granite_short_clip_robustness/assets/answer/granite-vs-parakeet-production-fit/) |
+| **Full answer** | [`full_answer.md`](../../../tasks/t0014_granite_short_clip_robustness/assets/answer/granite-vs-parakeet-production-fit/full_answer.md) |
+| **ID** | [`granite-vs-parakeet-production-fit`](../../../tasks/t0014_granite_short_clip_robustness/assets/answer/granite-vs-parakeet-production-fit/) |
 | **Question** | Should Granite Speech 4.1 2B replace Parakeet TDT 0.6b-v3 as the production STT model in brainpowa-realtime-api? |
 | **Methods** | `code-experiment`, `papers`, `internet` |
 | **Confidence** | high |
 | **Date created** | 2026-06-30 |
-| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`entity-correction`](../../meta/categories/entity-correction/) |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`entity-correction`](../../../meta/categories/entity-correction/) |
 | **Paper sources** | — |
-| **Task sources** | [`t0012_whisper_parakeet_granite_streaming`](../../overview/tasks/task_pages/t0012_whisper_parakeet_granite_streaming.md), [`t0014_granite_short_clip_robustness`](../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Task sources** | [`t0012_whisper_parakeet_granite_streaming`](../../../overview/tasks/task_pages/t0012_whisper_parakeet_granite_streaming.md), [`t0014_granite_short_clip_robustness`](../../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
 | **URL sources** | [url 1](https://huggingface.co/ibm-granite/granite-speech-4.1-2b), [url 2](https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3) |
-| **Created by** | [`t0014_granite_short_clip_robustness`](../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Created by** | [`t0014_granite_short_clip_robustness`](../../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
 
 </details>

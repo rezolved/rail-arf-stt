@@ -1,10 +1,148 @@
 # Suggestions by Date Added
 
-28 suggestion(s) grouped by derived added date.
+34 suggestion(s) grouped by derived added date.
 
 [Back to all suggestions](../README.md)
 
 ---
+
+## 2026-06-30 (6)
+
+## High Priority
+
+<details>
+<summary>🧪 <strong>Benchmark Granite Speech 4.1 2B vs Deepgram Nova-2 and Azure
+Speech on gold-92 to complete the competitive landscape</strong>
+(S-0014-05)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0014-05` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-30 |
+| **Source task** | [`t0014_granite_short_clip_robustness`](../../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`commercial-apis`](../../../meta/categories/commercial-apis/) |
+
+Granite now leads all tested open-source models (EA 94.8%), but no direct comparison with
+commercial APIs (Deepgram Nova-2, Azure Speech) has been run in production streaming mode with
+the full domain biasing setup. S-0005-07 covers this but predates the t0012/t0014 findings
+confirming Granite's edge. Running Granite against commercial APIs would determine whether
+Granite already beats production Deepgram, answering the final commercial vs open-source
+question. Recommended task types: stt-benchmark-run, answer-question.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Implement granite.py STTAdapter and deploy Granite as production
+STT in brainpowa-realtime-api</strong> (S-0014-01)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0014-01` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-30 |
+| **Source task** | [`t0014_granite_short_clip_robustness`](../../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`latency-profiling`](../../../meta/categories/latency-profiling/) |
+
+t0014 confirmed CONDITIONAL YES: replace Parakeet with Granite Speech 4.1 2B, gating on a 2.0
+s minimum clip duration. The integration effort is ~50-100 lines (only transcribe() needs
+implementing). This task should implement granite.py, add the 2.0 s minimum clip gate to the
+streaming pipeline, run the existing brainpowa STT evals, and merge to production. Recommended
+task types: experiment-run, answer-question.
+
+</details>
+
+## Medium Priority
+
+<details>
+<summary>📂 <strong>Expand short-clip robustness benchmark to 200+ clips with real
+production audio diversity</strong> (S-0014-03)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0014-03` |
+| **Kind** | dataset |
+| **Date added** | 2026-06-30 |
+| **Source task** | [`t0014_granite_short_clip_robustness`](../../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Source paper** | — |
+| **Categories** | [`audio-datasets`](../../../meta/categories/audio-datasets/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+
+The synthetic short-clip dataset (44 clips, 7-14 per bin) is underpowered for stratum-level
+significance testing (MDD ±20 pp for empty rate). Expanding to 200+ clips from a wider variety
+of production audio sessions, accents, and domain terms would enable statistically reliable
+per-bin comparisons and better characterize Granite behavior in the <1 s and 1-2 s strata
+where entity accuracy is near zero for all models. Recommended task types:
+audio-dataset-curation.
+
+</details>
+
+<details>
+<summary>📊 <strong>Improve Whisper hallucination detection for sub-1 s clips by
+refining the BoH reference-word check</strong> (S-0014-04)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0014-04` |
+| **Kind** | evaluation |
+| **Date added** | 2026-06-30 |
+| **Source task** | [`t0014_granite_short_clip_robustness`](../../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../../meta/categories/whisper-finetuning/) |
+
+t0014 found Whisper returns 'Thank you.' on silence and Korean-accented sub-1 s clips —
+patterns that match BoH top-30 but were not flagged as hallucinations because the
+reference-word overlap check was satisfied by partial gold-92 transcripts. Refining
+hallucination detection to use only the actual audio duration's expected spoken content (not
+the full clip transcript) would improve precision. This would also yield a cleaner
+hallucination rate for comparing Whisper and Granite in production monitoring. Recommended
+task types: experiment-run.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Investigate Parakeet empty-output failure at 2.5 s and 3.0 s
+clips beyond the chunk_secs=2 boundary</strong> (S-0014-02)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0014-02` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-30 |
+| **Source task** | [`t0014_granite_short_clip_robustness`](../../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+
+t0014 found Parakeet emits empty transcripts at 2.5 s (12.5%) and 3.0 s (16.7%), which are
+above the chunk_secs=2 threshold and cannot be explained by the single-chunk degenerate path.
+This suggests additional failure modes in the NeMo streaming stack (possibly NeMo-Issue14714
+or NeMo-Issue15143). A targeted experiment should isolate whether these failures are
+deterministic or stochastic, and whether patching the NeMo adapter would fix them. Recommended
+task types: experiment-run, answer-question.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Measure Granite latency on brainpowa production hardware (CPU
+inference path) for edge deployment</strong> (S-0014-06)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0014-06` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-30 |
+| **Source task** | [`t0014_granite_short_clip_robustness`](../../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Source paper** | — |
+| **Categories** | [`latency-profiling`](../../../meta/categories/latency-profiling/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+
+All Granite latency measurements in t0012 and t0014 used Azure H100 NVL GPU (p50 249-251 ms).
+The brainpowa-realtime-api production deployment may use CPU inference or a smaller GPU.
+Measuring Granite's CPU latency on the actual production server would determine whether the
+800 ms p50 constraint holds outside the H100 environment and whether quantization (S-0005-10)
+is needed. Recommended task types: experiment-run, answer-question.
+
+</details>
 
 ## 2026-06-25 (3)
 

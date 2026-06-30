@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive preset_id="project-overview" generated_at_utc="2026-06-29T11:55:22Z">
+<llm_context_archive preset_id="project-overview" generated_at_utc="2026-06-30T08:12:57Z">
   <archive_summary>
     <title>Project Overview</title>
     <description>Compact starter context for general project chats.</description>
     <use_case>General orientation, quick status questions, and lightweight strategy chats.</use_case>
     <section_count>4</section_count>
-    <char_count>19513</char_count>
-    <byte_count>19620</byte_count>
-    <estimated_tokens>4878</estimated_tokens>
+    <char_count>21183</char_count>
+    <byte_count>21302</byte_count>
+    <estimated_tokens>5295</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -114,9 +114,10 @@ gold-92 (`t0002_baseline_evaluation`).
         <id>t0011_streaming_stt_benchmark</id>
         <id>t0012_whisper_parakeet_granite_streaming</id>
         <id>t0013_brainstorm_results_1</id>
+        <id>t0014_granite_short_clip_robustness</id>
       </source_ids>
       <content>
-Completed tasks: 13
+Completed tasks: 14
 
 ## STT Benchmark — Gold-92 Dataset Ingestion
 ID: t0001_stt_benchmark
@@ -195,30 +196,37 @@ ID: t0013_brainstorm_results_1
 Completed: 2026-06-29
 Short description: First brainstorm session: reviewed 12 completed tasks, decided to create t0014 (Granite short-clip robustness + production fit), and rejected 6 superseded suggestions.
 Result summary: Results Summary — t0013 Brainstorm Session 1 Summary First brainstorm session after 12 completed tasks. One new task created (t0014: Granite short-clip robustness + production fit assessment) and six suggestions rejected for eliminated models or superseded experiments. The session established that the next priority is validating Granite Speech 4.1 2B as a production replacement for Parakeet TDT 0.6b-v3, with explicit focus on short-clip robustness using real production streaming simulation. Session Overview Date: 2026-06-29. First brainstorm session for the project. Prompted by completion of all 12 benchmark and research tasks, particularly t0012 which established a three-model production...
+
+## Granite Short-Clip Robustness Validation + Production Fit Assessment
+ID: t0014_granite_short_clip_robustness
+Completed: 2026-06-30
+Short description: Validate Granite Speech 4.1 2B robustness on short clips vs Parakeet via production streaming simulation, and assess production fit as a Parakeet replacement in brainpowa.
+Result summary: Results Summary: Granite Short-Clip Robustness Validation + Production Fit Assessment Summary Granite Speech 4.1 2B achieves **0% empty output rate** on all short clips (0.5–3 s) compared to Parakeet TDT 0.6b-v3&#x27;s **27.3% failure rate** on sub-2 s clips (55.6% on sub-1 s), confirming Granite avoids Parakeet&#x27;s key short-clip failure mode. On the gold-92 benchmark Granite leads with **entity accuracy 94.8%** vs Whisper 92.3% and Parakeet 65.0%, with a wrong-action rate of **1.1% vs Parakeet&#x27;s 30.1%**. The production recommendation is **CONDITIONAL YES**: replace Parakeet with Granite in brainpowa, gating production use on a minimum 2.0 s clip duration to avoid the degenerate single-chunk path...
       </content>
     </section>
     <section id="planned-tasks" source_kind="aggregator">
       <title>Planned Tasks</title>
       <source_name>aggregate_tasks_full</source_name>
-      <source_ids>
-        <id>t0014_granite_short_clip_robustness</id>
-      </source_ids>
       <content>
-Planned or active tasks: 1
-
-## Granite Short-Clip Robustness Validation + Production Fit Assessment
-ID: t0014_granite_short_clip_robustness
-Status: not_started
-Effective date: unknown
-Short description: Validate Granite Speech 4.1 2B robustness on short clips vs Parakeet via production streaming simulation, and assess production fit as a Parakeet replacement in brainpowa.
-Dependencies: t0013_brainstorm_results_1, t0012_whisper_parakeet_granite_streaming
+Planned or active tasks: 0
       </content>
     </section>
     <section id="questions-and-answers" source_kind="aggregator">
       <title>Questions and Answers</title>
       <source_name>aggregate_answers_full</source_name>
+      <source_ids>
+        <id>granite-vs-parakeet-production-fit</id>
+      </source_ids>
       <content>
-Answers: 0
+Answers: 1
+
+## Should Granite Speech 4.1 2B replace Parakeet TDT 0.6b-v3 as the production STT model in brainpowa-realtime-api?
+ID: granite-vs-parakeet-production-fit
+Created by: t0014_granite_short_clip_robustness on 2026-06-30
+Confidence: high
+Categories: stt-evaluation, entity-correction
+
+YES, with a minimum clip duration gate of 2.0 s recommended for the first deployment. Granite Speech 4.1 2B produces 0% empty output and 0% hallucination across all 44 short clips tested (0.5–3.0 s), while Parakeet fails on 27.3% of short clips (55.6% empty rate at sub-1 s bins) — directly matching the failure mode that disqualified Whisper from production. On gold-92 (clips 3–13 s), Granite achieves 94.8% entity accuracy versus Parakeet&#x27;s 65.0%, with comparable latency (125–215 ms p50 vs 32–46 ms); both well within the 800 ms production constraint. Integration effort is low: reading brainpowa-realtime-api base.py confirms the STTAdapter base class already implements transcribe_stream() as...
       </content>
     </section>
   </sections>

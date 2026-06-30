@@ -1,7 +1,7 @@
 # Suggestions: `whisper-finetuning`
 
-2 suggestion(s) in category
-[`whisper-finetuning`](../../../meta/categories/whisper-finetuning/) **2 open** (1 high, 1
+3 suggestion(s) in category
+[`whisper-finetuning`](../../../meta/categories/whisper-finetuning/) **3 open** (1 high, 2
 medium).
 
 [Back to all suggestions](../README.md)
@@ -57,5 +57,28 @@ should collect or synthesize domain audio+transcript pairs, run LoRA or full fin
 turbo (pragmatic: 25% lower latency than large-v3 with no accuracy loss), and evaluate on
 gold-92 production clips (baseline: 8.8%). Recommended task types: whisper-finetuning-run,
 experiment-run.
+
+</details>
+
+<details>
+<summary>📊 <strong>Improve Whisper hallucination detection for sub-1 s clips by
+refining the BoH reference-word check</strong> (S-0014-04)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0014-04` |
+| **Kind** | evaluation |
+| **Date added** | 2026-06-30 |
+| **Source task** | [`t0014_granite_short_clip_robustness`](../../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../../meta/categories/whisper-finetuning/) |
+
+t0014 found Whisper returns 'Thank you.' on silence and Korean-accented sub-1 s clips —
+patterns that match BoH top-30 but were not flagged as hallucinations because the
+reference-word overlap check was satisfied by partial gold-92 transcripts. Refining
+hallucination detection to use only the actual audio duration's expected spoken content (not
+the full clip transcript) would improve precision. This would also yield a cleaner
+hallucination rate for comparing Whisper and Granite in production monitoring. Recommended
+task types: experiment-run.
 
 </details>

@@ -5,13 +5,13 @@ entity accuracy.
 
 [Back to Dashboard](../README.md)
 
-**Detail pages**: [Papers (3)](../papers/by-category/whisper-finetuning.md) | [Suggestions
-(2)](../suggestions/by-category/whisper-finetuning.md) | [Predictions
+**Detail pages**: [Papers (4)](../papers/by-category/whisper-finetuning.md) | [Suggestions
+(3)](../suggestions/by-category/whisper-finetuning.md) | [Predictions
 (5)](../predictions/by-category/whisper-finetuning.md)
 
 ---
 
-## Papers (3)
+## Papers (4)
 
 <details>
 <summary>📝 <strong>Whisper: Courtside Edition — Multi-Agent LLM Pipeline for
@@ -49,6 +49,57 @@ Whisper Turbo checkpoint and adds an LLM-based prompt generation step with no mo
 The NBA domain closely parallels ecommerce in entity density and proper noun challenges. The
 main engineering work is tuning the fuzzy matching threshold for Rezolve's brand/product
 vocabulary and ensuring the multi-agent latency fits within the 800ms p50 budget.
+
+</details>
+
+<details>
+<summary>🏤 <strong>Calm-Whisper: Reduce Whisper Hallucination On Non-Speech By
+Calming Crazy Heads Down</strong> — Wang et al., 2025</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `10.48550_arXiv.2505.12969` |
+| **Authors** | Yingzhi Wang, Anas Alhmoud, Saad Alsahly, Muhammad Alqurishi, Mirco Ravanelli |
+| **Venue** | Interspeech 2025 (conference) |
+| **DOI** | `10.48550/arXiv.2505.12969` |
+| **URL** | https://arxiv.org/abs/2505.12969 |
+| **Date added** | 2026-06-29 |
+| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../meta/categories/whisper-finetuning/) |
+| **Added by** | [`t0014_granite_short_clip_robustness`](../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Full summary** | [`summary.md`](../../tasks/t0014_granite_short_clip_robustness/assets/paper/10.48550_arXiv.2505.12969/summary.md) |
+
+This paper targets a severe and practically important failure mode of Whisper-large-v3:
+hallucination on non-speech audio. With a baseline hallucination rate of **99.97%** on
+UrbanSound8K — meaning virtually every non-speech clip produces fabricated text — Whisper is
+unsafe to deploy in production pipelines that handle mixed-content audio without external VAD
+safeguards. The authors set out to eliminate this hallucination from within the model, without
+adding inference-time complexity or external pre/post-processing.
+
+The technical approach proceeds in two stages. First, a head-wise masking study isolates which
+of Whisper-large-v3's 20 decoder self-attention heads contributes most to hallucination. Three
+heads (#1, #6, #11) are identified as responsible for over **75%** of the problem. Second,
+only the weights of those three heads are fine-tuned on 105 hours of pure non-speech audio
+(AudioSet, DEMAND, MUSAN) paired with blank target labels. All other weights remain frozen,
+preventing regression on standard speech transcription tasks.
+
+The results are striking: the best model (5-epoch fine-tune) reduces hallucination on
+UrbanSound8K from **99.97%** to **15.51%** — an **84.5%** relative reduction — while WER on
+LibriSpeech test-clean rises by only **+0.07%** (from **2.12%** to **2.19%**). Long
+hallucinations exceeding 5 tokens drop from **742** instances to **91**. The paper also
+demonstrates that broader fine-tuning (full decoder) completely destroys transcription quality
+(**100% WER**), confirming that surgical head-level targeting is essential. The Calm-Whisper
+hallucination rate of **15.51%** approaches the **13.52%** of Conformer-CTC-large — a
+CTC-based model fundamentally less prone to autoregressive hallucination — validating that the
+gap can be largely closed through targeted fine-tuning.
+
+For this project, Calm-Whisper is directly relevant to the robustness goal of evaluating
+Whisper-class models on short production audio clips from Rezolve voice commerce sessions.
+Short clips, silences, and background noise are common in that setting, and the **99.97%**
+baseline hallucination rate means any such segment would produce spurious transcripts
+corrupting downstream entity recognition and intent parsing. Adopting the Calm-Whisper
+fine-tuning recipe — or applying an equivalent head-attribution study to Granite STT or
+another Whisper-variant — could be a low-cost, high-impact robustness improvement for the
+Rezolve pipeline, with negligible WER regression cost.
 
 </details>
 
@@ -152,18 +203,36 @@ gives a latency-accuracy trade-off ladder to explore within the 800 ms p50 const
 
 </details>
 
-## Tasks (2)
+## Tasks (3)
 
 | # | Task | Status | Completed |
 |---|------|--------|-----------|
 | 0002 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../../overview/tasks/task_pages/t0002_baseline_evaluation.md) | completed | 2026-06-23 10:25 |
 | 0003 | [Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026)](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) | completed | 2026-06-23 09:25 |
+| 0014 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | completed | 2026-06-30 07:53 |
 
 ## Answers (0)
 
 No answers in this category.
 
-## Suggestions (2 open, 0 closed)
+## Suggestions (3 open, 0 closed)
+
+<details>
+<summary>📊 <strong>Improve Whisper hallucination detection for sub-1 s clips by
+refining the BoH reference-word check</strong> (S-0014-04)</summary>
+
+**Kind**: evaluation | **Priority**: medium | **Date**: 2026-06-30 | **Source**:
+[t0014_granite_short_clip_robustness](../../tasks/t0014_granite_short_clip_robustness/)
+
+t0014 found Whisper returns 'Thank you.' on silence and Korean-accented sub-1 s clips —
+patterns that match BoH top-30 but were not flagged as hallucinations because the
+reference-word overlap check was satisfied by partial gold-92 transcripts. Refining
+hallucination detection to use only the actual audio duration's expected spoken content (not
+the full clip transcript) would improve precision. This would also yield a cleaner
+hallucination rate for comparing Whisper and Granite in production monitoring. Recommended
+task types: experiment-run.
+
+</details>
 
 <details>
 <summary>🧪 <strong>Vocabulary-biased Whisper inference via STT_INITIAL_PROMPT on

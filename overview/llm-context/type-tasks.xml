@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive type_id="tasks" generated_at_utc="2026-06-29T11:55:22Z">
+<llm_context_archive type_id="tasks" generated_at_utc="2026-06-30T08:12:57Z">
   <archive_summary>
     <title>All Tasks</title>
     <description>Complete task data with full descriptions, results summaries, dependencies, and status.</description>
     <section_count>1</section_count>
-    <char_count>147365</char_count>
-    <byte_count>148472</byte_count>
-    <estimated_tokens>36841</estimated_tokens>
+    <char_count>149219</char_count>
+    <byte_count>150340</byte_count>
+    <estimated_tokens>37304</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -2773,12 +2773,14 @@ brainpowa codebase read access.
 
 ## Granite Short-Clip Robustness Validation + Production Fit Assessment
 ID: t0014_granite_short_clip_robustness
-Status: not_started
-Effective date: unknown
+Status: completed
+Effective date: 2026-06-30
 Short description: Validate Granite Speech 4.1 2B robustness on short clips vs Parakeet via production streaming simulation, and assess production fit as a Parakeet replacement in brainpowa.
 Dependencies: t0013_brainstorm_results_1, t0012_whisper_parakeet_granite_streaming
 Task types: stt-benchmark-run, experiment-run, answer-question
 Source suggestion: S-0005-03
+Start time: 2026-06-29T12:13:17Z
+End time: 2026-06-30T07:53:00Z
 
 #### Motivation
 
@@ -2987,6 +2989,39 @@ Total GPU time: ~45 min on Azure H100 NVL. Estimated cost: $0 (reserved instance
 * Answer asset written with explicit YES/NO/CONDITIONAL recommendation.
 * All registered metrics computed for gold-92 strata.
 * Three charts generated and embedded in `results_detailed.md`.
+
+### Results Summary
+
+#### Summary
+
+Granite Speech 4.1 2B achieves **0% empty output rate** on all short clips (0.5–3 s) compared to
+Parakeet TDT 0.6b-v3&#x27;s **27.3% failure rate** on sub-2 s clips (55.6% on sub-1 s), confirming
+Granite avoids Parakeet&#x27;s key short-clip failure mode. On the gold-92 benchmark Granite leads with
+**entity accuracy 94.8%** vs Whisper 92.3% and Parakeet 65.0%, with a wrong-action rate of **1.1% vs
+Parakeet&#x27;s 30.1%**. The production recommendation is **CONDITIONAL YES**: replace Parakeet with
+Granite in brainpowa, gating production use on a minimum 2.0 s clip duration to avoid the degenerate
+single-chunk path that affects all Parakeet clips under 2 s.
+
+#### Metrics
+
+- **Granite entity accuracy (gold-92, all strata)**: **94.8%** vs Parakeet **65.0%** vs Whisper
+  **92.3%**
+- **Granite empty rate (short clips, all bins)**: **0.0%** vs Parakeet **27.3%** (sub-2 s clips) vs
+  Whisper **0.0%**
+- **Granite wrong-action rate (gold-92)**: **1.1%** vs Parakeet **30.1%** vs Whisper **5.4%**
+- **Granite entity accuracy domain vocab (gold-92)**: **96.7%** vs Parakeet **35.2%** vs Whisper
+  **88.5%**
+- **Granite WER (gold-92)**: **7.4%** vs Parakeet **16.3%** vs Whisper **7.7%**
+- **Granite intent preservation (gold-92)**: **98.9%** vs Parakeet **67.7%** vs Whisper **94.6%**
+- **Granite latency p50 (5–10 s stratum)**: **251 ms** vs Parakeet **41 ms** vs Whisper **330 ms**
+- **Hallucination rate (all models, all clips)**: **0.0%** — no hallucinations detected
+
+#### Verification
+
+- `verify_task_results` — PASSED (0 errors, 0 warnings)
+- `verify_task_metrics` — PASSED (0 errors, 0 warnings)
+- `verify_predictions_asset` (all 3 assets) — PASSED (0 errors)
+- `verify_answer_asset` (`granite-vs-parakeet-production-fit`) — PASSED (0 errors)
       </content>
     </section>
   </sections>

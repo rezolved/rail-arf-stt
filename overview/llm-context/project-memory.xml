@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive preset_id="project-memory" generated_at_utc="2026-06-29T11:55:22Z">
+<llm_context_archive preset_id="project-memory" generated_at_utc="2026-06-30T08:12:57Z">
   <archive_summary>
     <title>Project Memory</title>
     <description>Mid-size preset intended as a reusable working memory for ongoing chats.</description>
     <use_case>Keeping a durable project memory in medium-size chat sessions.</use_case>
     <section_count>9</section_count>
-    <char_count>56775</char_count>
-    <byte_count>56929</byte_count>
-    <estimated_tokens>14193</estimated_tokens>
+    <char_count>59145</char_count>
+    <byte_count>59320</byte_count>
+    <estimated_tokens>14786</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -119,9 +119,10 @@ gold-92 (`t0002_baseline_evaluation`).
         <id>t0011_streaming_stt_benchmark</id>
         <id>t0012_whisper_parakeet_granite_streaming</id>
         <id>t0013_brainstorm_results_1</id>
+        <id>t0014_granite_short_clip_robustness</id>
       </source_ids>
       <content>
-Completed tasks: 13
+Completed tasks: 14
 
 ## STT Benchmark — Gold-92 Dataset Ingestion
 ID: t0001_stt_benchmark
@@ -200,30 +201,37 @@ ID: t0013_brainstorm_results_1
 Completed: 2026-06-29
 Short description: First brainstorm session: reviewed 12 completed tasks, decided to create t0014 (Granite short-clip robustness + production fit), and rejected 6 superseded suggestions.
 Result summary: Results Summary — t0013 Brainstorm Session 1 Summary First brainstorm session after 12 completed tasks. One new task created (t0014: Granite short-clip robustness + production fit assessment) and six suggestions rejected for eliminated models or superseded experiments. The session established that the next priority is validating Granite Speech 4.1 2B as a production replacement for Parakeet TDT 0.6b-v3, with explicit focus on short-clip robustness using real production streaming simulation. Session Overview Date: 2026-06-29. First brainstorm session for the project. Prompted by completion of all 12 benchmark and research tasks, particularly t0012 which established a three-model production...
+
+## Granite Short-Clip Robustness Validation + Production Fit Assessment
+ID: t0014_granite_short_clip_robustness
+Completed: 2026-06-30
+Short description: Validate Granite Speech 4.1 2B robustness on short clips vs Parakeet via production streaming simulation, and assess production fit as a Parakeet replacement in brainpowa.
+Result summary: Results Summary: Granite Short-Clip Robustness Validation + Production Fit Assessment Summary Granite Speech 4.1 2B achieves **0% empty output rate** on all short clips (0.5–3 s) compared to Parakeet TDT 0.6b-v3&#x27;s **27.3% failure rate** on sub-2 s clips (55.6% on sub-1 s), confirming Granite avoids Parakeet&#x27;s key short-clip failure mode. On the gold-92 benchmark Granite leads with **entity accuracy 94.8%** vs Whisper 92.3% and Parakeet 65.0%, with a wrong-action rate of **1.1% vs Parakeet&#x27;s 30.1%**. The production recommendation is **CONDITIONAL YES**: replace Parakeet with Granite in brainpowa, gating production use on a minimum 2.0 s clip duration to avoid the degenerate single-chunk path...
       </content>
     </section>
     <section id="planned-tasks" source_kind="aggregator">
       <title>Planned Tasks</title>
       <source_name>aggregate_tasks_full</source_name>
-      <source_ids>
-        <id>t0014_granite_short_clip_robustness</id>
-      </source_ids>
       <content>
-Planned or active tasks: 1
-
-## Granite Short-Clip Robustness Validation + Production Fit Assessment
-ID: t0014_granite_short_clip_robustness
-Status: not_started
-Effective date: unknown
-Short description: Validate Granite Speech 4.1 2B robustness on short clips vs Parakeet via production streaming simulation, and assess production fit as a Parakeet replacement in brainpowa.
-Dependencies: t0013_brainstorm_results_1, t0012_whisper_parakeet_granite_streaming
+Planned or active tasks: 0
       </content>
     </section>
     <section id="questions-and-answers" source_kind="aggregator">
       <title>Questions and Answers</title>
       <source_name>aggregate_answers_full</source_name>
+      <source_ids>
+        <id>granite-vs-parakeet-production-fit</id>
+      </source_ids>
       <content>
-Answers: 0
+Answers: 1
+
+## Should Granite Speech 4.1 2B replace Parakeet TDT 0.6b-v3 as the production STT model in brainpowa-realtime-api?
+ID: granite-vs-parakeet-production-fit
+Created by: t0014_granite_short_clip_robustness on 2026-06-30
+Confidence: high
+Categories: stt-evaluation, entity-correction
+
+YES, with a minimum clip duration gate of 2.0 s recommended for the first deployment. Granite Speech 4.1 2B produces 0% empty output and 0% hallucination across all 44 short clips tested (0.5–3.0 s), while Parakeet fails on 27.3% of short clips (55.6% empty rate at sub-1 s bins) — directly matching the failure mode that disqualified Whisper from production. On gold-92 (clips 3–13 s), Granite achieves 94.8% entity accuracy versus Parakeet&#x27;s 65.0%, with comparable latency (125–215 ms p50 vs 32–46 ms); both well within the 800 ms production constraint. Integration effort is low: reading brainpowa-realtime-api base.py confirms the STTAdapter base class already implements transcribe_stream() as...
       </content>
     </section>
     <section id="open-suggestions" source_kind="aggregator">
@@ -239,6 +247,8 @@ Answers: 0
         <id>S-0005-02</id>
         <id>S-0005-03</id>
         <id>S-0005-05</id>
+        <id>S-0014-01</id>
+        <id>S-0014-05</id>
         <id>S-0002-04</id>
         <id>S-0002-05</id>
         <id>S-0002-06</id>
@@ -248,8 +258,6 @@ Answers: 0
         <id>S-0003-06</id>
         <id>S-0003-07</id>
         <id>S-0005-06</id>
-        <id>S-0005-07</id>
-        <id>S-0005-08</id>
       </source_ids>
       <content>
 Open suggestions: 20
@@ -317,6 +325,20 @@ Kind: evaluation
 Source task: t0005_stt_model_survey_brainpowa
 The survey reports single-request latencies; production voice-to-action pipelines receive concurrent requests. Profile all three candidates (Granite, Paraformer, Whisper turbo) on Rezolve&#x27;s production infrastructure under 10, 50, and 100 concurrent sessions. Measure TTFT (time-to-first-token), total latency, p50/p95/p99 percentiles, and VRAM utilization at each concurrency level. This determines whether Granite/Paraformer can sustain the latency budget under realistic load, and whether GPU memory becomes the bottleneck. If latency degrades significantly at &gt;10 concurrent sessions, batch-processing or model quantization strategies become necessary. Recommended task types: experiment-run...
 
+## Implement granite.py STTAdapter and deploy Granite as production STT in brainpowa-realtime-api
+ID: S-0014-01
+Priority: high
+Kind: experiment
+Source task: t0014_granite_short_clip_robustness
+t0014 confirmed CONDITIONAL YES: replace Parakeet with Granite Speech 4.1 2B, gating on a 2.0 s minimum clip duration. The integration effort is ~50-100 lines (only transcribe() needs implementing). This task should implement granite.py, add the 2.0 s minimum clip gate to the streaming pipeline, run the existing brainpowa STT evals, and merge to production. Recommended task types: experiment-run, answer-question.
+
+## Benchmark Granite Speech 4.1 2B vs Deepgram Nova-2 and Azure Speech on gold-92 to complete the competitive landscape
+ID: S-0014-05
+Priority: high
+Kind: experiment
+Source task: t0014_granite_short_clip_robustness
+Granite now leads all tested open-source models (EA 94.8%), but no direct comparison with commercial APIs (Deepgram Nova-2, Azure Speech) has been run in production streaming mode with the full domain biasing setup. S-0005-07 covers this but predates the t0012/t0014 findings confirming Granite&#x27;s edge. Running Granite against commercial APIs would determine whether Granite already beats production Deepgram, answering the final commercial vs open-source question. Recommended task types: stt-benchmark-run, answer-question.
+
 ## Domain fine-tuning of Whisper turbo on Rezolve investor-relations audio
 ID: S-0002-04
 Priority: medium
@@ -379,26 +401,15 @@ Priority: medium
 Kind: evaluation
 Source task: t0005_stt_model_survey_brainpowa
 The survey reports contextual biasing results on 50–1,800 entity lists. Rezolve&#x27;s product catalog scales to 10,000+ SKUs. Test whether Granite 4.1 keyword biasing and Paraformer deep-biasing maintain performance (latency, entity accuracy) when biasing context grows from 1,800 to 10,000 entities. Measure latency scaling curve and F1 degradation if any. If latency exceeds budget at production scale, design a retrieval-based filtering pre-pass (e.g., retrieve top-100 entities relevant to the speaker/context before biasing) to cap the active biasing vocabulary. Recommended task types: experiment-run, data-analysis.
-
-## Compare Granite/Paraformer against Deepgram Nova-2 and Azure Speech on gold-92
-ID: S-0005-07
-Priority: medium
-Kind: experiment
-Source task: t0005_stt_model_survey_brainpowa
-The survey did not include closed-API baselines (Deepgram Nova-2, Azure Speech Services). Both support contextual biasing and have lower latency than Whisper. Run a comparative benchmark to establish whether open-source candidates (Granite, Paraformer) can match or exceed the accuracy and latency of production-quality closed APIs. This context is critical for production decision-making if open-source candidates fall short. Azure Speech and Deepgram API costs are approximately $0.01–$0.10 for 93 clips. Recommended task types: stt-benchmark-run, comparative-analysis.
-
-## Evaluate fallback strategy if top candidates underperform on accented English
-ID: S-0005-08
-Priority: medium
-Kind: experiment
-Source task: t0005_stt_model_survey_brainpowa
-Gold-92 is weighted toward investor-relations domain (accented English, financial jargon). The survey reports that real-world performance on noisy/accented audio degrades 3–7x vs. clean benchmarks. If Granite and Paraformer achieve &lt;5% WER on LibriSpeech but &gt;15% entity WER on gold-92 accented clips, design a fallback strategy: (1) ensemble hybrid (fast transducer + LLM correction), (2) domain fine-tuning Granite/Paraformer on accented audio samples, or (3) pre-emphasis + speech-enhancement preprocessing before STT. Prototype and benchmark the top 2 fallback approaches on gold-92. Recommended task types: experiment-run, post-correction-experiment.
       </content>
     </section>
     <section id="paper-summaries" source_kind="aggregator">
       <title>Paper Summaries</title>
       <source_name>aggregate_papers_full</source_name>
       <source_ids>
+        <id>10.48550_arXiv.2505.12969</id>
+        <id>10.48550_arXiv.2505.08699</id>
+        <id>10.1109_ICASSP49660.2025.10890105</id>
         <id>10.48550_arXiv.2606.10838</id>
         <id>10.48550_arXiv.2605.29430</id>
         <id>10.48550_arXiv.2605.27808</id>
@@ -416,11 +427,30 @@ Gold-92 is weighted toward investor-relations domain (accented English, financia
         <id>10.48550_arXiv.2601.13409</id>
         <id>10.1109_ASRU65441.2025.11434797</id>
         <id>10.48550_arXiv.2212.04356</id>
-        <id>no-doi_Caubriere2020_ner-from-speech-survey</id>
-        <id>10.21437_Interspeech.2020-1338</id>
       </source_ids>
       <content>
-Papers: 19
+Papers: 20
+
+## Calm-Whisper: Reduce Whisper Hallucination On Non-Speech By Calming Crazy Heads Down
+ID: 10.48550_arXiv.2505.12969
+Year: 2025
+Authors: Yingzhi Wang, Anas Alhmoud, Saad Alsahly, Muhammad Alqurishi
+Added by task: t0014_granite_short_clip_robustness
+This paper targets a severe and practically important failure mode of Whisper-large-v3: hallucination on non-speech audio. With a baseline hallucination rate of **99.97%** on UrbanSound8K — meaning virtually every non-speech clip produces fabricated text — Whisper is unsafe to deploy in production pipelines that handle mixed-content audio without external VAD safeguards. The authors set out to eliminate this hallucination from within the model, without adding inference-time complexity or external pre/post-processing. The technical approach proceeds in...
+
+## Granite-speech: open-source speech-aware LLMs with strong English ASR capabilities
+ID: 10.48550_arXiv.2505.08699
+Year: 2025
+Authors: George Saon, Avihu Dekel, Alexander Brooks, Tohru Nagano
+Added by task: t0014_granite_short_clip_robustness
+Saon et al. (IBM Research, 2025) introduce Granite-speech-3.3, a family of open-source speech-aware LLMs in 2B and 8B parameter variants, designed primarily for English ASR. The central research question is whether compact models trained exclusively on publicly licensed audio corpora (~76K hours Apache 2.0 compatible data) can match or surpass models trained on orders of magnitude more proprietary data. The motivation is both scientific — advancing open-source speech models — and practical, enabling commercial deployment without licensing barriers. The...
+
+## Investigation of Whisper ASR Hallucinations Induced by Non-Speech Audio
+ID: 10.1109_ICASSP49660.2025.10890105
+Year: 2025
+Authors: Mateusz Barański, Jan Jasiński, Julitta Bartolewska, Stanisław Kacprzak
+Added by task: t0014_granite_short_clip_robustness
+Barański et al. investigate a well-known but under-characterised failure mode of Whisper ASR: the generation of hallucinated text when the input audio contains no speech. Rather than relying on imprecise phonetic similarity measures to define hallucinations, the paper constructs a controlled setting — running Whisper exclusively on verified non-speech audio — where every output is definitionally a hallucination. This clean experimental design enables a large-scale empirical characterisation across 301,317 audio files from four public sound datasets, with...
 
 ## Towards Deep Contextual Reasoning from Broad Descriptions for ASR with Speech-LLM via Metadata-Driven Reasoning Chains
 ID: 10.48550_arXiv.2606.10838
@@ -540,20 +570,6 @@ Year: 2022
 Authors: Alec Radford, Jong Wook Kim, Tao Xu, Greg Brockman
 Added by task: t0002_baseline_evaluation
 Radford et al. present Whisper, a speech recognition system trained on 680,000 hours of weakly supervised audio-transcript pairs scraped from the internet. The central research question is whether scaling weak supervision — using noisy but abundant internet data rather than expensive human-validated corpora — can match or surpass fully supervised approaches while achieving substantially better real-world robustness. The work is motivated by the observation that prior state-of-the-art models trained on LibriSpeech are effectively measuring in-distribution...
-
-## Where are we in Named Entity Recognition from Speech?
-ID: no-doi_Caubriere2020_ner-from-speech-survey
-Year: 2020
-Authors: Antoine Caubrière, Sophie Rosset, Yannick Estève, Antoine Laurent
-Added by task: t0002_baseline_evaluation
-Caubrière et al. (2020) revisit named entity recognition from speech using the French ETAPE benchmark, eight years after the original evaluation campaign established the prior state of the art. Their central question is how much the combination of modern neural ASR (Kaldi chain model, 16.5% WER) and NER systems (bLSTM-CRF) improves entity extraction from spoken French compared to 2012-era HMM-GMM and CRF baselines. The paper is motivated by the complete absence of new published results on this tree-structured NER-from-speech benchmark since 2012, despite...
-
-## Statistical Testing on ASR Performance via Blockwise Bootstrap
-ID: 10.21437_Interspeech.2020-1338
-Year: 2020
-Authors: Zhe Liu, Fuchun Peng
-Added by task: t0002_baseline_evaluation
-Liu and Peng (2020) address a specific but important methodological gap in ASR evaluation: the standard bootstrap procedure for WER confidence intervals assumes utterance-level independence, but real evaluation sets almost always contain correlated utterances from the same speakers, sessions, or topics. The paper proposes blockwise bootstrap, which resamples groups of correlated utterances as atomic units, preserving within-group dependence while treating groups as independent. The motivation is to prevent systematically overconfident claims of ASR...
       </content>
     </section>
     <section id="datasets" source_kind="aggregator">

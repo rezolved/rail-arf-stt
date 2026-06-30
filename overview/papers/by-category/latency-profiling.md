@@ -1,6 +1,6 @@
-# Papers: `latency-profiling` (5)
+# Papers: `latency-profiling` (6)
 
-5 papers across 1 year(s).
+6 papers across 2 year(s).
 
 [Back to all papers](../README.md)
 
@@ -238,5 +238,62 @@ research track in this project, confirming that inference-time contextual biasin
 vocabulary injection must complement quantization-time fixes. The paper's rare-WER metric also
 provides a precise template for enriching the gold-92 benchmark evaluation beyond aggregate
 WER.
+
+</details>
+
+## 2025 (1)
+
+<details>
+<summary>📝 Granite-speech: open-source speech-aware LLMs with strong English ASR
+capabilities — Saon et al., 2025</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `10.48550_arXiv.2505.08699` |
+| **Authors** | George Saon, Avihu Dekel, Alexander Brooks, Tohru Nagano, Abraham Daniels, Aharon Satt, Ashish Mittal, Brian Kingsbury, David Haws, Edmilson Morais, Gakuto Kurata, Hagai Aronowitz, Ibrahim Ibrahim, Jeff Kuo, Kate Soule, Luis Lastras, Masayuki Suzuki, Ron Hoory, Samuel Thomas, Sashi Novitasari, Takashi Fukuda, Vishal Sunder, Xiaodong Cui, Zvi Kons |
+| **Venue** | arXiv preprint (preprint) |
+| **DOI** | `10.48550/arXiv.2505.08699` |
+| **URL** | https://arxiv.org/abs/2505.08699 |
+| **Date added** | 2026-06-29 |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`latency-profiling`](../../../meta/categories/latency-profiling/) |
+| **Added by** | [`t0014_granite_short_clip_robustness`](../../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Full summary** | [`summary.md`](../../../tasks/t0014_granite_short_clip_robustness/assets/paper/10.48550_arXiv.2505.08699/summary.md) |
+
+Saon et al. (IBM Research, 2025) introduce Granite-speech-3.3, a family of open-source
+speech-aware LLMs in 2B and 8B parameter variants, designed primarily for English ASR. The
+central research question is whether compact models trained exclusively on publicly licensed
+audio corpora (~76K hours Apache 2.0 compatible data) can match or surpass models trained on
+orders of magnitude more proprietary data. The motivation is both scientific — advancing
+open-source speech models — and practical, enabling commercial deployment without licensing
+barriers.
+
+The architecture integrates three components trained sequentially: a 10-layer conformer CTC
+encoder with block attention and self-conditioned CTC (1.5M updates, 275M parameters), a
+windowed Q-former speech modality adapter achieving 10x total acoustic compression (660K
+updates, 32 H100 GPUs), and LoRA adapters (rank 64) applied to all LLM attention layers. The
+design supports dual-mode inference: the same model weights serve as the base
+granite-3.3-instruct text LLM (LoRA off) or as a speech-aware model (encoder + Q-former + LoRA
+active) depending on whether an `<|audio|>` token appears in the prompt. Key training
+innovations include character-level CTC tokenization, balanced corpus sampling with α=0.6, and
+ensemble-based MT filtering for synthetic AST data that retains under 50% of examples but
+improves BLEU by more than 10 points.
+
+The 8B model achieves the lowest WER among all sub-8B parameter models on 7 of 9 English ASR
+benchmarks, including **1.5% WER** on LibriSpeech clean, **3.0%** on LibriSpeech other,
+**9.2%** on AMI IHM, **26.1%** on AMI SDM, and **5.8%** on VoxPopuli — beating Whisper Large
+v3, Gemini 2.0 Flash, Qwen2-Audio, and Phi-4-mm. The 2B model is competitive, especially on
+AMI SDM (**26.7% WER**), suggesting robustness to adverse acoustic conditions at smaller
+scale. Ablations confirm that character-level CTC tokenization outperforms BPE variants after
+joint LLM training, and the windowed Q-former outperforms MLP and cross-attention projectors.
+
+For the Rezolve STT project, Granite-speech-3.3 is a high-priority candidate for the gold-92
+benchmark evaluation. Its strong performance on conversational and meeting corpora (AMI,
+VoxPopuli) that share acoustic characteristics with Rezolve production call-center audio makes
+it directly relevant for entity accuracy benchmarking. The dual-mode design is particularly
+attractive: a single model instance could handle both transcription and entity-aware
+post-correction, potentially collapsing the two-step Deepgram + LLM correction pipeline and
+reducing voice-to-action latency below the 800 ms p50 budget. The Apache 2.0 license removes
+all commercial deployment barriers, and the planned future work on contextual biasing aligns
+directly with the Rezolve entity boosting objective.
 
 </details>

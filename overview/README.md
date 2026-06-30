@@ -1,18 +1,18 @@
 # Project Dashboard
 
 <p align="center">
-  <a href="papers/"><img src="https://img.shields.io/badge/Papers-19-4169E1" alt="Papers"></a>
+  <a href="papers/"><img src="https://img.shields.io/badge/Papers-22-4169E1" alt="Papers"></a>
   <a href="datasets/"><img src="https://img.shields.io/badge/Datasets-1-2E8B57" alt="Datasets"></a>
   <a href="models/"><img src="https://img.shields.io/badge/Models-0-FF8C00" alt="Models"></a>
-  <a href="predictions/"><img src="https://img.shields.io/badge/Predictions-17-9370DB" alt="Predictions"></a>
+  <a href="predictions/"><img src="https://img.shields.io/badge/Predictions-20-9370DB" alt="Predictions"></a>
   <a href="libraries/"><img src="https://img.shields.io/badge/Libraries-0-20B2AA" alt="Libraries"></a>
-  <a href="answers/"><img src="https://img.shields.io/badge/Answers-0-CD853F" alt="Answers"></a>
+  <a href="answers/"><img src="https://img.shields.io/badge/Answers-1-CD853F" alt="Answers"></a>
 </p>
 
 <p align="center">
   <a href="news/"><img src="https://img.shields.io/badge/News-0-FF6347" alt="News"></a>
   <a href="tasks/"><img src="https://img.shields.io/badge/Tasks-14-4682B4" alt="Tasks"></a>
-  <a href="suggestions/"><img src="https://img.shields.io/badge/Suggestions-28-DAA520" alt="Suggestions"></a>
+  <a href="suggestions/"><img src="https://img.shields.io/badge/Suggestions-34-DAA520" alt="Suggestions"></a>
   <a href="llm-context/"><img src="https://img.shields.io/badge/LLM%20Contexts-8-8B4513" alt="LLM Contexts"></a>
   <a href="metrics/"><img src="https://img.shields.io/badge/Metrics-7-708090" alt="Metrics"></a>
   <a href="metrics-results/"><img src="https://img.shields.io/badge/Results-10-DC143C" alt="Results"></a>
@@ -28,15 +28,16 @@
 [whisper-finetuning](by-category/whisper-finetuning.md)
 
 **[LLM Contexts](llm-context/README.md)**: [overview](llm-context/project-overview.xml) (5K) |
-[full](llm-context/full.xml) (46K) | [roadmap](llm-context/roadmap.xml) (12K) |
-[results](llm-context/results-deep-dive.xml) (38K) |
-[assets](llm-context/literature-and-assets.xml) (10K)
+[full](llm-context/full.xml) (55K) | [roadmap](llm-context/roadmap.xml) (11K) |
+[results](llm-context/results-deep-dive.xml) (47K) |
+[assets](llm-context/literature-and-assets.xml) (11K)
 
-*Last updated: 2026-06-29 11:55 UTC*
+*Last updated: 2026-06-30 08:12 UTC*
 
 * **Budget**: **$2** spent of $2000
 * **Remaining**: **$1998**
 * **Usage**: `░░░░░░░░░░░░░░░░░░░░` 0.1%
+* **GPU Machines**: **1** provisioned across 1 tasks · **$0** GPU spend ([details](machines/))
 
 ---
 
@@ -52,11 +53,9 @@ No tasks in progress.
 
 ---
 
-## [Ready to Start (1)](tasks/by-status/not_started.md)
+## [Ready to Start (0)](tasks/by-status/not_started.md)
 
-| # | Task | Description | Date Added |
-|---|------|-------------|------------|
-| 0014 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | [`description`](../tasks/t0014_granite_short_clip_robustness/task_description.md) | — |
+No tasks ready to start.
 
 ---
 
@@ -66,10 +65,11 @@ No blocked tasks.
 
 ---
 
-## [Recently Completed (13 total)](tasks/by-status/completed.md)
+## [Recently Completed (14 total)](tasks/by-status/completed.md)
 
 | # | Task | Results | Completed |
 |---|------|---------|-----------|
+| 0014 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | [`results`](../tasks/t0014_granite_short_clip_robustness/results/results_detailed.md) | 2026-06-30 07:53 |
 | 0012 | [Production Streaming Benchmark — Whisper, Parakeet, Granite on Gold-92](../overview/tasks/task_pages/t0012_whisper_parakeet_granite_streaming.md) | [`results`](../tasks/t0012_whisper_parakeet_granite_streaming/results/results_detailed.md) | 2026-06-29 00:00 |
 | 0013 | [Brainstorm Results — Session 1](../overview/tasks/task_pages/t0013_brainstorm_results_1.md) | [`results`](../tasks/t0013_brainstorm_results_1/results/results_detailed.md) | 2026-06-29 00:00 |
 | 0011 | [Streaming STT Benchmark — Parakeet TDT 0.6b-v3 vs Granite Speech 4.1 2B (biased)](../overview/tasks/task_pages/t0011_streaming_stt_benchmark.md) | [`results`](../tasks/t0011_streaming_stt_benchmark/results/results_detailed.md) | 2026-06-26 13:30 |
@@ -79,9 +79,8 @@ No blocked tasks.
 | 0007 | [Benchmark IBM Granite Speech 4.1 2B on Gold-92](../overview/tasks/task_pages/t0007_ibm_granite_4_1_benchmark.md) | [`results`](../tasks/t0007_ibm_granite_4_1_benchmark/results/results_detailed.md) | 2026-06-25 |
 | 0009 | [Parakeet TDT 0.6b-v3 Production Baseline on Gold-92](../overview/tasks/task_pages/t0009_parakeet_production_baseline.md) | [`results`](../tasks/t0009_parakeet_production_baseline/results/results_detailed.md) | 2026-06-25 06:00 |
 | 0005 | [STT Model Survey: Open-Source Candidates for the brainpowa Pipeline](../overview/tasks/task_pages/t0005_stt_model_survey_brainpowa.md) | [`results`](../tasks/t0005_stt_model_survey_brainpowa/results/results_detailed.md) | 2026-06-24 11:06 |
-| 0004 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | [`results`](../tasks/t0004_vocabulary_biasing_experiment/results/results_detailed.md) | 2026-06-23 15:30 |
 
-*3 more completed tasks → [completed tasks](tasks/by-status/completed.md)*
+*4 more completed tasks → [completed tasks](tasks/by-status/completed.md)*
 
 ---
 
@@ -93,72 +92,190 @@ No blocked tasks.
 |---|------|---------|-------|
 | 1 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 + vocab bias | **0.025316** |
 | 2 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **0.050633** |
-| 3 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper Large v3 | **0.303797** |
-| 4 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper turbo | **0.303797** |
-| 5 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **0.303797** |
-| 6 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **0.303797** |
-| 7 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |  | **0.341772** |
-| 8 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.411392** |
+| 3 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Granite 4.1 2B | **0.0744** |
+| 4 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Whisper turbo | **0.0767** |
+| 5 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Parakeet TDT 0.6b | **0.1625** |
+| 6 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper Large v3 | **0.303797** |
+| 7 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper turbo | **0.303797** |
+| 8 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **0.303797** |
+| 9 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **0.303797** |
+| 10 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |  | **0.341772** |
+
+*1 more results → [all results](metrics-results/)*
 
 ### 📖 Entity Accuracy — Domain Vocabulary
 
 | # | Task | Variant | Value |
 |---|------|---------|-------|
-| 1 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 + vocab bias | **0.945455** |
-| 2 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **0.872727** |
-| 3 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **0.181818** |
-| 4 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **0.181818** |
-| 5 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.109091** |
-| 6 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |  | **0.090909** |
+| 1 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Granite 4.1 2B | **0.9666** |
+| 2 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 + vocab bias | **0.945455** |
+| 3 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Whisper turbo | **0.8851** |
+| 4 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **0.872727** |
+| 5 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Parakeet TDT 0.6b | **0.3519** |
+| 6 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **0.181818** |
+| 7 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **0.181818** |
+| 8 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.109091** |
+| 9 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |  | **0.090909** |
 
 ### 🎯 Entity Accuracy (gold-92)
 
 | # | Task | Variant | Value |
 |---|------|---------|-------|
-| 1 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 + vocab bias | **0.460145** |
-| 2 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **0.431159** |
-| 3 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper Large v3 | **0.251812** |
-| 4 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper turbo | **0.251812** |
-| 5 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **0.251812** |
-| 6 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **0.251812** |
-| 7 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.217029** |
-| 8 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |  | **0.217029** |
+| 1 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Granite 4.1 2B | **0.9481** |
+| 2 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Whisper turbo | **0.9234** |
+| 3 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Parakeet TDT 0.6b | **0.6499** |
+| 4 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 + vocab bias | **0.460145** |
+| 5 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **0.431159** |
+| 6 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper Large v3 | **0.251812** |
+| 7 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper turbo | **0.251812** |
+| 8 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **0.251812** |
+| 9 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **0.251812** |
+| 10 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.217029** |
+
+*1 more results → [all results](metrics-results/)*
 
 ### ✅ Intent Preservation (gold-92)
 
 | # | Task | Variant | Value |
 |---|------|---------|-------|
 | 1 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 + vocab bias | **0.989247** |
-| 2 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **0.967742** |
-| 3 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper Large v3 | **0.903226** |
-| 4 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper turbo | **0.903226** |
-| 5 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **0.903226** |
-| 6 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **0.903226** |
-| 7 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |  | **0.870968** |
-| 8 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.849462** |
+| 2 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Granite 4.1 2B | **0.9892** |
+| 3 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **0.967742** |
+| 4 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Whisper turbo | **0.9462** |
+| 5 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper Large v3 | **0.903226** |
+| 6 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper turbo | **0.903226** |
+| 7 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **0.903226** |
+| 8 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **0.903226** |
+| 9 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |  | **0.870968** |
+| 10 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.849462** |
+
+*1 more results → [all results](metrics-results/)*
 
 ### ⚡ Latency p50 (seconds)
 
 | # | Task | Variant | Value |
 |---|------|---------|-------|
-| 1 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.0697** |
-| 2 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |  | **0.2321** |
-| 3 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper turbo | **4.2501** |
-| 4 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **4.2501** |
-| 5 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper Large v3 | **5.6598** |
-| 6 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **5.6598** |
-| 7 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **5.8598** |
-| 8 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 + vocab bias | **6.6621** |
+| 1 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Parakeet TDT 0.6b | **0.0409** |
+| 2 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.0697** |
+| 3 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |  | **0.2321** |
+| 4 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Granite 4.1 2B | **0.2514** |
+| 5 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Whisper turbo | **0.3296** |
+| 6 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper turbo | **4.2501** |
+| 7 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **4.2501** |
+| 8 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper Large v3 | **5.6598** |
+| 9 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **5.6598** |
+| 10 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **5.8598** |
+
+*1 more results → [all results](metrics-results/)*
 
 ### 🚫 Wrong Action Rate (gold-92)
 
 | # | Task | Variant | Value |
 |---|------|---------|-------|
-| 1 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |  | **0.129032** |
+| 1 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Granite 4.1 2B | **0.0108** |
+| 2 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Whisper turbo | **0.0538** |
+| 3 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |  | **0.129032** |
+| 4 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Parakeet TDT 0.6b | **0.3011** |
 
 ---
 
-## [Recent Suggestions (23 open)](suggestions/)
+## [Recent Suggestions (29 open)](suggestions/)
+
+<details>
+<summary>🧪 <strong>Implement granite.py STTAdapter and deploy Granite as production
+STT in brainpowa-realtime-api</strong> (S-0014-01)</summary>
+
+**Kind**: experiment | **Priority**: high | **Date**: 2026-06-30 | **Source**:
+[t0014_granite_short_clip_robustness](../tasks/t0014_granite_short_clip_robustness/)
+
+t0014 confirmed CONDITIONAL YES: replace Parakeet with Granite Speech 4.1 2B, gating on a 2.0
+s minimum clip duration. The integration effort is ~50-100 lines (only transcribe() needs
+implementing). This task should implement granite.py, add the 2.0 s minimum clip gate to the
+streaming pipeline, run the existing brainpowa STT evals, and merge to production. Recommended
+task types: experiment-run, answer-question.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Investigate Parakeet empty-output failure at 2.5 s and 3.0 s
+clips beyond the chunk_secs=2 boundary</strong> (S-0014-02)</summary>
+
+**Kind**: experiment | **Priority**: medium | **Date**: 2026-06-30 | **Source**:
+[t0014_granite_short_clip_robustness](../tasks/t0014_granite_short_clip_robustness/)
+
+t0014 found Parakeet emits empty transcripts at 2.5 s (12.5%) and 3.0 s (16.7%), which are
+above the chunk_secs=2 threshold and cannot be explained by the single-chunk degenerate path.
+This suggests additional failure modes in the NeMo streaming stack (possibly NeMo-Issue14714
+or NeMo-Issue15143). A targeted experiment should isolate whether these failures are
+deterministic or stochastic, and whether patching the NeMo adapter would fix them. Recommended
+task types: experiment-run, answer-question.
+
+</details>
+
+<details>
+<summary>📂 <strong>Expand short-clip robustness benchmark to 200+ clips with real
+production audio diversity</strong> (S-0014-03)</summary>
+
+**Kind**: dataset | **Priority**: medium | **Date**: 2026-06-30 | **Source**:
+[t0014_granite_short_clip_robustness](../tasks/t0014_granite_short_clip_robustness/)
+
+The synthetic short-clip dataset (44 clips, 7-14 per bin) is underpowered for stratum-level
+significance testing (MDD ±20 pp for empty rate). Expanding to 200+ clips from a wider variety
+of production audio sessions, accents, and domain terms would enable statistically reliable
+per-bin comparisons and better characterize Granite behavior in the <1 s and 1-2 s strata
+where entity accuracy is near zero for all models. Recommended task types:
+audio-dataset-curation.
+
+</details>
+
+<details>
+<summary>📊 <strong>Improve Whisper hallucination detection for sub-1 s clips by
+refining the BoH reference-word check</strong> (S-0014-04)</summary>
+
+**Kind**: evaluation | **Priority**: medium | **Date**: 2026-06-30 | **Source**:
+[t0014_granite_short_clip_robustness](../tasks/t0014_granite_short_clip_robustness/)
+
+t0014 found Whisper returns 'Thank you.' on silence and Korean-accented sub-1 s clips —
+patterns that match BoH top-30 but were not flagged as hallucinations because the
+reference-word overlap check was satisfied by partial gold-92 transcripts. Refining
+hallucination detection to use only the actual audio duration's expected spoken content (not
+the full clip transcript) would improve precision. This would also yield a cleaner
+hallucination rate for comparing Whisper and Granite in production monitoring. Recommended
+task types: experiment-run.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Benchmark Granite Speech 4.1 2B vs Deepgram Nova-2 and Azure
+Speech on gold-92 to complete the competitive landscape</strong>
+(S-0014-05)</summary>
+
+**Kind**: experiment | **Priority**: high | **Date**: 2026-06-30 | **Source**:
+[t0014_granite_short_clip_robustness](../tasks/t0014_granite_short_clip_robustness/)
+
+Granite now leads all tested open-source models (EA 94.8%), but no direct comparison with
+commercial APIs (Deepgram Nova-2, Azure Speech) has been run in production streaming mode with
+the full domain biasing setup. S-0005-07 covers this but predates the t0012/t0014 findings
+confirming Granite's edge. Running Granite against commercial APIs would determine whether
+Granite already beats production Deepgram, answering the final commercial vs open-source
+question. Recommended task types: stt-benchmark-run, answer-question.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Measure Granite latency on brainpowa production hardware (CPU
+inference path) for edge deployment</strong> (S-0014-06)</summary>
+
+**Kind**: experiment | **Priority**: medium | **Date**: 2026-06-30 | **Source**:
+[t0014_granite_short_clip_robustness](../tasks/t0014_granite_short_clip_robustness/)
+
+All Granite latency measurements in t0012 and t0014 used Azure H100 NVL GPU (p50 249-251 ms).
+The brainpowa-realtime-api production deployment may use CPU inference or a smaller GPU.
+Measuring Granite's CPU latency on the actual production server would determine whether the
+800 ms p50 constraint holds outside the H100 environment and whether quantization (S-0005-10)
+is needed. Recommended task types: experiment-run, answer-question.
+
+</details>
 
 <details>
 <summary>🧪 <strong>Benchmark Moonshine ONNX Medium on gold-92 when UsefulSensors
@@ -231,114 +348,43 @@ post-correction-experiment, write-library.
 
 </details>
 
-<details>
-<summary>📊 <strong>Test entity-biasing mechanisms at scale (1,000+ entity
-vocabulary)</strong> (S-0005-06)</summary>
-
-**Kind**: evaluation | **Priority**: medium | **Date**: 2026-06-24 | **Source**:
-[t0005_stt_model_survey_brainpowa](../tasks/t0005_stt_model_survey_brainpowa/)
-
-The survey reports contextual biasing results on 50–1,800 entity lists. Rezolve's product
-catalog scales to 10,000+ SKUs. Test whether Granite 4.1 keyword biasing and Paraformer
-deep-biasing maintain performance (latency, entity accuracy) when biasing context grows from
-1,800 to 10,000 entities. Measure latency scaling curve and F1 degradation if any. If latency
-exceeds budget at production scale, design a retrieval-based filtering pre-pass (e.g.,
-retrieve top-100 entities relevant to the speaker/context before biasing) to cap the active
-biasing vocabulary. Recommended task types: experiment-run, data-analysis.
-
-</details>
-
-<details>
-<summary>🧪 <strong>Compare Granite/Paraformer against Deepgram Nova-2 and Azure
-Speech on gold-92</strong> (S-0005-07)</summary>
-
-**Kind**: experiment | **Priority**: medium | **Date**: 2026-06-24 | **Source**:
-[t0005_stt_model_survey_brainpowa](../tasks/t0005_stt_model_survey_brainpowa/)
-
-The survey did not include closed-API baselines (Deepgram Nova-2, Azure Speech Services). Both
-support contextual biasing and have lower latency than Whisper. Run a comparative benchmark to
-establish whether open-source candidates (Granite, Paraformer) can match or exceed the
-accuracy and latency of production-quality closed APIs. This context is critical for
-production decision-making if open-source candidates fall short. Azure Speech and Deepgram API
-costs are approximately $0.01–$0.10 for 93 clips. Recommended task types: stt-benchmark-run,
-comparative-analysis.
-
-</details>
-
-<details>
-<summary>🧪 <strong>Evaluate fallback strategy if top candidates underperform on
-accented English</strong> (S-0005-08)</summary>
-
-**Kind**: experiment | **Priority**: medium | **Date**: 2026-06-24 | **Source**:
-[t0005_stt_model_survey_brainpowa](../tasks/t0005_stt_model_survey_brainpowa/)
-
-Gold-92 is weighted toward investor-relations domain (accented English, financial jargon). The
-survey reports that real-world performance on noisy/accented audio degrades 3–7x vs. clean
-benchmarks. If Granite and Paraformer achieve <5% WER on LibriSpeech but >15% entity WER on
-gold-92 accented clips, design a fallback strategy: (1) ensemble hybrid (fast transducer + LLM
-correction), (2) domain fine-tuning Granite/Paraformer on accented audio samples, or (3)
-pre-emphasis + speech-enhancement preprocessing before STT. Prototype and benchmark the top 2
-fallback approaches on gold-92. Recommended task types: experiment-run,
-post-correction-experiment.
-
-</details>
-
-<details>
-<summary>📊 <strong>Quantify entity accuracy gain vs. integration effort for Granite
-vs. Paraformer</strong> (S-0005-09)</summary>
-
-**Kind**: evaluation | **Priority**: medium | **Date**: 2026-06-24 | **Source**:
-[t0005_stt_model_survey_brainpowa](../tasks/t0005_stt_model_survey_brainpowa/)
-
-After benchmarking both Granite and Paraformer on gold-92 (suggestions S-0005-01, S-0005-02),
-create a cost-benefit matrix: entity accuracy gain (%) vs. integration complexity (days),
-latency under load (ms), and VRAM (GB). Use this to make a final production selection. If
-Granite delivers +12% entity accuracy with 2-day integration and Paraformer delivers +10% with
-4-day integration, the decision favors Granite. This task synthesizes the experimental
-findings into a decision frame for the team. Recommended task types: comparative-analysis,
-data-analysis.
-
-</details>
-
-<details>
-<summary>🔧 <strong>Implement quantized variants of Granite/Paraformer for edge and
-latency optimization</strong> (S-0005-10)</summary>
-
-**Kind**: technique | **Priority**: low | **Date**: 2026-06-24 | **Source**:
-[t0005_stt_model_survey_brainpowa](../tasks/t0005_stt_model_survey_brainpowa/)
-
-If benchmarking shows that Granite or Paraformer meet accuracy targets but exceed VRAM or
-latency budgets at scale, implement quantized (int8/float16) variants using ONNX, TensorRT, or
-vLLM to reduce model size and improve inference speed. Moonshine already ships as a
-245M-parameter model optimized for edge; quantization could reduce Granite (2B) and Paraformer
-(varies) to similar footprints. Measure quantization impact on entity accuracy and latency. If
-quantization preserves accuracy within 1–2% while halving latency, quantized variants become
-the recommended production deployment. Recommended task types: experiment-run, build-model.
-
-</details>
-
-<details>
-<summary>🧪 <strong>Vocabulary-biased Whisper inference via STT_INITIAL_PROMPT on
-gold-92</strong> (S-0002-01)</summary>
-
-**Kind**: experiment | **Priority**: high | **Date**: 2026-06-23 | **Source**:
-[t0002_baseline_evaluation](../tasks/t0002_baseline_evaluation/)
-
-Run Whisper turbo on gold-92 with a domain vocabulary prompt injected via STT_INITIAL_PROMPT
-(e.g., 'Rezolve, brainpowa, Rezolve AI, Shopify Plus, Salesforce Commerce Cloud, Adobe
-Commerce, AI Foundry'). The baseline showed 'Rezolve' is systematically transcribed as 'Hizol'
-or 'Resolve' — a pure vocabulary gap. Vocabulary biasing via initial_prompt requires zero
-training and zero API cost. Measure entity accuracy on production clips specifically
-(baseline: 8.8%) and compare with paired BCa test against the whisper-turbo baseline.
-Recommended task types: stt-benchmark-run, experiment-run.
-
-</details>
-
-*13 more open suggestions → [open suggestions](suggestions/)*
+*19 more open suggestions → [open suggestions](suggestions/)*
 
 ---
 
-## [High Priority Suggestions (5)](suggestions/)
+## [High Priority Suggestions (7)](suggestions/)
+
+<details>
+<summary>🧪 <strong>Implement granite.py STTAdapter and deploy Granite as production
+STT in brainpowa-realtime-api</strong> (S-0014-01)</summary>
+
+**Kind**: experiment | **Priority**: high | **Date**: 2026-06-30 | **Source**:
+[t0014_granite_short_clip_robustness](../tasks/t0014_granite_short_clip_robustness/)
+
+t0014 confirmed CONDITIONAL YES: replace Parakeet with Granite Speech 4.1 2B, gating on a 2.0
+s minimum clip duration. The integration effort is ~50-100 lines (only transcribe() needs
+implementing). This task should implement granite.py, add the 2.0 s minimum clip gate to the
+streaming pipeline, run the existing brainpowa STT evals, and merge to production. Recommended
+task types: experiment-run, answer-question.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Benchmark Granite Speech 4.1 2B vs Deepgram Nova-2 and Azure
+Speech on gold-92 to complete the competitive landscape</strong>
+(S-0014-05)</summary>
+
+**Kind**: experiment | **Priority**: high | **Date**: 2026-06-30 | **Source**:
+[t0014_granite_short_clip_robustness](../tasks/t0014_granite_short_clip_robustness/)
+
+Granite now leads all tested open-source models (EA 94.8%), but no direct comparison with
+commercial APIs (Deepgram Nova-2, Azure Speech) has been run in production streaming mode with
+the full domain biasing setup. S-0005-07 covers this but predates the t0012/t0014 findings
+confirming Granite's edge. Running Granite against commercial APIs would determine whether
+Granite already beats production Deepgram, answering the final commercial vs open-source
+question. Recommended task types: stt-benchmark-run, answer-question.
+
+</details>
 
 <details>
 <summary>🧪 <strong>Vocabulary-biased Whisper inference via STT_INITIAL_PROMPT on
@@ -428,13 +474,188 @@ task types: audio-dataset-curation.
 
 ---
 
-## [Recent Answers (0 total)](answers/)
+## [Recent Answers (1 total)](answers/)
 
-No answers yet.
+<details>
+<summary><strong>Should Granite Speech 4.1 2B replace Parakeet TDT 0.6b-v3 as the
+production STT model in brainpowa-realtime-api?</strong></summary>
+
+**Confidence**: high | **Date**: 2026-06-30 | **Full answer**:
+[`granite-vs-parakeet-production-fit`](../tasks/t0014_granite_short_clip_robustness/assets/answer/granite-vs-parakeet-production-fit/)
+
+YES, with a minimum clip duration gate of 2.0 s recommended for the first deployment. Granite
+Speech 4.1 2B produces 0% empty output and 0% hallucination across all 44 short clips tested
+(0.5–3.0 s), while Parakeet fails on 27.3% of short clips (55.6% empty rate at sub-1 s bins) —
+directly matching the failure mode that disqualified Whisper from production. On gold-92
+(clips 3–13 s), Granite achieves 94.8% entity accuracy versus Parakeet's 65.0%, with
+comparable latency (125–215 ms p50 vs 32–46 ms); both well within the 800 ms production
+constraint. Integration effort is low: reading brainpowa-realtime-api base.py confirms the
+STTAdapter base class already implements transcribe_stream() as accumulate-then-transcribe, so
+a granite.py adapter only needs to implement transcribe() and model loading — approximately
+60–80 lines of Python.
+
+</details>
 
 ---
 
-## [Latest Papers (19 total)](papers/)
+## [Latest Papers (22 total)](papers/)
+
+<details>
+<summary>🏤 <strong>Calm-Whisper: Reduce Whisper Hallucination On Non-Speech By
+Calming Crazy Heads Down</strong> — Wang et al., 2025</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `10.48550_arXiv.2505.12969` |
+| **Authors** | Yingzhi Wang, Anas Alhmoud, Saad Alsahly, Muhammad Alqurishi, Mirco Ravanelli |
+| **Venue** | Interspeech 2025 (conference) |
+| **DOI** | `10.48550/arXiv.2505.12969` |
+| **URL** | https://arxiv.org/abs/2505.12969 |
+| **Date added** | 2026-06-29 |
+| **Categories** | [`stt-evaluation`](../meta/categories/stt-evaluation/), [`whisper-finetuning`](../meta/categories/whisper-finetuning/) |
+| **Added by** | [`t0014_granite_short_clip_robustness`](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Full summary** | [`summary.md`](../tasks/t0014_granite_short_clip_robustness/assets/paper/10.48550_arXiv.2505.12969/summary.md) |
+
+This paper targets a severe and practically important failure mode of Whisper-large-v3:
+hallucination on non-speech audio. With a baseline hallucination rate of **99.97%** on
+UrbanSound8K — meaning virtually every non-speech clip produces fabricated text — Whisper is
+unsafe to deploy in production pipelines that handle mixed-content audio without external VAD
+safeguards. The authors set out to eliminate this hallucination from within the model, without
+adding inference-time complexity or external pre/post-processing.
+
+The technical approach proceeds in two stages. First, a head-wise masking study isolates which
+of Whisper-large-v3's 20 decoder self-attention heads contributes most to hallucination. Three
+heads (#1, #6, #11) are identified as responsible for over **75%** of the problem. Second,
+only the weights of those three heads are fine-tuned on 105 hours of pure non-speech audio
+(AudioSet, DEMAND, MUSAN) paired with blank target labels. All other weights remain frozen,
+preventing regression on standard speech transcription tasks.
+
+The results are striking: the best model (5-epoch fine-tune) reduces hallucination on
+UrbanSound8K from **99.97%** to **15.51%** — an **84.5%** relative reduction — while WER on
+LibriSpeech test-clean rises by only **+0.07%** (from **2.12%** to **2.19%**). Long
+hallucinations exceeding 5 tokens drop from **742** instances to **91**. The paper also
+demonstrates that broader fine-tuning (full decoder) completely destroys transcription quality
+(**100% WER**), confirming that surgical head-level targeting is essential. The Calm-Whisper
+hallucination rate of **15.51%** approaches the **13.52%** of Conformer-CTC-large — a
+CTC-based model fundamentally less prone to autoregressive hallucination — validating that the
+gap can be largely closed through targeted fine-tuning.
+
+For this project, Calm-Whisper is directly relevant to the robustness goal of evaluating
+Whisper-class models on short production audio clips from Rezolve voice commerce sessions.
+Short clips, silences, and background noise are common in that setting, and the **99.97%**
+baseline hallucination rate means any such segment would produce spurious transcripts
+corrupting downstream entity recognition and intent parsing. Adopting the Calm-Whisper
+fine-tuning recipe — or applying an equivalent head-attribution study to Granite STT or
+another Whisper-variant — could be a low-cost, high-impact robustness improvement for the
+Rezolve pipeline, with negligible WER regression cost.
+
+</details>
+
+<details>
+<summary>📝 <strong>Granite-speech: open-source speech-aware LLMs with strong English
+ASR capabilities</strong> — Saon et al., 2025</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `10.48550_arXiv.2505.08699` |
+| **Authors** | George Saon, Avihu Dekel, Alexander Brooks, Tohru Nagano, Abraham Daniels, Aharon Satt, Ashish Mittal, Brian Kingsbury, David Haws, Edmilson Morais, Gakuto Kurata, Hagai Aronowitz, Ibrahim Ibrahim, Jeff Kuo, Kate Soule, Luis Lastras, Masayuki Suzuki, Ron Hoory, Samuel Thomas, Sashi Novitasari, Takashi Fukuda, Vishal Sunder, Xiaodong Cui, Zvi Kons |
+| **Venue** | arXiv preprint (preprint) |
+| **DOI** | `10.48550/arXiv.2505.08699` |
+| **URL** | https://arxiv.org/abs/2505.08699 |
+| **Date added** | 2026-06-29 |
+| **Categories** | [`stt-evaluation`](../meta/categories/stt-evaluation/), [`latency-profiling`](../meta/categories/latency-profiling/) |
+| **Added by** | [`t0014_granite_short_clip_robustness`](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Full summary** | [`summary.md`](../tasks/t0014_granite_short_clip_robustness/assets/paper/10.48550_arXiv.2505.08699/summary.md) |
+
+Saon et al. (IBM Research, 2025) introduce Granite-speech-3.3, a family of open-source
+speech-aware LLMs in 2B and 8B parameter variants, designed primarily for English ASR. The
+central research question is whether compact models trained exclusively on publicly licensed
+audio corpora (~76K hours Apache 2.0 compatible data) can match or surpass models trained on
+orders of magnitude more proprietary data. The motivation is both scientific — advancing
+open-source speech models — and practical, enabling commercial deployment without licensing
+barriers.
+
+The architecture integrates three components trained sequentially: a 10-layer conformer CTC
+encoder with block attention and self-conditioned CTC (1.5M updates, 275M parameters), a
+windowed Q-former speech modality adapter achieving 10x total acoustic compression (660K
+updates, 32 H100 GPUs), and LoRA adapters (rank 64) applied to all LLM attention layers. The
+design supports dual-mode inference: the same model weights serve as the base
+granite-3.3-instruct text LLM (LoRA off) or as a speech-aware model (encoder + Q-former + LoRA
+active) depending on whether an `<|audio|>` token appears in the prompt. Key training
+innovations include character-level CTC tokenization, balanced corpus sampling with α=0.6, and
+ensemble-based MT filtering for synthetic AST data that retains under 50% of examples but
+improves BLEU by more than 10 points.
+
+The 8B model achieves the lowest WER among all sub-8B parameter models on 7 of 9 English ASR
+benchmarks, including **1.5% WER** on LibriSpeech clean, **3.0%** on LibriSpeech other,
+**9.2%** on AMI IHM, **26.1%** on AMI SDM, and **5.8%** on VoxPopuli — beating Whisper Large
+v3, Gemini 2.0 Flash, Qwen2-Audio, and Phi-4-mm. The 2B model is competitive, especially on
+AMI SDM (**26.7% WER**), suggesting robustness to adverse acoustic conditions at smaller
+scale. Ablations confirm that character-level CTC tokenization outperforms BPE variants after
+joint LLM training, and the windowed Q-former outperforms MLP and cross-attention projectors.
+
+For the Rezolve STT project, Granite-speech-3.3 is a high-priority candidate for the gold-92
+benchmark evaluation. Its strong performance on conversational and meeting corpora (AMI,
+VoxPopuli) that share acoustic characteristics with Rezolve production call-center audio makes
+it directly relevant for entity accuracy benchmarking. The dual-mode design is particularly
+attractive: a single model instance could handle both transcription and entity-aware
+post-correction, potentially collapsing the two-step Deepgram + LLM correction pipeline and
+reducing voice-to-action latency below the 800 ms p50 budget. The Apache 2.0 license removes
+all commercial deployment barriers, and the planned future work on contextual biasing aligns
+directly with the Rezolve entity boosting objective.
+
+</details>
+
+<details>
+<summary>🏤 <strong>Investigation of Whisper ASR Hallucinations Induced by Non-Speech
+Audio</strong> — Barański et al., 2025</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `10.1109_ICASSP49660.2025.10890105` |
+| **Authors** | Mateusz Barański, Jan Jasiński, Julitta Bartolewska, Stanisław Kacprzak, Marcin Witkowski, Konrad Kowalczyk |
+| **Venue** | ICASSP 2025 - 2025 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP) (conference) |
+| **DOI** | `10.1109/ICASSP49660.2025.10890105` |
+| **URL** | https://arxiv.org/abs/2501.11378 |
+| **Date added** | 2026-06-29 |
+| **Categories** | [`stt-evaluation`](../meta/categories/stt-evaluation/) |
+| **Added by** | [`t0014_granite_short_clip_robustness`](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Full summary** | [`summary.md`](../tasks/t0014_granite_short_clip_robustness/assets/paper/10.1109_ICASSP49660.2025.10890105/summary.md) |
+
+Barański et al. investigate a well-known but under-characterised failure mode of Whisper ASR:
+the generation of hallucinated text when the input audio contains no speech. Rather than
+relying on imprecise phonetic similarity measures to define hallucinations, the paper
+constructs a controlled setting — running Whisper exclusively on verified non-speech audio —
+where every output is definitionally a hallucination. This clean experimental design enables a
+large-scale empirical characterisation across 301,317 audio files from four public sound
+datasets, with additional experiments on speech augmented with non-speech sounds.
+
+The methodology proceeds through six experiment groups. Experiment 1 collects an exhaustive
+hallucination list from non-speech audio; Experiments 2–3 examine how clip duration and sound
+category affect hallucination rate. The authors construct the Bag of Hallucinations (BoH) by
+filtering the raw list using an n-gram language model (log probability < −10) and a frequency
+threshold (> 4 occurrences). Experiments 4–5 extend to augmented speech with different noise
+durations and positions. Experiment 6 evaluates Whisper's internal parameters (beam size,
+hallucination silence threshold). Experiment 7 benchmarks full mitigation strategies
+end-to-end using WER on held-out Freesound material.
+
+The headline results show hallucinations are surprisingly predictable: **40.3%** of non-speech
+clips trigger a hallucination, but **35%** of all hallucinations are just two strings. The
+30-second Whisper segment boundary is identified as a primary trigger for elevated
+hallucination rates. Among mitigation strategies, SileroVAD + delooping + BoH achieves the
+best WER of **6.5%** (non-overlap) versus a raw baseline of **104.8%**, while BoH alone
+(without VAD) achieves **17.1% WER** — a strong result for a purely text-side, model-agnostic
+filter.
+
+For this project (t0014, Granite short-clip robustness), the paper is directly relevant at two
+levels. First, the hallucination patterns it documents for Whisper provide a benchmark against
+which Granite's behaviour on short, potentially noisy clips can be compared — if Granite
+exhibits lower hallucination rates on non-speech clips, that is a concrete robustness
+advantage. Second, the BoH post-processing pipeline is immediately applicable as a defensive
+layer for the Rezolve STT harness regardless of which model is used, offering measurable WER
+improvement with no model changes.
+
+</details>
 
 <details>
 <summary>🏤 <strong>Towards Robust Dysarthric Speech Recognition: LLM-Agent Post-ASR
@@ -750,137 +971,7 @@ addresses a practical training stability concern that would arise when fine-tuni
 
 </details>
 
-<details>
-<summary>📝 <strong>Robust Speech Recognition via Large-Scale Weak
-Supervision</strong> — Radford et al., 2022</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `10.48550_arXiv.2212.04356` |
-| **Authors** | Alec Radford, Jong Wook Kim, Tao Xu, Greg Brockman, Christine McLeavey, Ilya Sutskever |
-| **Venue** | arXiv preprint (preprint) |
-| **DOI** | `10.48550/arXiv.2212.04356` |
-| **URL** | https://arxiv.org/abs/2212.04356 |
-| **Date added** | 2026-06-23 |
-| **Categories** | [`stt-evaluation`](../meta/categories/stt-evaluation/), [`whisper-finetuning`](../meta/categories/whisper-finetuning/) |
-| **Added by** | [`t0002_baseline_evaluation`](../overview/tasks/task_pages/t0002_baseline_evaluation.md) |
-| **Full summary** | [`summary.md`](../tasks/t0002_baseline_evaluation/assets/paper/10.48550_arXiv.2212.04356/summary.md) |
-
-Radford et al. present Whisper, a speech recognition system trained on 680,000 hours of weakly
-supervised audio-transcript pairs scraped from the internet. The central research question is
-whether scaling weak supervision — using noisy but abundant internet data rather than
-expensive human-validated corpora — can match or surpass fully supervised approaches while
-achieving substantially better real-world robustness. The work is motivated by the observation
-that prior state-of-the-art models trained on LibriSpeech are effectively measuring
-in-distribution generalization, not the out-of-distribution robustness needed for production
-deployment.
-
-The approach uses a standard encoder-decoder Transformer trained end-to-end on 30-second audio
-segments with a multitask format: all tasks (transcription, translation, language ID, VAD,
-timestamp alignment) are encoded as decoder token sequences, allowing a single model to
-replace multiple pipeline stages. Training uses AdamW with linear LR decay for approximately
-2-3 passes over the dataset without data augmentation, relying on dataset diversity for
-robustness. Five model sizes are released (39M–1.55B parameters). A text normalizer and
-long-form decoding heuristics are developed as essential practical components.
-
-The key findings are that Whisper Large V2 achieves **55.2%** average relative error reduction
-over the best comparable supervised model on 13 OOD datasets despite similar LibriSpeech
-performance, and its transcription quality approaches professional human transcribers on
-Kincaid46 (Whisper **8.81%** WER vs. best human service **7.61%**). For translation, Whisper
-achieves **29.1 BLEU** on CoVoST2 zero-shot, a new state of the art. A strong data scaling law
-is identified: WER halves for every 16× increase in per-language training hours (log-log R² =
-0.83 on Fleurs). Multitask and multilingual training provides positive transfer at large model
-sizes.
-
-For this project, Whisper Large V2 is the open-source baseline to benchmark against production
-Deepgram on gold-92. The paper directly supports the research roadmap: fine-tuning Whisper on
-Rezolve production audio is the most direct path to improving entity accuracy on
-investor-relations and ecommerce terms. The custom vocabulary prompting mechanism is
-immediately actionable for injecting brand names and product entities. The model size family
-gives a latency-accuracy trade-off ladder to explore within the 800 ms p50 constraint.
-
-</details>
-
-<details>
-<summary>🏤 <strong>Towards Deep Contextual Reasoning from Broad Descriptions for ASR
-with Speech-LLM via Metadata-Driven Reasoning Chains</strong> — Poncelet
-& hamme, 2026</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `10.48550_arXiv.2606.10838` |
-| **Authors** | Jakob Poncelet, Hugo Van hamme |
-| **Venue** | Interspeech 2026 (conference) |
-| **DOI** | `10.48550/arXiv.2606.10838` |
-| **URL** | https://arxiv.org/abs/2606.10838 |
-| **Date added** | 2026-06-23 |
-| **Categories** | [`entity-correction`](../meta/categories/entity-correction/), [`stt-evaluation`](../meta/categories/stt-evaluation/) |
-| **Added by** | [`t0003_literature_review_entity_stt`](../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Full summary** | [`summary.md`](../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2606.10838/summary.md) |
-
-Poncelet and Van hamme train a speech-LLM to reason from broad contextual descriptions using
-chain-of-thought fine-tuning. The motivation is that keyword lists cannot capture the semantic
-richness of context available in real applications (video metadata, session context). The
-training data is constructed automatically: GPT-4o generates reasoning chain explanations
-pairing ASR errors with video metadata, creating 400 hours of reasoning-augmented training
-data.
-
-The model is fine-tuned to produce initial transcript, reasoning, and corrected output. Four
-speech-LLM architectures are tested on the M3AV YouTube test set. Results: overall WER
-improves from **9.4% to 9.3%**, rare word WER from **24.0% to 23.1%**, named entity WER from
-**23.9% to 23.3%** — modest but consistent improvements across all architectures.
-
-The improvements are smaller in absolute terms than keyword-biasing methods but complement
-them: reasoning over context semantics catches entity corrections that keyword matching misses
-(e.g., inferring a brand from product category context rather than requiring the exact brand
-name in the bias list).
-
-For Rezolve, the session metadata pipeline is particularly relevant: product categories,
-search queries, and cart contents provide natural broad-description context for ecommerce
-voice sessions. The automated training data construction from session logs and production
-transcripts could be applied to the gold-92 domain without human annotation overhead.
-
-</details>
-
-<details>
-<summary>🏤 <strong>Contextual Biasing for ASR in Speech LLM with Common Word Cues
-and Bias Word Position Prediction</strong> — Novitasari et al., 2026</summary>
-
-| Field | Value |
-|---|---|
-| **ID** | `10.48550_arXiv.2604.12398` |
-| **Authors** | Sashi Novitasari, Takashi Fukuda, Gakuto Kurata, George Saon |
-| **Venue** | ICASSP 2026 (conference) |
-| **DOI** | `10.48550/arXiv.2604.12398` |
-| **URL** | https://arxiv.org/abs/2604.12398 |
-| **Date added** | 2026-06-23 |
-| **Categories** | [`entity-correction`](../meta/categories/entity-correction/), [`stt-evaluation`](../meta/categories/stt-evaluation/) |
-| **Added by** | [`t0003_literature_review_entity_stt`](../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) |
-| **Full summary** | [`summary.md`](../tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2604.12398/summary.md) |
-
-Novitasari et al. address the G2P dependency problem in phoneme-assisted contextual biasing
-for speech LLMs. The practical motivation is that brand names, model numbers, and domain
-jargon often have phonetically irregular spellings not covered by general-purpose G2P systems,
-causing phoneme-assisted biasing to fail silently.
-
-The solution uses common words with phonetically overlapping substrings as acoustic proxies
-for rare bias targets, extracted from the speech LLM's encoder. An additional position
-prediction objective jointly trains the model to locate where in the output sequence a bias
-word will appear, improving recall and spatial attention.
-
-Key result: **16.3% relative reduction** in bias word recognition errors on both in-domain and
-out-of-domain evaluation, with no regression on non-bias words. The position prediction head
-adds a further **+2.1pp** recall improvement beyond the cue method alone.
-
-For Rezolve's Whisper Turbo + dynamic context injection pipeline, this paper is directly
-relevant: the G2P-free approach matches the constraint that product names and SKUs resist
-standard phonemization. The position prediction objective is applicable as a fine-tuning
-modification. The gain (16.3%) is notable but smaller than retrieval-based methods like CLAR,
-suggesting it would be most valuable as a complementary addition to a retrieval layer.
-
-</details>
-
-*9 more papers → [papers](papers/)*
+*12 more papers → [papers](papers/)*
 
 ---
 
@@ -898,10 +989,13 @@ No models yet.
 
 ---
 
-## [Latest Predictions (17 total)](predictions/)
+## [Latest Predictions (20 total)](predictions/)
 
 | Name | Source | Created |
 |------|--------|---------|
+| [Whisper turbo on Short Clips (0.5-3 s)](../tasks/t0014_granite_short_clip_robustness/assets/predictions/whisper-turbo-short-clips/description.md) | [14](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | 2026-06-30 |
+| [Parakeet TDT 0.6b-v3 on Short Clips (Biased — Single-Chunk Degenerate for sub-2 s)](../tasks/t0014_granite_short_clip_robustness/assets/predictions/parakeet-tdt-short-clips-biased/description.md) | [14](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | 2026-06-30 |
+| [Granite Speech 4.1 2B on Short Clips (Biased — Single-Block Attention for sub-4 s)](../tasks/t0014_granite_short_clip_robustness/assets/predictions/granite-speech-short-clips-biased/description.md) | [14](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | 2026-06-30 |
 | [Parakeet TDT 0.6b-v3 — Streaming Biased on Gold-92](../tasks/t0011_streaming_stt_benchmark/assets/predictions/parakeet-tdt-0.6b-v3-gold92-streaming-biased/description.md) | [11](../overview/tasks/task_pages/t0011_streaming_stt_benchmark.md) | 2026-06-26 |
 | [Granite Speech 4.1 2B — Streaming Keyword-Biased on Gold-92](../tasks/t0011_streaming_stt_benchmark/assets/predictions/granite-speech-4.1-2b-gold92-streaming-biased/description.md) | [11](../overview/tasks/task_pages/t0011_streaming_stt_benchmark.md) | 2026-06-26 |
 | [SeACo-Paraformer-en — Contextual Biased on Gold-92](../tasks/t0010_funasr_paraformer_benchmark/assets/predictions/seaco-paraformer-large-gold92-biased/description.md) | [10](../overview/tasks/task_pages/t0010_funasr_paraformer_benchmark.md) | 2026-06-25 |
@@ -909,11 +1003,8 @@ No models yet.
 | [Parakeet TDT 0.6b-v3 — Unbiased on Gold-92](../tasks/t0009_parakeet_production_baseline/assets/predictions/parakeet-tdt-0.6b-v3-gold92-unbiased/description.md) | [9](../overview/tasks/task_pages/t0009_parakeet_production_baseline.md) | 2026-06-25 |
 | [Parakeet TDT 0.6b-v3 — Production Config (biased) on Gold-92](../tasks/t0009_parakeet_production_baseline/assets/predictions/parakeet-tdt-0.6b-v3-gold92-production/description.md) | [9](../overview/tasks/task_pages/t0009_parakeet_production_baseline.md) | 2026-06-25 |
 | [Nemotron 3.5 ASR — Streaming + Word Boosting on Gold-92](../tasks/t0006_nemotron_3_5_benchmark/assets/predictions/nemotron-3.5-asr-gold92-word-boosted/description.md) | [6](../overview/tasks/task_pages/t0006_nemotron_3_5_benchmark.md) | 2026-06-25 |
-| [Nemotron 3.5 ASR — Batch (no biasing) on Gold-92](../tasks/t0006_nemotron_3_5_benchmark/assets/predictions/nemotron-3.5-asr-gold92-batch/description.md) | [6](../overview/tasks/task_pages/t0006_nemotron_3_5_benchmark.md) | 2026-06-25 |
-| [Moonshine v2 Medium on Gold-92](../tasks/t0008_moonshine_v2_benchmark/assets/predictions/moonshine-v2-medium-gold92/description.md) | [8](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) | 2026-06-25 |
-| [Moonshine v2 Medium Shallow-Fusion Feasibility Assessment](../tasks/t0008_moonshine_v2_benchmark/assets/predictions/moonshine-v2-medium-gold92-biasing-assessment/description.md) | [8](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) | 2026-06-25 |
 
-*7 more predictions → [predictions](predictions/)*
+*10 more predictions → [predictions](predictions/)*
 
 ---
 

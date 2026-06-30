@@ -1,6 +1,6 @@
-# Papers: `stt-evaluation` (17)
+# Papers: `stt-evaluation` (20)
 
-17 papers across 4 year(s).
+20 papers across 5 year(s).
 
 [Back to all papers](../README.md)
 
@@ -546,6 +546,165 @@ Whisper Turbo checkpoint and adds an LLM-based prompt generation step with no mo
 The NBA domain closely parallels ecommerce in entity density and proper noun challenges. The
 main engineering work is tuning the fuzzy matching threshold for Rezolve's brand/product
 vocabulary and ensuring the multi-agent latency fits within the 800ms p50 budget.
+
+</details>
+
+## 2025 (3)
+
+<details>
+<summary>🏤 Calm-Whisper: Reduce Whisper Hallucination On Non-Speech By Calming Crazy
+Heads Down — Wang et al., 2025</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `10.48550_arXiv.2505.12969` |
+| **Authors** | Yingzhi Wang, Anas Alhmoud, Saad Alsahly, Muhammad Alqurishi, Mirco Ravanelli |
+| **Venue** | Interspeech 2025 (conference) |
+| **DOI** | `10.48550/arXiv.2505.12969` |
+| **URL** | https://arxiv.org/abs/2505.12969 |
+| **Date added** | 2026-06-29 |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`whisper-finetuning`](../../../meta/categories/whisper-finetuning/) |
+| **Added by** | [`t0014_granite_short_clip_robustness`](../../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Full summary** | [`summary.md`](../../../tasks/t0014_granite_short_clip_robustness/assets/paper/10.48550_arXiv.2505.12969/summary.md) |
+
+This paper targets a severe and practically important failure mode of Whisper-large-v3:
+hallucination on non-speech audio. With a baseline hallucination rate of **99.97%** on
+UrbanSound8K — meaning virtually every non-speech clip produces fabricated text — Whisper is
+unsafe to deploy in production pipelines that handle mixed-content audio without external VAD
+safeguards. The authors set out to eliminate this hallucination from within the model, without
+adding inference-time complexity or external pre/post-processing.
+
+The technical approach proceeds in two stages. First, a head-wise masking study isolates which
+of Whisper-large-v3's 20 decoder self-attention heads contributes most to hallucination. Three
+heads (#1, #6, #11) are identified as responsible for over **75%** of the problem. Second,
+only the weights of those three heads are fine-tuned on 105 hours of pure non-speech audio
+(AudioSet, DEMAND, MUSAN) paired with blank target labels. All other weights remain frozen,
+preventing regression on standard speech transcription tasks.
+
+The results are striking: the best model (5-epoch fine-tune) reduces hallucination on
+UrbanSound8K from **99.97%** to **15.51%** — an **84.5%** relative reduction — while WER on
+LibriSpeech test-clean rises by only **+0.07%** (from **2.12%** to **2.19%**). Long
+hallucinations exceeding 5 tokens drop from **742** instances to **91**. The paper also
+demonstrates that broader fine-tuning (full decoder) completely destroys transcription quality
+(**100% WER**), confirming that surgical head-level targeting is essential. The Calm-Whisper
+hallucination rate of **15.51%** approaches the **13.52%** of Conformer-CTC-large — a
+CTC-based model fundamentally less prone to autoregressive hallucination — validating that the
+gap can be largely closed through targeted fine-tuning.
+
+For this project, Calm-Whisper is directly relevant to the robustness goal of evaluating
+Whisper-class models on short production audio clips from Rezolve voice commerce sessions.
+Short clips, silences, and background noise are common in that setting, and the **99.97%**
+baseline hallucination rate means any such segment would produce spurious transcripts
+corrupting downstream entity recognition and intent parsing. Adopting the Calm-Whisper
+fine-tuning recipe — or applying an equivalent head-attribution study to Granite STT or
+another Whisper-variant — could be a low-cost, high-impact robustness improvement for the
+Rezolve pipeline, with negligible WER regression cost.
+
+</details>
+
+<details>
+<summary>📝 Granite-speech: open-source speech-aware LLMs with strong English ASR
+capabilities — Saon et al., 2025</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `10.48550_arXiv.2505.08699` |
+| **Authors** | George Saon, Avihu Dekel, Alexander Brooks, Tohru Nagano, Abraham Daniels, Aharon Satt, Ashish Mittal, Brian Kingsbury, David Haws, Edmilson Morais, Gakuto Kurata, Hagai Aronowitz, Ibrahim Ibrahim, Jeff Kuo, Kate Soule, Luis Lastras, Masayuki Suzuki, Ron Hoory, Samuel Thomas, Sashi Novitasari, Takashi Fukuda, Vishal Sunder, Xiaodong Cui, Zvi Kons |
+| **Venue** | arXiv preprint (preprint) |
+| **DOI** | `10.48550/arXiv.2505.08699` |
+| **URL** | https://arxiv.org/abs/2505.08699 |
+| **Date added** | 2026-06-29 |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`latency-profiling`](../../../meta/categories/latency-profiling/) |
+| **Added by** | [`t0014_granite_short_clip_robustness`](../../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Full summary** | [`summary.md`](../../../tasks/t0014_granite_short_clip_robustness/assets/paper/10.48550_arXiv.2505.08699/summary.md) |
+
+Saon et al. (IBM Research, 2025) introduce Granite-speech-3.3, a family of open-source
+speech-aware LLMs in 2B and 8B parameter variants, designed primarily for English ASR. The
+central research question is whether compact models trained exclusively on publicly licensed
+audio corpora (~76K hours Apache 2.0 compatible data) can match or surpass models trained on
+orders of magnitude more proprietary data. The motivation is both scientific — advancing
+open-source speech models — and practical, enabling commercial deployment without licensing
+barriers.
+
+The architecture integrates three components trained sequentially: a 10-layer conformer CTC
+encoder with block attention and self-conditioned CTC (1.5M updates, 275M parameters), a
+windowed Q-former speech modality adapter achieving 10x total acoustic compression (660K
+updates, 32 H100 GPUs), and LoRA adapters (rank 64) applied to all LLM attention layers. The
+design supports dual-mode inference: the same model weights serve as the base
+granite-3.3-instruct text LLM (LoRA off) or as a speech-aware model (encoder + Q-former + LoRA
+active) depending on whether an `<|audio|>` token appears in the prompt. Key training
+innovations include character-level CTC tokenization, balanced corpus sampling with α=0.6, and
+ensemble-based MT filtering for synthetic AST data that retains under 50% of examples but
+improves BLEU by more than 10 points.
+
+The 8B model achieves the lowest WER among all sub-8B parameter models on 7 of 9 English ASR
+benchmarks, including **1.5% WER** on LibriSpeech clean, **3.0%** on LibriSpeech other,
+**9.2%** on AMI IHM, **26.1%** on AMI SDM, and **5.8%** on VoxPopuli — beating Whisper Large
+v3, Gemini 2.0 Flash, Qwen2-Audio, and Phi-4-mm. The 2B model is competitive, especially on
+AMI SDM (**26.7% WER**), suggesting robustness to adverse acoustic conditions at smaller
+scale. Ablations confirm that character-level CTC tokenization outperforms BPE variants after
+joint LLM training, and the windowed Q-former outperforms MLP and cross-attention projectors.
+
+For the Rezolve STT project, Granite-speech-3.3 is a high-priority candidate for the gold-92
+benchmark evaluation. Its strong performance on conversational and meeting corpora (AMI,
+VoxPopuli) that share acoustic characteristics with Rezolve production call-center audio makes
+it directly relevant for entity accuracy benchmarking. The dual-mode design is particularly
+attractive: a single model instance could handle both transcription and entity-aware
+post-correction, potentially collapsing the two-step Deepgram + LLM correction pipeline and
+reducing voice-to-action latency below the 800 ms p50 budget. The Apache 2.0 license removes
+all commercial deployment barriers, and the planned future work on contextual biasing aligns
+directly with the Rezolve entity boosting objective.
+
+</details>
+
+<details>
+<summary>🏤 Investigation of Whisper ASR Hallucinations Induced by Non-Speech Audio
+— Barański et al., 2025</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `10.1109_ICASSP49660.2025.10890105` |
+| **Authors** | Mateusz Barański, Jan Jasiński, Julitta Bartolewska, Stanisław Kacprzak, Marcin Witkowski, Konrad Kowalczyk |
+| **Venue** | ICASSP 2025 - 2025 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP) (conference) |
+| **DOI** | `10.1109/ICASSP49660.2025.10890105` |
+| **URL** | https://arxiv.org/abs/2501.11378 |
+| **Date added** | 2026-06-29 |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+| **Added by** | [`t0014_granite_short_clip_robustness`](../../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Full summary** | [`summary.md`](../../../tasks/t0014_granite_short_clip_robustness/assets/paper/10.1109_ICASSP49660.2025.10890105/summary.md) |
+
+Barański et al. investigate a well-known but under-characterised failure mode of Whisper ASR:
+the generation of hallucinated text when the input audio contains no speech. Rather than
+relying on imprecise phonetic similarity measures to define hallucinations, the paper
+constructs a controlled setting — running Whisper exclusively on verified non-speech audio —
+where every output is definitionally a hallucination. This clean experimental design enables a
+large-scale empirical characterisation across 301,317 audio files from four public sound
+datasets, with additional experiments on speech augmented with non-speech sounds.
+
+The methodology proceeds through six experiment groups. Experiment 1 collects an exhaustive
+hallucination list from non-speech audio; Experiments 2–3 examine how clip duration and sound
+category affect hallucination rate. The authors construct the Bag of Hallucinations (BoH) by
+filtering the raw list using an n-gram language model (log probability < −10) and a frequency
+threshold (> 4 occurrences). Experiments 4–5 extend to augmented speech with different noise
+durations and positions. Experiment 6 evaluates Whisper's internal parameters (beam size,
+hallucination silence threshold). Experiment 7 benchmarks full mitigation strategies
+end-to-end using WER on held-out Freesound material.
+
+The headline results show hallucinations are surprisingly predictable: **40.3%** of non-speech
+clips trigger a hallucination, but **35%** of all hallucinations are just two strings. The
+30-second Whisper segment boundary is identified as a primary trigger for elevated
+hallucination rates. Among mitigation strategies, SileroVAD + delooping + BoH achieves the
+best WER of **6.5%** (non-overlap) versus a raw baseline of **104.8%**, while BoH alone
+(without VAD) achieves **17.1% WER** — a strong result for a purely text-side, model-agnostic
+filter.
+
+For this project (t0014, Granite short-clip robustness), the paper is directly relevant at two
+levels. First, the hallucination patterns it documents for Whisper provide a benchmark against
+which Granite's behaviour on short, potentially noisy clips can be compared — if Granite
+exhibits lower hallucination rates on non-speech clips, that is a concrete robustness
+advantage. Second, the BoH post-processing pipeline is immediately applicable as a defensive
+layer for the Rezolve STT harness regardless of which model is used, offering measurable WER
+improvement with no model changes.
 
 </details>
 

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive preset_id="research-history" generated_at_utc="2026-06-29T11:55:22Z">
+<llm_context_archive preset_id="research-history" generated_at_utc="2026-06-30T08:12:57Z">
   <archive_summary>
     <title>Research History</title>
     <description>Research-stage documents across completed tasks, plus core project context.</description>
     <use_case>Literature review continuity, methodology discussion, and prior-investigation lookup.</use_case>
-    <section_count>18</section_count>
-    <char_count>213999</char_count>
-    <byte_count>214761</byte_count>
-    <estimated_tokens>53499</estimated_tokens>
+    <section_count>20</section_count>
+    <char_count>274555</char_count>
+    <byte_count>275508</byte_count>
+    <estimated_tokens>68638</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -115,9 +115,10 @@ gold-92 (`t0002_baseline_evaluation`).
         <id>t0011_streaming_stt_benchmark</id>
         <id>t0012_whisper_parakeet_granite_streaming</id>
         <id>t0013_brainstorm_results_1</id>
+        <id>t0014_granite_short_clip_robustness</id>
       </source_ids>
       <content>
-Completed tasks: 13
+Completed tasks: 14
 
 ## STT Benchmark — Gold-92 Dataset Ingestion
 ID: t0001_stt_benchmark
@@ -196,30 +197,37 @@ ID: t0013_brainstorm_results_1
 Completed: 2026-06-29
 Short description: First brainstorm session: reviewed 12 completed tasks, decided to create t0014 (Granite short-clip robustness + production fit), and rejected 6 superseded suggestions.
 Result summary: Results Summary — t0013 Brainstorm Session 1 Summary First brainstorm session after 12 completed tasks. One new task created (t0014: Granite short-clip robustness + production fit assessment) and six suggestions rejected for eliminated models or superseded experiments. The session established that the next priority is validating Granite Speech 4.1 2B as a production replacement for Parakeet TDT 0.6b-v3, with explicit focus on short-clip robustness using real production streaming simulation. Session Overview Date: 2026-06-29. First brainstorm session for the project. Prompted by completion of all 12 benchmark and research tasks, particularly t0012 which established a three-model production...
+
+## Granite Short-Clip Robustness Validation + Production Fit Assessment
+ID: t0014_granite_short_clip_robustness
+Completed: 2026-06-30
+Short description: Validate Granite Speech 4.1 2B robustness on short clips vs Parakeet via production streaming simulation, and assess production fit as a Parakeet replacement in brainpowa.
+Result summary: Results Summary: Granite Short-Clip Robustness Validation + Production Fit Assessment Summary Granite Speech 4.1 2B achieves **0% empty output rate** on all short clips (0.5–3 s) compared to Parakeet TDT 0.6b-v3&#x27;s **27.3% failure rate** on sub-2 s clips (55.6% on sub-1 s), confirming Granite avoids Parakeet&#x27;s key short-clip failure mode. On the gold-92 benchmark Granite leads with **entity accuracy 94.8%** vs Whisper 92.3% and Parakeet 65.0%, with a wrong-action rate of **1.1% vs Parakeet&#x27;s 30.1%**. The production recommendation is **CONDITIONAL YES**: replace Parakeet with Granite in brainpowa, gating production use on a minimum 2.0 s clip duration to avoid the degenerate single-chunk path...
       </content>
     </section>
     <section id="planned-tasks" source_kind="aggregator">
       <title>Planned Tasks</title>
       <source_name>aggregate_tasks_full</source_name>
-      <source_ids>
-        <id>t0014_granite_short_clip_robustness</id>
-      </source_ids>
       <content>
-Planned or active tasks: 1
-
-## Granite Short-Clip Robustness Validation + Production Fit Assessment
-ID: t0014_granite_short_clip_robustness
-Status: not_started
-Effective date: unknown
-Short description: Validate Granite Speech 4.1 2B robustness on short clips vs Parakeet via production streaming simulation, and assess production fit as a Parakeet replacement in brainpowa.
-Dependencies: t0013_brainstorm_results_1, t0012_whisper_parakeet_granite_streaming
+Planned or active tasks: 0
       </content>
     </section>
     <section id="questions-and-answers" source_kind="aggregator">
       <title>Questions and Answers</title>
       <source_name>aggregate_answers_full</source_name>
+      <source_ids>
+        <id>granite-vs-parakeet-production-fit</id>
+      </source_ids>
       <content>
-Answers: 0
+Answers: 1
+
+## Should Granite Speech 4.1 2B replace Parakeet TDT 0.6b-v3 as the production STT model in brainpowa-realtime-api?
+ID: granite-vs-parakeet-production-fit
+Created by: t0014_granite_short_clip_robustness on 2026-06-30
+Confidence: high
+Categories: stt-evaluation, entity-correction
+
+YES, with a minimum clip duration gate of 2.0 s recommended for the first deployment. Granite Speech 4.1 2B produces 0% empty output and 0% hallucination across all 44 short clips tested (0.5–3.0 s), while Parakeet fails on 27.3% of short clips (55.6% empty rate at sub-1 s bins) — directly matching the failure mode that disqualified Whisper from production. On gold-92 (clips 3–13 s), Granite achieves 94.8% entity accuracy versus Parakeet&#x27;s 65.0%, with comparable latency (125–215 ms p50 vs 32–46 ms); both well within the 800 ms production constraint. Integration effort is low: reading brainpowa-realtime-api base.py confirms the STTAdapter base class already implements transcribe_stream() as...
       </content>
     </section>
     <section id="t0001_stt_benchmark-research_papers" source_kind="file">
@@ -4015,6 +4023,973 @@ No research required for brainstorming session.
 #### References
 
 No research required for brainstorming session.
+      </content>
+    </section>
+    <section id="t0014_granite_short_clip_robustness-research_papers" source_kind="file">
+      <title>t0014_granite_short_clip_robustness — Granite Short-Clip Robustness Validation + Production Fit Assessment — research_papers.md</title>
+      <source_name>research_papers.md</source_name>
+      <source_ids>
+        <id>t0014_granite_short_clip_robustness</id>
+      </source_ids>
+      <repo_paths>
+        <path>tasks/t0014_granite_short_clip_robustness/research/research_papers.md</path>
+      </repo_paths>
+      <content>
+---
+spec_version: &quot;1&quot;
+task_id: &quot;t0014_granite_short_clip_robustness&quot;
+research_stage: &quot;papers&quot;
+papers_reviewed: 19
+papers_cited: 6
+categories_consulted:
+  - &quot;stt-evaluation&quot;
+  - &quot;latency-profiling&quot;
+  - &quot;audio-datasets&quot;
+date_completed: &quot;2026-06-29&quot;
+status: &quot;complete&quot;
+---
+
+#### Task Objective
+
+Validate Granite Speech 4.1 2B robustness on short audio clips (under 3 seconds) compared to
+Parakeet TDT 0.6b-v3 and Whisper turbo, using production-realistic streaming simulation via
+`STTAdapter.transcribe_stream()` with 32kB PCM-16 mono chunks. Whisper turbo — the previous
+production STT model in brainpowa-realtime-api — was replaced by Parakeet because it produced
+hallucinations or empty output on short clips in the chunked re-transcribe streaming pattern. The
+gold-92 benchmark (minimum clip duration 3.07 s) cannot test this failure mode. t0012 established
+that Granite Speech 4.1 2B matches Whisper turbo on entity accuracy (41.1% vs 42.0%) and
+substantially outperforms Parakeet (23.2% EA). This task answers whether Granite avoids the
+short-clip failure mode that disqualified Whisper, and whether Granite is production-ready as a
+drop-in STTAdapter replacement in brainpowa-realtime-api.
+
+#### Category Selection Rationale
+
+**Included categories:**
+
+* `stt-evaluation` — the core task is a benchmarking run comparing three STT models across
+  synthetic short-clip strata and the gold-92 benchmark. Papers in this category define evaluation
+  protocols, robustness metrics (WER, entity accuracy, hallucination rate), and statistical testing
+  methods that directly inform how to design and analyse the stratified experiment.
+
+* `latency-profiling` — the production decision must weigh Granite&#x27;s 6× latency overhead (249 ms
+  vs Parakeet 40 ms p50) against its accuracy advantage. Papers in this category provide reference
+  numbers for what latency is achievable in streaming ASR and what architectures enable bounded
+  per-chunk compute.
+
+* `audio-datasets` — the task synthesises a short-clip dataset from gold-92 source audio. Although
+  no papers in this category were ultimately cited (papers here describe the Rezolve data collection
+  process rather than short-clip robustness methods), the category was reviewed and confirmed
+  non-contributory to the literature synthesis.
+
+**Excluded categories:**
+
+* `entity-correction` — 11 papers cover post-ASR correction (LLM pass, contextual biasing,
+  retrieval-augmented correction). These are relevant to a future correction stage but not to the
+  short-clip robustness or streaming architecture questions that t0014 must answer. Two papers with
+  entity correction as secondary contribution (Durmus2026, Tsai2026) were retained for their
+  primary STT evaluation and streaming latency content.
+
+* `whisper-finetuning` — three papers cover fine-tuning Whisper-class models. Fine-tuning is out of
+  scope for t0014, which evaluates zero-shot streaming inference on existing checkpoints.
+
+* `commercial-apis` — no papers exist in this category; the project tracks Deepgram as a production
+  baseline but no literature covers it at the required technical depth.
+
+* `confidence-routing` — one paper (Jiang2026) covers interactive correction with human-in-the-loop
+  clarification. Routing policy design is a separate future task; it does not inform the short-clip
+  robustness or production fit questions here.
+
+#### Key Findings
+
+##### Short Utterances and Truncated Audio Are High-Risk Failure Zones for All ASR Models
+
+WildASR [Tay2026] is the most directly relevant study: it systematically tests ASR robustness under
+11 conditions including short utterances (under 6 words) and truncated/incomplete audio. Short
+utterances under 6 words achieve 38–74% WER in English even for top commercial systems [Tay2026,
+Section 4.3], and Qwen2-Audio on Korean short utterances produces **102.6% CER** — an
+insertion-dominated hallucination rate exceeding the reference length [Tay2026, Table 2]. The
+paper confirms that short terse voice commands (common in ecommerce voice commerce: &quot;add it&quot;, &quot;next&quot;,
+&quot;stop&quot;) are a high-risk category that standard benchmarks do not expose. Importantly, synthetic
+TTS-based evaluation underestimates real failure rates by **5.9×** compared to authentic human
+speech [Tay2026, Section 5.1], validating the need for real production audio rather than
+synthesised test clips.
+
+Noise gaps — silence or background noise inserted between speech fragments — cause an additional
+**+67.7 WER points** for English conversational speech [Tay2026, Table 1]. For the Rezolve
+short-clip experiment, silence-heavy clips (0.5 s silence, 0.5 s background noise) are an
+important edge case because they stress-test VAD thresholds: a model that treats silence as
+meaningful audio may hallucinate or produce empty output, while a model using an
+accumulate-then-transcribe strategy will simply decode silence.
+
+**Hypothesis**: Whisper&#x27;s VAD-gated chunked re-transcribe path (which re-transcribes the growing
+audio buffer every 32kB interval) is the root cause of short-clip failures because the VAD
+threshold (`no_speech_threshold=0.6`) fires on very short or silence-heavy buffers before adequate
+speech context accumulates. Granite&#x27;s accumulate-then-transcribe default (no intermediate VAD
+passes, single `transcribe()` call on the complete audio) avoids this failure mode entirely — a
+testable hypothesis that the Part 2 short-clip inference run will confirm or refute.
+
+##### Whisper&#x27;s VAD and Long-Form Heuristics Create Short-Clip Vulnerability
+
+Radford et al. describe the long-form decoding heuristics central to Whisper&#x27;s production use:
+beam search with temperature fallback, VAD using `no_speech_probability` threshold 0.6 combined
+with log-probability threshold, and previous-text conditioning when temperature &lt; 0.5 [Radford2022,
+Section 4.5]. These heuristics reduce average long-form WER from **11.0** (greedy) to **10.0**
+with full heuristics across seven long-form datasets [Radford2022, Table 7], and are essential for
+production deployment with full utterances.
+
+However, the VAD threshold behaviour documented by Radford et al. creates an inherent short-clip
+vulnerability: on audio buffers under 1–2 seconds, the no-speech probability can exceed 0.6 even
+when speech is present but sparse, triggering an empty or hallucinated output. The hallucination
+patterns listed in the task description (&quot;Thanks for watching&quot;, &quot;Subscribe&quot;, &quot;\[Music\]&quot;, repeated
+punctuation) are consistent with Whisper&#x27;s training data artefacts that surface when the model
+receives insufficient speech context. Radford2022 does not report performance on clips under 3 s
+explicitly, which is a gap — but the heuristic design makes short-clip brittleness predictable.
+
+faster-whisper&#x27;s `vad_filter=True` at `no_speech_threshold=0.6` (the configuration used in both
+t0012 and t0014) directly inherits this design. The Whisper Turbo model (a distilled variant) was
+not evaluated on sub-3 s clips in the original paper; its behaviour in the chunked re-transcribe
+streaming mode is an open question, not a known quantity.
+
+**Best practice**: For production streaming where clip duration varies unpredictably, prefer models
+with accumulate-then-transcribe semantics (single inference pass on the complete audio, no
+intermediate VAD) to avoid VAD false-firings on incomplete buffers.
+
+##### Streaming ASR Architecture Determines Latency–Robustness Trade-Off
+
+Moonshine v2 [Kudlur2026] introduces an ergodic streaming encoder using sliding-window
+self-attention that processes audio in fixed-size chunks with bounded per-chunk computation. On
+Apple M3, the Medium model (244.93M parameters) achieves **258 ms** latency at **28.95%** compute
+load, running **43.7×** faster than Whisper Large v3 at 1–2 WER points penalty. The Small variant
+achieves **148 ms** at **7.84% average WER** on the Open ASR leaderboard [Kudlur2026, Table 1].
+
+The ergodic encoder architecture provides a clean latency guarantee: per-chunk processing time is
+constant regardless of utterance position, unlike encoder-decoder models (Whisper, Granite) that
+must process the full audio buffer before decoding. This comparison is directly relevant for t0014:
+Granite Speech 4.1 2B&#x27;s accumulate-then-transcribe strategy means latency scales with clip
+duration. On the gold-92 benchmark, Granite achieved p50 249 ms, but this is dominated by
+longer utterances (3–10 s). On sub-1 s clips, the audio is smaller and latency should drop; the
+question is whether Granite&#x27;s HuggingFace Transformers inference path adds a non-trivial fixed
+overhead that dominates over actual audio length.
+
+The latency contrast to Parakeet (40 ms p50, NeMo CTC) reflects a fundamental architecture
+difference: Parakeet&#x27;s CTC decoder produces output in a single forward pass without autoregressive
+decoding, giving it a structural latency advantage. Granite&#x27;s encoder-decoder design with
+autoregressive decoding incurs irreducible per-token generation latency regardless of audio length.
+
+**Best practice**: When evaluating streaming production fit, report per-stratum latency (not just
+aggregate p50) to reveal whether short clips amplify or reduce the latency gap relative to Parakeet.
+A 6× overall latency overhead may be acceptable if the absolute numbers remain under 300 ms even on
+short clips.
+
+##### Statistical Significance on Small Benchmarks Requires Blockwise Bootstrap
+
+Liu and Peng [Liu2020] demonstrate that the standard utterance-level bootstrap for WER confidence
+intervals assumes utterance independence — an assumption that fails when clips come from the same
+speaker or session. At realistic within-speaker correlation levels (block size d=30, correlation
+ρ=0.4), ordinary bootstrap CI coverage collapses to **41.2%** while blockwise bootstrap maintains
+**95.9%** [Liu2020, Table 1]. On two real datasets, blockwise CIs are **1.5–2.3×** wider than
+ordinary bootstrap CIs [Liu2020, Section 4]. The gold-92 benchmark (93 clips) likely contains
+multiple clips per speaker; blockwise bootstrap with speaker-level blocks is therefore required to
+avoid false-positive significance claims when comparing Granite vs Parakeet (or vs Whisper).
+
+The task description specifies BCa bootstrap p &lt; 0.05 as the significance threshold. BCa bootstrap
+is an acceleration-corrected variant that also handles non-normal CI shapes — it addresses the same
+independence assumption issue as blockwise bootstrap when applied with speaker-level blocks. Both
+methods require B = 1,000 replicates (computationally trivial for n = 93 clips).
+
+##### Entity Accuracy on Domain Vocabulary Requires Dual Metrics: Keyword F-Score and WER
+
+Durmus et al. [Durmus2026] demonstrate on Contextual Earnings-22 that aggregate WER and keyword
+F-score can move in **opposite directions** under context conditioning: OpenAI Whisper-1&#x27;s WER
+worsens under keyword prompting while keyword F-score improves [Durmus2026, Section 4]. All six
+evaluated systems (Deepgram Nova-3, OpenAI Whisper-1, AssemblyAI, Whisper OSS Large-v3-turbo,
+CTC-WS FastConformer, Argmax Parakeet-TDT-0.6B-v2 + CTC-WS) improve keyword F-score under context
+but show inconsistent WER changes [Durmus2026, Table S1].
+
+The benchmark distinguishes two context regimes: local (keywords present in clip only — higher
+precision) vs. global (full call inventory with distractors — precision loss from false insertions)
+[Durmus2026, Section 3.2]. For the gold-92 benchmark, Granite&#x27;s keyword prompt (31 domain terms in
+a keyword string) operates as a local-context oracle because only the terms relevant to the actual
+utterance are active. The Parakeet GPU-PB phrase boosting with 66 casing variants effectively
+operates in a denser vocabulary space (more potential distractors), which may explain part of
+Parakeet&#x27;s lower entity accuracy (23.2% vs Granite&#x27;s 41.1%) — not architecture alone, but
+also precision-loss from aggressive boosting.
+
+**Best practice**: Report keyword precision and recall separately alongside WER for the short-clip
+strata; precision-first matters more than recall for the wrong-action rate constraint of &lt;2%.
+
+##### Hallucination Rate Is a First-Class Metric Distinct from WER
+
+WildASR [Tay2026] introduces Hallucination Error Rate (HER) as a complement to WER, demonstrating
+that semantic fabrications can dominate over lexical errors. Deepgram Nova 2 on code-switching
+Chinese produces **33.7% MER** lexically but **68.4% HER** semantically [Tay2026, Table 3] —
+the model appears to transcribe plausibly but invents content not present in the audio. This gap
+matters most for short clips and truncated audio, where an ASR model receives insufficient speech
+context to decode reliably.
+
+For the Whisper short-clip experiment in t0014, `is_hallucination=True` is flagged when the
+transcript is non-empty but contains none of the reference words AND matches known Whisper
+hallucination patterns. This flag is directly analogous to HER and should be tracked per duration
+stratum. The task description&#x27;s hallucination patterns (&quot;Thanks for watching&quot;, &quot;Subscribe&quot;,
+&quot;\[Music\]&quot;) are consistent with WildASR&#x27;s finding that models hallucinate plausible but unspoken
+content — specifically, training data artefacts that surface when acoustic context is ambiguous.
+
+**Hypothesis**: Granite&#x27;s hallucination rate on sub-1 s clips will be lower than Whisper&#x27;s because
+the accumulate-then-transcribe design does not fire intermediate VAD on incomplete buffers, reducing
+the probability of hallucinating from partial context. Parakeet&#x27;s CTC-based architecture lacks
+sequential generation, which may further reduce hallucination-type errors compared to Whisper&#x27;s
+autoregressive decoder.
+
+#### Methodology Insights
+
+* **Hallucination detection protocol**: Flag `is_hallucination=True` only when the transcript is
+  non-empty AND contains none of the reference words AND matches a known hallucination pattern list
+  (&quot;Thanks for watching&quot;, &quot;Subscribe&quot;, &quot;\[Music\]&quot;, repeated punctuation, non-English tokens). This
+  matches the WER/HER distinction from [Tay2026]: lexical emptiness and semantic fabrication are
+  separate failure modes and must be tracked separately (`is_empty` vs `is_hallucination`).
+
+* **Duration-stratified reporting is essential**: [Tay2026] shows robustness does not aggregate
+  cleanly — short utterances and noise gaps produce failure rates 10–20× higher than aggregate
+  WER. Report `empty_rate` and `hallucination_rate` per duration bin (&lt; 1 s, 1–2 s, 2–3 s, 3–5 s,
+  5–10 s, &gt; 10 s), not as a single number. This enables pinpointing the duration threshold where
+  each model starts failing.
+
+* **VAD threshold behaviour is the mechanism to test**: Whisper turbo with `vad_filter=True` and
+  `no_speech_threshold=0.6` [Radford2022] is expected to fail on sub-2 s clips. To confirm the
+  mechanism, track whether empty outputs correlate with higher `no_speech_probability` values in
+  the faster-whisper result metadata. If `no_speech_probability` &gt; 0.6 for clips where reference
+  text is non-empty, this confirms VAD misfiring as the direct cause.
+
+* **Accumulate-then-transcribe vs. chunked re-transcribe**: Granite&#x27;s `STTAdapter` base class uses
+  accumulate-then-transcribe (single `transcribe()` call on complete audio, no intermediate VAD).
+  Whisper and Parakeet use chunked re-transcribe (buffer grows with each 32kB chunk, transcribed
+  every interval). The production test must use `transcribe_stream()` for all three models — NOT
+  direct `model.transcribe()` calls — to reproduce the actual failure modes [from task description].
+
+* **Statistical significance with small n**: With 40–60 synthetic clips and 93 gold-92 clips, use
+  BCa bootstrap with B = 1,000 replicates and speaker-level blocks [Liu2020]. At n ≈ 50 per
+  stratum, the minimum detectable absolute WER difference at 95% CI is approximately ±5–8 WER
+  points depending on within-stratum variance. Differences smaller than this may not be
+  statistically distinguishable.
+
+* **Latency definition for short clips**: Report TTFD (time to first delta from `transcribe_stream()`)
+  separately from end-to-end latency. For an accumulate-then-transcribe model, TTFD equals
+  end-to-end latency (no partial output). For chunked re-transcribe, TTFD can be lower (first
+  partial output from the growing buffer). This distinction matters for the brainpowa user
+  experience even if it does not change entity accuracy.
+
+* **Context injection protocol**: Whisper turbo uses `initial_prompt` (comma-separated 31 domain
+  terms). Granite uses keyword prompt injection (&quot;transcribe the speech to text. Keywords: ...&quot;).
+  Durmus2026 validates that prompt-based context conditioning consistently improves keyword F-score
+  [Durmus2026]. For short clips, context injection may backfire if the prompt accounts for a large
+  fraction of the effective context window — this risk is worth monitoring but is not a blocking
+  issue at 31 domain terms.
+
+* **Hallucination vs. empty output distinction**: For the production fit assessment, empty output
+  (silent failure) is preferable to hallucination (dangerous failure). A model that returns an
+  empty string on a 0.5 s clip can trigger a clarification; a model that returns &quot;Thanks for
+  watching&quot; on a 0.5 s command will cause a silent wrong action. This asymmetry must be explicit
+  in the recommendation: if Granite returns empty on short clips, that is tolerable; if Whisper
+  hallucinated, that is why it was removed from production.
+
+#### Gaps and Limitations
+
+* **No paper directly evaluates Granite Speech 4.1 2B or Parakeet TDT 0.6b-v3**: All reviewed
+  papers use different models (Whisper, Moonshine, generic Conformer CTC, commercial APIs). The
+  Granite and Parakeet model families are too recent and specialised to appear in the reviewed
+  literature. This means architectural hypotheses about their short-clip robustness (accumulate-then-
+  transcribe vs. chunked re-transcribe) must be empirically validated rather than drawn from the
+  literature.
+
+* **Short-clip ASR robustness as a first-class topic is understudied**: WildASR [Tay2026] tests
+  clips under 6 words as one of 11 conditions but does not isolate duration in seconds as the
+  independent variable. No paper systematically sweeps clip duration from 0.5 s to 3 s and
+  measures empty rate and hallucination rate as continuous functions of duration. The 0.5 s–3 s
+  range examined in t0014 is not covered by any reviewed paper.
+
+* **Streaming chunk size effects on short clips are unquantified**: Tsai2026 uses 160 ms chunks;
+  the brainpowa production pattern uses 32kB PCM-16 chunks (~1 s at 16kHz). The interaction
+  between short clip duration (&lt; 3 s) and chunk size (1 s) means that sub-1 s clips may deliver
+  only a single chunk before the `None` sentinel — a degenerate streaming case not studied in any
+  reviewed paper. Behaviour in this regime is task-specific and empirically unknown.
+
+* **Latency of Granite Speech 4.1 2B on the Azure H100 NVL is not in the literature**: Moonshine
+  v2 reports latency on Apple M3 [Kudlur2026]; Tay2026 does not report inference latency. The
+  249 ms Granite p50 from t0012 is the best available reference. Whether this degrades, improves,
+  or stays constant on sub-3 s clips is unknown prior to Part 2 inference runs.
+
+* **HuggingFace Transformers inference overhead for short audio**: Granite is loaded via HuggingFace
+  Transformers, which adds model loading and tokenisation overhead. For very short clips (&lt; 1 s),
+  this fixed overhead may dominate total latency. No reviewed paper benchmarks HuggingFace
+  Transformers speech model inference on sub-1 s audio.
+
+#### Recommendations for This Task
+
+1. **Track `is_empty` and `is_hallucination` as separate failure modes, per duration bin** — do not
+   aggregate into a single failure rate. Empty output is a tolerable graceful degradation; hallucination
+   is a dangerous failure. [Tay2026] shows these behave differently across architectures.
+
+2. **Test the VAD-misfiring hypothesis explicitly**: Log `no_speech_probability` from faster-whisper
+   for each clip. If empty outputs on Whisper turbo correlate with `no_speech_probability &gt; 0.6`
+   [Radford2022], the mechanism is confirmed. This strengthens the argument for Granite&#x27;s
+   accumulate-then-transcribe design.
+
+3. **Use BCa bootstrap with speaker-level blocks for significance testing** — ordinary utterance-level
+   bootstrap will produce CIs that are 1.5–2.3× too narrow on correlated evaluation sets [Liu2020].
+   With n ≈ 50 synthetic clips per experiment, a ±5–8 WER point detectable difference is the
+   practical significance floor.
+
+4. **Report keyword precision and recall separately from WER for the gold-92 strata** — [Durmus2026]
+   demonstrates these can diverge under context conditioning. The wrong-action rate target (&lt; 2%)
+   is driven by precision, not recall; a model with high recall but low precision may look good on
+   entity accuracy but exceed the wrong-action rate threshold.
+
+5. **Measure TTFD (time to first delta) separately from end-to-end latency for the streaming
+   strata** — for production UX assessment, TTFD matters more than total latency for short terse
+   commands. Moonshine v2 [Kudlur2026] reports 50–258 ms TTFD as a primary latency metric; the
+   same convention should be used for the t0014 latency strata.
+
+6. **For the production recommendation, frame latency as absolute milliseconds, not relative ratio**
+   — Granite 249 ms vs Parakeet 40 ms is a 6× ratio but both are comfortably under the 800 ms p50
+   constraint. The decision driver is whether the 200+ ms overhead affects downstream tool-call
+   dispatch in brainpowa, not whether the ratio looks large.
+
+#### Paper Index
+
+##### [Radford2022]
+
+* **Title**: Robust Speech Recognition via Large-Scale Weak Supervision
+* **Authors**: Radford, A., Kim, J. W., Xu, T., Brockman, G., McLeavey, C., Sutskever, I.
+* **Year**: 2022
+* **DOI**: `10.48550/arXiv.2212.04356`
+* **Asset**: `tasks/t0002_baseline_evaluation/assets/paper/10.48550_arXiv.2212.04356/`
+* **Categories**: `stt-evaluation`, `whisper-finetuning`
+* **Relevance**: Defines Whisper&#x27;s VAD heuristics (`no_speech_threshold=0.6`, temperature
+  fallback) that create the short-clip failure mode being investigated. Documents the long-form
+  decoding pipeline used by faster-whisper in both t0012 and t0014.
+
+##### [Tay2026]
+
+* **Title**: Back to Basics: Revisiting ASR in the Age of Voice Agents
+* **Authors**: Tay, G. et al.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2603.25727`
+* **Asset**: `tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2603.25727/`
+* **Categories**: `stt-evaluation`, `latency-profiling`
+* **Relevance**: WildASR benchmark quantifies short utterance and truncated audio failure modes
+  across 7 systems. Documents 38–74% WER on short commands and 68.4% semantic hallucination rate,
+  directly motivating t0014&#x27;s `is_hallucination` flag and duration-stratified evaluation design.
+
+##### [Kudlur2026]
+
+* **Title**: Moonshine v2: Ergodic Streaming Encoder ASR for Latency-Critical Speech Applications
+* **Authors**: Kudlur, M., King, E., Wang, J., Warden, P.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2602.12241`
+* **Asset**: `tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2602.12241/`
+* **Categories**: `latency-profiling`, `stt-evaluation`
+* **Relevance**: Provides reference latency numbers (50–258 ms on Apple M3) for streaming ASR
+  models and explains the architectural tradeoff between encoder-decoder autoregressive models
+  (Granite) and CTC/streaming models (Parakeet, Moonshine) for latency-critical deployment.
+
+##### [Liu2020]
+
+* **Title**: Statistical Testing on ASR Performance via Blockwise Bootstrap
+* **Authors**: Liu, Z., Peng, F.
+* **Year**: 2020
+* **DOI**: `10.21437/Interspeech.2020-1338`
+* **Asset**: `tasks/t0002_baseline_evaluation/assets/paper/10.21437_Interspeech.2020-1338/`
+* **Categories**: `stt-evaluation`
+* **Relevance**: Proves that ordinary bootstrap for WER significance testing collapses to 41.2%
+  coverage (vs. 95% nominal) on correlated evaluation sets. Required for gold-92 stratified
+  significance testing where multiple clips per speaker are likely correlated.
+
+##### [Durmus2026]
+
+* **Title**: Contextual Earnings-22: A Speech Recognition Benchmark with Custom Vocabulary in
+  the Wild
+* **Authors**: Durmus, B., Cen, C., Pacheco, E., Okan, A., Orhon, A.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2604.07354`
+* **Asset**: `tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2604.07354/`
+* **Categories**: `stt-evaluation`, `entity-correction`
+* **Relevance**: Demonstrates that keyword F-score and WER can move in opposite directions under
+  context conditioning, and that global context (with distractors) causes precision loss. Relevant
+  to evaluating Granite&#x27;s keyword prompt and Parakeet&#x27;s GPU-PB boosting on short clips.
+
+##### [Tsai2026]
+
+* **Title**: Contextual Biasing for Streaming ASR via CTC-based Word Spotting
+* **Authors**: Tsai, K.-C., Lo, T.-H., Sun, Y.-T., Chen, B.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2605.18222`
+* **Asset**: `tasks/t0003_literature_review_entity_stt/assets/paper/10.48550_arXiv.2605.18222/`
+* **Categories**: `entity-correction`, `latency-profiling`, `stt-evaluation`
+* **Relevance**: Stateful CTC-based word spotting for streaming ASR uses 160 ms chunks and bounded
+  incremental latency. Relevant as a comparison point for the 32kB chunk streaming simulation
+  and the latency implications of chunk size in production.
+      </content>
+    </section>
+    <section id="t0014_granite_short_clip_robustness-research_internet" source_kind="file">
+      <title>t0014_granite_short_clip_robustness — Granite Short-Clip Robustness Validation + Production Fit Assessment — research_internet.md</title>
+      <source_name>research_internet.md</source_name>
+      <source_ids>
+        <id>t0014_granite_short_clip_robustness</id>
+      </source_ids>
+      <repo_paths>
+        <path>tasks/t0014_granite_short_clip_robustness/research/research_internet.md</path>
+      </repo_paths>
+      <content>
+---
+spec_version: &quot;1&quot;
+task_id: &quot;t0014_granite_short_clip_robustness&quot;
+research_stage: &quot;internet&quot;
+searches_conducted: 12
+sources_cited: 15
+papers_discovered: 3
+date_completed: &quot;2026-06-29&quot;
+status: &quot;complete&quot;
+---
+#### Task Objective
+
+Validate Granite Speech 4.1 2B robustness on short audio clips (under 3 seconds) compared to
+Parakeet TDT 0.6b-v3 and Whisper turbo, using production-realistic streaming simulation via
+`STTAdapter.transcribe_stream()` with 32kB PCM-16 mono chunks. The task must determine whether
+Granite avoids the short-clip hallucination failure mode that disqualified Whisper turbo from
+production, and whether Granite is production-ready as a drop-in STTAdapter replacement in
+brainpowa-realtime-api.
+
+#### Gaps Addressed
+
+From `research_papers.md` Gaps and Limitations:
+
+1. **No paper directly evaluates Granite Speech 4.1 2B or Parakeet TDT 0.6b-v3** — **Partially
+   resolved**. The Granite-speech paper (Saon et al., arXiv 2505.08699) describes the Granite Speech
+   3.3/4.0 architecture, and the Granite Speech 4.1 2B model card [HF-GraniteSpeech41] provides
+   performance numbers. Granite Speech 4.1 2B achieves **5.33% mean WER** on the Open ASR
+   Leaderboard (RTFx ~231) and currently holds the top position on that leaderboard
+   [MindStudio-Granite41]. However, no paper evaluates either model specifically on sub-3 s clips,
+   leaving the short-clip robustness hypothesis empirically unresolved.
+
+2. **Short-clip ASR robustness as a first-class topic is understudied** — **Partially resolved**.
+   The Baranski2025 paper (ICASSP 2025) studies Whisper hallucinations on non-speech audio
+   systematically and identifies that top-10 hallucination phrases account for over **50%** of all
+   non-speech hallucinations [Baranski2025]. Calm-Whisper [Wang2025] identifies that only **3 of
+   20** Whisper-large-v3 decoder heads account for **over 75%** of non-speech hallucinations,
+   achieving **&gt;80% reduction** with less than 0.1% WER degradation on LibriSpeech. These directly
+   extend the hallucination understanding from `research_papers.md` but do not sweep sub-3 s
+   durations systematically.
+
+3. **Streaming chunk size effects on short clips are unquantified** — **Unresolved**. No internet
+   source describes the specific interaction between a 32kB PCM-16 chunk size (~1 s at 16kHz) and
+   sub-1 s clip delivery in an asyncio Queue with None sentinel. Parakeet&#x27;s NeMo streaming
+   documentation references `chunk_secs=2` as a default [HF-ParakeetV3], which means a sub-1 s clip
+   delivers fewer frames than a single Parakeet streaming chunk — behaviour in this degenerate case
+   remains empirically unknown.
+
+4. **Latency of Granite Speech 4.1 2B on the Azure H100 NVL is not in the literature** — **Partially
+   resolved**. IBM&#x27;s model documentation reports RTFx ~231 (approximately 16 seconds per hour of
+   audio) and the MindStudio benchmark reports an RTFx of ~231 on H100 hardware
+   [MindStudio-Granite41]. Granite Speech 4.1 2B-NAR (non-autoregressive variant) achieves RTFx
+   ~1820 on H100 at batch-128 [MindStudio-Granite41]. The t0012 value of 249 ms p50 is the best
+   available reference for the autoregressive 2B variant under the specific production setup; no
+   published source provides per-clip-duration latency breakdowns.
+
+5. **HuggingFace Transformers inference overhead for short audio** — **Partially resolved**. The
+   Granite Speech 4.1 2B model uses a 4-second block-attention window in the Conformer encoder
+   [HF-GraniteDoc]. For clips shorter than 4 seconds, the encoder processes a single (potentially
+   zero-padded) block. The LLM component adds autoregressive decoding overhead regardless of audio
+   length, which means fixed overhead dominates for sub-1 s clips. No source quantifies this fixed
+   overhead in milliseconds. The NAR variant avoids this by performing single-pass editing rather
+   than autoregressive decoding, but the production setup uses the autoregressive 2B model.
+
+#### Search Strategy
+
+**Sources searched**: HuggingFace model hub, IBM Research blog, arXiv, GitHub
+(ibm-granite/granite-speech-models), NVIDIA NeMo documentation, Interspeech 2025 proceedings, ICASSP
+2025 proceedings, MindStudio blog, MarkTechPost, Northflank blog, NVIDIA developer blog, Papers With
+Code.
+
+**Queries executed** (12 total):
+
+*Gap-targeted queries:*
+
+1. `Granite Speech 4.1 2B IBM release notes short audio robustness 2026`
+2. `brainpowa-realtime-api STTAdapter streaming integration documentation 2026`
+3. `Parakeet TDT 0.6b-v3 NeMo short clip streaming chunked transcription edge cases`
+4. `faster-whisper VAD no_speech_threshold short audio hallucination empty output production`
+5. `Granite Speech 4.1 2B HuggingFace Transformers short clip minimum duration inference edge case`
+
+*Broadening queries:*
+
+6. `ASR model short clip robustness sub-second audio empty output accumulate-then-transcribe streaming 2025 2026`
+7. `Whisper hallucination non-speech audio arxiv investigation 2025`
+8. `OpenASR leaderboard 2026 short utterance benchmark Granite Parakeet Whisper comparison`
+9. `IBM Granite Speech 4.1 2B paper arxiv architecture CTC encoder block attention 2026`
+10. `Calm-Whisper hallucination non-speech arxiv 2505.12969 results WER reduction`
+11. `Baranski ICASSP 2025 Whisper hallucination &quot;thanks for watching&quot; top hallucinations percentage WER reduction post-processing`
+12. `Voxtral realtime streaming ASR arxiv 2602.11298 architecture latency short utterance`
+
+*Deep-read pages using WebFetch (7 fetches):*
+
+* HuggingFace model card: `ibm-granite/granite-speech-4.1-2b`
+* HuggingFace docs: `transformers/model_doc/granite_speech`
+* HuggingFace model card: `nvidia/parakeet-tdt-0.6b-v3`
+* GitHub repository: `ibm-granite/granite-speech-models` README
+* arXiv abstract: `2501.11378` (Baranski2025)
+* arXiv abstract: `2505.12969` (Wang2025 Calm-Whisper)
+* MindStudio: IBM Granite Speech 4.1 leaderboard analysis
+
+**Date range**: 2020–2026, no restriction. Most relevant sources are 2025–2026.
+
+**Inclusion criteria**: Sources must address at least one of: (a) Granite Speech 4.1 architecture or
+performance, (b) Parakeet TDT streaming behavior, (c) Whisper short-clip or non-speech hallucination
+mechanisms, (d) production STT streaming adapter patterns, (e) sub-3 s ASR robustness. Excluded:
+generic voice agent tutorials not specific to these models, LLM latency benchmarks unrelated to ASR.
+
+**Search iterations**: Queries 7, 10, 11 were follow-up searches prompted by the Baranski2025 ICASSP
+2025 paper appearing in query 7 results, leading to Wang2025 (Calm-Whisper) and the GitHub BoH
+repository. Query 12 was added to assess Voxtral Realtime as a potential third streaming ASR
+reference point.
+
+#### Key Findings
+
+##### Granite Speech 4.1 2B Architecture Explains Its Short-Clip Behavior
+
+The Granite Speech 4.1 2B architecture has three components: (1) a 16-layer Conformer encoder with
+dual-head CTC (character and BPE outputs) using **4-second block-attention** windows and
+self-conditioned CTC; (2) a 2-layer windowed Q-Former projector that downsamples audio features by
+10x to a 10 Hz embedding rate; and (3) a fine-tuned `granite-4.0-1b-base` LLM with a LoRA adapter
+that activates when audio features are present [HF-GraniteDoc] [HF-GraniteSpeech41] [Saon2025].
+
+The critical architectural implication for short clips: audio shorter than 4 seconds falls within a
+**single Conformer block-attention window**. Unlike Whisper&#x27;s sliding-window long-form decoder that
+applies VAD heuristics between windows, Granite processes the full audio in one encoder forward pass
+regardless of duration — there is no intermediate VAD gate. The Q-Former projector produces
+`ceil(duration_s * 10)` acoustic embeddings, so a 0.5 s clip yields only 5 embeddings. The LLM then
+decodes autoregressively from these 5 tokens plus the keyword prompt. This
+accumulate-then-transcribe architecture is confirmed by the HuggingFace Transformers documentation,
+which shows a single `model.generate(**inputs)` call over the complete audio [HF-GraniteDoc].
+
+**Best practice**: For production Granite deployment, ensure `padding=True` in the processor call
+for batched short clips. The processor accepts `Union[torch.Tensor, list[torch.Tensor]]` for audio,
+and batch padding is required when clips differ in length [HF-GraniteDoc]. For single-clip inference
+in the `STTAdapter.transcribe()` path, no padding adjustment is needed.
+
+**Hypothesis (updatable by empirical run)**: On sub-1 s clips (yielding ≤10 Q-Former acoustic
+embeddings), the LLM may generate empty or degenerate output if the 10-token acoustic context is
+insufficient for reliable generation. This is distinct from Whisper hallucination and would manifest
+as empty or extremely short transcripts rather than the &quot;Thanks for watching&quot; pattern.
+
+##### Whisper Non-Speech Hallucination Is Well-Characterised and Concentrated in a Few Phrases
+
+Baranski et al. [Baranski2025] (ICASSP 2025, peer-reviewed) is the most systematic study of Whisper
+non-speech hallucinations. The key quantitative findings:
+
+* **Top-2 hallucination phrases account for ~35%** of all non-speech hallucinations across Whisper
+  model sizes.
+* **Top-10 phrases account for over 50%** of all non-speech hallucinations.
+* The phrase &quot;thanks for watching&quot; is among the top outputs, attributed to Whisper&#x27;s training on
+  YouTube-sourced transcriptions. Other high-frequency hallucinations include &quot;subtitles by the
+  amara org community&quot; and &quot;transcript emily beynon&quot;.
+* Post-processing with the Bag of Hallucinations (BoH) using Aho-Corasick string matching
+  successfully reduces WER and acts as a reliable safeguard against problematic outputs
+  [Baranski2025].
+
+These findings validate the hallucination detection flags used in the t0014 task description: the
+patterns listed (&quot;Thanks for watching&quot;, &quot;Subscribe&quot;, &quot;\[Music\]&quot;) are confirmed as among the
+highest-frequency Whisper non-speech hallucinations. The BoH approach also suggests a lightweight
+post-processing path that could be deployed alongside Whisper (or any model) in production if
+needed.
+
+Wang et al. [Wang2025] (Interspeech 2025, peer-reviewed) complement Baranski2025 by showing that the
+hallucination mechanism is localised to **3 of 20 decoder self-attention heads** in
+Whisper-large-v3. Fine-tuning these three heads on non-speech data reduces non-speech hallucinations
+by **&gt;80%** with **&lt;0.1% WER degradation** on LibriSpeech test-clean/other. The practical
+implication for t0014: Whisper&#x27;s short-clip failures are a structural issue traceable to specific
+attention heads, not a random model failure — meaning the `vad_filter` and `no_speech_threshold`
+parameters are partially but not fully effective mitigations.
+
+##### Parakeet TDT 0.6b-v3 Streaming Chunk Size Mismatch with Sub-1 s Clips
+
+The NeMo Parakeet TDT 0.6b-v3 documentation confirms streaming via
+`speech_to_text_buffered_infer_rnnt.py` with default `chunk_secs=2`, `left_context_secs=10.0`, and
+`right_context_secs=2.0` [HF-ParakeetV3]. The default streaming chunk size is **2 seconds**. For a
+clip under 1 second delivered as a single 32kB PCM-16 chunk plus a `None` sentinel, the NeMo chunked
+inference pipeline receives fewer samples than its configured chunk size — this is the degenerate
+single-chunk scenario identified as unquantified in `research_papers.md`.
+
+The NeMo GitHub issue tracker documents two confirmed bugs with the v3 model in streaming mode: a
+timestamp writing failure in `speech_to_text_streaming_infer_rnnt.py` [NeMo-Issue14714], and a
+`len(words)` vs `len(word_confidence)` mismatch when chunking is used [NeMo-Issue15143]. These
+issues apply to the NeMo streaming scripts, not necessarily to the brainpowa
+`ParakeetSTT.transcribe_stream()` implementation which uses NeMo&#x27;s batch transcription API
+internally. However, they indicate that Parakeet streaming has had reliability issues in the
+sub-chunk regime.
+
+**Hypothesis**: On sub-2 s clips, Parakeet TDT (whose chunk default is 2 s) will receive the entire
+audio in a single chunk before the `None` sentinel. The TDT decoder should handle this gracefully
+because TDT processes frames independently rather than requiring full-length windows. However, very
+short clips (&lt; 0.5 s, fewer than 8000 samples at 16kHz) may have too few acoustic frames for
+reliable duration prediction, potentially resulting in empty or repeated-token output.
+
+##### Granite Speech 4.1 2B Production Performance on OpenASR Leaderboard
+
+Granite Speech 4.1 2B currently holds the top position on the OpenASR Leaderboard with **5.33% mean
+WER** (non-peer-reviewed MindStudio analysis, confirmed by IBM Research blog) [MindStudio-Granite41]
+[IBM-Granite41-Blog]. The NAR variant (granite-speech-4.1-2b-nar) achieves **RTFx ~1820** on H100 at
+batch-128, compared to the autoregressive 2B&#x27;s **RTFx ~231** — a 7.9x throughput advantage for the
+NAR variant at competitive WER [MindStudio-Granite41].
+
+For the t0014 production decision, the autoregressive 2B variant is the one evaluated (it is what
+the task description specifies at the local model path). The RTFx ~231 implies approximately 15.6
+seconds per hour of audio, or roughly 4.3 ms per second of audio — consistent with the 249 ms p50
+observed in t0012 for mean clip duration ~58 s (adjusted for 16 s/hour × 58 s ≈ 258 ms).
+
+The NAR variant is a potential future consideration for reducing the 6x latency overhead vs.
+Parakeet, but it requires Flash Attention and has known installation issues on older CUDA versions
+[MindStudio-Granite41]. It is out of scope for t0014.
+
+##### Voxtral Realtime as a Future Streaming Architecture Reference
+
+Voxtral Realtime (Mistral, arXiv 2602.11298, non-peer-reviewed preprint) introduces a natively
+streaming ASR model trained end-to-end with explicit audio-text alignment [Voxtral2026]. The model
+uses a causal audio encoder producing 12.5 Hz embeddings (80 ms per frame), an MLP adapter, and an
+autoregressive text decoder. At 480 ms delay, it matches Whisper performance across 13 languages.
+Configurable delays range from **240 ms to 2.4 s**. This architecture is distinct from the
+accumulate-then-transcribe pattern used by Granite and represents the state-of-the-art in natively
+streaming speech-LLM design as of 2026. It is not directly relevant to t0014 (which evaluates
+existing models), but relevant for future STT architecture decisions if short-clip latency remains a
+bottleneck.
+
+##### brainpowa-realtime-api Is a Private Repository with No Public Documentation
+
+A direct search for `brainpowa-realtime-api STTAdapter` returned no public results, confirming it is
+a private Rezolve internal project [WebSearch-brainpowa]. The integration path (implementing
+`granite.py` as a new STTAdapter) must be assessed by reading the existing `base.py` and
+`parakeet.py` files directly in the implementation phase. The task description already specifies
+that the base class `STTAdapter.transcribe_stream()` default is accumulate-then-transcribe, so
+`granite.py` only needs to implement `transcribe()`.
+
+#### Methodology Insights
+
+* **Whisper hallucination detection can use a pre-validated BoH**: Baranski2025 [Baranski2025]
+  provides a publicly available Bag of Hallucinations (BoH) CSV at
+  `DSP-AGH/ICASSP2025_Whisper_Hallucination` on GitHub. The t0014 hallucination pattern list
+  (&quot;Thanks for watching&quot;, &quot;Subscribe&quot;, &quot;\[Music\]&quot;, repeated punctuation) is a subset of the BoH
+  top-30 list — the task&#x27;s detection logic is consistent with the published literature.
+
+* **Granite 4-second block window means single-block processing for all t0014 clips**: All synthetic
+  clips (0.5 s–3.0 s) and most gold-92 clips (3.07 s–15 s) with the exception of clips above 8
+  seconds fall within 2 block-attention windows. This means Granite&#x27;s encoder processes every t0014
+  clip in 1–2 block passes with no sliding-window fragmentation, which structurally avoids the VAD
+  boundary artefacts that Whisper&#x27;s long-form decoder introduces between 30 s windows.
+
+* **Parakeet chunk_secs=2 implies degenerate single-chunk for all sub-2 s synthetic clips**: The
+  NeMo default streaming configuration uses 2 s chunks. Sub-2 s clips (all of the 0.5 s, 1.0 s, and
+  1.5 s bins) will be delivered as a single under-filled chunk plus the `None` sentinel. The
+  brainpowa `ParakeetSTT.transcribe_stream()` may override this default, but the NeMo API behaviour
+  in this regime should be monitored during the inference run.
+
+* **Latency on short clips may be lower than p50 for both Granite and Parakeet**: For
+  accumulate-then-transcribe models, shorter audio means fewer Q-Former acoustic tokens for the LLM
+  to condition on, but the LLM&#x27;s autoregressive decoding time is driven by the number of output
+  tokens (which is short for short commands). The dominant fixed overhead is model loading and CUDA
+  kernel launch — this is already paid at the first inference call. Subsequent short-clip calls
+  should benefit from warm model state.
+
+* **The BoH post-processing approach is a low-risk production safeguard** (non-peer-reviewed
+  recommendation [Baranski2025]): If Whisper is re-introduced to production in future (e.g., for
+  longer-form dictation), applying Aho-Corasick filtering against the BoH CSV can reduce
+  hallucination WER impact with negligible compute cost. This is out of scope for t0014 but relevant
+  for the broader project.
+
+* **NAR variant as a latency mitigation path**: The Granite Speech 4.1 2B-NAR model provides RTFx
+  ~1820 vs ~231 for the autoregressive variant — a 7.9x throughput improvement
+  [MindStudio-Granite41]. If t0014 empirically confirms that Granite&#x27;s 249 ms p50 is problematic
+  under the 800 ms constraint, the NAR variant is the most direct mitigation to assess in a
+  follow-up task (subject to Flash Attention requirement verification on the Azure H100 NVL).
+
+#### Discovered Papers
+
+##### [Baranski2025]
+
+* **Title**: Investigation of Whisper ASR Hallucinations Induced by Non-Speech Audio
+* **Authors**: Barański, M., Jasiński, M., Bartolewska, M., Kacprzak, T., Witkowski, M., Kowalczyk,
+  K.
+* **Year**: 2025
+* **DOI**: `10.48550/arXiv.2501.11378`
+* **URL**: https://arxiv.org/abs/2501.11378
+* **Suggested categories**: `stt-evaluation`
+* **Why download**: Directly validates the hallucination detection logic used in t0014 by
+  cataloguing Whisper non-speech hallucination phrases (BoH). The finding that top-2 phrases account
+  for 35% of all non-speech hallucinations quantifies the expected hallucination pattern
+  distribution for the Whisper short-clip strata.
+
+##### [Wang2025]
+
+* **Title**: Calm-Whisper: Reduce Whisper Hallucination On Non-Speech By Calming Crazy Heads Down
+* **Authors**: Wang, Y., Alhmoud, A., Alsahly, S., Alqurishi, M., Ravanelli, M.
+* **Year**: 2025
+* **DOI**: `10.48550/arXiv.2505.12969`
+* **URL**: https://arxiv.org/abs/2505.12969
+* **Suggested categories**: `stt-evaluation`, `whisper-finetuning`
+* **Why download**: Identifies the 3 decoder attention heads responsible for &gt;75% of Whisper
+  hallucinations and achieves &gt;80% hallucination reduction. Provides mechanistic understanding of
+  why Whisper fails on non-speech short clips and why `vad_filter` alone is insufficient.
+
+##### [Saon2025]
+
+* **Title**: Granite-speech: open-source speech-aware LLMs with strong English ASR capabilities
+* **Authors**: Saon, G., Dekel, A., Brooks, A. et al.
+* **Year**: 2025
+* **DOI**: `10.48550/arXiv.2505.08699`
+* **URL**: https://arxiv.org/abs/2505.08699
+* **Suggested categories**: `stt-evaluation`, `latency-profiling`
+* **Why download**: Primary architecture paper for Granite Speech models. Describes the Conformer
+  encoder with 4-second block-attention, Q-Former projector with 10x temporal downsampling, and LoRA
+  adapter design. Essential reference for understanding Granite&#x27;s accumulate-then-transcribe
+  semantics and architectural reasons for expected short-clip robustness.
+
+#### Recommendations for This Task
+
+1. **Add `is_hallucination` pattern check against the published BoH top-30 list** (non-peer-reviewed
+   but empirically grounded [Baranski2025]): The hallucination pattern list in the task description
+   is consistent with Baranski2025&#x27;s BoH. Using the public BoH CSV from
+   `DSP-AGH/ICASSP2025_Whisper_Hallucination` as the reference set would make the detection
+   methodology citable and reproducible, rather than relying on ad-hoc pattern matching.
+
+2. **Monitor sub-1 s Granite outputs for empty or degenerate transcripts separately from
+   hallucinations**: The 4-second block-attention window produces only 5 acoustic embeddings for a
+   0.5 s clip, which may be insufficient for reliable LLM decoding. The expected failure mode is an
+   empty transcript (not a hallucination), which is tolerable in production but needs to be
+   measured. This updates the gap assessment from `research_papers.md`: Granite&#x27;s failure mode on
+   very short clips is likely empty output, not hallucination.
+
+3. **Verify Parakeet chunk behaviour for sub-2 s clips in the brainpowa ParakeetSTT adapter**: The
+   NeMo default `chunk_secs=2` means all 0.5 s, 1.0 s, and 1.5 s bins will be processed as single
+   under-filled chunks. The brainpowa adapter may set different parameters, but this should be
+   confirmed by reading `parakeet.py` before the inference run. If the adapter inherits NeMo&#x27;s
+   default, these clips will test the degenerate single-chunk path.
+
+4. **Consider testing Granite Speech 4.1 2B-NAR as a latency-optimized alternative** (future task):
+   RTFx ~1820 vs ~231 for the autoregressive variant closes the latency gap vs. Parakeet (RTFx &gt;
+   3000\) significantly. This is out of scope for t0014 but should be flagged in the production
+   recommendation answer asset if the 6x latency overhead is deemed problematic.
+
+5. **The NAR variant requires Flash Attention** — verify availability on the Azure H100 NVL before
+   any follow-up NAR evaluation. MindStudio notes that CUDA 13 users may need to compile Flash
+   Attention from source [MindStudio-Granite41]. The autoregressive 2B already requires
+   `flash_attention_2` for inference [HF-GraniteDoc], so this should already be available.
+
+6. **For the production recommendation, explicitly compare empty-output rate (graceful) vs.
+   hallucination rate (dangerous)**: `research_papers.md` already identifies this asymmetry from
+   [Tay2026]. The internet research confirms that Whisper&#x27;s dangerous failure mode is now
+   mechanistically explained [Wang2025] [Baranski2025] and is a known production risk, strengthening
+   the argument for Granite&#x27;s accumulate-then-transcribe design regardless of what the short-clip
+   empirical results show.
+
+#### Source Index
+
+##### [HF-GraniteSpeech41]
+
+* **Type**: documentation
+* **Title**: ibm-granite/granite-speech-4.1-2b model card
+* **Author/Org**: IBM Granite
+* **Date**: 2026-04
+* **URL**: https://huggingface.co/ibm-granite/granite-speech-4.1-2b
+* **Last updated**: 2026-04
+* **Peer-reviewed**: no
+* **Relevance**: Primary model card for Granite Speech 4.1 2B. Documents architecture (16-layer
+  Conformer with 4-second block-attention, dual-head CTC, Q-Former projector), training data
+  (174,000 hours), 5.33% mean WER on OpenASR Leaderboard, and HuggingFace Transformers inference
+  requirements (transformers&gt;=4.52.1).
+
+##### [HF-GraniteDoc]
+
+* **Type**: documentation
+* **Title**: Granite Speech — HuggingFace Transformers Documentation
+* **Author/Org**: HuggingFace / IBM Granite contributors
+* **Date**: 2026-05
+* **URL**: https://huggingface.co/docs/transformers/model_doc/granite_speech
+* **Last updated**: 2026-05
+* **Peer-reviewed**: no
+* **Relevance**: Authoritative API documentation for `GraniteSpeechForConditionalGeneration` and
+  `GraniteSpeechProcessor`. Confirms single `model.generate()` call over complete audio (no
+  intermediate VAD), `padding=True` requirement for batched inference, and `flash_attention_2`
+  backend requirement.
+
+##### [HF-ParakeetV3]
+
+* **Type**: documentation
+* **Title**: nvidia/parakeet-tdt-0.6b-v3 model card
+* **Author/Org**: NVIDIA
+* **Date**: 2025
+* **URL**: https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3
+* **Last updated**: 2025
+* **Peer-reviewed**: no
+* **Relevance**: Documents streaming configuration (`chunk_secs=2`, `left_context_secs=10.0`,
+  `right_context_secs=2.0`) and confirms that sub-2 s clips will be delivered as single under-filled
+  chunks in the default NeMo streaming pipeline. Relevant for assessing Parakeet short-clip
+  behavior.
+
+##### [IBM-Granite41-Blog]
+
+* **Type**: blog
+* **Title**: Introducing the IBM Granite 4.1 family of models
+* **Author/Org**: IBM Research
+* **Date**: 2026-04
+* **URL**: https://research.ibm.com/blog/granite-4-1-ai-foundation-models
+* **Peer-reviewed**: no
+* **Relevance**: IBM&#x27;s official release announcement for Granite Speech 4.1 2B. Confirms 5.33% mean
+  WER, training data (174,000 hours including synthetic keyword-biased data), dual-head CTC encoder
+  innovation, and three model variants (2B, 2B-NAR, 2B-Plus).
+
+##### [MindStudio-Granite41]
+
+* **Type**: blog
+* **Title**: IBM Granite Speech 4.1: 3 Models, One Leaderboard Crown, and a 2-Second Hour of Audio
+* **Author/Org**: MindStudio
+* **Date**: 2026
+* **URL**: https://www.mindstudio.ai/blog/ibm-granite-speech-4-1-asr-models-leaderboard
+* **Peer-reviewed**: no
+* **Relevance**: Independent benchmarking article reporting RTFx ~231 for 2B autoregressive and RTFx
+  ~1820 for 2B-NAR on H100. Provides the RTFx-to-ms conversion used for latency estimation and
+  documents Flash Attention dependency for both variants.
+
+##### [Baranski2025]
+
+* **Type**: paper
+* **Title**: Investigation of Whisper ASR Hallucinations Induced by Non-Speech Audio
+* **Authors**: Barański, M. et al.
+* **Year**: 2025
+* **DOI**: `10.48550/arXiv.2501.11378`
+* **URL**: https://arxiv.org/abs/2501.11378
+* **Peer-reviewed**: yes (ICASSP 2025)
+* **Relevance**: Identifies that top-2 Whisper hallucination phrases account for 35% of all
+  non-speech hallucinations, and top-10 account for &gt;50%. &quot;Thanks for watching&quot; is confirmed as a
+  primary hallucination phrase. The BoH post-processing approach reduces WER from non-speech audio
+  and provides a citable reference for the t0014 hallucination detection methodology.
+
+##### [Wang2025]
+
+* **Type**: paper
+* **Title**: Calm-Whisper: Reduce Whisper Hallucination On Non-Speech By Calming Crazy Heads Down
+* **Authors**: Wang, Y. et al.
+* **Year**: 2025
+* **DOI**: `10.48550/arXiv.2505.12969`
+* **URL**: https://arxiv.org/abs/2505.12969
+* **Peer-reviewed**: yes (Interspeech 2025)
+* **Relevance**: Localises Whisper hallucination to 3 of 20 decoder heads responsible for &gt;75% of
+  non-speech hallucinations. Achieves &gt;80% hallucination reduction with &lt;0.1% WER degradation on
+  LibriSpeech. Provides mechanistic explanation for why `vad_filter=True` alone does not eliminate
+  hallucinations and why Granite&#x27;s architecture is structurally safer.
+
+##### [Saon2025]
+
+* **Type**: paper
+* **Title**: Granite-speech: open-source speech-aware LLMs with strong English ASR capabilities
+* **Authors**: Saon, G., Dekel, A., Brooks, A. et al.
+* **Year**: 2025
+* **DOI**: `10.48550/arXiv.2505.08699`
+* **URL**: https://arxiv.org/abs/2505.08699
+* **Peer-reviewed**: no (arXiv preprint, submitted 2025-05-13)
+* **Relevance**: Primary architecture paper for Granite Speech models. Documents Conformer encoder
+  with block-attention and self-conditioned CTC, Q-Former with 10x temporal downsampling, LoRA
+  adapter design, and training corpus composition (174k hours). Essential for understanding
+  Granite&#x27;s single-pass inference semantics and absence of intermediate VAD.
+
+##### [NeMo-Issue14714]
+
+* **Type**: forum
+* **Title**: Parakeet-tdt-0.6b-v3 — writing timestamps using streaming infer rnnt script error
+* **Author/Org**: NVIDIA-NeMo / community
+* **Date**: 2025
+* **URL**: https://github.com/NVIDIA-NeMo/NeMo/issues/14714
+* **Peer-reviewed**: no
+* **Relevance**: Documents confirmed bug with Parakeet TDT v3 streaming inference and timestamp
+  writing. Indicates known streaming reliability issues with NeMo v3 in the streaming script path,
+  relevant context for Parakeet short-clip testing.
+
+##### [NeMo-Issue15143]
+
+* **Type**: forum
+* **Title**: Mismatch of len(words) and len(word_confidence) in parakeet-tdt-0.6b-v3 transcription
+* **Author/Org**: NVIDIA-NeMo/Speech / community
+* **Date**: 2025
+* **URL**: https://github.com/NVIDIA-NeMo/Speech/issues/15143
+* **Peer-reviewed**: no
+* **Relevance**: Documents chunking-related word/confidence mismatch bug in Parakeet TDT v3. May
+  affect the brainpowa ParakeetSTT adapter if it accesses word-level confidence scores from the NeMo
+  transcription API.
+
+##### [BoH-GH]
+
+* **Type**: repository
+* **Title**: ICASSP2025 Whisper Hallucination — Bag of Hallucinations CSV
+* **Author/Org**: DSP-AGH (AGH Signal Processing Group)
+* **Date**: 2025
+* **URL**: https://github.com/DSP-AGH/ICASSP2025_Whisper_Hallucination
+* **Last updated**: 2025
+* **Peer-reviewed**: no (accompanies ICASSP 2025 peer-reviewed paper)
+* **Relevance**: Public CSV of top Whisper hallucination phrases used as the Bag of Hallucinations
+  for post-processing. Can be used directly as the reference pattern list for `is_hallucination`
+  detection in t0014, making the detection logic reproducible and citable.
+
+##### [Voxtral2026]
+
+* **Type**: paper
+* **Title**: Voxtral Realtime
+* **Authors**: Mistral AI
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2602.11298`
+* **URL**: https://arxiv.org/abs/2602.11298
+* **Peer-reviewed**: no (arXiv preprint)
+* **Relevance**: State-of-the-art natively streaming ASR model (4B parameters, 13 languages,
+  240–2400 ms configurable delay, matches Whisper at 480 ms delay). Relevant as a future
+  architecture reference if short-clip latency from Granite&#x27;s accumulate-then-transcribe design
+  proves unacceptable in production.
+
+##### [WebSearch-brainpowa]
+
+* **Type**: forum
+* **Title**: Web search for brainpowa-realtime-api STTAdapter documentation
+* **Author/Org**: Multiple search engines (no results found)
+* **Date**: 2026-06-29
+* **URL**: https://www.google.com
+* **Peer-reviewed**: no
+* **Relevance**: Confirms that brainpowa-realtime-api has no public documentation. Integration
+  assessment must be performed by reading the private repository source files directly during the
+  implementation phase.
+
+##### [GH-GraniteSpeechModels]
+
+* **Type**: repository
+* **Title**: ibm-granite/granite-speech-models
+* **Author/Org**: IBM Granite
+* **Date**: 2026
+* **URL**: https://github.com/ibm-granite/granite-speech-models
+* **Last updated**: 2026
+* **Peer-reviewed**: no
+* **Relevance**: Official IBM repository for Granite Speech models. Documents two-pass inference
+  design, known limitations (potential hallucination susceptibility in smaller models), and
+  recommended use alongside Granite Guardian for production risk detection.
+
+##### [Tay2026]
+
+* **Type**: paper
+* **Title**: Back to Basics: Revisiting ASR in the Age of Voice Agents
+* **Authors**: Tay, G. et al.
+* **Year**: 2026
+* **DOI**: `10.48550/arXiv.2603.25727`
+* **URL**: https://arxiv.org/abs/2603.25727
+* **Peer-reviewed**: no (arXiv preprint)
+* **Relevance**: WildASR benchmark documents short utterance and truncated audio failure modes
+  across 7 commercial ASR systems including Deepgram Nova 2. First-class treatment of hallucination
+  rate (HER) as a metric distinct from WER. The empty-output vs hallucination asymmetry referenced
+  in Recommendations section 6 is from this paper. Already in the project corpus (added in t0003);
+  cited here because the Recommendations section extends its findings with the mechanistic
+  explanations from Baranski2025 and Wang2025.
       </content>
     </section>
   </sections>

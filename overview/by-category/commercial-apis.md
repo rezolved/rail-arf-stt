@@ -5,7 +5,7 @@ production baseline.
 
 [Back to Dashboard](../README.md)
 
-**Detail pages**: [Suggestions (3)](../suggestions/by-category/commercial-apis.md)
+**Detail pages**: [Suggestions (4)](../suggestions/by-category/commercial-apis.md)
 
 ---
 
@@ -21,7 +21,24 @@ No tasks related to this category.
 
 No answers in this category.
 
-## Suggestions (3 open, 0 closed)
+## Suggestions (4 open, 0 closed)
+
+<details>
+<summary>🧪 <strong>Benchmark Granite Speech 4.1 2B vs Deepgram Nova-2 and Azure
+Speech on gold-92 to complete the competitive landscape</strong>
+(S-0014-05)</summary>
+
+**Kind**: experiment | **Priority**: high | **Date**: 2026-06-30 | **Source**:
+[t0014_granite_short_clip_robustness](../../tasks/t0014_granite_short_clip_robustness/)
+
+Granite now leads all tested open-source models (EA 94.8%), but no direct comparison with
+commercial APIs (Deepgram Nova-2, Azure Speech) has been run in production streaming mode with
+the full domain biasing setup. S-0005-07 covers this but predates the t0012/t0014 findings
+confirming Granite's edge. Running Granite against commercial APIs would determine whether
+Granite already beats production Deepgram, answering the final commercial vs open-source
+question. Recommended task types: stt-benchmark-run, answer-question.
+
+</details>
 
 <details>
 <summary>🧪 <strong>Compare Granite/Paraformer against Deepgram Nova-2 and Azure

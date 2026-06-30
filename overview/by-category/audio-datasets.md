@@ -5,7 +5,7 @@ STT experiments.
 
 [Back to Dashboard](../README.md)
 
-**Detail pages**: [Suggestions (5)](../suggestions/by-category/audio-datasets.md) | [Datasets
+**Detail pages**: [Suggestions (6)](../suggestions/by-category/audio-datasets.md) | [Datasets
 (1)](../datasets/by-category/audio-datasets.md)
 
 ---
@@ -22,7 +22,23 @@ No tasks related to this category.
 
 No answers in this category.
 
-## Suggestions (5 open, 0 closed)
+## Suggestions (6 open, 0 closed)
+
+<details>
+<summary>📂 <strong>Expand short-clip robustness benchmark to 200+ clips with real
+production audio diversity</strong> (S-0014-03)</summary>
+
+**Kind**: dataset | **Priority**: medium | **Date**: 2026-06-30 | **Source**:
+[t0014_granite_short_clip_robustness](../../tasks/t0014_granite_short_clip_robustness/)
+
+The synthetic short-clip dataset (44 clips, 7-14 per bin) is underpowered for stratum-level
+significance testing (MDD ±20 pp for empty rate). Expanding to 200+ clips from a wider variety
+of production audio sessions, accents, and domain terms would enable statistically reliable
+per-bin comparisons and better characterize Granite behavior in the <1 s and 1-2 s strata
+where entity accuracy is near zero for all models. Recommended task types:
+audio-dataset-curation.
+
+</details>
 
 <details>
 <summary>📂 <strong>Preprocess Rezolve investor-relations transcript corpus for KenLM

@@ -1,11 +1,34 @@
 # Suggestions: `latency-profiling`
 
-7 suggestion(s) in category [`latency-profiling`](../../../meta/categories/latency-profiling/)
-**6 open** (5 medium, 1 low), **1 closed**.
+9 suggestion(s) in category [`latency-profiling`](../../../meta/categories/latency-profiling/)
+**8 open** (1 high, 6 medium, 1 low), **1 closed**.
 
 [Back to all suggestions](../README.md)
 
 ---
+
+## High Priority
+
+<details>
+<summary>🧪 <strong>Implement granite.py STTAdapter and deploy Granite as production
+STT in brainpowa-realtime-api</strong> (S-0014-01)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0014-01` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-30 |
+| **Source task** | [`t0014_granite_short_clip_robustness`](../../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`latency-profiling`](../../../meta/categories/latency-profiling/) |
+
+t0014 confirmed CONDITIONAL YES: replace Parakeet with Granite Speech 4.1 2B, gating on a 2.0
+s minimum clip duration. The integration effort is ~50-100 lines (only transcribe() needs
+implementing). This task should implement granite.py, add the 2.0 s minimum clip gate to the
+streaming pipeline, run the existing brainpowa STT evals, and merge to production. Recommended
+task types: experiment-run, answer-question.
+
+</details>
 
 ## Medium Priority
 
@@ -74,6 +97,27 @@ actual pipeline latency on Rezolve's production infrastructure at p50 and p95. T
 prerequisite for any production deployment decision. If GPT-4o API latency exceeds the budget,
 evaluate a local 7B model substitute for the LLM-Select step. Recommended task types:
 latency-profiling, experiment-run.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Measure Granite latency on brainpowa production hardware (CPU
+inference path) for edge deployment</strong> (S-0014-06)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0014-06` |
+| **Kind** | experiment |
+| **Date added** | 2026-06-30 |
+| **Source task** | [`t0014_granite_short_clip_robustness`](../../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Source paper** | — |
+| **Categories** | [`latency-profiling`](../../../meta/categories/latency-profiling/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+
+All Granite latency measurements in t0012 and t0014 used Azure H100 NVL GPU (p50 249-251 ms).
+The brainpowa-realtime-api production deployment may use CPU inference or a smaller GPU.
+Measuring Granite's CPU latency on the actual production server would determine whether the
+800 ms p50 constraint holds outside the H100 environment and whether quantization (S-0005-10)
+is needed. Recommended task types: experiment-run, answer-question.
 
 </details>
 

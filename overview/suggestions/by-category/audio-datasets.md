@@ -1,7 +1,7 @@
 # Suggestions: `audio-datasets`
 
-5 suggestion(s) in category [`audio-datasets`](../../../meta/categories/audio-datasets/) **5
-open** (1 high, 4 medium).
+6 suggestion(s) in category [`audio-datasets`](../../../meta/categories/audio-datasets/) **6
+open** (1 high, 5 medium).
 
 [Back to all suggestions](../README.md)
 
@@ -81,6 +81,28 @@ needs an audit; (3) clip error_en_0005 has Cyrillic ground truth indicating upst
 quality issues. The expanded benchmark should also apply blockwise bootstrap by speaker for
 the clean_voices subset as recommended by Liu2020. Recommended task types:
 audio-dataset-curation, data-analysis.
+
+</details>
+
+<details>
+<summary>📂 <strong>Expand short-clip robustness benchmark to 200+ clips with real
+production audio diversity</strong> (S-0014-03)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0014-03` |
+| **Kind** | dataset |
+| **Date added** | 2026-06-30 |
+| **Source task** | [`t0014_granite_short_clip_robustness`](../../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Source paper** | — |
+| **Categories** | [`audio-datasets`](../../../meta/categories/audio-datasets/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+
+The synthetic short-clip dataset (44 clips, 7-14 per bin) is underpowered for stratum-level
+significance testing (MDD ±20 pp for empty rate). Expanding to 200+ clips from a wider variety
+of production audio sessions, accents, and domain terms would enable statistically reliable
+per-bin comparisons and better characterize Granite behavior in the <1 s and 1-2 s strata
+where entity accuracy is near zero for all models. Recommended task types:
+audio-dataset-curation.
 
 </details>
 

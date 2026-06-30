@@ -5,12 +5,13 @@ candidate STT pipeline configurations.
 
 [Back to Dashboard](../README.md)
 
-**Detail pages**: [Papers (5)](../papers/by-category/latency-profiling.md) | [Suggestions
-(7)](../suggestions/by-category/latency-profiling.md)
+**Detail pages**: [Papers (6)](../papers/by-category/latency-profiling.md) | [Suggestions
+(9)](../suggestions/by-category/latency-profiling.md) | [Predictions
+(3)](../predictions/by-category/latency-profiling.md)
 
 ---
 
-## Papers (5)
+## Papers (6)
 
 <details>
 <summary>📝 <strong>Moonshine v2: Ergodic Streaming Encoder ASR for Latency-Critical
@@ -245,17 +246,103 @@ WER.
 
 </details>
 
-## Tasks (1)
+<details>
+<summary>📝 <strong>Granite-speech: open-source speech-aware LLMs with strong English
+ASR capabilities</strong> — Saon et al., 2025</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `10.48550_arXiv.2505.08699` |
+| **Authors** | George Saon, Avihu Dekel, Alexander Brooks, Tohru Nagano, Abraham Daniels, Aharon Satt, Ashish Mittal, Brian Kingsbury, David Haws, Edmilson Morais, Gakuto Kurata, Hagai Aronowitz, Ibrahim Ibrahim, Jeff Kuo, Kate Soule, Luis Lastras, Masayuki Suzuki, Ron Hoory, Samuel Thomas, Sashi Novitasari, Takashi Fukuda, Vishal Sunder, Xiaodong Cui, Zvi Kons |
+| **Venue** | arXiv preprint (preprint) |
+| **DOI** | `10.48550/arXiv.2505.08699` |
+| **URL** | https://arxiv.org/abs/2505.08699 |
+| **Date added** | 2026-06-29 |
+| **Categories** | [`stt-evaluation`](../../meta/categories/stt-evaluation/), [`latency-profiling`](../../meta/categories/latency-profiling/) |
+| **Added by** | [`t0014_granite_short_clip_robustness`](../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) |
+| **Full summary** | [`summary.md`](../../tasks/t0014_granite_short_clip_robustness/assets/paper/10.48550_arXiv.2505.08699/summary.md) |
+
+Saon et al. (IBM Research, 2025) introduce Granite-speech-3.3, a family of open-source
+speech-aware LLMs in 2B and 8B parameter variants, designed primarily for English ASR. The
+central research question is whether compact models trained exclusively on publicly licensed
+audio corpora (~76K hours Apache 2.0 compatible data) can match or surpass models trained on
+orders of magnitude more proprietary data. The motivation is both scientific — advancing
+open-source speech models — and practical, enabling commercial deployment without licensing
+barriers.
+
+The architecture integrates three components trained sequentially: a 10-layer conformer CTC
+encoder with block attention and self-conditioned CTC (1.5M updates, 275M parameters), a
+windowed Q-former speech modality adapter achieving 10x total acoustic compression (660K
+updates, 32 H100 GPUs), and LoRA adapters (rank 64) applied to all LLM attention layers. The
+design supports dual-mode inference: the same model weights serve as the base
+granite-3.3-instruct text LLM (LoRA off) or as a speech-aware model (encoder + Q-former + LoRA
+active) depending on whether an `<|audio|>` token appears in the prompt. Key training
+innovations include character-level CTC tokenization, balanced corpus sampling with α=0.6, and
+ensemble-based MT filtering for synthetic AST data that retains under 50% of examples but
+improves BLEU by more than 10 points.
+
+The 8B model achieves the lowest WER among all sub-8B parameter models on 7 of 9 English ASR
+benchmarks, including **1.5% WER** on LibriSpeech clean, **3.0%** on LibriSpeech other,
+**9.2%** on AMI IHM, **26.1%** on AMI SDM, and **5.8%** on VoxPopuli — beating Whisper Large
+v3, Gemini 2.0 Flash, Qwen2-Audio, and Phi-4-mm. The 2B model is competitive, especially on
+AMI SDM (**26.7% WER**), suggesting robustness to adverse acoustic conditions at smaller
+scale. Ablations confirm that character-level CTC tokenization outperforms BPE variants after
+joint LLM training, and the windowed Q-former outperforms MLP and cross-attention projectors.
+
+For the Rezolve STT project, Granite-speech-3.3 is a high-priority candidate for the gold-92
+benchmark evaluation. Its strong performance on conversational and meeting corpora (AMI,
+VoxPopuli) that share acoustic characteristics with Rezolve production call-center audio makes
+it directly relevant for entity accuracy benchmarking. The dual-mode design is particularly
+attractive: a single model instance could handle both transcription and entity-aware
+post-correction, potentially collapsing the two-step Deepgram + LLM correction pipeline and
+reducing voice-to-action latency below the 800 ms p50 budget. The Apache 2.0 license removes
+all commercial deployment barriers, and the planned future work on contextual biasing aligns
+directly with the Rezolve entity boosting objective.
+
+</details>
+
+## Tasks (2)
 
 | # | Task | Status | Completed |
 |---|------|--------|-----------|
 | 0003 | [Literature Review: Entity-Aware STT for Ecommerce Voice AI (Jan–Jun 2026)](../../overview/tasks/task_pages/t0003_literature_review_entity_stt.md) | completed | 2026-06-23 09:25 |
+| 0014 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | completed | 2026-06-30 07:53 |
 
 ## Answers (0)
 
 No answers in this category.
 
-## Suggestions (6 open, 1 closed)
+## Suggestions (8 open, 1 closed)
+
+<details>
+<summary>🧪 <strong>Implement granite.py STTAdapter and deploy Granite as production
+STT in brainpowa-realtime-api</strong> (S-0014-01)</summary>
+
+**Kind**: experiment | **Priority**: high | **Date**: 2026-06-30 | **Source**:
+[t0014_granite_short_clip_robustness](../../tasks/t0014_granite_short_clip_robustness/)
+
+t0014 confirmed CONDITIONAL YES: replace Parakeet with Granite Speech 4.1 2B, gating on a 2.0
+s minimum clip duration. The integration effort is ~50-100 lines (only transcribe() needs
+implementing). This task should implement granite.py, add the 2.0 s minimum clip gate to the
+streaming pipeline, run the existing brainpowa STT evals, and merge to production. Recommended
+task types: experiment-run, answer-question.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Measure Granite latency on brainpowa production hardware (CPU
+inference path) for edge deployment</strong> (S-0014-06)</summary>
+
+**Kind**: experiment | **Priority**: medium | **Date**: 2026-06-30 | **Source**:
+[t0014_granite_short_clip_robustness](../../tasks/t0014_granite_short_clip_robustness/)
+
+All Granite latency measurements in t0012 and t0014 used Azure H100 NVL GPU (p50 249-251 ms).
+The brainpowa-realtime-api production deployment may use CPU inference or a smaller GPU.
+Measuring Granite's CPU latency on the actual production server would determine whether the
+800 ms p50 constraint holds outside the H100 environment and whether quantization (S-0005-10)
+is needed. Recommended task types: experiment-run, answer-question.
+
+</details>
 
 <details>
 <summary>🧪 <strong>Benchmark Moonshine ONNX Medium on gold-92 when UsefulSensors
