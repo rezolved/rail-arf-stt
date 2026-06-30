@@ -1,0 +1,42 @@
+Loaded 93 gold-92 ground truth entries
+Loaded 44 short-clip results for whisper_turbo
+Loaded 44 short-clip results for parakeet_tdt
+Loaded 44 short-clip results for granite_speech
+Loaded 93 gold-92 results for whisper_turbo
+Loaded 93 gold-92 results for parakeet_tdt
+Loaded 93 gold-92 results for granite_speech
+
+=== Stratified Analysis Summary ===
+
+lt_1s:
+  Whisper turbo       : n=  9 EA=0.0417 WER=0.9583 empty=0.0% halluc=0.0% lat=0.1438
+  Parakeet TDT 0.6b   : n=  9 EA=0.0573 WER= 0.934 empty=55.6% halluc=0.0% lat=0.0307
+  Granite 4.1 2B      : n=  9 EA=0.0906 WER=0.9111 empty=0.0% halluc=0.0% lat=0.0571
+
+1_to_2s:
+  Whisper turbo       : n= 14 EA=0.0963 WER=0.8177 empty=0.0% halluc=0.0% lat=0.142
+  Parakeet TDT 0.6b   : n= 14 EA=0.0976 WER=0.8662 empty=28.6% halluc=0.0% lat=0.0314
+  Granite 4.1 2B      : n= 14 EA=0.1171 WER=0.8146 empty=0.0% halluc=0.0% lat=0.1
+
+2_to_3s:
+  Whisper turbo       : n= 14 EA=0.3827 WER=0.6254 empty=0.0% halluc=0.0% lat=0.1459
+  Parakeet TDT 0.6b   : n= 14 EA=0.1859 WER=0.7076 empty=14.3% halluc=0.0% lat=0.0359
+  Granite 4.1 2B      : n= 14 EA=0.4073 WER=0.5777 empty=0.0% halluc=0.0% lat=0.1426
+
+3_to_5s:
+  Whisper turbo       : n= 29 EA=0.9457 WER=0.0748 empty=0.0% halluc=0.0% lat=0.1928
+  Parakeet TDT 0.6b   : n= 29 EA=0.6452 WER= 0.215 empty=3.5% halluc=0.0% lat=0.0381
+  Granite 4.1 2B      : n= 29 EA=0.9615 WER=0.0489 empty=0.0% halluc=0.0% lat=0.2148
+
+5_to_10s:
+  Whisper turbo       : n= 60 EA=0.9075 WER=0.0795 empty=0.0% halluc=0.0% lat=0.3296
+  Parakeet TDT 0.6b   : n= 60 EA=0.6538 WER=0.1414 empty=3.3% halluc=0.0% lat=0.0409
+  Granite 4.1 2B      : n= 60 EA=0.9382 WER=0.0893 empty=0.0% halluc=0.0% lat=0.2514
+
+gt_10s:
+  Whisper turbo       : n=  4 EA=   1.0 WER=0.0477 empty=0.0% halluc=0.0% lat=0.9895
+  Parakeet TDT 0.6b   : n=  4 EA= 0.625 WER=0.0982 empty=0.0% halluc=0.0% lat=0.0464
+  Granite 4.1 2B      : n=  4 EA=   1.0 WER=0.0352 empty=0.0% halluc=0.0% lat=0.3883
+
+Saved → /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0014_granite_short_clip_robustness/tasks/t0014_granite_short_clip_robustness/results/stratified_analysis.json
+Strata: ['lt_1s', '1_to_2s', '2_to_3s', '3_to_5s', '5_to_10s', 'gt_10s']

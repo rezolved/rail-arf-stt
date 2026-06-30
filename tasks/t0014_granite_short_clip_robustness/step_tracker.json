@@ -77,10 +77,10 @@
       "step": 9,
       "name": "implementation",
       "description": "Synthesize short clips, run GPU inference via transcribe_stream() for all three models, compute stratified metrics, and write answer asset.",
-      "status": "pending",
-      "started_at": null,
-      "completed_at": null,
-      "log_file": null
+      "status": "completed",
+      "started_at": "2026-06-30T08:00:00Z",
+      "completed_at": "2026-06-30T14:00:00Z",
+      "log_file": "logs/steps/009_implementation/"
     },
     {
       "step": 10,

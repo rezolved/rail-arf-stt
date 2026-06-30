@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0014_granite_short_clip_robustness"
-updated_at: "2026-06-30T00:00:00Z"
-completed_steps: 10
-next_step_number: 9
-next_step_id: "implementation"
+updated_at: "2026-06-30T14:05:00Z"
+completed_steps: 9
+next_step_number: 10
+next_step_id: "teardown"
 ---
 # Task Objective
 
@@ -14,6 +14,16 @@ simulation, and assess production fit as a Parakeet replacement in brainpowa.
 * * *
 
 ## Step History
+
+### Step 9 — implementation
+
+All 4 milestones completed on Azure H100 NVL (`azureuser@llm-t1-nc80`): 44 synthetic short clips
+synthesized across 6 duration bins (0.5–3.0 s), 3 models benchmarked via
+`STTAdapter.transcribe_stream()` simulation, stratified analysis with BCa bootstrap CIs computed,
+and answer + prediction assets created. Key finding: Granite 0% empty rate vs Parakeet 27.3% on
+short clips; Granite superior entity accuracy on gold-92 (94.8% vs Parakeet 65.0%). Key outputs:
+`results/stratified_analysis.json`, `results/metrics.json`, `results/images/` (3 charts),
+`assets/answer/granite-vs-parakeet-production-fit/`, and 3 prediction assets.
 
 ### Step 8 — setup-machines
 
@@ -92,12 +102,10 @@ task types). Step 1 is a mechanical setup step with no research output.
 
 ## Next Step Notes
 
-For implementation (step 9): the GPU machine is confirmed live at `azureuser@llm-t1-nc80` with 2x
-H100 NVL, conda env `stt`, NeMo 3.1.0, Parakeet from HuggingFace cache, Granite at
-`/home/azureuser/granite-model/granite-speech-4.1-2b`, and Whisper available. Read
-`tasks/t0014_granite_short_clip_robustness/plan/plan.md` in full before starting — the plan covers
-four milestones: dataset synthesis (Milestone 1, CPU), GPU inference for all three models (Milestone
-2), stratified analysis (Milestone 3), and answer asset (Milestone 4). Run `dvc pull` on the remote
-machine first to ensure gold-92 WAV files are present. All inference MUST use
-`STTAdapter.transcribe_stream()` — not direct model calls. Machine lock file at
-`~/.arf-locks/t0014_granite_short_clip_robustness.lock` should be written before starting work.
+For teardown (step 10): the Azure H100 NVL machine (`llm-t1-nc80`) is a RESERVED INSTANCE — do NOT
+destroy it. Set `destroyed_at: null` in `machine_log.json` with a note explaining the reserved
+instance was not destroyed. Total cost is $0 (reserved instance, no per-minute billing). Write
+`results/costs.json` with `total_cost_usd: 0` and empty `breakdown`. Write
+`results/remote_machines_used.json` from the machine_log entry. All inference data is already synced
+locally: `data/` has 3 JSONL files (44 rows each), `results/` has `stratified_analysis.json`,
+`metrics.json`, and `images/` with 3 charts.

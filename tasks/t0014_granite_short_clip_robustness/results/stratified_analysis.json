@@ -1,0 +1,293 @@
+{
+  "lt_1s": {
+    "models": {
+      "whisper_turbo": {
+        "label": "Whisper turbo",
+        "source": "synthetic",
+        "n": 9,
+        "empty_rate": 0.0,
+        "hallucination_rate": 0.0,
+        "wer": 0.9583,
+        "entity_accuracy": 0.0417,
+        "latency_p50": 0.1438
+      },
+      "parakeet_tdt": {
+        "label": "Parakeet TDT 0.6b",
+        "source": "synthetic",
+        "n": 9,
+        "empty_rate": 0.5556,
+        "hallucination_rate": 0.0,
+        "wer": 0.934,
+        "entity_accuracy": 0.0573,
+        "latency_p50": 0.0307
+      },
+      "granite_speech": {
+        "label": "Granite 4.1 2B",
+        "source": "synthetic",
+        "n": 9,
+        "empty_rate": 0.0,
+        "hallucination_rate": 0.0,
+        "wer": 0.9111,
+        "entity_accuracy": 0.0906,
+        "latency_p50": 0.0571
+      }
+    }
+  },
+  "1_to_2s": {
+    "models": {
+      "whisper_turbo": {
+        "label": "Whisper turbo",
+        "source": "synthetic",
+        "n": 14,
+        "empty_rate": 0.0,
+        "hallucination_rate": 0.0,
+        "wer": 0.8177,
+        "entity_accuracy": 0.0963,
+        "latency_p50": 0.142
+      },
+      "parakeet_tdt": {
+        "label": "Parakeet TDT 0.6b",
+        "source": "synthetic",
+        "n": 14,
+        "empty_rate": 0.2857,
+        "hallucination_rate": 0.0,
+        "wer": 0.8662,
+        "entity_accuracy": 0.0976,
+        "latency_p50": 0.0314
+      },
+      "granite_speech": {
+        "label": "Granite 4.1 2B",
+        "source": "synthetic",
+        "n": 14,
+        "empty_rate": 0.0,
+        "hallucination_rate": 0.0,
+        "wer": 0.8146,
+        "entity_accuracy": 0.1171,
+        "latency_p50": 0.1
+      }
+    }
+  },
+  "2_to_3s": {
+    "models": {
+      "whisper_turbo": {
+        "label": "Whisper turbo",
+        "source": "synthetic",
+        "n": 14,
+        "empty_rate": 0.0,
+        "hallucination_rate": 0.0,
+        "wer": 0.6254,
+        "entity_accuracy": 0.3827,
+        "latency_p50": 0.1459
+      },
+      "parakeet_tdt": {
+        "label": "Parakeet TDT 0.6b",
+        "source": "synthetic",
+        "n": 14,
+        "empty_rate": 0.1429,
+        "hallucination_rate": 0.0,
+        "wer": 0.7076,
+        "entity_accuracy": 0.1859,
+        "latency_p50": 0.0359
+      },
+      "granite_speech": {
+        "label": "Granite 4.1 2B",
+        "source": "synthetic",
+        "n": 14,
+        "empty_rate": 0.0,
+        "hallucination_rate": 0.0,
+        "wer": 0.5777,
+        "entity_accuracy": 0.4073,
+        "latency_p50": 0.1426
+      }
+    }
+  },
+  "3_to_5s": {
+    "models": {
+      "whisper_turbo": {
+        "label": "Whisper turbo",
+        "source": "gold92",
+        "n": 29,
+        "empty_rate": 0.0,
+        "hallucination_rate": 0.0,
+        "wer": 0.0748,
+        "entity_accuracy": 0.9457,
+        "latency_p50": 0.1928,
+        "entity_accuracy_domain_vocab": 0.9167,
+        "action_critical_wer": 0.0748,
+        "intent_preservation": 0.9655,
+        "wrong_action_rate": 0.0345,
+        "wer_ci_95": [
+          0.0447,
+          0.1309
+        ],
+        "entity_accuracy_ci_95": [
+          0.8205,
+          0.9853
+        ]
+      },
+      "parakeet_tdt": {
+        "label": "Parakeet TDT 0.6b",
+        "source": "gold92",
+        "n": 29,
+        "empty_rate": 0.0345,
+        "hallucination_rate": 0.0,
+        "wer": 0.215,
+        "entity_accuracy": 0.6452,
+        "latency_p50": 0.0381,
+        "entity_accuracy_domain_vocab": 0.3333,
+        "action_critical_wer": 0.215,
+        "intent_preservation": 0.6897,
+        "wrong_action_rate": 0.3103,
+        "wer_ci_95": [
+          0.1378,
+          0.3494
+        ],
+        "entity_accuracy_ci_95": [
+          0.4797,
+          0.7918
+        ]
+      },
+      "granite_speech": {
+        "label": "Granite 4.1 2B",
+        "source": "gold92",
+        "n": 29,
+        "empty_rate": 0.0,
+        "hallucination_rate": 0.0,
+        "wer": 0.0489,
+        "entity_accuracy": 0.9615,
+        "latency_p50": 0.2148,
+        "entity_accuracy_domain_vocab": 1.0,
+        "action_critical_wer": 0.0489,
+        "intent_preservation": 1.0,
+        "wrong_action_rate": 0.0,
+        "wer_ci_95": [
+          0.0237,
+          0.098
+        ],
+        "entity_accuracy_ci_95": [
+          0.9146,
+          0.984
+        ]
+      }
+    }
+  },
+  "5_to_10s": {
+    "models": {
+      "whisper_turbo": {
+        "label": "Whisper turbo",
+        "source": "gold92",
+        "n": 60,
+        "empty_rate": 0.0,
+        "hallucination_rate": 0.0,
+        "wer": 0.0795,
+        "entity_accuracy": 0.9075,
+        "latency_p50": 0.3296,
+        "entity_accuracy_domain_vocab": 0.8621,
+        "action_critical_wer": 0.0795,
+        "intent_preservation": 0.9333,
+        "wrong_action_rate": 0.0667,
+        "wer_ci_95": [
+          0.0589,
+          0.1089
+        ],
+        "entity_accuracy_ci_95": [
+          0.8214,
+          0.9562
+        ]
+      },
+      "parakeet_tdt": {
+        "label": "Parakeet TDT 0.6b",
+        "source": "gold92",
+        "n": 60,
+        "empty_rate": 0.0333,
+        "hallucination_rate": 0.0,
+        "wer": 0.1414,
+        "entity_accuracy": 0.6538,
+        "latency_p50": 0.0409,
+        "entity_accuracy_domain_vocab": 0.3621,
+        "action_critical_wer": 0.1414,
+        "intent_preservation": 0.6833,
+        "wrong_action_rate": 0.3,
+        "wer_ci_95": [
+          0.108,
+          0.2106
+        ],
+        "entity_accuracy_ci_95": [
+          0.5407,
+          0.7592
+        ]
+      },
+      "granite_speech": {
+        "label": "Granite 4.1 2B",
+        "source": "gold92",
+        "n": 60,
+        "empty_rate": 0.0,
+        "hallucination_rate": 0.0,
+        "wer": 0.0893,
+        "entity_accuracy": 0.9382,
+        "latency_p50": 0.2514,
+        "entity_accuracy_domain_vocab": 0.9483,
+        "action_critical_wer": 0.0893,
+        "intent_preservation": 0.9833,
+        "wrong_action_rate": 0.0167,
+        "wer_ci_95": [
+          0.062,
+          0.1275
+        ],
+        "entity_accuracy_ci_95": [
+          0.8759,
+          0.9647
+        ]
+      }
+    }
+  },
+  "gt_10s": {
+    "models": {
+      "whisper_turbo": {
+        "label": "Whisper turbo",
+        "source": "gold92",
+        "n": 4,
+        "empty_rate": 0.0,
+        "hallucination_rate": 0.0,
+        "wer": 0.0477,
+        "entity_accuracy": 1.0,
+        "latency_p50": 0.9895,
+        "entity_accuracy_domain_vocab": 1.0,
+        "action_critical_wer": 0.0477,
+        "intent_preservation": 1.0,
+        "wrong_action_rate": 0.0,
+        "ci_note": "n=4 — BCa CI unreliable at this sample size; raw metrics only"
+      },
+      "parakeet_tdt": {
+        "label": "Parakeet TDT 0.6b",
+        "source": "gold92",
+        "n": 4,
+        "empty_rate": 0.0,
+        "hallucination_rate": 0.0,
+        "wer": 0.0982,
+        "entity_accuracy": 0.625,
+        "latency_p50": 0.0464,
+        "entity_accuracy_domain_vocab": 0.3333,
+        "action_critical_wer": 0.0982,
+        "intent_preservation": 0.5,
+        "wrong_action_rate": 0.25,
+        "ci_note": "n=4 — BCa CI unreliable at this sample size; raw metrics only"
+      },
+      "granite_speech": {
+        "label": "Granite 4.1 2B",
+        "source": "gold92",
+        "n": 4,
+        "empty_rate": 0.0,
+        "hallucination_rate": 0.0,
+        "wer": 0.0352,
+        "entity_accuracy": 1.0,
+        "latency_p50": 0.3883,
+        "entity_accuracy_domain_vocab": 1.0,
+        "action_critical_wer": 0.0352,
+        "intent_preservation": 1.0,
+        "wrong_action_rate": 0.0,
+        "ci_note": "n=4 — BCa CI unreliable at this sample size; raw metrics only"
+      }
+    }
+  }
+}
