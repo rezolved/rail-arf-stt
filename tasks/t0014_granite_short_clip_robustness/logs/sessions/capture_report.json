@@ -1,0 +1,150 @@
+{
+  "spec_version": "1",
+  "task_id": "t0014_granite_short_clip_robustness",
+  "captured_at": "2026-06-30T07:54:36Z",
+  "checked_roots": [
+    {
+      "source_kind": "codex",
+      "root_path": "/Users/margotiamanova/.codex/sessions",
+      "exists": false,
+      "candidate_file_count": 0,
+      "matched_file_count": 0
+    },
+    {
+      "source_kind": "claude_code",
+      "root_path": "/Users/margotiamanova/.claude/projects",
+      "exists": true,
+      "candidate_file_count": 172,
+      "matched_file_count": 21
+    }
+  ],
+  "copied_sessions": [
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/48d52e97-21f8-439f-871a-b95ad2fcaa1c/subagents/agent-a43153676f644037d.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__48d52e97-21f8-439f-871a-b95ad2fcaa1c__subagents__agent-a43153676f644037d.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/48d52e97-21f8-439f-871a-b95ad2fcaa1c/subagents/agent-a753b806515969f1f.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__48d52e97-21f8-439f-871a-b95ad2fcaa1c__subagents__agent-a753b806515969f1f.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/48d52e97-21f8-439f-871a-b95ad2fcaa1c/subagents/agent-a89094b2487c2aa70.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__48d52e97-21f8-439f-871a-b95ad2fcaa1c__subagents__agent-a89094b2487c2aa70.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/48d52e97-21f8-439f-871a-b95ad2fcaa1c/subagents/agent-aa90fbec949668f3f.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__48d52e97-21f8-439f-871a-b95ad2fcaa1c__subagents__agent-aa90fbec949668f3f.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/48d52e97-21f8-439f-871a-b95ad2fcaa1c/subagents/agent-afab84decffeeb431.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__48d52e97-21f8-439f-871a-b95ad2fcaa1c__subagents__agent-afab84decffeeb431.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/48d52e97-21f8-439f-871a-b95ad2fcaa1c.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__48d52e97-21f8-439f-871a-b95ad2fcaa1c.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/bc4b00da-3d52-42a8-b1ac-8aafc5f10739/subagents/agent-a0175ccff3619853b.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__bc4b00da-3d52-42a8-b1ac-8aafc5f10739__subagents__agent-a0175ccff3619853b.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/bc4b00da-3d52-42a8-b1ac-8aafc5f10739/subagents/agent-a09623f56c125d186.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__bc4b00da-3d52-42a8-b1ac-8aafc5f10739__subagents__agent-a09623f56c125d186.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/bc4b00da-3d52-42a8-b1ac-8aafc5f10739/subagents/agent-a16c2ce6408d24b68.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__bc4b00da-3d52-42a8-b1ac-8aafc5f10739__subagents__agent-a16c2ce6408d24b68.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/bc4b00da-3d52-42a8-b1ac-8aafc5f10739/subagents/agent-a299cf2d775babee2.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__bc4b00da-3d52-42a8-b1ac-8aafc5f10739__subagents__agent-a299cf2d775babee2.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/bc4b00da-3d52-42a8-b1ac-8aafc5f10739/subagents/agent-a3f1ce44a57c9ba43.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__bc4b00da-3d52-42a8-b1ac-8aafc5f10739__subagents__agent-a3f1ce44a57c9ba43.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/bc4b00da-3d52-42a8-b1ac-8aafc5f10739/subagents/agent-a411164dfe9158881.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__bc4b00da-3d52-42a8-b1ac-8aafc5f10739__subagents__agent-a411164dfe9158881.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/bc4b00da-3d52-42a8-b1ac-8aafc5f10739/subagents/agent-a75f72549a60afcc3.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__bc4b00da-3d52-42a8-b1ac-8aafc5f10739__subagents__agent-a75f72549a60afcc3.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/bc4b00da-3d52-42a8-b1ac-8aafc5f10739/subagents/agent-a88d39455f97cf3a5.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__bc4b00da-3d52-42a8-b1ac-8aafc5f10739__subagents__agent-a88d39455f97cf3a5.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/bc4b00da-3d52-42a8-b1ac-8aafc5f10739/subagents/agent-a95218facec7173b7.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__bc4b00da-3d52-42a8-b1ac-8aafc5f10739__subagents__agent-a95218facec7173b7.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/bc4b00da-3d52-42a8-b1ac-8aafc5f10739/subagents/agent-aa74f5a8299b061fe.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__bc4b00da-3d52-42a8-b1ac-8aafc5f10739__subagents__agent-aa74f5a8299b061fe.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/bc4b00da-3d52-42a8-b1ac-8aafc5f10739/subagents/agent-ac987e1629e7420d1.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__bc4b00da-3d52-42a8-b1ac-8aafc5f10739__subagents__agent-ac987e1629e7420d1.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/bc4b00da-3d52-42a8-b1ac-8aafc5f10739/subagents/agent-ad26da7c85880c5bc.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__bc4b00da-3d52-42a8-b1ac-8aafc5f10739__subagents__agent-ad26da7c85880c5bc.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/bc4b00da-3d52-42a8-b1ac-8aafc5f10739/subagents/agent-ae6e84345a9f0e0bd.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__bc4b00da-3d52-42a8-b1ac-8aafc5f10739__subagents__agent-ae6e84345a9f0e0bd.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/bc4b00da-3d52-42a8-b1ac-8aafc5f10739/subagents/agent-aea505b27f192b787.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__bc4b00da-3d52-42a8-b1ac-8aafc5f10739__subagents__agent-aea505b27f192b787.jsonl",
+      "matched_by": "task_id_content"
+    },
+    {
+      "source_kind": "claude_code",
+      "source_path": "/Users/margotiamanova/.claude/projects/-Users-margotiamanova-Desktop-REZOLVE-AI/bc4b00da-3d52-42a8-b1ac-8aafc5f10739.jsonl",
+      "copied_path": "logs/sessions/claude_code__-Users-margotiamanova-Desktop-REZOLVE-AI__bc4b00da-3d52-42a8-b1ac-8aafc5f10739.jsonl",
+      "matched_by": "task_id_content"
+    }
+  ],
+  "errors": []
+}

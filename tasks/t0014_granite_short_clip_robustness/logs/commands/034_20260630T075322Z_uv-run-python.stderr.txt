@@ -1,0 +1,1 @@
+/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0014_granite_short_clip_robustness/.venv/bin/python3: No module named arf.scripts.verificators.verify_predictions_details

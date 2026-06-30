@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0014_granite_short_clip_robustness"
-updated_at: "2026-06-30T07:50:15Z"
-completed_steps: 14
-next_step_number: 15
-next_step_id: "reporting"
+updated_at: "2026-06-30T07:53:00Z"
+completed_steps: 15
+next_step_number: null
+next_step_id: null
 ---
 # Task Objective
 
@@ -14,6 +14,15 @@ simulation, and assess production fit as a Parakeet replacement in brainpowa.
 * * *
 
 ## Step History
+
+### Step 15 — reporting
+
+All verificators run: verify_task_file, verify_task_dependencies, verify_suggestions,
+verify_task_metrics, verify_task_results, verify_task_folder, verify_logs, verify_research_papers,
+verify_research_internet, verify_plan, verify_machines_destroyed all passed (RM-E001 expected and
+documented). Fixed `step_log.md` for step 9 (added missing mandatory sections) and
+`machine_log.json` (added missing `offer_id`, `search_criteria`, `image` fields). 21 session
+transcripts captured. `task.json` set to `completed` with `end_time: 2026-06-30T07:53:00Z`.
 
 ### Step 12 — results
 
@@ -126,11 +135,6 @@ task types). Step 1 is a mechanical setup step with no research output.
 
 ## Next Step Notes
 
-Step 15 is `reporting`. Run `prestep t0014_granite_short_clip_robustness reporting`, then execute
-all relevant verificators (`verify_task_file`, `verify_task_dependencies`, `verify_suggestions`,
-`verify_task_metrics`, `verify_task_results`, `verify_task_folder`, `verify_logs`,
-`verify_predictions_asset`, `verify_predictions_description`, `verify_predictions_details`,
-`verify_answer_asset`). Capture session transcripts via `capture_task_sessions`. Update `task.json`
-status to `completed` and set `end_time`. This is the final step — `next_step_id` should be set to
-`null` after completion. All 6 suggestions in `results/suggestions.json` have been verified
-(S-0014-01 through S-0014-06).
+All 15 steps completed. Task is fully done. `task.json` status is `completed`, `end_time` set to
+`2026-06-30T07:53:00Z`. No further steps remain (`next_step_number: null`, `next_step_id: null`).
+Coordinator should proceed to Phase 7 (PR and merge).

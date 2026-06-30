@@ -1,0 +1,2 @@
+usage: verify_machines_destroyed.py [-h] [--all] [task_id]
+verify_machines_destroyed.py: error: unrecognized arguments: --task-id

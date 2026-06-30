@@ -18,6 +18,9 @@
       "region": "eastus2",
       "hourly_cost_usd": 13.96
     },
+    "offer_id": "azure_ml:llm-t1-nc80",
+    "search_criteria": "provider=azure_ml gpu_class=H100 reserved=true",
+    "image": "stt-env",
     "selection_rationale": "Pre-provisioned Azure H100 NVL machine confirmed live via SSH. Machine alias gpu-azure (llm-t1-nc80, azureuser). Conda env stt exists with NeMo 3.1.0, Parakeet loads from HuggingFace cache (nvidia/parakeet-tdt-0.6b-v3), Granite model present at /home/azureuser/granite-model/granite-speech-4.1-2b. No lock file present; machine ready for task use.",
     "disk_gb": 1024,
     "label": "rail-arf-stt/t0014_granite_short_clip_robustness",
