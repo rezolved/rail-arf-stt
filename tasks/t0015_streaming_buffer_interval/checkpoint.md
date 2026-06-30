@@ -1,8 +1,8 @@
 ---
 spec_version: "1"
 task_id: "t0015_streaming_buffer_interval"
-updated_at: "2026-06-30T10:53:10Z"
-completed_steps: 2
+updated_at: "2026-06-30T10:54:00Z"
+completed_steps: 8
 next_step_number: 3
 next_step_id: "init-folders"
 ---
@@ -22,6 +22,30 @@ domain keyword list. Dataset: gold-92.
 Both dependencies verified as completed: t0014_granite_short_clip_robustness and
 t0012_whisper_parakeet_granite_streaming. Output: `logs/steps/002_check-deps/deps_report.json`. No
 errors or warnings.
+
+### Step 13 — suggestions
+
+Skipped — per step_tracker.json: no suggestions step for this experiment task.
+
+### Step 12 — compare-literature
+
+Skipped — per step_tracker.json: no literature comparison needed for this interval experiment.
+
+### Step 7 — planning
+
+Skipped — experiment design provided directly by user; no planning step required.
+
+### Step 6 — research-code
+
+Skipped — codebase patterns established in t0012/t0014; no code research needed.
+
+### Step 5 — research-internet
+
+Skipped — models are known; no internet research needed.
+
+### Step 4 — research-papers
+
+Skipped — experiment design is fully specified; no paper research needed.
 
 ### Step 1 — create-branch
 
