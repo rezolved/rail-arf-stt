@@ -122,9 +122,9 @@
       "step": 14,
       "name": "suggestions",
       "description": "Generate suggestions for follow-up tasks based on short-clip findings and production fit assessment.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-06-30T07:46:47Z",
-      "completed_at": null,
+      "completed_at": "2026-06-30T07:51:36Z",
       "log_file": "logs/steps/014_suggestions/"
     },
     {
