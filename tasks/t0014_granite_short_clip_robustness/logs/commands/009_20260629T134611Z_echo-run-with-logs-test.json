@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0014_granite_short_clip_robustness",
+  "command": "echo run_with_logs test",
+  "exit_code": 0,
+  "duration_seconds": 0.003,
+  "started_at": "2026-06-29T13:46:11Z",
+  "completed_at": "2026-06-29T13:46:11Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0014_granite_short_clip_robustness",
+  "stdout_file": "009_20260629T134611Z_echo-run-with-logs-test.stdout.txt",
+  "stderr_file": "009_20260629T134611Z_echo-run-with-logs-test.stderr.txt",
+  "stdout_lines": 1,
+  "stderr_lines": 0,
+  "truncated": false
+}

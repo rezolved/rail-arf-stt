@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0014_granite_short_clip_robustness"
-updated_at: "2026-06-29T13:40:00Z"
-completed_steps: 9
-next_step_number: 8
-next_step_id: "setup-machines"
+updated_at: "2026-06-30T00:00:00Z"
+completed_steps: 8
+next_step_number: 9
+next_step_id: "implementation"
 ---
 # Task Objective
 
@@ -14,6 +14,14 @@ simulation, and assess production fit as a Parakeet replacement in brainpowa.
 * * *
 
 ## Step History
+
+### Step 8 — setup-machines
+
+Azure H100 NVL machine (`azureuser@llm-t1-nc80`) verified live: 2x H100 NVL GPUs confirmed via
+`nvidia-smi`, conda env `stt` with NeMo 3.1.0 active, Granite model at
+`/home/azureuser/granite-model/granite-speech-4.1-2b`, Parakeet from HuggingFace cache, Whisper
+available. Step was recovered from a stuck `in_progress` state — machine was already provisioned
+when recovery ran. Key output: `logs/steps/008_setup-machines/machine_log.json`.
 
 ### Step 13 — compare-literature
 
@@ -84,10 +92,12 @@ task types). Step 1 is a mechanical setup step with no research output.
 
 ## Next Step Notes
 
-For setup-machines (step 8): provision Azure H100 NVL instance (`gpu-azure` profile,
-`azureuser@llm-t1-nc80`), activate conda env `stt`, verify all three model paths exist
-(`/home/azureuser/parakeet-model/parakeet-tdt-0.6b-v3`,
-`/home/azureuser/granite-model/granite-speech-4.1-2b`), run `dvc pull` for gold-92 source audio, and
-confirm `transcribe_stream()` works with a single test clip for each model. The plan
-(`tasks/t0014_granite_short_clip_robustness/plan/plan.md`) is the authoritative reference for all
-implementation steps; read it fresh before starting setup-machines.
+For implementation (step 9): the GPU machine is confirmed live at `azureuser@llm-t1-nc80` with 2x
+H100 NVL, conda env `stt`, NeMo 3.1.0, Parakeet from HuggingFace cache, Granite at
+`/home/azureuser/granite-model/granite-speech-4.1-2b`, and Whisper available. Read
+`tasks/t0014_granite_short_clip_robustness/plan/plan.md` in full before starting — the plan covers
+four milestones: dataset synthesis (Milestone 1, CPU), GPU inference for all three models (Milestone
+2), stratified analysis (Milestone 3), and answer asset (Milestone 4). Run `dvc pull` on the remote
+machine first to ensure gold-92 WAV files are present. All inference MUST use
+`STTAdapter.transcribe_stream()` — not direct model calls. Machine lock file at
+`~/.arf-locks/t0014_granite_short_clip_robustness.lock` should be written before starting work.
