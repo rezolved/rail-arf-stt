@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0015_streaming_buffer_interval"
-updated_at: "2026-06-30T10:59:00Z"
-completed_steps: 9
-next_step_number: 8
-next_step_id: "setup-machines"
+updated_at: "2026-06-30T11:10:00Z"
+completed_steps: 10
+next_step_number: 9
+next_step_id: "implementation"
 ---
 # Task Objective
 
@@ -16,6 +16,13 @@ domain keyword list. Dataset: gold-92.
 * * *
 
 ## Step History
+
+### Step 8 — setup-machines
+
+Reserved Azure H100 NVL machine (llm-t1-nc80, 2×H100 NVL, 880 GB RAM) verified live via SSH. All
+four models confirmed ready: parakeet-tdt-0.6b-v3 (pre-cached), parakeet-unified-en-0.6b
+(downloaded), multitalker-parakeet-streaming-0.6b-v1 (downloaded), Granite Speech 4.1 2B
+(pre-existing). GPU smoke gate: PASS. Machine log: `logs/steps/008_setup-machines/machine_log.json`.
 
 ### Step 3 — init-folders
 
@@ -76,7 +83,9 @@ research-internet, research-code, planning) pre-marked as skipped per user instr
 
 ## Next Step Notes
 
-Proceed to step 8 (setup-machines): provision an H100 NVL GPU machine for inference, same
-configuration as t0014_granite_short_clip_robustness. The ctx/ aggregator cache is pre-populated and
-available for downstream subagents (do not re-run aggregators; read ctx/ files instead).
-Implementation will run 4 models × 3 intervals = 12 experiment combinations on gold-92 (93 clips).
+Proceed to step 9 (implementation): run all 12 model × interval combinations (4 models × 3
+intervals) on gold-92 (93 clips) on machine llm-t1-nc80 (SSH host alias, azureuser,
+40.127.196.254:50000, key id_rsa_mohan). Conda env is `stt` (NeMo 3.1.0+dcd7153). All models are in
+HuggingFace cache; Granite is at /home/azureuser/granite-model/granite-speech-4.1-2b. Collect TTFD,
+latency, WER, and entity accuracy metrics per combination. The ctx/ aggregator cache is
+pre-populated — do not re-run aggregators; read ctx/ files instead.

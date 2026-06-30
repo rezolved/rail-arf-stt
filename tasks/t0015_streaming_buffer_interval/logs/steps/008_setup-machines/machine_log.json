@@ -1,0 +1,51 @@
+[
+  {
+    "spec_version": "5",
+    "provider": "azure_ml",
+    "instance_id": "llm-t1-nc80",
+    "vm_name": "llm-t1-nc80",
+    "hourly_cost_usd": 13.96,
+    "started_vm": false,
+    "selected_offer": {
+      "vm_name": "llm-t1-nc80",
+      "priority": 1,
+      "gpu": "H100 NVL",
+      "gpu_count": 2,
+      "gpu_ram_gb": 93.0,
+      "cpu_ram_gb": 880.0,
+      "disk_gb": 119.0,
+      "image": "stt-env",
+      "region": "eastus2",
+      "hourly_cost_usd": 13.96
+    },
+    "offer_id": "azure_ml:llm-t1-nc80",
+    "search_criteria": "provider=azure_ml gpu_class=H100 reserved=true",
+    "image": "stt-env",
+    "selection_rationale": "Pre-provisioned Azure H100 NVL machine confirmed live via SSH (llm-t1-nc80 alias, azureuser). Machine was already running from prior task t0014. Conda env stt exists with NeMo 3.1.0+dcd7153. All required models present after downloading parakeet-unified-en-0.6b (2.47 GB) and multitalker-parakeet-streaming-0.6b-v1 (2.49 GB) to HuggingFace cache.",
+    "disk_gb": 119,
+    "label": "rail-arf-stt/t0015_streaming_buffer_interval",
+    "ssh_host": "llm-t1-nc80",
+    "ssh_port": 50000,
+    "gpu_verified": "NVIDIA H100 NVL x2 (93 GB each, driver 535.274.02)",
+    "cuda_version": "12.2",
+    "created_at": "2026-06-30T11:02:00Z",
+    "ready_at": "2026-06-30T11:02:00Z",
+    "destroyed_at": null,
+    "total_duration_hours": null,
+    "total_cost_usd": null,
+    "search_started_at": "2026-06-30T11:02:00Z",
+    "total_provisioning_seconds": 0.0,
+    "failed_attempts": [],
+    "checkpoint_path": null,
+    "heartbeat_path": null,
+    "smoke_gate_status": "pass",
+    "smoke_test_output": "torch.cuda.device_count()=2. GPU 0: NVIDIA H100 NVL 93 GB. GPU 1: NVIDIA H100 NVL 93 GB. CUDA 12.2. NeMo 3.1.0+dcd7153. Models verified: nvidia/parakeet-tdt-0.6b-v3 (cached), nvidia/parakeet-unified-en-0.6b (downloaded+cached, 2.47 GB), nvidia/multitalker-parakeet-streaming-0.6b-v1 (downloaded+cached, 2.49 GB). Granite Speech 4.1 2B at /home/azureuser/granite-model/granite-speech-4.1-2b confirmed.",
+    "models_on_machine": {
+      "nvidia/parakeet-tdt-0.6b-v3": "cached (pre-existing)",
+      "nvidia/parakeet-unified-en-0.6b": "cached (downloaded 2026-06-30)",
+      "nvidia/multitalker-parakeet-streaming-0.6b-v1": "cached (downloaded 2026-06-30)",
+      "ibm-granite/granite-speech-4.1-2b": "/home/azureuser/granite-model/granite-speech-4.1-2b (pre-existing)"
+    },
+    "note": "Machine was already running (reserved instance, no per-minute billing). az CLI not present on local orchestration machine; SSH-based verification used instead. VM left running for task use; teardown step will confirm deallocation decision."
+  }
+]
