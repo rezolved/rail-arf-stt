@@ -86,10 +86,10 @@
       "step": 10,
       "name": "teardown",
       "description": "Download results from GPU machine, destroy instance, and update cost tracking.",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-06-30T07:35:14Z",
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/010_teardown/"
     },
     {
       "step": 11,

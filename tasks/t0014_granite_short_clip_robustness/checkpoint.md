@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0014_granite_short_clip_robustness"
-updated_at: "2026-06-30T14:05:00Z"
-completed_steps: 9
-next_step_number: 10
-next_step_id: "teardown"
+updated_at: "2026-06-30T07:50:00Z"
+completed_steps: 10
+next_step_number: 12
+next_step_id: "results"
 ---
 # Task Objective
 
@@ -14,6 +14,13 @@ simulation, and assess production fit as a Parakeet replacement in brainpowa.
 * * *
 
 ## Step History
+
+### Step 10 — teardown
+
+Reserved Azure H100 NVL machine (`llm-t1-nc80`) was NOT destroyed — shared reserved instance. All
+results already synced locally during implementation. Cost is $0 (no per-minute billing). Key
+outputs: `results/costs.json` ($0), `results/remote_machines_used.json` (1 entry),
+`machine_log.json` updated with `total_cost_usd: 0.0` and reserved-instance note.
 
 ### Step 9 — implementation
 
@@ -102,10 +109,10 @@ task types). Step 1 is a mechanical setup step with no research output.
 
 ## Next Step Notes
 
-For teardown (step 10): the Azure H100 NVL machine (`llm-t1-nc80`) is a RESERVED INSTANCE — do NOT
-destroy it. Set `destroyed_at: null` in `machine_log.json` with a note explaining the reserved
-instance was not destroyed. Total cost is $0 (reserved instance, no per-minute billing). Write
-`results/costs.json` with `total_cost_usd: 0` and empty `breakdown`. Write
-`results/remote_machines_used.json` from the machine_log entry. All inference data is already synced
-locally: `data/` has 3 JSONL files (44 rows each), `results/` has `stratified_analysis.json`,
-`metrics.json`, and `images/` with 3 charts.
+For results (step 12): all data is local. `results/` already has `stratified_analysis.json`,
+`metrics.json`, and 3 chart PNGs. Write `results_summary.md` (headline: Granite 0% empty rate vs
+Parakeet 27.3%, Granite 94.8% EA vs Parakeet 65.0% on gold-92), `results_detailed.md` with
+methodology, examples, and `## Task Requirement Coverage`. Embed all 3 charts. `costs.json` is
+already written ($0, reserved instance). `remote_machines_used.json` is written. Note that
+`verify_machines_destroyed.py` will emit `RM-E001` (reserved instance not destroyed) — document this
+in the verification section of `results_detailed.md`.
