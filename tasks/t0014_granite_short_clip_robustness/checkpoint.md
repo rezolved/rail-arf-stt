@@ -2,7 +2,7 @@
 spec_version: "1"
 task_id: "t0014_granite_short_clip_robustness"
 updated_at: "2026-06-30T00:00:00Z"
-completed_steps: 8
+completed_steps: 10
 next_step_number: 9
 next_step_id: "implementation"
 ---
