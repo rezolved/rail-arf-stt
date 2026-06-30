@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0015_streaming_buffer_interval"
-updated_at: "2026-06-30T10:54:00Z"
-completed_steps: 8
-next_step_number: 3
-next_step_id: "init-folders"
+updated_at: "2026-06-30T10:59:00Z"
+completed_steps: 9
+next_step_number: 8
+next_step_id: "setup-machines"
 ---
 # Task Objective
 
@@ -16,6 +16,13 @@ domain keyword list. Dataset: gold-92.
 * * *
 
 ## Step History
+
+### Step 3 — init-folders
+
+Task folder structure created via init_task_folders: 12 directories with .gitkeep files and
+`assets/predictions/` subdirectory matching expected_assets. Aggregator cache populated in
+`tasks/t0015_streaming_buffer_interval/ctx/` (task_types.json, costs.json, tasks.json, metrics.json,
+suggestions.json).
 
 ### Step 2 — check-deps
 
@@ -69,8 +76,7 @@ research-internet, research-code, planning) pre-marked as skipped per user instr
 
 ## Next Step Notes
 
-Proceed to step 3 (init-folders): create the full task folder structure using init_task_folders.py,
-then populate the aggregator cache (task_types.json, costs.json, tasks.json, metrics.json,
-suggestions.json) in tasks/t0015_streaming_buffer_interval/ctx/. Step 8 (setup-machines) will
-provision an H100 NVL GPU machine for inference — same configuration as t0014. Implementation will
-run 4 models × 3 intervals = 12 combinations on gold-92.
+Proceed to step 8 (setup-machines): provision an H100 NVL GPU machine for inference, same
+configuration as t0014_granite_short_clip_robustness. The ctx/ aggregator cache is pre-populated and
+available for downstream subagents (do not re-run aggregators; read ctx/ files instead).
+Implementation will run 4 models × 3 intervals = 12 experiment combinations on gold-92 (93 clips).
