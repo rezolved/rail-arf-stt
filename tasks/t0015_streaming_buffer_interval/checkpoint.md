@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0015_streaming_buffer_interval"
-updated_at: "2026-06-30T12:00:00Z"
-completed_steps: 1
-next_step_number: 2
-next_step_id: "check-deps"
+updated_at: "2026-06-30T10:53:10Z"
+completed_steps: 2
+next_step_number: 3
+next_step_id: "init-folders"
 ---
 # Task Objective
 
@@ -16,6 +16,12 @@ domain keyword list. Dataset: gold-92.
 * * *
 
 ## Step History
+
+### Step 2 — check-deps
+
+Both dependencies verified as completed: t0014_granite_short_clip_robustness and
+t0012_whisper_parakeet_granite_streaming. Output: `logs/steps/002_check-deps/deps_report.json`. No
+errors or warnings.
 
 ### Step 1 — create-branch
 
@@ -39,8 +45,8 @@ research-internet, research-code, planning) pre-marked as skipped per user instr
 
 ## Next Step Notes
 
-Proceed to step 2 (check-deps): verify t0014_granite_short_clip_robustness and
-t0012_whisper_parakeet_granite_streaming are completed. Then step 3 (init-folders): create full task
-folder structure. Setup-machines (step 8) will need H100 GPU — same machine as t0014 (llm-t1-nc80,
-azure_ml). Implementation will write one inference script per model with configurable buffer
-interval parameter.
+Proceed to step 3 (init-folders): create the full task folder structure using init_task_folders.py,
+then populate the aggregator cache (task_types.json, costs.json, tasks.json, metrics.json,
+suggestions.json) in tasks/t0015_streaming_buffer_interval/ctx/. Step 8 (setup-machines) will
+provision an H100 NVL GPU machine for inference — same configuration as t0014. Implementation will
+run 4 models × 3 intervals = 12 combinations on gold-92.

@@ -1,0 +1,11 @@
+{
+  "task_id": "t0015_streaming_buffer_interval",
+  "checked_at": "2026-06-30T10:52:58Z",
+  "result": "passed",
+  "dependencies": [
+    {"task_id": "t0014_granite_short_clip_robustness", "status": "completed", "satisfied": true},
+    {"task_id": "t0012_whisper_parakeet_granite_streaming", "status": "completed", "satisfied": true}
+  ],
+  "errors": 0,
+  "warnings": 0
+}
