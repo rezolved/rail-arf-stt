@@ -1,0 +1,33 @@
+{
+  "spec_version": "2",
+  "predictions_id": "granite-speech-short-clips-biased",
+  "name": "Granite Speech 4.1 2B on Short Clips (Biased — Single-Block Attention for sub-4 s)",
+  "short_description": "Per-clip transcription predictions from Granite Speech 4.1 2B (HuggingFace Transformers, bfloat16) on 44 synthetic short clips (0.5-3 s). Labeled 'biased' because all clips are shorter than Granite's 4-second block-attention window, processed via the single-block path with fewer Q-Former acoustic embeddings than longer clips.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "Granite Speech 4.1 2B loaded from /home/azureuser/granite-model/granite-speech-4.1-2b (HuggingFace Transformers, torch_dtype=bfloat16, device_map=cuda). Keyword prompt injection: 'transcribe the speech to text. Keywords: Rezolve, brainpowa, ...' (31 domain terms). Same configuration as t0012 best variant.",
+  "dataset_ids": [],
+  "prediction_format": "jsonl",
+  "prediction_schema": "Each line is a JSON object with fields: clip_id (string), duration_s (float), transcript (string), is_empty (bool), is_hallucination (bool), latency_seconds (float), ttfd_seconds (float or null), num_chunks (int).",
+  "instance_count": 44,
+  "metrics_at_creation": {
+    "empty_rate": 0.0,
+    "hallucination_rate": 0.0,
+    "latency_p50_seconds": 0.125,
+    "sub_1s_empty_rate": 0.0,
+    "sub_2s_empty_rate": 0.0
+  },
+  "files": [
+    {
+      "path": "files/predictions-short-clips.jsonl",
+      "description": "Per-clip transcription output for 44 synthetic short clips (0.5-3 s) from gold-92 audio",
+      "format": "jsonl"
+    }
+  ],
+  "categories": [
+    "stt-evaluation",
+    "latency-profiling"
+  ],
+  "created_by_task": "t0014_granite_short_clip_robustness",
+  "date_created": "2026-06-30"
+}

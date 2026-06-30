@@ -1,0 +1,29 @@
+{
+  "spec_version": "2",
+  "answer_id": "granite-vs-parakeet-production-fit",
+  "question": "Should Granite Speech 4.1 2B replace Parakeet TDT 0.6b-v3 as the production STT model in brainpowa-realtime-api?",
+  "short_title": "Granite vs Parakeet production fit for brainpowa",
+  "short_answer_path": "short_answer.md",
+  "full_answer_path": "full_answer.md",
+  "categories": [
+    "stt-evaluation",
+    "entity-correction"
+  ],
+  "answer_methods": [
+    "code-experiment",
+    "papers",
+    "internet"
+  ],
+  "source_paper_ids": [],
+  "source_urls": [
+    "https://huggingface.co/ibm-granite/granite-speech-4.1-2b",
+    "https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3"
+  ],
+  "source_task_ids": [
+    "t0012_whisper_parakeet_granite_streaming",
+    "t0014_granite_short_clip_robustness"
+  ],
+  "confidence": "high",
+  "created_by_task": "t0014_granite_short_clip_robustness",
+  "date_created": "2026-06-30"
+}

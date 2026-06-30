@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0014_granite_short_clip_robustness",
+  "command": "uv run flowmark --inplace --nobackup tasks/t0014_granite_short_clip_robustness/results/results_summary.md tasks/t0014_granite_short_clip_robustness/results/results_detailed.md tasks/t0014_granite_short_clip_robustness/logs/steps/012_results/step_log.md tasks/t0014_granite_short_clip_robustness/checkpoint.md",
+  "exit_code": 0,
+  "duration_seconds": 0.106,
+  "started_at": "2026-06-30T07:45:39Z",
+  "completed_at": "2026-06-30T07:45:39Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0014_granite_short_clip_robustness",
+  "stdout_file": "018_20260630T074539Z_uv-run-flowmark.stdout.txt",
+  "stderr_file": "018_20260630T074539Z_uv-run-flowmark.stderr.txt",
+  "stdout_lines": 0,
+  "stderr_lines": 0,
+  "truncated": false
+}

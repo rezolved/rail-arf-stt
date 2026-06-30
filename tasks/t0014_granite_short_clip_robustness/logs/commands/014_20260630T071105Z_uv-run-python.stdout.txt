@@ -1,0 +1,9 @@
+Generating charts ...
+Saved → /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0014_granite_short_clip_robustness/tasks/t0014_granite_short_clip_robustness/results/images/short_clip_failure_rate.png
+Saved → /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0014_granite_short_clip_robustness/tasks/t0014_granite_short_clip_robustness/results/images/stratified_entity_accuracy.png
+Saved → /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0014_granite_short_clip_robustness/tasks/t0014_granite_short_clip_robustness/results/images/latency_by_stratum.png
+
+All 3 charts generated:
+  A: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0014_granite_short_clip_robustness/tasks/t0014_granite_short_clip_robustness/results/images/short_clip_failure_rate.png
+  B: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0014_granite_short_clip_robustness/tasks/t0014_granite_short_clip_robustness/results/images/stratified_entity_accuracy.png
+  C: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0014_granite_short_clip_robustness/tasks/t0014_granite_short_clip_robustness/results/images/latency_by_stratum.png

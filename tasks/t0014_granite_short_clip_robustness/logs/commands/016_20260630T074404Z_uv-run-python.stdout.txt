@@ -1,0 +1,7 @@
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0014_granite_short_clip_robustness/tasks/t0014_granite_short_clip_robustness/results
+
+[31m[1mERRORS:[0m
+[31m  TR-E020 error: ## Examples section contains no fenced code blocks — examples must show actual inputs and outputs in code blocks[0m
+
+[31m[1mFAILED[0m — 1 error(s), 0 warning(s)

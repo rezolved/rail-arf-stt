@@ -1,0 +1,52 @@
+{
+  "variants": [
+    {
+      "variant_id": "whisper_turbo",
+      "label": "Whisper turbo",
+      "dimensions": {
+        "model": "whisper_turbo"
+      },
+      "metrics": {
+        "entity_accuracy_gold92": 0.9234,
+        "entity_accuracy_domain_vocab": 0.8851,
+        "wer_gold92": 0.0767,
+        "action_critical_wer_gold92": 0.0767,
+        "intent_preservation_gold92": 0.9462,
+        "latency_p50_seconds": 0.3296,
+        "wrong_action_rate_gold92": 0.0538
+      }
+    },
+    {
+      "variant_id": "parakeet_tdt",
+      "label": "Parakeet TDT 0.6b",
+      "dimensions": {
+        "model": "parakeet_tdt"
+      },
+      "metrics": {
+        "entity_accuracy_gold92": 0.6499,
+        "entity_accuracy_domain_vocab": 0.3519,
+        "wer_gold92": 0.1625,
+        "action_critical_wer_gold92": 0.1625,
+        "intent_preservation_gold92": 0.6774,
+        "latency_p50_seconds": 0.0409,
+        "wrong_action_rate_gold92": 0.3011
+      }
+    },
+    {
+      "variant_id": "granite_speech",
+      "label": "Granite 4.1 2B",
+      "dimensions": {
+        "model": "granite_speech"
+      },
+      "metrics": {
+        "entity_accuracy_gold92": 0.9481,
+        "entity_accuracy_domain_vocab": 0.9666,
+        "wer_gold92": 0.0744,
+        "action_critical_wer_gold92": 0.0744,
+        "intent_preservation_gold92": 0.9892,
+        "latency_p50_seconds": 0.2514,
+        "wrong_action_rate_gold92": 0.0108
+      }
+    }
+  ]
+}

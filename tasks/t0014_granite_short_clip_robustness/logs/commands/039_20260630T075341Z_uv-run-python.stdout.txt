@@ -1,0 +1,11 @@
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0014_granite_short_clip_robustness/tasks/t0014_granite_short_clip_robustness/results/remote_machines_used.json
+
+[31m[1mERRORS:[0m
+[31m  RM-E001 error: Machine llm-t1-nc80 has no destroyed_at timestamp
+    Azure ML VM may still be running and incurring charges[0m
+[31m  RM-E004 error: Machine llm-t1-nc80 missing required field 'offer_id'[0m
+[31m  RM-E004 error: Machine llm-t1-nc80 missing required field 'search_criteria'[0m
+[31m  RM-E004 error: Machine llm-t1-nc80 missing required field 'image'[0m
+
+[31m[1mFAILED[0m — 4 error(s), 0 warning(s)

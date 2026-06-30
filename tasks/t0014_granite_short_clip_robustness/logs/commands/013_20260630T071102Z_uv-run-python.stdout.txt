@@ -1,0 +1,30 @@
+
+Whisper turbo:
+  entity_accuracy_gold92: 0.9234
+  entity_accuracy_domain_vocab: 0.8851
+  wer_gold92: 0.0767
+  action_critical_wer_gold92: 0.0767
+  intent_preservation_gold92: 0.9462
+  latency_p50_seconds: 0.3296
+  wrong_action_rate_gold92: 0.0538
+
+Parakeet TDT 0.6b:
+  entity_accuracy_gold92: 0.6499
+  entity_accuracy_domain_vocab: 0.3519
+  wer_gold92: 0.1625
+  action_critical_wer_gold92: 0.1625
+  intent_preservation_gold92: 0.6774
+  latency_p50_seconds: 0.0409
+  wrong_action_rate_gold92: 0.3011
+
+Granite 4.1 2B:
+  entity_accuracy_gold92: 0.9481
+  entity_accuracy_domain_vocab: 0.9666
+  wer_gold92: 0.0744
+  action_critical_wer_gold92: 0.0744
+  intent_preservation_gold92: 0.9892
+  latency_p50_seconds: 0.2514
+  wrong_action_rate_gold92: 0.0108
+
+Saved → /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0014_granite_short_clip_robustness/tasks/t0014_granite_short_clip_robustness/results/metrics.json
+Variants: ['whisper_turbo', 'parakeet_tdt', 'granite_speech']

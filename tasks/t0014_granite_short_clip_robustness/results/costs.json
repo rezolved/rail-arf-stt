@@ -1,0 +1,5 @@
+{
+  "total_cost_usd": 0,
+  "breakdown": {},
+  "note": "Reserved instance (Azure H100 NVL, llm-t1-nc80). No per-minute billing — fixed cost covered by team infrastructure budget, not charged to this task."
+}

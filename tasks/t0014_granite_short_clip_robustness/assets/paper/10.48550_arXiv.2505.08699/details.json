@@ -1,0 +1,178 @@
+{
+  "spec_version": "3",
+  "paper_id": "10.48550_arXiv.2505.08699",
+  "doi": "10.48550/arXiv.2505.08699",
+  "title": "Granite-speech: open-source speech-aware LLMs with strong English ASR capabilities",
+  "url": "https://arxiv.org/abs/2505.08699",
+  "pdf_url": "https://arxiv.org/pdf/2505.08699",
+  "date_published": "2025-05-14",
+  "year": 2025,
+  "authors": [
+    {
+      "name": "George Saon",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Avihu Dekel",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Alexander Brooks",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Tohru Nagano",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Abraham Daniels",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Aharon Satt",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Ashish Mittal",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Brian Kingsbury",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "David Haws",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Edmilson Morais",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Gakuto Kurata",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Hagai Aronowitz",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Ibrahim Ibrahim",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Jeff Kuo",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Kate Soule",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Luis Lastras",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Masayuki Suzuki",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Ron Hoory",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Samuel Thomas",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Sashi Novitasari",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Takashi Fukuda",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Vishal Sunder",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Xiaodong Cui",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    },
+    {
+      "name": "Zvi Kons",
+      "country": "US",
+      "institution": "IBM Research",
+      "orcid": null
+    }
+  ],
+  "institutions": [
+    {
+      "name": "IBM Research",
+      "country": "US"
+    }
+  ],
+  "journal": "arXiv preprint",
+  "venue_type": "preprint",
+  "categories": [
+    "stt-evaluation",
+    "latency-profiling"
+  ],
+  "abstract": "Granite-speech LLMs are compact and efficient speech language models specifically designed for English ASR and automatic speech translation (AST). The models were trained by modality aligning the 2B and 8B parameter variants of granite-3.3-instruct to speech on publicly available open-source corpora containing audio inputs and text targets consisting of either human transcripts for ASR or automatically generated translations for AST. Comprehensive benchmarking shows that on English ASR, which was our primary focus, they outperform several competitors' models that were trained on orders of magnitude more proprietary data, and they keep pace on English-to-X AST for major European languages, Japanese, and Chinese. The speech-specific components are: a conformer acoustic encoder using block attention and self-conditioning trained with connectionist temporal classification, a windowed query-transformer speech modality adapter used to do temporal downsampling of the acoustic embeddings and map them to the LLM text embedding space, and LoRA adapters to further finetune the text LLM. Granite-speech-3.3 operates in two modes: in speech mode, it performs ASR and AST by activating the encoder, projector, and LoRA adapters; in text mode, it calls the underlying granite-3.3-instruct model directly (without LoRA), essentially preserving all the text LLM capabilities and safety. Both models are freely available on HuggingFace (https://huggingface.co/ibm-granite/granite-speech-3.3-2b and https://huggingface.co/ibm-granite/granite-speech-3.3-8b) and can be used for both research and commercial purposes under a permissive Apache 2.0 license.",
+  "citation_key": "Saon2025",
+  "summary_path": "summary.md",
+  "files": [
+    "files/saon_2025_granite-speech-asr.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0014_granite_short_clip_robustness",
+  "date_added": "2026-06-29"
+}

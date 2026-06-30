@@ -1,0 +1,72 @@
+{
+  "spec_version": "3",
+  "paper_id": "10.48550_arXiv.2505.12969",
+  "doi": "10.48550/arXiv.2505.12969",
+  "title": "Calm-Whisper: Reduce Whisper Hallucination On Non-Speech By Calming Crazy Heads Down",
+  "url": "https://arxiv.org/abs/2505.12969",
+  "pdf_url": "https://arxiv.org/pdf/2505.12969",
+  "date_published": "2025-05-19",
+  "year": 2025,
+  "authors": [
+    {
+      "name": "Yingzhi Wang",
+      "country": "SA",
+      "institution": "Elm Company Research Center",
+      "orcid": null
+    },
+    {
+      "name": "Anas Alhmoud",
+      "country": "SA",
+      "institution": "Elm Company Research Center",
+      "orcid": null
+    },
+    {
+      "name": "Saad Alsahly",
+      "country": "SA",
+      "institution": "Elm Company Research Center",
+      "orcid": null
+    },
+    {
+      "name": "Muhammad Alqurishi",
+      "country": "SA",
+      "institution": "Elm Company Research Center",
+      "orcid": null
+    },
+    {
+      "name": "Mirco Ravanelli",
+      "country": "CA",
+      "institution": "Concordia University; Mila",
+      "orcid": null
+    }
+  ],
+  "institutions": [
+    {
+      "name": "Elm Company Research Center",
+      "country": "SA"
+    },
+    {
+      "name": "Concordia University",
+      "country": "CA"
+    },
+    {
+      "name": "Mila",
+      "country": "CA"
+    }
+  ],
+  "journal": "Interspeech 2025",
+  "venue_type": "conference",
+  "categories": [
+    "stt-evaluation",
+    "whisper-finetuning"
+  ],
+  "abstract": "OpenAI's Whisper has achieved significant success in Automatic Speech Recognition. However, it has consistently been found to exhibit hallucination issues, particularly in non-speech segments, which limits its broader application in complex industrial settings. In this paper, we introduce a novel method to reduce Whisper's hallucination on non-speech segments without using any pre- or post-possessing techniques. Specifically, we benchmark the contribution of each self-attentional head in the Whisper-large-v3 decoder to the hallucination problem by performing a head-wise mask. Our findings reveal that only 3 of the 20 heads account for over 75% of the hallucinations on the UrbanSound dataset. We then fine-tune these three crazy heads using a collection of non-speech data. The results show that our best fine-tuned model, namely Calm-Whisper, achieves over 80% reduction in non-speech hallucination with only less than 0.1% WER degradation on LibriSpeech test-clean and test-other.",
+  "citation_key": "Wang2025",
+  "summary_path": "summary.md",
+  "files": [
+    "files/wang_2025_calm-whisper-hallucination.pdf"
+  ],
+  "download_status": "success",
+  "download_failure_reason": null,
+  "added_by_task": "t0014_granite_short_clip_robustness",
+  "date_added": "2026-06-29"
+}

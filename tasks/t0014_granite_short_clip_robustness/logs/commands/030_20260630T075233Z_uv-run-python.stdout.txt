@@ -1,0 +1,15 @@
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0014_granite_short_clip_robustness/tasks/t0014_granite_short_clip_robustness/logs
+
+[31m[1mERRORS:[0m
+[31m  LG-E005 error: Step log step_log.md missing mandatory section: '## Actions Taken'[0m
+[31m  LG-E005 error: Step log step_log.md missing mandatory section: '## Outputs'[0m
+[31m  LG-E005 error: Step log step_log.md missing mandatory section: '## Issues'[0m
+
+[33m[1mWARNINGS:[0m
+[33m  LG-W004 warning: Command log 005_20260629T131643Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W004 warning: Command log 016_20260630T074404Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W007 warning: logs/sessions/ contains no captured session transcript JSONL files[0m
+[33m  LG-W008 warning: logs/sessions/capture_report.json does not exist[0m
+
+[31m[1mFAILED[0m — 3 error(s), 4 warning(s)

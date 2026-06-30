@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0014_granite_short_clip_robustness",
+  "command": "uv run python -m arf.scripts.verificators.verify_suggestions t0014_granite_short_clip_robustness",
+  "exit_code": 0,
+  "duration_seconds": 0.049,
+  "started_at": "2026-06-30T07:52:25Z",
+  "completed_at": "2026-06-30T07:52:25Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0014_granite_short_clip_robustness",
+  "stdout_file": "026_20260630T075225Z_uv-run-python.stdout.txt",
+  "stderr_file": "026_20260630T075225Z_uv-run-python.stderr.txt",
+  "stdout_lines": 5,
+  "stderr_lines": 0,
+  "truncated": false
+}

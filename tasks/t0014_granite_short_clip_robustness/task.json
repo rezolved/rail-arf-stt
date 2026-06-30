@@ -5,13 +5,13 @@
   "name": "Granite Short-Clip Robustness Validation + Production Fit Assessment",
   "short_description": "Validate Granite Speech 4.1 2B robustness on short clips vs Parakeet via production streaming simulation, and assess production fit as a Parakeet replacement in brainpowa.",
   "long_description_file": "task_description.md",
-  "status": "not_started",
+  "status": "completed",
   "dependencies": [
     "t0013_brainstorm_results_1",
     "t0012_whisper_parakeet_granite_streaming"
   ],
-  "start_time": null,
-  "end_time": null,
+  "start_time": "2026-06-29T12:13:17Z",
+  "end_time": "2026-06-30T07:53:00Z",
   "expected_assets": {
     "answer": 1,
     "predictions": 3

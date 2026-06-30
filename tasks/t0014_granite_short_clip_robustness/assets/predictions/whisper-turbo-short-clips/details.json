@@ -1,0 +1,32 @@
+{
+  "spec_version": "2",
+  "predictions_id": "whisper-turbo-short-clips",
+  "name": "Whisper turbo on Short Clips (0.5-3 s)",
+  "short_description": "Per-clip transcription predictions from Whisper large-v3-turbo (HuggingFace Transformers) on 44 synthetic short clips trimmed from gold-92 audio at 6 duration bins (0.5-3 s). Collected to assess short-clip robustness for production fit evaluation.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "Whisper large-v3-turbo (openai/whisper-large-v3-turbo) via HuggingFace Transformers, float16 on CUDA. Domain vocabulary prompt injection (31 Rezolve terms). Note: faster-whisper is NOT used here due to a multi-GPU bug on the test host (confirmed in t0012); results may differ slightly from production brainpowa-realtime-api which uses faster-whisper.",
+  "dataset_ids": [],
+  "prediction_format": "jsonl",
+  "prediction_schema": "Each line is a JSON object with fields: clip_id (string), duration_s (float), transcript (string), is_empty (bool), is_hallucination (bool), no_speech_probability (float — proxy: 0.0 for non-empty, 1.0 for empty since HuggingFace Whisper does not expose per-segment no_speech_prob), latency_seconds (float), ttfd_seconds (float or null), num_chunks (int).",
+  "instance_count": 44,
+  "metrics_at_creation": {
+    "empty_rate": 0.0,
+    "hallucination_rate": 0.0,
+    "latency_p50_seconds": 0.146,
+    "sub_2s_empty_rate": 0.0
+  },
+  "files": [
+    {
+      "path": "files/predictions-short-clips.jsonl",
+      "description": "Per-clip transcription output for 44 synthetic short clips (0.5-3 s) from gold-92 audio",
+      "format": "jsonl"
+    }
+  ],
+  "categories": [
+    "stt-evaluation",
+    "latency-profiling"
+  ],
+  "created_by_task": "t0014_granite_short_clip_robustness",
+  "date_created": "2026-06-30"
+}
