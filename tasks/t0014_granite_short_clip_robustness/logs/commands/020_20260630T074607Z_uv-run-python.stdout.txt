@@ -1,0 +1,6 @@
+[task/t0014_granite_short_clip_robustness c168e6c] t0014_granite_short_clip_robustness [results]: Mark step completed
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+POSTSTEP: Step verification passed
+POSTSTEP: Checkpoint verification passed
+POSTSTEP: Step 'results' is now completed (completed_at: 2026-06-30T07:46:07Z)
+POSTSTEP: Committed step_tracker.json update

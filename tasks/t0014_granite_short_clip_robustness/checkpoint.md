@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0014_granite_short_clip_robustness"
-updated_at: "2026-06-30T07:55:00Z"
-completed_steps: 13
-next_step_number: 14
-next_step_id: "suggestions"
+updated_at: "2026-06-30T07:50:15Z"
+completed_steps: 14
+next_step_number: 15
+next_step_id: "reporting"
 ---
 # Task Objective
 
@@ -47,6 +47,15 @@ Azure H100 NVL machine (`azureuser@llm-t1-nc80`) verified live: 2x H100 NVL GPUs
 `/home/azureuser/granite-model/granite-speech-4.1-2b`, Parakeet from HuggingFace cache, Whisper
 available. Step was recovered from a stuck `in_progress` state — machine was already provisioned
 when recovery ran. Key output: `logs/steps/008_setup-machines/machine_log.json`.
+
+### Step 14 — suggestions
+
+Generated 6 follow-up suggestions (`results/suggestions.json`) covering: Granite STTAdapter
+production deployment with 2.0 s clip gate (S-0014-01, high), Parakeet above-threshold empty output
+investigation (S-0014-02), dataset expansion to 200+ clips (S-0014-03), BoH hallucination detector
+refinement for sub-1 s clips (S-0014-04), Granite vs Deepgram/Azure commercial comparison
+(S-0014-05), and CPU/production hardware latency measurement (S-0014-06). Verificator passed with
+zero errors.
 
 ### Step 13 — compare-literature
 
@@ -117,11 +126,11 @@ task types). Step 1 is a mechanical setup step with no research output.
 
 ## Next Step Notes
 
-Step 14 is `suggestions`. Run `prestep t0014_granite_short_clip_robustness suggestions`, then invoke
-the `/generate-suggestions` skill to create `results/suggestions.json`. Key inputs for the
-suggestions agent: Granite 0% empty rate vs Parakeet 27.3%, CONDITIONAL YES production
-recommendation with 2.0 s minimum clip gate, 6× latency premium (251 ms vs 41 ms), RM-E001 noted.
-The suggestions agent should look at existing suggestions to avoid duplicates, and prioritize
-actionable follow-up tasks for the brainpowa integration (e.g., implementing `granite.py`
-STTAdapter, setting up minimum clip gate in production, measuring latency impact in end-to-end
-streaming tests).
+Step 15 is `reporting`. Run `prestep t0014_granite_short_clip_robustness reporting`, then execute
+all relevant verificators (`verify_task_file`, `verify_task_dependencies`, `verify_suggestions`,
+`verify_task_metrics`, `verify_task_results`, `verify_task_folder`, `verify_logs`,
+`verify_predictions_asset`, `verify_predictions_description`, `verify_predictions_details`,
+`verify_answer_asset`). Capture session transcripts via `capture_task_sessions`. Update `task.json`
+status to `completed` and set `end_time`. This is the final step — `next_step_id` should be set to
+`null` after completion. All 6 suggestions in `results/suggestions.json` have been verified
+(S-0014-01 through S-0014-06).
