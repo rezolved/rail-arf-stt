@@ -95,9 +95,9 @@
       "step": 11,
       "name": "results",
       "description": "Compute stratified metrics, generate comparison table and charts.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-07-01T07:52:40Z",
-      "completed_at": null,
+      "completed_at": "2026-07-01T08:47:09Z",
       "log_file": "logs/steps/011_results/"
     },
     {
