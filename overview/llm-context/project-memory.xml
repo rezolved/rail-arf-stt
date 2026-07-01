@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive preset_id="project-memory" generated_at_utc="2026-06-30T08:12:57Z">
+<llm_context_archive preset_id="project-memory" generated_at_utc="2026-07-01T09:07:53Z">
   <archive_summary>
     <title>Project Memory</title>
     <description>Mid-size preset intended as a reusable working memory for ongoing chats.</description>
     <use_case>Keeping a durable project memory in medium-size chat sessions.</use_case>
     <section_count>9</section_count>
-    <char_count>59145</char_count>
-    <byte_count>59320</byte_count>
-    <estimated_tokens>14786</estimated_tokens>
+    <char_count>60356</char_count>
+    <byte_count>60539</byte_count>
+    <estimated_tokens>15089</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -120,9 +120,10 @@ gold-92 (`t0002_baseline_evaluation`).
         <id>t0012_whisper_parakeet_granite_streaming</id>
         <id>t0013_brainstorm_results_1</id>
         <id>t0014_granite_short_clip_robustness</id>
+        <id>t0015_streaming_buffer_interval</id>
       </source_ids>
       <content>
-Completed tasks: 14
+Completed tasks: 15
 
 ## STT Benchmark — Gold-92 Dataset Ingestion
 ID: t0001_stt_benchmark
@@ -207,13 +208,29 @@ ID: t0014_granite_short_clip_robustness
 Completed: 2026-06-30
 Short description: Validate Granite Speech 4.1 2B robustness on short clips vs Parakeet via production streaming simulation, and assess production fit as a Parakeet replacement in brainpowa.
 Result summary: Results Summary: Granite Short-Clip Robustness Validation + Production Fit Assessment Summary Granite Speech 4.1 2B achieves **0% empty output rate** on all short clips (0.5–3 s) compared to Parakeet TDT 0.6b-v3&#x27;s **27.3% failure rate** on sub-2 s clips (55.6% on sub-1 s), confirming Granite avoids Parakeet&#x27;s key short-clip failure mode. On the gold-92 benchmark Granite leads with **entity accuracy 94.8%** vs Whisper 92.3% and Parakeet 65.0%, with a wrong-action rate of **1.1% vs Parakeet&#x27;s 30.1%**. The production recommendation is **CONDITIONAL YES**: replace Parakeet with Granite in brainpowa, gating production use on a minimum 2.0 s clip duration to avoid the degenerate single-chunk path...
+
+## Streaming Buffer Interval Experiment — Parakeet Variants + Granite
+ID: t0015_streaming_buffer_interval
+Completed: 2026-07-01
+Short description: Benchmark the effect of streaming buffer extraction interval (500ms, 750ms, 1000ms) on latency and transcription quality across four models: parakeet-unified-en-0.6b, parakeet-tdt-0.6b-v3, multitalker-parakeet-streaming-0.6b-v1, and Granite Speech 4.1 2B. All models biased with Rezolve domain keyword list. Dataset: gold-92.
+Result summary: Results Summary: Streaming Buffer Interval Experiment — Parakeet Variants + Granite Summary Benchmarked 12 model × buffer-interval combinations (4 models × 3 intervals: 500 ms, 750 ms, 1000 ms) on gold-92 (93 clips). Granite Speech 4.1 2B achieved the best transcription quality (**WER 8.83%**, **EA-DV 97.1%**), far ahead of all three Parakeet models (~22–33% EA-DV). Buffer interval has **no effect on transcript quality** (WER and EA-DV are identical across all three intervals for every model) but slightly reduces latency for larger intervals (up to 10% for Granite). All twelve variants beat the t0014 accumulate-then-transcribe Granite TTFD baseline (**77 ms p50**) on either latency or TTFD...
       </content>
     </section>
     <section id="planned-tasks" source_kind="aggregator">
       <title>Planned Tasks</title>
       <source_name>aggregate_tasks_full</source_name>
+      <source_ids>
+        <id>t0016_streaming_fuzzy_hotword_correction</id>
+      </source_ids>
       <content>
-Planned or active tasks: 0
+Planned or active tasks: 1
+
+## Streaming Fuzzy Hotword Post-Correction for Domain Entity Accuracy
+ID: t0016_streaming_fuzzy_hotword_correction
+Status: not_started
+Effective date: unknown
+Short description: Apply Levenshtein + phonetic fuzzy post-correction after streaming buffer flushes to fix domain entity near-misses on gold-92 across Parakeet-TDT-0.6b-v3, Parakeet-Unified, and Multitalker.
+Dependencies: t0015_streaming_buffer_interval
       </content>
     </section>
     <section id="questions-and-answers" source_kind="aggregator">
@@ -249,6 +266,8 @@ YES, with a minimum clip duration gate of 2.0 s recommended for the first deploy
         <id>S-0005-05</id>
         <id>S-0014-01</id>
         <id>S-0014-05</id>
+        <id>S-0015-01</id>
+        <id>S-0015-03</id>
         <id>S-0002-04</id>
         <id>S-0002-05</id>
         <id>S-0002-06</id>
@@ -256,8 +275,6 @@ YES, with a minimum clip duration gate of 2.0 s recommended for the first deploy
         <id>S-0003-04</id>
         <id>S-0003-05</id>
         <id>S-0003-06</id>
-        <id>S-0003-07</id>
-        <id>S-0005-06</id>
       </source_ids>
       <content>
 Open suggestions: 20
@@ -339,6 +356,20 @@ Kind: experiment
 Source task: t0014_granite_short_clip_robustness
 Granite now leads all tested open-source models (EA 94.8%), but no direct comparison with commercial APIs (Deepgram Nova-2, Azure Speech) has been run in production streaming mode with the full domain biasing setup. S-0005-07 covers this but predates the t0012/t0014 findings confirming Granite&#x27;s edge. Running Granite against commercial APIs would determine whether Granite already beats production Deepgram, answering the final commercial vs open-source question. Recommended task types: stt-benchmark-run, answer-question.
 
+## Optimize Granite Speech 4.1 2B latency to meet 800ms p50 target
+ID: S-0015-01
+Priority: high
+Kind: experiment
+Source task: t0015_streaming_buffer_interval
+Granite Speech 4.1 2B achieves the highest entity accuracy (96.25%) across all buffer intervals but its p50 latency (1.11s–1.23s) exceeds the 800ms production target. A dedicated task should explore batching, quantization (INT8/FP16), and smaller buffer sizes below 500ms to determine if the latency gap can be closed without sacrificing entity accuracy.
+
+## Deploy Granite Speech 4.1 2B with 1000ms buffer in production A/B test against Deepgram
+ID: S-0015-03
+Priority: high
+Kind: evaluation
+Source task: t0015_streaming_buffer_interval
+Granite Speech 4.1 2B at 1000ms buffer achieves 96.25% entity accuracy and 8.8% WER, far outperforming all Parakeet variants on entity accuracy and matching the best WER. At 1.11s p50 latency, it is above the 800ms target but within acceptable bounds for non-real-time query processing. An A/B test against the production Deepgram baseline on live Rezolve traffic would quantify the business-level impact of the accuracy gain.
+
 ## Domain fine-tuning of Whisper turbo on Rezolve investor-relations audio
 ID: S-0002-04
 Priority: medium
@@ -387,20 +418,6 @@ Priority: medium
 Kind: evaluation
 Source task: t0003_literature_review_entity_stt
 The survey found that latency estimates for both RECOVER (~+100-200ms) and Ron2026 (~550-650ms total) are extrapolations from known Whisper Turbo inference speed and GPT-4o API latency, not empirical measurements. Before confirming either method fits the 800ms p50 budget, measure actual pipeline latency on Rezolve&#x27;s production infrastructure at p50 and p95. This is a prerequisite for any production deployment decision. If GPT-4o API latency exceeds the budget, evaluate a local 7B model substitute for the LLM-Select step. Recommended task types: latency-profiling, experiment-run.
-
-## Stratify gold-92 evaluation by speaker accent to quantify accent-induced entity errors
-ID: S-0003-07
-Priority: medium
-Kind: evaluation
-Source task: t0003_literature_review_entity_stt
-WildASR (Tay2026) confirmed that model robustness does not transfer across accent conditions and that ASR systems hallucinate plausible but unspoken content under degraded inputs. Gold-92 contains six non-native English speaker clips, making accent-induced entity errors a direct project risk. Stratify all gold-92 evaluation results by speaker accent group and compare entity accuracy between native and non-native speakers. If accent is the primary driver of entity errors rather than lexical ambiguity, post-correction methods (RECOVER, Ron2026) will have limited effect and ASR-stage improvements should be prioritized instead. Recommended task types: data-analysis, stt-benchmark-run.
-
-## Test entity-biasing mechanisms at scale (1,000+ entity vocabulary)
-ID: S-0005-06
-Priority: medium
-Kind: evaluation
-Source task: t0005_stt_model_survey_brainpowa
-The survey reports contextual biasing results on 50–1,800 entity lists. Rezolve&#x27;s product catalog scales to 10,000+ SKUs. Test whether Granite 4.1 keyword biasing and Paraformer deep-biasing maintain performance (latency, entity accuracy) when biasing context grows from 1,800 to 10,000 entities. Measure latency scaling curve and F1 degradation if any. If latency exceeds budget at production scale, design a retrieval-based filtering pre-pass (e.g., retrieve top-100 entities relevant to the speaker/context before biasing) to cap the active biasing vocabulary. Recommended task types: experiment-run, data-analysis.
       </content>
     </section>
     <section id="paper-summaries" source_kind="aggregator">

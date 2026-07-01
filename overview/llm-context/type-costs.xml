@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive type_id="costs" generated_at_utc="2026-06-30T08:12:57Z">
+<llm_context_archive type_id="costs" generated_at_utc="2026-07-01T09:07:53Z">
   <archive_summary>
     <title>Project Costs</title>
     <description>Complete cost breakdown with budget, per-service, and per-task details.</description>
     <section_count>1</section_count>
-    <char_count>1381</char_count>
-    <byte_count>1381</byte_count>
-    <estimated_tokens>345</estimated_tokens>
+    <char_count>1474</char_count>
+    <byte_count>1474</byte_count>
+    <estimated_tokens>368</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -18,16 +18,18 @@
       <source_name>aggregate_costs_full</source_name>
       <content>
 Total budget: $2000.00
-Total spent: $2.50
-Budget remaining: $1997.50
-Spent: 0.1%
+Total spent: $290.08
+Budget remaining: $1709.92
+Spent: 14.5%
 
 ### Cost Breakdown by Category
 
+* azure-ml-2xh100: $287.58
 * claude-code-orchestration: $2.50
 
 ### Cost Breakdown by Service
 
+* azure_ml: $287.58
 * anthropic_api: $2.50
 
 ### Per-Task Costs
@@ -39,6 +41,7 @@ Spent: 0.1%
 * t0008_moonshine_v2_benchmark: $0.00
 * t0013_brainstorm_results_1: $0.00
 * t0014_granite_short_clip_robustness: $0.00
+* t0015_streaming_buffer_interval: $287.58
       </content>
     </section>
   </sections>

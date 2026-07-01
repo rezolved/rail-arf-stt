@@ -1,7 +1,7 @@
 # Suggestions: `commercial-apis`
 
-4 suggestion(s) in category [`commercial-apis`](../../../meta/categories/commercial-apis/) **4
-open** (2 high, 2 medium).
+5 suggestion(s) in category [`commercial-apis`](../../../meta/categories/commercial-apis/) **5
+open** (3 high, 2 medium).
 
 [Back to all suggestions](../README.md)
 
@@ -29,6 +29,27 @@ the full domain biasing setup. S-0005-07 covers this but predates the t0012/t001
 confirming Granite's edge. Running Granite against commercial APIs would determine whether
 Granite already beats production Deepgram, answering the final commercial vs open-source
 question. Recommended task types: stt-benchmark-run, answer-question.
+
+</details>
+
+<details>
+<summary>📊 <strong>Deploy Granite Speech 4.1 2B with 1000ms buffer in production
+A/B test against Deepgram</strong> (S-0015-03)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0015-03` |
+| **Kind** | evaluation |
+| **Date added** | 2026-07-01 |
+| **Source task** | [`t0015_streaming_buffer_interval`](../../../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`commercial-apis`](../../../meta/categories/commercial-apis/) |
+
+Granite Speech 4.1 2B at 1000ms buffer achieves 96.25% entity accuracy and 8.8% WER, far
+outperforming all Parakeet variants on entity accuracy and matching the best WER. At 1.11s p50
+latency, it is above the 800ms target but within acceptable bounds for non-real-time query
+processing. An A/B test against the production Deepgram baseline on live Rezolve traffic would
+quantify the business-level impact of the accuracy gain.
 
 </details>
 

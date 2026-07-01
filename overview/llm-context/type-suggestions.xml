@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive type_id="suggestions" generated_at_utc="2026-06-30T08:12:57Z">
+<llm_context_archive type_id="suggestions" generated_at_utc="2026-07-01T09:07:53Z">
   <archive_summary>
     <title>All Suggestions</title>
     <description>Complete suggestion list with full descriptions, priority, and status.</description>
     <section_count>1</section_count>
-    <char_count>31697</char_count>
-    <byte_count>31728</byte_count>
-    <estimated_tokens>7924</estimated_tokens>
+    <char_count>34612</char_count>
+    <byte_count>34649</byte_count>
+    <estimated_tokens>8653</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -51,9 +51,13 @@
         <id>S-0014-04</id>
         <id>S-0014-05</id>
         <id>S-0014-06</id>
+        <id>S-0015-01</id>
+        <id>S-0015-02</id>
+        <id>S-0015-03</id>
+        <id>S-0015-04</id>
       </source_ids>
       <content>
-Suggestions: 34
+Suggestions: 38
 
 ## Vocabulary-biased Whisper inference via STT_INITIAL_PROMPT on gold-92
 ID: S-0002-01
@@ -434,6 +438,50 @@ Categories: latency-profiling, stt-evaluation
 Date added: 2026-06-30
 
 All Granite latency measurements in t0012 and t0014 used Azure H100 NVL GPU (p50 249-251 ms). The brainpowa-realtime-api production deployment may use CPU inference or a smaller GPU. Measuring Granite&#x27;s CPU latency on the actual production server would determine whether the 800 ms p50 constraint holds outside the H100 environment and whether quantization (S-0005-10) is needed. Recommended task types: experiment-run, answer-question.
+
+## Optimize Granite Speech 4.1 2B latency to meet 800ms p50 target
+ID: S-0015-01
+Status: active
+Priority: high
+Kind: experiment
+Source task: t0015_streaming_buffer_interval
+Categories: latency-profiling, stt-evaluation
+Date added: 2026-07-01
+
+Granite Speech 4.1 2B achieves the highest entity accuracy (96.25%) across all buffer intervals but its p50 latency (1.11s–1.23s) exceeds the 800ms production target. A dedicated task should explore batching, quantization (INT8/FP16), and smaller buffer sizes below 500ms to determine if the latency gap can be closed without sacrificing entity accuracy.
+
+## Investigate why Parakeet models are unresponsive to buffer interval changes in WER and entity accuracy
+ID: S-0015-02
+Status: active
+Priority: medium
+Kind: experiment
+Source task: t0015_streaming_buffer_interval
+Categories: stt-evaluation, latency-profiling
+Date added: 2026-07-01
+
+All three Parakeet variants (parakeet-tdt-0.6b-v3, parakeet-unified-en-0.6b, multitalker-parakeet-streaming-0.6b-v1) show zero variance in WER and entity accuracy across the 500ms, 750ms, and 1000ms intervals, while latency varies slightly. This suggests the streaming buffer interval does not influence transcript quality for these models in the tested range. A targeted ablation at finer intervals (100ms, 250ms) and at the chunk-accumulation level would clarify whether interval effects are architecturally absent or simply outside the tested range.
+
+## Deploy Granite Speech 4.1 2B with 1000ms buffer in production A/B test against Deepgram
+ID: S-0015-03
+Status: active
+Priority: high
+Kind: evaluation
+Source task: t0015_streaming_buffer_interval
+Categories: stt-evaluation, commercial-apis
+Date added: 2026-07-01
+
+Granite Speech 4.1 2B at 1000ms buffer achieves 96.25% entity accuracy and 8.8% WER, far outperforming all Parakeet variants on entity accuracy and matching the best WER. At 1.11s p50 latency, it is above the 800ms target but within acceptable bounds for non-real-time query processing. An A/B test against the production Deepgram baseline on live Rezolve traffic would quantify the business-level impact of the accuracy gain.
+
+## Run buffer interval sweep on sub-200ms intervals for Parakeet-unified to characterize TTFD
+ID: S-0015-04
+Status: active
+Priority: medium
+Kind: experiment
+Source task: t0015_streaming_buffer_interval
+Categories: latency-profiling, stt-evaluation
+Date added: 2026-07-01
+
+Parakeet-unified-en-0.6b achieves the best latency among Parakeet models (0.34–0.38s p50) and competitive WER (9.5%). The current sweep covers only 500ms–1000ms. Extending the sweep to 50ms, 100ms, 200ms intervals would characterize the first-token latency floor and determine the minimum viable buffer size before transcription quality degrades, enabling tighter real-time streaming for voice commerce.
       </content>
     </section>
   </sections>

@@ -4,15 +4,15 @@
   <a href="papers/"><img src="https://img.shields.io/badge/Papers-22-4169E1" alt="Papers"></a>
   <a href="datasets/"><img src="https://img.shields.io/badge/Datasets-1-2E8B57" alt="Datasets"></a>
   <a href="models/"><img src="https://img.shields.io/badge/Models-0-FF8C00" alt="Models"></a>
-  <a href="predictions/"><img src="https://img.shields.io/badge/Predictions-20-9370DB" alt="Predictions"></a>
+  <a href="predictions/"><img src="https://img.shields.io/badge/Predictions-24-9370DB" alt="Predictions"></a>
   <a href="libraries/"><img src="https://img.shields.io/badge/Libraries-0-20B2AA" alt="Libraries"></a>
   <a href="answers/"><img src="https://img.shields.io/badge/Answers-1-CD853F" alt="Answers"></a>
 </p>
 
 <p align="center">
   <a href="news/"><img src="https://img.shields.io/badge/News-0-FF6347" alt="News"></a>
-  <a href="tasks/"><img src="https://img.shields.io/badge/Tasks-14-4682B4" alt="Tasks"></a>
-  <a href="suggestions/"><img src="https://img.shields.io/badge/Suggestions-34-DAA520" alt="Suggestions"></a>
+  <a href="tasks/"><img src="https://img.shields.io/badge/Tasks-16-4682B4" alt="Tasks"></a>
+  <a href="suggestions/"><img src="https://img.shields.io/badge/Suggestions-38-DAA520" alt="Suggestions"></a>
   <a href="llm-context/"><img src="https://img.shields.io/badge/LLM%20Contexts-8-8B4513" alt="LLM Contexts"></a>
   <a href="metrics/"><img src="https://img.shields.io/badge/Metrics-7-708090" alt="Metrics"></a>
   <a href="metrics-results/"><img src="https://img.shields.io/badge/Results-10-DC143C" alt="Results"></a>
@@ -27,17 +27,18 @@
 [stt-evaluation](by-category/stt-evaluation.md) |
 [whisper-finetuning](by-category/whisper-finetuning.md)
 
-**[LLM Contexts](llm-context/README.md)**: [overview](llm-context/project-overview.xml) (5K) |
-[full](llm-context/full.xml) (55K) | [roadmap](llm-context/roadmap.xml) (11K) |
-[results](llm-context/results-deep-dive.xml) (47K) |
+**[LLM Contexts](llm-context/README.md)**: [overview](llm-context/project-overview.xml) (6K) |
+[full](llm-context/full.xml) (62K) | [roadmap](llm-context/roadmap.xml) (14K) |
+[results](llm-context/results-deep-dive.xml) (52K) |
 [assets](llm-context/literature-and-assets.xml) (11K)
 
-*Last updated: 2026-06-30 08:12 UTC*
+*Last updated: 2026-07-01 09:07 UTC*
 
-* **Budget**: **$2** spent of $2000
-* **Remaining**: **$1998**
-* **Usage**: `░░░░░░░░░░░░░░░░░░░░` 0.1%
-* **GPU Machines**: **1** provisioned across 1 tasks · **$0** GPU spend ([details](machines/))
+* **Budget**: **$290** spent of $2000
+* **Remaining**: **$1710**
+* **Usage**: `███░░░░░░░░░░░░░░░░░` 14.5%
+* **GPU Machines**: **2** provisioned across 2 tasks · **$288** GPU spend
+  ([details](machines/))
 
 ---
 
@@ -53,9 +54,11 @@ No tasks in progress.
 
 ---
 
-## [Ready to Start (0)](tasks/by-status/not_started.md)
+## [Ready to Start (1)](tasks/by-status/not_started.md)
 
-No tasks ready to start.
+| # | Task | Description | Date Added |
+|---|------|-------------|------------|
+| 0016 | [Streaming Fuzzy Hotword Post-Correction for Domain Entity Accuracy](../overview/tasks/task_pages/t0016_streaming_fuzzy_hotword_correction.md) | [`description`](../tasks/t0016_streaming_fuzzy_hotword_correction/task_description.md) | — |
 
 ---
 
@@ -65,10 +68,11 @@ No blocked tasks.
 
 ---
 
-## [Recently Completed (14 total)](tasks/by-status/completed.md)
+## [Recently Completed (15 total)](tasks/by-status/completed.md)
 
 | # | Task | Results | Completed |
 |---|------|---------|-----------|
+| 0015 | [Streaming Buffer Interval Experiment — Parakeet Variants + Granite](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | [`results`](../tasks/t0015_streaming_buffer_interval/results/results_detailed.md) | 2026-07-01 09:10 |
 | 0014 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | [`results`](../tasks/t0014_granite_short_clip_robustness/results/results_detailed.md) | 2026-06-30 07:53 |
 | 0012 | [Production Streaming Benchmark — Whisper, Parakeet, Granite on Gold-92](../overview/tasks/task_pages/t0012_whisper_parakeet_granite_streaming.md) | [`results`](../tasks/t0012_whisper_parakeet_granite_streaming/results/results_detailed.md) | 2026-06-29 00:00 |
 | 0013 | [Brainstorm Results — Session 1](../overview/tasks/task_pages/t0013_brainstorm_results_1.md) | [`results`](../tasks/t0013_brainstorm_results_1/results/results_detailed.md) | 2026-06-29 00:00 |
@@ -78,9 +82,8 @@ No blocked tasks.
 | 0008 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) | [`results`](../tasks/t0008_moonshine_v2_benchmark/results/results_detailed.md) | 2026-06-25 09:55 |
 | 0007 | [Benchmark IBM Granite Speech 4.1 2B on Gold-92](../overview/tasks/task_pages/t0007_ibm_granite_4_1_benchmark.md) | [`results`](../tasks/t0007_ibm_granite_4_1_benchmark/results/results_detailed.md) | 2026-06-25 |
 | 0009 | [Parakeet TDT 0.6b-v3 Production Baseline on Gold-92](../overview/tasks/task_pages/t0009_parakeet_production_baseline.md) | [`results`](../tasks/t0009_parakeet_production_baseline/results/results_detailed.md) | 2026-06-25 06:00 |
-| 0005 | [STT Model Survey: Open-Source Candidates for the brainpowa Pipeline](../overview/tasks/task_pages/t0005_stt_model_survey_brainpowa.md) | [`results`](../tasks/t0005_stt_model_survey_brainpowa/results/results_detailed.md) | 2026-06-24 11:06 |
 
-*4 more completed tasks → [completed tasks](tasks/by-status/completed.md)*
+*5 more completed tasks → [completed tasks](tasks/by-status/completed.md)*
 
 ---
 
@@ -107,32 +110,35 @@ No blocked tasks.
 
 | # | Task | Variant | Value |
 |---|------|---------|-------|
-| 1 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Granite 4.1 2B | **0.9666** |
-| 2 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 + vocab bias | **0.945455** |
-| 3 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Whisper turbo | **0.8851** |
-| 4 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **0.872727** |
-| 5 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Parakeet TDT 0.6b | **0.3519** |
-| 6 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **0.181818** |
-| 7 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **0.181818** |
-| 8 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.109091** |
-| 9 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |  | **0.090909** |
+| 1 | [Streaming Buffer Interval Experiment — Parakeet Variants + Granite](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | granite-speech-4.1-2b | 500ms | **0.971014** |
+| 2 | [Streaming Buffer Interval Experiment — Parakeet Variants + Granite](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | granite-speech-4.1-2b | 750ms | **0.971014** |
+| 3 | [Streaming Buffer Interval Experiment — Parakeet Variants + Granite](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | granite-speech-4.1-2b | 1000ms | **0.971014** |
+| 4 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Granite 4.1 2B | **0.9666** |
+| 5 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 + vocab bias | **0.945455** |
+| 6 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Whisper turbo | **0.8851** |
+| 7 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **0.872727** |
+| 8 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Parakeet TDT 0.6b | **0.3519** |
+| 9 | [Streaming Buffer Interval Experiment — Parakeet Variants + Granite](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | parakeet-unified-en-0.6b | 500ms | **0.347826** |
+| 10 | [Streaming Buffer Interval Experiment — Parakeet Variants + Granite](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | parakeet-unified-en-0.6b | 750ms | **0.347826** |
+
+*11 more results → [all results](metrics-results/)*
 
 ### 🎯 Entity Accuracy (gold-92)
 
 | # | Task | Variant | Value |
 |---|------|---------|-------|
-| 1 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Granite 4.1 2B | **0.9481** |
-| 2 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Whisper turbo | **0.9234** |
-| 3 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Parakeet TDT 0.6b | **0.6499** |
-| 4 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 + vocab bias | **0.460145** |
-| 5 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **0.431159** |
-| 6 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper Large v3 | **0.251812** |
-| 7 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper turbo | **0.251812** |
-| 8 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **0.251812** |
-| 9 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **0.251812** |
-| 10 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.217029** |
+| 1 | [Streaming Buffer Interval Experiment — Parakeet Variants + Granite](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | granite-speech-4.1-2b | 500ms | **0.9625** |
+| 2 | [Streaming Buffer Interval Experiment — Parakeet Variants + Granite](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | granite-speech-4.1-2b | 750ms | **0.9625** |
+| 3 | [Streaming Buffer Interval Experiment — Parakeet Variants + Granite](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | granite-speech-4.1-2b | 1000ms | **0.9625** |
+| 4 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Granite 4.1 2B | **0.9481** |
+| 5 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Whisper turbo | **0.9234** |
+| 6 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Parakeet TDT 0.6b | **0.6499** |
+| 7 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 + vocab bias | **0.460145** |
+| 8 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **0.431159** |
+| 9 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper Large v3 | **0.251812** |
+| 10 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper turbo | **0.251812** |
 
-*1 more results → [all results](metrics-results/)*
+*13 more results → [all results](metrics-results/)*
 
 ### ✅ Intent Preservation (gold-92)
 
@@ -158,15 +164,15 @@ No blocked tasks.
 | 1 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Parakeet TDT 0.6b | **0.0409** |
 | 2 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Moonshine base (no biasing — model doesn't support initial_prompt) | **0.0697** |
 | 3 | [Benchmark Moonshine v2 on Gold-92](../overview/tasks/task_pages/t0008_moonshine_v2_benchmark.md) |  | **0.2321** |
-| 4 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Granite 4.1 2B | **0.2514** |
-| 5 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Whisper turbo | **0.3296** |
-| 6 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper turbo | **4.2501** |
-| 7 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo (baseline) | **4.2501** |
-| 8 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | Whisper Large v3 | **5.6598** |
-| 9 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper Large v3 (baseline) | **5.6598** |
-| 10 | [Vocabulary Biasing Experiment — initial_prompt Impact on Gold-92 Entity Accuracy](../overview/tasks/task_pages/t0004_vocabulary_biasing_experiment.md) | Whisper turbo + vocab bias | **5.8598** |
+| 4 | [Streaming Buffer Interval Experiment — Parakeet Variants + Granite](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | multitalker-parakeet-streaming-0.6b-v1 | 1000ms | **0.2419** |
+| 5 | [Streaming Buffer Interval Experiment — Parakeet Variants + Granite](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | parakeet-tdt-0.6b-v3 | 1000ms | **0.2498** |
+| 6 | [Streaming Buffer Interval Experiment — Parakeet Variants + Granite](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | multitalker-parakeet-streaming-0.6b-v1 | 750ms | **0.2512** |
+| 7 | [Granite Short-Clip Robustness Validation + Production Fit Assessment](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | Granite 4.1 2B | **0.2514** |
+| 8 | [Streaming Buffer Interval Experiment — Parakeet Variants + Granite](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | multitalker-parakeet-streaming-0.6b-v1 | 500ms | **0.2537** |
+| 9 | [Streaming Buffer Interval Experiment — Parakeet Variants + Granite](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | parakeet-tdt-0.6b-v3 | 750ms | **0.2541** |
+| 10 | [Streaming Buffer Interval Experiment — Parakeet Variants + Granite](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | parakeet-tdt-0.6b-v3 | 500ms | **0.2556** |
 
-*1 more results → [all results](metrics-results/)*
+*13 more results → [all results](metrics-results/)*
 
 ### 🚫 Wrong Action Rate (gold-92)
 
@@ -179,7 +185,68 @@ No blocked tasks.
 
 ---
 
-## [Recent Suggestions (29 open)](suggestions/)
+## [Recent Suggestions (33 open)](suggestions/)
+
+<details>
+<summary>🧪 <strong>Optimize Granite Speech 4.1 2B latency to meet 800ms p50
+target</strong> (S-0015-01)</summary>
+
+**Kind**: experiment | **Priority**: high | **Date**: 2026-07-01 | **Source**:
+[t0015_streaming_buffer_interval](../tasks/t0015_streaming_buffer_interval/)
+
+Granite Speech 4.1 2B achieves the highest entity accuracy (96.25%) across all buffer
+intervals but its p50 latency (1.11s–1.23s) exceeds the 800ms production target. A dedicated
+task should explore batching, quantization (INT8/FP16), and smaller buffer sizes below 500ms
+to determine if the latency gap can be closed without sacrificing entity accuracy.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Investigate why Parakeet models are unresponsive to buffer
+interval changes in WER and entity accuracy</strong> (S-0015-02)</summary>
+
+**Kind**: experiment | **Priority**: medium | **Date**: 2026-07-01 | **Source**:
+[t0015_streaming_buffer_interval](../tasks/t0015_streaming_buffer_interval/)
+
+All three Parakeet variants (parakeet-tdt-0.6b-v3, parakeet-unified-en-0.6b,
+multitalker-parakeet-streaming-0.6b-v1) show zero variance in WER and entity accuracy across
+the 500ms, 750ms, and 1000ms intervals, while latency varies slightly. This suggests the
+streaming buffer interval does not influence transcript quality for these models in the tested
+range. A targeted ablation at finer intervals (100ms, 250ms) and at the chunk-accumulation
+level would clarify whether interval effects are architecturally absent or simply outside the
+tested range.
+
+</details>
+
+<details>
+<summary>📊 <strong>Deploy Granite Speech 4.1 2B with 1000ms buffer in production
+A/B test against Deepgram</strong> (S-0015-03)</summary>
+
+**Kind**: evaluation | **Priority**: high | **Date**: 2026-07-01 | **Source**:
+[t0015_streaming_buffer_interval](../tasks/t0015_streaming_buffer_interval/)
+
+Granite Speech 4.1 2B at 1000ms buffer achieves 96.25% entity accuracy and 8.8% WER, far
+outperforming all Parakeet variants on entity accuracy and matching the best WER. At 1.11s p50
+latency, it is above the 800ms target but within acceptable bounds for non-real-time query
+processing. An A/B test against the production Deepgram baseline on live Rezolve traffic would
+quantify the business-level impact of the accuracy gain.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Run buffer interval sweep on sub-200ms intervals for
+Parakeet-unified to characterize TTFD</strong> (S-0015-04)</summary>
+
+**Kind**: experiment | **Priority**: medium | **Date**: 2026-07-01 | **Source**:
+[t0015_streaming_buffer_interval](../tasks/t0015_streaming_buffer_interval/)
+
+Parakeet-unified-en-0.6b achieves the best latency among Parakeet models (0.34–0.38s p50) and
+competitive WER (9.5%). The current sweep covers only 500ms–1000ms. Extending the sweep to
+50ms, 100ms, 200ms intervals would characterize the first-token latency floor and determine
+the minimum viable buffer size before transcription quality degrades, enabling tighter
+real-time streaming for voice commerce.
+
+</details>
 
 <details>
 <summary>🧪 <strong>Implement granite.py STTAdapter and deploy Granite as production
@@ -277,82 +344,40 @@ is needed. Recommended task types: experiment-run, answer-question.
 
 </details>
 
-<details>
-<summary>🧪 <strong>Benchmark Moonshine ONNX Medium on gold-92 when UsefulSensors
-ships the ONNX export</strong> (S-0008-01)</summary>
-
-**Kind**: experiment | **Priority**: medium | **Date**: 2026-06-25 | **Source**:
-[t0008_moonshine_v2_benchmark](../tasks/t0008_moonshine_v2_benchmark/)
-
-t0008 used the HuggingFace Transformers CPU backend because moonshine_onnx does not include a
-Medium variant. The ONNX export is expected to be ~30ms faster per clip, which would bring
-warmed p50 from 233ms to ~200ms and potentially meet the project latency target. Once
-UsefulSensors ships an ONNX Medium model, run it on all 93 gold-92 clips using the same
-inference harness as t0008 and compare latency p50/p95/p99 and entity accuracy. Recommended
-task types: stt-benchmark-run.
-
-</details>
-
-<details>
-<summary>🧪 <strong>Moonshine model-size ablation: benchmark tiny, base, and large
-variants on gold-92 entity accuracy</strong> (S-0008-02)</summary>
-
-**Kind**: experiment | **Priority**: medium | **Date**: 2026-06-25 | **Source**:
-[t0008_moonshine_v2_benchmark](../tasks/t0008_moonshine_v2_benchmark/)
-
-t0008 found that Moonshine v2 Medium (266M params) achieves exactly the same
-entity_accuracy_gold92 (21.7%) and entity_accuracy_domain_vocab (9.1%) as the base model (38M
-params) from t0004. This contradicts the assumption that a larger model would improve entity
-recall. A controlled ablation across all published Moonshine variants (tiny, base,
-streaming-medium, and any large variant) would confirm whether the entity accuracy plateau is
-a training-distribution gap or a tokenizer/decoder limit, and would determine the optimal
-model size for latency/accuracy trade-off before investing in S-0005-04 shallow fusion work.
-Recommended task types: stt-benchmark-run, comparative-analysis.
-
-</details>
-
-<details>
-<summary>📂 <strong>Preprocess Rezolve investor-relations transcript corpus for KenLM
-domain language model training</strong> (S-0008-03)</summary>
-
-**Kind**: dataset | **Priority**: medium | **Date**: 2026-06-25 | **Source**:
-[t0008_moonshine_v2_benchmark](../tasks/t0008_moonshine_v2_benchmark/)
-
-The t0008 shallow fusion feasibility assessment (Approach 1) identified that implementing
-log-linear N-best rescoring for Moonshine requires a domain LM trained on Rezolve
-investor-relations text. The corpus exists (annual reports, investor presentations, brainpowa
-session transcripts) but is noted as not yet preprocessed. Curate and clean this corpus into a
-plaintext format suitable for KenLM trigram training, covering at minimum the 31-term domain
-vocabulary and surrounding IR context. Estimated size: 50k–500k tokens. This unblocks both the
-Moonshine shallow fusion task (S-0005-04) and any future domain adaptation work. Recommended
-task types: audio-dataset-curation.
-
-</details>
-
-<details>
-<summary>🔧 <strong>Implement shallow-fusion contextual biasing adapter for Moonshine
-v2</strong> (S-0005-04)</summary>
-
-**Kind**: technique | **Priority**: medium | **Date**: 2026-06-24 | **Source**:
-[t0005_stt_model_survey_brainpowa](../tasks/t0005_stt_model_survey_brainpowa/)
-
-Moonshine v2 achieves 5.3% WER with 258ms latency and CPU-only requirements, enabling edge
-deployment. However, it lacks native contextual biasing. Implement a post-processing
-shallow-fusion adapter that rescores Moonshine's top-3 beam hypotheses against a domain
-vocabulary list (Rezolve, brainpowa, product names, SKUs) and selects the hypothesis with
-highest entity-overlap score. Estimate +2–5ms latency. Evaluate on gold-92: measure whether
-external biasing + Moonshine latency (263ms+) remains under 800ms total voice-to-action
-budget, and whether entity accuracy is competitive with Granite. If successful, Moonshine
-becomes a viable edge-deployment alternative. Recommended task types:
-post-correction-experiment, write-library.
-
-</details>
-
-*19 more open suggestions → [open suggestions](suggestions/)*
+*23 more open suggestions → [open suggestions](suggestions/)*
 
 ---
 
-## [High Priority Suggestions (7)](suggestions/)
+## [High Priority Suggestions (9)](suggestions/)
+
+<details>
+<summary>🧪 <strong>Optimize Granite Speech 4.1 2B latency to meet 800ms p50
+target</strong> (S-0015-01)</summary>
+
+**Kind**: experiment | **Priority**: high | **Date**: 2026-07-01 | **Source**:
+[t0015_streaming_buffer_interval](../tasks/t0015_streaming_buffer_interval/)
+
+Granite Speech 4.1 2B achieves the highest entity accuracy (96.25%) across all buffer
+intervals but its p50 latency (1.11s–1.23s) exceeds the 800ms production target. A dedicated
+task should explore batching, quantization (INT8/FP16), and smaller buffer sizes below 500ms
+to determine if the latency gap can be closed without sacrificing entity accuracy.
+
+</details>
+
+<details>
+<summary>📊 <strong>Deploy Granite Speech 4.1 2B with 1000ms buffer in production
+A/B test against Deepgram</strong> (S-0015-03)</summary>
+
+**Kind**: evaluation | **Priority**: high | **Date**: 2026-07-01 | **Source**:
+[t0015_streaming_buffer_interval](../tasks/t0015_streaming_buffer_interval/)
+
+Granite Speech 4.1 2B at 1000ms buffer achieves 96.25% entity accuracy and 8.8% WER, far
+outperforming all Parakeet variants on entity accuracy and matching the best WER. At 1.11s p50
+latency, it is above the 800ms target but within acceptable bounds for non-real-time query
+processing. An A/B test against the production Deepgram baseline on live Rezolve traffic would
+quantify the business-level impact of the accuracy gain.
+
+</details>
 
 <details>
 <summary>🧪 <strong>Implement granite.py STTAdapter and deploy Granite as production
@@ -989,22 +1014,22 @@ No models yet.
 
 ---
 
-## [Latest Predictions (20 total)](predictions/)
+## [Latest Predictions (24 total)](predictions/)
 
 | Name | Source | Created |
 |------|--------|---------|
+| [Parakeet Unified EN 0.6b Buffer Interval Sweep on gold-92](../tasks/t0015_streaming_buffer_interval/assets/predictions/parakeet-unified-buffer-sweep/description.md) | [15](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | 2026-07-01 |
+| [Parakeet TDT 0.6b-v3 Buffer Interval Sweep on gold-92](../tasks/t0015_streaming_buffer_interval/assets/predictions/parakeet-tdt-buffer-sweep/description.md) | [15](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | 2026-07-01 |
+| [Multitalker Parakeet Streaming 0.6b-v1 Buffer Interval Sweep on gold-92](../tasks/t0015_streaming_buffer_interval/assets/predictions/multitalker-parakeet-buffer-sweep/description.md) | [15](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | 2026-07-01 |
+| [Granite Speech 4.1 2B Buffer Interval Sweep on gold-92](../tasks/t0015_streaming_buffer_interval/assets/predictions/granite-buffer-sweep/description.md) | [15](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | 2026-07-01 |
 | [Whisper turbo on Short Clips (0.5-3 s)](../tasks/t0014_granite_short_clip_robustness/assets/predictions/whisper-turbo-short-clips/description.md) | [14](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | 2026-06-30 |
 | [Parakeet TDT 0.6b-v3 on Short Clips (Biased — Single-Chunk Degenerate for sub-2 s)](../tasks/t0014_granite_short_clip_robustness/assets/predictions/parakeet-tdt-short-clips-biased/description.md) | [14](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | 2026-06-30 |
 | [Granite Speech 4.1 2B on Short Clips (Biased — Single-Block Attention for sub-4 s)](../tasks/t0014_granite_short_clip_robustness/assets/predictions/granite-speech-short-clips-biased/description.md) | [14](../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md) | 2026-06-30 |
 | [Parakeet TDT 0.6b-v3 — Streaming Biased on Gold-92](../tasks/t0011_streaming_stt_benchmark/assets/predictions/parakeet-tdt-0.6b-v3-gold92-streaming-biased/description.md) | [11](../overview/tasks/task_pages/t0011_streaming_stt_benchmark.md) | 2026-06-26 |
 | [Granite Speech 4.1 2B — Streaming Keyword-Biased on Gold-92](../tasks/t0011_streaming_stt_benchmark/assets/predictions/granite-speech-4.1-2b-gold92-streaming-biased/description.md) | [11](../overview/tasks/task_pages/t0011_streaming_stt_benchmark.md) | 2026-06-26 |
 | [SeACo-Paraformer-en — Contextual Biased on Gold-92](../tasks/t0010_funasr_paraformer_benchmark/assets/predictions/seaco-paraformer-large-gold92-biased/description.md) | [10](../overview/tasks/task_pages/t0010_funasr_paraformer_benchmark.md) | 2026-06-25 |
-| [SeACo-Paraformer-en — Batch (no biasing) on Gold-92](../tasks/t0010_funasr_paraformer_benchmark/assets/predictions/seaco-paraformer-large-gold92-batch/description.md) | [10](../overview/tasks/task_pages/t0010_funasr_paraformer_benchmark.md) | 2026-06-25 |
-| [Parakeet TDT 0.6b-v3 — Unbiased on Gold-92](../tasks/t0009_parakeet_production_baseline/assets/predictions/parakeet-tdt-0.6b-v3-gold92-unbiased/description.md) | [9](../overview/tasks/task_pages/t0009_parakeet_production_baseline.md) | 2026-06-25 |
-| [Parakeet TDT 0.6b-v3 — Production Config (biased) on Gold-92](../tasks/t0009_parakeet_production_baseline/assets/predictions/parakeet-tdt-0.6b-v3-gold92-production/description.md) | [9](../overview/tasks/task_pages/t0009_parakeet_production_baseline.md) | 2026-06-25 |
-| [Nemotron 3.5 ASR — Streaming + Word Boosting on Gold-92](../tasks/t0006_nemotron_3_5_benchmark/assets/predictions/nemotron-3.5-asr-gold92-word-boosted/description.md) | [6](../overview/tasks/task_pages/t0006_nemotron_3_5_benchmark.md) | 2026-06-25 |
 
-*10 more predictions → [predictions](predictions/)*
+*14 more predictions → [predictions](predictions/)*
 
 ---
 
@@ -1014,8 +1039,9 @@ No libraries yet.
 
 ---
 
-## [Cost Leaders (1 tasks with spend)](costs/)
+## [Cost Leaders (2 tasks with spend)](costs/)
 
 | Task | Cost | Date |
 |------|------|------|
+| [Streaming Buffer Interval Experiment — Parakeet Variants + Granite](../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) | [`$287.58`](../tasks/t0015_streaming_buffer_interval/results/costs.json) | 2026-07-01 09:10 |
 | [Baseline Evaluation — Deepgram and Whisper Large v3 on Gold-92](../overview/tasks/task_pages/t0002_baseline_evaluation.md) | [`$2.50`](../tasks/t0002_baseline_evaluation/results/costs.json) | 2026-06-23 10:25 |

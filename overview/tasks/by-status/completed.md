@@ -1,12 +1,112 @@
 # ✅ Tasks: Completed
 
-14 tasks. ✅ **14 completed**.
+15 tasks. ✅ **15 completed**.
 
 [Back to all tasks](../README.md)
 
 ---
 
 ## ✅ Completed
+
+<details>
+<summary>✅ 0015 — <strong>Streaming Buffer Interval Experiment — Parakeet Variants
++ Granite</strong></summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `t0015_streaming_buffer_interval` |
+| **Status** | completed |
+| **Effective date** | 2026-07-01 |
+| **Dependencies** | [`t0014_granite_short_clip_robustness`](../../../overview/tasks/task_pages/t0014_granite_short_clip_robustness.md), [`t0012_whisper_parakeet_granite_streaming`](../../../overview/tasks/task_pages/t0012_whisper_parakeet_granite_streaming.md) |
+| **Expected assets** | 4 predictions |
+| **Source suggestion** | — |
+| **Task types** | [`stt-benchmark-run`](../../../meta/task_types/stt-benchmark-run/), [`experiment-run`](../../../meta/task_types/experiment-run/) |
+| **Start time** | 2026-06-30T00:00:00Z |
+| **End time** | 2026-07-01T09:10:00Z |
+| **Step progress** | 8/14 |
+| **Key metrics** | 📖 Entity Accuracy — Domain Vocabulary: **0.971014**, 🎯 Entity Accuracy (gold-92): **0.9625**, ⚡ Latency p50 (seconds): **0.2419** |
+| **Task page** | [Streaming Buffer Interval Experiment — Parakeet Variants + Granite](../../../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) |
+| **Task folder** | [`t0015_streaming_buffer_interval/`](../../../tasks/t0015_streaming_buffer_interval/) |
+| **Detailed report** | [results_detailed.md](../../../tasks/t0015_streaming_buffer_interval/results/results_detailed.md) |
+
+# Task t0015 — Streaming Buffer Interval Experiment
+
+## Objective
+
+Measure how the streaming buffer extraction interval (how often accumulated audio is sent to
+STT) affects TTFD, latency p50/p95, WER, and entity accuracy across four models.
+
+## Models
+
+| Model | Biasing mechanism |
+|-------|------------------|
+| parakeet-unified-en-0.6b | NeMo GPU-PB TurboBias |
+| parakeet-tdt-0.6b-v3 | NeMo GPU-PB TurboBias |
+| multitalker-parakeet-streaming-0.6b-v1 | NeMo GPU-PB TurboBias (if supported); internal VAD |
+| Granite Speech 4.1 2B | Keyword prompt injection |
+
+## Buffer Intervals
+
+- 500ms
+- 750ms
+- 1000ms
+
+## Design
+
+For each model × interval combination (12 total, plus multitalker which has internal VAD
+logic):
+
+1. Simulate streaming: chunk audio into 32kB PCM-16 blocks, re-transcribe every N ms worth of
+   accumulated audio.
+2. Record: TTFD (first non-empty transcript), latency to final stable transcript, WER, EA
+   domain-vocab.
+3. For multitalker: test all three intervals but note that the model has internal segment
+   boundaries — interval controls how often the buffer is flushed to the model, not when it
+   decides to output.
+
+## Dataset
+
+gold-92: 93 WAV clips, ≥3.07s, 16kHz mono PCM.
+
+## Success Criteria
+
+- At least one model × interval combination beats Granite accumulate-then-transcribe (WER
+  8.8%, EA-DV 97.1%, TTFD 77ms p50) on either latency or quality.
+- Full results table: 12+ rows, each with TTFD p50, lat p50, WER, EA, EA-DV.
+
+**Results summary:**
+
+> **Results Summary: Streaming Buffer Interval Experiment — Parakeet Variants + Granite**
+>
+> **Summary**
+>
+> Benchmarked 12 model × buffer-interval combinations (4 models × 3 intervals: 500 ms, 750 ms,
+> 1000
+> ms) on gold-92 (93 clips). Granite Speech 4.1 2B achieved the best transcription quality
+> (**WER
+> 8.83%**, **EA-DV 97.1%**), far ahead of all three Parakeet models (~22–33% EA-DV). Buffer
+> interval
+> has **no effect on transcript quality** (WER and EA-DV are identical across all three
+> intervals for
+> every model) but slightly reduces latency for larger intervals (up to 10% for Granite). All
+> twelve
+> variants beat the t0014 accumulate-then-transcribe Granite TTFD baseline (**77 ms p50**) on
+> either
+> latency or TTFD.
+>
+> **Metrics**
+>
+> * **Best WER**: Granite Speech 4.1 2B — **8.83%** (all three intervals, vs 8.8% t0014
+>   baseline —
+> effectively tied)
+> * **Best EA-DV**: Granite Speech 4.1 2B — **97.1%** (vs 97.1% t0014 baseline — identical)
+> * **Fastest TTFD p50**: Parakeet-TDT — **32 ms** (vs 77 ms Granite t0014; 2.4× faster
+>   first-decode)
+> * **Lowest latency p50**: Parakeet-TDT — **250 ms** at 1000 ms interval (vs 1.23 s for
+>   Granite 500
+> ms — 4.9× faster)
+
+</details>
 
 <details>
 <summary>✅ 0014 — <strong>Granite Short-Clip Robustness Validation + Production

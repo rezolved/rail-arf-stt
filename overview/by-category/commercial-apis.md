@@ -5,7 +5,7 @@ production baseline.
 
 [Back to Dashboard](../README.md)
 
-**Detail pages**: [Suggestions (4)](../suggestions/by-category/commercial-apis.md)
+**Detail pages**: [Suggestions (5)](../suggestions/by-category/commercial-apis.md)
 
 ---
 
@@ -21,7 +21,22 @@ No tasks related to this category.
 
 No answers in this category.
 
-## Suggestions (4 open, 0 closed)
+## Suggestions (5 open, 0 closed)
+
+<details>
+<summary>📊 <strong>Deploy Granite Speech 4.1 2B with 1000ms buffer in production
+A/B test against Deepgram</strong> (S-0015-03)</summary>
+
+**Kind**: evaluation | **Priority**: high | **Date**: 2026-07-01 | **Source**:
+[t0015_streaming_buffer_interval](../../tasks/t0015_streaming_buffer_interval/)
+
+Granite Speech 4.1 2B at 1000ms buffer achieves 96.25% entity accuracy and 8.8% WER, far
+outperforming all Parakeet variants on entity accuracy and matching the best WER. At 1.11s p50
+latency, it is above the 800ms target but within acceptable bounds for non-real-time query
+processing. An A/B test against the production Deepgram baseline on live Rezolve traffic would
+quantify the business-level impact of the accuracy gain.
+
+</details>
 
 <details>
 <summary>🧪 <strong>Benchmark Granite Speech 4.1 2B vs Deepgram Nova-2 and Azure

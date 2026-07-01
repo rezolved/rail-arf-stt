@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive preset_id="research-history" generated_at_utc="2026-06-30T08:12:57Z">
+<llm_context_archive preset_id="research-history" generated_at_utc="2026-07-01T09:07:53Z">
   <archive_summary>
     <title>Research History</title>
     <description>Research-stage documents across completed tasks, plus core project context.</description>
     <use_case>Literature review continuity, methodology discussion, and prior-investigation lookup.</use_case>
     <section_count>20</section_count>
-    <char_count>274555</char_count>
-    <byte_count>275508</byte_count>
-    <estimated_tokens>68638</estimated_tokens>
+    <char_count>276308</char_count>
+    <byte_count>277269</byte_count>
+    <estimated_tokens>69077</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -116,9 +116,10 @@ gold-92 (`t0002_baseline_evaluation`).
         <id>t0012_whisper_parakeet_granite_streaming</id>
         <id>t0013_brainstorm_results_1</id>
         <id>t0014_granite_short_clip_robustness</id>
+        <id>t0015_streaming_buffer_interval</id>
       </source_ids>
       <content>
-Completed tasks: 14
+Completed tasks: 15
 
 ## STT Benchmark — Gold-92 Dataset Ingestion
 ID: t0001_stt_benchmark
@@ -203,13 +204,29 @@ ID: t0014_granite_short_clip_robustness
 Completed: 2026-06-30
 Short description: Validate Granite Speech 4.1 2B robustness on short clips vs Parakeet via production streaming simulation, and assess production fit as a Parakeet replacement in brainpowa.
 Result summary: Results Summary: Granite Short-Clip Robustness Validation + Production Fit Assessment Summary Granite Speech 4.1 2B achieves **0% empty output rate** on all short clips (0.5–3 s) compared to Parakeet TDT 0.6b-v3&#x27;s **27.3% failure rate** on sub-2 s clips (55.6% on sub-1 s), confirming Granite avoids Parakeet&#x27;s key short-clip failure mode. On the gold-92 benchmark Granite leads with **entity accuracy 94.8%** vs Whisper 92.3% and Parakeet 65.0%, with a wrong-action rate of **1.1% vs Parakeet&#x27;s 30.1%**. The production recommendation is **CONDITIONAL YES**: replace Parakeet with Granite in brainpowa, gating production use on a minimum 2.0 s clip duration to avoid the degenerate single-chunk path...
+
+## Streaming Buffer Interval Experiment — Parakeet Variants + Granite
+ID: t0015_streaming_buffer_interval
+Completed: 2026-07-01
+Short description: Benchmark the effect of streaming buffer extraction interval (500ms, 750ms, 1000ms) on latency and transcription quality across four models: parakeet-unified-en-0.6b, parakeet-tdt-0.6b-v3, multitalker-parakeet-streaming-0.6b-v1, and Granite Speech 4.1 2B. All models biased with Rezolve domain keyword list. Dataset: gold-92.
+Result summary: Results Summary: Streaming Buffer Interval Experiment — Parakeet Variants + Granite Summary Benchmarked 12 model × buffer-interval combinations (4 models × 3 intervals: 500 ms, 750 ms, 1000 ms) on gold-92 (93 clips). Granite Speech 4.1 2B achieved the best transcription quality (**WER 8.83%**, **EA-DV 97.1%**), far ahead of all three Parakeet models (~22–33% EA-DV). Buffer interval has **no effect on transcript quality** (WER and EA-DV are identical across all three intervals for every model) but slightly reduces latency for larger intervals (up to 10% for Granite). All twelve variants beat the t0014 accumulate-then-transcribe Granite TTFD baseline (**77 ms p50**) on either latency or TTFD...
       </content>
     </section>
     <section id="planned-tasks" source_kind="aggregator">
       <title>Planned Tasks</title>
       <source_name>aggregate_tasks_full</source_name>
+      <source_ids>
+        <id>t0016_streaming_fuzzy_hotword_correction</id>
+      </source_ids>
       <content>
-Planned or active tasks: 0
+Planned or active tasks: 1
+
+## Streaming Fuzzy Hotword Post-Correction for Domain Entity Accuracy
+ID: t0016_streaming_fuzzy_hotword_correction
+Status: not_started
+Effective date: unknown
+Short description: Apply Levenshtein + phonetic fuzzy post-correction after streaming buffer flushes to fix domain entity near-misses on gold-92 across Parakeet-TDT-0.6b-v3, Parakeet-Unified, and Multitalker.
+Dependencies: t0015_streaming_buffer_interval
       </content>
     </section>
     <section id="questions-and-answers" source_kind="aggregator">

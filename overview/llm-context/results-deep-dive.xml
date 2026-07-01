@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context_archive preset_id="results-deep-dive" generated_at_utc="2026-06-30T08:12:57Z">
+<llm_context_archive preset_id="results-deep-dive" generated_at_utc="2026-07-01T09:07:53Z">
   <archive_summary>
     <title>Results Deep Dive</title>
     <description>Completed-task result summaries plus all detailed results reports.</description>
     <use_case>Performance analysis, experiment comparison, and result interpretation.</use_case>
-    <section_count>18</section_count>
-    <char_count>186177</char_count>
-    <byte_count>187484</byte_count>
-    <estimated_tokens>46544</estimated_tokens>
+    <section_count>19</section_count>
+    <char_count>208205</char_count>
+    <byte_count>209677</byte_count>
+    <estimated_tokens>52051</estimated_tokens>
     <compatibility>131k-class, 200k-class, 1M-class</compatibility>
   </archive_summary>
   <included_content>
@@ -116,9 +116,10 @@ gold-92 (`t0002_baseline_evaluation`).
         <id>t0012_whisper_parakeet_granite_streaming</id>
         <id>t0013_brainstorm_results_1</id>
         <id>t0014_granite_short_clip_robustness</id>
+        <id>t0015_streaming_buffer_interval</id>
       </source_ids>
       <content>
-Completed tasks: 14
+Completed tasks: 15
 
 ## STT Benchmark — Gold-92 Dataset Ingestion
 ID: t0001_stt_benchmark
@@ -203,13 +204,29 @@ ID: t0014_granite_short_clip_robustness
 Completed: 2026-06-30
 Short description: Validate Granite Speech 4.1 2B robustness on short clips vs Parakeet via production streaming simulation, and assess production fit as a Parakeet replacement in brainpowa.
 Result summary: Results Summary: Granite Short-Clip Robustness Validation + Production Fit Assessment Summary Granite Speech 4.1 2B achieves **0% empty output rate** on all short clips (0.5–3 s) compared to Parakeet TDT 0.6b-v3&#x27;s **27.3% failure rate** on sub-2 s clips (55.6% on sub-1 s), confirming Granite avoids Parakeet&#x27;s key short-clip failure mode. On the gold-92 benchmark Granite leads with **entity accuracy 94.8%** vs Whisper 92.3% and Parakeet 65.0%, with a wrong-action rate of **1.1% vs Parakeet&#x27;s 30.1%**. The production recommendation is **CONDITIONAL YES**: replace Parakeet with Granite in brainpowa, gating production use on a minimum 2.0 s clip duration to avoid the degenerate single-chunk path...
+
+## Streaming Buffer Interval Experiment — Parakeet Variants + Granite
+ID: t0015_streaming_buffer_interval
+Completed: 2026-07-01
+Short description: Benchmark the effect of streaming buffer extraction interval (500ms, 750ms, 1000ms) on latency and transcription quality across four models: parakeet-unified-en-0.6b, parakeet-tdt-0.6b-v3, multitalker-parakeet-streaming-0.6b-v1, and Granite Speech 4.1 2B. All models biased with Rezolve domain keyword list. Dataset: gold-92.
+Result summary: Results Summary: Streaming Buffer Interval Experiment — Parakeet Variants + Granite Summary Benchmarked 12 model × buffer-interval combinations (4 models × 3 intervals: 500 ms, 750 ms, 1000 ms) on gold-92 (93 clips). Granite Speech 4.1 2B achieved the best transcription quality (**WER 8.83%**, **EA-DV 97.1%**), far ahead of all three Parakeet models (~22–33% EA-DV). Buffer interval has **no effect on transcript quality** (WER and EA-DV are identical across all three intervals for every model) but slightly reduces latency for larger intervals (up to 10% for Granite). All twelve variants beat the t0014 accumulate-then-transcribe Granite TTFD baseline (**77 ms p50**) on either latency or TTFD...
       </content>
     </section>
     <section id="planned-tasks" source_kind="aggregator">
       <title>Planned Tasks</title>
       <source_name>aggregate_tasks_full</source_name>
+      <source_ids>
+        <id>t0016_streaming_fuzzy_hotword_correction</id>
+      </source_ids>
       <content>
-Planned or active tasks: 0
+Planned or active tasks: 1
+
+## Streaming Fuzzy Hotword Post-Correction for Domain Entity Accuracy
+ID: t0016_streaming_fuzzy_hotword_correction
+Status: not_started
+Effective date: unknown
+Short description: Apply Levenshtein + phonetic fuzzy post-correction after streaming buffer flushes to fix domain entity near-misses on gold-92 across Parakeet-TDT-0.6b-v3, Parakeet-Unified, and Multitalker.
+Dependencies: t0015_streaming_buffer_interval
       </content>
     </section>
     <section id="questions-and-answers" source_kind="aggregator">
@@ -3362,6 +3379,373 @@ investigation.
 | REQ-11 | Whisper hallucination rate for sub-3 s clips; `no_speech_probability` analysis confirming VAD misfiring | Done | Hallucination rate = 0.0% for Whisper on sub-3 s clips; `no_speech_probability` recorded per clip; all values 0.0 (VAD threshold not triggered); &quot;Thank you.&quot; outputs are BoH-adjacent but not flagged due to reference-word check | `assets/predictions/whisper-turbo-short-clips/`, `results/stratified_analysis.json` |
 | REQ-12 | Integration effort estimate for `granite.py` STTAdapter from reading `base.py` and `parakeet.py` | Done | Estimate: ~50–100 lines; only `transcribe()` abstract method required; base class provides `transcribe_stream()` default; documented in `assets/answer/granite-vs-parakeet-production-fit/full_answer.md` | `assets/answer/granite-vs-parakeet-production-fit/full_answer.md` |
 | REQ-13 | BCa bootstrap with speaker-level blocks (B=1,000) for gold-92 strata; minimum detectable WER difference stated | Done | 95% CIs computed for 3–5 s and 5–10 s strata; gt\_10s excluded (n=4); MDD = ±5–8 WER points stated in `results/stratified_analysis.json` `ci_note` | `results/stratified_analysis.json` (CI fields per stratum) |
+      </content>
+    </section>
+    <section id="t0015_streaming_buffer_interval-results-detailed" source_kind="file">
+      <title>t0015_streaming_buffer_interval — Streaming Buffer Interval Experiment — Parakeet Variants + Granite — results_detailed.md</title>
+      <source_name>results_detailed.md</source_name>
+      <source_ids>
+        <id>t0015_streaming_buffer_interval</id>
+      </source_ids>
+      <repo_paths>
+        <path>tasks/t0015_streaming_buffer_interval/results/results_detailed.md</path>
+      </repo_paths>
+      <content>
+---
+spec_version: &quot;2&quot;
+task_id: &quot;t0015_streaming_buffer_interval&quot;
+---
+### Results Detailed: Streaming Buffer Interval Experiment — Parakeet Variants + Granite
+
+#### Summary
+
+Benchmarked the effect of streaming buffer extraction interval (500 ms, 750 ms, 1000 ms) on latency,
+TTFD, WER, and domain-vocab entity accuracy across four models: Parakeet-TDT-0.6b-v3,
+Parakeet-Unified-0.6b, Multitalker-Parakeet-Streaming-0.6b-v1, and Granite Speech 4.1 2B. All models
+were domain-biased with the Rezolve keyword list (NeMo GPU-PB TurboBias for Parakeet variants,
+keyword prompt injection for Granite). The dataset was gold-92 (93 clips, 16 kHz mono PCM). Key
+findings: buffer interval has **no effect on transcript quality** (WER and EA-DV are identical
+across all three intervals per model), but larger intervals reduce end-to-end latency by up to 10%.
+Granite dominates quality; Parakeet-TDT dominates speed.
+
+#### Methodology
+
+**Machine**: Azure ML reserved instance `llm-t1-nc80`, 2× H100 NVL GPUs, 880 GB RAM.
+
+**Runtime**: Approximately 20.6 hours total (machine reserved 2026-06-30T11:02Z to
+2026-07-01T07:37Z). Implementation step ran 2026-07-01T00:00Z to 2026-07-01T01:00Z.
+
+**Dataset**: gold-92, 93 WAV clips, ≥3.07 s each, 16 kHz mono PCM.
+
+**Streaming simulation**: Audio chunked into 32 kB PCM-16 blocks; buffer flushed and re-transcribed
+every N ms worth of accumulated audio (N ∈ {500, 750, 1000}). Metrics recorded per clip: TTFD (time
+to first non-empty transcript), total latency to final stable transcript, WER vs gold reference,
+entity accuracy (heuristic + domain-vocab).
+
+**Biasing**: Parakeet models — NeMo GPU-PB TurboBias with Rezolve domain keyword list. Granite —
+keyword prompt injection at inference time.
+
+**Metrics**: WER computed against ground-truth transcripts in `gold-92` dataset. EA-DV
+(entity\_accuracy\_domain\_vocab) uses domain vocab overlap scoring. Latency and TTFD measured
+wall-clock per clip with GPU warm. All metrics aggregated as p50/p95 over 93 clips.
+
+#### Metrics Tables
+
+##### Quality Metrics (all intervals identical — shown once per model)
+
+| Model | WER (%) | EA Gold92 (%) | EA-DV (%) |
+| --- | --- | --- | --- |
+| Granite Speech 4.1 2B | **8.83** | **96.25** | **97.10** |
+| Parakeet-Unified-0.6b | 9.53 | 23.44 | 34.78 |
+| Multitalker-Parakeet-0.6b | 13.34 | 22.19 | 31.88 |
+| Parakeet-TDT-0.6b-v3 | 15.25 | 22.81 | 33.33 |
+
+##### Latency p50 (ms) by Model × Interval
+
+| Model | 500 ms | 750 ms | 1000 ms | Δ (500→1000) |
+| --- | --- | --- | --- | --- |
+| Parakeet-TDT-0.6b-v3 | 255.6 | 254.1 | **249.8** | −2.3% |
+| Parakeet-Unified-0.6b | 377.5 | 358.4 | **349.6** | −7.4% |
+| Multitalker-Parakeet-0.6b | 253.7 | 251.2 | **241.9** | −4.7% |
+| Granite Speech 4.1 2B | 1231.7 | 1211.6 | **1113.3** | −9.6% |
+
+##### Latency p95 (ms) by Model × Interval
+
+| Model | 500 ms | 750 ms | 1000 ms |
+| --- | --- | --- | --- |
+| Parakeet-TDT-0.6b-v3 | 415.5 | 396.5 | 386.5 |
+| Parakeet-Unified-0.6b | 665.3 | 630.3 | 619.1 |
+| Multitalker-Parakeet-0.6b | 410.2 | 393.6 | 387.9 |
+| Granite Speech 4.1 2B | 2879.0 | 2656.7 | 2649.2 |
+
+##### TTFD p50 (ms) by Model × Interval
+
+| Model | 500 ms | 750 ms | 1000 ms |
+| --- | --- | --- | --- |
+| Parakeet-TDT-0.6b-v3 | **32.4** | **32.1** | **32.2** |
+| Parakeet-Unified-0.6b | 36.6 | 36.7 | 36.7 |
+| Multitalker-Parakeet-0.6b | 63.8 | 64.1 | 64.1 |
+| Granite Speech 4.1 2B | 76.8 | 76.0 | 75.5 |
+
+##### Comparison vs Baselines (t0014 Granite accumulate-then-transcribe)
+
+| Metric | t0014 Granite baseline | Best streaming result | Winner |
+| --- | --- | --- | --- |
+| WER | 8.8% | 8.83% (Granite streaming) | Tied |
+| EA-DV | 97.1% | 97.10% (Granite streaming) | Tied |
+| TTFD p50 | 77 ms | **32 ms** (Parakeet-TDT) | Parakeet-TDT (2.4× faster) |
+| Latency p50 | ~1.1 s (ATT) | **250 ms** (Parakeet-TDT 1000 ms) | Parakeet-TDT (4.4× faster) |
+
+Granite streaming quality is equivalent to accumulate-then-transcribe (ATT), confirming that
+streaming does not degrade accuracy. Parakeet-TDT achieves 4.4× faster end-to-end latency than
+Granite ATT, at the cost of 6.4 pp higher WER and 63.8 pp lower EA-DV.
+
+#### Analysis
+
+**Interval effect on quality**: Buffer interval has zero measurable impact on WER or entity
+accuracy. This is expected: all three intervals produce the same final accumulated transcript —
+shorter intervals only provide more intermediate hypotheses. The final transcript is unchanged.
+
+**Interval effect on latency**: Larger intervals reduce latency because fewer inference passes are
+made per clip (fewer buffer flush events). The effect is most pronounced for Granite (−9.6%) because
+Granite&#x27;s inference is heavier per pass. Parakeet models see only 2–5% reduction.
+
+**Granite quality gap**: Granite&#x27;s EA-DV of 97.1% vs Parakeet&#x27;s 22–35% is dramatic. Granite&#x27;s
+keyword prompt injection is highly effective for Rezolve domain terms; Parakeet&#x27;s NeMo GPU-PB
+TurboBias shows limited entity recognition improvement in the streaming setting.
+
+**Speed vs quality trade-off**: No single model dominates on all axes. Parakeet-TDT is 4.4× faster
+than Granite but has a 6.4 pp WER disadvantage and 64 pp EA-DV disadvantage. The appropriate choice
+depends on whether the downstream task is latency-critical (Parakeet) or entity-critical (Granite).
+
+**800 ms latency target**: All Parakeet models stay well below the 800 ms p50 target across all
+intervals. Granite&#x27;s p50 latency (1.1–1.2 s) exceeds the target at all intervals, even though larger
+intervals help. Granite p95 (2.6–2.9 s) is far above target.
+
+**Multitalker internal VAD**: Multitalker-Parakeet has internal segment boundaries; the buffer
+interval controls flush frequency rather than model-internal decisions. Its latency and quality are
+intermediate between Parakeet-TDT and Parakeet-Unified, with no meaningful interval sensitivity.
+
+#### Visualizations
+
+![WER by model and buffer interval](images/wer_by_model_interval.png)
+
+WER grouped by buffer interval for each model. Buffer interval has no effect — all bars within each
+model group are identical. Granite (purple) is the clear WER winner at 8.83%.
+
+![Domain-vocab entity accuracy by model and buffer interval](images/ea_dv_by_model_interval.png)
+
+EA-DV grouped by buffer interval. Again, interval has no effect. Granite&#x27;s 97.1% EA-DV dwarfs the
+Parakeet models (~22–35%), illustrating the power of keyword prompt injection vs NeMo TurboBias for
+domain entity recognition in streaming mode.
+
+![Latency p50 by model and buffer interval](images/latency_p50_by_model_interval.png)
+
+Latency p50 in milliseconds. Granite (purple) exceeds the 800 ms target (dashed red line) at all
+intervals. Parakeet models remain well below the target. Larger intervals reduce Granite latency by
+~10%.
+
+![TTFD p50 by model and buffer interval](images/ttfd_p50_by_model_interval.png)
+
+Time-to-first-decode p50. Parakeet-TDT achieves 32 ms — more than 2× faster than the Granite ATT
+baseline (gray dashed, 77 ms). Multitalker is slightly slower (64 ms) due to its internal VAD
+segment logic.
+
+#### Examples
+
+The examples below are drawn from actual prediction JSONL files. Each row shows the clip ID,
+duration, model, interval, streaming transcript (what the system produced at final stable state),
+and key latency/TTFD values.
+
+##### Random examples — typical behavior (Granite 500 ms)
+
+```json
+{&quot;clip_id&quot;: &quot;French_NoemieMarciano__en-NoemieMarciano-q01&quot;, &quot;duration_s&quot;: 6.409,
+ &quot;transcript&quot;: &quot;how do rezolve ai improve product discovery for enterprise retailers&quot;,
+ &quot;ttfd_seconds&quot;: 0.0777, &quot;latency_seconds&quot;: 1.1125, &quot;interval_ms&quot;: 500, &quot;n_inferences&quot;: 13}
+```
+
+Granite correctly transcribes &quot;rezolve&quot; (domain entity) with low TTFD (77.7 ms) and moderate latency
+(1.1 s).
+
+```json
+{&quot;clip_id&quot;: &quot;French_NoemieMarciano__en-NoemieMarciano-q02&quot;, &quot;duration_s&quot;: 4.365,
+ &quot;transcript&quot;: &quot;what makes braincommer different from traditional chatbots&quot;,
+ &quot;ttfd_seconds&quot;: 0.058, &quot;latency_seconds&quot;: 0.7598, &quot;interval_ms&quot;: 500, &quot;n_inferences&quot;: 9}
+```
+
+Granite produces &quot;braincommer&quot; (approximate match for &quot;braincommerce&quot;) on a short 4.4 s clip with
+sub-800 ms latency — one of the faster Granite clips.
+
+##### Random examples — typical behavior (Parakeet-TDT 500 ms)
+
+```json
+{&quot;clip_id&quot;: &quot;French_NoemieMarciano__en-NoemieMarciano-q01&quot;, &quot;duration_s&quot;: 6.409,
+ &quot;transcript&quot;: &quot;How do Resolve AI improve product discovery for enterprise retailers?&quot;,
+ &quot;ttfd_seconds&quot;: 0.1148, &quot;latency_seconds&quot;: 0.2871, &quot;interval_ms&quot;: 500, &quot;n_inferences&quot;: 13}
+```
+
+Parakeet-TDT transcribes &quot;Resolve AI&quot; instead of &quot;Rezolve AI&quot; — a typical entity miss that drives
+EA-DV down. Latency is 287 ms vs Granite&#x27;s 1.1 s on the same clip.
+
+```json
+{&quot;clip_id&quot;: &quot;French_NoemieMarciano__en-NoemieMarciano-q04&quot;, &quot;duration_s&quot;: 7.245,
+ &quot;transcript&quot;: &quot;Can we integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe or Custom Platforms?&quot;,
+ &quot;ttfd_seconds&quot;: 0.0709, &quot;latency_seconds&quot;: 0.31, &quot;interval_ms&quot;: 500, &quot;n_inferences&quot;: 15}
+```
+
+Parakeet-TDT correctly captures major platform names (&quot;Shopify Plus&quot;, &quot;Salesforce Commerce Cloud&quot;,
+&quot;Adobe&quot;) — these are common enough to survive without TurboBias. Latency 310 ms.
+
+##### Best cases (Parakeet-TDT on common entities)
+
+```json
+{&quot;clip_id&quot;: &quot;French_NoemieMarciano__en-NoemieMarciano-q03&quot;, &quot;duration_s&quot;: 4.644,
+ &quot;transcript&quot;: &quot;Can I see an example of multimodal or visual search?&quot;,
+ &quot;ttfd_seconds&quot;: 0.0311, &quot;latency_seconds&quot;: 0.2116, &quot;interval_ms&quot;: 500, &quot;n_inferences&quot;: 10}
+```
+
+TTFD of 31 ms — among the fastest in the dataset. Transcript is accurate for non-domain query.
+
+##### Worst cases (Parakeet-TDT empty transcripts)
+
+```json
+{&quot;clip_id&quot;: &quot;e5ec2d54-9913-4fd3-8e43-3d9c517cc16c_turn1&quot;, &quot;duration_s&quot;: 3.584,
+ &quot;transcript&quot;: &quot;&quot;, &quot;is_empty&quot;: true,
+ &quot;ttfd_seconds&quot;: 0.0639, &quot;latency_seconds&quot;: 0.1712, &quot;interval_ms&quot;: 500}
+```
+
+Empty transcript on a short 3.6 s clip. Parakeet-TDT has 3 empty outputs in the dataset (vs 0 for
+Granite); these are the main failure mode for short ambiguous clips.
+
+```json
+{&quot;clip_id&quot;: &quot;error_en_0092&quot;, &quot;duration_s&quot;: 5.12,
+ &quot;transcript&quot;: &quot;&quot;, &quot;is_empty&quot;: true,
+ &quot;ttfd_seconds&quot;: 0.2036, &quot;latency_seconds&quot;: 0.2036, &quot;interval_ms&quot;: 500}
+```
+
+Another empty output (5.1 s clip). The long TTFD (204 ms) matching latency indicates the model
+emitted nothing and timed out.
+
+##### Worst cases (Granite — high latency)
+
+```json
+{&quot;clip_id&quot;: &quot;7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn14&quot;, &quot;duration_s&quot;: 13.568,
+ &quot;transcript&quot;: &quot;but then what does your technology offer which is different to let&#x27;s say any other re-ranking model or pipeline which is based on user events&quot;,
+ &quot;ttfd_seconds&quot;: 0.1104, &quot;latency_seconds&quot;: 4.8797, &quot;interval_ms&quot;: 500, &quot;n_inferences&quot;: 28}
+```
+
+Granite latency of 4.88 s on a 13.6 s clip — the worst-case Granite instance. Transcript is accurate
+but real-time use would be impractical at this clip length.
+
+```json
+{&quot;clip_id&quot;: &quot;error_en_0010&quot;, &quot;duration_s&quot;: 8.96,
+ &quot;transcript&quot;: &quot;tell me about rezolve&#x27;s partnership with microsoft and what models rezolve published so far on ai foundry&quot;,
+ &quot;ttfd_seconds&quot;: 0.1269, &quot;latency_seconds&quot;: 3.1743, &quot;interval_ms&quot;: 500, &quot;n_inferences&quot;: 18}
+```
+
+Granite correctly transcribes &quot;rezolve&quot; twice and &quot;microsoft&quot; and &quot;ai foundry&quot; — strong domain
+entity recognition. Latency 3.2 s is high but the entity capture is perfect.
+
+##### Boundary cases (Multitalker — internal VAD)
+
+```json
+{&quot;clip_id&quot;: &quot;French_NoemieMarciano__en-NoemieMarciano-q01&quot;, &quot;duration_s&quot;: 6.409,
+ &quot;transcript&quot;: &quot;How do resolve AI improved product discovery for enterprise retailers?&quot;,
+ &quot;ttfd_seconds&quot;: 0.1167, &quot;latency_seconds&quot;: 0.2998, &quot;interval_ms&quot;: 500, &quot;model_has_internal_vad&quot;: true}
+```
+
+Multitalker&#x27;s internal VAD produces &quot;resolve AI&quot; (capitalised) instead of &quot;rezolve AI&quot; — the same
+entity miss as Parakeet-TDT. Latency 300 ms is fast, but entity recall remains poor.
+
+##### Contrastive examples — same clip, 500 ms vs 1000 ms (Parakeet-TDT latency only)
+
+```text
+Clip:     Russian_OlyaShtalberg__en-OlyaShtalberg-q05
+Interval: 500 ms → latency = 323 ms
+Interval: 1000 ms → latency = 253 ms   (Δ = −70 ms, −21.7%)
+Transcript: &quot;What can your agents do autonomously in the shopping journey&quot; (identical)
+```
+
+Transcript is unchanged between intervals; only latency differs (21.7% reduction at 1000 ms for this
+clip). This is the largest single-clip latency difference observed in the Parakeet-TDT sweep,
+confirming that the interval effect is real but bounded.
+
+##### Contrastive examples — Granite vs Parakeet-TDT (same clip, entity focus)
+
+```text
+Clip:  error_en_0010 (8.96 s)
+Granite 500 ms:  &quot;tell me about rezolve&#x27;s partnership with microsoft and what models rezolve published so far on ai foundry&quot;
+                  → rezolve ✓, microsoft ✓, ai foundry ✓  (latency 3.17 s)
+Parakeet-TDT 500ms:  &quot;Tell me about Resolve&#x27;s partnership with Microsoft and what models Resolve published so far on AI Foundry&quot;
+                      → rezolve ✗ (&quot;Resolve&quot;), microsoft ✓, ai foundry ✓  (latency 0.41 s)
+```
+
+Granite correctly lowercases &quot;rezolve&quot; (matching domain vocab exactly) while Parakeet uses the
+uncorrected form &quot;Resolve&quot;. The 7.7× latency advantage of Parakeet comes at a clear entity cost.
+
+#### Verification
+
+| Verificator | Result |
+| --- | --- |
+| `verify_task_metrics.py` | PASSED — 12 variants, 0 errors, 0 warnings |
+| `verify_predictions_asset.py` (parakeet-tdt-buffer-sweep) | PASSED — 0 errors |
+| `verify_predictions_asset.py` (parakeet-unified-buffer-sweep) | PASSED — 0 errors |
+| `verify_predictions_asset.py` (multitalker-parakeet-buffer-sweep) | PASSED — 0 errors |
+| `verify_predictions_asset.py` (granite-buffer-sweep) | PASSED — 0 errors |
+| `verify_task_results.py` | PASSED — 0 errors, 0 warnings |
+
+#### Limitations
+
+* **Ground-truth references missing**: The prediction JSONL files record `reference_text: &quot;&quot;` for
+  most clips. WER and EA were computed against a separate reference file loaded at evaluation time;
+  the inline reference is absent in the prediction assets. This does not affect metric validity but
+  limits direct replay from the JSONL alone.
+
+* **Granite latency exceeds target**: Granite p50 latency is 1.1–1.2 s across all intervals,
+  exceeding the 800 ms p50 project target. The model is accurate but too slow for real-time
+  streaming as currently configured.
+
+* **Parakeet entity recall is low**: EA-DV for all Parakeet models is 22–35%, far below Granite&#x27;s
+  97%. TurboBias biasing did not close the gap significantly for Rezolve domain terms.
+
+* **Interval range is narrow**: Tested intervals (500–1000 ms) are coarse. Sub-100 ms or &gt;1500 ms
+  intervals were not explored. The latency-vs-interval curve may continue to improve beyond 1000 ms,
+  though at cost of longer TTFD.
+
+* **Multitalker internal VAD not isolated**: Multitalker&#x27;s internal segment decisions interact with
+  the external buffer interval. The three interval results for Multitalker reflect combined
+  behaviour, not a clean isolation of the buffer-interval variable.
+
+* **Reserved machine cost**: The Azure H100 NVL machine is a shared reserved instance kept alive
+  across tasks; the $287.58 cost is an apportioned estimate, not a metered per-task charge.
+
+#### Files Created
+
+* `results/metrics.json` — 12 variants (4 models × 3 intervals), explicit variant format
+* `results/results_summary.md` — headline results and verification status
+* `results/results_detailed.md` — this file
+* `results/costs.json` — Azure H100 NVL cost estimate ($287.58)
+* `results/remote_machines_used.json` — single machine entry (llm-t1-nc80)
+* `results/images/wer_by_model_interval.png` — WER grouped bar chart
+* `results/images/ea_dv_by_model_interval.png` — EA-DV grouped bar chart
+* `results/images/latency_p50_by_model_interval.png` — latency p50 grouped bar chart
+* `results/images/ttfd_p50_by_model_interval.png` — TTFD p50 grouped bar chart
+* `assets/predictions/parakeet-tdt-buffer-sweep/` — 3 JSONL prediction files (93 clips each)
+* `assets/predictions/parakeet-unified-buffer-sweep/` — 3 JSONL prediction files
+* `assets/predictions/multitalker-parakeet-buffer-sweep/` — 3 JSONL prediction files
+* `assets/predictions/granite-buffer-sweep/` — 3 JSONL prediction files
+
+#### Task Requirement Coverage
+
+##### Operative task request (from `task.json` `short_description` + `task_description.md`)
+
+&gt; Benchmark the effect of streaming buffer extraction interval (500ms, 750ms, 1000ms) on latency and
+&gt; transcription quality across four models: parakeet-unified-en-0.6b, parakeet-tdt-0.6b-v3,
+&gt; multitalker-parakeet-streaming-0.6b-v1, and Granite Speech 4.1 2B. All models biased with Rezolve
+&gt; domain keyword list. Dataset: gold-92.
+
+&gt; Success criteria: At least one model × interval combination beats Granite
+&gt; accumulate-then-transcribe (WER 8.8%, EA-DV 97.1%, TTFD 77ms p50) on either latency or quality.
+&gt; Full results table: 12+ rows, each with TTFD p50, lat p50, WER, EA, EA-DV.
+
+##### Requirements
+
+| ID | Requirement | Status | Evidence |
+| --- | --- | --- | --- |
+| REQ-1 | Run all 4 models (parakeet-tdt, parakeet-unified, multitalker, Granite) | Done | 4 prediction assets; 12-variant `metrics.json` |
+| REQ-2 | Test 3 intervals (500 ms, 750 ms, 1000 ms) per model | Done | 3 JSONL files per asset, `metrics.json` |
+| REQ-3 | Domain-bias all models with Rezolve keyword list | Done | Parakeet: NeMo GPU-PB TurboBias; Granite: keyword prompt injection (implementation step log) |
+| REQ-4 | Dataset: gold-92 (93 clips) | Done | 93 rows per JSONL; `n_clips: 93` in `metrics.json` diagnostics |
+| REQ-5 | Record TTFD p50 for each variant | Done | `ttfd_p50_seconds` in `metrics.json` all 12 variants |
+| REQ-6 | Record latency p50/p95 for each variant | Done | `latency_p50_seconds`, `latency_p95_seconds` in `metrics.json` |
+| REQ-7 | Record WER for each variant | Done | `wer_gold92` in `metrics.json` all 12 variants |
+| REQ-8 | Record EA and EA-DV for each variant | Done | `entity_accuracy_gold92`, `entity_accuracy_domain_vocab` in `metrics.json` |
+| REQ-9 | Full results table with 12+ rows | Done | `metrics.json` 12 variants; `## Metrics Tables` in this file |
+| REQ-10 | At least one variant beats Granite ATT (WER 8.8% or EA-DV 97.1% or TTFD 77 ms) | Done | Parakeet-TDT TTFD p50 = **32 ms** (2.4× better than 77 ms baseline); all Parakeet models beat Granite ATT on latency p50 (250–378 ms vs ~1.1 s) |
+| REQ-11 | Report interval effect on latency | Done | Latency tables above; up to 9.6% reduction at 1000 ms vs 500 ms for Granite |
+| REQ-12 | Report interval effect on quality | Done | WER and EA-DV are identical across all intervals for every model |
+| REQ-13 | Generate charts | Done | 4 PNG charts in `results/images/` embedded above |
       </content>
     </section>
   </sections>

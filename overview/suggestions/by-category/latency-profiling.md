@@ -1,7 +1,8 @@
 # Suggestions: `latency-profiling`
 
-9 suggestion(s) in category [`latency-profiling`](../../../meta/categories/latency-profiling/)
-**8 open** (1 high, 6 medium, 1 low), **1 closed**.
+12 suggestion(s) in category
+[`latency-profiling`](../../../meta/categories/latency-profiling/) **11 open** (2 high, 8
+medium, 1 low), **1 closed**.
 
 [Back to all suggestions](../README.md)
 
@@ -27,6 +28,26 @@ s minimum clip duration. The integration effort is ~50-100 lines (only transcrib
 implementing). This task should implement granite.py, add the 2.0 s minimum clip gate to the
 streaming pipeline, run the existing brainpowa STT evals, and merge to production. Recommended
 task types: experiment-run, answer-question.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Optimize Granite Speech 4.1 2B latency to meet 800ms p50
+target</strong> (S-0015-01)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0015-01` |
+| **Kind** | experiment |
+| **Date added** | 2026-07-01 |
+| **Source task** | [`t0015_streaming_buffer_interval`](../../../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) |
+| **Source paper** | — |
+| **Categories** | [`latency-profiling`](../../../meta/categories/latency-profiling/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+
+Granite Speech 4.1 2B achieves the highest entity accuracy (96.25%) across all buffer
+intervals but its p50 latency (1.11s–1.23s) exceeds the 800ms production target. A dedicated
+task should explore batching, quantization (INT8/FP16), and smaller buffer sizes below 500ms
+to determine if the latency gap can be closed without sacrificing entity accuracy.
 
 </details>
 
@@ -74,6 +95,29 @@ Novitasari2026 reported 16.3% reduction in bias-word errors with zero added late
 model retraining, and the method is additive to any existing biasing technique. Evaluate on
 gold-92 entity accuracy and confirm zero latency impact. Recommended task types:
 post-correction-experiment, stt-benchmark-run.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Investigate why Parakeet models are unresponsive to buffer
+interval changes in WER and entity accuracy</strong> (S-0015-02)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0015-02` |
+| **Kind** | experiment |
+| **Date added** | 2026-07-01 |
+| **Source task** | [`t0015_streaming_buffer_interval`](../../../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) |
+| **Source paper** | — |
+| **Categories** | [`stt-evaluation`](../../../meta/categories/stt-evaluation/), [`latency-profiling`](../../../meta/categories/latency-profiling/) |
+
+All three Parakeet variants (parakeet-tdt-0.6b-v3, parakeet-unified-en-0.6b,
+multitalker-parakeet-streaming-0.6b-v1) show zero variance in WER and entity accuracy across
+the 500ms, 750ms, and 1000ms intervals, while latency varies slightly. This suggests the
+streaming buffer interval does not influence transcript quality for these models in the tested
+range. A targeted ablation at finer intervals (100ms, 250ms) and at the chunk-accumulation
+level would clarify whether interval effects are architecturally absent or simply outside the
+tested range.
 
 </details>
 
@@ -142,6 +186,27 @@ streaming-medium, and any large variant) would confirm whether the entity accura
 a training-distribution gap or a tokenizer/decoder limit, and would determine the optimal
 model size for latency/accuracy trade-off before investing in S-0005-04 shallow fusion work.
 Recommended task types: stt-benchmark-run, comparative-analysis.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Run buffer interval sweep on sub-200ms intervals for
+Parakeet-unified to characterize TTFD</strong> (S-0015-04)</summary>
+
+| Field | Value |
+|---|---|
+| **ID** | `S-0015-04` |
+| **Kind** | experiment |
+| **Date added** | 2026-07-01 |
+| **Source task** | [`t0015_streaming_buffer_interval`](../../../overview/tasks/task_pages/t0015_streaming_buffer_interval.md) |
+| **Source paper** | — |
+| **Categories** | [`latency-profiling`](../../../meta/categories/latency-profiling/), [`stt-evaluation`](../../../meta/categories/stt-evaluation/) |
+
+Parakeet-unified-en-0.6b achieves the best latency among Parakeet models (0.34–0.38s p50) and
+competitive WER (9.5%). The current sweep covers only 500ms–1000ms. Extending the sweep to
+50ms, 100ms, 200ms intervals would characterize the first-token latency floor and determine
+the minimum viable buffer size before transcription quality degrades, enabling tighter
+real-time streaming for voice commerce.
 
 </details>
 

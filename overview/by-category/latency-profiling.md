@@ -6,8 +6,8 @@ candidate STT pipeline configurations.
 [Back to Dashboard](../README.md)
 
 **Detail pages**: [Papers (6)](../papers/by-category/latency-profiling.md) | [Suggestions
-(9)](../suggestions/by-category/latency-profiling.md) | [Predictions
-(3)](../predictions/by-category/latency-profiling.md)
+(12)](../suggestions/by-category/latency-profiling.md) | [Predictions
+(7)](../predictions/by-category/latency-profiling.md)
 
 ---
 
@@ -312,7 +312,53 @@ directly with the Rezolve entity boosting objective.
 
 No answers in this category.
 
-## Suggestions (8 open, 1 closed)
+## Suggestions (11 open, 1 closed)
+
+<details>
+<summary>🧪 <strong>Optimize Granite Speech 4.1 2B latency to meet 800ms p50
+target</strong> (S-0015-01)</summary>
+
+**Kind**: experiment | **Priority**: high | **Date**: 2026-07-01 | **Source**:
+[t0015_streaming_buffer_interval](../../tasks/t0015_streaming_buffer_interval/)
+
+Granite Speech 4.1 2B achieves the highest entity accuracy (96.25%) across all buffer
+intervals but its p50 latency (1.11s–1.23s) exceeds the 800ms production target. A dedicated
+task should explore batching, quantization (INT8/FP16), and smaller buffer sizes below 500ms
+to determine if the latency gap can be closed without sacrificing entity accuracy.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Investigate why Parakeet models are unresponsive to buffer
+interval changes in WER and entity accuracy</strong> (S-0015-02)</summary>
+
+**Kind**: experiment | **Priority**: medium | **Date**: 2026-07-01 | **Source**:
+[t0015_streaming_buffer_interval](../../tasks/t0015_streaming_buffer_interval/)
+
+All three Parakeet variants (parakeet-tdt-0.6b-v3, parakeet-unified-en-0.6b,
+multitalker-parakeet-streaming-0.6b-v1) show zero variance in WER and entity accuracy across
+the 500ms, 750ms, and 1000ms intervals, while latency varies slightly. This suggests the
+streaming buffer interval does not influence transcript quality for these models in the tested
+range. A targeted ablation at finer intervals (100ms, 250ms) and at the chunk-accumulation
+level would clarify whether interval effects are architecturally absent or simply outside the
+tested range.
+
+</details>
+
+<details>
+<summary>🧪 <strong>Run buffer interval sweep on sub-200ms intervals for
+Parakeet-unified to characterize TTFD</strong> (S-0015-04)</summary>
+
+**Kind**: experiment | **Priority**: medium | **Date**: 2026-07-01 | **Source**:
+[t0015_streaming_buffer_interval](../../tasks/t0015_streaming_buffer_interval/)
+
+Parakeet-unified-en-0.6b achieves the best latency among Parakeet models (0.34–0.38s p50) and
+competitive WER (9.5%). The current sweep covers only 500ms–1000ms. Extending the sweep to
+50ms, 100ms, 200ms intervals would characterize the first-token latency floor and determine
+the minimum viable buffer size before transcription quality degrades, enabling tighter
+real-time streaming for voice commerce.
+
+</details>
 
 <details>
 <summary>🧪 <strong>Implement granite.py STTAdapter and deploy Granite as production
