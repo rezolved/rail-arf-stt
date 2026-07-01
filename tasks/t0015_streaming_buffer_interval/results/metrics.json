@@ -1,0 +1,172 @@
+{
+  "variants": [
+    {
+      "variant_id": "parakeet-tdt-500ms",
+      "label": "parakeet-tdt-0.6b-v3 | 500ms",
+      "dimensions": {
+        "model": "parakeet-tdt-0.6b-v3",
+        "buffer_interval_ms": "500"
+      },
+      "metrics": {
+        "wer_gold92": 0.152457,
+        "entity_accuracy_gold92": 0.228125,
+        "entity_accuracy_domain_vocab": 0.333333,
+        "latency_p50_seconds": 0.2556
+      }
+    },
+    {
+      "variant_id": "parakeet-tdt-750ms",
+      "label": "parakeet-tdt-0.6b-v3 | 750ms",
+      "dimensions": {
+        "model": "parakeet-tdt-0.6b-v3",
+        "buffer_interval_ms": "750"
+      },
+      "metrics": {
+        "wer_gold92": 0.152457,
+        "entity_accuracy_gold92": 0.228125,
+        "entity_accuracy_domain_vocab": 0.333333,
+        "latency_p50_seconds": 0.2541
+      }
+    },
+    {
+      "variant_id": "parakeet-tdt-1000ms",
+      "label": "parakeet-tdt-0.6b-v3 | 1000ms",
+      "dimensions": {
+        "model": "parakeet-tdt-0.6b-v3",
+        "buffer_interval_ms": "1000"
+      },
+      "metrics": {
+        "wer_gold92": 0.152457,
+        "entity_accuracy_gold92": 0.228125,
+        "entity_accuracy_domain_vocab": 0.333333,
+        "latency_p50_seconds": 0.2498
+      }
+    },
+    {
+      "variant_id": "parakeet-unified-500ms",
+      "label": "parakeet-unified-en-0.6b | 500ms",
+      "dimensions": {
+        "model": "parakeet-unified-en-0.6b",
+        "buffer_interval_ms": "500"
+      },
+      "metrics": {
+        "wer_gold92": 0.095286,
+        "entity_accuracy_gold92": 0.234375,
+        "entity_accuracy_domain_vocab": 0.347826,
+        "latency_p50_seconds": 0.3775
+      }
+    },
+    {
+      "variant_id": "parakeet-unified-750ms",
+      "label": "parakeet-unified-en-0.6b | 750ms",
+      "dimensions": {
+        "model": "parakeet-unified-en-0.6b",
+        "buffer_interval_ms": "750"
+      },
+      "metrics": {
+        "wer_gold92": 0.095286,
+        "entity_accuracy_gold92": 0.234375,
+        "entity_accuracy_domain_vocab": 0.347826,
+        "latency_p50_seconds": 0.3584
+      }
+    },
+    {
+      "variant_id": "parakeet-unified-1000ms",
+      "label": "parakeet-unified-en-0.6b | 1000ms",
+      "dimensions": {
+        "model": "parakeet-unified-en-0.6b",
+        "buffer_interval_ms": "1000"
+      },
+      "metrics": {
+        "wer_gold92": 0.095286,
+        "entity_accuracy_gold92": 0.234375,
+        "entity_accuracy_domain_vocab": 0.347826,
+        "latency_p50_seconds": 0.3496
+      }
+    },
+    {
+      "variant_id": "multitalker-500ms",
+      "label": "multitalker-parakeet-streaming-0.6b-v1 | 500ms",
+      "dimensions": {
+        "model": "multitalker-parakeet-streaming-0.6b-v1",
+        "buffer_interval_ms": "500"
+      },
+      "metrics": {
+        "wer_gold92": 0.1334,
+        "entity_accuracy_gold92": 0.221875,
+        "entity_accuracy_domain_vocab": 0.318841,
+        "latency_p50_seconds": 0.2537
+      }
+    },
+    {
+      "variant_id": "multitalker-750ms",
+      "label": "multitalker-parakeet-streaming-0.6b-v1 | 750ms",
+      "dimensions": {
+        "model": "multitalker-parakeet-streaming-0.6b-v1",
+        "buffer_interval_ms": "750"
+      },
+      "metrics": {
+        "wer_gold92": 0.1334,
+        "entity_accuracy_gold92": 0.221875,
+        "entity_accuracy_domain_vocab": 0.318841,
+        "latency_p50_seconds": 0.2512
+      }
+    },
+    {
+      "variant_id": "multitalker-1000ms",
+      "label": "multitalker-parakeet-streaming-0.6b-v1 | 1000ms",
+      "dimensions": {
+        "model": "multitalker-parakeet-streaming-0.6b-v1",
+        "buffer_interval_ms": "1000"
+      },
+      "metrics": {
+        "wer_gold92": 0.1334,
+        "entity_accuracy_gold92": 0.221875,
+        "entity_accuracy_domain_vocab": 0.318841,
+        "latency_p50_seconds": 0.2419
+      }
+    },
+    {
+      "variant_id": "granite-500ms",
+      "label": "granite-speech-4.1-2b | 500ms",
+      "dimensions": {
+        "model": "granite-speech-4.1-2b",
+        "buffer_interval_ms": "500"
+      },
+      "metrics": {
+        "wer_gold92": 0.088265,
+        "entity_accuracy_gold92": 0.9625,
+        "entity_accuracy_domain_vocab": 0.971014,
+        "latency_p50_seconds": 1.2317
+      }
+    },
+    {
+      "variant_id": "granite-750ms",
+      "label": "granite-speech-4.1-2b | 750ms",
+      "dimensions": {
+        "model": "granite-speech-4.1-2b",
+        "buffer_interval_ms": "750"
+      },
+      "metrics": {
+        "wer_gold92": 0.088265,
+        "entity_accuracy_gold92": 0.9625,
+        "entity_accuracy_domain_vocab": 0.971014,
+        "latency_p50_seconds": 1.2116
+      }
+    },
+    {
+      "variant_id": "granite-1000ms",
+      "label": "granite-speech-4.1-2b | 1000ms",
+      "dimensions": {
+        "model": "granite-speech-4.1-2b",
+        "buffer_interval_ms": "1000"
+      },
+      "metrics": {
+        "wer_gold92": 0.088265,
+        "entity_accuracy_gold92": 0.9625,
+        "entity_accuracy_domain_vocab": 0.971014,
+        "latency_p50_seconds": 1.1133
+      }
+    }
+  ]
+}

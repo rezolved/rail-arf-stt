@@ -1,0 +1,7 @@
+{
+  "total_cost_usd": 287.58,
+  "breakdown": {
+    "azure-ml-2xh100": 287.58
+  },
+  "note": "Reserved Azure ML pool instance llm-t1-nc80 (2×H100 NVL). Machine was not deallocated — it is a shared reserved instance kept alive across tasks. Cost estimate: 20.6 hours × $13.96/hr = $287.58, apportioned to this task for the period 2026-06-30T11:02Z to 2026-07-01T07:37Z. Actual billing is at the Azure subscription level."
+}

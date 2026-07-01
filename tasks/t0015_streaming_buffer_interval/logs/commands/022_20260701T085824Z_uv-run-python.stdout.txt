@@ -1,0 +1,17 @@
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0015_streaming_buffer_interval/tasks/t0015_streaming_buffer_interval/logs
+
+[33m[1mWARNINGS:[0m
+[33m  LG-W004 warning: Command log 004_20260701T073839Z_uv-run-python.json has non-zero exit code: 2[0m
+[33m  LG-W004 warning: Command log 005_20260701T073844Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W004 warning: Command log 007_20260701T084356Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W004 warning: Command log 008_20260701T084359Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W004 warning: Command log 011_20260701T084818Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W004 warning: Command log 014_20260701T085048Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W004 warning: Command log 019_20260701T085511Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W004 warning: Command log 020_20260701T085513Z_uv-run-python.json has non-zero exit code: 2[0m
+[33m  LG-W004 warning: Command log 021_20260701T085518Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W007 warning: logs/sessions/ contains no captured session transcript JSONL files[0m
+[33m  LG-W008 warning: logs/sessions/capture_report.json does not exist[0m
+
+[33m[1mPASSED[0m — 0 error(s), 11 warning(s)

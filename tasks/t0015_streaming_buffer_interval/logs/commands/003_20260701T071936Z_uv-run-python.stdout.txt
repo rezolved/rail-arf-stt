@@ -1,0 +1,30 @@
+Reference clips: 93
+  parakeet-tdt-0.6b-v3 | 500ms: WER=0.1525 EA=0.2281 EA-DV=0.3333 lat_p50=0.256s ttfd_p50=0.032s empty=3 halluc=0
+  parakeet-tdt-0.6b-v3 | 750ms: WER=0.1525 EA=0.2281 EA-DV=0.3333 lat_p50=0.254s ttfd_p50=0.032s empty=3 halluc=0
+  parakeet-tdt-0.6b-v3 | 1000ms: WER=0.1525 EA=0.2281 EA-DV=0.3333 lat_p50=0.250s ttfd_p50=0.032s empty=3 halluc=0
+  parakeet-unified-en-0.6b | 500ms: WER=0.0953 EA=0.2344 EA-DV=0.3478 lat_p50=0.378s ttfd_p50=0.037s empty=0 halluc=0
+  parakeet-unified-en-0.6b | 750ms: WER=0.0953 EA=0.2344 EA-DV=0.3478 lat_p50=0.358s ttfd_p50=0.037s empty=0 halluc=0
+  parakeet-unified-en-0.6b | 1000ms: WER=0.0953 EA=0.2344 EA-DV=0.3478 lat_p50=0.350s ttfd_p50=0.037s empty=0 halluc=0
+  multitalker-parakeet-streaming-0.6b-v1 | 500ms: WER=0.1334 EA=0.2219 EA-DV=0.3188 lat_p50=0.254s ttfd_p50=0.064s empty=0 halluc=0
+  multitalker-parakeet-streaming-0.6b-v1 | 750ms: WER=0.1334 EA=0.2219 EA-DV=0.3188 lat_p50=0.251s ttfd_p50=0.064s empty=0 halluc=0
+  multitalker-parakeet-streaming-0.6b-v1 | 1000ms: WER=0.1334 EA=0.2219 EA-DV=0.3188 lat_p50=0.242s ttfd_p50=0.064s empty=0 halluc=0
+  granite-speech-4.1-2b | 500ms: WER=0.0883 EA=0.9625 EA-DV=0.9710 lat_p50=1.232s ttfd_p50=0.077s empty=0 halluc=0
+  granite-speech-4.1-2b | 750ms: WER=0.0883 EA=0.9625 EA-DV=0.9710 lat_p50=1.212s ttfd_p50=0.076s empty=0 halluc=0
+  granite-speech-4.1-2b | 1000ms: WER=0.0883 EA=0.9625 EA-DV=0.9710 lat_p50=1.113s ttfd_p50=0.075s empty=0 halluc=0
+
+Wrote /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0015_streaming_buffer_interval/tasks/t0015_streaming_buffer_interval/results/metrics.json (12 variants)
+
+Variant                                                  WER      EA   EA-DV  Lat p50  TTFD p50
+------------------------------------------------------------------------------------------------------
+parakeet-tdt-0.6b-v3 | 500ms                          0.1525  0.2281  0.3333   0.256s    0.032s
+parakeet-tdt-0.6b-v3 | 750ms                          0.1525  0.2281  0.3333   0.254s    0.032s
+parakeet-tdt-0.6b-v3 | 1000ms                         0.1525  0.2281  0.3333   0.250s    0.032s
+parakeet-unified-en-0.6b | 500ms                      0.0953  0.2344  0.3478   0.378s    0.037s
+parakeet-unified-en-0.6b | 750ms                      0.0953  0.2344  0.3478   0.358s    0.037s
+parakeet-unified-en-0.6b | 1000ms                     0.0953  0.2344  0.3478   0.350s    0.037s
+multitalker-parakeet-streaming-0.6b-v1 | 500ms        0.1334  0.2219  0.3188   0.254s    0.064s
+multitalker-parakeet-streaming-0.6b-v1 | 750ms        0.1334  0.2219  0.3188   0.251s    0.064s
+multitalker-parakeet-streaming-0.6b-v1 | 1000ms       0.1334  0.2219  0.3188   0.242s    0.064s
+granite-speech-4.1-2b | 500ms                         0.0883  0.9625  0.9710   1.232s    0.077s
+granite-speech-4.1-2b | 750ms                         0.0883  0.9625  0.9710   1.212s    0.076s
+granite-speech-4.1-2b | 1000ms                        0.0883  0.9625  0.9710   1.113s    0.075s

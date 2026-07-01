@@ -1,0 +1,5 @@
+branch: task/t0015_streaming_buffer_interval
+base_branch: main
+base_commit: 66810a39ef40190c757f79bb771613855cb12eeb
+worktree_path: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0015_streaming_buffer_interval
+created_at: 2026-06-30T10:43:53Z

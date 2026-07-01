@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0015_streaming_buffer_interval",
+  "command": "uv run python -m arf.scripts.verificators.verify_predictions_asset --task-id t0015_streaming_buffer_interval",
+  "exit_code": 1,
+  "duration_seconds": 0.031,
+  "started_at": "2026-07-01T08:58:32Z",
+  "completed_at": "2026-07-01T08:58:32Z",
+  "working_directory": "/Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0015_streaming_buffer_interval",
+  "stdout_file": "023_20260701T085832Z_uv-run-python.stdout.txt",
+  "stderr_file": "023_20260701T085832Z_uv-run-python.stderr.txt",
+  "stdout_lines": 0,
+  "stderr_lines": 1,
+  "truncated": false
+}

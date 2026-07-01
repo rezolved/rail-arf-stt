@@ -1,0 +1,10 @@
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0015_streaming_buffer_interval/tasks/t0015_streaming_buffer_interval/task.json
+
+[31m[1mERRORS:[0m
+[31m  TF-E008 error: source_suggestion 'user-direct' does not match required format S-XXXX-NN[0m
+
+[33m[1mWARNINGS:[0m
+[33m  TF-W001 warning: short_description is 325 characters (maximum: 200)[0m
+
+[31m[1mFAILED[0m — 1 error(s), 1 warning(s)

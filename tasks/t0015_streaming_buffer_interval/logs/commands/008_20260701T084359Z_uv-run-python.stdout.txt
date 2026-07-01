@@ -1,0 +1,7 @@
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0015_streaming_buffer_interval/tasks/t0015_streaming_buffer_interval/results
+
+[31m[1mERRORS:[0m
+[31m  TR-E007 error: results_detailed.md is missing mandatory section: ## Verification[0m
+
+[31m[1mFAILED[0m — 1 error(s), 0 warning(s)

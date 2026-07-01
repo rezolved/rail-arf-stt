@@ -1,0 +1,12 @@
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0015_streaming_buffer_interval/tasks/t0015_streaming_buffer_interval/results/remote_machines_used.json
+
+[31m[1mERRORS:[0m
+[31m  RM-E001 error: Machine llm-t1-nc80 has no destroyed_at timestamp
+    Azure ML VM may still be running and incurring charges[0m
+
+[33m[1mWARNINGS:[0m
+[33m  RM-W003 warning: Machine llm-t1-nc80 ran for 20.6h (>12.0h)[0m
+[33m  RM-W006 warning: Machine llm-t1-nc80 ran 20.6h but no checkpoint_path is set[0m
+
+[31m[1mFAILED[0m — 1 error(s), 2 warning(s)

@@ -1,0 +1,54 @@
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0015_streaming_buffer_interval/tasks/t0015_streaming_buffer_interval/results/metrics.json
+
+[31m[1mERRORS:[0m
+[31m  TM-E003 error: Variant #1 must define exactly these fields: dimensions, label, metrics, variant_id[0m
+[31m  TM-E005 error: Variant 'parakeet-tdt-500ms' metrics key 'latency_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'parakeet-tdt-500ms' metrics key 'ttfd_p50_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'parakeet-tdt-500ms' metrics key 'ttfd_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E003 error: Variant #2 must define exactly these fields: dimensions, label, metrics, variant_id[0m
+[31m  TM-E005 error: Variant 'parakeet-tdt-750ms' metrics key 'latency_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'parakeet-tdt-750ms' metrics key 'ttfd_p50_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'parakeet-tdt-750ms' metrics key 'ttfd_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E003 error: Variant #3 must define exactly these fields: dimensions, label, metrics, variant_id[0m
+[31m  TM-E005 error: Variant 'parakeet-tdt-1000ms' metrics key 'latency_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'parakeet-tdt-1000ms' metrics key 'ttfd_p50_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'parakeet-tdt-1000ms' metrics key 'ttfd_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E003 error: Variant #4 must define exactly these fields: dimensions, label, metrics, variant_id[0m
+[31m  TM-E005 error: Variant 'parakeet-unified-500ms' metrics key 'latency_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'parakeet-unified-500ms' metrics key 'ttfd_p50_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'parakeet-unified-500ms' metrics key 'ttfd_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E003 error: Variant #5 must define exactly these fields: dimensions, label, metrics, variant_id[0m
+[31m  TM-E005 error: Variant 'parakeet-unified-750ms' metrics key 'latency_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'parakeet-unified-750ms' metrics key 'ttfd_p50_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'parakeet-unified-750ms' metrics key 'ttfd_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E003 error: Variant #6 must define exactly these fields: dimensions, label, metrics, variant_id[0m
+[31m  TM-E005 error: Variant 'parakeet-unified-1000ms' metrics key 'latency_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'parakeet-unified-1000ms' metrics key 'ttfd_p50_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'parakeet-unified-1000ms' metrics key 'ttfd_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E003 error: Variant #7 must define exactly these fields: dimensions, label, metrics, variant_id[0m
+[31m  TM-E005 error: Variant 'multitalker-500ms' metrics key 'latency_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'multitalker-500ms' metrics key 'ttfd_p50_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'multitalker-500ms' metrics key 'ttfd_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E003 error: Variant #8 must define exactly these fields: dimensions, label, metrics, variant_id[0m
+[31m  TM-E005 error: Variant 'multitalker-750ms' metrics key 'latency_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'multitalker-750ms' metrics key 'ttfd_p50_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'multitalker-750ms' metrics key 'ttfd_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E003 error: Variant #9 must define exactly these fields: dimensions, label, metrics, variant_id[0m
+[31m  TM-E005 error: Variant 'multitalker-1000ms' metrics key 'latency_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'multitalker-1000ms' metrics key 'ttfd_p50_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'multitalker-1000ms' metrics key 'ttfd_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E003 error: Variant #10 must define exactly these fields: dimensions, label, metrics, variant_id[0m
+[31m  TM-E005 error: Variant 'granite-500ms' metrics key 'latency_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'granite-500ms' metrics key 'ttfd_p50_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'granite-500ms' metrics key 'ttfd_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E003 error: Variant #11 must define exactly these fields: dimensions, label, metrics, variant_id[0m
+[31m  TM-E005 error: Variant 'granite-750ms' metrics key 'latency_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'granite-750ms' metrics key 'ttfd_p50_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'granite-750ms' metrics key 'ttfd_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E003 error: Variant #12 must define exactly these fields: dimensions, label, metrics, variant_id[0m
+[31m  TM-E005 error: Variant 'granite-1000ms' metrics key 'latency_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'granite-1000ms' metrics key 'ttfd_p50_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+[31m  TM-E005 error: Variant 'granite-1000ms' metrics key 'ttfd_p95_seconds' is not registered in meta/metrics/. Only registered project metrics are allowed in metrics.json. Task-specific data belongs in results_detailed.md.[0m
+
+[31m[1mFAILED[0m — 48 error(s), 0 warning(s)
