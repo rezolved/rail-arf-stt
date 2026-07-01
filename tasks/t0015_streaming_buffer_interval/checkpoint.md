@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0015_streaming_buffer_interval"
-updated_at: "2026-07-01T07:38:00Z"
-completed_steps: 12
-next_step_number: 11
-next_step_id: "results"
+updated_at: "2026-07-01T08:05:00Z"
+completed_steps: 13
+next_step_number: 14
+next_step_id: "reporting"
 ---
 # Task Objective
 
@@ -16,6 +16,12 @@ domain keyword list. Dataset: gold-92.
 * * *
 
 ## Step History
+
+### Step 11 — results
+
+Wrote results_summary.md, results_detailed.md (spec_version: "2") with 4 charts, metrics tables, 13
+concrete examples, and ## Task Requirement Coverage. Fixed metrics.json to remove unregistered keys
+and extra variant fields; both verify_task_metrics and verify_task_results pass with 0 errors.
 
 ### Step 10 — teardown
 
@@ -109,9 +115,9 @@ research-internet, research-code, planning) pre-marked as skipped per user instr
 
 ## Next Step Notes
 
-Proceed to step 11 (results): write `results/results_summary.md`, `results/results_detailed.md`, and
-validate `results/metrics.json`. The 12-variant metrics.json is complete. Key finding: buffer
-interval has no effect on transcript quality (WER/EA identical across 500ms/750ms/1000ms) but
-slightly affects latency (larger intervals reduce latency up to 10% for Granite). Note RM-E001 from
-`verify_machines_destroyed` is an accepted/expected error documented in the intervention file —
-downstream steps should not block on it.
+Proceed to step 14 (reporting): run all verificators (verify_task_file, verify_task_dependencies,
+verify_suggestions, verify_task_metrics, verify_task_results, verify_task_folder, verify_logs,
+verify_predictions_asset for all 4 assets, verify_machines_destroyed). Note RM-E001 from
+verify_machines_destroyed is expected and documented in
+intervention/reserved_machine_not_destroyed.md — do not block on it. Capture session transcripts,
+update task.json status to "completed", and commit.
