@@ -86,8 +86,8 @@
       "step": 10,
       "name": "teardown",
       "description": "Log machine usage and teardown.",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-07-01T07:37:54Z",
       "completed_at": null,
       "log_file": "logs/steps/010_teardown/"
     },

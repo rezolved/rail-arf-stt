@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0015_streaming_buffer_interval"
-updated_at: "2026-07-01T01:00:00Z"
-completed_steps: 11
-next_step_number: 10
-next_step_id: "teardown"
+updated_at: "2026-07-01T07:38:00Z"
+completed_steps: 12
+next_step_number: 11
+next_step_id: "results"
 ---
 # Task Objective
 
@@ -16,6 +16,14 @@ domain keyword list. Dataset: gold-92.
 * * *
 
 ## Step History
+
+### Step 10 — teardown
+
+Logged machine usage for llm-t1-nc80 (Azure H100 NVL reserved instance). Machine kept alive per
+project policy — not deallocated. Updated `machine_log.json` with `total_duration_hours: 20.6` and
+`total_cost_usd: 287.58`; created `results/costs.json` and `results/remote_machines_used.json`.
+RM-E001 from `verify_machines_destroyed` is expected and documented in
+`intervention/reserved_machine_not_destroyed.md`.
 
 ### Step 9 — implementation
 
@@ -101,7 +109,9 @@ research-internet, research-code, planning) pre-marked as skipped per user instr
 
 ## Next Step Notes
 
-Proceed to step 10 (teardown): log machine usage for llm-t1-nc80 and confirm deallocation decision.
-Machine was a reserved Azure instance (no per-minute billing). All predictions and metrics are saved
-locally. The teardown step should update `logs/steps/008_setup-machines/machine_log.json` with
-`destroyed_at`, `total_duration_hours`, and `total_cost_usd`.
+Proceed to step 11 (results): write `results/results_summary.md`, `results/results_detailed.md`, and
+validate `results/metrics.json`. The 12-variant metrics.json is complete. Key finding: buffer
+interval has no effect on transcript quality (WER/EA identical across 500ms/750ms/1000ms) but
+slightly affects latency (larger intervals reduce latency up to 10% for Granite). Note RM-E001 from
+`verify_machines_destroyed` is an accepted/expected error documented in the intervention file —
+downstream steps should not block on it.

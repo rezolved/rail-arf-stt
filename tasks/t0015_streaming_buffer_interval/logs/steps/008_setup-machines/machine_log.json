@@ -31,8 +31,8 @@
     "created_at": "2026-06-30T11:02:00Z",
     "ready_at": "2026-06-30T11:02:00Z",
     "destroyed_at": null,
-    "total_duration_hours": null,
-    "total_cost_usd": null,
+    "total_duration_hours": 20.6,
+    "total_cost_usd": 287.58,
     "search_started_at": "2026-06-30T11:02:00Z",
     "total_provisioning_seconds": 0.0,
     "failed_attempts": [],
@@ -46,6 +46,6 @@
       "nvidia/multitalker-parakeet-streaming-0.6b-v1": "cached (downloaded 2026-06-30)",
       "ibm-granite/granite-speech-4.1-2b": "/home/azureuser/granite-model/granite-speech-4.1-2b (pre-existing)"
     },
-    "note": "Machine was already running (reserved instance, no per-minute billing). az CLI not present on local orchestration machine; SSH-based verification used instead. VM left running for task use; teardown step will confirm deallocation decision."
+    "note": "Reserved Azure instance (not spot/pay-per-hour). Machine kept alive per project policy — do NOT deallocate. destroyed_at=null is intentional. Cost estimate: 20.6 hours × $13.96/hr = $287.58 (apportioned to this task; shared pool machine also used by other tasks). Actual billing is at the subscription level, not per-task."
   }
 ]

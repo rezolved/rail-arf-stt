@@ -1,0 +1,11 @@
+[
+  {
+    "provider": "azure_ml",
+    "machine_id": "llm-t1-nc80",
+    "gpu": "2xH100 NVL",
+    "gpu_count": 2,
+    "ram_gb": 880,
+    "duration_hours": 20.6,
+    "cost_usd": 287.58
+  }
+]
