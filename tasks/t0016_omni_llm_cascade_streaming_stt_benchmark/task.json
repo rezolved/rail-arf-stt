@@ -1,0 +1,23 @@
+{
+  "spec_version": 4,
+  "task_id": "t0016_omni_llm_cascade_streaming_stt_benchmark",
+  "task_index": 16,
+  "name": "Omni-LLM Cascade Streaming STT Benchmark — Parakeet+Qwen3-Omni vs Granite",
+  "short_description": "Benchmark the production Parakeet+Qwen3-Omni cascade (two Parakeet variants × 3 intervals) against Granite streaming from t0015 on gold-92, measuring WER, EA, EA-DV, latency, and omni_used_rate.",
+  "long_description_file": "task_description.md",
+  "status": "in_progress",
+  "dependencies": [
+    "t0015_streaming_buffer_interval"
+  ],
+  "start_time": "2026-07-01T09:36:46Z",
+  "end_time": null,
+  "expected_assets": {
+    "answer": 1
+  },
+  "task_types": [
+    "stt-benchmark-run",
+    "experiment-run",
+    "comparative-analysis"
+  ],
+  "source_suggestion": null
+}
