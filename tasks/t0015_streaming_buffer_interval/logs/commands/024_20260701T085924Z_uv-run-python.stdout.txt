@@ -1,0 +1,2 @@
+Captured 10 session transcript(s) into /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0015_streaming_buffer_interval/tasks/t0015_streaming_buffer_interval/logs/sessions.
+Wrote capture report to /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0015_streaming_buffer_interval/tasks/t0015_streaming_buffer_interval/logs/sessions/capture_report.json.

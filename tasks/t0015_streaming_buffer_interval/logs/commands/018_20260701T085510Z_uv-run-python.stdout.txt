@@ -1,0 +1,7 @@
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0015_streaming_buffer_interval/tasks/t0015_streaming_buffer_interval
+
+[33m[1mWARNINGS:[0m
+[33m  FD-W002 warning: logs/searches/ is empty (no search queries were logged)[0m
+
+[33m[1mPASSED[0m — 0 error(s), 1 warning(s)

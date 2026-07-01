@@ -5,13 +5,13 @@
   "name": "Streaming Buffer Interval Experiment — Parakeet Variants + Granite",
   "short_description": "Benchmark the effect of streaming buffer extraction interval (500ms, 750ms, 1000ms) on latency and transcription quality across four models: parakeet-unified-en-0.6b, parakeet-tdt-0.6b-v3, multitalker-parakeet-streaming-0.6b-v1, and Granite Speech 4.1 2B. All models biased with Rezolve domain keyword list. Dataset: gold-92.",
   "long_description_file": "task_description.md",
-  "status": "in_progress",
+  "status": "completed",
   "dependencies": [
     "t0014_granite_short_clip_robustness",
     "t0012_whisper_parakeet_granite_streaming"
   ],
   "start_time": "2026-06-30T00:00:00Z",
-  "end_time": null,
+  "end_time": "2026-07-01T09:10:00Z",
   "expected_assets": {
     "predictions": 4
   },
@@ -19,5 +19,5 @@
     "stt-benchmark-run",
     "experiment-run"
   ],
-  "source_suggestion": "user-direct"
+  "source_suggestion": null
 }

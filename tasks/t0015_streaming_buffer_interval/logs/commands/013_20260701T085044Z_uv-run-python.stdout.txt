@@ -1,0 +1,7 @@
+
+Verifying: /Users/margotiamanova/Desktop/REZOLVE AI/rail-arf-stt-worktrees/t0015_streaming_buffer_interval/tasks/t0015_streaming_buffer_interval/task.json
+
+[33m[1mWARNINGS:[0m
+[33m  TF-W001 warning: short_description is 325 characters (maximum: 200)[0m
+
+[33m[1mPASSED[0m — 0 error(s), 1 warning(s)
