@@ -93,6 +93,16 @@ Skipped — models are known; no internet research needed.
 
 Skipped — experiment design is fully specified; no paper research needed.
 
+### Step 14 — reporting
+
+Ran all verificators: verify_task_file (pass, TF-W001 warning on long description),
+verify_task_dependencies (pass), verify_suggestions (pass, created suggestions.json with 4
+suggestions), verify_task_metrics (pass), verify_task_results (pass), verify_task_folder (pass),
+verify_logs (pass after creating skipped step logs for steps 4-7, 12-13), verify_machines_destroyed
+(expected RM-E001 documented in intervention/). Captured 10 session transcripts. Set task.json
+status="completed", end_time="2026-07-01T09:10:00Z". Fixed source_suggestion from "user-direct" to
+null.
+
 ### Step 1 — create-branch
 
 Branch `task/t0015_streaming_buffer_interval` created. Worktree initialized at
@@ -112,16 +122,6 @@ research-internet, research-code, planning) pre-marked as skipped per user instr
 - Dataset: gold-92 (93 clips).
 
 * * *
-
-### Step 14 — reporting
-
-Ran all verificators: verify_task_file (pass, TF-W001 warning on long description),
-verify_task_dependencies (pass), verify_suggestions (pass, created suggestions.json with 4
-suggestions), verify_task_metrics (pass), verify_task_results (pass), verify_task_folder (pass),
-verify_logs (pass after creating skipped step logs for steps 4-7, 12-13), verify_machines_destroyed
-(expected RM-E001 documented in intervention/). Captured 10 session transcripts. Set task.json
-status="completed", end_time="2026-07-01T09:10:00Z". Fixed source_suggestion from "user-direct" to
-null.
 
 ## Next Step Notes
 
