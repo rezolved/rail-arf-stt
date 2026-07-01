@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0015_streaming_buffer_interval"
-updated_at: "2026-06-30T11:10:00Z"
-completed_steps: 10
-next_step_number: 9
-next_step_id: "implementation"
+updated_at: "2026-07-01T01:00:00Z"
+completed_steps: 11
+next_step_number: 10
+next_step_id: "teardown"
 ---
 # Task Objective
 
@@ -16,6 +16,24 @@ domain keyword list. Dataset: gold-92.
 * * *
 
 ## Step History
+
+### Step 9 — implementation
+
+Ran all 12 model × interval combinations (4 models × 3 intervals) on gold-92 (93 clips). All
+prediction JSONL files were already present from remote execution on llm-t1-nc80 (Azure H100 NVL).
+Computed WER, entity accuracy (heuristic + domain-vocab), latency p50/p95, and TTFD p50/p95 via
+`compute_and_write_metrics.py`. Wrote `results/metrics.json` with 12 variants in explicit-variant
+format. Created 4 predictions assets (parakeet-tdt-buffer-sweep, parakeet-unified-buffer-sweep,
+multitalker-parakeet-buffer-sweep, granite-buffer-sweep), each with 3 interval JSONL files (93 clips
+each). All 4 assets passed verificator (0 errors, 1 expected PR-W014 warning each).
+
+Key results:
+- Best WER: Granite 8.83% (all intervals), Parakeet-unified 9.53%
+- Best EA-DV: Granite 97.10%, far ahead of Parakeet models (~33%)
+- Fastest TTFD p50: Parakeet-TDT 32ms, Parakeet-unified 37ms, Multitalker 64ms, Granite 75-77ms
+- Lowest latency: Parakeet-TDT / Multitalker ~250ms, Parakeet-unified ~350ms, Granite 1.1-1.2s
+- Interval effect on latency: larger intervals slightly reduce latency (up to 10% for Granite)
+- Quality invariant to interval: WER/EA identical across intervals (same final transcript)
 
 ### Step 8 — setup-machines
 
@@ -83,9 +101,7 @@ research-internet, research-code, planning) pre-marked as skipped per user instr
 
 ## Next Step Notes
 
-Proceed to step 9 (implementation): run all 12 model × interval combinations (4 models × 3
-intervals) on gold-92 (93 clips) on machine llm-t1-nc80 (SSH host alias, azureuser,
-40.127.196.254:50000, key id_rsa_mohan). Conda env is `stt` (NeMo 3.1.0+dcd7153). All models are in
-HuggingFace cache; Granite is at /home/azureuser/granite-model/granite-speech-4.1-2b. Collect TTFD,
-latency, WER, and entity accuracy metrics per combination. The ctx/ aggregator cache is
-pre-populated — do not re-run aggregators; read ctx/ files instead.
+Proceed to step 10 (teardown): log machine usage for llm-t1-nc80 and confirm deallocation decision.
+Machine was a reserved Azure instance (no per-minute billing). All predictions and metrics are saved
+locally. The teardown step should update `logs/steps/008_setup-machines/machine_log.json` with
+`destroyed_at`, `total_duration_hours`, and `total_cost_usd`.

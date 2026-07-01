@@ -1,0 +1,30 @@
+{
+  "spec_version": "2",
+  "predictions_id": "parakeet-tdt-buffer-sweep",
+  "name": "Parakeet TDT 0.6b-v3 Buffer Interval Sweep on gold-92",
+  "short_description": "Per-clip streaming buffer interval sweep predictions for parakeet-tdt-0.6b-v3 on gold-92 (93 clips), testing 500ms, 750ms, and 1000ms extraction intervals with GPU-PB TurboBias domain biasing.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "nvidia/parakeet-tdt-0.6b-v3 (NeMo ASR, CTC-Attention hybrid, 0.6B params) with GPU-PB TurboBias boosting using Rezolve 31-term domain vocabulary, alpha=1.0.",
+  "dataset_ids": ["stt-benchmark-gold-92"],
+  "prediction_format": "jsonl",
+  "prediction_schema": "Each line is a JSON object with fields: clip_id (string), duration_s (float), transcript (string), reference_text (string), is_empty (bool), is_hallucination (bool), ttfd_seconds (float), latency_seconds (float), interval_ms (int), n_chunks (int), n_inferences (int).",
+  "instance_count": 279,
+  "metrics_at_creation": {
+    "wer_gold92": 0.1525,
+    "entity_accuracy_gold92": 0.2281,
+    "entity_accuracy_domain_vocab": 0.3333,
+    "latency_p50_seconds_500ms": 0.256,
+    "latency_p50_seconds_750ms": 0.254,
+    "latency_p50_seconds_1000ms": 0.250,
+    "ttfd_p50_seconds": 0.032
+  },
+  "files": [
+    {"path": "files/predictions-gold92-500ms.jsonl", "description": "Per-clip predictions at 500ms buffer extraction interval (93 clips)", "format": "jsonl"},
+    {"path": "files/predictions-gold92-750ms.jsonl", "description": "Per-clip predictions at 750ms buffer extraction interval (93 clips)", "format": "jsonl"},
+    {"path": "files/predictions-gold92-1000ms.jsonl", "description": "Per-clip predictions at 1000ms buffer extraction interval (93 clips)", "format": "jsonl"}
+  ],
+  "categories": ["stt-evaluation", "latency-profiling"],
+  "created_by_task": "t0015_streaming_buffer_interval",
+  "date_created": "2026-07-01"
+}

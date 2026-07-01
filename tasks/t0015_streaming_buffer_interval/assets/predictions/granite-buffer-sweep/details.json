@@ -1,0 +1,32 @@
+{
+  "spec_version": "2",
+  "predictions_id": "granite-buffer-sweep",
+  "name": "Granite Speech 4.1 2B Buffer Interval Sweep on gold-92",
+  "short_description": "Per-clip streaming buffer interval sweep predictions for Granite Speech 4.1 2B on gold-92 (93 clips), testing 500ms, 750ms, and 1000ms extraction intervals with keyword prompt injection biasing.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "ibm-granite/granite-speech-4.1-2b (2B params, seq2seq speech LLM) biased via keyword prompt injection: 'transcribe the speech to text. Keywords: Rezolve, brainpowa, ...' (31 domain terms).",
+  "dataset_ids": ["stt-benchmark-gold-92"],
+  "prediction_format": "jsonl",
+  "prediction_schema": "Each line is a JSON object with fields: clip_id (string), duration_s (float), transcript (string), reference_text (string), is_empty (bool), is_hallucination (bool), ttfd_seconds (float), latency_seconds (float), interval_ms (int), n_chunks (int), n_inferences (int).",
+  "instance_count": 279,
+  "metrics_at_creation": {
+    "wer_gold92": 0.0883,
+    "entity_accuracy_gold92": 0.9625,
+    "entity_accuracy_domain_vocab": 0.9710,
+    "latency_p50_seconds_500ms": 1.232,
+    "latency_p50_seconds_750ms": 1.212,
+    "latency_p50_seconds_1000ms": 1.113,
+    "ttfd_p50_seconds_500ms": 0.077,
+    "ttfd_p50_seconds_750ms": 0.076,
+    "ttfd_p50_seconds_1000ms": 0.075
+  },
+  "files": [
+    {"path": "files/predictions-gold92-500ms.jsonl", "description": "Per-clip predictions at 500ms buffer extraction interval (93 clips)", "format": "jsonl"},
+    {"path": "files/predictions-gold92-750ms.jsonl", "description": "Per-clip predictions at 750ms buffer extraction interval (93 clips)", "format": "jsonl"},
+    {"path": "files/predictions-gold92-1000ms.jsonl", "description": "Per-clip predictions at 1000ms buffer extraction interval (93 clips)", "format": "jsonl"}
+  ],
+  "categories": ["stt-evaluation", "latency-profiling"],
+  "created_by_task": "t0015_streaming_buffer_interval",
+  "date_created": "2026-07-01"
+}
