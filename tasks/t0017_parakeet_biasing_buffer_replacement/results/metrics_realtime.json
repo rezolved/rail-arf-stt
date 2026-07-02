@@ -1,0 +1,82 @@
+{
+  "variants": [
+    {
+      "variant_id": "unified-200ms-realtime",
+      "model": "parakeet-unified-en-0.6b",
+      "interval_ms": 200,
+      "n_clips": 40,
+      "ttfd_realtime_p50_s": 0.2165,
+      "ttfd_realtime_p95_s": 2.2203,
+      "finalization_p50_s": 0.0614,
+      "finalization_p95_s": 0.1103,
+      "behind_realtime_p95_s": 0.0622
+    },
+    {
+      "variant_id": "unified-300ms-realtime",
+      "model": "parakeet-unified-en-0.6b",
+      "interval_ms": 300,
+      "n_clips": 40,
+      "ttfd_realtime_p50_s": 0.3164,
+      "ttfd_realtime_p95_s": 2.7242,
+      "finalization_p50_s": 0.0599,
+      "finalization_p95_s": 0.0905,
+      "behind_realtime_p95_s": 0.0606
+    },
+    {
+      "variant_id": "unified-350ms-realtime",
+      "model": "parakeet-unified-en-0.6b",
+      "interval_ms": 350,
+      "n_clips": 40,
+      "ttfd_realtime_p50_s": 0.3763,
+      "ttfd_realtime_p95_s": 2.5437,
+      "finalization_p50_s": 0.0549,
+      "finalization_p95_s": 0.092,
+      "behind_realtime_p95_s": 0.062
+    },
+    {
+      "variant_id": "unified-500ms-realtime",
+      "model": "parakeet-unified-en-0.6b",
+      "interval_ms": 500,
+      "n_clips": 40,
+      "ttfd_realtime_p50_s": 0.5166,
+      "ttfd_realtime_p95_s": 2.5223,
+      "finalization_p50_s": 0.0551,
+      "finalization_p95_s": 0.0767,
+      "behind_realtime_p95_s": 0.0584
+    },
+    {
+      "variant_id": "unified-750ms-realtime",
+      "model": "parakeet-unified-en-0.6b",
+      "interval_ms": 750,
+      "n_clips": 40,
+      "ttfd_realtime_p50_s": 0.7762,
+      "ttfd_realtime_p95_s": 2.3059,
+      "finalization_p50_s": 0.0539,
+      "finalization_p95_s": 0.0777,
+      "behind_realtime_p95_s": 0.0574
+    },
+    {
+      "variant_id": "unified-1000ms-realtime",
+      "model": "parakeet-unified-en-0.6b",
+      "interval_ms": 1000,
+      "n_clips": 40,
+      "ttfd_realtime_p50_s": 1.0162,
+      "ttfd_realtime_p95_s": 3.0258,
+      "finalization_p50_s": 0.0547,
+      "finalization_p95_s": 0.0727,
+      "behind_realtime_p95_s": 0.0581
+    },
+    {
+      "variant_id": "tdt-1000ms-realtime",
+      "model": "parakeet-tdt-0.6b-v3",
+      "interval_ms": 1000,
+      "n_clips": 40,
+      "ttfd_realtime_p50_s": 1.0149,
+      "ttfd_realtime_p95_s": 3.0179,
+      "finalization_p50_s": 0.0295,
+      "finalization_p95_s": 0.0412,
+      "behind_realtime_p95_s": 0.0244
+    }
+  ],
+  "note": "real-time-paced, 20ms frames, gold-92 subset"
+}

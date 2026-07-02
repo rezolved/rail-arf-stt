@@ -1,0 +1,17 @@
+{
+  "spec_version": 4,
+  "task_id": "t0018_streaming_stt_model_survey",
+  "task_index": 18,
+  "name": "Streaming STT Model Survey: Native Incremental Decoding Architectures",
+  "short_description": "Exhaustive survey of open-weight streaming STT models with true incremental decoding, scored on chunk size, latency/RTF, and STTAdapter.transcribe_stream integration effort.",
+  "long_description_file": "task_description.md",
+  "status": "not_started",
+  "dependencies": [],
+  "start_time": null,
+  "end_time": null,
+  "expected_assets": {},
+  "task_types": [
+    "internet-research"
+  ],
+  "source_suggestion": null
+}
