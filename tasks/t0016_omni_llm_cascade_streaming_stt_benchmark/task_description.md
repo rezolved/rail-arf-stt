@@ -30,22 +30,26 @@ Qwen3-Omni wins.
 
 ## Models to Benchmark
 
-Three pipeline variants, 9 total run configurations:
+Three pipeline variants, 13 total run configurations:
 
-**Cascade runs (6 total — 2 Parakeet models × 3 buffer intervals):**
+**Cascade runs (10 total — 2 Parakeet models × 5 buffer intervals):**
 
-1. **Parakeet-TDT-0.6b-v3 + Qwen3-Omni** at 500 ms buffer interval
-2. **Parakeet-TDT-0.6b-v3 + Qwen3-Omni** at 750 ms buffer interval
-3. **Parakeet-TDT-0.6b-v3 + Qwen3-Omni** at 1000 ms buffer interval
-4. **Parakeet-Unified-en-0.6b + Qwen3-Omni** at 500 ms buffer interval
-5. **Parakeet-Unified-en-0.6b + Qwen3-Omni** at 750 ms buffer interval
-6. **Parakeet-Unified-en-0.6b + Qwen3-Omni** at 1000 ms buffer interval
+1. **Parakeet-TDT-0.6b-v3 + Qwen3-Omni** at 200 ms buffer interval
+2. **Parakeet-TDT-0.6b-v3 + Qwen3-Omni** at 330 ms buffer interval
+3. **Parakeet-TDT-0.6b-v3 + Qwen3-Omni** at 500 ms buffer interval
+4. **Parakeet-TDT-0.6b-v3 + Qwen3-Omni** at 750 ms buffer interval
+5. **Parakeet-TDT-0.6b-v3 + Qwen3-Omni** at 1000 ms buffer interval
+6. **Parakeet-Unified-en-0.6b + Qwen3-Omni** at 200 ms buffer interval
+7. **Parakeet-Unified-en-0.6b + Qwen3-Omni** at 330 ms buffer interval
+8. **Parakeet-Unified-en-0.6b + Qwen3-Omni** at 500 ms buffer interval
+9. **Parakeet-Unified-en-0.6b + Qwen3-Omni** at 750 ms buffer interval
+10. **Parakeet-Unified-en-0.6b + Qwen3-Omni** at 1000 ms buffer interval
 
 **Baseline (reused from t0015, 0 new inference runs):**
 
-7. **Granite Speech 4.1 2B streaming** at 500 ms buffer interval (t0015 prediction files)
-8. **Granite Speech 4.1 2B streaming** at 750 ms buffer interval (t0015 prediction files)
-9. **Granite Speech 4.1 2B streaming** at 1000 ms buffer interval (t0015 prediction files)
+11. **Granite Speech 4.1 2B streaming** at 500 ms buffer interval (t0015 prediction files)
+12. **Granite Speech 4.1 2B streaming** at 750 ms buffer interval (t0015 prediction files)
+13. **Granite Speech 4.1 2B streaming** at 1000 ms buffer interval (t0015 prediction files)
 
 Granite results are loaded directly from t0015 prediction assets — no re-inference required.
 
@@ -92,7 +96,7 @@ The following metrics are computed for every run configuration (all 9 variants):
 
 The streaming simulation code from t0015 (`tasks/t0015_streaming_buffer_interval/`) implements:
 
-- Audio chunking at configurable buffer intervals (500 ms, 750 ms, 1000 ms)
+- Audio chunking at configurable buffer intervals (200 ms, 330 ms, 500 ms, 750 ms, 1000 ms)
 - NeMo GPU-PB TurboBias biasing for Parakeet (with the Rezolve domain vocab keyword list)
 - Metric computation harness (WER, EA, EA-DV, intent preservation, latency)
 
@@ -121,16 +125,16 @@ acceptable inference speed — the 0.5 s budget cannot be met on A100 or smaller
 
 **Budget estimate:**
 
-- 6 cascade runs × ~$10–12 per run (93 clips × Qwen3-Omni inference on H100 NVL) = **$60–72**
+- 10 cascade runs × ~$10–12 per run (93 clips × Qwen3-Omni inference on H100 NVL) = **$100–120**
 - Granite reuse: $0 marginal cost
 - Machine setup/teardown overhead: ~$5–8
 
-**Total estimated budget: $65–80.**
+**Total estimated budget: $105–128.**
 
-Reserve up to $80. If Qwen3-Omni proves faster than expected (many clips timeout → Parakeet fallback
-used), actual cost will be lower.
+Reserve up to $130. If Qwen3-Omni proves faster than expected (many clips timeout → Parakeet
+fallback used), actual cost will be lower.
 
-**Parallelism:** Run all 6 cascade configurations sequentially on a single H100 NVL (Qwen3-Omni
+**Parallelism:** Run all 10 cascade configurations sequentially on a single H100 NVL (Qwen3-Omni
 occupies the full GPU). Do not attempt to parallelize cascade runs.
 
 ## Key Questions
@@ -151,9 +155,13 @@ occupies the full GPU). Do not attempt to parallelize cascade runs.
 
 ### Prediction files
 
-- `data/predictions_parakeet_tdt_500ms.jsonl` — cascade transcript + decision per clip
+- `data/predictions_parakeet_tdt_200ms.jsonl` — cascade transcript + decision per clip
+- `data/predictions_parakeet_tdt_330ms.jsonl`
+- `data/predictions_parakeet_tdt_500ms.jsonl`
 - `data/predictions_parakeet_tdt_750ms.jsonl`
 - `data/predictions_parakeet_tdt_1000ms.jsonl`
+- `data/predictions_parakeet_unified_200ms.jsonl`
+- `data/predictions_parakeet_unified_330ms.jsonl`
 - `data/predictions_parakeet_unified_500ms.jsonl`
 - `data/predictions_parakeet_unified_750ms.jsonl`
 - `data/predictions_parakeet_unified_1000ms.jsonl`

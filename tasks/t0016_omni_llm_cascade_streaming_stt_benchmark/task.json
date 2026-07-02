@@ -5,7 +5,7 @@
   "name": "Omni-LLM Cascade Streaming STT Benchmark — Parakeet+Qwen3-Omni vs Granite",
   "short_description": "Benchmark the production Parakeet+Qwen3-Omni cascade (two Parakeet variants × 3 intervals) against Granite streaming from t0015 on gold-92, measuring WER, EA, EA-DV, latency, and omni_used_rate.",
   "long_description_file": "task_description.md",
-  "status": "in_progress",
+  "status": "cancelled",
   "dependencies": [
     "t0015_streaming_buffer_interval"
   ],
