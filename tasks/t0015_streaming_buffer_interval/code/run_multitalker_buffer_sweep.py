@@ -59,7 +59,7 @@ def expand_casing_variants(phrases: list[str]) -> tuple[str, ...]:
     out: list[str] = []
     seen: set[str] = set()
     for phrase in phrases:
-        for variant in (phrase, phrase.lower(), phrase[:1].upper() + phrase[1:]):
+        for variant in (phrase, phrase.lower(), phrase.title()):
             if variant and variant not in seen:
                 seen.add(variant)
                 out.append(variant)

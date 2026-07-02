@@ -3,289 +3,169 @@
     {
       "variant_id": "parakeet-tdt-200ms",
       "label": "parakeet-tdt-0.6b-v3 | 200ms",
-      "model": "parakeet-tdt-0.6b-v3",
-      "interval_ms": 200,
       "dimensions": {
         "model": "parakeet-tdt-0.6b-v3",
         "buffer_interval_ms": "200"
       },
       "metrics": {
-        "wer_gold92": 0.152457,
-        "entity_accuracy_gold92": 0.228125,
+        "wer_gold92": 0.151454,
+        "entity_accuracy_gold92": 0.234375,
         "entity_accuracy_domain_vocab": 0.333333,
-        "latency_p50_seconds": 0.2556,
-        "latency_p95_seconds": 0.3993,
-        "ttfd_p50_seconds": 0.0328,
-        "ttfd_p95_seconds": 0.1
-      },
-      "diagnostics": {
-        "empty_count": 3,
-        "hallucination_count": 0,
-        "n_clips": 93
+        "latency_p50_seconds": 0.2674
       }
     },
     {
       "variant_id": "parakeet-tdt-300ms",
       "label": "parakeet-tdt-0.6b-v3 | 300ms",
-      "model": "parakeet-tdt-0.6b-v3",
-      "interval_ms": 300,
       "dimensions": {
         "model": "parakeet-tdt-0.6b-v3",
         "buffer_interval_ms": "300"
       },
       "metrics": {
-        "wer_gold92": 0.152457,
-        "entity_accuracy_gold92": 0.228125,
+        "wer_gold92": 0.151454,
+        "entity_accuracy_gold92": 0.234375,
         "entity_accuracy_domain_vocab": 0.333333,
-        "latency_p50_seconds": 0.2472,
-        "latency_p95_seconds": 0.3945,
-        "ttfd_p50_seconds": 0.0328,
-        "ttfd_p95_seconds": 0.0992
-      },
-      "diagnostics": {
-        "empty_count": 3,
-        "hallucination_count": 0,
-        "n_clips": 93
+        "latency_p50_seconds": 0.263
       }
     },
     {
       "variant_id": "parakeet-tdt-350ms",
       "label": "parakeet-tdt-0.6b-v3 | 350ms",
-      "model": "parakeet-tdt-0.6b-v3",
-      "interval_ms": 350,
       "dimensions": {
         "model": "parakeet-tdt-0.6b-v3",
         "buffer_interval_ms": "350"
       },
       "metrics": {
-        "wer_gold92": 0.152457,
-        "entity_accuracy_gold92": 0.228125,
+        "wer_gold92": 0.151454,
+        "entity_accuracy_gold92": 0.234375,
         "entity_accuracy_domain_vocab": 0.333333,
-        "latency_p50_seconds": 0.2436,
-        "latency_p95_seconds": 0.3896,
-        "ttfd_p50_seconds": 0.0327,
-        "ttfd_p95_seconds": 0.0981
-      },
-      "diagnostics": {
-        "empty_count": 3,
-        "hallucination_count": 0,
-        "n_clips": 93
+        "latency_p50_seconds": 0.2626
       }
     },
     {
       "variant_id": "parakeet-tdt-500ms",
       "label": "parakeet-tdt-0.6b-v3 | 500ms",
-      "model": "parakeet-tdt-0.6b-v3",
-      "interval_ms": 500,
       "dimensions": {
         "model": "parakeet-tdt-0.6b-v3",
         "buffer_interval_ms": "500"
       },
       "metrics": {
-        "wer_gold92": 0.152457,
-        "entity_accuracy_gold92": 0.228125,
+        "wer_gold92": 0.151454,
+        "entity_accuracy_gold92": 0.234375,
         "entity_accuracy_domain_vocab": 0.333333,
-        "latency_p50_seconds": 0.2437,
-        "latency_p95_seconds": 0.3891,
-        "ttfd_p50_seconds": 0.0326,
-        "ttfd_p95_seconds": 0.0986
-      },
-      "diagnostics": {
-        "empty_count": 3,
-        "hallucination_count": 0,
-        "n_clips": 93
+        "latency_p50_seconds": 0.2615
       }
     },
     {
       "variant_id": "parakeet-tdt-750ms",
       "label": "parakeet-tdt-0.6b-v3 | 750ms",
-      "model": "parakeet-tdt-0.6b-v3",
-      "interval_ms": 750,
       "dimensions": {
         "model": "parakeet-tdt-0.6b-v3",
         "buffer_interval_ms": "750"
       },
       "metrics": {
-        "wer_gold92": 0.152457,
-        "entity_accuracy_gold92": 0.228125,
+        "wer_gold92": 0.151454,
+        "entity_accuracy_gold92": 0.234375,
         "entity_accuracy_domain_vocab": 0.333333,
-        "latency_p50_seconds": 0.2405,
-        "latency_p95_seconds": 0.375,
-        "ttfd_p50_seconds": 0.0327,
-        "ttfd_p95_seconds": 0.0994
-      },
-      "diagnostics": {
-        "empty_count": 3,
-        "hallucination_count": 0,
-        "n_clips": 93
+        "latency_p50_seconds": 0.2589
       }
     },
     {
       "variant_id": "parakeet-tdt-1000ms",
       "label": "parakeet-tdt-0.6b-v3 | 1000ms",
-      "model": "parakeet-tdt-0.6b-v3",
-      "interval_ms": 1000,
       "dimensions": {
         "model": "parakeet-tdt-0.6b-v3",
         "buffer_interval_ms": "1000"
       },
       "metrics": {
-        "wer_gold92": 0.152457,
-        "entity_accuracy_gold92": 0.228125,
+        "wer_gold92": 0.151454,
+        "entity_accuracy_gold92": 0.234375,
         "entity_accuracy_domain_vocab": 0.333333,
-        "latency_p50_seconds": 0.2388,
-        "latency_p95_seconds": 0.3631,
-        "ttfd_p50_seconds": 0.0327,
-        "ttfd_p95_seconds": 0.099
-      },
-      "diagnostics": {
-        "empty_count": 3,
-        "hallucination_count": 0,
-        "n_clips": 93
+        "latency_p50_seconds": 0.2528
       }
     },
     {
       "variant_id": "parakeet-unified-200ms",
       "label": "parakeet-unified-en-0.6b | 200ms",
-      "model": "parakeet-unified-en-0.6b",
-      "interval_ms": 200,
       "dimensions": {
         "model": "parakeet-unified-en-0.6b",
         "buffer_interval_ms": "200"
       },
       "metrics": {
-        "wer_gold92": 0.110331,
+        "wer_gold92": 0.107322,
         "entity_accuracy_gold92": 0.234375,
         "entity_accuracy_domain_vocab": 0.347826,
-        "latency_p50_seconds": 0.3729,
-        "latency_p95_seconds": 0.6436,
-        "ttfd_p50_seconds": 0.0369,
-        "ttfd_p95_seconds": 0.0769
-      },
-      "diagnostics": {
-        "empty_count": 0,
-        "hallucination_count": 0,
-        "n_clips": 93
+        "latency_p50_seconds": 0.3912
       }
     },
     {
       "variant_id": "parakeet-unified-300ms",
       "label": "parakeet-unified-en-0.6b | 300ms",
-      "model": "parakeet-unified-en-0.6b",
-      "interval_ms": 300,
       "dimensions": {
         "model": "parakeet-unified-en-0.6b",
         "buffer_interval_ms": "300"
       },
       "metrics": {
-        "wer_gold92": 0.110331,
+        "wer_gold92": 0.107322,
         "entity_accuracy_gold92": 0.234375,
         "entity_accuracy_domain_vocab": 0.347826,
-        "latency_p50_seconds": 0.3589,
-        "latency_p95_seconds": 0.6409,
-        "ttfd_p50_seconds": 0.0368,
-        "ttfd_p95_seconds": 0.077
-      },
-      "diagnostics": {
-        "empty_count": 0,
-        "hallucination_count": 0,
-        "n_clips": 93
+        "latency_p50_seconds": 0.3799
       }
     },
     {
       "variant_id": "parakeet-unified-350ms",
       "label": "parakeet-unified-en-0.6b | 350ms",
-      "model": "parakeet-unified-en-0.6b",
-      "interval_ms": 350,
       "dimensions": {
         "model": "parakeet-unified-en-0.6b",
         "buffer_interval_ms": "350"
       },
       "metrics": {
-        "wer_gold92": 0.110331,
+        "wer_gold92": 0.107322,
         "entity_accuracy_gold92": 0.234375,
         "entity_accuracy_domain_vocab": 0.347826,
-        "latency_p50_seconds": 0.3589,
-        "latency_p95_seconds": 0.6344,
-        "ttfd_p50_seconds": 0.0367,
-        "ttfd_p95_seconds": 0.0765
-      },
-      "diagnostics": {
-        "empty_count": 0,
-        "hallucination_count": 0,
-        "n_clips": 93
+        "latency_p50_seconds": 0.3797
       }
     },
     {
       "variant_id": "parakeet-unified-500ms",
       "label": "parakeet-unified-en-0.6b | 500ms",
-      "model": "parakeet-unified-en-0.6b",
-      "interval_ms": 500,
       "dimensions": {
         "model": "parakeet-unified-en-0.6b",
         "buffer_interval_ms": "500"
       },
       "metrics": {
-        "wer_gold92": 0.110331,
+        "wer_gold92": 0.107322,
         "entity_accuracy_gold92": 0.234375,
         "entity_accuracy_domain_vocab": 0.347826,
-        "latency_p50_seconds": 0.3569,
-        "latency_p95_seconds": 0.6465,
-        "ttfd_p50_seconds": 0.0369,
-        "ttfd_p95_seconds": 0.0766
-      },
-      "diagnostics": {
-        "empty_count": 0,
-        "hallucination_count": 0,
-        "n_clips": 93
+        "latency_p50_seconds": 0.3733
       }
     },
     {
       "variant_id": "parakeet-unified-750ms",
       "label": "parakeet-unified-en-0.6b | 750ms",
-      "model": "parakeet-unified-en-0.6b",
-      "interval_ms": 750,
       "dimensions": {
         "model": "parakeet-unified-en-0.6b",
         "buffer_interval_ms": "750"
       },
       "metrics": {
-        "wer_gold92": 0.110331,
+        "wer_gold92": 0.107322,
         "entity_accuracy_gold92": 0.234375,
         "entity_accuracy_domain_vocab": 0.347826,
-        "latency_p50_seconds": 0.3448,
-        "latency_p95_seconds": 0.6052,
-        "ttfd_p50_seconds": 0.0367,
-        "ttfd_p95_seconds": 0.0766
-      },
-      "diagnostics": {
-        "empty_count": 0,
-        "hallucination_count": 0,
-        "n_clips": 93
+        "latency_p50_seconds": 0.3592
       }
     },
     {
       "variant_id": "parakeet-unified-1000ms",
       "label": "parakeet-unified-en-0.6b | 1000ms",
-      "model": "parakeet-unified-en-0.6b",
-      "interval_ms": 1000,
       "dimensions": {
         "model": "parakeet-unified-en-0.6b",
         "buffer_interval_ms": "1000"
       },
       "metrics": {
-        "wer_gold92": 0.110331,
+        "wer_gold92": 0.107322,
         "entity_accuracy_gold92": 0.234375,
         "entity_accuracy_domain_vocab": 0.347826,
-        "latency_p50_seconds": 0.3346,
-        "latency_p95_seconds": 0.5869,
-        "ttfd_p50_seconds": 0.0367,
-        "ttfd_p95_seconds": 0.0764
-      },
-      "diagnostics": {
-        "empty_count": 0,
-        "hallucination_count": 0,
-        "n_clips": 93
+        "latency_p50_seconds": 0.3535
       }
     }
   ]
