@@ -1,0 +1,28 @@
+{
+  "spec_version": "2",
+  "predictions_id": "parakeet-unified-biasing-best-hyperparam",
+  "name": "Parakeet-unified-en-0.6b — Best Hyperparam Config (= Baseline, Sweep Was a Null Result) on Gold-92",
+  "short_description": "Per-clip STT predictions from the hyperparameter-sweep 'winner' — which is the unchanged default config (alpha=1.0, depth_scaling=2.0), because every alternative alpha/depth_scaling combination tested either showed zero EA-DV movement (near-default) or catastrophically regressed WER (far-from-default). Identical file content to parakeet-unified-biasing-baseline.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "nvidia/parakeet-unified-en-0.6b via NeMo ASRModel, greedy_batch decoding, GPU-PB TurboBias boosting_tree; hyperparameter sweep over alpha in [1.0-3.0] and depth_scaling in [2.0-4.0] (wide grid) plus a narrower follow-up (alpha 1.0-1.5, depth_scaling 2.0-2.5) found no config that improves EA-DV without breaching the +1.0pp WER regression cap.",
+  "dataset_ids": ["stt-benchmark-gold-92"],
+  "prediction_format": "jsonl",
+  "prediction_schema": "clip_id (string), transcript (string), reference_text (string), is_empty (bool), is_hallucination (bool)",
+  "instance_count": 93,
+  "metrics_at_creation": {
+    "wer_gold92": 0.1103,
+    "entity_accuracy_gold92": 0.2344,
+    "entity_accuracy_domain_vocab": 0.3478
+  },
+  "files": [
+    {
+      "path": "files/predictions.jsonl",
+      "description": "Per-clip STT predictions on all 93 gold-92 clips at the sweep-selected (= default) config.",
+      "format": "jsonl"
+    }
+  ],
+  "categories": ["stt-evaluation", "entity-correction"],
+  "created_by_task": "t0019_parakeet_biasing_improvement",
+  "date_created": "2026-07-02"
+}

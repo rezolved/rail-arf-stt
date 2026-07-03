@@ -1,0 +1,23 @@
+{
+  "spec_version": 4,
+  "task_id": "t0019_parakeet_biasing_improvement",
+  "task_index": 19,
+  "name": "Parakeet-unified biasing improvement",
+  "short_description": "Improve GPU-PB biasing quality for parakeet-unified-en-0.6b: hyperparam sweep (alpha/context_score/depth_scaling), phonetic/misspelling phrase-list expansion, post-hoc stt_replacements fallback for known misses.",
+  "long_description_file": "task_description.md",
+  "status": "not_started",
+  "dependencies": [
+    "t0017_parakeet_biasing_buffer_replacement"
+  ],
+  "start_time": null,
+  "end_time": null,
+  "expected_assets": {
+    "predictions": 3,
+    "answer": 1
+  },
+  "task_types": [
+    "stt-benchmark-run",
+    "experiment-run"
+  ],
+  "source_suggestion": null
+}

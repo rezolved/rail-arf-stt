@@ -1,0 +1,15 @@
+{"alpha": 1.0, "depth_scaling": 2.0, "context_score": 1.0, "ea_dv_20clip": 0.6, "n_domain_mentions": 25, "empties": 0, "hallucinations": 0, "n_clips": 20}
+{"alpha": 1.0, "depth_scaling": 3.0, "context_score": 1.0, "ea_dv_20clip": 0.6, "n_domain_mentions": 25, "empties": 0, "hallucinations": 0, "n_clips": 20}
+{"alpha": 1.0, "depth_scaling": 4.0, "context_score": 1.0, "ea_dv_20clip": 0.6, "n_domain_mentions": 25, "empties": 0, "hallucinations": 0, "n_clips": 20}
+{"alpha": 1.5, "depth_scaling": 2.0, "context_score": 1.0, "ea_dv_20clip": 0.6, "n_domain_mentions": 25, "empties": 0, "hallucinations": 0, "n_clips": 20}
+{"alpha": 1.5, "depth_scaling": 3.0, "context_score": 1.0, "ea_dv_20clip": 0.6, "n_domain_mentions": 25, "empties": 0, "hallucinations": 0, "n_clips": 20}
+{"alpha": 1.5, "depth_scaling": 4.0, "context_score": 1.0, "ea_dv_20clip": 0.6, "n_domain_mentions": 25, "empties": 0, "hallucinations": 0, "n_clips": 20}
+{"alpha": 2.0, "depth_scaling": 2.0, "context_score": 1.0, "ea_dv_20clip": 0.6, "n_domain_mentions": 25, "empties": 0, "hallucinations": 0, "n_clips": 20}
+{"alpha": 2.0, "depth_scaling": 3.0, "context_score": 1.0, "ea_dv_20clip": 0.6, "n_domain_mentions": 25, "empties": 0, "hallucinations": 0, "n_clips": 20}
+{"alpha": 2.0, "depth_scaling": 4.0, "context_score": 1.0, "ea_dv_20clip": 0.68, "n_domain_mentions": 25, "empties": 0, "hallucinations": 0, "n_clips": 20}
+{"alpha": 2.5, "depth_scaling": 2.0, "context_score": 1.0, "ea_dv_20clip": 0.6, "n_domain_mentions": 25, "empties": 0, "hallucinations": 0, "n_clips": 20}
+{"alpha": 2.5, "depth_scaling": 3.0, "context_score": 1.0, "ea_dv_20clip": 0.68, "n_domain_mentions": 25, "empties": 0, "hallucinations": 0, "n_clips": 20}
+{"alpha": 2.5, "depth_scaling": 4.0, "context_score": 1.0, "ea_dv_20clip": 0.16, "n_domain_mentions": 25, "empties": 0, "hallucinations": 0, "n_clips": 20}
+{"alpha": 3.0, "depth_scaling": 2.0, "context_score": 1.0, "ea_dv_20clip": 0.6, "n_domain_mentions": 25, "empties": 0, "hallucinations": 0, "n_clips": 20}
+{"alpha": 3.0, "depth_scaling": 3.0, "context_score": 1.0, "ea_dv_20clip": 0.76, "n_domain_mentions": 25, "empties": 0, "hallucinations": 0, "n_clips": 20}
+{"alpha": 3.0, "depth_scaling": 4.0, "context_score": 1.0, "ea_dv_20clip": 0.6, "n_domain_mentions": 25, "empties": 0, "hallucinations": 0, "n_clips": 20}

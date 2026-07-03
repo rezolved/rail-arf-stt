@@ -1,0 +1,10 @@
+{
+  "ea_dv_before": 0.34782608695652173,
+  "ea_dv_after": 0.9565217391304348,
+  "wer_before": 0.11033099297893681,
+  "wer_after": 0.08525576730190572,
+  "ea_before": 0.234375,
+  "ea_after": 0.9375,
+  "n_replacements_applied": 27,
+  "n_clips": 93
+}

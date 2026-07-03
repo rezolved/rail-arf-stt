@@ -1,0 +1,28 @@
+{
+  "spec_version": "2",
+  "predictions_id": "parakeet-unified-biasing-best-hyperparam-phrase-expansion",
+  "name": "Parakeet-unified-en-0.6b — Best Hyperparam + Phonetic Phrase Expansion (Null Result) on Gold-92",
+  "short_description": "Per-clip STT predictions from the default GPU-PB config plus 15 additional correct-spelling surface-form phrase variants (REZOLVE, Re-zolve, Rezolv, brain-powa, etc.) targeting the observed 'Rezolve'->'Resolve' confusion. Byte-identical to the baseline predictions -- the boosting tree used none of the added variants.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "nvidia/parakeet-unified-en-0.6b via NeMo ASRModel, greedy_batch decoding, GPU-PB TurboBias boosting_tree with alpha=1.0/depth_scaling=2.0 (the sweep-selected config) and an 87-phrase list (72 casing variants + 15 surface-form variants from code/phrase_expansion.py).",
+  "dataset_ids": ["stt-benchmark-gold-92"],
+  "prediction_format": "jsonl",
+  "prediction_schema": "clip_id (string), transcript (string), reference_text (string), is_empty (bool), is_hallucination (bool)",
+  "instance_count": 93,
+  "metrics_at_creation": {
+    "wer_gold92": 0.1103,
+    "entity_accuracy_gold92": 0.2344,
+    "entity_accuracy_domain_vocab": 0.3478
+  },
+  "files": [
+    {
+      "path": "files/predictions.jsonl",
+      "description": "Per-clip STT predictions on all 93 gold-92 clips with the expanded 87-phrase boosting list.",
+      "format": "jsonl"
+    }
+  ],
+  "categories": ["stt-evaluation", "entity-correction"],
+  "created_by_task": "t0019_parakeet_biasing_improvement",
+  "date_created": "2026-07-02"
+}

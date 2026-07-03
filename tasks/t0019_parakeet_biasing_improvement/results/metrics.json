@@ -1,0 +1,92 @@
+{
+  "variants": [
+    {
+      "variant_id": "baseline",
+      "label": "Baseline biasing (alpha=1.0, depth_scaling=2.0, casing-only phrases)",
+      "dimensions": {
+        "approach": "baseline",
+        "alpha": 1.0,
+        "depth_scaling": 2.0,
+        "n_phrases": 72,
+        "n_clips": 93,
+        "status": "control"
+      },
+      "metrics": {
+        "wer_gold92": 0.1103,
+        "entity_accuracy_gold92": 0.2344,
+        "entity_accuracy_domain_vocab": 0.3478,
+        "latency_p50_seconds": 0.335
+      }
+    },
+    {
+      "variant_id": "hyperparam-alpha3.0-depth3.0",
+      "label": "Hyperparam sweep top-1 (alpha=3.0, depth_scaling=3.0) — rejected, WER regression",
+      "dimensions": {
+        "approach": "hyperparam-sweep",
+        "alpha": 3.0,
+        "depth_scaling": 3.0,
+        "n_phrases": 72,
+        "n_clips": 93,
+        "status": "rejected_wer_regression"
+      },
+      "metrics": {
+        "wer_gold92": 0.384,
+        "entity_accuracy_gold92": 0.637,
+        "entity_accuracy_domain_vocab": 0.638,
+        "latency_p50_seconds": null
+      }
+    },
+    {
+      "variant_id": "hyperparam-alpha2.0-depth4.0",
+      "label": "Hyperparam sweep top-2 (alpha=2.0, depth_scaling=4.0) — rejected, WER regression",
+      "dimensions": {
+        "approach": "hyperparam-sweep",
+        "alpha": 2.0,
+        "depth_scaling": 4.0,
+        "n_phrases": 72,
+        "n_clips": 93,
+        "status": "rejected_wer_regression"
+      },
+      "metrics": {
+        "wer_gold92": 0.31,
+        "entity_accuracy_gold92": 0.344,
+        "entity_accuracy_domain_vocab": 0.464,
+        "latency_p50_seconds": null
+      }
+    },
+    {
+      "variant_id": "phrase-expansion",
+      "label": "Best hyperparam (=baseline) + phonetic/surface-form phrase expansion",
+      "dimensions": {
+        "approach": "phrase-expansion",
+        "alpha": 1.0,
+        "depth_scaling": 2.0,
+        "n_phrases": 87,
+        "n_clips": 93,
+        "status": "null_result_no_change"
+      },
+      "metrics": {
+        "wer_gold92": 0.1103,
+        "entity_accuracy_gold92": 0.2344,
+        "entity_accuracy_domain_vocab": 0.3478,
+        "latency_p50_seconds": 0.335
+      }
+    },
+    {
+      "variant_id": "posthoc-replacement-check",
+      "label": "Post-hoc stt_replacements feasibility check (text-layer, not a model re-run)",
+      "dimensions": {
+        "approach": "posthoc-replacement",
+        "n_replacements_applied": 27,
+        "n_clips": 93,
+        "status": "feasibility_estimate_not_production_wired"
+      },
+      "metrics": {
+        "wer_gold92": 0.085,
+        "entity_accuracy_gold92": 0.938,
+        "entity_accuracy_domain_vocab": 0.957,
+        "latency_p50_seconds": 0.335
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "spec_version": "2",
+  "answer_id": "parakeet-unified-biasing-improvement",
+  "question": "How can GPU-PB biasing quality for parakeet-unified-en-0.6b on the gold-92 benchmark be improved beyond the t0017 biased baseline (EA-DV 34.8%), and which approach should ship to brainpowa-realtime-api production?",
+  "short_title": "Parakeet biasing improvement: hyperparam sweep vs phrase expansion vs post-hoc replacement",
+  "short_answer_path": "short_answer.md",
+  "full_answer_path": "full_answer.md",
+  "categories": [
+    "entity-correction",
+    "stt-evaluation",
+    "confidence-routing"
+  ],
+  "answer_methods": [
+    "code-experiment"
+  ],
+  "source_paper_ids": [],
+  "source_urls": [],
+  "source_task_ids": [
+    "t0017_parakeet_biasing_buffer_replacement",
+    "t0019_parakeet_biasing_improvement"
+  ],
+  "confidence": "high",
+  "created_by_task": "t0019_parakeet_biasing_improvement",
+  "date_created": "2026-07-02"
+}
