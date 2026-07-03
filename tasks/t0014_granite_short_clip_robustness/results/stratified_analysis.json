@@ -256,7 +256,7 @@
         "action_critical_wer": 0.0477,
         "intent_preservation": 1.0,
         "wrong_action_rate": 0.0,
-        "ci_note": "n=4 — BCa CI unreliable at this sample size; raw metrics only"
+        "ci_note": "n=4 \u2014 BCa CI unreliable at this sample size; raw metrics only"
       },
       "parakeet_tdt": {
         "label": "Parakeet TDT 0.6b",
@@ -271,7 +271,7 @@
         "action_critical_wer": 0.0982,
         "intent_preservation": 0.5,
         "wrong_action_rate": 0.25,
-        "ci_note": "n=4 — BCa CI unreliable at this sample size; raw metrics only"
+        "ci_note": "n=4 \u2014 BCa CI unreliable at this sample size; raw metrics only"
       },
       "granite_speech": {
         "label": "Granite 4.1 2B",
@@ -286,7 +286,7 @@
         "action_critical_wer": 0.0352,
         "intent_preservation": 1.0,
         "wrong_action_rate": 0.0,
-        "ci_note": "n=4 — BCa CI unreliable at this sample size; raw metrics only"
+        "ci_note": "n=4 \u2014 BCa CI unreliable at this sample size; raw metrics only"
       }
     }
   }
