@@ -1,0 +1,24 @@
+{
+  "spec_version": 4,
+  "task_id": "t0022_gpu_pb_diagnostic",
+  "task_index": 22,
+  "name": "GPU-PB biasing diagnostic — parakeet-unified brand recognition failure",
+  "short_description": "Determine whether GPU-PB failure on Rezolve/brainpowa is a decoding/config issue or a fundamental acoustic/tokenization problem. Produces tokenization probe, 4-config decoding matrix, per-brand verdict, param sweep, and a single config-fixable vs fundamental verdict.",
+  "long_description_file": "task_description.md",
+  "status": "not_started",
+  "dependencies": [
+    "t0019_parakeet_biasing_improvement",
+    "t0021_parakeet_finetune_vs_biasing"
+  ],
+  "start_time": null,
+  "end_time": null,
+  "expected_assets": {
+    "predictions": 4,
+    "answer": 1
+  },
+  "task_types": [
+    "stt-benchmark-run",
+    "diagnostic"
+  ],
+  "source_suggestion": null
+}
