@@ -1,0 +1,1 @@
+{"label": "Unified malsd_batch cs=3.0/ds=0.5/α=1.5 (recommended)", "n_total": 93, "n_brand": 35, "n_neutral": 58, "brand_exact": 20, "brand_exact_rate": 0.571, "brand_phonetic": 13, "brand_garbage": 2, "brand_wer": 0.108, "neutral_wer": 0.116, "overall_wer": 0.113}

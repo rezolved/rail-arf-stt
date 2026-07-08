@@ -1,0 +1,9 @@
+{
+  "task_id": "t0023",
+  "title": "TDT vs Unified: GPU-PB biasing comparison on gold-92",
+  "status": "planned",
+  "depends_on": ["t0022"],
+  "machine": "gpu-azure",
+  "conda_env": "stt",
+  "created": "2026-07-08"
+}

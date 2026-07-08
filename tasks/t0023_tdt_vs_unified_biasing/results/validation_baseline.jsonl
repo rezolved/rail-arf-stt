@@ -1,0 +1,1 @@
+{"label": "TDT greedy_batch cs=1.0/ds=2.0/α=1.0 (current prod)", "n_total": 93, "n_brand": 35, "n_neutral": 58, "brand_exact": 0, "brand_exact_rate": 0.0, "brand_phonetic": 30, "brand_garbage": 5, "brand_wer": 0.203, "neutral_wer": 0.145, "overall_wer": 0.167}
