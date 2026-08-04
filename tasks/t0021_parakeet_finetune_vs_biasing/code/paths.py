@@ -14,6 +14,9 @@ GOLD92_AUDIO_DIR = GOLD92_DATASET_DIR / "audio"
 GOLD92_GROUND_TRUTH = GOLD92_DATASET_DIR / "ground_truth.jsonl"
 GOLD92_GOLD_SET = GOLD92_DATASET_DIR / "gold_set.jsonl"
 
+CLEAN_EVAL_DIR: Path = DATA_DIR / "clean_eval"
+CLEAN_EVAL_AUDIO_DIR: Path = DATA_DIR / "clean_eval_audio"
+
 # Finetuned checkpoint (on gpu-azure)
 FINETUNED_NEMO = Path("/mnt/finetune-checkpoints/parakeet-unified-finetuned-best.nemo")
 

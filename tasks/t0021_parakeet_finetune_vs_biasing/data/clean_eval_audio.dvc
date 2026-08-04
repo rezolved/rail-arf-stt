@@ -1,0 +1,6 @@
+outs:
+- md5: 769dc2d4e85bb56a4d7d17dcb1657a19.dir
+  size: 2134956
+  nfiles: 21
+  hash: md5
+  path: clean_eval_audio

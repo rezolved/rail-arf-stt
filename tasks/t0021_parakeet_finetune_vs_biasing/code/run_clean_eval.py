@@ -40,6 +40,7 @@ USE_BPE_DROPOUT: bool = True
 HF_UNIFIED: str = "nvidia/parakeet-unified-en-0.6b"
 
 CLEAN_EVAL_DIR: Path = DATA_DIR / "clean_eval"
+CLEAN_EVAL_AUDIO_DIR: Path = DATA_DIR / "clean_eval_audio"
 MANIFEST: Path = CLEAN_EVAL_DIR / "manifest.jsonl"
 OUT_BIASED: Path = DATA_DIR / "clean_eval_biased.jsonl"
 OUT_FINETUNED: Path = DATA_DIR / "clean_eval_finetuned.jsonl"
@@ -163,7 +164,7 @@ def run_eval(
 
     with out_path.open("w") as fh:
         for i, clip in enumerate(clips):
-            audio_path = str(CLEAN_EVAL_DIR / clip["audio_filename"])
+            audio_path = str(CLEAN_EVAL_AUDIO_DIR / clip["audio_filename"])
             ref = clip["reference_text"]
 
             try:
