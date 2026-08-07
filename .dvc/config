@@ -3,3 +3,4 @@
 ['remote "azure"']
     url = azure://ml-dvc-datasets/datasets/rail-arf-stt
     account_name = mldvcstorerezolve
+    exclude_managed_identity_credential = true
