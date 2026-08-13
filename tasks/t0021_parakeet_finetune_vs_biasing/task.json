@@ -5,7 +5,7 @@
   "name": "Parakeet fine-tune vs biasing — parakeet-unified on gold-92",
   "short_description": "Compare parakeet-unified-en-0.6b with TurboBias (reused from t0015) against finetuned parakeet-unified-en-0.6b to decide which domain-adaptation strategy maximises EA-DV.",
   "long_description_file": "task_description.md",
-  "status": "not_started",
+  "status": "completed",
   "dependencies": [],
   "start_time": null,
   "end_time": null,
