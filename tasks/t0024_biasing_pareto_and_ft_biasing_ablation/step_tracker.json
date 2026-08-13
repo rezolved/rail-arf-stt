@@ -77,9 +77,9 @@
       "step": 9,
       "name": "implementation",
       "description": "Part A: compute Pareto frontiers and plots from the existing sweep JSONLs (no GPU). Part B: run fine-tuned + malsd_batch biased inference on the 21-clip clean eval set on gpu-azure and score it.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-08-13T10:53:51Z",
-      "completed_at": null,
+      "completed_at": "2026-08-13T11:06:53Z",
       "log_file": "logs/steps/009_implementation/"
     },
     {
