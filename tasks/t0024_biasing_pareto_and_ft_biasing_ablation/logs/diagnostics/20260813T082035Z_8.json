@@ -1,0 +1,24 @@
+{
+  "spec_version": "1",
+  "task_id": "t0024_biasing_pareto_and_ft_biasing_ablation",
+  "step_number": 8,
+  "produced_at": "2026-08-13T08:20:35Z",
+  "mode": "ghosted",
+  "engine_state": "dead",
+  "vm_present": false,
+  "last_observed_progress": {
+    "timestamp": "2026-08-13T08:01:28Z",
+    "source": "most recent file mtime under logs/steps/ is step 007_planning/step_log.md, which predates step 8's own started_at (2026-08-13T08:03:06Z) -- zero artifacts exist under logs/steps/008_setup-machines/ despite ~30 min elapsed"
+  },
+  "ssh_report": null,
+  "non_vm_report": {
+    "recent_log_path": "tasks/t0024_biasing_pareto_and_ft_biasing_ablation/logs/steps/007_planning/step_log.md",
+    "recent_log_mtime_utc": "2026-08-13T08:01:28Z",
+    "recent_log_tail": "N/A -- no log file exists under 008_setup-machines/ to tail",
+    "relevant_processes": [],
+    "local_tmux_sessions": ["aef", "new", "serving", "stt", "t0050", "t0052", "t0056", "t0058", "t0058_1", "t0059", "temp", "tmp"]
+  },
+  "likely_cause": "The step-8 step-executor agent (and the nested /setup-remote-machine subagent it spawned) yielded control after reportedly starting a VM-start wait (per its own status message: 'still waiting on the VM start to complete (up to 8 minutes) via its own background monitor'), but no process from that lineage is alive locally (ListAgents shows both spawned agents as 'completed', not 'running'), and no artifact (machine_log.json, step_log.md, or any file under logs/steps/008_setup-machines/) was ever persisted to disk. This indicates the agent process terminated without completing the step or leaving a durable resume mechanism (no paused_waiting status, no watchdog) -- the 'background monitor' it referenced did not survive past its own process lifetime. No local tmux session appears tied to this task (the 'stt' session predates step 8's start_time by ~2 hours and is a pre-existing leftover). Cannot rule out that an `az ml compute start` (or equivalent) call was actually issued to one of the shared reserved machines in project/azure_vm.json before the process died -- this cannot be confirmed or denied without SSH access to the specific host, which was never recorded anywhere on disk.",
+  "recoverable": "yes",
+  "recommended_action": "intervention_required"
+}

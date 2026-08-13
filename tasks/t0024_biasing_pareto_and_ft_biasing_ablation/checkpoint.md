@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0024_biasing_pareto_and_ft_biasing_ablation"
-updated_at: "2026-08-13T07:48:00Z"
-completed_steps: 9
-next_step_number: 8
-next_step_id: "setup-machines"
+updated_at: "2026-08-13T10:55:00Z"
+completed_steps: 8
+next_step_number: 9
+next_step_id: "implementation"
 ---
 # Task Objective
 
@@ -98,6 +98,18 @@ caught and corrected a data-provenance bug — the task-text-quoted fine-tuned-o
 existing raw per-clip data, not new inference) is ≈0.0536s, and the plan requires both numbers be
 reported with provenance labels rather than silently substituted.
 
+### Step 8 — setup-machines
+
+Provisioned and verified `FT-MC` from the Azure ML H100 pool (SSH, 2x H100 NVL, CUDA 12.2 all
+confirmed; repo/branch rsynced). Part B's preconditions — the t0021 fine-tuned checkpoint
+(`/mnt/finetune-checkpoints/parakeet-unified-finetuned-best.nemo`) and the `stt` conda env — were
+not present on FT-MC or locatable anywhere reachable (3 of 4 pool entries no longer exist in Azure;
+the VM that actually ran t0021 is unknown and unrecoverable through this project's pool). User was
+consulted directly and decided: defer Part B, tear down now, proceed with Part A only in step 9. No
+explicit teardown call was needed — FT-MC's own idle-shutdown auto-stopped it (~$14.06 total, no
+runaway cost). Full detail in
+`tasks/t0024_biasing_pareto_and_ft_biasing_ablation/intervention/checkpoint_not_found.md`.
+
 * * *
 
 ## Cross-Step Decisions
@@ -162,18 +174,39 @@ reported with provenance labels rather than silently substituted.
     (`assets/predictions/parakeet-finetuned-malsd-biased-clean21/`) and 1 shared `answer` asset
     (`assets/answer/production-decoding-and-biasing-ft-verdict/`) covering both parts' verdicts.
 
+* **Part B deferred, user-approved (step 8)**: `FT-MC` (the only reachable pool entry — the other 3
+  `project/azure_vm.json` entries no longer exist in Azure) was provisioned and fully verified
+  (SSH/GPU/CUDA), but neither the t0021 fine-tuned checkpoint
+  (`/mnt/finetune-checkpoints/parakeet-unified-finetuned-best.nemo`) nor the `stt` conda env exist
+  on it, and neither could be located on any reachable machine (see
+  `intervention/checkpoint_not_found.md`). This is a data-provenance gap, not a machine-selection
+  problem — the VM that actually ran t0021 no longer exists in the pool. **User decision: defer Part
+  B, tear down FT-MC, proceed with Part A only this round.** Step 9 (`implementation`) MUST run
+  **Part A only**: pure local analysis of `tasks/t0022_gpu_pb_diagnostic/results/param_sweep.jsonl`
+  and `tasks/t0023_tdt_vs_unified_biasing/results/tdt_sweep.jsonl` (no GPU, no remote machine). Do
+  **not** attempt Part B and do **not** re-search for the checkpoint — that search is exhausted and
+  documented. Whatever step 9 produces for the `answer`/`predictions` assets and `results/` must
+  reflect Part-A-only scope (or explicitly mark Part B fields as not-run/deferred) rather than
+  fabricating Part B output.
+
 * * *
 
 ## Next Step Notes
 
-Step 7 (`planning`) is complete. `plan/plan.md` exists, is self-contained, and passes
-`verify_plan.py` with zero errors and zero warnings (independently re-verified by this
-step-executor, not just the planning subagent's claim). Per `step_tracker.json`, the next
-step-executor is step 8, `setup-machines`: provision one GPU machine from the Azure ML H100 pool
-(`project/azure_vm.json`) per `plan/plan.md`'s `## Remote Machines` section, following
-`arf/skills/setup-remote-machine/SKILL.md` through Phase 5 (Prepare the Environment) — this includes
-syncing the repo/branch onto the VM and running `dvc pull` for
-`tasks/t0021_parakeet_finetune_vs_biasing/data/clean_eval_audio` (21 WAV clips, DVC-tracked, not
-copied into this task). Remember the Cross-Step Decisions above (this step's entry has the exact
-frontier cells, script names, and GPU pool/cost numbers step 9 `implementation` will need) plus the
-dependency-metadata caveat (steps 2/6) and the `apply_boosting()` → `apply_malsd_boost()` swap.
+Step 8 (`setup-machines`) is complete. `FT-MC` was provisioned, SSH/GPU (2x H100 NVL)/CUDA verified,
+repo synced — but Part B's required checkpoint and conda env do not exist on it or anywhere
+reachable (see `intervention/checkpoint_not_found.md` for the full search and the stale-pool-config
+/ DVC-auth findings, which are infra issues for `main`, not this branch). The user was consulted and
+explicitly decided: tear down now (already done — FT-MC auto-stopped via its own idle-shutdown, no
+runaway cost, ~$14.06 total, see `machine_log.json`), defer Part B, and proceed with **Part A only**
+this round. Step 9 (`implementation`) must NOT provision a machine, must NOT search for the
+checkpoint again, and must NOT run Part B. Do the Part A work exactly as scoped in `plan/plan.md`
+(Pareto frontier computation + charts from `t0022`/`t0023`'s existing sweep JSONLs, TDT selected
+cell `cs=2.5/ds=0.5/α=2.0`, unified selected cell `cs=3.0/ds=0.5/α=1.5`), and make sure the `answer`
+asset and `results/` output clearly state that Part B is deferred pending human resolution of the
+checkpoint location, rather than silently omitting it. Step 10 (`teardown`) still runs next after
+`implementation` per the normal step order — it should find FT-MC already destroyed and just
+reconcile `results/costs.json` / `results/remote_machines_used.json` against `machine_log.json`.
+Remember the Cross-Step Decisions above (this step's entry has the exact frontier cells, script
+names, and GPU pool/cost numbers step 9 `implementation` will need) plus the dependency-metadata
+caveat (steps 2/6) and the `apply_boosting()` → `apply_malsd_boost()` swap.

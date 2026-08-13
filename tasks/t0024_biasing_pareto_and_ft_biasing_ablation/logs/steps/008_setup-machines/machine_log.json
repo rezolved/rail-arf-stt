@@ -1,0 +1,85 @@
+[
+  {
+    "spec_version": "5",
+    "provider": "azure_ml",
+    "instance_id": "FT-MC",
+    "vm_name": "FT-MC",
+    "hourly_cost_usd": 13.96,
+    "started_vm": true,
+    "selected_offer": {
+      "vm_name": "FT-MC",
+      "priority": 4,
+      "gpu": "H100 NVL",
+      "gpu_count": 2,
+      "gpu_ram_gb": 95.83,
+      "cpu_ram_gb": 629.0,
+      "disk_gb": 119.0,
+      "image": "25.07.12",
+      "region": "eastus2",
+      "hourly_cost_usd": 13.96
+    },
+    "selection_rationale": "Priority walk FT-NC80-v3 (1) -> FT-NC80-v1 (2) -> FT-NC80-v2 (3) -> FT-MC (4) per project/azure_vm.json. Entries 1-3 do not exist under workspace=finetuning-workspace/resource_group=rezolve-AI ('az ml compute list' confirms absent; 'az ml compute show' returns Not Found for each) -- pool config is stale, apparently renamed/decommissioned since the June 2026 copy from rail-arf-finetuning. Bypassed the dead entries via 'azure_ml_vm acquire --vm-name FT-MC' (FT-MC is still a legitimate declared pool entry, not an out-of-pool substitution). First acquire attempt (--no-wait start) hit vm_start_timeout at 480s; a direct blocking 'az ml compute start' subsequently brought FT-MC to Running and SSH became reachable. GPU/CUDA verified successfully. BLOCKER (unresolved, escalated to user via coordinator): FT-MC has no 'stt' conda env and the checkpoint /mnt/finetune-checkpoints/parakeet-unified-finetuned-best.nemo referenced by t0021/plan.md is absent -- full filesystem search found zero .nemo files anywhere on this VM, and /mnt is confirmed to be the ephemeral local disk (EPHEMERAL_DISK_DATALOSS_WARNING.txt present, freshly created at this boot). t0021's results doc only records a generic 'gpu-azure' label, not which specific pool VM it ran on; that VM is one of the 3 now-missing entries. Independently corroborated by the coordinator: checkpoint is not DVC-tracked in this repo (only clean_eval_audio.dvc is) and not found via grep in rail-benchmarks or rail-arf-finetuning task folders either -- this looks like a genuine data-provenance gap requiring a human/finetuning-team decision, not a machine-selection problem. User decision: defer Part B, proceed with Part A only; FT-MC's idle-shutdown safety net auto-stopped it before any experiment ran.",
+    "disk_gb": 119,
+    "label": "rail-arf-stt/t0024_biasing_pareto_and_ft_biasing_ablation",
+    "ssh_host": "FT-MC",
+    "ssh_port": 50000,
+    "gpu_verified": "NVIDIA H100 NVL",
+    "cuda_version": "12.2",
+    "created_at": "2026-08-13T08:03:06Z",
+    "ready_at": "2026-08-13T08:33:00Z",
+    "destroyed_at": "2026-08-13T09:32:38Z",
+    "total_duration_hours": 1.0075,
+    "total_cost_usd": 14.06,
+    "search_started_at": "2026-08-13T08:03:06Z",
+    "total_provisioning_seconds": 1794.0,
+    "failed_attempts": [
+      {
+        "vm_name": "FT-NC80-v3",
+        "instance_id": null,
+        "gpu": "H100",
+        "failure_reason": "Azure resource not found under workspace=finetuning-workspace, resource_group=rezolve-AI ('az ml compute show' -> 'Operation returned an invalid status Not Found'; not present in 'az ml compute list'). SSH to host alias FT-NC80-v3 (20.65.40.221:50000) also connection-timed-out. Pool config in project/azure_vm.json is stale for this entry.",
+        "failure_phase": "search",
+        "duration_seconds": 0.0,
+        "wasted_cost_usd": 0.0,
+        "timestamp": "2026-08-13T08:10:00Z"
+      },
+      {
+        "vm_name": "FT-NC80-v1",
+        "instance_id": null,
+        "gpu": "H100",
+        "failure_reason": "Azure resource not found under workspace=finetuning-workspace, resource_group=rezolve-AI (not present in 'az ml compute list'). SSH to host alias FT-NC80-v1 (20.242.41.64:50000) also connection-timed-out. Pool config in project/azure_vm.json is stale for this entry.",
+        "failure_phase": "search",
+        "duration_seconds": 0.0,
+        "wasted_cost_usd": 0.0,
+        "timestamp": "2026-08-13T08:10:00Z"
+      },
+      {
+        "vm_name": "FT-NC80-v2",
+        "instance_id": null,
+        "gpu": "H100",
+        "failure_reason": "Azure resource not found under workspace=finetuning-workspace, resource_group=rezolve-AI (not present in 'az ml compute list'). SSH to host alias FT-NC80-v2 (20.110.53.175:50000) also connection-timed-out. Pool config in project/azure_vm.json is stale for this entry.",
+        "failure_phase": "search",
+        "duration_seconds": 0.0,
+        "wasted_cost_usd": 0.0,
+        "timestamp": "2026-08-13T08:10:00Z"
+      },
+      {
+        "vm_name": "FT-MC",
+        "instance_id": "FT-MC",
+        "gpu": "H100",
+        "failure_reason": "First acquire attempt (azure_ml_vm acquire --vm-name FT-MC, which issues 'az ml compute start --no-wait') timed out: VM did not reach Running state within 480s (exit code 75, pool_busy.md written). A subsequent direct blocking 'az ml compute start' (outside the library, ~9 more minutes) succeeded in bringing it to Running.",
+        "failure_phase": "vm_start_timeout",
+        "duration_seconds": 480.0,
+        "wasted_cost_usd": 0.0,
+        "timestamp": "2026-08-13T08:23:00Z"
+      }
+    ],
+    "checkpoint_path": null,
+    "heartbeat_path": null,
+    "smoke_test_output": null,
+    "blocker_status": "RESOLVED (via user-approved deferral) -- Part B of this task is deferred pending a human locating the t0021 checkpoint; Part A (local JSONL analysis, no GPU) is unaffected and proceeds in step 9. Machine was ready from an infra standpoint (SSH/GPU/CUDA verified, repo+branch rsynced to ~/rail-arf-stt-t0024) but the task's REQUIRED preconditions for Part B (existing 'stt' conda env, existing fine-tuned .nemo checkpoint) were never present on this VM and could not be located anywhere reachable -- no experiment ran. See tasks/t0024_biasing_pareto_and_ft_biasing_ablation/intervention/checkpoint_not_found.md for full detail and the pool-config staleness / DVC-auth findings.",
+    "teardown_status": "FT-MC's own Azure-side idle-shutdown safety net (idle_time_before_shutdown=60min) auto-stopped the VM at destroyed_at (last_operation: Stop, trigger=IdleShutdown) before any explicit teardown call was made. No task lock was ever placed on FT-MC (the azure_ml_vm.py 'acquire' library call itself never returned success -- see failed_attempts -- the VM was brought up via a manual 'az ml compute start' outside the library), so there was no lock for 'azure_ml_vm.py teardown' to release and no --keep-running override was ever in effect; the VM was left running only for as long as the idle-shutdown window allowed, not indefinitely.",
+    "repo_sync_status": "DONE -- rsync'd working tree (excluding .venv, .git, __pycache__) from local worktree to FT-MC:~/rail-arf-stt-t0024/ (2238 files); tasks/t0021_parakeet_finetune_vs_biasing, t0022_gpu_pb_diagnostic, t0023_tdt_vs_unified_biasing, t0024_biasing_pareto_and_ft_biasing_ablation all present and resolve identically to local checkout. NOTE: repo synced via rsync, not git clone, since dvc pull required .dvc pointer files present on disk and a plain (uncommitted) git repo was 'git init'-ed remotely purely to satisfy dvc's SCM detection -- no git history/credentials were transferred.",
+    "dvc_pull_status": "BLOCKED (separate from the checkpoint blocker) -- 'dvc pull tasks/t0021_parakeet_finetune_vs_biasing/data/clean_eval_audio' failed with AuthenticationFailed. Root cause: copied .dvc/config.local (from the local main-repo checkout, containing a legacy connection_string) is stale/rejected by Azure, and per docs/dvc-data-workflow.md the current default auth path is 'az login' (AzureCliCredential via DefaultAzureCredential) -- but FT-MC has no active az login session, no managed identity ('az login --identity' -> 'Identity not found'), and no AZURE_CLIENT_ID/SECRET service-principal env vars. Needs either an interactive 'az login' (device code) run once on FT-MC by a human, or a fresh valid connection string from the team vault placed in FT-MC's .dvc/config.local. The 21 WAV clips were NOT pulled onto the VM as a result (ls .../clean_eval_audio/*.wav would print 0, not 21)."
+  }
+]

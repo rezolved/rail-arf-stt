@@ -68,8 +68,8 @@
       "step": 8,
       "name": "setup-machines",
       "description": "Provision gpu-azure for the single Part B inference run reusing the existing t0021 fine-tuned checkpoint (no training).",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-08-13T08:03:06Z",
       "completed_at": null,
       "log_file": "logs/steps/008_setup-machines/"
     },

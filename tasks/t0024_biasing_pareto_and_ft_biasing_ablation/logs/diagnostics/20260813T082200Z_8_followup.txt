@@ -1,0 +1,8 @@
+Follow-up to the 20260813T082035Z_8.json report: a task-notification arrived immediately after
+that report was written, from a nested subagent (spawned by the step-8 step-executor for the
+/setup-remote-machine skill) reporting "Waiting for the FT-MC acquire to complete." This revises
+engine_state from "dead" to "alive but between async wait-cycles" -- the work is genuinely in
+flight (FT-NC80-v3/v1/v2 were unreachable, now attempting FT-MC, 4th in priority order per
+project/azure_vm.json). Coordinator resumed this subagent directly via SendMessage rather than
+spawning a duplicate step-8 executor, to avoid double-provisioning / colliding claims on the shared
+machine pool.
