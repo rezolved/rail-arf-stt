@@ -122,8 +122,8 @@
       "step": 14,
       "name": "suggestions",
       "description": "Write suggestions.json for follow-up work.",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-08-13T11:19:12Z",
       "completed_at": null,
       "log_file": "logs/steps/014_suggestions/"
     },

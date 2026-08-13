@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0024_biasing_pareto_and_ft_biasing_ablation"
-updated_at: "2026-08-13T11:16:31Z"
-completed_steps: 13
-next_step_number: 14
-next_step_id: "suggestions"
+updated_at: "2026-08-13T11:23:29Z"
+completed_steps: 14
+next_step_number: 15
+next_step_id: "reporting"
 ---
 # Task Objective
 
@@ -154,6 +154,23 @@ risk, not the total-unreachability provenance failure that actually occurred. Bo
 with descriptions. `verify_task_results.py` and `verify_task_metrics.py` both passed with 0 errors/0
 warnings.
 
+### Step 14 — suggestions
+
+Spawned a subagent to execute `/generate-suggestions`, briefed (without restricting the skill's own
+process) with this task's own most important follow-up findings. Subagent read all task context,
+deduplicated against 28 uncovered suggestions and 23 tasks (no overlap found), and wrote
+`results/suggestions.json` (`spec_version: "2"`, 7 candidates), independently re-verified by this
+step-executor (`verify_suggestions.py` — PASSED, 0 errors/0 warnings) and by direct read of the file
+content, not just the subagent's self-report: **S-0024-01** (high) locate/regenerate the t0021
+fine-tuned checkpoint and complete the deferred Part B ablation; **S-0024-02** (medium) refresh the
+stale `project/azure_vm.json` GPU VM pool (3 of 4 listed VMs no longer exist); **S-0024-03**
+(medium) fix the DVC auth gap hit on freshly-provisioned machines; **S-0024-04** (high) ship Part
+A's Pareto-frontier-recommended decoding config to `brainpowa-realtime-api` production;
+**S-0024-05** (low) promote the repeatedly copy-pasted boosting/scoring helpers into a registered
+library asset; **S-0024-06** (low) backfill stale t0021/t0022/t0023 `task.json` metadata;
+**S-0024-07** (medium) grow the 21-clip clean-eval set for statistical power on future
+fine-tune-vs-biasing ablations.
+
 * * *
 
 ## Cross-Step Decisions
@@ -244,21 +261,12 @@ warnings.
 
 ## Next Step Notes
 
-Step 12 (`results`) is complete. All `results/` files now exist and both verificators
-(`verify_task_results.py`, `verify_task_metrics.py`) passed with 0 errors/0 warnings:
-`results_summary.md`, `results_detailed.md` (both PNGs embedded with descriptions, the required
-"Plan assumption check" documented under `## Analysis`, and a full `## Task Requirement Coverage`
-table for all 27 `REQ-*` items — Part A `REQ-1`-`REQ-11` Done, Part B `REQ-12`-`REQ-21` Not done,
-`REQ-22`-`REQ-24` Done, `REQ-25`-`REQ-27` Partial), `costs.json` (`total_cost_usd: 14.06`, the real
-sunk FT-MC cost from the deferred Part B attempt, documented honestly via a `note`), and
-`remote_machines_used.json` (one `FT-MC` entry). `metrics.json` remains `{}` (confirmed no
-registered gold-92-scoped metric applies to Part A's 45-clip-subset re-analysis). Step 13
-(`compare-literature`) is already marked skipped. Step 14 (`suggestions`) runs next — it should
-propose a follow-up task to locate or regenerate the t0021 fine-tuned checkpoint (check whether the
-VM that trained it, one of `FT-NC80-v1/v2/v3`, was renamed rather than deleted, or whether any
-export/backup exists) so Part B (`REQ-12`-`REQ-21`) can finally be completed, and separately flag
-the two infra issues surfaced but explicitly NOT fixed on this task's branch (per
-`intervention/checkpoint_not_found.md`): the stale `project/azure_vm.json` pool config (3 of 4
-declared VMs no longer exist, costing ~24 minutes per priority walk) and the DVC auth failure on
-`FT-MC` (`az login` / managed identity both unavailable). No new GPU provisioning, no checkpoint
-search — those are exhausted and out of scope for every remaining step in this task.
+Step 14 (`suggestions`) is complete: `results/suggestions.json` exists (7 candidates,
+`spec_version: "2"`) and `verify_suggestions.py` passed with 0 errors/0 warnings. Step 15
+(`reporting`) runs next — it should run all relevant verificators (`verify_task_file.py`,
+`verify_task_dependencies.py` — expect the known pre-existing false negatives on
+t0021/t0022/t0023 documented under `## Cross-Step Decisions` above, `verify_suggestions.py`,
+`verify_task_metrics.py`, `verify_task_results.py`, `verify_task_folder.py`, `verify_logs.py`, and
+the `answer` asset verificator), capture session transcripts, and mark the task complete. No new
+GPU provisioning, no checkpoint search, no suggestion regeneration — all exhausted/complete for this
+task.
