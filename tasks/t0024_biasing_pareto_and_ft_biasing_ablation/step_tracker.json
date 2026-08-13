@@ -50,9 +50,9 @@
       "step": 6,
       "name": "research-code",
       "description": "Review t0021/run_finetuned.py, t0021/run_clean_eval.py (apply_boosting, scoring), and t0022/t0023 sweep code so Part A's frontier analysis and Part B's inference run reuse the exact same scoring method and reference the correct checkpoint/config paths.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-08-13T07:35:51Z",
-      "completed_at": null,
+      "completed_at": "2026-08-13T07:43:37Z",
       "log_file": "logs/steps/006_research-code/"
     },
     {
