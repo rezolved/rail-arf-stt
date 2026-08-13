@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0024_biasing_pareto_and_ft_biasing_ablation"
-updated_at: "2026-08-13T07:31:13Z"
-completed_steps: 6
-next_step_number: 3
-next_step_id: "init-folders"
+updated_at: "2026-08-13T07:34:08Z"
+completed_steps: 7
+next_step_number: 6
+next_step_id: "research-code"
 ---
 # Task Objective
 
@@ -27,6 +27,16 @@ step with no research output.
 metadata in t0021/t0022/t0023, not missing data. Direct inspection confirmed the required files
 (t0022 `param_sweep.jsonl`, t0023 `tdt_sweep.jsonl`, t0021 clean_eval manifest + DVC audio) are
 present and readable. See `logs/steps/002_check-deps/deps_report.json` for the full record.
+
+### Step 3 — init-folders
+
+Ran `init_task_folders` (created `plan/`, `research/`, `results/`, `results/images/`,
+`corrections/`, `intervention/`, `code/`, `logs/commands/`, `logs/searches/`, `logs/sessions/`,
+`logs/steps/`, `assets/predictions/`, `assets/answer/` with `.gitkeep` files, per this task's own
+`expected_assets`) and populated the gitignored aggregator cache
+(`tasks/t0024_biasing_pareto_and_ft_biasing_ablation/ctx/{task_types,costs,tasks,metrics,suggestions}.json`)
+for downstream subagents. `logs/steps/003_init-folders/folders_created.txt` records the created
+dirs.
 
 ### Step 4 — research-papers
 
@@ -71,9 +81,13 @@ fine-tune/biasing conditions against each other, not against published external 
 
 ## Next Step Notes
 
-Step 2 (`check-deps`) is complete. Dependencies are functionally satisfied — the sweep JSONLs and
-t0021 clean-eval manifest/audio are present and readable, verified by direct file inspection since
-the metadata-based verificator false-negatives on all three deps (see Cross-Step Decisions). The
-next step-executor (`init-folders`, step 3) should proceed normally: run `init_task_folders`, which
-reads `expected_assets` from this task's own `task.json` (unaffected by the dependency metadata
-issue) to scaffold the folder structure.
+Step 3 (`init-folders`) is complete. The mandatory task folder structure and the two
+`expected_assets` subdirectories (`assets/predictions/`, `assets/answer/`) exist with `.gitkeep`
+files, and the gitignored `ctx/` aggregator cache is populated. Steps 4 and 5 (`research-papers`,
+`research-internet`) are already marked `skipped` in `step_tracker.json` per the step-1 plan. The
+next step-executor is step 6, `research-code`: review `t0021/run_finetuned.py`,
+`t0021/run_clean_eval.py` (`apply_boosting`, scoring), and the t0022/t0023 sweep code so Part A's
+frontier analysis and Part B's inference run reuse the exact same scoring method and reference the
+correct checkpoint/config paths. Remember the dependency-metadata caveat above when locating
+t0021/t0022/t0023 files — do not rely on `aggregate_tasks`/`verify_task_dependencies` output for
+those three IDs; read files directly on disk.
