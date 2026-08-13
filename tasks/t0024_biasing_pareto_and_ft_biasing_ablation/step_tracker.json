@@ -59,9 +59,9 @@
       "step": 7,
       "name": "planning",
       "description": "Plan the Pareto-frontier computation and charts for Part A, and the single fine-tuned+biased inference run for Part B, including which frontier cell Part B will use.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-08-13T07:44:08Z",
-      "completed_at": null,
+      "completed_at": "2026-08-13T08:01:51Z",
       "log_file": "logs/steps/007_planning/"
     },
     {
