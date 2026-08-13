@@ -86,9 +86,9 @@
       "step": 10,
       "name": "teardown",
       "description": "Destroy the gpu-azure instance provisioned for the Part B inference run.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-08-13T11:08:52Z",
-      "completed_at": null,
+      "completed_at": "2026-08-13T11:11:09Z",
       "log_file": "logs/steps/010_teardown/"
     },
     {
