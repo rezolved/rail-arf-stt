@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0024_biasing_pareto_and_ft_biasing_ablation"
-updated_at: "2026-08-13T07:42:12Z"
-completed_steps: 8
-next_step_number: 7
-next_step_id: "planning"
+updated_at: "2026-08-13T07:48:00Z"
+completed_steps: 9
+next_step_number: 8
+next_step_id: "setup-machines"
 ---
 # Task Objective
 
@@ -79,6 +79,25 @@ exploration explicitly out of scope per the task's stated constraints.
 Skipped (planned at step 1). This task compares internal decoding configs and internal
 fine-tune/biasing conditions against each other, not against published external baselines.
 
+### Step 7 — planning
+
+Wrote `plan/plan.md` (verificator PASSED, zero errors/zero warnings, independently re-verified by
+this step-executor, not just the planning subagent's claim). Part A: `code/pareto.py` computes the
+**true** non-dominated-point Pareto frontier (not a naive sort-and-scan — that construction can
+retain a dominated point when two rows share `neutral_wer`, which both sweeps do), giving 5 frontier
+cells per model. An explicit numeric stance (`Δneutral_wer / Δbrand_exact_rate ≤ 1.0` against the
+last-**accepted** point, scanned ascending by `neutral_wer`) selects TDT production cell
+`cs=2.5/ds=0.5/α=2.0` (48.6%@5.7%, a zero-cost strict improvement over the dominated current-prod
+point) and unified cell `cs=3.0/ds=0.5/α=1.5` (60.0%@8.7%) — the latter is the exact config Part B's
+GPU run uses for its boosting tree, deliberately not defaulting to t0022's old headline cell
+(`cs=2.5/ds=0.5/α=2.5`, 68.6%@27.9%). Part B copies t0023's `apply_malsd_boost()` (not t0021's
+broken `apply_boosting()`) into a new `code/run_ft_biased_eval.py`, which reads the selected unified
+cell from `results/pareto_unified.json` at runtime rather than hardcoding it. Caveat: the plan also
+caught and corrected a data-provenance bug — the task-text-quoted fine-tuned-only clean-21 latency
+"0.112s" is actually t0021's **gold-92** latency; the correct clean-21 p50 (computed from t0021's
+existing raw per-clip data, not new inference) is ≈0.0536s, and the plan requires both numbers be
+reported with provenance labels rather than silently substituted.
+
 * * *
 
 ## Cross-Step Decisions
@@ -111,20 +130,50 @@ fine-tune/biasing conditions against each other, not against published external 
   that needs to actually edit or cite that config file verbatim will need access to the
   `brainpowa-realtime-api` repo separately.
 
+* **Plan decisions for implementation (step 7)**: `plan/plan.md` is the authoritative,
+  self-contained spec for step 9 (`implementation`) — read it in full rather than relying on this
+  summary. Key numbers/choices the implementation step-executor needs up front:
+  * **Part A frontier stance**: true non-dominated-point Pareto filter (`code/pareto.py`), not a
+    sort-and-scan. TDT selected cell `context_score=2.5, depth_scaling=0.5, alpha=2.0`
+    (`brand_exact_rate=48.6%, neutral_wer=5.7%`) — the new recommended production config, replacing
+    the dominated current-prod point (`cs=3.0/ds=0.5/α=1.5`, 45.7%@5.7%). Unified selected cell
+    `context_score=3.0, depth_scaling=0.5, alpha=1.5` (`brand_exact_rate=60.0%, neutral_wer=8.7%`).
+  * **Part B's boosting config = the unified selected cell above** (`cs=3.0/ds=0.5/α=1.5`), read
+    programmatically from `results/pareto_unified.json` at runtime by `run_ft_biased_eval.py`, never
+    hardcoded — Part A's step (`code/pareto.py`) must run and write that file before Part B's script
+    can execute.
+  * **GPU machine**: Azure ML H100 pool (`project/azure_vm.json`), `gpu_class: H100`,
+    `provider: azure_ml`, priority `FT-NC80-v3` → `FT-NC80-v1` → `FT-NC80-v2` → `FT-MC`, 2xH100
+    each, `$13.96/hr`. Estimated run: well under 1hr GPU wall-clock, padded to 1.5hr (~$21), capped
+    at $30 for this task.
+  * **Planned script files** (all new, in `code/`): `paths.py`, `pareto.py`, `make_charts.py` (Part
+    A); `constants.py`, `scoring.py`, `run_ft_biased_eval.py` (Part B, copies `apply_malsd_boost()`
+    from `t0023/code/run.py` — NOT `apply_boosting()` from `t0021/code/run_clean_eval.py`, which
+    only ever sets the broken `greedy_batch` strategy); `build_comparison.py` (Milestone 3,
+    assembles the 3-row comparison table).
+  * **Data-provenance fix**: the task-text-quoted fine-tuned-only clean-21 latency "0.112s" is
+    actually t0021's gold-92 latency, not clean-21. `build_comparison.py` must recompute the correct
+    clean-21 p50 (≈0.0536s) from t0021's existing raw per-clip data (`clean_eval_finetuned.jsonl`)
+    and report both numbers with provenance labels.
+  * **Validation gate for the GPU run**: 5-clip smoke test before the full 21-clip run, explicit
+    failure conditions (script crash, all-empty transcripts, decoding strategy not showing
+    `malsd_batch`), individual-output inspection of all 5 records before proceeding.
+  * **Expected assets**: 1 `predictions` asset
+    (`assets/predictions/parakeet-finetuned-malsd-biased-clean21/`) and 1 shared `answer` asset
+    (`assets/answer/production-decoding-and-biasing-ft-verdict/`) covering both parts' verdicts.
+
 * * *
 
 ## Next Step Notes
 
-Step 6 (`research-code`) is complete. `research/research_code.md` (verificator PASSED, zero
-errors/warnings) and the compact `research/research_summary.md` are written and committed. Verified
-directly on disk (not just via the subagent): both sweep JSONLs are 100-row grids with schema
-`{context_score, depth_scaling, alpha, brand_exact_rate, neutral_wer}`; the live-prod TDT cell
-matches `task_description.md` exactly (`brand_exact_rate=0.457`, `neutral_wer=0.057`); the
-checkpoint path `/mnt/finetune-checkpoints/parakeet-unified-finetuned-best.nemo` is confirmed in
-`t0021/code/paths.py`. The next step-executor is step 7, `planning`: synthesize
-`research/research_summary.md` into `plan/plan.md`, covering the Pareto-frontier computation/charts
-for Part A and the single fine-tuned+`malsd_batch`-biased inference run for Part B (must select and
-justify the specific frontier cell for Part B's boosting config — do not default to `t0022`'s old
-headline cell without checking Part A's own frontier answer first, per `task_description.md`).
-Remember both Cross-Step Decisions above: the dependency-metadata caveat (steps 2/6) and the
-`apply_boosting()` → `apply_malsd_boost()` swap needed for Part B's implementation code.
+Step 7 (`planning`) is complete. `plan/plan.md` exists, is self-contained, and passes
+`verify_plan.py` with zero errors and zero warnings (independently re-verified by this
+step-executor, not just the planning subagent's claim). Per `step_tracker.json`, the next
+step-executor is step 8, `setup-machines`: provision one GPU machine from the Azure ML H100 pool
+(`project/azure_vm.json`) per `plan/plan.md`'s `## Remote Machines` section, following
+`arf/skills/setup-remote-machine/SKILL.md` through Phase 5 (Prepare the Environment) — this includes
+syncing the repo/branch onto the VM and running `dvc pull` for
+`tasks/t0021_parakeet_finetune_vs_biasing/data/clean_eval_audio` (21 WAV clips, DVC-tracked, not
+copied into this task). Remember the Cross-Step Decisions above (this step's entry has the exact
+frontier cells, script names, and GPU pool/cost numbers step 9 `implementation` will need) plus the
+dependency-metadata caveat (steps 2/6) and the `apply_boosting()` → `apply_malsd_boost()` swap.
