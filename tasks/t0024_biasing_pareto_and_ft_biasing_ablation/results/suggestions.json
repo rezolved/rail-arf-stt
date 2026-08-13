@@ -1,0 +1,75 @@
+{
+  "spec_version": "2",
+  "suggestions": [
+    {
+      "id": "S-0024-01",
+      "title": "Locate/regenerate the t0021 fine-tuned checkpoint and complete the deferred Part B biasing-on-FT ablation",
+      "description": "t0024's Part B (apply the tuned malsd_batch boosting config on top of t0021's fine-tuned checkpoint and evaluate on the 21-clip clean set) never ran: /mnt/finetune-checkpoints/parakeet-unified-finetuned-best.nemo and the stt conda env do not exist on any Azure ML machine reachable from the current pool (project/azure_vm.json) -- see tasks/t0024_biasing_pareto_and_ft_biasing_ablation/intervention/checkpoint_not_found.md. A follow-up task should check whether the VM that actually trained the checkpoint (one of FT-NC80-v1/v2/v3) was renamed rather than deleted, search for any export/backup, or accept it must be regenerated from t0021's fine-tuning recipe; then get an stt conda env onto a live machine and run Part B (apply t0023's apply_malsd_boost with the unified frontier cell context_score=3.0/depth_scaling=0.5/alpha=1.5 selected in t0024's Part A) to finally answer whether biasing and fine-tuning are complementary or redundant. Recommended task types: experiment-run, answer-question.",
+      "kind": "experiment",
+      "priority": "high",
+      "source_task": "t0024_biasing_pareto_and_ft_biasing_ablation",
+      "source_paper": null,
+      "categories": ["entity-correction", "stt-evaluation"]
+    },
+    {
+      "id": "S-0024-02",
+      "title": "Refresh the stale Azure ML GPU VM pool config (project/azure_vm.json) -- 3 of 4 listed VMs no longer exist",
+      "description": "t0024's setup-machines step found that of the four VMs listed in priority order in project/azure_vm.json (FT-NC80-v3, FT-NC80-v1, FT-NC80-v2, FT-MC), only FT-MC still exists in Azure -- the other three were removed or renamed since the pool config was copied from rail-arf-finetuning in June 2026. Because azure_ml_vm.py's get_compute_state() returns UNKNOWN for a missing VM rather than erroring immediately, a full priority walk burns roughly 24 minutes polling three dead entries before reaching a live one, on every task that needs a GPU. Fix by refreshing project/azure_vm.json against current `az ml compute list` output and/or making azure_ml_vm.py fail fast on a Not Found `az ml compute show` instead of polling _wait_for_state for the full timeout. Per this project's Critical Rule 1, this must land as its own infrastructure task/PR on main, not on a task branch. Recommended task types: infrastructure-setup.",
+      "kind": "technique",
+      "priority": "medium",
+      "source_task": "t0024_biasing_pareto_and_ft_biasing_ablation",
+      "source_paper": null,
+      "categories": []
+    },
+    {
+      "id": "S-0024-03",
+      "title": "Bake a working DVC auth path (az login or fresh vaulted connection string) into the GPU machine provisioning flow",
+      "description": "On t0024's freshly-provisioned FT-MC machine, `dvc pull` for clean_eval_audio failed with AuthenticationFailed: .dvc/config.local carried a stale connection string, and FT-MC had no active az login session, no managed identity (`az login --identity` -> Identity not found), and no service-principal env vars, so the documented default auth path (docs/dvc-data-workflow.md, az-login-based DefaultAzureCredential) silently failed. A follow-up infrastructure task should add either an automated `az login` step (or managed-identity assignment) to the machine-provisioning flow, or refresh the vaulted connection string and have provisioning fetch it automatically, so future freshly-provisioned GPU machines can pull DVC-tracked audio/checkpoints without a manual intervention. Recommended task types: infrastructure-setup.",
+      "kind": "technique",
+      "priority": "medium",
+      "source_task": "t0024_biasing_pareto_and_ft_biasing_ablation",
+      "source_paper": null,
+      "categories": []
+    },
+    {
+      "id": "S-0024-04",
+      "title": "Ship t0024's Pareto-frontier-recommended decoding config to brainpowa-realtime-api production",
+      "description": "t0024's Part A found the current live-prod TDT decoding config (context_score=3.0, depth_scaling=0.5, alpha=1.5; brand_exact_rate=45.7%, neutral_wer=5.7%) is strictly dominated by context_score=2.5, depth_scaling=0.5, alpha=2.0 (48.6% brand_exact_rate at the identical 5.7% neutral_wer) -- a zero-cost improvement already sitting in already-collected data (see results/pareto_tdt.json and the answer asset production-decoding-and-biasing-ft-verdict). If/when parakeet-unified-en-0.6b is deployed, its frontier-selected cell is context_score=3.0, depth_scaling=0.5, alpha=1.5 (60.0%@8.7%). A follow-up task should update brainpowa_realtime_api/src/brainpowa_realtime_api/config.py's decoding defaults accordingly and roll out via platform-fluxcd. That repo is not present in this rail-arf-stt sandbox, so this must run as a separate task with access to brainpowa-realtime-api. Recommended task types: infrastructure-setup, answer-question.",
+      "kind": "technique",
+      "priority": "high",
+      "source_task": "t0024_biasing_pareto_and_ft_biasing_ablation",
+      "source_paper": null,
+      "categories": ["entity-correction", "latency-profiling"]
+    },
+    {
+      "id": "S-0024-05",
+      "title": "Promote the repeatedly copy-pasted GPU-PB boosting/scoring helpers into a registered library asset",
+      "description": "t0024's research found apply_beam_boosting/apply_malsd_boost (malsd_batch decoding-strategy setup), the DOMAIN_VOCAB list, and the normalise/wer/domain_vocab_accuracy scoring functions have been copy-pasted with only cosmetic renaming across at least five tasks (t0017, t0019, t0021, t0022, t0023) and were about to be copied a sixth time into t0024's own Part B before it was deferred -- and this project has zero registered libraries in assets/library/ project-wide. A follow-up task should extract these into one registered library asset (boosting-tree application, domain vocabulary, and clean-eval scoring functions) so future biasing/fine-tuning tasks import instead of re-copying, reducing the recurring risk of a fix (like the malsd_batch vs greedy_batch bug this task found) not propagating to every copy. Recommended task types: infrastructure-setup.",
+      "kind": "library",
+      "priority": "low",
+      "source_task": "t0024_biasing_pareto_and_ft_biasing_ablation",
+      "source_paper": null,
+      "categories": ["entity-correction"]
+    },
+    {
+      "id": "S-0024-06",
+      "title": "Backfill task.json metadata for t0021/t0022/t0023 so dependency-check and aggregator tooling stops false-negatives",
+      "description": "t0024's check-deps step found verify_task_dependencies.py fails on all three of its dependencies (t0021, t0022, t0023) due to stale metadata, not missing data: t0021 and t0022 have task.json status left at not_started despite complete, committed results/data; t0023 uses a legacy pre-spec_version task.json schema with status: complete (singular) instead of completed, so aggregate_tasks and aggregate_suggestions also silently omit or miscount it. Every downstream task that depends on any of these three has to manually bypass the dependency check and document the workaround (as t0024 did in logs/steps/002_check-deps/deps_report.json). A dedicated correction/maintenance task should update these three task.json files to the current schema and status values so the standard tooling reports them correctly, without touching their committed results. Recommended task types: infrastructure-setup.",
+      "kind": "technique",
+      "priority": "low",
+      "source_task": "t0024_biasing_pareto_and_ft_biasing_ablation",
+      "source_paper": null,
+      "categories": []
+    },
+    {
+      "id": "S-0024-07",
+      "title": "Collect a larger, fine-tune-uncontaminated clean eval set for validating domain-adapted Parakeet checkpoints",
+      "description": "t0024's research confirmed gold-92 is contaminated for t0021's fine-tuned checkpoint (all 93 clips had speed-perturbed versions in the fine-tune training data, inflating EA-DV by ~55pp), leaving only the 21-clip clean_eval set as an uncontaminated benchmark -- too small for a statistically confident complementary-vs-redundant verdict once Part B (S-0024-01) runs. A follow-up task should source and annotate additional Rezolve production clips, disjoint from any past or future fine-tuning training data, to grow this held-out clean-eval set well beyond n=21, so future fine-tune-vs-biasing ablations on parakeet-unified-en-0.6b (and any future fine-tuned checkpoint) have adequate statistical power. Recommended task types: audio-dataset-curation.",
+      "kind": "dataset",
+      "priority": "medium",
+      "source_task": "t0024_biasing_pareto_and_ft_biasing_ablation",
+      "source_paper": null,
+      "categories": ["audio-datasets", "stt-evaluation"]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0024_biasing_pareto_and_ft_biasing_ablation",
+  "command": "uv run python -m arf.scripts.verificators.verify_step t0024_biasing_pareto_and_ft_biasing_ablation research-code",
+  "exit_code": 0,
+  "duration_seconds": 0.264,
+  "started_at": "2026-08-13T07:43:18Z",
+  "completed_at": "2026-08-13T07:43:18Z",
+  "working_directory": "/home/azureuser/rail-metarepo/real-repos/rail-arf-stt-worktrees/t0024_biasing_pareto_and_ft_biasing_ablation",
+  "stdout_file": "004_20260813T074318Z_uv-run-python.stdout.txt",
+  "stderr_file": "004_20260813T074318Z_uv-run-python.stderr.txt",
+  "stdout_lines": 5,
+  "stderr_lines": 0,
+  "truncated": false
+}

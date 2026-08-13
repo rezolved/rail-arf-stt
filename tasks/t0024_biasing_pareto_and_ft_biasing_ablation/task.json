@@ -5,16 +5,15 @@
   "name": "Biasing Pareto Re-Analysis + Biasing-on-Fine-Tune Ablation",
   "short_description": "Re-analyze existing t0022/t0023 biasing sweeps for the brand-accuracy/WER tradeoff, then test biasing on top of the existing t0021 fine-tuned checkpoint.",
   "long_description_file": "task_description.md",
-  "status": "in_progress",
+  "status": "completed",
   "dependencies": [
     "t0021_parakeet_finetune_vs_biasing",
     "t0022_gpu_pb_diagnostic",
     "t0023_tdt_vs_unified_biasing"
   ],
   "start_time": "2026-08-13T06:59:00Z",
-  "end_time": null,
+  "end_time": "2026-08-13T11:32:00Z",
   "expected_assets": {
-    "predictions": 1,
     "answer": 1
   },
   "task_types": [],

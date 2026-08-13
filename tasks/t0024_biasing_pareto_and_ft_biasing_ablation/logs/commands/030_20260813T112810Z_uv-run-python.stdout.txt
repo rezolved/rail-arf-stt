@@ -1,0 +1,12 @@
+
+Verifying: /home/azureuser/rail-metarepo/real-repos/rail-arf-stt-worktrees/t0024_biasing_pareto_and_ft_biasing_ablation/tasks/t0024_biasing_pareto_and_ft_biasing_ablation/logs
+
+[33m[1mWARNINGS:[0m
+[33m  LG-W004 warning: Command log 006_20260813T081913Z_uv-run-python.json has non-zero exit code: 75[0m
+[33m  LG-W004 warning: Command log 017_20260813T112500Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W004 warning: Command log 018_20260813T112505Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W004 warning: Command log 023_20260813T112516Z_uv-run-python.json has non-zero exit code: 1[0m
+[33m  LG-W004 warning: Command log 025_20260813T112519Z_uv-run-python.json has non-zero exit code: 2[0m
+[33m  LG-W004 warning: Command log 026_20260813T112549Z_uv-run-python.json has non-zero exit code: 1[0m
+
+[33m[1mPASSED[0m — 0 error(s), 6 warning(s)

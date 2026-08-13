@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0024_biasing_pareto_and_ft_biasing_ablation",
+  "command": "uv run python -m arf.scripts.utils.azure_ml_vm acquire t0024_biasing_pareto_and_ft_biasing_ablation --vm-name FT-MC",
+  "exit_code": 75,
+  "duration_seconds": 532.273,
+  "started_at": "2026-08-13T08:19:13Z",
+  "completed_at": "2026-08-13T08:28:06Z",
+  "working_directory": "/home/azureuser/rail-metarepo/real-repos/rail-arf-stt-worktrees/t0024_biasing_pareto_and_ft_biasing_ablation",
+  "stdout_file": "006_20260813T081913Z_uv-run-python.stdout.txt",
+  "stderr_file": "006_20260813T081913Z_uv-run-python.stderr.txt",
+  "stdout_lines": 0,
+  "stderr_lines": 1,
+  "truncated": false
+}

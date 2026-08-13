@@ -1,0 +1,7 @@
+{
+  "total_cost_usd": 14.06,
+  "breakdown": {
+    "azure-ml-2xh100-ft-mc": 14.06
+  },
+  "note": "This is entirely Part B provisioning/search cost, not Part A analysis cost (Part A ran locally, zero GPU, zero cost). FT-MC (2x H100 NVL) was provisioned and fully verified (SSH/GPU/CUDA) for Part B's planned fine-tuned+biased inference run, but the t0021 fine-tuned checkpoint and the 'stt' conda env were unreachable on any pool machine (see intervention/checkpoint_not_found.md), so no inference ever ran. FT-MC's idle-shutdown safety net auto-stopped it at 2026-08-13T09:32:38Z. This $14.06 is therefore a sunk cost from a deferred Part B attempt, not a cost of any deliverable produced this round -- reported honestly rather than omitted."
+}

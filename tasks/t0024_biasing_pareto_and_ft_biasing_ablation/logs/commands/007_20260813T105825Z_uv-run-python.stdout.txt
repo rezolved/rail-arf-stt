@@ -1,0 +1,4 @@
+TDT frontier: 5 cells; live_prod_on_frontier=False
+TDT selected cell: SweepRow(context_score=2.5, depth_scaling=0.5, alpha=2.0, brand_exact_rate=0.486, neutral_wer=0.057)
+Unified frontier: 5 cells
+Unified selected cell: SweepRow(context_score=3.0, depth_scaling=0.5, alpha=1.5, brand_exact_rate=0.6, neutral_wer=0.087)

@@ -1,0 +1,16 @@
+
+Verifying: /home/azureuser/rail-metarepo/real-repos/rail-arf-stt-worktrees/t0024_biasing_pareto_and_ft_biasing_ablation/tasks/t0024_biasing_pareto_and_ft_biasing_ablation/results/remote_machines_used.json
+
+[31m[1mERRORS:[0m
+[31m  RM-E004 error: Machine FT-MC missing required field 'offer_id'[0m
+[31m  RM-E004 error: Machine FT-MC missing required field 'search_criteria'[0m
+[31m  RM-E004 error: Machine FT-MC missing required field 'image'[0m
+
+[33m[1mWARNINGS:[0m
+[33m  RM-W001 warning: Cannot verify destruction of FT-MC — Azure ML API unreachable[0m
+[33m  RM-W005 warning: Machine FT-MC failed_attempts[0] missing: offer_id[0m
+[33m  RM-W005 warning: Machine FT-MC failed_attempts[1] missing: offer_id[0m
+[33m  RM-W005 warning: Machine FT-MC failed_attempts[2] missing: offer_id[0m
+[33m  RM-W005 warning: Machine FT-MC failed_attempts[3] missing: offer_id[0m
+
+[31m[1mFAILED[0m — 3 error(s), 5 warning(s)
