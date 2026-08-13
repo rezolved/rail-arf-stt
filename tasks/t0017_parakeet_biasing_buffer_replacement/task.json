@@ -5,14 +5,14 @@
   "name": "Parakeet unified vs TDT — biased accuracy, latency, fine buffer sweep",
   "short_description": "Biased head-to-head of parakeet-unified-en-0.6b vs prod parakeet-tdt-0.6b-v3 (EA/EA-DV, latency) plus fine buffer sweep (200-1000ms) on the winner, to decide the brainpowa production Parakeet.",
   "long_description_file": "task_description.md",
-  "status": "not_started",
+  "status": "completed",
   "dependencies": [
     "t0015_streaming_buffer_interval",
     "t0012_whisper_parakeet_granite_streaming",
     "t0009_parakeet_production_baseline"
   ],
-  "start_time": null,
-  "end_time": null,
+  "start_time": "2026-07-01T21:00:00Z",
+  "end_time": "2026-07-02T12:00:00Z",
   "expected_assets": {
     "predictions": 2,
     "answer": 1

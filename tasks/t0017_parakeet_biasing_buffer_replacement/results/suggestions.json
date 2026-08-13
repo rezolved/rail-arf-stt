@@ -1,0 +1,30 @@
+{
+  "spec_version": "2",
+  "suggestions": [
+    {
+      "id": "S-0017-01",
+      "title": "Audit other biasing-vocabulary consumers for the same casing-expansion bug",
+      "description": "expand_casing_variants() previously capitalized only the first character of a whole phrase instead of each word, silently dropping the title-case variant for every multi-word domain term. This function was copied into t0017 from t0015; other tasks or the production brainpowa STT ingress may have copied the same pattern for GPU-PB phrase expansion. A dedicated sweep should grep for phrase[:1].upper() + phrase[1:] (or equivalent) across the codebase and production STT adapters.",
+      "kind": "evaluation",
+      "priority": "medium",
+      "source_task": "t0017_parakeet_biasing_buffer_replacement",
+      "source_paper": null,
+      "categories": [
+        "stt-evaluation"
+      ]
+    },
+    {
+      "id": "S-0017-02",
+      "title": "Re-run t0015's four-model buffer sweep with the casing-variant fix",
+      "description": "The same expand_casing_variants() bug existed in t0015's harness (run_parakeet_buffer_sweep.py and run_multitalker_buffer_sweep.py) and was fixed as part of this task, but t0015's published results (4 models x 3 intervals) were not rerun. t0017's rerun showed a small WER improvement (~0.1-0.3pp) with no material EA-DV change, so the effect on t0015 is likely small but unverified for multitalker-parakeet-streaming-0.6b-v1 and Granite Speech 4.1 2B specifically.",
+      "kind": "experiment",
+      "priority": "low",
+      "source_task": "t0017_parakeet_biasing_buffer_replacement",
+      "source_paper": null,
+      "categories": [
+        "stt-evaluation",
+        "latency-profiling"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "spec_version": "2",
+  "answer_id": "parakeet-unified-vs-tdt-production-fit",
+  "question": "Should brainpowa production Parakeet (parakeet-tdt-0.6b-v3) be replaced by parakeet-unified-en-0.6b, and what streaming buffer size is best?",
+  "short_title": "Parakeet unified vs TDT production fit for brainpowa",
+  "short_answer_path": "short_answer.md",
+  "full_answer_path": "full_answer.md",
+  "categories": [
+    "stt-evaluation",
+    "latency-profiling"
+  ],
+  "answer_methods": [
+    "code-experiment"
+  ],
+  "source_paper_ids": [],
+  "source_urls": [
+    "https://huggingface.co/nvidia/parakeet-unified-en-0.6b",
+    "https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3"
+  ],
+  "source_task_ids": [
+    "t0015_streaming_buffer_interval",
+    "t0012_whisper_parakeet_granite_streaming",
+    "t0009_parakeet_production_baseline"
+  ],
+  "confidence": "high",
+  "created_by_task": "t0017_parakeet_biasing_buffer_replacement",
+  "date_created": "2026-07-02"
+}
