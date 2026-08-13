@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0024_biasing_pareto_and_ft_biasing_ablation"
-updated_at: "2026-08-13T07:34:08Z"
-completed_steps: 7
-next_step_number: 6
-next_step_id: "research-code"
+updated_at: "2026-08-13T07:42:12Z"
+completed_steps: 8
+next_step_number: 7
+next_step_id: "planning"
 ---
 # Task Objective
 
@@ -49,6 +49,25 @@ validate against the paper corpus.
 Skipped (planned at step 1). Operates entirely on local data (t0022/t0023 sweep JSONLs, t0021
 checkpoint and eval set); no new external tools, APIs, or facts are needed.
 
+### Step 6 — research-code
+
+Wrote `research/research_code.md` (verificator PASSED, zero errors/warnings) and
+`research/research_summary.md`. Confirmed by direct file read (not just the subagent's claim):
+`t0022`'s `param_sweep.jsonl` and `t0023`'s `tdt_sweep.jsonl` are each 100-row JSONL with schema
+`{context_score, depth_scaling, alpha, brand_exact_rate, neutral_wer}`; the live-prod TDT cell
+(`cs=3.0/ds=0.5/α=1.5`) reads `brand_exact_rate=0.457, neutral_wer=0.057` in `tdt_sweep.jsonl`,
+exactly matching `task_description.md`; `t0021/code/paths.py`
+`FINETUNED_NEMO = /mnt/finetune-checkpoints/parakeet-unified-finetuned-best.nemo`. Found the exact
+Part B bug: `t0021/code/run_clean_eval.py`'s `apply_boosting()` (lines 126-135) only ever sets
+`strategy = "greedy_batch"` + `greedy.boosting_tree.*` — never `malsd_batch` — so the fine-tuned
+checkpoint has never actually had a boosting tree applied; `t0023/code/run.py`'s
+`apply_malsd_boost()` (lines 281-299, `strategy = "malsd_batch"` + `beam.boosting_tree.*` +
+`beam.boosting_tree_alpha`) is the function to copy in for Part B instead. Could not independently
+verify the `brainpowa-realtime-api/config.py` production-default values cited in
+`task_description.md` — that repo is not present in this sandbox; treat those specific numbers as
+unverified-here (not load-bearing for either part, since Part A/B use the sweep JSONLs and the
+frontier point, not the literal config file).
+
 ### Step 11 — creative-thinking
 
 Skipped (planned at step 1). Both sub-tasks are deliberately narrow and prescriptive (explicit
@@ -77,17 +96,35 @@ fine-tune/biasing conditions against each other, not against published external 
   files directly on disk instead (paths listed in the Step 2 history entry above and in
   `logs/steps/002_check-deps/deps_report.json`).
 
+* **Part B boosting-code fix identified (step 6)**: `t0021/code/run_clean_eval.py`'s
+  `apply_boosting()` only ever configures `strategy = "greedy_batch"` (writes to
+  `greedy.boosting_tree.*`) — NeMo silently ignores boosting under `greedy_batch` (proven in
+  `t0022`'s decoding matrix), so the fine-tuned checkpoint has never actually been evaluated with a
+  working boosting tree. Planning/implementation for Part B must copy `t0023/code/run.py`'s
+  `apply_malsd_boost()` (sets `strategy = "malsd_batch"`, writes `beam.boosting_tree.*` +
+  `beam.boosting_tree_alpha`) in place of it, not reuse `apply_boosting()` as-is.
+
+* **Verification gap (step 6)**: the live production `brainpowa-realtime-api/config.py` decoding
+  defaults cited in `task_description.md` could not be independently re-read — that repo is not
+  cloned into this rail-arf-stt sandbox/worktree. Not load-bearing for either part (Part A/B work
+  entirely from the sweep JSONLs and the frontier point, not the literal config file), but any step
+  that needs to actually edit or cite that config file verbatim will need access to the
+  `brainpowa-realtime-api` repo separately.
+
 * * *
 
 ## Next Step Notes
 
-Step 3 (`init-folders`) is complete. The mandatory task folder structure and the two
-`expected_assets` subdirectories (`assets/predictions/`, `assets/answer/`) exist with `.gitkeep`
-files, and the gitignored `ctx/` aggregator cache is populated. Steps 4 and 5 (`research-papers`,
-`research-internet`) are already marked `skipped` in `step_tracker.json` per the step-1 plan. The
-next step-executor is step 6, `research-code`: review `t0021/run_finetuned.py`,
-`t0021/run_clean_eval.py` (`apply_boosting`, scoring), and the t0022/t0023 sweep code so Part A's
-frontier analysis and Part B's inference run reuse the exact same scoring method and reference the
-correct checkpoint/config paths. Remember the dependency-metadata caveat above when locating
-t0021/t0022/t0023 files — do not rely on `aggregate_tasks`/`verify_task_dependencies` output for
-those three IDs; read files directly on disk.
+Step 6 (`research-code`) is complete. `research/research_code.md` (verificator PASSED, zero
+errors/warnings) and the compact `research/research_summary.md` are written and committed. Verified
+directly on disk (not just via the subagent): both sweep JSONLs are 100-row grids with schema
+`{context_score, depth_scaling, alpha, brand_exact_rate, neutral_wer}`; the live-prod TDT cell
+matches `task_description.md` exactly (`brand_exact_rate=0.457`, `neutral_wer=0.057`); the
+checkpoint path `/mnt/finetune-checkpoints/parakeet-unified-finetuned-best.nemo` is confirmed in
+`t0021/code/paths.py`. The next step-executor is step 7, `planning`: synthesize
+`research/research_summary.md` into `plan/plan.md`, covering the Pareto-frontier computation/charts
+for Part A and the single fine-tuned+`malsd_batch`-biased inference run for Part B (must select and
+justify the specific frontier cell for Part B's boosting config — do not default to `t0022`'s old
+headline cell without checking Part A's own frontier answer first, per `task_description.md`).
+Remember both Cross-Step Decisions above: the dependency-metadata caveat (steps 2/6) and the
+`apply_boosting()` → `apply_malsd_boost()` swap needed for Part B's implementation code.
