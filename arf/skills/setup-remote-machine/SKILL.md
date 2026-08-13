@@ -7,7 +7,7 @@ description: >-
 ---
 # Setup Remote Machine
 
-**Version**: 5
+**Version**: 6
 
 ## Goal
 
@@ -108,6 +108,21 @@ Read before starting:
      `tasks/$TASK_ID/intervention/pool_busy.md`. STOP and let the user resolve.
    * Exit code `1` — generic error; surface stderr to the user and STOP.
 
+   Between the SSH check and the lock, `acquire` runs `arf/scripts/utils/remote_preflight.sh` on the
+   box. It enables `systemd` lingering for the SSH user and guarantees `/mnt/cache/persist` resolves
+   to the real Azure Files mount, repairing the symlink when it points at the ephemeral disk. These
+   are `LESSONS.md` Lessons 11 and 10 — a killed training job and a lost adapter — and both used to
+   be prose in this skill that nothing executed. A VM that fails preflight is **not used**: the
+   attempt is recorded in `failed_attempts` with `failure_phase: "preflight"` and the provisioner
+   moves to the next pool entry.
+
+   Some pool entries (e.g. `LLM-T1-NC80`) carry `requires_coordination_if_running: true` in
+   `project/azure_vm.json` because they are shared boxes other people SSH into directly for manual
+   work, not dedicated ARF compute. For those, `acquire` refuses the VM outright — with
+   `failure_phase: "human_coordination_required"` — if it is already `Running` when the attempt
+   starts (someone else started it and may be using it). It is only auto-acquired when found
+   `Stopped`, since starting it itself is the one case known to be safe.
+
 2. Save the JSON output as the basis for `machine_log.json`. Use `to_machine_log_entry()` from the
    library to convert it to the schema consumed by `aggregate_machines.py`:
 
@@ -162,11 +177,11 @@ Read before starting:
 
 4. **Engine smoke gate** (MANDATORY for any task that will issue measurement requests). After
    installing the task-specific engine (vLLM, SGLang, TRT-LLM, etc.) and launching it, issue one
-   trivial request (a `health`/`/version` endpoint check **and** one minimum-length chat
-   completion) before any warmup or measured phase. If either fails, mark the condition `null`
-   and skip directly to teardown — do not waste VM time on a broken engine. Record the smoke
-   result in `machine_log.json` under `smoke_gate_status` (`pass` or `fail`) with the failure
-   reason. See `LESSONS.md` (Lesson 2: smoke-gate before measurement) for the rationale.
+   trivial request (a `health`/`/version` endpoint check **and** one minimum-length chat completion)
+   before any warmup or measured phase. If either fails, mark the condition `null` and skip directly
+   to teardown — do not waste VM time on a broken engine. Record the smoke result in
+   `machine_log.json` under `smoke_gate_status` (`pass` or `fail`) with the failure reason. See
+   `LESSONS.md` (Lesson 2: smoke-gate before measurement) for the rationale.
 
 5. For jobs over 2 hours, configure checkpointing and a heartbeat file. Record both paths in
    `machine_log.json` as `checkpoint_path` and `heartbeat_path`. See
@@ -179,6 +194,16 @@ Read before starting:
 Referenced by the `implementation` step in execute-task.
 
 ### Running long jobs
+
+Lingering and the persistent-storage symlink are **already guaranteed** by the time execution
+starts: `azure_ml_vm acquire` runs `arf/scripts/utils/remote_preflight.sh` on the box before it
+places the lock, and refuses the VM when either guarantee fails (Phase 2, step 1). Nothing here
+needs to re-run them. To re-check either guarantee by hand:
+
+```bash
+ssh FT-NC80-v3 "loginctl show-user azureuser | grep Linger"   # must show Linger=yes
+ssh FT-NC80-v3 "readlink -f /mnt/cache/persist && df -h /mnt/cache/persist"
+```
 
 Always launch long jobs inside `tmux` so they survive SSH disconnection:
 
@@ -336,3 +361,6 @@ For teardown:
   `~/.ssh/config` entry for `FT-NC80-v3` / `FT-NC80-v2`, not in the repo.
 * NEVER edit `project/azure_vm.json` to point at a personal VM without coordinating with the
   finetuning team — the pool is shared infrastructure.
+* NEVER add a pool entry for a box other people use directly (outside ARF) without setting
+  `requires_coordination_if_running: true` — omitting it lets `acquire` silently steal a VM that a
+  human is mid-session on.

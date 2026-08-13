@@ -121,6 +121,22 @@ def _install_fakes(monkeypatch: pytest.MonkeyPatch, world: FakeWorld) -> None:
             return CommandResult(returncode=0, stdout="", stderr="")
         if remote_command.startswith("pkill"):
             return CommandResult(returncode=0, stdout="", stderr="")
+        if "arf-preflight" in remote_command:
+            # The preflight script is shipped as the SSH command itself and its
+            # stdout is parsed, so the catch-all below (empty stdout) would read as
+            # a failed preflight and fail every acquire test here. Literal wire keys
+            # on purpose — see the same note in test_remote_preflight.py.
+            return CommandResult(
+                returncode=0,
+                stdout=json.dumps(
+                    {
+                        "linger_enabled": True,
+                        "persist_path": "/mnt/cache/persist",
+                        "persist_writable": True,
+                    },
+                ),
+                stderr="",
+            )
         return CommandResult(returncode=0, stdout="", stderr="")
 
     monkeypatch.setattr(azure_ml_vm, "_run_az", fake_run_az)
@@ -262,6 +278,60 @@ def test_acquire_writes_intervention_when_all_busy(
     assert "FT-NC80-v3" in body
     assert "FT-NC80-v2" in body
     assert "someone-else" in body
+
+
+SHARED_HUMAN_VM: VmPoolEntry = VmPoolEntry(
+    name="LLM-T1-NC80",
+    workspace="brainpowa-northeurope",
+    resource_group="rezolve-AI",
+    ssh_host_alias="LLM-T1-NC80",
+    hourly_cost_usd=13.96,
+    priority=5,
+    notes="shared human-use box",
+    requires_coordination_if_running=True,
+)
+
+
+def test_acquire_refuses_shared_vm_already_running(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    w: FakeWorld = FakeWorld(
+        az_state_by_vm={"LLM-T1-NC80": "Running"},
+        ssh_ok_by_vm={"LLM-T1-NC80": True},
+        locks_by_vm={"LLM-T1-NC80": []},
+        az_calls=[],
+        ssh_calls=[],
+    )
+    _install_fakes(monkeypatch=monkeypatch, world=w)
+    with pytest.raises(PoolBusyError):
+        acquire(
+            task_id="t-shared",
+            pool=[SHARED_HUMAN_VM],
+            intervention_dir=tmp_path / "intervention",
+        )
+    # Refused before ever touching locks — no ssh lock-placement call happened.
+    assert w.locks_by_vm["LLM-T1-NC80"] == []
+    intervention_file: Path = tmp_path / "intervention" / "pool_busy.md"
+    body: str = intervention_file.read_text(encoding="utf-8")
+    assert "human_coordination_required" in body
+    assert "LLM-T1-NC80" in body
+
+
+def test_acquire_starts_shared_vm_when_stopped(monkeypatch: pytest.MonkeyPatch) -> None:
+    w: FakeWorld = FakeWorld(
+        az_state_by_vm={"LLM-T1-NC80": "Stopped"},
+        ssh_ok_by_vm={"LLM-T1-NC80": False},
+        locks_by_vm={"LLM-T1-NC80": []},
+        az_calls=[],
+        ssh_calls=[],
+    )
+    _install_fakes(monkeypatch=monkeypatch, world=w)
+    result: AcquireResult = acquire(task_id="t-shared-ok", pool=[SHARED_HUMAN_VM])
+    assert result.vm.name == "LLM-T1-NC80"
+    assert result.started_vm is True
+    assert result.failed_attempts == []
+    assert "t-shared-ok" in w.locks_by_vm["LLM-T1-NC80"]
 
 
 def test_acquire_treats_existing_self_lock_as_acquirable(

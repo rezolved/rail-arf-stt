@@ -1,6 +1,6 @@
 # Rezolve ARF Lessons
 
-**Version**: 2
+**Version**: 3
 
 A curated index of generalizable lessons accumulated from Rezolve research projects that have been
 run on this framework. Each lesson lists: *what went wrong*, *why*, and *how the framework now
@@ -183,6 +183,97 @@ running.
   `arf/scripts/utils/watchdog_provisioning.py`) — the watchdog, not the orchestrator, is what
   guarantees a missed wakeup cannot leave the box billing. The `/diagnose-stuck-step` skill produces
   a structured recovery report for any flagged step.
+
+* * *
+
+## Lesson 10: Azure ML VM persistent storage requires an explicit symlink — `/mnt` is ephemeral
+
+**What went wrong** (rail-arf-finetuning t0007): `train_supervisor.sh` wrote training checkpoints
+and the final SFT-LoRA adapter to `/mnt/cache/persist/runs/sft_v1/adapter/` using `mkdir -p`. The
+directory was created on the ephemeral `/mnt` temp disk, not on the Azure Files share, because the
+symlink `/mnt/cache/persist → <azure-files-mount>` was never created. When the VM was stopped after
+t0007, `/mnt` was wiped and the adapter was lost. It survived only because it had been DVC-pushed to
+blob storage before the VM stopped.
+
+**Why**: Azure ML VMs mount an Azure Files SMB share into the container at a deep path under
+`/mnt/batch/tasks/shared/LS_root/mounts/clusters/<vm-name>/code/`. This path survives VM stop and
+restart. The `/mnt` directory itself (a temp disk) is ephemeral and wiped on every stop. Any
+`mkdir -p /mnt/cache/persist` call silently creates a directory on the ephemeral disk rather than
+pointing at the persistent share, and there is no error — the path just vanishes on the next stop.
+
+**Mitigation in the framework**:
+
+* **Confirmed persistent storage path pattern for Rezolve Azure ML VMs**:
+
+  ```
+  /mnt/batch/tasks/shared/LS_root/mounts/clusters/<vm-name>/code/
+  ```
+
+* **Every training task must verify the symlink resolves to the real mount before writing any
+  checkpoint**. `/mnt/cache/persist` is a symlink, but a symlink pointing to an unmounted or wrong
+  target is silent data loss. Add this to the Setup Machine step:
+
+  ```bash
+  # Verify the symlink target is the actual Azure Files mount (not ephemeral /mnt)
+  readlink -f /mnt/cache/persist
+  # Expected: /mnt/batch/tasks/shared/LS_root/mounts/clusters/<vm-name>/code
+
+  # Confirm mounted and writable
+  df -h /mnt/cache/persist   # must show the Azure Files share, not tmpfs
+  touch /mnt/cache/persist/.write_test && rm /mnt/cache/persist/.write_test
+
+  # If readlink resolves to an ephemeral /mnt path, fix the symlink:
+  ln -sfn /mnt/batch/tasks/shared/LS_root/mounts/clusters/$(hostname)/code \
+      /mnt/cache/persist
+  ```
+
+* Write **all** checkpoints, intermediate artifacts, and final adapters to paths under
+  `/mnt/cache/persist/`. Write nothing training-related directly under `/mnt/` — it is ephemeral.
+
+* DVC-push each adapter **immediately after it completes** (before the VM is stopped or the next
+  training step begins) as a second safety net. DVC blob storage is the recovery path if the Azure
+  Files share itself is unavailable.
+
+* **The check runs in the lifecycle, not in a skill's prose.**
+  `arf/scripts/utils/remote_preflight.sh` performs exactly the block above — resolve, repair with
+  `ln -sfn`, verify writable — and `azure_ml_vm.acquire()` pipes it over SSH before it places the
+  task lock. A VM whose persistent mount is missing or unwritable is rejected with
+  `failure_phase: "preflight"` and the provisioner moves to the next pool entry, so no job ever
+  starts on a box that will silently eat its checkpoints.
+
+* * *
+
+## Lesson 11: `tmux` alone does not survive SSH disconnection without `loginctl enable-linger`
+
+**What went wrong** (rail-arf-finetuning t0021): a DPO training job launched inside a named `tmux`
+session on FT-NC80-v1 was killed ~24 minutes in, at step 27/540, with exit code 143 (SIGTERM). No
+OOM, no GPU fault, no spot preemption (the VM has no priority/spot tier). `journalctl` showed
+`systemd-logind: Removed session N` at the exact second of the crash: when the SSH session that
+launched `tmux` ended, `systemd-logind` tore down that user's entire session scope — including the
+detached `tmux` server and everything running inside it — because `azureuser` had `Linger=no` (the
+Ubuntu default).
+
+**Why**: `tmux new-session -d` detaches the session from the *terminal*, but on systemd-managed
+Linux hosts the processes still belong to the *login session's cgroup scope* unless lingering is
+enabled. `Linger=no` means `systemd-logind` cleans up that scope (SIGTERM then SIGKILL to everything
+in it) as soon as the last session for that user closes — even though `tmux` itself keeps running as
+a server, its child processes get torn down. This is easy to miss because `tmux has-session` right
+after disconnecting still reports the session as alive for a window, and the training log looks
+completely normal (no error) right up to the kill.
+
+**Mitigation in the framework**:
+
+* `arf/scripts/utils/remote_preflight.sh` runs `loginctl enable-linger` for the SSH user and
+  **verifies** `Linger=yes` before any job is launched. `azure_ml_vm.acquire()` runs it over SSH
+  before placing the task lock, so lingering is a property of every acquired machine rather than a
+  step someone has to remember. A box where lingering cannot be enabled is rejected with
+  `failure_phase: "preflight"`.
+* When diagnosing an unexplained mid-job SIGTERM (rc=143) with no OOM/GPU/preemption evidence, check
+  `journalctl -u user@$(id -u).service` (or `journalctl | grep logind`) for a `Removed session`
+  entry at the crash timestamp before assuming spot eviction or a code bug.
+* Training/eval scripts that write periodic checkpoints (as Lesson 10 already requires for the
+  persistent-storage path) limit the blast radius of this failure mode to the checkpoint interval,
+  not the whole run — keep checkpoint intervals short relative to expected job duration.
 
 * * *
 

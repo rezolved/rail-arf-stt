@@ -36,6 +36,16 @@
       "hourly_cost_usd": 13.96,
       "priority": 4,
       "notes": "Finetuning-team multi-GPU H100 box (eastus2). Image 25.07.12 / driver 535.247.01. Coordinate with #rail-arf-serving before claiming."
+    },
+    {
+      "name": "LLM-T1-NC80",
+      "workspace": "brainpowa-northeurope",
+      "resource_group": "rezolve-AI",
+      "ssh_host_alias": "LLM-T1-NC80",
+      "hourly_cost_usd": 13.96,
+      "priority": 5,
+      "notes": "Fallback H100 NVL x2 box (northeurope, brainpowa-northeurope). NOT a dedicated ARF pool box — used directly by finetuning team members (Margarita, Mohan, etc.) for manual experiments; STT fine-tune checkpoints live at /mnt/finetune-checkpoints/ on it, do not delete. requires_coordination_if_running=true: acquire() refuses this VM if it is already Running (someone else started it) rather than silently claiming it; it is only auto-acquired when found Stopped. See docs/northeurope_pool_runbook.md for the SSH alias / HostName-refresh-after-start procedure.",
+      "requires_coordination_if_running": true
     }
   ]
 }
