@@ -5,9 +5,9 @@
       "step": 1,
       "name": "create-branch",
       "description": "Create task/t0024_biasing_pareto_and_ft_biasing_ablation branch from main.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-08-13T07:03:49Z",
-      "completed_at": null,
+      "completed_at": "2026-08-13T07:06:08Z",
       "log_file": "logs/steps/001_create-branch/"
     },
     {
@@ -31,7 +31,7 @@
     {
       "step": 4,
       "name": "research-papers",
-      "description": "SKIPPED — pure re-analysis of already-collected internal sweep data (Part A) plus a confirmatory inference run reusing an established boosting config (Part B); no new methodology to validate against the paper corpus.",
+      "description": "SKIPPED \u2014 pure re-analysis of already-collected internal sweep data (Part A) plus a confirmatory inference run reusing an established boosting config (Part B); no new methodology to validate against the paper corpus.",
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
@@ -40,7 +40,7 @@
     {
       "step": 5,
       "name": "research-internet",
-      "description": "SKIPPED — operates entirely on local data (t0022/t0023 sweep JSONLs, t0021 checkpoint and eval set); no new external tools, APIs, or facts are needed.",
+      "description": "SKIPPED \u2014 operates entirely on local data (t0022/t0023 sweep JSONLs, t0021 checkpoint and eval set); no new external tools, APIs, or facts are needed.",
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
@@ -94,7 +94,7 @@
     {
       "step": 11,
       "name": "creative-thinking",
-      "description": "SKIPPED — both sub-tasks are deliberately narrow and prescriptive (explicit frontier stance for Part A, single reuse-checkpoint run for Part B) with alternative-approach exploration explicitly out of scope per the task's stated constraints.",
+      "description": "SKIPPED \u2014 both sub-tasks are deliberately narrow and prescriptive (explicit frontier stance for Part A, single reuse-checkpoint run for Part B) with alternative-approach exploration explicitly out of scope per the task's stated constraints.",
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
@@ -112,7 +112,7 @@
     {
       "step": 13,
       "name": "compare-literature",
-      "description": "SKIPPED — this task compares internal decoding configs and internal fine-tune/biasing conditions against each other, not against published external baselines.",
+      "description": "SKIPPED \u2014 this task compares internal decoding configs and internal fine-tune/biasing conditions against each other, not against published external baselines.",
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
