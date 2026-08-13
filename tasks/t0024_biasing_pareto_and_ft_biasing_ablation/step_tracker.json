@@ -104,9 +104,9 @@
       "step": 12,
       "name": "results",
       "description": "Write results_summary.md, results_detailed.md, metrics.json, and the Pareto/comparison charts and tables for both parts.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-08-13T11:13:07Z",
-      "completed_at": null,
+      "completed_at": "2026-08-13T11:18:18Z",
       "log_file": "logs/steps/012_results/"
     },
     {
