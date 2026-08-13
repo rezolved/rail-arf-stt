@@ -1,0 +1,34 @@
+branch: task/t0024_biasing_pareto_and_ft_biasing_ablation
+base_branch: main
+base_commit: ad69aeab76f6abdfd38cfa1f8e4ee4dbc0af6d50
+worktree_path: /home/azureuser/rail-metarepo/real-repos/rail-arf-stt-worktrees/t0024_biasing_pareto_and_ft_biasing_ablation
+created_at: 2026-08-13T07:03:49Z
+
+Notes:
+- The `git config --local user.email/user.name` identity was unset in this environment and had to
+  be set locally (repo-scoped only) before any commit could be made.
+- `git-lfs` was not installed in this environment; the repo's `post-checkout` hook requires it.
+  Installed via `apt-get install -y git-lfs` and `git-lfs install --skip-repo` before proceeding.
+- `pre-commit` hooks were installed for a different machine's Python path; re-ran
+  `uv run pre-commit install` to regenerate `.git/hooks/pre-commit` for this environment.
+- `task.json` / `task_description.md` for this task existed as untracked files on `main` at the
+  start of this session (never committed by the task-creation step). `worktree create`'s automatic
+  "Start task" commit silently no-ops when `status` is already not `"not_started"` on disk (it was,
+  from a prior failed attempt), so it did not commit them. Committed them manually on `main` as
+  `ad69aea "Start task t0024_biasing_pareto_and_ft_biasing_ablation"` before re-running
+  `worktree create` so the branch would include them.
+- `git push origin main` for that commit failed with a 403 ("Permission to rezolved/rail-arf-stt.git
+  denied to vgorovoy") despite `gh api` reporting push:true for the same token/user — likely a
+  fine-grained PAT scope gap, not an authorization-role gap. No SSH key is registered with GitHub as
+  a fallback. Per `arf/specifications/task_git_specification.md` and the execute-task skill, a failed
+  push of the main-branch "Start task" commit is non-fatal (a warning) and worktree creation
+  continues; this does not block step 1. This will need to be resolved before Phase 7 (PR push).
+- Dependency data-quality finding (informational, for the check-deps step-executor): in this
+  worktree, `tasks/t0021_parakeet_finetune_vs_biasing/task.json` and
+  `tasks/t0022_gpu_pb_diagnostic/task.json` both show `"status": "not_started"` despite having
+  complete results committed on `main`, and `tasks/t0023_tdt_vs_unified_biasing/task.json` uses a
+  legacy non-ARF schema (`status: "complete"`, no `spec_version`/`task_index`/`expected_assets`) that
+  `aggregate_tasks.py --ids` cannot resolve at all (returns 0 results for that ID). The underlying
+  data files this task depends on (`t0022/results/param_sweep.jsonl`,
+  `t0023/results/tdt_sweep.jsonl`, the t0021 checkpoint and clean_eval set) are all present and
+  readable regardless of this metadata problem.
