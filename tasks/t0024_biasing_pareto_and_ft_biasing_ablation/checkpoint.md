@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0024_biasing_pareto_and_ft_biasing_ablation"
-updated_at: "2026-08-13T11:23:29Z"
-completed_steps: 14
-next_step_number: 15
-next_step_id: "reporting"
+updated_at: "2026-08-13T11:33:00Z"
+completed_steps: 15
+next_step_number: null
+next_step_id: null
 ---
 # Task Objective
 
@@ -171,6 +171,26 @@ library asset; **S-0024-06** (low) backfill stale t0021/t0022/t0023 `task.json` 
 **S-0024-07** (medium) grow the 21-clip clean-eval set for statistical power on future
 fine-tune-vs-biasing ablations.
 
+### Step 15 — reporting
+
+Ran all mandatory verificators. `verify_task_file.py`/`verify_task_dependencies.py` reproduce the
+documented pre-existing `TD-E003` errors on `t0021`/`t0022`/`t0023` stale metadata (not fixed, out
+of scope). `verify_suggestions.py`, `verify_task_metrics.py`, `verify_task_results.py`,
+`verify_task_folder.py`, and the `answer` asset verificator (`meta.asset_types.answer.verificator`)
+all PASSED with 0 errors/0 warnings. Found and fixed two real (in-scope) gaps: (1) `verify_logs.py`
+had 4 `LG-E008` errors because steps 4/5/11/13's skip records were never run through `skip_step.py`
+— backfilled their `step_log.md` files via `skip_step.py`, matching the rationales already in this
+checkpoint's Step History; (2) `verify_machines_destroyed.py` had 3 `RM-E004` + 4 `RM-W005` errors
+once `results/remote_machines_used.json` existed (step 10's earlier "0 errors" pass was a false
+negative — that file didn't exist yet at step 10, short-circuiting the check) —
+`logs/steps/008_setup-machines/machine_log.json`'s `FT-MC` entry was missing top-level
+`offer_id`/`search_criteria`/`image` fields that every other azure_ml machine log in this repo
+(`t0014`, `t0015`) includes; added them plus `offer_id` on each `failed_attempts` record. Re-ran
+both verificators clean (`verify_machines_destroyed.py`: 0 errors, 1 benign `RM-W001` — Azure API
+unreachable from this sandbox, `destroyed_at` remains authoritative). Captured session transcripts
+via `capture_task_sessions` — 0 matched (expected, recorded in `capture_report.json`). `task.json`
+`status` set to `"completed"`, `end_time` set to `"2026-08-13T11:32:00Z"`.
+
 * * *
 
 ## Cross-Step Decisions
@@ -261,12 +281,8 @@ fine-tune-vs-biasing ablations.
 
 ## Next Step Notes
 
-Step 14 (`suggestions`) is complete: `results/suggestions.json` exists (7 candidates,
-`spec_version: "2"`) and `verify_suggestions.py` passed with 0 errors/0 warnings. Step 15
-(`reporting`) runs next — it should run all relevant verificators (`verify_task_file.py`,
-`verify_task_dependencies.py` — expect the known pre-existing false negatives on
-t0021/t0022/t0023 documented under `## Cross-Step Decisions` above, `verify_suggestions.py`,
-`verify_task_metrics.py`, `verify_task_results.py`, `verify_task_folder.py`, `verify_logs.py`, and
-the `answer` asset verificator), capture session transcripts, and mark the task complete. No new
-GPU provisioning, no checkpoint search, no suggestion regeneration — all exhausted/complete for this
-task.
+Step 15 (`reporting`) is complete — this was the final task-branch step. `task.json` `status` is
+`"completed"`, `end_time` is set. All verificators pass except the documented pre-existing
+`t0021`/`t0022`/`t0023` dependency-metadata false negatives. The coordinator should proceed directly
+to Phase 7 (PR/merge), Phase 8 (final verification via `verify_task_complete.py`), and Phase 9
+(overview sync) — no further step-executor work remains for this task.

@@ -41,7 +41,8 @@
         "failure_phase": "search",
         "duration_seconds": 0.0,
         "wasted_cost_usd": 0.0,
-        "timestamp": "2026-08-13T08:10:00Z"
+        "timestamp": "2026-08-13T08:10:00Z",
+        "offer_id": "azure_ml:FT-NC80-v3"
       },
       {
         "vm_name": "FT-NC80-v1",
@@ -51,7 +52,8 @@
         "failure_phase": "search",
         "duration_seconds": 0.0,
         "wasted_cost_usd": 0.0,
-        "timestamp": "2026-08-13T08:10:00Z"
+        "timestamp": "2026-08-13T08:10:00Z",
+        "offer_id": "azure_ml:FT-NC80-v1"
       },
       {
         "vm_name": "FT-NC80-v2",
@@ -61,7 +63,8 @@
         "failure_phase": "search",
         "duration_seconds": 0.0,
         "wasted_cost_usd": 0.0,
-        "timestamp": "2026-08-13T08:10:00Z"
+        "timestamp": "2026-08-13T08:10:00Z",
+        "offer_id": "azure_ml:FT-NC80-v2"
       },
       {
         "vm_name": "FT-MC",
@@ -71,7 +74,8 @@
         "failure_phase": "vm_start_timeout",
         "duration_seconds": 480.0,
         "wasted_cost_usd": 0.0,
-        "timestamp": "2026-08-13T08:23:00Z"
+        "timestamp": "2026-08-13T08:23:00Z",
+        "offer_id": "azure_ml:FT-MC"
       }
     ],
     "checkpoint_path": null,
@@ -80,6 +84,9 @@
     "blocker_status": "RESOLVED (via user-approved deferral) -- Part B of this task is deferred pending a human locating the t0021 checkpoint; Part A (local JSONL analysis, no GPU) is unaffected and proceeds in step 9. Machine was ready from an infra standpoint (SSH/GPU/CUDA verified, repo+branch rsynced to ~/rail-arf-stt-t0024) but the task's REQUIRED preconditions for Part B (existing 'stt' conda env, existing fine-tuned .nemo checkpoint) were never present on this VM and could not be located anywhere reachable -- no experiment ran. See tasks/t0024_biasing_pareto_and_ft_biasing_ablation/intervention/checkpoint_not_found.md for full detail and the pool-config staleness / DVC-auth findings.",
     "teardown_status": "FT-MC's own Azure-side idle-shutdown safety net (idle_time_before_shutdown=60min) auto-stopped the VM at destroyed_at (last_operation: Stop, trigger=IdleShutdown) before any explicit teardown call was made. No task lock was ever placed on FT-MC (the azure_ml_vm.py 'acquire' library call itself never returned success -- see failed_attempts -- the VM was brought up via a manual 'az ml compute start' outside the library), so there was no lock for 'azure_ml_vm.py teardown' to release and no --keep-running override was ever in effect; the VM was left running only for as long as the idle-shutdown window allowed, not indefinitely.",
     "repo_sync_status": "DONE -- rsync'd working tree (excluding .venv, .git, __pycache__) from local worktree to FT-MC:~/rail-arf-stt-t0024/ (2238 files); tasks/t0021_parakeet_finetune_vs_biasing, t0022_gpu_pb_diagnostic, t0023_tdt_vs_unified_biasing, t0024_biasing_pareto_and_ft_biasing_ablation all present and resolve identically to local checkout. NOTE: repo synced via rsync, not git clone, since dvc pull required .dvc pointer files present on disk and a plain (uncommitted) git repo was 'git init'-ed remotely purely to satisfy dvc's SCM detection -- no git history/credentials were transferred.",
-    "dvc_pull_status": "BLOCKED (separate from the checkpoint blocker) -- 'dvc pull tasks/t0021_parakeet_finetune_vs_biasing/data/clean_eval_audio' failed with AuthenticationFailed. Root cause: copied .dvc/config.local (from the local main-repo checkout, containing a legacy connection_string) is stale/rejected by Azure, and per docs/dvc-data-workflow.md the current default auth path is 'az login' (AzureCliCredential via DefaultAzureCredential) -- but FT-MC has no active az login session, no managed identity ('az login --identity' -> 'Identity not found'), and no AZURE_CLIENT_ID/SECRET service-principal env vars. Needs either an interactive 'az login' (device code) run once on FT-MC by a human, or a fresh valid connection string from the team vault placed in FT-MC's .dvc/config.local. The 21 WAV clips were NOT pulled onto the VM as a result (ls .../clean_eval_audio/*.wav would print 0, not 21)."
+    "dvc_pull_status": "BLOCKED (separate from the checkpoint blocker) -- 'dvc pull tasks/t0021_parakeet_finetune_vs_biasing/data/clean_eval_audio' failed with AuthenticationFailed. Root cause: copied .dvc/config.local (from the local main-repo checkout, containing a legacy connection_string) is stale/rejected by Azure, and per docs/dvc-data-workflow.md the current default auth path is 'az login' (AzureCliCredential via DefaultAzureCredential) -- but FT-MC has no active az login session, no managed identity ('az login --identity' -> 'Identity not found'), and no AZURE_CLIENT_ID/SECRET service-principal env vars. Needs either an interactive 'az login' (device code) run once on FT-MC by a human, or a fresh valid connection string from the team vault placed in FT-MC's .dvc/config.local. The 21 WAV clips were NOT pulled onto the VM as a result (ls .../clean_eval_audio/*.wav would print 0, not 21).",
+    "offer_id": "azure_ml:FT-MC",
+    "search_criteria": "provider=azure_ml gpu_class=H100 priority_walk=FT-NC80-v3,FT-NC80-v1,FT-NC80-v2,FT-MC (per project/azure_vm.json)",
+    "image": "25.07.12"
   }
 ]

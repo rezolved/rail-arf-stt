@@ -1,0 +1,9 @@
+
+Verifying: /home/azureuser/rail-metarepo/real-repos/rail-arf-stt-worktrees/t0024_biasing_pareto_and_ft_biasing_ablation/tasks/t0024_biasing_pareto_and_ft_biasing_ablation/task.json
+
+[31m[1mERRORS:[0m
+[31m  TD-E003 error: dependency 't0021_parakeet_finetune_vs_biasing' has status 'not_started', expected 'completed'[0m
+[31m  TD-E003 error: dependency 't0022_gpu_pb_diagnostic' has status 'not_started', expected 'completed'[0m
+[31m  TD-E003 error: dependency 't0023_tdt_vs_unified_biasing' has status 'complete', expected 'completed'[0m
+
+[31m[1mFAILED[0m — 3 error(s), 0 warning(s)
