@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0024_biasing_pareto_and_ft_biasing_ablation"
-updated_at: "2026-08-13T11:10:00Z"
-completed_steps: 11
-next_step_number: 10
-next_step_id: "teardown"
+updated_at: "2026-08-13T11:09:05Z"
+completed_steps: 12
+next_step_number: 12
+next_step_id: "results"
 ---
 # Task Objective
 
