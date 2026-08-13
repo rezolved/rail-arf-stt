@@ -1,0 +1,11 @@
+[
+  {
+    "provider": "azure_ml",
+    "machine_id": "FT-MC",
+    "gpu": "H100 NVL",
+    "gpu_count": 2,
+    "ram_gb": 629,
+    "duration_hours": 1.0075,
+    "cost_usd": 14.06
+  }
+]

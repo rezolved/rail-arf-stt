@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0024_biasing_pareto_and_ft_biasing_ablation"
-updated_at: "2026-08-13T11:09:05Z"
-completed_steps: 12
-next_step_number: 12
-next_step_id: "results"
+updated_at: "2026-08-13T11:16:31Z"
+completed_steps: 13
+next_step_number: 14
+next_step_id: "suggestions"
 ---
 # Task Objective
 
@@ -131,10 +131,28 @@ folder). `ruff check`/`ruff format`/`mypy` all pass clean on the 3 new files in 
 ### Step 10 — teardown
 
 No new action needed: `FT-MC` already auto-stopped via Azure idle-shutdown during step 8, and step 9
-was Part A only (no GPU touched). Confirmed `machine_log.json`'s `destroyed_at`/`total_cost_usd`
-are finalized and ran `verify_machines_destroyed.py` (wrapped in `run_with_logs.py`) — passed with 0
+was Part A only (no GPU touched). Confirmed `machine_log.json`'s `destroyed_at`/`total_cost_usd` are
+finalized and ran `verify_machines_destroyed.py` (wrapped in `run_with_logs.py`) — passed with 0
 errors/0 warnings. `results/remote_machines_used.json`/`costs.json` deferred to the `results` step
 per spec.
+
+### Step 12 — results
+
+Wrote `results/results_summary.md`, `results/results_detailed.md`, `results/costs.json`
+(`total_cost_usd: 14.06`, all attributed to `FT-MC`'s deferred-Part-B provisioning, documented as a
+sunk cost via a `note` field), and `results/remote_machines_used.json` (one `FT-MC` entry sourced
+from `machine_log.json`); `results/metrics.json` confirmed to remain `{}` (no registered gold-92
+metric applies to Part A's 45-clip-subset re-analysis). `results_detailed.md`'s
+`## Task Requirement Coverage` marks all 27 `REQ-*` items from `plan/plan.md`: `REQ-1`-`REQ-11`
+(Part A) Done; `REQ-12`-`REQ-21` (Part B) Not done, each pointing to
+`intervention/checkpoint_not_found.md`; `REQ-22`-`REQ-24` Done; `REQ-25`-`REQ-27` Partial (core
+constraints honored, but sub-clauses tied to Part B's never-run `build_comparison.py` — the latency
+provenance correction and Part B's latency-recording/code-copying — could not execute). The required
+"Plan assumption check" is documented prominently under `## Analysis`: the plan treated Part B as a
+routine run with the checkpoint "confirmed present" and only anticipated a decoding-compatibility
+risk, not the total-unreachability provenance failure that actually occurred. Both PNGs embedded
+with descriptions. `verify_task_results.py` and `verify_task_metrics.py` both passed with 0 errors/0
+warnings.
 
 * * *
 
@@ -226,27 +244,21 @@ per spec.
 
 ## Next Step Notes
 
-Step 10 (`teardown`) is complete — reconciliation only, no new action. `FT-MC` had already
-auto-stopped via idle-shutdown during step 8 before this step began, and step 9 was Part A only (no
-GPU touched), so there was nothing live to destroy. `machine_log.json`'s `destroyed_at`
-(`2026-08-13T09:32:38Z`) and `total_cost_usd` (`$14.06`) were confirmed final, and
-`verify_machines_destroyed.py` passed with 0 errors/0 warnings (log:
-`logs/commands/014_20260813T110855Z_uv-run-python.*`). `results/remote_machines_used.json` and
-`results/costs.json` were deliberately NOT written in this step — per
-`arf/skills/execute-task/SKILL.md`'s `results` step, those files are produced there, and the
-verificator run in step 10 did not require them to exist yet. Step 12 (`results`) runs next (step 11
-`creative-thinking` and step 13 `compare-literature` are both already marked skipped). It must:
-write `results/remote_machines_used.json` (one entry for `FT-MC`: `provider: "azure-ml"`,
-`machine_id: "FT-MC"`, `gpu: "2xH100 NVL"`, `gpu_count: 2`, `duration_hours: 1.0075`,
-`cost_usd: 14.06`) and `results/costs.json` (`total_cost_usd: 14.06`, `breakdown: {"azure-ml-2xh100":
-14.06}`, with a `note` field stating Part B was deferred so no inference cost was incurred beyond
-the provisioning/search VM time) per `remote_machines_specification.md`; write
-`results/results_summary.md` and `results/results_detailed.md` covering the existing Part A outputs
-(`results/pareto_tdt.json`, `results/pareto_unified.json`, `results/images/pareto_tdt.png`,
-`pareto_unified.png`, `results/frontier_tables.md`, `results/metrics.json` = `{}`), and state the
-Part B deferral explicitly in `## Limitations` and `## Task Requirement Coverage` (REQ-12 through
-REQ-21 blocked, REQ-22 partial — see step 9's `Requirement Completion Checklist` in
-`logs/steps/009_implementation/step_log.md`). Later, `suggestions.json` (step 14) should likely
-propose a follow-up task to locate/regenerate the t0021 checkpoint and complete Part B. No new GPU
-provisioning, no checkpoint search — those are exhausted and out of scope for every remaining step
-in this task.
+Step 12 (`results`) is complete. All `results/` files now exist and both verificators
+(`verify_task_results.py`, `verify_task_metrics.py`) passed with 0 errors/0 warnings:
+`results_summary.md`, `results_detailed.md` (both PNGs embedded with descriptions, the required
+"Plan assumption check" documented under `## Analysis`, and a full `## Task Requirement Coverage`
+table for all 27 `REQ-*` items — Part A `REQ-1`-`REQ-11` Done, Part B `REQ-12`-`REQ-21` Not done,
+`REQ-22`-`REQ-24` Done, `REQ-25`-`REQ-27` Partial), `costs.json` (`total_cost_usd: 14.06`, the real
+sunk FT-MC cost from the deferred Part B attempt, documented honestly via a `note`), and
+`remote_machines_used.json` (one `FT-MC` entry). `metrics.json` remains `{}` (confirmed no
+registered gold-92-scoped metric applies to Part A's 45-clip-subset re-analysis). Step 13
+(`compare-literature`) is already marked skipped. Step 14 (`suggestions`) runs next — it should
+propose a follow-up task to locate or regenerate the t0021 fine-tuned checkpoint (check whether the
+VM that trained it, one of `FT-NC80-v1/v2/v3`, was renamed rather than deleted, or whether any
+export/backup exists) so Part B (`REQ-12`-`REQ-21`) can finally be completed, and separately flag
+the two infra issues surfaced but explicitly NOT fixed on this task's branch (per
+`intervention/checkpoint_not_found.md`): the stale `project/azure_vm.json` pool config (3 of 4
+declared VMs no longer exist, costing ~24 minutes per priority walk) and the DVC auth failure on
+`FT-MC` (`az login` / managed identity both unavailable). No new GPU provisioning, no checkpoint
+search — those are exhausted and out of scope for every remaining step in this task.
