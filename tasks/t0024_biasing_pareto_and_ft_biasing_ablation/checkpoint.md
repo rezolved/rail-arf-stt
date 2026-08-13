@@ -128,6 +128,14 @@ implementation subagent's `ruff format .` had reformatted an unrelated file outs
 `git checkout --` before committing, per Critical Rule 1 (never modify files outside the task
 folder). `ruff check`/`ruff format`/`mypy` all pass clean on the 3 new files in `code/`.
 
+### Step 10 — teardown
+
+No new action needed: `FT-MC` already auto-stopped via Azure idle-shutdown during step 8, and step 9
+was Part A only (no GPU touched). Confirmed `machine_log.json`'s `destroyed_at`/`total_cost_usd`
+are finalized and ran `verify_machines_destroyed.py` (wrapped in `run_with_logs.py`) — passed with 0
+errors/0 warnings. `results/remote_machines_used.json`/`costs.json` deferred to the `results` step
+per spec.
+
 * * *
 
 ## Cross-Step Decisions
@@ -218,25 +226,27 @@ folder). `ruff check`/`ruff format`/`mypy` all pass clean on the 3 new files in 
 
 ## Next Step Notes
 
-Step 9 (`implementation`) is complete, Part A only, per the user-approved deferral. All Part A
-deliverables exist and are independently verified by this step-executor (not just the subagent's
-claim): `results/pareto_tdt.json` / `results/pareto_unified.json` (5-cell frontiers each, numbers
-match `plan/plan.md`'s hand-derived expectations exactly), `results/images/pareto_tdt.png` /
-`pareto_unified.png` (both viewed, both correct), `results/frontier_tables.md`,
-`results/metrics.json` (`{}`, Part B's registered metrics did not run), and the `answer` asset
-`assets/answer/production-decoding-and-biasing-ft-verdict/` (passes
-`meta.asset_types.answer. verificator` with 0 errors/0 warnings; states the TDT/unified
-recommendations decisively and defers the biasing-vs-fine-tuning verdict explicitly). `task.json`
-`expected_assets` is now `{"answer": 1}` (predictions dropped, user-approved). Step 10 (`teardown`)
-runs next: per the setup-machines step history (step 8) and `intervention/checkpoint_not_found.md`,
-`FT-MC` already auto-stopped via its own idle-shutdown before this step began (no task lock was ever
-acquired — `azure_ml_vm.py acquire` never returned success), so `teardown` should find nothing live
-to destroy. Its job is reconciliation only: verify `machine_log.json`'s final state, and
-write/update `results/remote_machines_used.json` and `results/costs.json` to reflect the ~$14.06
-already spent (step 8), then run `verify_machines_destroyed.py` to confirm. No new GPU provisioning,
-no checkpoint search — those are exhausted and out of scope for every remaining step in this task.
-Remember for later steps (`results`, `suggestions`, `reporting`): `results_detailed.md`'s
-`## Limitations` and `## Task Requirement Coverage` must state the Part B deferral explicitly
-(REQ-12 through REQ-21 blocked, REQ-22 partial — see step 9's `Requirement Completion Checklist` in
-`logs/steps/009_implementation/step_log.md`), and `suggestions.json` should likely propose a
-follow-up task to locate/regenerate the t0021 checkpoint and complete Part B.
+Step 10 (`teardown`) is complete — reconciliation only, no new action. `FT-MC` had already
+auto-stopped via idle-shutdown during step 8 before this step began, and step 9 was Part A only (no
+GPU touched), so there was nothing live to destroy. `machine_log.json`'s `destroyed_at`
+(`2026-08-13T09:32:38Z`) and `total_cost_usd` (`$14.06`) were confirmed final, and
+`verify_machines_destroyed.py` passed with 0 errors/0 warnings (log:
+`logs/commands/014_20260813T110855Z_uv-run-python.*`). `results/remote_machines_used.json` and
+`results/costs.json` were deliberately NOT written in this step — per
+`arf/skills/execute-task/SKILL.md`'s `results` step, those files are produced there, and the
+verificator run in step 10 did not require them to exist yet. Step 12 (`results`) runs next (step 11
+`creative-thinking` and step 13 `compare-literature` are both already marked skipped). It must:
+write `results/remote_machines_used.json` (one entry for `FT-MC`: `provider: "azure-ml"`,
+`machine_id: "FT-MC"`, `gpu: "2xH100 NVL"`, `gpu_count: 2`, `duration_hours: 1.0075`,
+`cost_usd: 14.06`) and `results/costs.json` (`total_cost_usd: 14.06`, `breakdown: {"azure-ml-2xh100":
+14.06}`, with a `note` field stating Part B was deferred so no inference cost was incurred beyond
+the provisioning/search VM time) per `remote_machines_specification.md`; write
+`results/results_summary.md` and `results/results_detailed.md` covering the existing Part A outputs
+(`results/pareto_tdt.json`, `results/pareto_unified.json`, `results/images/pareto_tdt.png`,
+`pareto_unified.png`, `results/frontier_tables.md`, `results/metrics.json` = `{}`), and state the
+Part B deferral explicitly in `## Limitations` and `## Task Requirement Coverage` (REQ-12 through
+REQ-21 blocked, REQ-22 partial — see step 9's `Requirement Completion Checklist` in
+`logs/steps/009_implementation/step_log.md`). Later, `suggestions.json` (step 14) should likely
+propose a follow-up task to locate/regenerate the t0021 checkpoint and complete Part B. No new GPU
+provisioning, no checkpoint search — those are exhausted and out of scope for every remaining step
+in this task.
