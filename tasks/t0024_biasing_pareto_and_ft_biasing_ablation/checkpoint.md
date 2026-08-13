@@ -2,7 +2,7 @@
 spec_version: "1"
 task_id: "t0024_biasing_pareto_and_ft_biasing_ablation"
 updated_at: "2026-08-13T10:55:00Z"
-completed_steps: 8
+completed_steps: 10
 next_step_number: 9
 next_step_id: "implementation"
 ---
@@ -100,15 +100,10 @@ reported with provenance labels rather than silently substituted.
 
 ### Step 8 — setup-machines
 
-Provisioned and verified `FT-MC` from the Azure ML H100 pool (SSH, 2x H100 NVL, CUDA 12.2 all
-confirmed; repo/branch rsynced). Part B's preconditions — the t0021 fine-tuned checkpoint
-(`/mnt/finetune-checkpoints/parakeet-unified-finetuned-best.nemo`) and the `stt` conda env — were
-not present on FT-MC or locatable anywhere reachable (3 of 4 pool entries no longer exist in Azure;
-the VM that actually ran t0021 is unknown and unrecoverable through this project's pool). User was
-consulted directly and decided: defer Part B, tear down now, proceed with Part A only in step 9. No
-explicit teardown call was needed — FT-MC's own idle-shutdown auto-stopped it (~$14.06 total, no
-runaway cost). Full detail in
-`tasks/t0024_biasing_pareto_and_ft_biasing_ablation/intervention/checkpoint_not_found.md`.
+Provisioned and verified `FT-MC` (SSH, 2x H100 NVL, CUDA 12.2; repo rsynced). Part B's preconditions
+(t0021 checkpoint, `stt` conda env) were not present or locatable anywhere reachable — see
+`intervention/checkpoint_not_found.md`. User decided: defer Part B, tear down, Part A only in step
+9\. FT-MC auto-stopped via idle-shutdown, ~$14.06 total.
 
 * * *
 
