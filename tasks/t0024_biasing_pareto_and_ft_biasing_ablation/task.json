@@ -14,7 +14,6 @@
   "start_time": "2026-08-13T06:59:00Z",
   "end_time": null,
   "expected_assets": {
-    "predictions": 1,
     "answer": 1
   },
   "task_types": [],

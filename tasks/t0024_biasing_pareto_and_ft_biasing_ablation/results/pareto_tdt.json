@@ -1,0 +1,67 @@
+{
+  "model": "parakeet-tdt-0.6b-v3",
+  "source_file": "tasks/t0023_tdt_vs_unified_biasing/results/tdt_sweep.jsonl",
+  "n_rows": 100,
+  "frontier": [
+    {
+      "context_score": 2.5,
+      "depth_scaling": 0.5,
+      "alpha": 1.5,
+      "brand_exact_rate": 0.371,
+      "neutral_wer": 0.037
+    },
+    {
+      "context_score": 2.5,
+      "depth_scaling": 0.5,
+      "alpha": 2.0,
+      "brand_exact_rate": 0.486,
+      "neutral_wer": 0.057
+    },
+    {
+      "context_score": 3.0,
+      "depth_scaling": 0.5,
+      "alpha": 2.0,
+      "brand_exact_rate": 0.543,
+      "neutral_wer": 0.167
+    },
+    {
+      "context_score": 2.5,
+      "depth_scaling": 0.5,
+      "alpha": 2.5,
+      "brand_exact_rate": 0.571,
+      "neutral_wer": 0.224
+    },
+    {
+      "context_score": 3.0,
+      "depth_scaling": 0.5,
+      "alpha": 3.0,
+      "brand_exact_rate": 0.6,
+      "neutral_wer": 0.649
+    }
+  ],
+  "live_prod_point": {
+    "context_score": 3.0,
+    "depth_scaling": 0.5,
+    "alpha": 1.5,
+    "brand_exact_rate": 0.457,
+    "neutral_wer": 0.057
+  },
+  "live_prod_on_frontier": false,
+  "live_prod_dominated_by": [
+    {
+      "context_score": 2.5,
+      "depth_scaling": 0.5,
+      "alpha": 2.0,
+      "brand_exact_rate": 0.486,
+      "neutral_wer": 0.057
+    }
+  ],
+  "selected_cell": {
+    "context_score": 2.5,
+    "depth_scaling": 0.5,
+    "alpha": 2.0,
+    "brand_exact_rate": 0.486,
+    "neutral_wer": 0.057
+  },
+  "selection_stance": "marginal delta_neutral_wer / delta_brand_exact_rate <= 1.0 against the last-accepted point, scanning the frontier ascending by neutral_wer, TDT baseline = current live-prod point"
+}

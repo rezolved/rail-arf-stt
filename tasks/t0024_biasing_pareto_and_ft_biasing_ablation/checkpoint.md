@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0024_biasing_pareto_and_ft_biasing_ablation"
-updated_at: "2026-08-13T10:55:00Z"
-completed_steps: 10
-next_step_number: 9
-next_step_id: "implementation"
+updated_at: "2026-08-13T11:10:00Z"
+completed_steps: 11
+next_step_number: 10
+next_step_id: "teardown"
 ---
 # Task Objective
 
@@ -105,6 +105,29 @@ Provisioned and verified `FT-MC` (SSH, 2x H100 NVL, CUDA 12.2; repo rsynced). Pa
 `intervention/checkpoint_not_found.md`. User decided: defer Part B, tear down, Part A only in step
 9\. FT-MC auto-stopped via idle-shutdown, ~$14.06 total.
 
+### Step 9 — implementation
+
+Implemented Part A only, per the user-approved deferral. `code/pareto.py` computed the true
+non-dominated Pareto frontier for both sweeps (verified independently, not just via the subagent's
+claim): TDT frontier 5 cells, live-prod point confirmed off-frontier (dominated by
+`cs=2.5/ds=0.5/α=2.0`), selected TDT cell `cs=2.5/ds=0.5/α=2.0` (48.6%@5.7%); unified frontier 5
+cells, selected cell `cs=3.0/ds=0.5/α=1.5` (60.0%@8.7%) — numbers match `plan/plan.md`'s
+hand-derived expectations exactly. `code/make_charts.py` produced `results/images/pareto_tdt.png`
+(67.7 KB) and `pareto_unified.png` (62.7 KB); both visually inspected and correct (frontier bounds
+the scatter, live-prod star correctly placed). `results/frontier_tables.md` covers both frontier
+tables plus the headline-cell-cost and frontier-shape-comparison prose. `results/metrics.json` is
+`{}` (both registered metrics for this plan are Part B measurements that did not run). The `answer`
+asset `assets/answer/production-decoding-and-biasing-ft-verdict/` states the TDT/unified production
+recommendations decisively and explicitly defers the biasing-vs-fine-tuning verdict pending human
+resolution of the missing t0021 checkpoint — verified passing with 0 errors/0 warnings via
+`meta.asset_types.answer.verificator`. `task.json` `expected_assets` was edited from
+`{"predictions": 1, "answer": 1}` to `{"answer": 1}` (user-approved scope reduction, stated
+explicitly in the answer asset, not silently dropped). One correction made during verification: the
+implementation subagent's `ruff format .` had reformatted an unrelated file outside the task folder
+(`arf/scripts/verificators/verify_checkpoint.py`); this step-executor reverted that file via
+`git checkout --` before committing, per Critical Rule 1 (never modify files outside the task
+folder). `ruff check`/`ruff format`/`mypy` all pass clean on the 3 new files in `code/`.
+
 * * *
 
 ## Cross-Step Decisions
@@ -184,24 +207,36 @@ Provisioned and verified `FT-MC` (SSH, 2x H100 NVL, CUDA 12.2; repo rsynced). Pa
   reflect Part-A-only scope (or explicitly mark Part B fields as not-run/deferred) rather than
   fabricating Part B output.
 
+* **`task.json` `expected_assets` reduced to `{"answer": 1}` (step 9)**: the `predictions` asset
+  (`parakeet-finetuned-malsd-biased-clean21`) was Part B's sole output and will not be produced this
+  round. This is a user-approved scope reduction, not a silent drop — Part A's frontier analysis and
+  production recommendation fully satisfy a single `answer` asset per the plan and the task's Part A
+  "Expected outputs". If Part B is resumed in a future task/step, `expected_assets` will need
+  `predictions` re-added at that time.
+
 * * *
 
 ## Next Step Notes
 
-Step 8 (`setup-machines`) is complete. `FT-MC` was provisioned, SSH/GPU (2x H100 NVL)/CUDA verified,
-repo synced — but Part B's required checkpoint and conda env do not exist on it or anywhere
-reachable (see `intervention/checkpoint_not_found.md` for the full search and the stale-pool-config
-/ DVC-auth findings, which are infra issues for `main`, not this branch). The user was consulted and
-explicitly decided: tear down now (already done — FT-MC auto-stopped via its own idle-shutdown, no
-runaway cost, ~$14.06 total, see `machine_log.json`), defer Part B, and proceed with **Part A only**
-this round. Step 9 (`implementation`) must NOT provision a machine, must NOT search for the
-checkpoint again, and must NOT run Part B. Do the Part A work exactly as scoped in `plan/plan.md`
-(Pareto frontier computation + charts from `t0022`/`t0023`'s existing sweep JSONLs, TDT selected
-cell `cs=2.5/ds=0.5/α=2.0`, unified selected cell `cs=3.0/ds=0.5/α=1.5`), and make sure the `answer`
-asset and `results/` output clearly state that Part B is deferred pending human resolution of the
-checkpoint location, rather than silently omitting it. Step 10 (`teardown`) still runs next after
-`implementation` per the normal step order — it should find FT-MC already destroyed and just
-reconcile `results/costs.json` / `results/remote_machines_used.json` against `machine_log.json`.
-Remember the Cross-Step Decisions above (this step's entry has the exact frontier cells, script
-names, and GPU pool/cost numbers step 9 `implementation` will need) plus the dependency-metadata
-caveat (steps 2/6) and the `apply_boosting()` → `apply_malsd_boost()` swap.
+Step 9 (`implementation`) is complete, Part A only, per the user-approved deferral. All Part A
+deliverables exist and are independently verified by this step-executor (not just the subagent's
+claim): `results/pareto_tdt.json` / `results/pareto_unified.json` (5-cell frontiers each, numbers
+match `plan/plan.md`'s hand-derived expectations exactly), `results/images/pareto_tdt.png` /
+`pareto_unified.png` (both viewed, both correct), `results/frontier_tables.md`,
+`results/metrics.json` (`{}`, Part B's registered metrics did not run), and the `answer` asset
+`assets/answer/production-decoding-and-biasing-ft-verdict/` (passes
+`meta.asset_types.answer. verificator` with 0 errors/0 warnings; states the TDT/unified
+recommendations decisively and defers the biasing-vs-fine-tuning verdict explicitly). `task.json`
+`expected_assets` is now `{"answer": 1}` (predictions dropped, user-approved). Step 10 (`teardown`)
+runs next: per the setup-machines step history (step 8) and `intervention/checkpoint_not_found.md`,
+`FT-MC` already auto-stopped via its own idle-shutdown before this step began (no task lock was ever
+acquired — `azure_ml_vm.py acquire` never returned success), so `teardown` should find nothing live
+to destroy. Its job is reconciliation only: verify `machine_log.json`'s final state, and
+write/update `results/remote_machines_used.json` and `results/costs.json` to reflect the ~$14.06
+already spent (step 8), then run `verify_machines_destroyed.py` to confirm. No new GPU provisioning,
+no checkpoint search — those are exhausted and out of scope for every remaining step in this task.
+Remember for later steps (`results`, `suggestions`, `reporting`): `results_detailed.md`'s
+`## Limitations` and `## Task Requirement Coverage` must state the Part B deferral explicitly
+(REQ-12 through REQ-21 blocked, REQ-22 partial — see step 9's `Requirement Completion Checklist` in
+`logs/steps/009_implementation/step_log.md`), and `suggestions.json` should likely propose a
+follow-up task to locate/regenerate the t0021 checkpoint and complete Part B.

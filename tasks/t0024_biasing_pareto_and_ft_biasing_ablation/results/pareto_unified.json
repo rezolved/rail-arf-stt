@@ -1,0 +1,50 @@
+{
+  "model": "parakeet-unified-en-0.6b",
+  "source_file": "tasks/t0022_gpu_pb_diagnostic/results/param_sweep.jsonl",
+  "n_rows": 100,
+  "frontier": [
+    {
+      "context_score": 2.0,
+      "depth_scaling": 0.5,
+      "alpha": 1.5,
+      "brand_exact_rate": 0.4,
+      "neutral_wer": 0.027
+    },
+    {
+      "context_score": 2.5,
+      "depth_scaling": 0.5,
+      "alpha": 1.5,
+      "brand_exact_rate": 0.486,
+      "neutral_wer": 0.044
+    },
+    {
+      "context_score": 1.5,
+      "depth_scaling": 0.5,
+      "alpha": 2.5,
+      "brand_exact_rate": 0.514,
+      "neutral_wer": 0.077
+    },
+    {
+      "context_score": 3.0,
+      "depth_scaling": 0.5,
+      "alpha": 1.5,
+      "brand_exact_rate": 0.6,
+      "neutral_wer": 0.087
+    },
+    {
+      "context_score": 2.5,
+      "depth_scaling": 0.5,
+      "alpha": 2.5,
+      "brand_exact_rate": 0.686,
+      "neutral_wer": 0.279
+    }
+  ],
+  "selected_cell": {
+    "context_score": 3.0,
+    "depth_scaling": 0.5,
+    "alpha": 1.5,
+    "brand_exact_rate": 0.6,
+    "neutral_wer": 0.087
+  },
+  "selection_stance": "marginal delta_neutral_wer / delta_brand_exact_rate <= 1.0 against the last-accepted point, scanning the frontier ascending by neutral_wer, unified baseline = the lowest-neutral_wer frontier cell (unified is not deployed, so there is no live-prod reference)"
+}
