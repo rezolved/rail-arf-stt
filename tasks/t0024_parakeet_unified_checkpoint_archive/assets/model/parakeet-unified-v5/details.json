@@ -1,0 +1,50 @@
+{
+  "spec_version": "2",
+  "model_id": "parakeet-unified-v5",
+  "name": "parakeet-unified-en-0.6b v5 (Rezolve domain fine-tune)",
+  "version": "5.0.0",
+  "short_description": "parakeet-unified-en-0.6b fine-tuned on Rezolve domain audio (TTS + real prod clips); encoder frozen; WER 4.62%, EA-DV 100% on 19-clip gold-92 test split.",
+  "description_path": "description.md",
+  "framework": "pytorch",
+  "base_model": "nvidia/parakeet-unified-en-0.6b",
+  "base_model_source": "huggingface",
+  "architecture": "FastConformer-Hybrid Transducer-CTC (English-only, 0.6B params). Encoder frozen during fine-tune; only the RNNT decoder and CTC head were updated.",
+  "training_task_id": "external",
+  "training_dataset_ids": [],
+  "hyperparameters": {
+    "learning_rate": 1e-4,
+    "batch_size": 16,
+    "max_epochs": 50,
+    "best_epoch": 35,
+    "optimizer": "AdamW",
+    "encoder_frozen": true,
+    "early_stopping": false,
+    "train_clips": 422,
+    "train_tts_clips": 353,
+    "train_real_clips": 69,
+    "val_clips": 7
+  },
+  "training_metrics": {
+    "best_val_wer": 0.0556,
+    "best_epoch": 35,
+    "test_wer": 0.0462,
+    "test_ea_dv": 1.0,
+    "test_clips": 19,
+    "test_brand_clips": 4,
+    "brainpowa_clean21_correct": 0,
+    "brainpowa_clean21_total": 3
+  },
+  "files": [
+    {
+      "path": "files/parakeet-unified-finetuned-best.nemo",
+      "description": "NeMo checkpoint — best epoch (35/50) by val WER. Load with nemo.collections.asr.models.ASRModel.restore_from().",
+      "format": "zip"
+    }
+  ],
+  "categories": [
+    "domain-adaptation",
+    "stt-evaluation"
+  ],
+  "created_by_task": "t0024_parakeet_unified_checkpoint_archive",
+  "date_created": "2026-07-13"
+}
