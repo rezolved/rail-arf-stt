@@ -1,0 +1,19 @@
+{
+  "spec_version": 4,
+  "task_id": "t0024_parakeet_unified_checkpoint_archive",
+  "task_index": 24,
+  "name": "parakeet-unified-v5 checkpoint — DVC archive and model asset registration",
+  "short_description": "Register the parakeet-unified-en-0.6b v5 (best) fine-tune checkpoint as a model asset in DVC so it is reproducible from any machine.",
+  "long_description_file": "task_description.md",
+  "status": "not_started",
+  "dependencies": [],
+  "start_time": null,
+  "end_time": null,
+  "expected_assets": {
+    "model": 1
+  },
+  "task_types": [
+    "infrastructure-setup"
+  ],
+  "source_suggestion": null
+}
