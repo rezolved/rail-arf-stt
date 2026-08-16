@@ -1,6 +1,5 @@
 outs:
 - md5: c6495965b82dd18520837b5b87cc4988
   size: 2474055680
-  isexec: true
   hash: md5
   path: parakeet-unified-finetuned-best.nemo
