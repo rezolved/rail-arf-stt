@@ -38,14 +38,15 @@ Already present:
   "resource_group": "rezolve-AI",
   "ssh_host_alias": "LLM-T1-NC80",
   "hourly_cost_usd": 13.96,
-  "priority": 5,
+  "priority": 2,
   "notes": "...",
   "requires_coordination_if_running": true
 }
 ```
 
-Priority `5` (tried last) — this pool's real primaries are the `finetuning-workspace` boxes;
-`LLM-T1-NC80` is a last-resort fallback specifically because it is shared human-use compute.
+Priority `2` (tried last) — this pool's real primary is the `finetuning-workspace` box `FT-MC`;
+`LLM-T1-NC80` is a last-resort fallback specifically because it is shared human-use compute. It was
+priority `5` until `FT-NC80-v1/v2/v3` were removed from the pool as decommissioned (2026-08-24).
 
 ## Step 2 — SSH alias (`~/.ssh/config`)
 
