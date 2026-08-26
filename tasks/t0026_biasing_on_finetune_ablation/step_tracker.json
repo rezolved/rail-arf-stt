@@ -35,7 +35,7 @@
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/004_research-papers/"
     },
     {
       "step": 5,
@@ -44,7 +44,7 @@
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/005_research-internet/"
     },
     {
       "step": 6,
@@ -98,7 +98,7 @@
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/011_creative-thinking/"
     },
     {
       "step": 12,
@@ -116,7 +116,7 @@
       "status": "skipped",
       "started_at": null,
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/013_compare-literature/"
     },
     {
       "step": 14,
