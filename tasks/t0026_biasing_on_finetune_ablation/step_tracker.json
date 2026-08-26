@@ -50,9 +50,9 @@
       "step": 6,
       "name": "research-code",
       "description": "Review t0021/t0023 scoring and boosting helpers (apply_malsd_boost, DOMAIN_VOCAB, clean-eval scoring) and t0024 Part A pareto cell selection to reuse rather than re-implement, per S-0024-05.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-08-26T14:58:42Z",
-      "completed_at": null,
+      "completed_at": "2026-08-26T15:08:08Z",
       "log_file": "logs/steps/006_research-code/"
     },
     {
