@@ -2,7 +2,7 @@
 spec_version: "1"
 task_id: "t0026_biasing_on_finetune_ablation"
 updated_at: "2026-08-26T14:56:00Z"
-completed_steps: 2
+completed_steps: 6
 next_step_number: 3
 next_step_id: "init-folders"
 ---
@@ -23,14 +23,31 @@ output.
 
 ### Step 2 — check-deps
 
-Verified t0021_parakeet_finetune_vs_biasing and t0024_biasing_pareto_and_ft_biasing_ablation are
-`completed`. t0024_parakeet_unified_checkpoint_archive initially failed (TD-E003, status
-`not_started`) even though its parakeet-unified-v5 model asset is fully merged to main — a
-bookkeeping false-negative (asset added directly, no `reporting` step ever ran). Fixed by pushing a
-metadata-only status correction straight to `main` (commit `e755ef4`, same pattern as PR #19 for
-t0021-t0023; `gh pr create` and the REST API both returned 403 for this token, so the fix went
-straight to main instead of through a PR) and merging `origin/main` into this task branch. Prestep
-now passes; see `logs/steps/002_check-deps/deps_report.json` for full detail.
+t0021 and t0024-Part-A are `completed`. t0024_parakeet_unified_checkpoint_archive initially failed
+(TD-E003, status `not_started`) despite its model asset being fully merged to main — a bookkeeping
+false-negative (asset added directly, no `reporting` step ever ran). Fixed with a metadata-only
+status correction pushed straight to `main` (commit `e755ef4`, same pattern as PR #19), merged into
+this branch. See `logs/steps/002_check-deps/deps_report.json` for full detail.
+
+### Step 4 — research-papers
+
+Skipped (planned at step 1). Predetermined 2x2 ablation using an already-selected biasing cell and
+existing fine-tuned checkpoint; no new literature validation required.
+
+### Step 5 — research-internet
+
+Skipped (planned at step 1). No new external tools, APIs, or facts are needed beyond what
+t0021-t0024 already established.
+
+### Step 11 — creative-thinking
+
+Skipped (planned at step 1). Mechanical, predetermined 2x2 ablation with no open design space for
+alternative approaches.
+
+### Step 13 — compare-literature
+
+Skipped (planned at step 1). Metrics are project-internal (clean_eval_v2, non-registered) with no
+published baseline to compare against, matching t0024's precedent.
 
 * * *
 
