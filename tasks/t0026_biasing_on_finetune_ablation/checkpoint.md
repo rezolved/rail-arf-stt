@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0026_biasing_on_finetune_ablation"
-updated_at: "2026-08-26T14:56:00Z"
-completed_steps: 6
-next_step_number: 3
-next_step_id: "init-folders"
+updated_at: "2026-08-26T14:58:00Z"
+completed_steps: 7
+next_step_number: 6
+next_step_id: "research-code"
 ---
 # Task Objective
 
@@ -28,6 +28,14 @@ t0021 and t0024-Part-A are `completed`. t0024_parakeet_unified_checkpoint_archiv
 false-negative (asset added directly, no `reporting` step ever ran). Fixed with a metadata-only
 status correction pushed straight to `main` (commit `e755ef4`, same pattern as PR #19), merged into
 this branch. See `logs/steps/002_check-deps/deps_report.json` for full detail.
+
+### Step 3 — init-folders
+
+Mandatory task folder structure created via `init_task_folders` (13 dirs + `.gitkeep`,
+`__init__.py`, `code/__init__.py`), matching `expected_assets` (`predictions: 4`, `answer: 1`).
+Aggregator cache populated at `tasks/t0026_biasing_on_finetune_ablation/ctx/` (task_types, costs,
+tasks, metrics, suggestions) — gitignored, local-only for this session. Step log:
+`logs/steps/003_init-folders/folders_created.txt`.
 
 ### Step 4 — research-papers
 
@@ -62,7 +70,8 @@ published baseline to compare against, matching t0024's precedent.
 
 ## Next Step Notes
 
-Step 2 completed successfully; all three dependencies (t0021, t0024 Part A,
-t0024-checkpoint-archive) are satisfied. This task branch now includes an extra merge commit that
-pulled in the t0024_parakeet_unified_checkpoint_archive status fix from main — this is expected and
-not a merge conflict signal. Proceed to step 3 (`init-folders`) per step_tracker.json.
+Step 3 completed successfully; task folder structure and aggregator cache are ready. Steps 4-5
+(research-papers, research-internet) are already marked `skipped` in `step_tracker.json`. Proceed to
+step 6 (`research-code`) per step_tracker.json: review t0021/t0023 scoring and boosting helpers
+(`apply_malsd_boost`, `DOMAIN_VOCAB`, clean-eval scoring) and t0024 Part A pareto cell selection to
+reuse rather than re-implement, per S-0024-05.
