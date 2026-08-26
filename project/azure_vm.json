@@ -7,8 +7,8 @@
       "resource_group": "rezolve-AI",
       "ssh_host_alias": "FT-MC",
       "hourly_cost_usd": 13.96,
-      "priority": 1,
-      "notes": "Primary. Finetuning-team multi-GPU H100 box (eastus2). Image 25.07.12 / driver 535.247.01. /mnt is the EPHEMERAL local disk (wiped on every stop/start) — write nothing durable there. Coordinate with #rail-arf-serving before claiming."
+      "priority": 2,
+      "notes": "Fallback only. Finetuning-team multi-GPU H100 box (eastus2). Image 25.07.12 / driver 535.247.01. Used once by this project (t0024) and the run FAILED: no 'stt' conda env, no model cache, and /mnt is the EPHEMERAL local disk (wiped on every stop/start) — $14.06 spent, zero results. Budget env-build time before choosing this box, and write nothing durable to /mnt. Coordinate with #rail-arf-serving before claiming."
     },
     {
       "name": "LLM-T1-NC80",
@@ -16,8 +16,8 @@
       "resource_group": "rezolve-AI",
       "ssh_host_alias": "LLM-T1-NC80",
       "hourly_cost_usd": 13.96,
-      "priority": 2,
-      "notes": "Fallback H100 NVL x2 box (northeurope, brainpowa-northeurope). NOT a dedicated ARF pool box — used directly by finetuning team members (Margarita, Mohan, etc.) for manual experiments; STT fine-tune checkpoints live at /mnt/finetune-checkpoints/ on it, do not delete. requires_coordination_if_running=true: acquire() refuses this VM if it is already Running (someone else started it) rather than silently claiming it; it is only auto-acquired when found Stopped. See docs/northeurope_pool_runbook.md for the SSH alias / HostName-refresh-after-start procedure.",
+      "priority": 1,
+      "notes": "PRIMARY — this project's actual workhorse. H100 NVL x2, 880 GB RAM (northeurope, brainpowa-northeurope). Every successful GPU run in rail-arf-stt happened here: t0014, t0015, t0017 (23.1 h, $308.52). Carries the ready conda env 'stt' (NeMo 3.1.0), an HF cache with parakeet-tdt-0.6b-v3 / parakeet-unified-en-0.6b / granite-speech-4.1-2b, and the fine-tune checkpoints at /mnt/finetune-checkpoints/ — do not delete. Caveat: NOT a dedicated ARF box — finetuning team members (Margarita, Mohan, etc.) SSH in directly for manual work without taking an ARF lock, so requires_coordination_if_running=true: acquire() refuses it when already Running rather than silently claiming it, and only auto-acquires it when found Stopped. Ping #finetuning before long runs. See docs/northeurope_pool_runbook.md for the SSH alias / HostName-refresh-after-start procedure.",
       "requires_coordination_if_running": true
     }
   ]

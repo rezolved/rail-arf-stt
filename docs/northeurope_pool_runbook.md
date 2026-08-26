@@ -38,15 +38,22 @@ Already present:
   "resource_group": "rezolve-AI",
   "ssh_host_alias": "LLM-T1-NC80",
   "hourly_cost_usd": 13.96,
-  "priority": 2,
+  "priority": 1,
   "notes": "...",
   "requires_coordination_if_running": true
 }
 ```
 
-Priority `2` (tried last) — this pool's real primary is the `finetuning-workspace` box `FT-MC`;
-`LLM-T1-NC80` is a last-resort fallback specifically because it is shared human-use compute. It was
-priority `5` until `FT-NC80-v1/v2/v3` were removed from the pool as decommissioned (2026-08-24).
+Priority `1` (tried first) — despite the "fallback" framing this doc originally carried, machine
+records show `LLM-T1-NC80` **is** this project's workhorse: t0014, t0015 and t0017 all ran here
+(23.1 h, $308.52), and it is the only box with the ready `stt` env, the model cache, and
+`/mnt/finetune-checkpoints/`. `FT-MC` is priority `2` — its single use (t0024) failed on a missing
+env and cost $14.06 for nothing. It was priority `5` until `FT-NC80-v1/v2/v3` were removed as
+decommissioned (2026-08-24), and promoted to `1` on 2026-08-26 once the usage history was checked.
+
+The `requires_coordination_if_running` rule below still applies and matters more now that this is
+the first box tried — it is shared human-use compute, so a long run deserves a `#finetuning` ping
+even when `acquire()` finds it Stopped and takes it automatically.
 
 ## Step 2 — SSH alias (`~/.ssh/config`)
 
