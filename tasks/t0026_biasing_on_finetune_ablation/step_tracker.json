@@ -59,9 +59,9 @@
       "step": 7,
       "name": "planning",
       "description": "Design the 4-arm run script, manifest path fix, GPU pinning/sequencing with t0025, and McNemar-test analysis plan.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-08-26T15:09:24Z",
-      "completed_at": null,
+      "completed_at": "2026-08-26T15:19:47Z",
       "log_file": "logs/steps/007_planning/"
     },
     {
