@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0026_biasing_on_finetune_ablation"
-updated_at: "2026-08-26T14:58:00Z"
-completed_steps: 7
-next_step_number: 6
-next_step_id: "research-code"
+updated_at: "2026-08-26T15:10:00Z"
+completed_steps: 8
+next_step_number: 7
+next_step_id: "planning"
 ---
 # Task Objective
 
@@ -57,6 +57,17 @@ alternative approaches.
 Skipped (planned at step 1). Metrics are project-internal (clean_eval_v2, non-registered) with no
 published baseline to compare against, matching t0024's precedent.
 
+### Step 6 — research-code
+
+Produced `research/research_code.md` (13 tasks reviewed, 9 cited, 0 libraries registered — no
+import-via-library path exists) and `research/research_summary.md`. Verificator passed with 0
+errors/0 warnings. Key finding for planning: the `apply_malsd_boost`/brand-scoring/`wer` helpers
+this task needs live at `tasks/t0023_tdt_vs_unified_biasing/code/run.py:76-299` and must be
+**copied**, not imported; `t0024_biasing_pareto_and_ft_biasing_ablation/results/pareto_unified.json`
+already has the selected biasing cell/frontier and should be read directly rather than re-derived;
+t0021's `domain_vocab_accuracy` metric is incompatible with this task's required `brand_exact_rate`
+and must not be reused.
+
 * * *
 
 ## Cross-Step Decisions
@@ -66,12 +77,21 @@ published baseline to compare against, matching t0024's precedent.
   this task's branch, per Critical Rule 1 (infra fixes go to a separate main commit, not inline in
   the task branch). Downstream steps can rely on this dependency as satisfied.
 
+* No library asset exists for the STT scoring/boosting helpers (`apply_malsd_boost`, brand scoring,
+  `wer`). Planning/implementation must **copy** these functions from
+  `tasks/t0023_tdt_vs_unified_biasing/code/run.py:76-299` into this task's `code/` directory per the
+  cross-task import rule — do not import from t0023's `code/` directly.
+
+* No prior task implements a McNemar test; `research_code.md` recommends `scipy.stats.binomtest` on
+  discordant pairs (scipy is already a project dependency) rather than adding `statsmodels`.
+
 * * *
 
 ## Next Step Notes
 
-Step 3 completed successfully; task folder structure and aggregator cache are ready. Steps 4-5
-(research-papers, research-internet) are already marked `skipped` in `step_tracker.json`. Proceed to
-step 6 (`research-code`) per step_tracker.json: review t0021/t0023 scoring and boosting helpers
-(`apply_malsd_boost`, `DOMAIN_VOCAB`, clean-eval scoring) and t0024 Part A pareto cell selection to
-reuse rather than re-implement, per S-0024-05.
+Step 6 (research-code) completed successfully; `research/research_code.md` and
+`research/research_summary.md` are ready for planning. Proceed to step 7 (`planning`) per
+`step_tracker.json`: design the 4-arm run script (arms A/B/C/D), the `clean_eval_v2` manifest
+absolute-path fix, GPU pinning/sequencing with t0025 on `LLM-T1-NC80`, and the McNemar-test analysis
+plan, reusing the copy-into-task helpers and the existing t0024 pareto cell identified in
+`research_code.md`'s Reusable Code and Recommendations sections.

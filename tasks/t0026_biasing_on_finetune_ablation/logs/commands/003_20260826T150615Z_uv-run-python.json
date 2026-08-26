@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0026_biasing_on_finetune_ablation",
+  "command": "uv run python -m arf.scripts.verificators.verify_research_code t0026_biasing_on_finetune_ablation",
+  "exit_code": 0,
+  "duration_seconds": 0.263,
+  "started_at": "2026-08-26T15:06:15Z",
+  "completed_at": "2026-08-26T15:06:15Z",
+  "working_directory": "/home/azureuser/rail-metarepo/real-repos/rail-arf-stt-worktrees/t0026_biasing_on_finetune_ablation",
+  "stdout_file": "003_20260826T150615Z_uv-run-python.stdout.txt",
+  "stderr_file": "003_20260826T150615Z_uv-run-python.stderr.txt",
+  "stdout_lines": 5,
+  "stderr_lines": 0,
+  "truncated": false
+}
