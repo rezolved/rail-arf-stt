@@ -8,13 +8,22 @@ Public surface:
 
 * ``acquire(task_id)`` — pick a VM, start it if needed, verify SSH, run the
   ``remote_preflight.sh`` guarantees (LESSONS.md Lessons 10 and 11), and place
-  a per-task lock file on the VM. Refuses if a different task already holds a
-  lock on every VM in the pool, or if every candidate fails preflight.
+  a per-task lock file on the VM. Refuses if every VM in the pool is at its
+  ``max_concurrent_tasks`` capacity, or if every candidate fails preflight.
 * ``run(task_id, command)`` — execute a shell command on the locked VM with
   periodic heartbeats and (for long jobs) checkpoint reminders.
 * ``teardown(task_id, deallocate=True)`` — clear the lock, kill stray vLLM
   processes started by the task, and stop the VM if no other tasks hold
   locks on it.
+
+Co-tenancy: a pool entry declares how many tasks may share it via
+``max_concurrent_tasks`` (default 1). Multi-GPU boxes can raise it so sibling
+tasks run side by side, each pinning its own device with ``CUDA_VISIBLE_DEVICES``.
+``requires_coordination_if_running`` still guards against claiming a box a human
+started, and tells the two cases apart by whether the box carries an ARF lock.
+Cost follows the same idea: the VM bills once per hour regardless of how many
+GPUs are busy, so a task joining an already-running box records no cost unless
+its own teardown is what finally deallocates the VM.
 
 Also exposes a CLI:
 
@@ -68,6 +77,12 @@ EXIT_OK: int = 0
 EXIT_GENERIC_ERROR: int = 1
 EXIT_POOL_BUSY: int = 75  # matches sysexits.h EX_TEMPFAIL
 
+# How many task locks one VM may carry at once. One by default: a box is
+# single-tenant unless its pool entry opts in, because two tasks on one GPU
+# thrash. Raise it only for multi-GPU boxes where each tenant pins its own
+# device with CUDA_VISIBLE_DEVICES.
+DEFAULT_MAX_CONCURRENT_TASKS: int = 1
+
 # VM-side guarantees checked before the task lock is placed. See the script header
 # and LESSONS.md Lessons 10 (persistent storage) and 11 (systemd lingering).
 PREFLIGHT_SCRIPT_PATH: Path = Path(__file__).resolve().parent / "remote_preflight.sh"
@@ -104,6 +119,7 @@ class VmPoolEntryFile(BaseModel):
     priority: int
     notes: str
     requires_coordination_if_running: bool = False
+    max_concurrent_tasks: int = DEFAULT_MAX_CONCURRENT_TASKS
 
 
 class VmPoolFile(BaseModel):
@@ -123,6 +139,7 @@ class VmPoolEntry:
     priority: int
     notes: str
     requires_coordination_if_running: bool = False
+    max_concurrent_tasks: int = DEFAULT_MAX_CONCURRENT_TASKS
 
 
 def load_pool(*, config_path: Path | None = None) -> list[VmPoolEntry]:
@@ -140,6 +157,7 @@ def load_pool(*, config_path: Path | None = None) -> list[VmPoolEntry]:
             priority=v.priority,
             notes=v.notes,
             requires_coordination_if_running=v.requires_coordination_if_running,
+            max_concurrent_tasks=v.max_concurrent_tasks,
         )
         for v in pool_file.vms
     ]
@@ -183,6 +201,7 @@ class TeardownResult:
     destroyed_at: str
     duration_hours: float
     total_cost_usd: float
+    co_tenant_task_ids: list[str] = field(default_factory=list)
 
 
 @dataclass(frozen=True, slots=True)
@@ -576,14 +595,23 @@ def _attempt_acquire_one(
     state: str = get_compute_state(vm=vm)
     started_vm: bool = False
 
-    if vm.requires_coordination_if_running and state == _STATE_RUNNING:
+    # A Running box is only suspicious when nothing on it says ARF put it there.
+    # An ARF lock is that proof: the box was started by a sibling task, so joining
+    # it steps on no one. Zero locks means a human started it — refuse, as before.
+    # list_remote_locks returns [] when SSH is down, which lands on the refusing
+    # branch; that is the safe direction for an ambiguous box.
+    if (
+        vm.requires_coordination_if_running
+        and state == _STATE_RUNNING
+        and len(list_remote_locks(vm=vm)) == 0
+    ):
         return (
             False,
             FailedAttempt(
                 vm_name=vm.name,
                 failure_reason=(
-                    f"VM {vm.name} is already running but was not started by this "
-                    f"acquire call — it may be in active manual/human use outside ARF. "
+                    f"VM {vm.name} is already running and carries no ARF task lock, "
+                    f"so ARF did not start it — it may be in active manual/human use. "
                     f"Coordinate with whoever started it before claiming. If it is "
                     f"actually idle, stop it (az ml compute stop) so the next acquire "
                     f"attempt starts it itself and is known-safe."
@@ -670,14 +698,20 @@ def _attempt_acquire_one(
             started_vm,
         )
 
+    # Capacity, not exclusivity. A single-GPU box stays single-tenant because its
+    # entry keeps the default of 1; a multi-GPU box that opts in lets siblings join
+    # until every slot is taken, each pinning its own device.
     existing_locks: list[str] = list_remote_locks(vm=vm)
     foreign_locks: list[str] = [lock for lock in existing_locks if lock != task_id]
-    if len(foreign_locks) > 0:
+    if len(foreign_locks) >= vm.max_concurrent_tasks:
         return (
             False,
             FailedAttempt(
                 vm_name=vm.name,
-                failure_reason=(f"VM {vm.name} already locked by: {', '.join(foreign_locks)}"),
+                failure_reason=(
+                    f"VM {vm.name} is at its {vm.max_concurrent_tasks}-task capacity, "
+                    f"locked by: {', '.join(foreign_locks)}"
+                ),
                 failure_phase="lock_held",
                 duration_seconds=_now_monotonic() - attempt_start,
                 wasted_cost_usd=0.0,
@@ -914,6 +948,7 @@ def teardown(
     vm: VmPoolEntry | None = None,
     pool: list[VmPoolEntry] | None = None,
     acquired_at: str | None = None,
+    started_vm: bool = True,
 ) -> TeardownResult:
     target_vm: VmPoolEntry = _resolve_locked_vm(task_id=task_id, vm=vm, pool=pool)
 
@@ -937,7 +972,19 @@ def teardown(
             duration_hours = (end_dt - start_dt).total_seconds() / 3600.0
         except ValueError:
             duration_hours = 0.0
-    total_cost_usd: float = target_vm.hourly_cost_usd * duration_hours
+    # A co-tenant that walked into an already-running box adds no marginal cost:
+    # Azure bills the VM at one hourly rate whether one GPU is busy or both. So
+    # the task that turned the box on carries the bill, and a joiner records zero
+    # — otherwise every shared window would be counted once per tenant and the
+    # project total would drift above what was actually spent.
+    #
+    # The exception is the last tenant out. If a joiner's teardown is what finally
+    # deallocates the VM, it kept the box alive to that moment and pays for its own
+    # window. That can overlap the starter's window and over-attribute slightly;
+    # that direction is deliberate, since a cost report must never claim less than
+    # Azure charged.
+    kept_the_vm_alive: bool = started_vm or deallocated
+    total_cost_usd: float = target_vm.hourly_cost_usd * duration_hours if kept_the_vm_alive else 0.0
 
     return TeardownResult(
         task_id=task_id,
@@ -947,6 +994,7 @@ def teardown(
         destroyed_at=destroyed_at,
         duration_hours=duration_hours,
         total_cost_usd=total_cost_usd,
+        co_tenant_task_ids=other_locks,
     )
 
 
@@ -1110,6 +1158,15 @@ def main(argv: list[str] | None = None) -> int:
         default=None,
         help="ISO 8601 timestamp from acquire output (used to compute duration)",
     )
+    teardown_parser.add_argument(
+        "--joined-running-vm",
+        action="store_true",
+        help=(
+            "Pass when acquire reported started_vm=false, i.e. this task joined a VM "
+            "a sibling task had already started. Such a task adds no marginal cost, "
+            "so it records $0 unless its own teardown is what deallocates the VM."
+        ),
+    )
 
     run_parser: argparse.ArgumentParser = sub.add_parser(
         "run",
@@ -1138,6 +1195,7 @@ def main(argv: list[str] | None = None) -> int:
                 task_id=args.task_id,
                 deallocate=not args.keep_running,
                 acquired_at=args.acquired_at,
+                started_vm=not args.joined_running_vm,
             )
         except Exception as err:  # noqa: BLE001
             print(f"teardown failed: {err}", file=sys.stderr)
