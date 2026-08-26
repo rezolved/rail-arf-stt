@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0026_biasing_on_finetune_ablation"
-updated_at: "2026-08-26T15:10:00Z"
-completed_steps: 8
-next_step_number: 7
-next_step_id: "planning"
+updated_at: "2026-08-26T15:20:00Z"
+completed_steps: 9
+next_step_number: 8
+next_step_id: "setup-machines"
 ---
 # Task Objective
 
