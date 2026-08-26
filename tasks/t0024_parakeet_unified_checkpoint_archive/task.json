@@ -5,7 +5,7 @@
   "name": "parakeet-unified-v5 checkpoint — DVC archive and model asset registration",
   "short_description": "Register the parakeet-unified-en-0.6b v5 (best) fine-tune checkpoint as a model asset in DVC so it is reproducible from any machine.",
   "long_description_file": "task_description.md",
-  "status": "not_started",
+  "status": "completed",
   "dependencies": [],
   "start_time": null,
   "end_time": null,
