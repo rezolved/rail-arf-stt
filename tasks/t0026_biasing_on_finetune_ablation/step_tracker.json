@@ -5,9 +5,9 @@
       "step": 1,
       "name": "create-branch",
       "description": "Create task/t0026_biasing_on_finetune_ablation branch from main.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-08-26T14:48:52Z",
-      "completed_at": null,
+      "completed_at": "2026-08-26T14:50:16Z",
       "log_file": "logs/steps/001_create-branch/"
     },
     {
@@ -103,7 +103,7 @@
     {
       "step": 12,
       "name": "results",
-      "description": "Write results_summary.md, results_detailed.md, metrics.json ({} — no registered gold-92 metrics apply), costs.json, charts, and tables answering Q1-Q5.",
+      "description": "Write results_summary.md, results_detailed.md, metrics.json ({} \u2014 no registered gold-92 metrics apply), costs.json, charts, and tables answering Q1-Q5.",
       "status": "pending",
       "started_at": null,
       "completed_at": null,
