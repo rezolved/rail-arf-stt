@@ -68,6 +68,17 @@ already has the selected biasing cell/frontier and should be read directly rathe
 t0021's `domain_vocab_accuracy` metric is incompatible with this task's required `brand_exact_rate`
 and must not be reused.
 
+### Step 7 — planning
+
+`plan/plan.md` written and verified (`verify_plan`, 0 errors, 0 warnings). Defines the 4 arms
+(A=base/no-bias, B=base+bias, C=fine-tuned/no-bias, D=fine-tuned+bias) run on `clean_eval_v2` using
+the fixed t0024 Pareto cell (`context_score=3.0, depth_scaling=0.5, alpha=1.5`) for biased arms, a
+gitignored corrected copy of the `clean_eval_v2` manifest under this task's own `data/`, code copied
+(not imported) from `tasks/t0023_tdt_vs_unified_biasing/code/run.py`, a `scipy.stats.binomtest`
+McNemar analysis, and GPU pinning to `LLM-T1-NC80` GPU 1 with explicit sequencing ahead of `t0025`.
+Caveat for `setup-machines`: the plan assumes `t0025` has not started GPU work yet (true as of this
+step) but that must be re-checked before acquiring the machine.
+
 * * *
 
 ## Cross-Step Decisions
@@ -89,9 +100,9 @@ and must not be reused.
 
 ## Next Step Notes
 
-Step 6 (research-code) completed successfully; `research/research_code.md` and
-`research/research_summary.md` are ready for planning. Proceed to step 7 (`planning`) per
-`step_tracker.json`: design the 4-arm run script (arms A/B/C/D), the `clean_eval_v2` manifest
-absolute-path fix, GPU pinning/sequencing with t0025 on `LLM-T1-NC80`, and the McNemar-test analysis
-plan, reusing the copy-into-task helpers and the existing t0024 pareto cell identified in
-`research_code.md`'s Reusable Code and Recommendations sections.
+Step 7 (planning) completed successfully; `plan/plan.md` is ready and verified. Proceed to step 8
+(`setup-machines`) per `step_tracker.json`: acquire `LLM-T1-NC80` GPU 1 (`CUDA_VISIBLE_DEVICES=1`),
+verify the `stt` conda env and GPU visibility, and re-confirm `t0025` has not started GPU work on
+the same machine before proceeding (the two tasks cannot run GPU work concurrently on `LLM-T1-NC80`
+today). See `plan/plan.md`'s `## Remote Machines` and `## Step by Step` sections for exact
+provisioning and sequencing steps.
