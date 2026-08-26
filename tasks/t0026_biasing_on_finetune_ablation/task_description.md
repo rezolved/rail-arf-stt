@@ -150,9 +150,17 @@ complementary-vs-redundant verdict and its production recommendation.
   single use (t0024) failed on a missing `stt` env — $14.06, zero results.
 * **Work**: 4 arms x 91 clips of batch inference on a 0.6B model. Well under an hour of GPU time;
   the wall clock is dominated by VM start, `dvc pull` of the checkpoint plus audio, and env setup.
-* **Estimate**: ~2 GPU-hours at $13.96/hr ≈ **$28**. If run concurrently with `t0025` on the same
-  box, the hourly rate is shared — the box bills once at $13.96/hr regardless of how many GPUs are
-  busy, so the marginal cost of this task alongside `t0025` is close to zero.
+* **Estimate**: ~2 GPU-hours at $13.96/hr ≈ **$28**.
+* **Run this task BEFORE `t0025`, and do not expect the two to overlap under the current tooling.**
+  `LLM-T1-NC80` carries `requires_coordination_if_running: true`, and `_attempt_acquire_one` refuses
+  any VM found in state `Running` that it did not start itself — it cannot tell "a human started it"
+  from "our own sibling ARF task started it". So whichever task acquires first, the second one is
+  refused with `failure_phase="human_coordination_required"`, and since the pool has a single entry
+  there is no fallback: it writes `pool_busy.md` and stops. Teardown already supports co-tenancy
+  (`teardown` skips deallocation while another task's lock is present), so the block is purely in
+  acquire. Until that is fixed, sequence the two: this task, then teardown, then `t0025`.
+* `t0025` also cannot start yet — its `val_v6.jsonl` has not been built. That work is CPU-only and
+  can be done while this task holds the GPU.
 * No second machine — four short arms on one GPU beats a second VM acquisition.
 
 ## Outputs

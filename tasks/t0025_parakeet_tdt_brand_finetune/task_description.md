@@ -229,10 +229,19 @@ only entry in `project/azure_vm.json` and the only box carrying the `stt` conda 
 including `parakeet-tdt-0.6b-v3`, and `/mnt/finetune-checkpoints/`. Every successful GPU run in this
 project happened here: t0014, t0015, t0017.
 
-The box has 2xH100 NVL and 880 GB RAM. `t0026` is pinned to `CUDA_VISIBLE_DEVICES=1` and may run
-concurrently — both models are 0.6B, so a training run on GPU 0 and an inference sweep on GPU 1 fit
-comfortably. Set the variable explicitly in every command; do not rely on the default, or the two
-tasks collide on GPU 0. Run A and Run B still run **sequentially** on GPU 0, not side by side.
+The box has 2xH100 NVL and 880 GB RAM, and `t0026` is pinned to `CUDA_VISIBLE_DEVICES=1` so the two
+tasks cannot collide on the same device. Set the variable explicitly in every command; do not rely
+on the default.
+
+**Run this task AFTER `t0026`, not alongside it.** Concurrent acquisition does not work under the
+current tooling: `LLM-T1-NC80` carries `requires_coordination_if_running: true`, and
+`_attempt_acquire_one` refuses any VM found `Running` that it did not start itself — it cannot
+distinguish a human-started box from a sibling ARF task's. The pool has a single entry, so the
+second task gets no fallback and writes `pool_busy.md`. Teardown already tolerates co-tenancy (it
+skips deallocation while another task's lock is present), so the limitation is purely in acquire.
+Sequence: `t0026` → teardown → this task.
+
+Within this task, Run A and Run B also run **sequentially** on GPU 0, not side by side.
 
 `FT-MC` was removed from the pool on 2026-08-26 after its single use (t0024) failed on a missing
 `stt` env — $14.06, zero results. Do not reach for it.
