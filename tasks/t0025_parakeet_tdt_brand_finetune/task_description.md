@@ -6,8 +6,9 @@ Fine-tune `nvidia/parakeet-tdt-0.6b-v3` on Rezolve domain audio so that brand-cr
 ("Rezolve", "brainpowa", and related product names) are recognised correctly by the acoustic model
 itself, reducing dependence on runtime GPU-PB phrase boosting (TurboBias) alone.
 
-Primary metric: **EA-DV** on the clean-21 held-out set and on gold-92. Secondary: WER, intent
-preservation, training efficiency.
+Primary metric: **EA-DV** on the `clean_eval_v2` held-out set (91 clips). Secondary: WER, intent
+preservation, training efficiency. gold-92 is **not** a valid held-out set for this task — see
+"Held-out test sets" below.
 
 ## Background
 
@@ -21,8 +22,9 @@ Key findings from prior tasks that motivate this task:
   alone. Biasing has near-zero ceiling on unseen clips for "Rezolve"/"brainpowa".
 - **t0023**: `parakeet-tdt-0.6b-v3` with `malsd_batch` beam + GPU-PB biasing achieved Brand EXACT
   57% and WER 11.3% on gold-92. Biasing alone cannot close the gap to >80% brand recall.
-- **Parakeet v5 finetune** (t0024, parakeet-unified): WER 4.62%, EA-DV 100% on gold-92 test split,
-  but brainpowa = 0/3 correct on clean-21. Encoder was frozen — acoustic confusion between
+- **Parakeet v5 finetune** (t0024, parakeet-unified): WER 4.62%, EA-DV 100% on a gold-92 test split
+  — treat that figure as inflated, since 60 of gold-92's 93 clips are inside `train_v5` — but
+  brainpowa = 0/3 correct on clean-21. Encoder was frozen — acoustic confusion between
   "Rezolve"/"resolve" not addressed at encoder level.
 - **Architecture difference**: `parakeet-tdt-0.6b-v3` is pure TDT (no CTC head); NeMo finetune
   configs from the unified model are not compatible. Requires TDT-specific
@@ -35,7 +37,9 @@ Key findings from prior tasks that motivate this task:
 | A — frozen-encoder baseline | Frozen | train_v5 + 3× brand oversample | Reproduce v5 approach on TDT architecture; establish baseline |
 | B — partial-unfreeze | Top 4 FastConformer layers unfrozen, lr_mult=0.1 | Same as Run A | Test whether encoder unfreezing improves acoustic separation of homophones |
 
-Both runs use the same manifest splits. gold-92 is **never** in the train or val split.
+Both runs use the same manifest splits. Note that gold-92 **is** partly in the train split — 60 of
+its 93 clips come along with `train_v5` — which is why `clean_eval_v2`, not gold-92, is this task's
+held-out set. See "Held-out test sets" and Pitfall 3.
 
 ## Data
 
@@ -53,13 +57,46 @@ Do **not** add gold-92 clips beyond the 69 already in the v5 train split.
 ### Validation manifest
 
 Produce `data/val_v6.jsonl`: take `val_v5.jsonl` (7 clips, Russian_OlyaShtalberg) and add 5–10
-production clips containing brand words from the clean-21 set, so early-stopping signal is
-brand-sensitive. These val clips must never be in the train manifest.
+production clips containing brand words, so the checkpoint-selection signal is brand-sensitive.
+
+**Do not source those clips from `clean_eval_v2` or from the old `clean_eval/` (clean-21) set** —
+clean-21's clips are inside `clean_eval_v2`, so borrowing from either one contaminates the only
+valid held-out set this task has. Draw them from quepasa production logs that are not in
+`clean_eval_v2/manifest.jsonl`, or from the gold-92 clips already inside `train_v5` (those are
+burned for eval purposes anyway, so reusing them for validation costs nothing). Verify the final
+`val_v6.jsonl` against both `train_v6.jsonl` and `clean_eval_v2/manifest.jsonl` and fail loudly on
+any overlap with either.
 
 ### Held-out test sets (never in train or val)
 
-- `tasks/t0021_parakeet_finetune_vs_biasing/data/clean_eval/` — 21 production clips (primary)
-- `tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/` — gold-92 regression set
+**Primary — `tasks/t0021_parakeet_finetune_vs_biasing/data/clean_eval_v2/`, 91 clips.** This
+supersedes the 21-clip `clean_eval/` set that earlier drafts of this task named. `clean_eval_v2` was
+added by `t0021` (PR #23) and independently re-verified: zero overlap with `train_v5` by audio
+filename, zero overlap with this task's `train`/`val` manifests, zero overlap with gold-92. Audio is
+DVC-tracked (`audio.dvc`, 91 files) — `dvc pull` it before evaluating. This task's own
+`data/test/manifest.jsonl` (47 clips) is a subset of `clean_eval_v2`; report on the full 91 so the
+numbers are comparable with t0026 and any future checkpoint.
+
+Composition: 43 clips carry a brand term — 40 `Rezolve` mentions, **only 3 `brainpowa`**. Report
+`Rezolve` and `brainpowa` separately and treat any `brainpowa` delta as anecdotal, not a
+measurement. This is the same power gap Pitfall 4 escalates.
+
+**gold-92 is NOT a valid held-out set for this task.** `train_v5` contains **60 of gold-92's 93
+clips** by exact `clip_id` — not speed-perturbed derivatives, the same recordings. Any EA-DV or WER
+figure on the full gold-92 for a checkpoint trained on `train_v5` is inflated and must not be
+reported as a regression result. This is exactly how `parakeet-unified-v5` came to claim EA-DV 100%
+on gold-92.
+
+The 33 uncontaminated gold-92 clips are not a usable substitute either, and the reason matters:
+**all 33 are `source: clean_voices`**. Every one of the 34 `production` clips and all 13
+`error_cases` clips sits inside `train_v5`. So the clean remainder contains no real production audio
+and no error cases at all — precisely the two conditions this fine-tune is meant to improve — and
+only 8 of the 33 carry a brand term. Do not compute brand accuracy on 8 clips.
+
+If a gold-92 number is wanted for continuity with earlier tasks, compute it on the 33-clip
+`clean_voices` remainder, label it explicitly as `gold92_clean_voices_n33`, and state in
+`results_detailed.md` that it is a reference figure on studio-voice audio only, not a regression
+gate.
 
 ### Transcript normalisation
 
@@ -71,6 +108,10 @@ from source audio.
 
 All paths in `train_v5.jsonl` are absolute Azure VM paths (`/home/azureuser/...`). The manifest
 preparation script must remap them to actual paths on the new VM before training.
+
+`clean_eval_v2/manifest.jsonl` has the same problem from the other direction — its `audio_filepath`
+values are absolute paths from the annotator's laptop (`/Users/margotiamanova/Desktop/...`). Remap
+them relative to the repo root before evaluating, and do not commit machine-specific paths back.
 
 ## Training Protocol
 
@@ -117,14 +158,23 @@ Duplicate matching entries `OVERSAMPLE_FACTOR - 1` extra times. Save as
 
 ## Metrics
 
-Compute for both runs on both test sets (clean-21 and gold-92), with BCa bootstrap 95% CI (n=1000):
+Compute for both runs on `clean_eval_v2` (91 clips), with BCa bootstrap 95% CI (n=1000):
 
-- `entity_accuracy_domain_vocab` (EA-DV) — primary; brand terms "Rezolve", "brainpowa"
-- `entity_accuracy_gold92` (EA)
-- `wer_gold92` (WER)
-- `intent_preservation_gold92`
+- `entity_accuracy_domain_vocab` (EA-DV) — primary; brand terms "Rezolve", "brainpowa", reported
+  both together and split per term
+- WER over the 48 non-brand clips (the cost side of the tradeoff) and over all 91
 - `efficiency_training_time_seconds` (per run)
-- `efficiency_inference_time_per_item_seconds` (on gold-92)
+- `efficiency_inference_time_per_item_seconds` (on `clean_eval_v2`)
+
+Note that the registered gold-92 metrics (`entity_accuracy_gold92`, `wer_gold92`,
+`intent_preservation_gold92`) are defined against gold-92 ground truth and therefore **cannot** be
+reported for this task's checkpoints — 60 of the 93 clips are in `train_v5`. Compute the same
+quantities on `clean_eval_v2` under task-local names, leave `results/metrics.json` empty if no
+registered metric legitimately applies, and say so in the results rather than reporting a
+contaminated number under a registered metric id.
+
+Optional continuity figure: `gold92_clean_voices_n33` as described in "Held-out test sets" —
+reference only, never a gate.
 
 Also report: brand EXACT match separately for "Rezolve" and "brainpowa" (as in t0023).
 
@@ -137,9 +187,10 @@ Run A best checkpoint for ablation (DVC-tracked, but not the primary model asset
 
 ### Predictions assets
 
-1. `predictions-clean21-run-a.jsonl` — Run A on clean-21
-2. `predictions-clean21-run-b.jsonl` — Run B on clean-21
-3. `predictions-gold92-run-b.jsonl` — Run B on gold-92 (regression check)
+1. `predictions-cleanevalv2-run-a.jsonl` — Run A on `clean_eval_v2`
+2. `predictions-cleanevalv2-run-b.jsonl` — Run B on `clean_eval_v2`
+3. `predictions-gold92-cleanvoices-run-b.jsonl` — Run B on the 33-clip uncontaminated gold-92
+   remainder (reference only; the full gold-92 is contaminated for this checkpoint)
 
 ## Expected Output
 
@@ -158,10 +209,17 @@ All charts embedded in `results_detailed.md`.
 
 ### Key Questions
 
-1. Does fine-tuning `parakeet-tdt-0.6b-v3` achieve EA-DV > 60% on clean-21 (vs 0% for biasing)?
-2. Does encoder unfreezing (Run B) improve brand recognition vs frozen encoder (Run A)?
-3. Does the fine-tuned model regress on general WER vs the base model on gold-92?
-4. Does combining Run B with GPU-PB biasing at inference push brand EXACT above 80%?
+1. Does fine-tuning `parakeet-tdt-0.6b-v3` achieve EA-DV > 60% on `clean_eval_v2` (vs 0% for
+   biasing)?
+2. Does encoder unfreezing (Run B) improve brand recognition vs frozen encoder (Run A)? This is the
+   central question — `parakeet-unified-v5` froze the encoder and left `brainpowa` at 0/3, and the
+   `Rezolve`/`resolve` confusion is acoustic, so a frozen encoder cannot address it. No other task
+   tests this.
+3. Does the fine-tuned model regress on general WER vs the base model, measured on the 48 non-brand
+   clips of `clean_eval_v2`? (Not on gold-92 — contaminated.)
+4. Does combining Run B with GPU-PB biasing at inference push brand EXACT above 80%? Note this is
+   the TDT-architecture counterpart of the question `t0026` answers for `parakeet-unified`; the two
+   results are not interchangeable, but read t0026's verdict before designing this arm.
 
 ## Compute
 
@@ -181,8 +239,7 @@ Tear down the VM immediately after eval completes.
 No hard dependencies. Reuses existing manifests and data on disk:
 
 - `rail-benchmarks/parakeet-finetune-v3/parakeet_finetune/manifests/train_v5.jsonl`
-- `tasks/t0021_parakeet_finetune_vs_biasing/data/clean_eval/`
-- `tasks/t0001_stt_benchmark/`
+- `tasks/t0021_parakeet_finetune_vs_biasing/data/clean_eval_v2/` — DVC-tracked, `dvc pull` required
 
 Prior tasks for context (not blocking): t0021, t0023, t0024.
 
@@ -192,10 +249,16 @@ Prior tasks for context (not blocking): t0021, t0023, t0024.
    model config. Verify with a dry-run before full training.
 2. **Absolute path remapping**: `train_v5.jsonl` paths are `/home/azureuser/...` — remap to actual
    VM paths in the manifest preparation script.
-3. **gold-92 leakage**: cross-check all train/val clip IDs against
-   `tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/gold_set.jsonl`. Fail
-   loudly on any overlap.
+3. **gold-92 leakage is already present and is accepted, not prevented.** Earlier drafts of this
+   task said to cross-check train/val clip IDs against
+   `tasks/t0001_stt_benchmark/assets/dataset/stt-benchmark-gold-92/files/gold_set.jsonl` and fail
+   loudly on overlap — that contradicted the Data section, which deliberately keeps the gold-92
+   clips already present in `train_v5`. The measured overlap is 60 of 93. The resolution is to keep
+   the training data as is and **drop gold-92 as the eval set**, not to strip the training data.
+   What must still fail loudly is overlap between train/val and `clean_eval_v2` — verify that before
+   training, since `clean_eval_v2` is now the only real held-out set.
 4. **brainpowa gap**: even after 3× oversampling, brainpowa in train_v5 = 37 TTS + 1 real clip. If
-   Run B scores 0% on brainpowa clean-21, escalate: request real prod recordings or extract from
-   `brainpowa-realtime-api` session logs.
+   Run B scores 0% on the 3 brainpowa clips in `clean_eval_v2`, escalate: 3 clips cannot settle the
+   question either way, so the escalation is for more data, not a verdict. Request real prod
+   recordings or extract from `brainpowa-realtime-api` session logs.
 5. **DVC push before PR**: checkpoint files are ~2.3 GB; always `dvc push` before opening the PR.
