@@ -65,6 +65,10 @@ SELECTED_OFFER_GPU_DISPLAY: str = "2xH100"
 
 VM_START_TIMEOUT_SECONDS: float = 8 * 60.0
 VM_START_POLL_INTERVAL_SECONDS: float = 15.0
+# Independent from VM_START_TIMEOUT_SECONDS: reaching Running on the Azure control
+# plane does not mean the SSH daemon inside the VM is up yet. Sharing one deadline
+# between the two waits starves SSH-wait whenever the VM is slow to reach Running.
+SSH_WAIT_TIMEOUT_SECONDS: float = 3 * 60.0
 SSH_POLL_INTERVAL_SECONDS: float = 10.0
 SSH_HANDSHAKE_TIMEOUT_SECONDS: float = 10.0
 AZ_TIMEOUT_SECONDS: float = 60.0
@@ -681,7 +685,10 @@ def _attempt_acquire_one(
             started_vm,
         )
 
-    if not _wait_for_ssh(vm=vm, deadline=deadline):
+    # Fresh budget starting now that the VM is confirmed Running, not whatever is
+    # left of `deadline` — see SSH_WAIT_TIMEOUT_SECONDS above.
+    ssh_deadline: float = _now_monotonic() + SSH_WAIT_TIMEOUT_SECONDS
+    if not _wait_for_ssh(vm=vm, deadline=ssh_deadline):
         return (
             False,
             FailedAttempt(
