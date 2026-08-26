@@ -5,13 +5,13 @@
   "name": "Biasing on top of fine-tuning — complementary or redundant?",
   "short_description": "2x2 ablation of GPU-PB biasing x parakeet-unified fine-tuning on the 91-clip clean_eval_v2 holdout. Completes t0024's deferred Part B.",
   "long_description_file": "task_description.md",
-  "status": "not_started",
+  "status": "in_progress",
   "dependencies": [
     "t0021_parakeet_finetune_vs_biasing",
     "t0024_biasing_pareto_and_ft_biasing_ablation",
     "t0024_parakeet_unified_checkpoint_archive"
   ],
-  "start_time": null,
+  "start_time": "2026-08-26T14:47:28Z",
   "end_time": null,
   "expected_assets": {
     "predictions": 4,
