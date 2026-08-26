@@ -223,7 +223,27 @@ All charts embedded in `results_detailed.md`.
 
 ## Compute
 
-**GPU**: Azure H100 (80 GB). One H100 sufficient for both runs sequentially.
+**Machine: `LLM-T1-NC80`, GPU 0 — `CUDA_VISIBLE_DEVICES=0`.** Not a suggestion; pin it. This is the
+only entry in `project/azure_vm.json` and the only box carrying the `stt` conda env with **NeMo
+3.1.0** (well above this task's NeMo ≥ 2.4 requirement — nothing to install), the HF model cache
+including `parakeet-tdt-0.6b-v3`, and `/mnt/finetune-checkpoints/`. Every successful GPU run in this
+project happened here: t0014, t0015, t0017.
+
+The box has 2xH100 NVL and 880 GB RAM. `t0026` is pinned to `CUDA_VISIBLE_DEVICES=1` and may run
+concurrently — both models are 0.6B, so a training run on GPU 0 and an inference sweep on GPU 1 fit
+comfortably. Set the variable explicitly in every command; do not rely on the default, or the two
+tasks collide on GPU 0. Run A and Run B still run **sequentially** on GPU 0, not side by side.
+
+`FT-MC` was removed from the pool on 2026-08-26 after its single use (t0024) failed on a missing
+`stt` env — $14.06, zero results. Do not reach for it.
+
+Two operational rules that have already cost this project money:
+
+* **Refresh the SSH HostName after every VM start** — Azure reassigns the public IP and the static
+  alias goes stale, failing as `failure_phase="ssh_connect"`. See
+  `docs/northeurope_pool_runbook.md`.
+* **Write nothing durable to `/mnt`** — ephemeral local disk, wiped on stop/start. This is how the
+  t0021 checkpoint was lost. Checkpoints go to the task folder and get `dvc push`ed before teardown.
 
 | Run | Estimated time | Estimated cost |
 | --- | --- | --- |

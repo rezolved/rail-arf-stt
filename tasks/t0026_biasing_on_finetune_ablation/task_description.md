@@ -65,8 +65,10 @@ the biasing.
 
 Decontamination was done in `t0021` (commit `c17327a` removed 8 clips found in `train_v5`), so this
 set is disjoint from the `parakeet-unified-v5` fine-tuning data. **gold-92 must not be used here** —
-it is contaminated for this checkpoint (all 93 clips had speed-perturbed versions in training,
-inflating EA-DV by roughly 55pp) and is a held-out regression set regardless.
+`train_v5` contains 60 of gold-92's 93 clips by exact `clip_id`, so any figure on it for a
+`train_v5`-derived checkpoint is inflated. The uncontaminated remainder is no substitute either: all
+33 of those clips are `source: clean_voices`, meaning every `production` clip and every
+`error_cases` clip is inside the training data, and only 8 of the 33 carry a brand term.
 
 **Known power limit, state it in the results rather than papering over it**: with only 3 `brainpowa`
 clips, this task cannot resolve a `brainpowa`-specific effect. The `parakeet-unified-v5` model card
@@ -132,17 +134,26 @@ complementary-vs-redundant verdict and its production recommendation.
 
 ## Compute and budget
 
-* **Machine**: one H100 box from `project/azure_vm.json`. `LLM-T1-NC80` (northeurope) is the natural
-  choice — it already holds the `stt` conda env and the fine-tune working directory; see
-  `docs/northeurope_pool_runbook.md` for the SSH alias and the mandatory HostName refresh after
-  start. `FT-MC` is priority 1 but needs the `stt` env built from scratch and its `/mnt` is the
-  **ephemeral** local disk (this is how the t0021 checkpoint was lost) — if used, `dvc pull` the
-  checkpoint into task storage, never `/mnt`.
+* **Machine: `LLM-T1-NC80`, GPU 1 — `CUDA_VISIBLE_DEVICES=1`.** Not a suggestion; pin it. This is
+  the only box in `project/azure_vm.json` and the only one carrying the `stt` conda env (NeMo
+  3.1.0), the HF model cache, and `/mnt/finetune-checkpoints/`. It has 2xH100 NVL and 880 GB RAM, so
+  this task shares it with `t0025`, which is pinned to `CUDA_VISIBLE_DEVICES=0`. Both are 0.6B
+  models — one training run plus one inference sweep fit comfortably. Set the variable explicitly in
+  every command; do not rely on the default, or the two tasks will collide on GPU 0.
+* See `docs/northeurope_pool_runbook.md` for the SSH alias and the **mandatory HostName refresh
+  after every start** — Azure reassigns the public IP, and a stale alias fails as
+  `failure_phase="ssh_connect"`.
+* **Never write durable output to `/mnt`** on any pool box — it is the ephemeral local disk and is
+  wiped on every stop/start. This is how the t0021 checkpoint was lost. `dvc pull` the checkpoint
+  into the task folder, and `dvc push` anything worth keeping before teardown.
+* Historical note, do not re-litigate: `FT-MC` was removed from the pool on 2026-08-26 after its
+  single use (t0024) failed on a missing `stt` env — $14.06, zero results.
 * **Work**: 4 arms x 91 clips of batch inference on a 0.6B model. Well under an hour of GPU time;
   the wall clock is dominated by VM start, `dvc pull` of the checkpoint plus audio, and env setup.
-* **Estimate**: ~2 GPU-hours at $13.96/hr ≈ **$28**, budgeting most of it for provisioning and
-  environment rather than inference. Compare against t0024's $14.06 spent on provisioning alone.
-* No parallel machines — four short arms on one box beats four VM acquisitions.
+* **Estimate**: ~2 GPU-hours at $13.96/hr ≈ **$28**. If run concurrently with `t0025` on the same
+  box, the hourly rate is shared — the box bills once at $13.96/hr regardless of how many GPUs are
+  busy, so the marginal cost of this task alongside `t0025` is close to zero.
+* No second machine — four short arms on one GPU beats a second VM acquisition.
 
 ## Outputs
 
