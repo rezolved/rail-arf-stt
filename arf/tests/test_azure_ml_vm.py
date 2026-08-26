@@ -334,6 +334,149 @@ def test_acquire_starts_shared_vm_when_stopped(monkeypatch: pytest.MonkeyPatch) 
     assert "t-shared-ok" in w.locks_by_vm["LLM-T1-NC80"]
 
 
+MULTI_TENANT_VM: VmPoolEntry = VmPoolEntry(
+    name="LLM-T1-NC80",
+    workspace="brainpowa-northeurope",
+    resource_group="rezolve-AI",
+    ssh_host_alias="LLM-T1-NC80",
+    hourly_cost_usd=13.96,
+    priority=1,
+    notes="shared human-use box, 2 GPUs",
+    requires_coordination_if_running=True,
+    max_concurrent_tasks=2,
+)
+
+
+def test_acquire_joins_running_vm_that_arf_already_locked(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A Running box carrying an ARF lock was started by ARF, not by a human.
+
+    ``requires_coordination_if_running`` exists to stop ARF stomping on manual
+    work. A lock is proof ARF started the box, so a sibling task may join it
+    when capacity remains instead of being refused.
+    """
+    w: FakeWorld = FakeWorld(
+        az_state_by_vm={"LLM-T1-NC80": "Running"},
+        ssh_ok_by_vm={"LLM-T1-NC80": True},
+        locks_by_vm={"LLM-T1-NC80": ["t-first"]},
+        az_calls=[],
+        ssh_calls=[],
+    )
+    _install_fakes(monkeypatch=monkeypatch, world=w)
+    result: AcquireResult = acquire(task_id="t-second", pool=[MULTI_TENANT_VM])
+    assert result.vm.name == "LLM-T1-NC80"
+    assert result.started_vm is False
+    assert result.failed_attempts == []
+    assert "t-first" in w.locks_by_vm["LLM-T1-NC80"]
+    assert "t-second" in w.locks_by_vm["LLM-T1-NC80"]
+
+
+def test_acquire_refuses_running_shared_vm_with_no_arf_locks(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    """No lock on a Running shared box means a human started it. Still refuse."""
+    w: FakeWorld = FakeWorld(
+        az_state_by_vm={"LLM-T1-NC80": "Running"},
+        ssh_ok_by_vm={"LLM-T1-NC80": True},
+        locks_by_vm={"LLM-T1-NC80": []},
+        az_calls=[],
+        ssh_calls=[],
+    )
+    _install_fakes(monkeypatch=monkeypatch, world=w)
+    with pytest.raises(PoolBusyError):
+        acquire(
+            task_id="t-solo",
+            pool=[MULTI_TENANT_VM],
+            intervention_dir=tmp_path / "intervention",
+        )
+    assert w.locks_by_vm["LLM-T1-NC80"] == []
+    body: str = (tmp_path / "intervention" / "pool_busy.md").read_text(encoding="utf-8")
+    assert "human_coordination_required" in body
+
+
+def test_acquire_refuses_when_tenant_capacity_is_exhausted(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    w: FakeWorld = FakeWorld(
+        az_state_by_vm={"LLM-T1-NC80": "Running"},
+        ssh_ok_by_vm={"LLM-T1-NC80": True},
+        locks_by_vm={"LLM-T1-NC80": ["t-one", "t-two"]},
+        az_calls=[],
+        ssh_calls=[],
+    )
+    _install_fakes(monkeypatch=monkeypatch, world=w)
+    with pytest.raises(PoolBusyError):
+        acquire(
+            task_id="t-three",
+            pool=[MULTI_TENANT_VM],
+            intervention_dir=tmp_path / "intervention",
+        )
+    assert "t-three" not in w.locks_by_vm["LLM-T1-NC80"]
+    body: str = (tmp_path / "intervention" / "pool_busy.md").read_text(encoding="utf-8")
+    assert "lock_held" in body
+
+
+def test_acquire_default_capacity_is_one(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    """Pool entries without ``max_concurrent_tasks`` stay single-tenant."""
+    w: FakeWorld = FakeWorld(
+        az_state_by_vm={"FT-NC80-v3": "Running"},
+        ssh_ok_by_vm={"FT-NC80-v3": True},
+        locks_by_vm={"FT-NC80-v3": ["other-task"]},
+        az_calls=[],
+        ssh_calls=[],
+    )
+    _install_fakes(monkeypatch=monkeypatch, world=w)
+    with pytest.raises(PoolBusyError):
+        acquire(
+            task_id="t-single",
+            pool=[PRIMARY],
+            intervention_dir=tmp_path / "intervention",
+        )
+    assert "t-single" not in w.locks_by_vm["FT-NC80-v3"]
+
+
+def test_load_pool_reads_max_concurrent_tasks(tmp_path: Path) -> None:
+    cfg: Path = tmp_path / "azure_vm.json"
+    cfg.write_text(
+        json.dumps(
+            {
+                "spec_version": "1",
+                "vms": [
+                    {
+                        "name": "multi",
+                        "workspace": "w",
+                        "resource_group": "rg",
+                        "ssh_host_alias": "multi",
+                        "hourly_cost_usd": 1.0,
+                        "priority": 1,
+                        "notes": "",
+                        "max_concurrent_tasks": 2,
+                    },
+                    {
+                        "name": "single",
+                        "workspace": "w",
+                        "resource_group": "rg",
+                        "ssh_host_alias": "single",
+                        "hourly_cost_usd": 1.0,
+                        "priority": 2,
+                        "notes": "",
+                    },
+                ],
+            },
+        ),
+        encoding="utf-8",
+    )
+    pool: list[VmPoolEntry] = load_pool(config_path=cfg)
+    assert pool[0].max_concurrent_tasks == 2
+    assert pool[1].max_concurrent_tasks == 1
+
+
 def test_acquire_treats_existing_self_lock_as_acquirable(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -423,6 +566,89 @@ def test_teardown_computes_duration_and_cost(monkeypatch: pytest.MonkeyPatch) ->
         acquired_at="2026-05-12T10:00:00Z",
     )
     assert result.duration_hours == pytest.approx(2.0)
+    assert result.total_cost_usd == pytest.approx(13.96 * 2.0)
+
+
+def test_teardown_charges_nothing_to_a_task_that_joined_a_running_vm(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A co-tenant that did not start the box adds no marginal cost.
+
+    The VM bills at one hourly rate no matter how many GPUs are busy, so
+    charging every tenant the full window would inflate the project total.
+    The task that turned the box on carries the bill.
+    """
+    w: FakeWorld = FakeWorld(
+        az_state_by_vm={"LLM-T1-NC80": "Running"},
+        ssh_ok_by_vm={"LLM-T1-NC80": True},
+        locks_by_vm={"LLM-T1-NC80": ["t-starter", "t-joiner"]},
+        az_calls=[],
+        ssh_calls=[],
+    )
+    _install_fakes(monkeypatch=monkeypatch, world=w)
+    monkeypatch.setattr(azure_ml_vm, "_now_iso", lambda: "2026-05-12T12:00:00Z")
+    result = teardown(
+        task_id="t-joiner",
+        deallocate=True,
+        pool=[MULTI_TENANT_VM],
+        acquired_at="2026-05-12T10:00:00Z",
+        started_vm=False,
+    )
+    assert result.duration_hours == pytest.approx(2.0)
+    assert result.total_cost_usd == pytest.approx(0.0)
+    assert result.co_tenant_task_ids == ["t-starter"]
+    assert result.deallocated is False
+
+
+def test_teardown_charges_the_task_that_started_the_vm(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    w: FakeWorld = FakeWorld(
+        az_state_by_vm={"LLM-T1-NC80": "Running"},
+        ssh_ok_by_vm={"LLM-T1-NC80": True},
+        locks_by_vm={"LLM-T1-NC80": ["t-starter", "t-joiner"]},
+        az_calls=[],
+        ssh_calls=[],
+    )
+    _install_fakes(monkeypatch=monkeypatch, world=w)
+    monkeypatch.setattr(azure_ml_vm, "_now_iso", lambda: "2026-05-12T12:00:00Z")
+    result = teardown(
+        task_id="t-starter",
+        deallocate=True,
+        pool=[MULTI_TENANT_VM],
+        acquired_at="2026-05-12T10:00:00Z",
+        started_vm=True,
+    )
+    assert result.total_cost_usd == pytest.approx(13.96 * 2.0)
+    assert result.co_tenant_task_ids == ["t-joiner"]
+
+
+def test_teardown_charges_a_joiner_that_outlives_every_co_tenant(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Last tenant out keeps the box alive to its own teardown, so it pays.
+
+    Over-attributing here is deliberate: the project total must never report
+    less than Azure actually billed.
+    """
+    w: FakeWorld = FakeWorld(
+        az_state_by_vm={"LLM-T1-NC80": "Running"},
+        ssh_ok_by_vm={"LLM-T1-NC80": True},
+        locks_by_vm={"LLM-T1-NC80": ["t-joiner"]},
+        az_calls=[],
+        ssh_calls=[],
+    )
+    _install_fakes(monkeypatch=monkeypatch, world=w)
+    monkeypatch.setattr(azure_ml_vm, "_now_iso", lambda: "2026-05-12T12:00:00Z")
+    result = teardown(
+        task_id="t-joiner",
+        deallocate=True,
+        pool=[MULTI_TENANT_VM],
+        acquired_at="2026-05-12T10:00:00Z",
+        started_vm=False,
+    )
+    assert result.deallocated is True
+    assert result.co_tenant_task_ids == []
     assert result.total_cost_usd == pytest.approx(13.96 * 2.0)
 
 

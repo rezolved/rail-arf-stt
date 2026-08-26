@@ -16,6 +16,13 @@ provisioned machine). Each entry must carry the cost-attribution fields:
 * `total_duration_hours`
 * `total_cost_usd`
 
+The fields must be present and non-null; their values are not range-checked. A
+`total_cost_usd` of `0.0` is legitimate rather than a missing number: on an Azure
+pool entry with `max_concurrent_tasks > 1`, a task that joined a VM a sibling had
+already started adds no marginal cost, because the VM bills at one hourly rate no
+matter how many of its GPUs are busy. See the co-tenancy section of
+`arf/specifications/remote_machines_specification.md`.
+
 Usage:
     uv run python -u -m arf.scripts.verificators.verify_machine_log_cost_attribution <task_id>
 """
