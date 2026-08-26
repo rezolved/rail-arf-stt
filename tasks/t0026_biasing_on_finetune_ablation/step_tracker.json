@@ -14,9 +14,9 @@
       "step": 2,
       "name": "check-deps",
       "description": "Verify t0021, t0024 Part A, and t0024 checkpoint-archive dependencies are satisfied; note the known task.json status false-negative on the checkpoint-archive task.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-08-26T14:55:03Z",
-      "completed_at": null,
+      "completed_at": "2026-08-26T14:56:18Z",
       "log_file": "logs/steps/002_check-deps/"
     },
     {
