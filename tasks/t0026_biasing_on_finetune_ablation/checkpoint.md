@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0026_biasing_on_finetune_ablation"
-updated_at: "2026-09-02T14:10:00Z"
-completed_steps: 10
-next_step_number: 9
-next_step_id: "implementation"
+updated_at: "2026-09-02T14:45:00Z"
+completed_steps: 9
+next_step_number: 10
+next_step_id: "teardown"
 ---
 # Task Objective
 
@@ -89,6 +89,16 @@ on the first attempt (0 `failed_attempts`, 499.4s to SSH-ready), verified GPU 1 
 no co-tenancy conflict exists yet. See
 `logs/steps/008_setup-machines/{machine_log.json,step_log.md}`.
 
+### Step 9 — implementation
+
+Executed `plan/plan.md` in full on the already-acquired `LLM-T1-NC80` GPU 1: fixed the manifest,
+copied scoring/boosting/audio code from `t0021`/`t0023`, ran all 4 arms (91/91 successful requests
+each), computed McNemar tests, generated 3 charts, and produced 4 `predictions` assets + 1 `answer`
+asset, all passing their verificators with 0 errors. Mid-run, found and fixed a scoring bug (see
+Cross-Step Decisions) that required a full rerun. Key finding: biasing is redundant once fine-tuning
+is applied (arm D vs. arm C McNemar p=0.625, not significant) and costs 4.7x more `neutral_wer`
+degradation than on the base model. See `logs/steps/009_implementation/step_log.md`.
+
 * * *
 
 ## Cross-Step Decisions
@@ -118,14 +128,29 @@ no co-tenancy conflict exists yet. See
   `az login`/`AzureCliCredential` per `docs/dvc-data-workflow.md`. This is a team-wide vault issue
   (shared key with `rail-arf-finetuning`/`rail-benchmarks`), not a task-branch fix.
 
+* The copied `brand_in_ref` helper's `PHONETIC_PATTERNS` fallback (correct on gold-92, its original
+  tuning set) produced 11 false-positive brand-containing clips on `clean_eval_v2` — "Brain
+  Commerce" phonetically collided with `brainpowa`. Fixed in this task's own `code/scoring.py` by
+  restricting ground-truth brand detection to `EXACT_PATTERNS` only; verified this reproduces the
+  documented 43 brand / 48 neutral split before the full run. This divergence from the literal
+  `t0023` copy is local to this task's `code/`, not upstreamed.
+
+* This repo's `pyproject.toml` `[tool.mypy] exclude = ["tasks/.*/code/", "tasks/.*/assets/"]`
+  (present since commit `6416a1e`, unrelated to this task) makes the mandated
+  `mypy -p tasks.$TASK_ID.code` invocation only type-check `__init__.py` (1 source file) — the
+  exclude pattern suppresses follow-import checking into the rest of `code/`.
+  `ruff check`/`ruff format` still fully lint every file. This is a pre-existing, repo-wide gap
+  affecting every task that follows the documented mypy invocation, not specific to t0026; worth a
+  `/self-improvement` fix on `main` and a note in this task's `suggestions` step.
+
 * * *
 
 ## Next Step Notes
 
-Step 8 (`setup-machines`) completed: `LLM-T1-NC80` is acquired, GPU 1 isolated
-(`CUDA_VISIBLE_DEVICES=1`), `stt` env and NeMo 3.1.0 confirmed, checkpoint and `clean_eval_v2` audio
-pulled. Proceed to step 9 (`implementation`) per `plan/plan.md`'s `## Step by Step` section:
-Milestone 1 (manifest fix + code scaffolding, local, no GPU) can start immediately; Milestone 2 (the
-4-arm ablation run) executes on `LLM-T1-NC80` GPU 1 using the already-acquired machine — do not
-re-acquire. After Milestone 2's GPU work finishes, run `teardown` (step 10) before `t0025` attempts
-its own `setup-machines`.
+Step 9 (`implementation`) completed: all 4 `predictions` assets and the 1 `answer` asset exist and
+pass verification; `results/ablation_metrics.json`, `mcnemar_results.json`,
+`clip_level_appendix.json`, and 3 charts in `results/images/` are all in place;
+`results/metrics.json` is `{}` per the plan's deliberate-omission rationale. All GPU-dependent work
+for this task is finished. Proceed to step 10 (`teardown`): destroy/release `LLM-T1-NC80` (or
+confirm it is left in a safe, deallocated state) before `t0025_parakeet_tdt_brand_finetune` attempts
+its own `setup-machines`. No further GPU work is needed for this task.

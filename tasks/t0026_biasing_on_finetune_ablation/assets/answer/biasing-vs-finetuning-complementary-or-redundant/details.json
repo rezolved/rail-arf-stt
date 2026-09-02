@@ -1,0 +1,27 @@
+{
+  "spec_version": "2",
+  "answer_id": "biasing-vs-finetuning-complementary-or-redundant",
+  "question": "Does GPU-PB context biasing still add brand accuracy once the model has already been fine-tuned on Rezolve domain audio, or do the two techniques recover the same errors?",
+  "short_title": "Biasing vs fine-tuning: complementary or redundant",
+  "short_answer_path": "short_answer.md",
+  "full_answer_path": "full_answer.md",
+  "categories": [
+    "stt-evaluation",
+    "entity-correction"
+  ],
+  "answer_methods": [
+    "code-experiment"
+  ],
+  "source_paper_ids": [],
+  "source_urls": [],
+  "source_task_ids": [
+    "t0021_parakeet_finetune_vs_biasing",
+    "t0022_gpu_pb_diagnostic",
+    "t0023_tdt_vs_unified_biasing",
+    "t0024_biasing_pareto_and_ft_biasing_ablation",
+    "t0024_parakeet_unified_checkpoint_archive"
+  ],
+  "confidence": "high",
+  "created_by_task": "t0026_biasing_on_finetune_ablation",
+  "date_created": "2026-09-02"
+}

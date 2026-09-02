@@ -1,0 +1,15 @@
+{
+  "spec_version": "1",
+  "task_id": "t0026_biasing_on_finetune_ablation",
+  "command": "ssh -p 50000 LLM-T1-NC80 source ~/miniconda3/etc/profile.d/conda.sh && conda activate stt && cd /home/azureuser/rail-arf-stt && PYTHONPATH=/home/azureuser/rail-arf-stt CUDA_VISIBLE_DEVICES=1 python -u tasks/t0026_biasing_on_finetune_ablation/code/run_ablation.py --arms A,B,C,D",
+  "exit_code": 0,
+  "duration_seconds": 41.99,
+  "started_at": "2026-09-02T14:36:42Z",
+  "completed_at": "2026-09-02T14:37:24Z",
+  "working_directory": "/home/azureuser/rail-metarepo/real-repos/rail-arf-stt-worktrees/t0026_biasing_on_finetune_ablation",
+  "stdout_file": "015_20260902T143642Z_ssh-p-50000.stdout.txt",
+  "stderr_file": "015_20260902T143642Z_ssh-p-50000.stderr.txt",
+  "stdout_lines": 658,
+  "stderr_lines": 113,
+  "truncated": false
+}

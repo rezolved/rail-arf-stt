@@ -1,0 +1,39 @@
+{
+  "spec_version": "2",
+  "predictions_id": "parakeet-unified-base-bias-clean-eval-v2",
+  "name": "parakeet-unified base model + GPU-PB biasing on clean_eval_v2",
+  "short_description": "Per-clip STT predictions from the pretrained parakeet-unified-en-0.6b base model with malsd_batch decoding and GPU-PB context biasing, evaluated on the 91-clip clean_eval_v2 holdout as Arm B of the biasing x fine-tuning 2x2 ablation.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "nvidia/parakeet-unified-en-0.6b, HuggingFace pretrained checkpoint, no local model asset. Decoding uses malsd_batch with a GPU-PB boosting tree (context_score=3.0, depth_scaling=0.5, alpha=1.5).",
+  "dataset_ids": [],
+  "prediction_format": "jsonl",
+  "prediction_schema": "Each line is a JSON object with fields: clip_id (string), ref (string, ground-truth transcript), hyp (string, model hypothesis), brand (string \"Rezolve\"/\"brainpowa\" or null for neutral clips), label (string \"EXACT\"/\"PHONETIC\"/\"GARBAGE\" brand-match category or null for neutral clips), wer (float, per-clip word error rate), latency_seconds (float, per-clip inference latency), source (string \"quepasa_prod\" or \"clean_eval_21\" provenance tag).",
+  "instance_count": 91,
+  "metrics_at_creation": {
+    "brand_exact_rate_overall": 0.37209302325581395,
+    "brand_exact_rate_rezolve": 0.375,
+    "brand_exact_rate_brainpowa": 0.3333333333333333,
+    "neutral_wer": 0.12675163888399182,
+    "overall_wer": 0.25626022999632364,
+    "avg_inference_time_per_item_seconds": 0.02390317989011237,
+    "n_clips": 91,
+    "n_brand_clips": 43,
+    "n_neutral_clips": 48,
+    "successful_requests": 91,
+    "total_requests": 91
+  },
+  "files": [
+    {
+      "path": "files/predictions-clean-eval-v2.jsonl",
+      "description": "Per-clip predictions (91 rows) for Arm B (base model + GPU-PB biasing) on the clean_eval_v2 holdout: reference/hypothesis text, brand label, per-clip WER, and latency.",
+      "format": "jsonl"
+    }
+  ],
+  "categories": [
+    "stt-evaluation",
+    "entity-correction"
+  ],
+  "created_by_task": "t0026_biasing_on_finetune_ablation",
+  "date_created": "2026-09-02"
+}

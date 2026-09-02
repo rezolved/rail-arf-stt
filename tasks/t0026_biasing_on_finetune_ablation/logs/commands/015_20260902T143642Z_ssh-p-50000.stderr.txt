@@ -1,0 +1,113 @@
+[0;93m2026-09-02 14:36:45.459156751 [W:onnxruntime:Default, device_discovery.cc:133 GetPciBusId] Skipping pci_bus_id for PCI path at "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171" because filename "5620e0c7-8062-4dce-aeb7-520c7ef76171" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+[m
+OneLogger: Setting error_handling_strategy to DISABLE_QUIETLY_AND_REPORT_METRIC_ERROR for rank (rank=0) with OneLogger disabled. To override: explicitly set error_handling_strategy parameter.
+No exporters were provided. This means that no telemetry data will be collected.
+[NeMo W 2026-09-02 14:36:51 modelPT:175] If you intend to do training or fine-tuning, please call the ModelPT.setup_training_data() method and provide a valid configuration file to setup the train data loader.
+    Train config :
+    use_lhotse: true
+    skip_missing_manifest_entries: true
+    input_cfg: null
+    manifest_filepath: null
+    sample_rate: 16000
+    batch_size: 16
+    shuffle: true
+    num_workers: 8
+    pin_memory: true
+    max_duration: 40.0
+    min_duration: 0.1
+    text_field: answer
+    batch_duration: null
+    use_bucketing: true
+    max_tps: null
+    bucket_duration_bins: null
+    bucket_batch_size: null
+    num_buckets: null
+    bucket_buffer_size: null
+    shuffle_buffer_size: null
+    tarred_audio_filepaths: null
+    augmentor: null
+
+[NeMo W 2026-09-02 14:36:55 rnnt_malsd_batched_computer:410] No conditional node support for Cuda.
+    Cuda graphs with while loops are disabled, decoding speed will be slower
+    Reason: Driver supports cuda toolkit version 12.2, but the driver needs to support at least 12,6. Please update your cuda driver.
+[NeMo W 2026-09-02 14:37:00 modelPT:175] If you intend to do training or fine-tuning, please call the ModelPT.setup_training_data() method and provide a valid configuration file to setup the train data loader.
+    Train config :
+    use_lhotse: true
+    skip_missing_manifest_entries: true
+    input_cfg: null
+    manifest_filepath: null
+    sample_rate: 16000
+    batch_size: 16
+    shuffle: true
+    num_workers: 8
+    pin_memory: true
+    max_duration: 40.0
+    min_duration: 0.1
+    text_field: answer
+    batch_duration: null
+    use_bucketing: true
+    max_tps: null
+    bucket_duration_bins: null
+    bucket_batch_size: null
+    num_buckets: null
+    bucket_buffer_size: null
+    shuffle_buffer_size: null
+    tarred_audio_filepaths: null
+    augmentor: null
+
+[NeMo W 2026-09-02 14:37:04 rnnt_malsd_batched_computer:410] No conditional node support for Cuda.
+    Cuda graphs with while loops are disabled, decoding speed will be slower
+    Reason: Driver supports cuda toolkit version 12.2, but the driver needs to support at least 12,6. Please update your cuda driver.
+[NeMo W 2026-09-02 14:37:09 modelPT:175] If you intend to do training or fine-tuning, please call the ModelPT.setup_training_data() method and provide a valid configuration file to setup the train data loader.
+    Train config :
+    manifest_filepath: finetune/manifests/train_v5.jsonl
+    sample_rate: 16000
+    batch_size: 8
+    trim_silence: false
+    max_duration: 30.0
+    min_duration: 0.1
+    shuffle: true
+    num_workers: 0
+    pin_memory: false
+    text_field: text
+
+[NeMo W 2026-09-02 14:37:09 modelPT:182] If you intend to do validation, please call the ModelPT.setup_validation_data() or ModelPT.setup_multiple_validation_data() method and provide a valid configuration file to setup the validation data loader(s).
+    Validation config :
+    manifest_filepath: finetune/manifests/val_v5.jsonl
+    sample_rate: 16000
+    batch_size: 8
+    trim_silence: false
+    shuffle: false
+    num_workers: 0
+    pin_memory: false
+    text_field: text
+
+[NeMo W 2026-09-02 14:37:12 rnnt_malsd_batched_computer:410] No conditional node support for Cuda.
+    Cuda graphs with while loops are disabled, decoding speed will be slower
+    Reason: Driver supports cuda toolkit version 12.2, but the driver needs to support at least 12,6. Please update your cuda driver.
+[NeMo W 2026-09-02 14:37:16 modelPT:175] If you intend to do training or fine-tuning, please call the ModelPT.setup_training_data() method and provide a valid configuration file to setup the train data loader.
+    Train config :
+    manifest_filepath: finetune/manifests/train_v5.jsonl
+    sample_rate: 16000
+    batch_size: 8
+    trim_silence: false
+    max_duration: 30.0
+    min_duration: 0.1
+    shuffle: true
+    num_workers: 0
+    pin_memory: false
+    text_field: text
+
+[NeMo W 2026-09-02 14:37:16 modelPT:182] If you intend to do validation, please call the ModelPT.setup_validation_data() or ModelPT.setup_multiple_validation_data() method and provide a valid configuration file to setup the validation data loader(s).
+    Validation config :
+    manifest_filepath: finetune/manifests/val_v5.jsonl
+    sample_rate: 16000
+    batch_size: 8
+    trim_silence: false
+    shuffle: false
+    num_workers: 0
+    pin_memory: false
+    text_field: text
+
+[NeMo W 2026-09-02 14:37:19 rnnt_malsd_batched_computer:410] No conditional node support for Cuda.
+    Cuda graphs with while loops are disabled, decoding speed will be slower
+    Reason: Driver supports cuda toolkit version 12.2, but the driver needs to support at least 12,6. Please update your cuda driver.

@@ -1,0 +1,39 @@
+{
+  "spec_version": "2",
+  "predictions_id": "parakeet-unified-base-nobias-clean-eval-v2",
+  "name": "parakeet-unified base, no bias, on clean_eval_v2",
+  "short_description": "Per-clip STT predictions from the unmodified HuggingFace parakeet-unified-en-0.6b checkpoint, malsd_batch decoding, no GPU-PB boosting tree, on the 91-clip clean_eval_v2 holdout. Arm A of the t0026 2x2 biasing x fine-tuning ablation.",
+  "description_path": "description.md",
+  "model_id": null,
+  "model_description": "nvidia/parakeet-unified-en-0.6b, HuggingFace pretrained checkpoint, no local model asset. No fine-tuning and no context biasing were applied: decoding used malsd_batch with the boosting tree disabled (apply_malsd_no_boost), so this is the unmodified base model's transcription behavior.",
+  "dataset_ids": [],
+  "prediction_format": "jsonl",
+  "prediction_schema": "Each line is a JSON object with fields: clip_id (string, unique clip identifier), ref (string, ground-truth reference transcript), hyp (string, model hypothesis transcript, empty string on decode failure), brand (string \"Rezolve\" or \"brainpowa\", or null if the reference contains no target brand), label (string \"EXACT\"/\"PHONETIC\"/\"GARBAGE\" describing how the brand appears in hyp, or null when brand is null), wer (float, word error rate for this clip, 0.0-1.0+), latency_seconds (float, arm-average per-item inference time, not a true per-clip measurement), source (string \"quepasa_prod\" or \"clean_eval_21\", provenance of the clip).",
+  "instance_count": 91,
+  "metrics_at_creation": {
+    "brand_exact_rate_overall": 0.0,
+    "brand_exact_rate_rezolve": 0.0,
+    "brand_exact_rate_brainpowa": 0.0,
+    "neutral_wer": 0.08119112301097596,
+    "overall_wer": 0.24687148077240947,
+    "avg_inference_time_per_item_seconds": 0.02454023097802097,
+    "n_clips": 91,
+    "n_brand_clips": 43,
+    "n_neutral_clips": 48,
+    "successful_requests": 91,
+    "total_requests": 91
+  },
+  "files": [
+    {
+      "path": "files/predictions-clean-eval-v2.jsonl",
+      "description": "Per-clip predictions for all 91 clean_eval_v2 clips (43 brand-containing: 40 Rezolve + 3 brainpowa; 48 neutral) from the base parakeet-unified model with no boosting tree, arm A of the t0026 ablation.",
+      "format": "jsonl"
+    }
+  ],
+  "categories": [
+    "stt-evaluation",
+    "entity-correction"
+  ],
+  "created_by_task": "t0026_biasing_on_finetune_ablation",
+  "date_created": "2026-09-02"
+}
