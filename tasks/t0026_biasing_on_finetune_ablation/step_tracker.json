@@ -68,9 +68,9 @@
       "step": 8,
       "name": "setup-machines",
       "description": "Acquire LLM-T1-NC80 GPU 1 (CUDA_VISIBLE_DEVICES=1), verify stt conda env and GPU visibility.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-09-02T13:47:54Z",
-      "completed_at": null,
+      "completed_at": "2026-09-02T14:14:39Z",
       "log_file": "logs/steps/008_setup-machines/",
       "current_owner": null
     },
