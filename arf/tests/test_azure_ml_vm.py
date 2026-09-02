@@ -30,6 +30,20 @@ from arf.scripts.utils.azure_ml_vm import (
 )
 
 # ---------------------------------------------------------------------------
+# Remote-command matchers shared by every fake ``_run_ssh`` in this file. The
+# production module has no shared constants for the shape of these commands (they
+# are formatted inline), so tests that build their own fake would otherwise have to
+# re-type the same literals; hoisted here so there is exactly one copy to update.
+# ---------------------------------------------------------------------------
+
+SSH_PROBE_CMD: str = "true"
+LOCK_LIST_MARKER: str = "ls "
+LOCK_GLOB_MARKER: str = ".lock$"
+LOCK_WRITE_MARKER: str = "printf"
+LOCK_SUFFIX: str = ".lock"
+LOCK_REMOVE_PREFIX: str = "rm -f"
+
+# ---------------------------------------------------------------------------
 # Fixtures
 # ---------------------------------------------------------------------------
 
@@ -100,20 +114,20 @@ def _install_fakes(monkeypatch: pytest.MonkeyPatch, world: FakeWorld) -> None:
         world.ssh_calls.append((host_alias, remote_command))
         if not world.ssh_ok_by_vm.get(host_alias, False):
             return CommandResult(returncode=255, stdout="", stderr="ssh refused")
-        if remote_command == "true":
+        if remote_command == SSH_PROBE_CMD:
             return CommandResult(returncode=0, stdout="", stderr="")
-        if "ls " in remote_command and ".lock$" in remote_command:
+        if LOCK_LIST_MARKER in remote_command and LOCK_GLOB_MARKER in remote_command:
             locks: list[str] = world.locks_by_vm.get(host_alias, [])
             lines: str = "\n".join(f"{t}.lock" for t in locks)
             return CommandResult(returncode=0, stdout=lines, stderr="")
-        if "printf" in remote_command and ".lock" in remote_command:
+        if LOCK_WRITE_MARKER in remote_command and LOCK_SUFFIX in remote_command:
             # Lock placement: extract task_id from the path at the end.
             tokens: list[str] = remote_command.split()
             target: str = tokens[-1]
             task_id: str = Path(target).stem
             world.locks_by_vm.setdefault(host_alias, []).append(task_id)
             return CommandResult(returncode=0, stdout="", stderr="")
-        if remote_command.startswith("rm -f"):
+        if remote_command.startswith(LOCK_REMOVE_PREFIX):
             path: str = remote_command.split()[-1]
             task_id_rm: str = Path(path).stem
             if host_alias in world.locks_by_vm and task_id_rm in world.locks_by_vm[host_alias]:
@@ -491,6 +505,115 @@ def test_acquire_treats_existing_self_lock_as_acquirable(
     result: AcquireResult = acquire(task_id="t-self", pool=[PRIMARY])
     assert result.vm.name == "FT-NC80-v3"
     assert result.failed_attempts == []
+
+
+def test_acquire_gives_ssh_wait_a_fresh_deadline_after_slow_vm_start(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """SSH-wait must get its own budget, not leftovers from a slow VM-start wait.
+
+    Regression test for the shared-deadline bug: ``_wait_for_ssh`` used to reuse the
+    deadline computed for ``_wait_for_state``, so a VM that ate almost the whole
+    ``VM_START_TIMEOUT_SECONDS`` budget reaching ``Running`` left SSH-wait almost no
+    time, even though SSH needs its own window after boot. The fake monotonic clock
+    below lands ``Running`` just under the VM-start deadline, then lets SSH become
+    reachable a few seconds later -- past that OLD shared deadline, but comfortably
+    inside a fresh ``SSH_WAIT_TIMEOUT_SECONDS`` window measured from when ``Running``
+    was reached. Must succeed under the fix; would report ``ssh_connect`` under the
+    bug.
+    """
+    vm_name: str = PRIMARY.ssh_host_alias
+    az_state_by_vm: dict[str, str] = {vm_name: "Stopped"}
+    locks_by_vm: dict[str, list[str]] = {vm_name: []}
+    state_poll_calls: list[int] = [0]
+    ssh_poll_calls: list[int] = [0]
+    clock: list[float] = [0.0]
+    running_at: list[float | None] = [None]
+
+    def fake_now() -> float:
+        return clock[0]
+
+    def fake_run_az(*, args: list[str], timeout: float = 60.0) -> CommandResult:
+        verb: str = args[2]
+        name_idx: int = args.index("--name") + 1
+        vm: str = args[name_idx]
+        if verb == "start":
+            az_state_by_vm[vm] = "Starting"
+            return CommandResult(returncode=0, stdout="ok", stderr="")
+        if verb == "show":
+            if az_state_by_vm[vm] == "Starting":
+                state_poll_calls[0] += 1
+                # Each poll eats into the VM-start budget, landing just under the
+                # deadline by the time Running is finally reported.
+                budget: float = azure_ml_vm.VM_START_TIMEOUT_SECONDS
+                cap: float = budget - 2.0
+                step: float = budget / 4.0
+                clock[0] = min(clock[0] + step, cap)
+                if clock[0] >= cap:
+                    az_state_by_vm[vm] = "Running"
+                    running_at[0] = clock[0]
+            return CommandResult(
+                returncode=0,
+                stdout=json.dumps({"state": az_state_by_vm[vm]}),
+                stderr="",
+            )
+        return CommandResult(returncode=1, stdout="", stderr="unhandled az call")
+
+    def fake_run_ssh(
+        *,
+        host_alias: str,
+        remote_command: str,
+        timeout: float = 60.0,
+        connect_timeout: float = 10.0,
+    ) -> CommandResult:
+        if remote_command == SSH_PROBE_CMD:
+            assert running_at[0] is not None, "SSH must not be polled before Running"
+            ssh_poll_calls[0] += 1
+            # SSH comes up a few seconds after Running -- past the OLD shared
+            # deadline (VM_START_TIMEOUT_SECONDS from search start) but well inside
+            # a fresh SSH_WAIT_TIMEOUT_SECONDS window measured from `running_at`.
+            clock[0] = running_at[0] + ssh_poll_calls[0] * 2.0
+            if ssh_poll_calls[0] < 2:
+                return CommandResult(returncode=255, stdout="", stderr="ssh refused")
+            return CommandResult(returncode=0, stdout="", stderr="")
+        if LOCK_LIST_MARKER in remote_command and LOCK_GLOB_MARKER in remote_command:
+            locks: list[str] = locks_by_vm.get(host_alias, [])
+            return CommandResult(
+                returncode=0,
+                stdout="\n".join(f"{t}.lock" for t in locks),
+                stderr="",
+            )
+        if LOCK_WRITE_MARKER in remote_command and LOCK_SUFFIX in remote_command:
+            tokens: list[str] = remote_command.split()
+            task_id: str = Path(tokens[-1]).stem
+            locks_by_vm.setdefault(host_alias, []).append(task_id)
+            return CommandResult(returncode=0, stdout="", stderr="")
+        if "arf-preflight" in remote_command:
+            return CommandResult(
+                returncode=0,
+                stdout=json.dumps(
+                    {
+                        "linger_enabled": True,
+                        "persist_path": "/mnt/cache/persist",
+                        "persist_writable": True,
+                    },
+                ),
+                stderr="",
+            )
+        return CommandResult(returncode=0, stdout="", stderr="")
+
+    monkeypatch.setattr(azure_ml_vm, "_run_az", fake_run_az)
+    monkeypatch.setattr(azure_ml_vm, "_run_ssh", fake_run_ssh)
+    monkeypatch.setattr(azure_ml_vm, "_now_monotonic", fake_now)
+    monkeypatch.setattr(time, "sleep", lambda _s: None)
+
+    result: AcquireResult = acquire(task_id="t-slow-boot", pool=[PRIMARY])
+
+    assert result.vm.name == PRIMARY.name
+    assert result.failed_attempts == []
+    assert "t-slow-boot" in locks_by_vm[vm_name]
+    assert state_poll_calls[0] > 0, "VM-start wait must have actually polled state"
+    assert ssh_poll_calls[0] >= 2, "SSH-wait must have actually polled more than once"
 
 
 # ---------------------------------------------------------------------------
