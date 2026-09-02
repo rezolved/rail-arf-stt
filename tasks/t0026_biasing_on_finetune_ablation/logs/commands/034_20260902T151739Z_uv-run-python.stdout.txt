@@ -1,0 +1,14 @@
+
+Verifying: /home/azureuser/rail-metarepo/real-repos/rail-arf-stt-worktrees/t0026_biasing_on_finetune_ablation/tasks/t0026_biasing_on_finetune_ablation/logs
+
+[33m[1mWARNINGS:[0m
+[33m  LG-W004 warning: Command log 005_20260826T152141Z_uv-run-python.json has non-zero exit code: 75[0m
+[33m  LG-W004 warning: Command log 006_20260826T154345Z_uv-run-python.json has non-zero exit code: 75[0m
+[33m  LG-W004 warning: Command log 007_20260826T155519Z_uv-run-python.json has non-zero exit code: 75[0m
+[33m  LG-W004 warning: Command log 011_20260902T143155Z_ssh-p-50000.json has non-zero exit code: 1[0m
+[33m  LG-W004 warning: Command log 021_20260902T145927Z_uv-run-python.json has non-zero exit code: 2[0m
+[33m  LG-W004 warning: Command log 023_20260902T150115Z_uv-run-python.json has non-zero exit code: 2[0m
+[33m  LG-W007 warning: logs/sessions/ contains no captured session transcript JSONL files[0m
+[33m  LG-W008 warning: logs/sessions/capture_report.json does not exist[0m
+
+[33m[1mPASSED[0m — 0 error(s), 8 warning(s)

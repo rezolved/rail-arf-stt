@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0026_biasing_on_finetune_ablation"
-updated_at: "2026-09-02T15:16:00Z"
-completed_steps: 14
-next_step_number: 15
-next_step_id: "reporting"
+updated_at: "2026-09-02T15:18:30Z"
+completed_steps: 15
+next_step_number: null
+next_step_id: null
 ---
 # Task Objective
 
@@ -133,6 +133,18 @@ caveat) was deliberately dropped as a duplicate: `t0025_parakeet_tdt_brand_finet
 `task_description.md` Key Question 4 already scopes combining biasing with its TDT checkpoint and
 instructs reading t0026's verdict first. `verify_suggestions` passed with 0 errors.
 
+### Step 15 — reporting
+
+All mandatory verificators (`verify_task_file`, `verify_task_dependencies`, `verify_suggestions`,
+`verify_task_metrics`, `verify_task_results`, `verify_task_folder`, `verify_logs`, all 4
+`predictions` asset verificators, the `answer` asset verificator, `verify_machines_destroyed`)
+passed with 0 errors — only pre-existing/benign warnings (search-log empty, non-zero exit codes
+documented in earlier steps, no linked model/dataset assets on the base-model predictions).
+`capture_task_sessions` found 0 matching transcripts (594 Claude Code candidates scanned, none
+matched this worktree's `cwd`), clearing `LG-W007`/`LG-W008`. `task.json` set to
+`status: "completed"`, `end_time` `2026-09-02T15:18:30Z` (`start_time` untouched). This is the final
+step-executor step.
+
 * * *
 
 ## Cross-Step Decisions
@@ -187,14 +199,10 @@ instructs reading t0026's verdict first. `verify_suggestions` passed with 0 erro
 
 ## Next Step Notes
 
-Step 14 (`suggestions`) completed: `results/suggestions.json` (6 suggestions, spec_version "2")
-written and `verify_suggestions` passes with 0 errors/0 warnings. Proceed to step 15 (`reporting`),
-the final step: run all mandatory verificators (`verify_task_file`, `verify_task_dependencies`,
-`verify_suggestions`, `verify_task_metrics`, `verify_task_results`, `verify_task_folder`,
-`verify_logs`, the `predictions`/`answer` asset verificators, `verify_machines_destroyed`), capture
-session transcripts via `capture_task_sessions`, set `task.json` `status` to `"completed"` with
-`end_time`, make the final `checkpoint.md` update (`next_step_number`/`next_step_id` → `null`),
-write the final step log, commit, and run poststep. After `reporting` completes, the coordinator
-takes over for Phases 7-9 (PR creation/merge, `verify_pr_premerge`, worktree removal,
-`verify_task_complete`, overview sync) — no further step-executor work is needed from this task's
-step list.
+Step 15 (`reporting`), the final step-executor step, is complete. All mandatory verificators passed
+with 0 errors (only pre-existing/benign warnings). `task.json` is `status: "completed"` with
+`end_time` set; `start_time` untouched. No further step-executor work remains for this task. The
+coordinator now takes over for Phases 7-9: push the branch, create the PR (Summary, Assets Produced,
+Verification sections), run `verify_pr_premerge` and fix/re-run until clean, merge with a merge
+commit, remove the worktree, run `verify_task_complete` from `main`, and refresh `overview/` if it
+changed.
