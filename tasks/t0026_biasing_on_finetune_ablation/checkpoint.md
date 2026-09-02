@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0026_biasing_on_finetune_ablation"
-updated_at: "2026-09-02T14:45:00Z"
-completed_steps: 11
-next_step_number: 10
-next_step_id: "teardown"
+updated_at: "2026-09-02T14:59:40Z"
+completed_steps: 12
+next_step_number: 12
+next_step_id: "results"
 ---
 # Task Objective
 
@@ -99,9 +99,25 @@ Cross-Step Decisions) that required a full rerun. Key finding: biasing is redund
 is applied (arm D vs. arm C McNemar p=0.625, not significant) and costs 4.7x more `neutral_wer`
 degradation than on the base model. See `logs/steps/009_implementation/step_log.md`.
 
+### Step 10 — teardown
+
+`LLM-T1-NC80` fully deallocated (`destroyed_at: 2026-09-02T14:58:56Z`, `total_duration_hours: 1.03`,
+`total_cost_usd: $14.37`) since `t0025_parakeet_tdt_brand_finetune` had not started and held no
+co-tenant lock. All results were already downloaded locally during step 9; teardown verified
+checksums matched and no `.dvc` push was needed (predictions are plain git files).
+`verify_machines_destroyed` passed (0 errors, 1 transient `RM-W001` warning); independently
+confirmed `state: "Stopped"` via `az ml compute show`. `results/remote_machines_used.json` and
+`results/costs.json` created. `t0025` is now clear to acquire the VM.
+
 * * *
 
 ## Cross-Step Decisions
+
+* `verify_machines_destroyed.py`'s actual CLI signature takes `task_id` positionally (or `--all`),
+  not `--task-id` as documented in `arf/skills/setup-remote-machine/SKILL.md` and
+  `arf/skills/execute-task/SKILL.md`. Worked around by passing it positionally; not fixed inline per
+  Critical Rule 1 — worth a `/self-improvement` doc fix and a note in this task's `suggestions`
+  step.
 
 * `t0024_parakeet_unified_checkpoint_archive/task.json` status was stuck at `not_started` on main
   despite the model asset being merged; corrected directly on main (commit `e755ef4`) rather than in
@@ -147,10 +163,11 @@ degradation than on the base model. See `logs/steps/009_implementation/step_log.
 
 ## Next Step Notes
 
-Step 9 (`implementation`) completed: all 4 `predictions` assets and the 1 `answer` asset exist and
-pass verification; `results/ablation_metrics.json`, `mcnemar_results.json`,
-`clip_level_appendix.json`, and 3 charts in `results/images/` are all in place;
-`results/metrics.json` is `{}` per the plan's deliberate-omission rationale. All GPU-dependent work
-for this task is finished. Proceed to step 10 (`teardown`): destroy/release `LLM-T1-NC80` (or
-confirm it is left in a safe, deallocated state) before `t0025_parakeet_tdt_brand_finetune` attempts
-its own `setup-machines`. No further GPU work is needed for this task.
+Step 10 (`teardown`) completed: `LLM-T1-NC80` is destroyed/deallocated, `machine_log.json` has
+`destroyed_at` set, and `results/remote_machines_used.json` / `results/costs.json` reflect the
+$14.37 machine cost. No further GPU work remains for this task. Proceed to step 12 (`results`, step
+11 `creative-thinking` already skipped): write `results_summary.md`, `results_detailed.md`
+(including the `## Analysis` note that biasing is redundant once fine-tuning is applied — arm D vs.
+C McNemar p=0.625 — and costs 4.7x more `neutral_wer` degradation on the base model), fold the
+$14.37 machine cost plus any prior Claude API cost into a final `results/costs.json` total, and
+embed the 3 existing charts from `results/images/`.
