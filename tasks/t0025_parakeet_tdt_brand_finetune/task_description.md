@@ -233,15 +233,18 @@ The box has 2xH100 NVL and 880 GB RAM, and `t0026` is pinned to `CUDA_VISIBLE_DE
 tasks cannot collide on the same device. Set the variable explicitly in every command; do not rely
 on the default.
 
-**Run this task AFTER `t0026`, not alongside it.** Concurrent acquisition does not work under the
-current tooling: `LLM-T1-NC80` carries `requires_coordination_if_running: true`, and
-`_attempt_acquire_one` refuses any VM found `Running` that it did not start itself — it cannot
-distinguish a human-started box from a sibling ARF task's. The pool has a single entry, so the
-second task gets no fallback and writes `pool_busy.md`. Teardown already tolerates co-tenancy (it
-skips deallocation while another task's lock is present), so the limitation is purely in acquire.
-Sequence: `t0026` → teardown → this task.
+**This task may run concurrently with `t0026`.** `LLM-T1-NC80` declares `max_concurrent_tasks: 2`,
+and `acquire` joins a `Running` VM that already carries an ARF lock rather than refusing it (PR
+#25). In practice `t0026` starts first — it is ready now, while this task still needs its
+`val_v6.jsonl` built — so this task will usually be the one joining an already-running box. When
+that happens its acquire output reports `started_vm: false`, and **teardown must then be called with
+`--joined-running-vm`**, or the shared VM window is billed twice in the project cost total.
 
-Within this task, Run A and Run B also run **sequentially** on GPU 0, not side by side.
+Within this task, Run A and Run B still run **sequentially** on GPU 0, not side by side.
+
+Never install or upgrade packages in the shared `stt` conda environment while `t0026` is running on
+the other GPU — a version change under a live sibling job breaks it mid-run. Clone the environment
+if this task needs different packages.
 
 `FT-MC` was removed from the pool on 2026-08-26 after its single use (t0024) failed on a missing
 `stt` env — $14.06, zero results. Do not reach for it.

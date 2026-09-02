@@ -30,6 +30,20 @@ from arf.scripts.utils.azure_ml_vm import (
 )
 
 # ---------------------------------------------------------------------------
+# Remote-command matchers shared by every fake ``_run_ssh`` in this file. The
+# production module has no shared constants for the shape of these commands (they
+# are formatted inline), so tests that build their own fake would otherwise have to
+# re-type the same literals; hoisted here so there is exactly one copy to update.
+# ---------------------------------------------------------------------------
+
+SSH_PROBE_CMD: str = "true"
+LOCK_LIST_MARKER: str = "ls "
+LOCK_GLOB_MARKER: str = ".lock$"
+LOCK_WRITE_MARKER: str = "printf"
+LOCK_SUFFIX: str = ".lock"
+LOCK_REMOVE_PREFIX: str = "rm -f"
+
+# ---------------------------------------------------------------------------
 # Fixtures
 # ---------------------------------------------------------------------------
 
@@ -100,20 +114,20 @@ def _install_fakes(monkeypatch: pytest.MonkeyPatch, world: FakeWorld) -> None:
         world.ssh_calls.append((host_alias, remote_command))
         if not world.ssh_ok_by_vm.get(host_alias, False):
             return CommandResult(returncode=255, stdout="", stderr="ssh refused")
-        if remote_command == "true":
+        if remote_command == SSH_PROBE_CMD:
             return CommandResult(returncode=0, stdout="", stderr="")
-        if "ls " in remote_command and ".lock$" in remote_command:
+        if LOCK_LIST_MARKER in remote_command and LOCK_GLOB_MARKER in remote_command:
             locks: list[str] = world.locks_by_vm.get(host_alias, [])
             lines: str = "\n".join(f"{t}.lock" for t in locks)
             return CommandResult(returncode=0, stdout=lines, stderr="")
-        if "printf" in remote_command and ".lock" in remote_command:
+        if LOCK_WRITE_MARKER in remote_command and LOCK_SUFFIX in remote_command:
             # Lock placement: extract task_id from the path at the end.
             tokens: list[str] = remote_command.split()
             target: str = tokens[-1]
             task_id: str = Path(target).stem
             world.locks_by_vm.setdefault(host_alias, []).append(task_id)
             return CommandResult(returncode=0, stdout="", stderr="")
-        if remote_command.startswith("rm -f"):
+        if remote_command.startswith(LOCK_REMOVE_PREFIX):
             path: str = remote_command.split()[-1]
             task_id_rm: str = Path(path).stem
             if host_alias in world.locks_by_vm and task_id_rm in world.locks_by_vm[host_alias]:
@@ -334,6 +348,149 @@ def test_acquire_starts_shared_vm_when_stopped(monkeypatch: pytest.MonkeyPatch) 
     assert "t-shared-ok" in w.locks_by_vm["LLM-T1-NC80"]
 
 
+MULTI_TENANT_VM: VmPoolEntry = VmPoolEntry(
+    name="LLM-T1-NC80",
+    workspace="brainpowa-northeurope",
+    resource_group="rezolve-AI",
+    ssh_host_alias="LLM-T1-NC80",
+    hourly_cost_usd=13.96,
+    priority=1,
+    notes="shared human-use box, 2 GPUs",
+    requires_coordination_if_running=True,
+    max_concurrent_tasks=2,
+)
+
+
+def test_acquire_joins_running_vm_that_arf_already_locked(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A Running box carrying an ARF lock was started by ARF, not by a human.
+
+    ``requires_coordination_if_running`` exists to stop ARF stomping on manual
+    work. A lock is proof ARF started the box, so a sibling task may join it
+    when capacity remains instead of being refused.
+    """
+    w: FakeWorld = FakeWorld(
+        az_state_by_vm={"LLM-T1-NC80": "Running"},
+        ssh_ok_by_vm={"LLM-T1-NC80": True},
+        locks_by_vm={"LLM-T1-NC80": ["t-first"]},
+        az_calls=[],
+        ssh_calls=[],
+    )
+    _install_fakes(monkeypatch=monkeypatch, world=w)
+    result: AcquireResult = acquire(task_id="t-second", pool=[MULTI_TENANT_VM])
+    assert result.vm.name == "LLM-T1-NC80"
+    assert result.started_vm is False
+    assert result.failed_attempts == []
+    assert "t-first" in w.locks_by_vm["LLM-T1-NC80"]
+    assert "t-second" in w.locks_by_vm["LLM-T1-NC80"]
+
+
+def test_acquire_refuses_running_shared_vm_with_no_arf_locks(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    """No lock on a Running shared box means a human started it. Still refuse."""
+    w: FakeWorld = FakeWorld(
+        az_state_by_vm={"LLM-T1-NC80": "Running"},
+        ssh_ok_by_vm={"LLM-T1-NC80": True},
+        locks_by_vm={"LLM-T1-NC80": []},
+        az_calls=[],
+        ssh_calls=[],
+    )
+    _install_fakes(monkeypatch=monkeypatch, world=w)
+    with pytest.raises(PoolBusyError):
+        acquire(
+            task_id="t-solo",
+            pool=[MULTI_TENANT_VM],
+            intervention_dir=tmp_path / "intervention",
+        )
+    assert w.locks_by_vm["LLM-T1-NC80"] == []
+    body: str = (tmp_path / "intervention" / "pool_busy.md").read_text(encoding="utf-8")
+    assert "human_coordination_required" in body
+
+
+def test_acquire_refuses_when_tenant_capacity_is_exhausted(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    w: FakeWorld = FakeWorld(
+        az_state_by_vm={"LLM-T1-NC80": "Running"},
+        ssh_ok_by_vm={"LLM-T1-NC80": True},
+        locks_by_vm={"LLM-T1-NC80": ["t-one", "t-two"]},
+        az_calls=[],
+        ssh_calls=[],
+    )
+    _install_fakes(monkeypatch=monkeypatch, world=w)
+    with pytest.raises(PoolBusyError):
+        acquire(
+            task_id="t-three",
+            pool=[MULTI_TENANT_VM],
+            intervention_dir=tmp_path / "intervention",
+        )
+    assert "t-three" not in w.locks_by_vm["LLM-T1-NC80"]
+    body: str = (tmp_path / "intervention" / "pool_busy.md").read_text(encoding="utf-8")
+    assert "lock_held" in body
+
+
+def test_acquire_default_capacity_is_one(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    """Pool entries without ``max_concurrent_tasks`` stay single-tenant."""
+    w: FakeWorld = FakeWorld(
+        az_state_by_vm={"FT-NC80-v3": "Running"},
+        ssh_ok_by_vm={"FT-NC80-v3": True},
+        locks_by_vm={"FT-NC80-v3": ["other-task"]},
+        az_calls=[],
+        ssh_calls=[],
+    )
+    _install_fakes(monkeypatch=monkeypatch, world=w)
+    with pytest.raises(PoolBusyError):
+        acquire(
+            task_id="t-single",
+            pool=[PRIMARY],
+            intervention_dir=tmp_path / "intervention",
+        )
+    assert "t-single" not in w.locks_by_vm["FT-NC80-v3"]
+
+
+def test_load_pool_reads_max_concurrent_tasks(tmp_path: Path) -> None:
+    cfg: Path = tmp_path / "azure_vm.json"
+    cfg.write_text(
+        json.dumps(
+            {
+                "spec_version": "1",
+                "vms": [
+                    {
+                        "name": "multi",
+                        "workspace": "w",
+                        "resource_group": "rg",
+                        "ssh_host_alias": "multi",
+                        "hourly_cost_usd": 1.0,
+                        "priority": 1,
+                        "notes": "",
+                        "max_concurrent_tasks": 2,
+                    },
+                    {
+                        "name": "single",
+                        "workspace": "w",
+                        "resource_group": "rg",
+                        "ssh_host_alias": "single",
+                        "hourly_cost_usd": 1.0,
+                        "priority": 2,
+                        "notes": "",
+                    },
+                ],
+            },
+        ),
+        encoding="utf-8",
+    )
+    pool: list[VmPoolEntry] = load_pool(config_path=cfg)
+    assert pool[0].max_concurrent_tasks == 2
+    assert pool[1].max_concurrent_tasks == 1
+
+
 def test_acquire_treats_existing_self_lock_as_acquirable(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -348,6 +505,115 @@ def test_acquire_treats_existing_self_lock_as_acquirable(
     result: AcquireResult = acquire(task_id="t-self", pool=[PRIMARY])
     assert result.vm.name == "FT-NC80-v3"
     assert result.failed_attempts == []
+
+
+def test_acquire_gives_ssh_wait_a_fresh_deadline_after_slow_vm_start(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """SSH-wait must get its own budget, not leftovers from a slow VM-start wait.
+
+    Regression test for the shared-deadline bug: ``_wait_for_ssh`` used to reuse the
+    deadline computed for ``_wait_for_state``, so a VM that ate almost the whole
+    ``VM_START_TIMEOUT_SECONDS`` budget reaching ``Running`` left SSH-wait almost no
+    time, even though SSH needs its own window after boot. The fake monotonic clock
+    below lands ``Running`` just under the VM-start deadline, then lets SSH become
+    reachable a few seconds later -- past that OLD shared deadline, but comfortably
+    inside a fresh ``SSH_WAIT_TIMEOUT_SECONDS`` window measured from when ``Running``
+    was reached. Must succeed under the fix; would report ``ssh_connect`` under the
+    bug.
+    """
+    vm_name: str = PRIMARY.ssh_host_alias
+    az_state_by_vm: dict[str, str] = {vm_name: "Stopped"}
+    locks_by_vm: dict[str, list[str]] = {vm_name: []}
+    state_poll_calls: list[int] = [0]
+    ssh_poll_calls: list[int] = [0]
+    clock: list[float] = [0.0]
+    running_at: list[float | None] = [None]
+
+    def fake_now() -> float:
+        return clock[0]
+
+    def fake_run_az(*, args: list[str], timeout: float = 60.0) -> CommandResult:
+        verb: str = args[2]
+        name_idx: int = args.index("--name") + 1
+        vm: str = args[name_idx]
+        if verb == "start":
+            az_state_by_vm[vm] = "Starting"
+            return CommandResult(returncode=0, stdout="ok", stderr="")
+        if verb == "show":
+            if az_state_by_vm[vm] == "Starting":
+                state_poll_calls[0] += 1
+                # Each poll eats into the VM-start budget, landing just under the
+                # deadline by the time Running is finally reported.
+                budget: float = azure_ml_vm.VM_START_TIMEOUT_SECONDS
+                cap: float = budget - 2.0
+                step: float = budget / 4.0
+                clock[0] = min(clock[0] + step, cap)
+                if clock[0] >= cap:
+                    az_state_by_vm[vm] = "Running"
+                    running_at[0] = clock[0]
+            return CommandResult(
+                returncode=0,
+                stdout=json.dumps({"state": az_state_by_vm[vm]}),
+                stderr="",
+            )
+        return CommandResult(returncode=1, stdout="", stderr="unhandled az call")
+
+    def fake_run_ssh(
+        *,
+        host_alias: str,
+        remote_command: str,
+        timeout: float = 60.0,
+        connect_timeout: float = 10.0,
+    ) -> CommandResult:
+        if remote_command == SSH_PROBE_CMD:
+            assert running_at[0] is not None, "SSH must not be polled before Running"
+            ssh_poll_calls[0] += 1
+            # SSH comes up a few seconds after Running -- past the OLD shared
+            # deadline (VM_START_TIMEOUT_SECONDS from search start) but well inside
+            # a fresh SSH_WAIT_TIMEOUT_SECONDS window measured from `running_at`.
+            clock[0] = running_at[0] + ssh_poll_calls[0] * 2.0
+            if ssh_poll_calls[0] < 2:
+                return CommandResult(returncode=255, stdout="", stderr="ssh refused")
+            return CommandResult(returncode=0, stdout="", stderr="")
+        if LOCK_LIST_MARKER in remote_command and LOCK_GLOB_MARKER in remote_command:
+            locks: list[str] = locks_by_vm.get(host_alias, [])
+            return CommandResult(
+                returncode=0,
+                stdout="\n".join(f"{t}.lock" for t in locks),
+                stderr="",
+            )
+        if LOCK_WRITE_MARKER in remote_command and LOCK_SUFFIX in remote_command:
+            tokens: list[str] = remote_command.split()
+            task_id: str = Path(tokens[-1]).stem
+            locks_by_vm.setdefault(host_alias, []).append(task_id)
+            return CommandResult(returncode=0, stdout="", stderr="")
+        if "arf-preflight" in remote_command:
+            return CommandResult(
+                returncode=0,
+                stdout=json.dumps(
+                    {
+                        "linger_enabled": True,
+                        "persist_path": "/mnt/cache/persist",
+                        "persist_writable": True,
+                    },
+                ),
+                stderr="",
+            )
+        return CommandResult(returncode=0, stdout="", stderr="")
+
+    monkeypatch.setattr(azure_ml_vm, "_run_az", fake_run_az)
+    monkeypatch.setattr(azure_ml_vm, "_run_ssh", fake_run_ssh)
+    monkeypatch.setattr(azure_ml_vm, "_now_monotonic", fake_now)
+    monkeypatch.setattr(time, "sleep", lambda _s: None)
+
+    result: AcquireResult = acquire(task_id="t-slow-boot", pool=[PRIMARY])
+
+    assert result.vm.name == PRIMARY.name
+    assert result.failed_attempts == []
+    assert "t-slow-boot" in locks_by_vm[vm_name]
+    assert state_poll_calls[0] > 0, "VM-start wait must have actually polled state"
+    assert ssh_poll_calls[0] >= 2, "SSH-wait must have actually polled more than once"
 
 
 # ---------------------------------------------------------------------------
@@ -423,6 +689,89 @@ def test_teardown_computes_duration_and_cost(monkeypatch: pytest.MonkeyPatch) ->
         acquired_at="2026-05-12T10:00:00Z",
     )
     assert result.duration_hours == pytest.approx(2.0)
+    assert result.total_cost_usd == pytest.approx(13.96 * 2.0)
+
+
+def test_teardown_charges_nothing_to_a_task_that_joined_a_running_vm(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A co-tenant that did not start the box adds no marginal cost.
+
+    The VM bills at one hourly rate no matter how many GPUs are busy, so
+    charging every tenant the full window would inflate the project total.
+    The task that turned the box on carries the bill.
+    """
+    w: FakeWorld = FakeWorld(
+        az_state_by_vm={"LLM-T1-NC80": "Running"},
+        ssh_ok_by_vm={"LLM-T1-NC80": True},
+        locks_by_vm={"LLM-T1-NC80": ["t-starter", "t-joiner"]},
+        az_calls=[],
+        ssh_calls=[],
+    )
+    _install_fakes(monkeypatch=monkeypatch, world=w)
+    monkeypatch.setattr(azure_ml_vm, "_now_iso", lambda: "2026-05-12T12:00:00Z")
+    result = teardown(
+        task_id="t-joiner",
+        deallocate=True,
+        pool=[MULTI_TENANT_VM],
+        acquired_at="2026-05-12T10:00:00Z",
+        started_vm=False,
+    )
+    assert result.duration_hours == pytest.approx(2.0)
+    assert result.total_cost_usd == pytest.approx(0.0)
+    assert result.co_tenant_task_ids == ["t-starter"]
+    assert result.deallocated is False
+
+
+def test_teardown_charges_the_task_that_started_the_vm(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    w: FakeWorld = FakeWorld(
+        az_state_by_vm={"LLM-T1-NC80": "Running"},
+        ssh_ok_by_vm={"LLM-T1-NC80": True},
+        locks_by_vm={"LLM-T1-NC80": ["t-starter", "t-joiner"]},
+        az_calls=[],
+        ssh_calls=[],
+    )
+    _install_fakes(monkeypatch=monkeypatch, world=w)
+    monkeypatch.setattr(azure_ml_vm, "_now_iso", lambda: "2026-05-12T12:00:00Z")
+    result = teardown(
+        task_id="t-starter",
+        deallocate=True,
+        pool=[MULTI_TENANT_VM],
+        acquired_at="2026-05-12T10:00:00Z",
+        started_vm=True,
+    )
+    assert result.total_cost_usd == pytest.approx(13.96 * 2.0)
+    assert result.co_tenant_task_ids == ["t-joiner"]
+
+
+def test_teardown_charges_a_joiner_that_outlives_every_co_tenant(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Last tenant out keeps the box alive to its own teardown, so it pays.
+
+    Over-attributing here is deliberate: the project total must never report
+    less than Azure actually billed.
+    """
+    w: FakeWorld = FakeWorld(
+        az_state_by_vm={"LLM-T1-NC80": "Running"},
+        ssh_ok_by_vm={"LLM-T1-NC80": True},
+        locks_by_vm={"LLM-T1-NC80": ["t-joiner"]},
+        az_calls=[],
+        ssh_calls=[],
+    )
+    _install_fakes(monkeypatch=monkeypatch, world=w)
+    monkeypatch.setattr(azure_ml_vm, "_now_iso", lambda: "2026-05-12T12:00:00Z")
+    result = teardown(
+        task_id="t-joiner",
+        deallocate=True,
+        pool=[MULTI_TENANT_VM],
+        acquired_at="2026-05-12T10:00:00Z",
+        started_vm=False,
+    )
+    assert result.deallocated is True
+    assert result.co_tenant_task_ids == []
     assert result.total_cost_usd == pytest.approx(13.96 * 2.0)
 
 

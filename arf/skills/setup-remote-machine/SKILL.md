@@ -7,7 +7,7 @@ description: >-
 ---
 # Setup Remote Machine
 
-**Version**: 6
+**Version**: 7
 
 ## Goal
 
@@ -118,10 +118,22 @@ Read before starting:
 
    Some pool entries (e.g. `LLM-T1-NC80`) carry `requires_coordination_if_running: true` in
    `project/azure_vm.json` because they are shared boxes other people SSH into directly for manual
-   work, not dedicated ARF compute. For those, `acquire` refuses the VM outright — with
-   `failure_phase: "human_coordination_required"` — if it is already `Running` when the attempt
-   starts (someone else started it and may be using it). It is only auto-acquired when found
-   `Stopped`, since starting it itself is the one case known to be safe.
+   work, not dedicated ARF compute. For those, when the VM is already `Running`, `acquire` checks
+   whether it carries any ARF task lock. No lock means a human started it, and the VM is refused
+   with `failure_phase: "human_coordination_required"`. A lock means ARF started it, so the attempt
+   proceeds. A `Stopped` VM is started and used as usual.
+
+   A pool entry may also declare `max_concurrent_tasks` (default `1`) — how many tasks may hold a
+   lock on it at once. Entries keep the default unless the box has several GPUs, because two tasks
+   fighting over one GPU help nobody. Where co-tenants are allowed, each task must pin its own
+   device with `CUDA_VISIBLE_DEVICES`, and its task description must state which device it takes so
+   two tasks cannot both fall back to device 0. `acquire` refuses with `failure_phase: "lock_held"`
+   once an entry is at capacity.
+
+   Co-tenants share the whole box, not only the GPUs — conda environments, the model cache, disk,
+   and host RAM are common property. **Never mutate a shared conda environment while a sibling task
+   may be mid-run**: installing or upgrading a package under a running job can change versions
+   beneath it. Clone the environment when a task needs different packages.
 
 2. Save the JSON output as the basis for `machine_log.json`. Use `to_machine_log_entry()` from the
    library to convert it to the schema consumed by `aggregate_machines.py`:
@@ -277,8 +289,15 @@ Executed during the `teardown` step of execute-task.
 
    `--acquired-at` should be the `acquired_at` value from the Phase 2 acquire output; it lets the
    provisioner compute `total_duration_hours` and `total_cost_usd`. The output JSON reports
-   `deallocated` (true if `az ml compute stop` ran) and `other_locks_present` (true if a sibling
-   task held a lock and the VM was left running).
+   `deallocated` (true if `az ml compute stop` ran), `other_locks_present` (true if a sibling task
+   held a lock and the VM was left running), and `co_tenant_task_ids` (which sibling tasks those
+   were).
+
+   **If the Phase 2 acquire output had `started_vm: false`, add `--joined-running-vm`.** That task
+   walked into a box a sibling had already started, and the VM bills at one hourly rate whether one
+   GPU is busy or both, so charging it again for the same window would inflate the project cost
+   total. With the flag it records `0.0` — unless its own teardown is what finally deallocates the
+   VM, in which case it kept the box alive and is charged for its window anyway.
 
 4. Update `machine_log.json`. Use `to_machine_log_entry(acquire_result=..., teardown_result=...)` to
    refresh the entry with `destroyed_at`, `total_duration_hours`, and `total_cost_usd`.
@@ -364,3 +383,10 @@ For teardown:
 * NEVER add a pool entry for a box other people use directly (outside ARF) without setting
   `requires_coordination_if_running: true` — omitting it lets `acquire` silently steal a VM that a
   human is mid-session on.
+* NEVER raise `max_concurrent_tasks` above `1` on a single-GPU pool entry, and never let two
+  co-tenant tasks share a device — each must pin its own with `CUDA_VISIBLE_DEVICES`.
+* NEVER install, upgrade, or remove packages in a conda environment on a VM that another task holds
+  a lock on. Clone the environment instead; a version change under a running sibling job breaks it
+  mid-run.
+* NEVER omit `--joined-running-vm` at teardown for a task whose acquire reported `started_vm: false`
+  — that double-counts a shared VM window in the project cost total.

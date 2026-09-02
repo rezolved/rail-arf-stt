@@ -1,6 +1,6 @@
 # Remote Machines Specification
 
-**Version**: 5
+**Version**: 6
 
 * * *
 
@@ -102,7 +102,7 @@ may use several.
 
 | Field | Type | Required | Applies to | Set during | Description |
 | --- | --- | --- | --- | --- | --- |
-| `spec_version` | string | yes (v5+) | all | creating | Spec version (e.g., `"5"`). Legacy entries with `"4"` or earlier or no field are treated permissively (warning only). |
+| `spec_version` | string | yes (v5+) | all | creating | Machine-log entry version, currently `"5"`. This tracks the entry schema, not this document's header version — document v6 added Azure co-tenancy, which changed the pool config and the selection algorithm but left the entry schema untouched, so the value stays `"5"`. Legacy entries with `"4"` or earlier or no field are treated permissively (warning only). |
 | `provider` | string enum | yes | all | creating | One of `"vast_ai"`, `"azure_ml"`, or `"nebius"` |
 | `instance_id` | string | yes | all | creating | Provider-specific instance ID (Vast offer instance ID, Azure VM name, or Nebius `computeinstance-...` ID) |
 | `selected_offer` | object | yes | both | searching | Details of the chosen offer / pool VM (see below) |
@@ -500,20 +500,47 @@ no offer marketplace and no price negotiation — every VM in the pool bills at 
 (`hourly_cost_usd` per VM entry). The selection algorithm is a deterministic priority walk:
 
 1. Read `project/azure_vm.json`. Each entry has a `priority` (1 = primary), `vm_name`, `region`,
-   `workspace`, `resource_group`, `gpu`, `gpu_count`, and `hourly_cost_usd`.
+   `workspace`, `resource_group`, `gpu`, `gpu_count`, and `hourly_cost_usd`. Two optional fields
+   control sharing: `requires_coordination_if_running` (default `false`) and `max_concurrent_tasks`
+   (default `1`).
 2. Iterate entries in ascending `priority`. For each VM:
-   * Check whether `~/.arf-locks/<other_task_id>.lock` exists on the VM via SSH. If a lock owned by
-     another task is present, record `lock_held` in `failed_attempts` and continue to the next
-     entry.
+   * If the entry sets `requires_coordination_if_running` and the VM is already `Running`, list the
+     ARF locks on it. **Zero locks means a human started the box** — record
+     `human_coordination_required` in `failed_attempts` and continue to the next entry. One or more
+     locks means ARF started it, so the walk proceeds. A VM whose SSH is unreachable lists no locks
+     and therefore lands on the refusing branch, which is the safe direction for an ambiguous box.
+   * Count the locks in `~/.arf-locks/` owned by other tasks. If that count has reached the entry's
+     `max_concurrent_tasks`, record `lock_held` in `failed_attempts` and continue to the next entry.
    * If stopped, issue `az ml compute start`. Wait up to 8 minutes for the VM to reach `Running`.
    * Verify SSH connectivity via the host alias declared in the user's `~/.ssh/config`.
    * On success, write `~/.arf-locks/<task_id>.lock` and return.
-3. If every entry is locked or unreachable, write `tasks/<task_id>/intervention/pool_busy.md` and
-   exit non-zero.
+3. If every entry is at capacity or unreachable, write `tasks/<task_id>/intervention/pool_busy.md`
+   and exit non-zero.
 
 The whole walk, including `failed_attempts` for any VMs skipped on the way to the chosen one, is
 recorded in `machine_log.json`. Stale locks (owned by tasks already in a terminal state) should be
 cleared before the walk — see `LESSONS.md` Lesson 8.
+
+### Co-tenancy
+
+`max_concurrent_tasks` declares how many tasks may hold a lock on one VM at the same time. It
+defaults to `1`, so a pool entry is single-tenant unless it opts in: two tasks contending for one
+GPU thrash, and nothing good comes of it. Raise it only on a multi-GPU box, and only when each
+tenant pins its own device with `CUDA_VISIBLE_DEVICES`. State the device assignment in each task's
+description so the two tasks cannot both default to device 0.
+
+Co-tenants share more than the GPUs. The conda environments, the model cache, the disk, and the host
+RAM are common property. A task MUST NOT mutate a shared environment that a sibling may be using
+mid-run — clone it instead when different packages are needed.
+
+Cost attribution follows the billing reality: the VM bills at one `hourly_cost_usd` no matter how
+many of its GPUs are busy. So the task that started the VM records the cost of its window, and a
+task that joined an already-running VM records `0.0`. The exception is the last tenant out: when a
+joiner's own teardown is what deallocates the VM, it kept the box alive to that moment and records
+its full window. That can overlap the starter's window and over-attribute slightly, which is the
+deliberate direction — a cost report must never claim less than the provider charged. Teardown also
+records `co_tenant_task_ids`, the other tasks still holding locks, so any shared window is
+auditable.
 
 * * *
 

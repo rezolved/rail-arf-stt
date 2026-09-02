@@ -18,6 +18,17 @@
       "hourly_cost_usd": 13.96,
       "priority": 2,
       "notes": "Fallback. Use a different region for capacity redundancy. Remove this entry if you only have one VM in the pool."
+    },
+    {
+      "name": "arf-EXAMPLE-shared-multigpu",
+      "workspace": "<your-azure-ml-workspace>",
+      "resource_group": "<your-resource-group>",
+      "ssh_host_alias": "arf-EXAMPLE-shared-multigpu",
+      "hourly_cost_usd": 13.96,
+      "priority": 3,
+      "notes": "Optional example of the two sharing controls; delete this entry if you need neither. requires_coordination_if_running marks a box people also SSH into by hand: when it is found Running, acquire claims it only if it already carries an ARF lock (proof ARF started it) and refuses otherwise. max_concurrent_tasks lets several tasks hold locks at once — raise it only on a multi-GPU box, and only when each task pins its own device with CUDA_VISIBLE_DEVICES. The fields default to false and 1, so a plain single-tenant entry omits both.",
+      "requires_coordination_if_running": true,
+      "max_concurrent_tasks": 2
     }
   ]
 }
