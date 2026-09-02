@@ -2,7 +2,7 @@
 spec_version: "1"
 task_id: "t0026_biasing_on_finetune_ablation"
 updated_at: "2026-09-02T14:45:00Z"
-completed_steps: 9
+completed_steps: 11
 next_step_number: 10
 next_step_id: "teardown"
 ---
