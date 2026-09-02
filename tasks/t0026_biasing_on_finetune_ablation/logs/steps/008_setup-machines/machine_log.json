@@ -1,0 +1,43 @@
+[
+  {
+    "spec_version": "5",
+    "provider": "azure_ml",
+    "instance_id": "LLM-T1-NC80",
+    "vm_name": "LLM-T1-NC80",
+    "hourly_cost_usd": 13.96,
+    "started_vm": true,
+    "offer_id": "azure_ml:LLM-T1-NC80",
+    "search_criteria": "provider=azure_ml gpu_class=H100 priority_walk=LLM-T1-NC80 (only entry in project/azure_vm.json)",
+    "selected_offer": {
+      "vm_name": "LLM-T1-NC80",
+      "priority": 1,
+      "gpu": "H100 NVL",
+      "gpu_count": 2,
+      "gpu_ram_gb": 95.83,
+      "cpu_ram_gb": 880.0,
+      "disk_gb": 119.0,
+      "image": "26.01.05",
+      "region": "northeurope",
+      "hourly_cost_usd": 13.96
+    },
+    "selection_rationale": "Pool priority 1, the only entry in project/azure_vm.json. Found Stopped (not held by a human session), so azure_ml_vm acquire issued az ml compute start directly. First acquisition attempt to succeed after the SSH-deadline fix (PR #26, commit 8b7f5ec) landed: the two prior blocked_intervention attempts (vm_start_timeout, then ssh_connect) both failed because acquire() shared a single deadline between waiting for VM Running and waiting for SSH; SSH_WAIT_TIMEOUT_SECONDS gave this run its own independent post-boot window and it succeeded cleanly in 499.4s with zero failed_attempts.",
+    "image": "26.01.05",
+    "disk_gb": 119,
+    "label": "rail-arf-stt/t0026_biasing_on_finetune_ablation",
+    "ssh_host": "LLM-T1-NC80",
+    "ssh_port": 50000,
+    "gpu_verified": "NVIDIA H100 NVL",
+    "cuda_version": "12.2",
+    "created_at": "2026-09-02T13:57:10.960891Z",
+    "ready_at": "2026-09-02T14:04:00Z",
+    "destroyed_at": null,
+    "total_duration_hours": null,
+    "total_cost_usd": null,
+    "search_started_at": "2026-09-02T13:48:51.596433Z",
+    "total_provisioning_seconds": 908.4,
+    "failed_attempts": [],
+    "checkpoint_path": null,
+    "heartbeat_path": null,
+    "smoke_test_output": "CUDA_VISIBLE_DEVICES=1 python -c \"import torch; print(torch.__version__, torch.cuda.is_available(), torch.cuda.device_count(), torch.cuda.get_device_name(0))\"\ntorch 2.5.1+cu121 True 1 NVIDIA H100 NVL\nnemo_toolkit 3.1.0+dcd7153\nGPU 0 left untouched (reserved for t0025_parakeet_tdt_brand_finetune)."
+  }
+]

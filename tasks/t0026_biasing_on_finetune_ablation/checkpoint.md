@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0026_biasing_on_finetune_ablation"
-updated_at: "2026-08-26T15:20:00Z"
-completed_steps: 9
-next_step_number: 8
-next_step_id: "setup-machines"
+updated_at: "2026-09-02T14:10:00Z"
+completed_steps: 10
+next_step_number: 9
+next_step_id: "implementation"
 ---
 # Task Objective
 
@@ -79,6 +79,16 @@ McNemar analysis, and GPU pinning to `LLM-T1-NC80` GPU 1 with explicit sequencin
 Caveat for `setup-machines`: the plan assumes `t0025` has not started GPU work yet (true as of this
 step) but that must be re-checked before acquiring the machine.
 
+### Step 8 — setup-machines
+
+Resumed from `blocked_intervention` after PR #26 (commit `8b7f5ec`, merged into this branch as
+`bc074b7`) fixed the shared-deadline bug in `azure_ml_vm.py`'s `acquire()`. Acquired `LLM-T1-NC80`
+on the first attempt (0 `failed_attempts`, 499.4s to SSH-ready), verified GPU 1 isolation
+(`CUDA_VISIBLE_DEVICES=1`, `stt` env, NeMo 3.1.0), and `dvc pull`ed the checkpoint and
+`clean_eval_v2` audio. Machine is `ready` and locked for `t0026`; `t0025` remains `not_started`, so
+no co-tenancy conflict exists yet. See
+`logs/steps/008_setup-machines/{machine_log.json,step_log.md}`.
+
 * * *
 
 ## Cross-Step Decisions
@@ -96,13 +106,26 @@ step) but that must be re-checked before acquiring the machine.
 * No prior task implements a McNemar test; `research_code.md` recommends `scipy.stats.binomtest` on
   discordant pairs (scipy is already a project dependency) rather than adding `statsmodels`.
 
+* `azure_ml_vm.to_machine_log_entry()` has a pre-existing gap (traced to commit `c06c5b5`, unrelated
+  to PR #25/#26): it omits `spec_version`, `hourly_cost_usd`, `started_vm`, and emits
+  `provider: "azure-ml"` instead of the spec's `"azure_ml"` enum value. Worked around by
+  hand-enriching `machine_log.json` with the real `acquire()` output, matching the precedent set by
+  `t0014`/`t0015`/`t0024`. Not fixed inline here per Critical Rule 1 — worth a `/self-improvement`
+  fix on `main` and a note in this task's `suggestions` step.
+
+* `.dvc/config.local`'s vault-sourced connection string is stale/`AuthenticationFailed` in this
+  worktree; worked around locally (gitignored, uncommitted) by falling back to
+  `az login`/`AzureCliCredential` per `docs/dvc-data-workflow.md`. This is a team-wide vault issue
+  (shared key with `rail-arf-finetuning`/`rail-benchmarks`), not a task-branch fix.
+
 * * *
 
 ## Next Step Notes
 
-Step 7 (planning) completed successfully; `plan/plan.md` is ready and verified. Proceed to step 8
-(`setup-machines`) per `step_tracker.json`: acquire `LLM-T1-NC80` GPU 1 (`CUDA_VISIBLE_DEVICES=1`),
-verify the `stt` conda env and GPU visibility, and re-confirm `t0025` has not started GPU work on
-the same machine before proceeding (the two tasks cannot run GPU work concurrently on `LLM-T1-NC80`
-today). See `plan/plan.md`'s `## Remote Machines` and `## Step by Step` sections for exact
-provisioning and sequencing steps.
+Step 8 (`setup-machines`) completed: `LLM-T1-NC80` is acquired, GPU 1 isolated
+(`CUDA_VISIBLE_DEVICES=1`), `stt` env and NeMo 3.1.0 confirmed, checkpoint and `clean_eval_v2` audio
+pulled. Proceed to step 9 (`implementation`) per `plan/plan.md`'s `## Step by Step` section:
+Milestone 1 (manifest fix + code scaffolding, local, no GPU) can start immediately; Milestone 2 (the
+4-arm ablation run) executes on `LLM-T1-NC80` GPU 1 using the already-acquired machine — do not
+re-acquire. After Milestone 2's GPU work finishes, run `teardown` (step 10) before `t0025` attempts
+its own `setup-machines`.
