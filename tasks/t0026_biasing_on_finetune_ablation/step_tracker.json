@@ -132,9 +132,9 @@
       "step": 15,
       "name": "reporting",
       "description": "Run all verificators, capture session transcripts, finalize task.json status.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-09-02T15:17:13Z",
-      "completed_at": null,
+      "completed_at": "2026-09-02T15:20:30Z",
       "log_file": "logs/steps/015_reporting/"
     }
   ]
