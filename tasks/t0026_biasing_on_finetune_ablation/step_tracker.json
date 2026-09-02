@@ -87,9 +87,9 @@
       "step": 10,
       "name": "teardown",
       "description": "Destroy or release the GPU machine once inference and result download are complete, before t0025 can acquire it.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-09-02T14:57:24Z",
-      "completed_at": null,
+      "completed_at": "2026-09-02T15:03:05Z",
       "log_file": "logs/steps/010_teardown/"
     },
     {
