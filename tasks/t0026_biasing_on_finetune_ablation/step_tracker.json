@@ -123,9 +123,9 @@
       "step": 14,
       "name": "suggestions",
       "description": "Write suggestions.json, including whether t0025 should proceed as scoped.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-09-02T15:10:43Z",
-      "completed_at": null,
+      "completed_at": "2026-09-02T15:15:36Z",
       "log_file": "logs/steps/014_suggestions/"
     },
     {
