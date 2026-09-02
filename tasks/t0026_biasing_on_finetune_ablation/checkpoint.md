@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0026_biasing_on_finetune_ablation"
-updated_at: "2026-09-02T15:20:00Z"
-completed_steps: 13
-next_step_number: 14
-next_step_id: "suggestions"
+updated_at: "2026-09-02T15:16:00Z"
+completed_steps: 14
+next_step_number: 15
+next_step_id: "reporting"
 ---
 # Task Objective
 
@@ -120,6 +120,19 @@ coverage table. `results/costs.json` and `results/remote_machines_used.json` (fr
 consistent and left unmodified. `verify_task_metrics` and `verify_task_results` both passed with 0
 errors, 0 warnings.
 
+### Step 14 — suggestions
+
+A dedicated subagent executed `/generate-suggestions`, writing `results/suggestions.json` with 6
+suggestions: the three `/self-improvement` framework-gap candidates from `## Cross-Step Decisions`
+(`azure_ml_vm.to_machine_log_entry()`'s missing fields/wrong provider enum, the
+`verify_machines_destroyed.py` `--task-id` doc mismatch, the mypy `exclude` pattern), the deferred
+biasing-cell re-sweep against the fine-tuned model's output distribution, and two new
+findings-driven suggestions (a holistic-transcript-quality metric, and confidence-gated boosting to
+stop brand-term hallucination on neutral audio). The candidate (c) item (t0025/TDT re-validation
+caveat) was deliberately dropped as a duplicate: `t0025_parakeet_tdt_brand_finetune`'s own
+`task_description.md` Key Question 4 already scopes combining biasing with its TDT checkpoint and
+instructs reading t0026's verdict first. `verify_suggestions` passed with 0 errors.
+
 * * *
 
 ## Cross-Step Decisions
@@ -174,16 +187,14 @@ errors, 0 warnings.
 
 ## Next Step Notes
 
-Step 12 (`results`) completed: `results/results_summary.md` and `results/results_detailed.md` are
-written and both pass `verify_task_metrics`/`verify_task_results` with 0 errors. Step 13
-(`compare-literature`) is already marked `skipped` in `step_tracker.json` (project-internal metrics,
-no published baseline). Proceed to step 14 (`suggestions`): write `results/suggestions.json`
-covering at least (a) the `/self-improvement` candidates already flagged in
-`## Cross-Step Decisions` — `azure_ml_vm.to_machine_log_entry()`'s missing fields/wrong provider
-enum, the `verify_machines_destroyed.py` CLI `--task-id` doc mismatch, and the repo-wide mypy
-`exclude` pattern limiting `-p` package checks to `__init__.py`; (b) a follow-up suggestion to
-re-sweep the GPU-PB biasing cell specifically against the fine-tuned checkpoint's output
-distribution (this task's `## Limitations` notes this was deliberately not done); and (c) whether
-`t0025_parakeet_tdt_brand_finetune` should proceed as scoped (answer: yes, per this task's `answer`
-asset) and the caveat that its architecture (TDT, not `parakeet-unified`) means this task's
-biasing-redundancy finding should be re-validated rather than assumed to transfer.
+Step 14 (`suggestions`) completed: `results/suggestions.json` (6 suggestions, spec_version "2")
+written and `verify_suggestions` passes with 0 errors/0 warnings. Proceed to step 15 (`reporting`),
+the final step: run all mandatory verificators (`verify_task_file`, `verify_task_dependencies`,
+`verify_suggestions`, `verify_task_metrics`, `verify_task_results`, `verify_task_folder`,
+`verify_logs`, the `predictions`/`answer` asset verificators, `verify_machines_destroyed`), capture
+session transcripts via `capture_task_sessions`, set `task.json` `status` to `"completed"` with
+`end_time`, make the final `checkpoint.md` update (`next_step_number`/`next_step_id` → `null`),
+write the final step log, commit, and run poststep. After `reporting` completes, the coordinator
+takes over for Phases 7-9 (PR creation/merge, `verify_pr_premerge`, worktree removal,
+`verify_task_complete`, overview sync) — no further step-executor work is needed from this task's
+step list.
