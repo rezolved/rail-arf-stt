@@ -105,10 +105,10 @@
       "step": 12,
       "name": "results",
       "description": "Write results_summary.md, results_detailed.md, metrics.json ({} \u2014 no registered gold-92 metrics apply), costs.json, charts, and tables answering Q1-Q5.",
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-09-02T15:05:31Z",
       "completed_at": null,
-      "log_file": null
+      "log_file": "logs/steps/012_results/"
     },
     {
       "step": 13,

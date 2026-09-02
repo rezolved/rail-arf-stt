@@ -1,10 +1,10 @@
 ---
 spec_version: "1"
 task_id: "t0026_biasing_on_finetune_ablation"
-updated_at: "2026-09-02T14:59:40Z"
-completed_steps: 12
-next_step_number: 12
-next_step_id: "results"
+updated_at: "2026-09-02T15:20:00Z"
+completed_steps: 13
+next_step_number: 14
+next_step_id: "suggestions"
 ---
 # Task Objective
 
@@ -109,6 +109,17 @@ checksums matched and no `.dvc` push was needed (predictions are plain git files
 confirmed `state: "Stopped"` via `az ml compute show`. `results/remote_machines_used.json` and
 `results/costs.json` created. `t0025` is now clear to acquire the VM.
 
+### Step 12 — results
+
+Wrote `results/results_summary.md` and `results/results_detailed.md` (spec_version "2", all 6
+mandatory sections plus `## Analysis`, `## Visualizations`, and the experiment-task-mandatory
+`## Examples`), synthesizing step 9's `ablation_metrics.json`/`mcnemar_results.json`/
+`clip_level_appendix.json` into the headline finding (biasing redundant once fine-tuned, McNemar
+c_vs_d p=0.625, 4.7x higher `neutral_wer` cost than on the base model) with a full 15/15 `REQ-*`
+coverage table. `results/costs.json` and `results/remote_machines_used.json` (from step 10) verified
+consistent and left unmodified. `verify_task_metrics` and `verify_task_results` both passed with 0
+errors, 0 warnings.
+
 * * *
 
 ## Cross-Step Decisions
@@ -163,11 +174,16 @@ confirmed `state: "Stopped"` via `az ml compute show`. `results/remote_machines_
 
 ## Next Step Notes
 
-Step 10 (`teardown`) completed: `LLM-T1-NC80` is destroyed/deallocated, `machine_log.json` has
-`destroyed_at` set, and `results/remote_machines_used.json` / `results/costs.json` reflect the
-$14.37 machine cost. No further GPU work remains for this task. Proceed to step 12 (`results`, step
-11 `creative-thinking` already skipped): write `results_summary.md`, `results_detailed.md`
-(including the `## Analysis` note that biasing is redundant once fine-tuning is applied — arm D vs.
-C McNemar p=0.625 — and costs 4.7x more `neutral_wer` degradation on the base model), fold the
-$14.37 machine cost plus any prior Claude API cost into a final `results/costs.json` total, and
-embed the 3 existing charts from `results/images/`.
+Step 12 (`results`) completed: `results/results_summary.md` and `results/results_detailed.md` are
+written and both pass `verify_task_metrics`/`verify_task_results` with 0 errors. Step 13
+(`compare-literature`) is already marked `skipped` in `step_tracker.json` (project-internal metrics,
+no published baseline). Proceed to step 14 (`suggestions`): write `results/suggestions.json`
+covering at least (a) the `/self-improvement` candidates already flagged in
+`## Cross-Step Decisions` — `azure_ml_vm.to_machine_log_entry()`'s missing fields/wrong provider
+enum, the `verify_machines_destroyed.py` CLI `--task-id` doc mismatch, and the repo-wide mypy
+`exclude` pattern limiting `-p` package checks to `__init__.py`; (b) a follow-up suggestion to
+re-sweep the GPU-PB biasing cell specifically against the fine-tuned checkpoint's output
+distribution (this task's `## Limitations` notes this was deliberately not done); and (c) whether
+`t0025_parakeet_tdt_brand_finetune` should proceed as scoped (answer: yes, per this task's `answer`
+asset) and the caveat that its architecture (TDT, not `parakeet-unified`) means this task's
+biasing-redundancy finding should be re-validated rather than assumed to transfer.
