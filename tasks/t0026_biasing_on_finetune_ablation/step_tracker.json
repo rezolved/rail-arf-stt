@@ -78,9 +78,9 @@
       "step": 9,
       "name": "implementation",
       "description": "Fix clean_eval_v2 manifest paths, run all 4 arms (A/B/C/D), score brand_exact_rate/neutral_wer/overall_wer/latency, produce 4 predictions assets and the answer asset.",
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-09-02T14:15:56Z",
-      "completed_at": null,
+      "completed_at": "2026-09-02T14:55:41Z",
       "log_file": "logs/steps/009_implementation/"
     },
     {
