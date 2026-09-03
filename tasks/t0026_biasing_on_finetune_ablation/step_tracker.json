@@ -1,0 +1,141 @@
+{
+  "task_id": "t0026_biasing_on_finetune_ablation",
+  "steps": [
+    {
+      "step": 1,
+      "name": "create-branch",
+      "description": "Create task/t0026_biasing_on_finetune_ablation branch from main.",
+      "status": "completed",
+      "started_at": "2026-08-26T14:48:52Z",
+      "completed_at": "2026-08-26T14:50:16Z",
+      "log_file": "logs/steps/001_create-branch/"
+    },
+    {
+      "step": 2,
+      "name": "check-deps",
+      "description": "Verify t0021, t0024 Part A, and t0024 checkpoint-archive dependencies are satisfied; note the known task.json status false-negative on the checkpoint-archive task.",
+      "status": "completed",
+      "started_at": "2026-08-26T14:55:03Z",
+      "completed_at": "2026-08-26T14:56:18Z",
+      "log_file": "logs/steps/002_check-deps/"
+    },
+    {
+      "step": 3,
+      "name": "init-folders",
+      "description": "Create task folder structure, step logs, and aggregator cache.",
+      "status": "completed",
+      "started_at": "2026-08-26T14:57:12Z",
+      "completed_at": "2026-08-26T14:58:03Z",
+      "log_file": "logs/steps/003_init-folders/"
+    },
+    {
+      "step": 4,
+      "name": "research-papers",
+      "description": "Skipped: this task executes a predetermined 2x2 ablation using an already-selected biasing cell and existing fine-tuned checkpoint; no new literature validation is required.",
+      "status": "skipped",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": "logs/steps/004_research-papers/"
+    },
+    {
+      "step": 5,
+      "name": "research-internet",
+      "description": "Skipped: no new external tools, APIs, or facts are needed beyond what t0021-t0024 already established.",
+      "status": "skipped",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": "logs/steps/005_research-internet/"
+    },
+    {
+      "step": 6,
+      "name": "research-code",
+      "description": "Review t0021/t0023 scoring and boosting helpers (apply_malsd_boost, DOMAIN_VOCAB, clean-eval scoring) and t0024 Part A pareto cell selection to reuse rather than re-implement, per S-0024-05.",
+      "status": "completed",
+      "started_at": "2026-08-26T14:58:42Z",
+      "completed_at": "2026-08-26T15:08:08Z",
+      "log_file": "logs/steps/006_research-code/"
+    },
+    {
+      "step": 7,
+      "name": "planning",
+      "description": "Design the 4-arm run script, manifest path fix, GPU pinning/sequencing with t0025, and McNemar-test analysis plan.",
+      "status": "completed",
+      "started_at": "2026-08-26T15:09:24Z",
+      "completed_at": "2026-08-26T15:19:47Z",
+      "log_file": "logs/steps/007_planning/"
+    },
+    {
+      "step": 8,
+      "name": "setup-machines",
+      "description": "Acquire LLM-T1-NC80 GPU 1 (CUDA_VISIBLE_DEVICES=1), verify stt conda env and GPU visibility.",
+      "status": "completed",
+      "started_at": "2026-09-02T13:47:54Z",
+      "completed_at": "2026-09-02T14:14:39Z",
+      "log_file": "logs/steps/008_setup-machines/",
+      "current_owner": null
+    },
+    {
+      "step": 9,
+      "name": "implementation",
+      "description": "Fix clean_eval_v2 manifest paths, run all 4 arms (A/B/C/D), score brand_exact_rate/neutral_wer/overall_wer/latency, produce 4 predictions assets and the answer asset.",
+      "status": "completed",
+      "started_at": "2026-09-02T14:15:56Z",
+      "completed_at": "2026-09-02T14:55:41Z",
+      "log_file": "logs/steps/009_implementation/"
+    },
+    {
+      "step": 10,
+      "name": "teardown",
+      "description": "Destroy or release the GPU machine once inference and result download are complete, before t0025 can acquire it.",
+      "status": "completed",
+      "started_at": "2026-09-02T14:57:24Z",
+      "completed_at": "2026-09-02T15:03:05Z",
+      "log_file": "logs/steps/010_teardown/"
+    },
+    {
+      "step": 11,
+      "name": "creative-thinking",
+      "description": "Skipped: this is a mechanical, predetermined 2x2 ablation with no open design space for alternative approaches.",
+      "status": "skipped",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": "logs/steps/011_creative-thinking/"
+    },
+    {
+      "step": 12,
+      "name": "results",
+      "description": "Write results_summary.md, results_detailed.md, metrics.json ({} \u2014 no registered gold-92 metrics apply), costs.json, charts, and tables answering Q1-Q5.",
+      "status": "completed",
+      "started_at": "2026-09-02T15:05:31Z",
+      "completed_at": "2026-09-02T15:09:53Z",
+      "log_file": "logs/steps/012_results/"
+    },
+    {
+      "step": 13,
+      "name": "compare-literature",
+      "description": "Skipped: metrics are project-internal (clean_eval_v2, non-registered) with no published baseline to compare against, matching t0024's precedent.",
+      "status": "skipped",
+      "started_at": null,
+      "completed_at": null,
+      "log_file": "logs/steps/013_compare-literature/"
+    },
+    {
+      "step": 14,
+      "name": "suggestions",
+      "description": "Write suggestions.json, including whether t0025 should proceed as scoped.",
+      "status": "completed",
+      "started_at": "2026-09-02T15:10:43Z",
+      "completed_at": "2026-09-02T15:15:36Z",
+      "log_file": "logs/steps/014_suggestions/"
+    },
+    {
+      "step": 15,
+      "name": "reporting",
+      "description": "Run all verificators, capture session transcripts, finalize task.json status.",
+      "status": "completed",
+      "started_at": "2026-09-02T15:17:13Z",
+      "completed_at": "2026-09-02T15:20:30Z",
+      "log_file": "logs/steps/015_reporting/"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "spec_version": "2",
+  "predictions_id": "parakeet-unified-ft-nobias-clean-eval-v2",
+  "name": "parakeet-unified-v5 (fine-tuned, no bias) on clean_eval_v2",
+  "short_description": "Predictions from the fine-tuned parakeet-unified-v5 checkpoint with malsd_batch decoding and no GPU-PB boosting tree, on the 91-clip clean_eval_v2 holdout. Arm C of the t0026 2x2 fine-tuning x biasing ablation.",
+  "description_path": "description.md",
+  "model_id": "parakeet-unified-v5",
+  "model_description": "parakeet-unified-v5 is the DVC-archived NeMo checkpoint from task t0024_parakeet_unified_checkpoint_archive (asset tasks/t0024_parakeet_unified_checkpoint_archive/assets/model/parakeet-unified-v5/). It is nvidia/parakeet-unified-en-0.6b (FastConformer-Hybrid Transducer-CTC, English-only, 0.6B params) fine-tuned on Rezolve domain audio (422 clips: 353 TTS-synthesized + 69 real production clips), with the encoder frozen and only the RNNT decoder and CTC head updated. Trained with AdamW, learning rate 1e-4, batch size 16, up to 50 epochs, best epoch 35 selected by validation WER (best_val_wer 0.0556). On its own 19-clip gold-92 test split it reached test_wer 0.0462 and test_ea_dv 1.0 (4 brand clips), though brainpowa_clean21_correct was 0/3. This arm loads the checkpoint via nemo.collections.asr.models.ASRModel.restore_from() and applies boosting.apply_malsd_no_boost(model) -- malsd_batch decoding with no context-biasing phrase tree -- so it isolates the effect of fine-tuning alone, with no GPU-PB boosting contribution.",
+  "dataset_ids": [],
+  "prediction_format": "jsonl",
+  "prediction_schema": "Each line is a JSON object with fields: clip_id (string, unique clip identifier), ref (string, ground-truth reference transcript), hyp (string, model hypothesis transcript, empty string on decode failure), brand (string \"Rezolve\", string \"brainpowa\", or null when the clip has no brand mention), label (string \"EXACT\", \"PHONETIC\", \"GARBAGE\", or null for non-brand clips, describing how well the brand term was recognized), wer (float, word error rate for this clip against ref, or null if undecodable), latency_seconds (float, average per-item inference time for this arm's batched transcribe call, not a true per-clip measurement), source (string \"quepasa_prod\" or \"clean_eval_21\", identifying which sub-source of clean_eval_v2 the clip came from).",
+  "instance_count": 91,
+  "metrics_at_creation": {
+    "brand_exact_rate_overall": 0.7906976744186046,
+    "brand_exact_rate_rezolve": 0.825,
+    "brand_exact_rate_brainpowa": 0.3333333333333333,
+    "neutral_wer": 0.27139861772214713,
+    "overall_wer": 0.280064294623033,
+    "avg_inference_time_per_item_seconds": 0.021939359219781542,
+    "n_clips": 91,
+    "n_brand_clips": 43,
+    "n_neutral_clips": 48,
+    "successful_requests": 91,
+    "total_requests": 91
+  },
+  "files": [
+    {
+      "path": "files/predictions-clean-eval-v2.jsonl",
+      "description": "Per-clip predictions (91 rows) from arm C (fine-tuned parakeet-unified-v5, malsd_batch decoding, no boosting tree) on the clean_eval_v2 holdout, copied verbatim from tasks/t0026_biasing_on_finetune_ablation/results/arm_c_predictions.jsonl.",
+      "format": "jsonl"
+    }
+  ],
+  "categories": [
+    "stt-evaluation",
+    "entity-correction"
+  ],
+  "created_by_task": "t0026_biasing_on_finetune_ablation",
+  "date_created": "2026-09-02"
+}

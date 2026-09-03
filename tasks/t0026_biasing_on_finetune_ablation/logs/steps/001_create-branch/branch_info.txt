@@ -1,0 +1,5 @@
+branch: task/t0026_biasing_on_finetune_ablation
+base_branch: main
+base_commit: 0b7e2471785d1e1f340de30acaa33e68f5f11aa6
+worktree_path: /home/azureuser/rail-metarepo/real-repos/rail-arf-stt-worktrees/t0026_biasing_on_finetune_ablation
+created_at: 2026-08-26T14:48:52Z

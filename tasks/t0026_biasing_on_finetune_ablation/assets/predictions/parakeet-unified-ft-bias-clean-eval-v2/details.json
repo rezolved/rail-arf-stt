@@ -1,0 +1,37 @@
+{
+  "spec_version": "2",
+  "predictions_id": "parakeet-unified-ft-bias-clean-eval-v2",
+  "name": "parakeet-unified-v5 (fine-tuned) + GPU-PB biasing on clean_eval_v2 (Arm D)",
+  "short_description": "Arm D of the t0026 2x2 ablation: the fine-tuned parakeet-unified-v5 checkpoint decoded with malsd_batch and GPU-PB context biasing (context_score=3.0, depth_scaling=0.5, alpha=1.5) on the 91-clip clean_eval_v2 holdout.",
+  "description_path": "description.md",
+  "model_id": "parakeet-unified-v5",
+  "model_description": "nvidia/parakeet-unified-en-0.6b fine-tuned on 422 Rezolve domain clips (encoder frozen, decoder+CTC head only) — the DVC-tracked checkpoint archived at tasks/t0024_parakeet_unified_checkpoint_archive/assets/model/parakeet-unified-v5/ (loaded here via NeMo's ASRModel.restore_from). Decoding uses malsd_batch beam search with a GPU-PB boosting tree stacked on top of this fine-tuned checkpoint (context_score=3.0, depth_scaling=0.5, alpha=1.5) — the Pareto-frontier cell selected on the base model by the prior task t0024_biasing_pareto_and_ft_biasing_ablation, applied here unchanged via boosting.apply_malsd_boost rather than re-swept.",
+  "dataset_ids": [],
+  "prediction_format": "jsonl",
+  "prediction_schema": "Each line is a JSON object with fields: clip_id (string, unique clip identifier), ref (string, ground-truth reference transcript), hyp (string, model hypothesis transcript), brand (string \"Rezolve\"/\"brainpowa\" or null for neutral clips), label (string \"EXACT\"/\"PHONETIC\"/\"GARBAGE\" or null for neutral clips), wer (float, per-clip word error rate), latency_seconds (float, per-clip inference latency), source (string, \"quepasa_prod\" or \"clean_eval_21\" indicating clip provenance).",
+  "instance_count": 91,
+  "metrics_at_creation": {
+    "brand_exact_rate_overall": 0.8372093023255814,
+    "brand_exact_rate_rezolve": 0.875,
+    "brand_exact_rate_brainpowa": 0.3333333333333333,
+    "neutral_wer": 0.48791647486500417,
+    "overall_wer": 0.4567569291525675,
+    "avg_inference_time_per_item_seconds": 0.02199165560439444,
+    "n_clips": 91,
+    "n_brand_clips": 43,
+    "n_neutral_clips": 48
+  },
+  "files": [
+    {
+      "path": "files/predictions-clean-eval-v2.jsonl",
+      "description": "Per-clip predictions for all 91 clean_eval_v2 clips (43 brand-containing, 48 neutral) from the fine-tuned parakeet-unified-v5 checkpoint decoded with malsd_batch + GPU-PB context biasing (Arm D of the t0026 2x2 ablation).",
+      "format": "jsonl"
+    }
+  ],
+  "categories": [
+    "stt-evaluation",
+    "entity-correction"
+  ],
+  "created_by_task": "t0026_biasing_on_finetune_ablation",
+  "date_created": "2026-09-02"
+}

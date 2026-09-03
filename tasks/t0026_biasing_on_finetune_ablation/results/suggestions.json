@@ -1,0 +1,74 @@
+{
+  "spec_version": "2",
+  "suggestions": [
+    {
+      "id": "S-0026-01",
+      "title": "Fix azure_ml_vm.to_machine_log_entry() missing spec_version/hourly_cost_usd/started_vm fields and wrong provider enum",
+      "description": "azure_ml_vm.to_machine_log_entry() (arf/scripts/utils/azure_ml_vm.py) omits the v5-required spec_version, hourly_cost_usd, and started_vm fields defined in arf/specifications/remote_machines_specification.md, and emits provider: \"azure-ml\" instead of the spec's \"azure_ml\" enum value. Confirmed still present on main as of t0026. This has been worked around by hand-enriching machine_log.json in t0014, t0015, t0024, and now t0026 instead of being fixed at the source. Fix to_machine_log_entry() to populate all three fields and correct the enum value so future tasks stop needing the manual workaround. Recommended task types: infrastructure-setup.",
+      "kind": "technique",
+      "priority": "medium",
+      "source_task": "t0026_biasing_on_finetune_ablation",
+      "source_paper": null,
+      "categories": []
+    },
+    {
+      "id": "S-0026-02",
+      "title": "Fix documented --task-id flag for verify_machines_destroyed.py -- actual CLI takes task_id positionally or --all",
+      "description": "arf/skills/setup-remote-machine/SKILL.md and arf/skills/execute-task/SKILL.md both document invoking verify_machines_destroyed.py --task-id $TASK_ID, but the script's actual argparse group (arf/scripts/verificators/verify_machines_destroyed.py) takes task_id as a positional argument or --all, with no --task-id flag. Every task that follows the documented invocation literally hits an argparse error and must work around it, as t0026 and prior tasks did. Fix the two skill docs to match the real CLI, or add a --task-id alias to the script for backward compatibility. Recommended task types: infrastructure-setup.",
+      "kind": "technique",
+      "priority": "low",
+      "source_task": "t0026_biasing_on_finetune_ablation",
+      "source_paper": null,
+      "categories": []
+    },
+    {
+      "id": "S-0026-03",
+      "title": "Fix pyproject.toml mypy exclude pattern that limits every task's mandated mypy check to __init__.py only",
+      "description": "The repo-wide [tool.mypy] exclude = [\"tasks/.*/code/\", \"tasks/.*/assets/\"] pattern in pyproject.toml makes the mandated mypy -p tasks.$TASK_ID.code invocation only type-check code/__init__.py for every task -- the rest of each task's code/ directory is silently skipped from follow-import checking, even though ruff still lints it fully. This is a repo-wide gap affecting every task's mypy coverage, not specific to t0026. Fix the exclude pattern (or the invocation) so -p tasks.$TASK_ID.code actually follows imports into the full directory. Recommended task types: infrastructure-setup.",
+      "kind": "technique",
+      "priority": "medium",
+      "source_task": "t0026_biasing_on_finetune_ablation",
+      "source_paper": null,
+      "categories": []
+    },
+    {
+      "id": "S-0026-04",
+      "title": "Re-sweep the GPU-PB biasing cell against the fine-tuned parakeet-unified-v5 output distribution",
+      "description": "t0026 deliberately reused the base-model-tuned Pareto cell (context_score=3.0, depth_scaling=0.5, alpha=1.5) unchanged for arms B and D to avoid confounding the ablation, and found it costs 4.7x more neutral_wer once fine-tuning is applied (arm D: +21.7pts vs arm C, vs arm B: +4.6pts vs arm A). It remains untested whether a milder cell, tuned specifically against the fine-tuned model's already brand-shaped output distribution, could recover some of that neutral_wer cost without losing arm D's brand gain over arm B. Run a small Pareto sweep on top of parakeet-unified-v5 (not the base model) on clean_eval_v2 to check for a materially better fine-tuned-model-specific operating point. Recommended task types: experiment-run, stt-benchmark-run.",
+      "kind": "experiment",
+      "priority": "low",
+      "source_task": "t0026_biasing_on_finetune_ablation",
+      "source_paper": null,
+      "categories": [
+        "entity-correction",
+        "stt-evaluation"
+      ]
+    },
+    {
+      "id": "S-0026-05",
+      "title": "Add a holistic-transcript-quality check alongside brand_exact_rate -- strict brand match can pass on a broken transcript",
+      "description": "t0026's clip-level examples show brand_exact_rate can overstate quality: one arm-D hypothesis ('Adobe Commerce of Rezolve Ai.') contains the exact brand string and scores EXACT, but the surrounding transcript is unrelated to the reference ('How do I become a Rezolve partner?'). Since brand_exact_rate is the project's primary lever-comparison metric, add a secondary whole-transcript quality signal (e.g. full-sentence WER or an LLM-judged coherence check) reported alongside it in future biasing/fine-tuning ablations, so a lever that inflates brand_exact_rate via a garbled transcript is visible rather than counted as a clean win. Recommended task types: experiment-run, data-analysis.",
+      "kind": "evaluation",
+      "priority": "medium",
+      "source_task": "t0026_biasing_on_finetune_ablation",
+      "source_paper": null,
+      "categories": [
+        "stt-evaluation",
+        "entity-correction"
+      ]
+    },
+    {
+      "id": "S-0026-06",
+      "title": "Guard GPU-PB boosting against over-triggering brand insertions on unrelated neutral audio once a model is fine-tuned",
+      "description": "t0026 found arm D's boosting tree, primed by the fine-tuned model's brand-shaped output distribution, wholesale-inserts 'brainpowa'/'Rezolve' onto neutral clips referencing unrelated products ('Brain Commerce', 'Brain Cortex' both mistranscribed as 'brainpowa.', and one 5-word reference becoming 'Rezolve brainpowa brainpowa brainpowa.', both wer=1.0) -- this pattern is far rarer in the base model's arm-B errors. Investigate a confidence- or likelihood-gated boosting mechanism (e.g. only accept a boosted insertion above some acoustic-likelihood margin over the unboosted hypothesis) so a fine-tuned+biased decoder does not hallucinate brand terms onto competitor or unrelated product names. Recommended task types: experiment-run, post-correction-experiment.",
+      "kind": "technique",
+      "priority": "medium",
+      "source_task": "t0026_biasing_on_finetune_ablation",
+      "source_paper": null,
+      "categories": [
+        "entity-correction",
+        "confidence-routing"
+      ]
+    }
+  ]
+}

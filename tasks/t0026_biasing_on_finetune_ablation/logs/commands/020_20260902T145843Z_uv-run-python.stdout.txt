@@ -1,0 +1,10 @@
+{
+  "task_id": "t0026_biasing_on_finetune_ablation",
+  "vm_name": "LLM-T1-NC80",
+  "deallocated": true,
+  "other_locks_present": false,
+  "destroyed_at": "2026-09-02T14:58:56.794430Z",
+  "duration_hours": 1.029398205277778,
+  "total_cost_usd": 14.370398945677781,
+  "co_tenant_task_ids": []
+}

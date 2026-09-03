@@ -1,0 +1,16 @@
+{
+  "b_vs_d": {
+    "b": 0,
+    "c": 20,
+    "n_discordant": 20,
+    "p_value": 1.9073486328125e-06,
+    "note": null
+  },
+  "c_vs_d": {
+    "b": 1,
+    "c": 3,
+    "n_discordant": 4,
+    "p_value": 0.625,
+    "note": null
+  }
+}
