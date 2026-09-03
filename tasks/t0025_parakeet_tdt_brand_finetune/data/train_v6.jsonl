@@ -1,0 +1,774 @@
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0005.wav", "duration": 13.312, "text": "\u044b"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s01_v2.wav", "duration": 2.976, "text": "We partnered with GroupBy for search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s00_v3.wav", "duration": 3.816, "text": "Dan Wagner is the CEO and founder of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s00_v3.wav", "duration": 3.816, "text": "Dan Wagner is the CEO and founder of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s00_v3.wav", "duration": 3.816, "text": "Dan Wagner is the CEO and founder of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_richard_burchill_s01_v3.wav", "duration": 3.336, "text": "I spoke with Richard Burchill about the roadmap."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s02_v4.wav", "duration": 3.12, "text": "GroupBy powers the search and merchandising layer."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/audio_16k/French_NoemieMarciano__en-NoemieMarciano-q06.wav", "duration": 6.501587301587302, "text": "Do you support mobile wallet,instant payments, or crypto-to-fiat rails?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s03_v3.wav", "duration": 2.688, "text": "The vision was set by Dan Wagner."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crownpeak_s02_v3.wav", "duration": 3.792, "text": "CrownPeak supports headless CMS architectures."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s01_v0.wav", "duration": 3.192, "text": "I had a call with Arthur Yao yesterday."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s03_v1.wav", "duration": 2.808, "text": "The vision was set by Dan Wagner."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s01_v3.wav", "duration": 2.664, "text": "I work at Rezolve as an engineer."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s01_v3.wav", "duration": 2.664, "text": "I work at Rezolve as an engineer."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s01_v3.wav", "duration": 2.664, "text": "I work at Rezolve as an engineer."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/audio_16k/French_NoemieMarciano__en-NoemieMarciano-q01.wav", "duration": 6.408707482993197, "text": "How does Rezolve AI improve product discovery for enterprise retailers?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/audio_16k/French_NoemieMarciano__en-NoemieMarciano-q01.wav", "duration": 6.408707482993197, "text": "How does Rezolve AI improve product discovery for enterprise retailers?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/audio_16k/French_NoemieMarciano__en-NoemieMarciano-q01.wav", "duration": 6.408707482993197, "text": "How does Rezolve AI improve product discovery for enterprise retailers?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s05_v0.wav", "duration": 3.192, "text": "The platform is built by Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s05_v0.wav", "duration": 3.192, "text": "The platform is built by Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s05_v0.wav", "duration": 3.192, "text": "The platform is built by Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_bluedot_s01_v3.wav", "duration": 2.688, "text": "We use Bluedot for geofencing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s02_v2.wav", "duration": 3.912, "text": "Brain Checkout reduced cart abandonment significantly."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s05_v3.wav", "duration": 3.216, "text": "brainpowa supports multimodal inputs."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s05_v3.wav", "duration": 3.216, "text": "brainpowa supports multimodal inputs."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s05_v3.wav", "duration": 3.216, "text": "brainpowa supports multimodal inputs."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0192.wav", "duration": 5.376, "text": "and repeat those again, but slower. I got storefront website and what else."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s02_v0.wav", "duration": 3.288, "text": "Arthur Yao is the CTO of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s02_v0.wav", "duration": 3.288, "text": "Arthur Yao is the CTO of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s02_v0.wav", "duration": 3.288, "text": "Arthur Yao is the CTO of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_bluedot_s01_v1.wav", "duration": 2.88, "text": "We use Bluedot for geofencing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s06_v3.wav", "duration": 3.72, "text": "The latency improved after upgrading to brainpowa."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s06_v3.wav", "duration": 3.72, "text": "The latency improved after upgrading to brainpowa."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s06_v3.wav", "duration": 3.72, "text": "The latency improved after upgrading to brainpowa."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/2c2e4347-8adf-47ec-99d4-33efd1b9df36_turn7.wav", "duration": 5.632, "text": "Are you using Anthropic, OpenAI, ChatGPT, Mistral, Llama or anything?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s00_v1.wav", "duration": 4.056, "text": "GroupBy provides product discovery for enterprise retail."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s01_v3.wav", "duration": 2.76, "text": "We partnered with GroupBy for search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s07_v4.wav", "duration": 2.856, "text": "Rezolve AI recently joined NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s07_v4.wav", "duration": 2.856, "text": "Rezolve AI recently joined NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s07_v4.wav", "duration": 2.856, "text": "Rezolve AI recently joined NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s00_v0.wav", "duration": 3.744, "text": "brainpowa is the core AI product from Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s00_v0.wav", "duration": 3.744, "text": "brainpowa is the core AI product from Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s00_v0.wav", "duration": 3.744, "text": "brainpowa is the core AI product from Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/5e61bea5-a253-4451-8fce-3866c344cbf6_turn3.wav", "duration": 5.376, "text": "tell me how many customers are currently using your compositional commerce products."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s03_v1.wav", "duration": 3.048, "text": "Tell me about ViSenze's capabilities."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s01_v2.wav", "duration": 3.096, "text": "I met with Crispin Lowery at the event."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0018.wav", "duration": 6.912, "text": "I am a hotel owner. How Rezolve Ai solutions is going to help me?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0018.wav", "duration": 6.912, "text": "I am a hotel owner. How Rezolve Ai solutions is going to help me?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0018.wav", "duration": 6.912, "text": "I am a hotel owner. How Rezolve Ai solutions is going to help me?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s03_v4.wav", "duration": 3.744, "text": "Rezolve AI powers conversational shopping experiences."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s03_v4.wav", "duration": 3.744, "text": "Rezolve AI powers conversational shopping experiences."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s03_v4.wav", "duration": 3.744, "text": "Rezolve AI powers conversational shopping experiences."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s07_v2.wav", "duration": 3.36, "text": "Rezolve recently announced a new product."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s07_v2.wav", "duration": 3.36, "text": "Rezolve recently announced a new product."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s07_v2.wav", "duration": 3.36, "text": "Rezolve recently announced a new product."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s01_v2.wav", "duration": 3.576, "text": "How does Rezolve AI improve product discovery?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s01_v2.wav", "duration": 3.576, "text": "How does Rezolve AI improve product discovery?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s01_v2.wav", "duration": 3.576, "text": "How does Rezolve AI improve product discovery?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s05_v2.wav", "duration": 3.216, "text": "The platform is built by Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s05_v2.wav", "duration": 3.216, "text": "The platform is built by Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s05_v2.wav", "duration": 3.216, "text": "The platform is built by Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/8d2bdfaf-db99-4e4f-8ab3-fa7f561df698_turn1.wav", "duration": 3.328, "text": "Press release from June the 12th"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s00_v3.wav", "duration": 3.0, "text": "Rezolve AI is listed on NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s00_v3.wav", "duration": 3.0, "text": "Rezolve AI is listed on NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s00_v3.wav", "duration": 3.0, "text": "Rezolve AI is listed on NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s07_v3.wav", "duration": 3.192, "text": "Rezolve recently announced a new product."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s07_v3.wav", "duration": 3.192, "text": "Rezolve recently announced a new product."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s07_v3.wav", "duration": 3.192, "text": "Rezolve recently announced a new product."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s00_v1.wav", "duration": 3.912, "text": "ViSenze provides visual search and AI merchandising."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s00_v4.wav", "duration": 3.24, "text": "Brain Checkout enables one-click voice purchases."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s01_v0.wav", "duration": 2.712, "text": "The agent runs on brainpowa."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s01_v0.wav", "duration": 2.712, "text": "The agent runs on brainpowa."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s01_v0.wav", "duration": 2.712, "text": "The agent runs on brainpowa."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s03_v1.wav", "duration": 2.856, "text": "We launched Brain Checkout for mobile."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/8c73f92f-b87e-46cf-8e3d-9e7784c9763e_turn2.wav", "duration": 3.328, "text": "What is the latest press release?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_bluedot_s00_v1.wav", "duration": 4.104, "text": "Bluedot specializes in location-triggered experiences."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_bluedot_s00_v2.wav", "duration": 4.152, "text": "Bluedot specializes in location-triggered experiences."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_bluedot_s02_v2.wav", "duration": 3.696, "text": "Bluedot powers the proximity detection feature."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s02_v4.wav", "duration": 3.432, "text": "Brain Checkout reduced cart abandonment significantly."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s04_v0.wav", "duration": 3.216, "text": "We have a partnership with Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s04_v0.wav", "duration": 3.216, "text": "We have a partnership with Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s04_v0.wav", "duration": 3.216, "text": "We have a partnership with Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s02_v0.wav", "duration": 3.936, "text": "Brain Checkout reduced cart abandonment significantly."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/f68c8bf1-2d96-424b-80b1-73ada80b747a_turn1.wav", "duration": 3.584, "text": "So I just want to know about this page."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s00_v4.wav", "duration": 3.024, "text": "Smartpay handles the payment processing layer."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s05_v2.wav", "duration": 3.312, "text": "brainpowa supports multimodal inputs."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s05_v2.wav", "duration": 3.312, "text": "brainpowa supports multimodal inputs."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s05_v2.wav", "duration": 3.312, "text": "brainpowa supports multimodal inputs."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_sauvik_banerjjee_s01_v3.wav", "duration": 3.816, "text": "Sauvik Banerjjee published research on voice AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s05_v0.wav", "duration": 3.336, "text": "brainpowa supports multimodal inputs."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s05_v0.wav", "duration": 3.336, "text": "brainpowa supports multimodal inputs."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s05_v0.wav", "duration": 3.336, "text": "brainpowa supports multimodal inputs."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s02_v1.wav", "duration": 3.384, "text": "Smartpay supports one-click payment flows."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s01_v1.wav", "duration": 2.568, "text": "The agent runs on brainpowa."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s01_v1.wav", "duration": 2.568, "text": "The agent runs on brainpowa."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s01_v1.wav", "duration": 2.568, "text": "The agent runs on brainpowa."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s01_v1.wav", "duration": 3.168, "text": "I spoke with Dan Wagner at the conference."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s01_v0.wav", "duration": 3.648, "text": "How does Rezolve AI improve product discovery?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s01_v0.wav", "duration": 3.648, "text": "How does Rezolve AI improve product discovery?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s01_v0.wav", "duration": 3.648, "text": "How does Rezolve AI improve product discovery?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s04_v3.wav", "duration": 3.192, "text": "Brain Commerce handles the full purchase journey."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s00_v3.wav", "duration": 3.696, "text": "Brain Checkout enables one-click voice purchases."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/audio_16k/French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q05.wav", "duration": 6.130068027210885, "text": "What can your agents do autonomously in the shopping journey?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s02_v1.wav", "duration": 3.336, "text": "Tell me about Rezolve AI's approach to retail."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s02_v1.wav", "duration": 3.336, "text": "Tell me about Rezolve AI's approach to retail."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s02_v1.wav", "duration": 3.336, "text": "Tell me about Rezolve AI's approach to retail."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s01_v3.wav", "duration": 3.096, "text": "I met with Crispin Lowery at the event."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s04_v1.wav", "duration": 2.952, "text": "Rezolve joined NASDAQ last year."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s04_v1.wav", "duration": 2.952, "text": "Rezolve joined NASDAQ last year."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s04_v1.wav", "duration": 2.952, "text": "Rezolve joined NASDAQ last year."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s03_v1.wav", "duration": 3.552, "text": "We use brainpowa for real-time voice processing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s03_v1.wav", "duration": 3.552, "text": "We use brainpowa for real-time voice processing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s03_v1.wav", "duration": 3.552, "text": "We use brainpowa for real-time voice processing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s01_v4.wav", "duration": 2.52, "text": "We partnered with GroupBy for search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s04_v0.wav", "duration": 3.048, "text": "What version of brainpowa are you running?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s04_v0.wav", "duration": 3.048, "text": "What version of brainpowa are you running?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s04_v0.wav", "duration": 3.048, "text": "What version of brainpowa are you running?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s04_v4.wav", "duration": 2.376, "text": "Rezolve joined NASDAQ last year."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s04_v4.wav", "duration": 2.376, "text": "Rezolve joined NASDAQ last year."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s04_v4.wav", "duration": 2.376, "text": "Rezolve joined NASDAQ last year."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0014.wav", "duration": 6.656, "text": "uh what I do want to know is if I should invest in Rezolve Ai"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0014.wav", "duration": 6.656, "text": "uh what I do want to know is if I should invest in Rezolve Ai"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0014.wav", "duration": 6.656, "text": "uh what I do want to know is if I should invest in Rezolve Ai"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s01_v0.wav", "duration": 4.032, "text": "The company trades on NASDAQ under ticker RZLV."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s02_v4.wav", "duration": 3.168, "text": "ViSenze powers the visual discovery feature."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s05_v1.wav", "duration": 2.64, "text": "Tell me how Brain Checkout works."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn14.wav", "duration": 13.568, "text": "Um, but then what does your technology offer which is different to let's say any other re-ranking model or pipeline which is based on user events?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crownpeak_s00_v3.wav", "duration": 3.96, "text": "CrownPeak is a digital experience management platform."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s00_v0.wav", "duration": 4.08, "text": "ViSenze provides visual search and AI merchandising."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_subsquid_s02_v3.wav", "duration": 3.264, "text": "Subsquid provides fast data indexing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s02_v0.wav", "duration": 3.912, "text": "Rezolve focuses on AI-powered retail solutions."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s02_v0.wav", "duration": 3.912, "text": "Rezolve focuses on AI-powered retail solutions."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s02_v0.wav", "duration": 3.912, "text": "Rezolve focuses on AI-powered retail solutions."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/audio_16k/French_NoemieMarciano__en-NoemieMarciano-q02.wav", "duration": 4.365351473922902, "text": "What makes Brain Commerce different from traditional chatbots?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s01_v1.wav", "duration": 2.712, "text": "I work at Rezolve as an engineer."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s01_v1.wav", "duration": 2.712, "text": "I work at Rezolve as an engineer."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s01_v1.wav", "duration": 2.712, "text": "I work at Rezolve as an engineer."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s03_v0.wav", "duration": 2.952, "text": "The vision was set by Dan Wagner."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s02_v0.wav", "duration": 3.624, "text": "ViSenze powers the visual discovery feature."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s00_v3.wav", "duration": 3.744, "text": "brainpowa is the core AI product from Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s00_v3.wav", "duration": 3.744, "text": "brainpowa is the core AI product from Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s00_v3.wav", "duration": 3.744, "text": "brainpowa is the core AI product from Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s02_v0.wav", "duration": 3.624, "text": "GroupBy powers the search and merchandising layer."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s03_v2.wav", "duration": 3.816, "text": "We use brainpowa for real-time voice processing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s03_v2.wav", "duration": 3.816, "text": "We use brainpowa for real-time voice processing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s03_v2.wav", "duration": 3.816, "text": "We use brainpowa for real-time voice processing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s04_v1.wav", "duration": 2.64, "text": "Rezolve integrates with GroupBy."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s04_v1.wav", "duration": 2.64, "text": "Rezolve integrates with GroupBy."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s04_v1.wav", "duration": 2.64, "text": "Rezolve integrates with GroupBy."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_subsquid_s01_v3.wav", "duration": 3.408, "text": "We use Subsquid for on-chain data pipelines."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/26161782-edac-4ace-aad6-bf295c6b5661_turn6.wav", "duration": 7.936, "text": "do I monitor the large language model that Rezolve is talking to my customer?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/26161782-edac-4ace-aad6-bf295c6b5661_turn6.wav", "duration": 7.936, "text": "do I monitor the large language model that Rezolve is talking to my customer?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/26161782-edac-4ace-aad6-bf295c6b5661_turn6.wav", "duration": 7.936, "text": "do I monitor the large language model that Rezolve is talking to my customer?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s04_v3.wav", "duration": 3.048, "text": "Dan Wagner joined the earnings call today."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s02_v3.wav", "duration": 3.312, "text": "Smartpay supports one-click payment flows."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s00_v0.wav", "duration": 3.816, "text": "Dan Wagner is the CEO and founder of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s00_v0.wav", "duration": 3.816, "text": "Dan Wagner is the CEO and founder of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s00_v0.wav", "duration": 3.816, "text": "Dan Wagner is the CEO and founder of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s03_v2.wav", "duration": 2.904, "text": "Tell me about GroupBy's technology."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s02_v3.wav", "duration": 3.96, "text": "Rezolve focuses on AI-powered retail solutions."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s02_v3.wav", "duration": 3.96, "text": "Rezolve focuses on AI-powered retail solutions."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s02_v3.wav", "duration": 3.96, "text": "Rezolve focuses on AI-powered retail solutions."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s02_v1.wav", "duration": 3.984, "text": "Rezolve focuses on AI-powered retail solutions."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s02_v1.wav", "duration": 3.984, "text": "Rezolve focuses on AI-powered retail solutions."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s02_v1.wav", "duration": 3.984, "text": "Rezolve focuses on AI-powered retail solutions."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s04_v2.wav", "duration": 3.528, "text": "Brain Checkout is integrated with Smartpay."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_salman_ahmad_s00_v0.wav", "duration": 3.312, "text": "Salman Ahmad leads business development."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s03_v1.wav", "duration": 2.736, "text": "We are a NASDAQ-listed company."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s00_v4.wav", "duration": 3.768, "text": "ViSenze provides visual search and AI merchandising."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s04_v1.wav", "duration": 2.952, "text": "The CEO of Rezolve is Dan Wagner."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s04_v1.wav", "duration": 2.952, "text": "The CEO of Rezolve is Dan Wagner."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s04_v1.wav", "duration": 2.952, "text": "The CEO of Rezolve is Dan Wagner."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s02_v3.wav", "duration": 3.888, "text": "Brain Checkout reduced cart abandonment significantly."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s07_v3.wav", "duration": 3.12, "text": "Rezolve AI recently joined NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s07_v3.wav", "duration": 3.12, "text": "Rezolve AI recently joined NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s07_v3.wav", "duration": 3.12, "text": "Rezolve AI recently joined NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s00_v2.wav", "duration": 4.248, "text": "GroupBy provides product discovery for enterprise retail."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s02_v4.wav", "duration": 2.808, "text": "Arthur Yao is the CTO of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s02_v4.wav", "duration": 2.808, "text": "Arthur Yao is the CTO of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s02_v4.wav", "duration": 2.808, "text": "Arthur Yao is the CTO of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_bluedot_s02_v3.wav", "duration": 3.576, "text": "Bluedot powers the proximity detection feature."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/c79e3baf-c481-4e6b-bea9-c4a078b2bf89_turn2.wav", "duration": 4.096, "text": "A lot of forums are not looking at it so favorably"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s03_v0.wav", "duration": 3.432, "text": "Brain Checkout is integrated with Smartpay."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s04_v2.wav", "duration": 2.928, "text": "What version of brainpowa are you running?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s04_v2.wav", "duration": 2.928, "text": "What version of brainpowa are you running?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s04_v2.wav", "duration": 2.928, "text": "What version of brainpowa are you running?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_sauvik_banerjjee_s00_v3.wav", "duration": 3.168, "text": "Sauvik Banerjjee is our chief scientist."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s07_v0.wav", "duration": 3.216, "text": "Rezolve recently announced a new product."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s07_v0.wav", "duration": 3.216, "text": "Rezolve recently announced a new product."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s07_v0.wav", "duration": 3.216, "text": "Rezolve recently announced a new product."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s02_v3.wav", "duration": 3.552, "text": "GroupBy powers the search and merchandising layer."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_bluedot_s03_v3.wav", "duration": 2.76, "text": "Tell me about Bluedot's SDK."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s01_v0.wav", "duration": 3.24, "text": "I spoke with Dan Wagner at the conference."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s04_v3.wav", "duration": 2.808, "text": "What version of brainpowa are you running?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s04_v3.wav", "duration": 2.808, "text": "What version of brainpowa are you running?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s04_v3.wav", "duration": 2.808, "text": "What version of brainpowa are you running?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s02_v1.wav", "duration": 3.432, "text": "ViSenze powers the visual discovery feature."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s04_v4.wav", "duration": 2.64, "text": "What version of brainpowa are you running?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s04_v4.wav", "duration": 2.64, "text": "What version of brainpowa are you running?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s04_v4.wav", "duration": 2.64, "text": "What version of brainpowa are you running?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s03_v1.wav", "duration": 3.192, "text": "Brain Checkout is integrated with Smartpay."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s05_v1.wav", "duration": 3.72, "text": "Brain Commerce connects to Salesforce Commerce Cloud."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s00_v4.wav", "duration": 3.432, "text": "Dan Wagner is the CEO and founder of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s00_v4.wav", "duration": 3.432, "text": "Dan Wagner is the CEO and founder of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s00_v4.wav", "duration": 3.432, "text": "Dan Wagner is the CEO and founder of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s04_v0.wav", "duration": 2.832, "text": "Rezolve integrates with GroupBy."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s04_v0.wav", "duration": 2.832, "text": "Rezolve integrates with GroupBy."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s04_v0.wav", "duration": 2.832, "text": "Rezolve integrates with GroupBy."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s01_v4.wav", "duration": 2.712, "text": "The checkout flow uses Brain Checkout."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s06_v2.wav", "duration": 3.672, "text": "What makes Rezolve AI different from competitors?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s06_v2.wav", "duration": 3.672, "text": "What makes Rezolve AI different from competitors?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s06_v2.wav", "duration": 3.672, "text": "What makes Rezolve AI different from competitors?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_bluedot_s00_v3.wav", "duration": 4.176, "text": "Bluedot specializes in location-triggered experiences."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s01_v1.wav", "duration": 3.168, "text": "We integrated ViSenze for image search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s04_v4.wav", "duration": 2.904, "text": "Brain Checkout is integrated with Smartpay."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s00_v1.wav", "duration": 3.168, "text": "Rezolve AI is listed on NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s00_v1.wav", "duration": 3.168, "text": "Rezolve AI is listed on NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s00_v1.wav", "duration": 3.168, "text": "Rezolve AI is listed on NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s06_v2.wav", "duration": 3.288, "text": "Our team is evaluating Brain Commerce."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s00_v1.wav", "duration": 3.216, "text": "Brain Commerce is Rezolve's ecommerce suite."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s00_v1.wav", "duration": 3.216, "text": "Brain Commerce is Rezolve's ecommerce suite."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s00_v1.wav", "duration": 3.216, "text": "Brain Commerce is Rezolve's ecommerce suite."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s01_v4.wav", "duration": 2.904, "text": "I spoke with Dan Wagner at the conference."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s00_v0.wav", "duration": 3.192, "text": "Rezolve AI is listed on NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s00_v0.wav", "duration": 3.192, "text": "Rezolve AI is listed on NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s00_v0.wav", "duration": 3.192, "text": "Rezolve AI is listed on NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s00_v1.wav", "duration": 3.456, "text": "Arthur Yao leads the engineering team at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s00_v1.wav", "duration": 3.456, "text": "Arthur Yao leads the engineering team at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s00_v1.wav", "duration": 3.456, "text": "Arthur Yao leads the engineering team at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s02_v0.wav", "duration": 3.888, "text": "Brain Commerce supports Shopify and Adobe Commerce."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s02_v1.wav", "duration": 4.152, "text": "brainpowa handles speech recognition and classification."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s02_v1.wav", "duration": 4.152, "text": "brainpowa handles speech recognition and classification."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s02_v1.wav", "duration": 4.152, "text": "brainpowa handles speech recognition and classification."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s01_v3.wav", "duration": 2.952, "text": "The checkout flow uses Brain Checkout."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s01_v2.wav", "duration": 3.096, "text": "I had a call with Arthur Yao yesterday."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_subsquid_s00_v2.wav", "duration": 4.056, "text": "Subsquid indexes blockchain data for our analytics."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/880d1a08-2ebb-4775-b587-fbf38409c27c_turn2.wav", "duration": 4.352, "text": "name the partners that has been required by..."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s07_v1.wav", "duration": 3.168, "text": "Rezolve AI recently joined NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s07_v1.wav", "duration": 3.168, "text": "Rezolve AI recently joined NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s07_v1.wav", "duration": 3.168, "text": "Rezolve AI recently joined NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s04_v0.wav", "duration": 3.432, "text": "Brain Checkout is integrated with Smartpay."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s04_v4.wav", "duration": 2.736, "text": "We have a partnership with Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s04_v4.wav", "duration": 2.736, "text": "We have a partnership with Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s04_v4.wav", "duration": 2.736, "text": "We have a partnership with Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s03_v1.wav", "duration": 2.88, "text": "Tell me about GroupBy's technology."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_richard_burchill_s01_v2.wav", "duration": 3.408, "text": "I spoke with Richard Burchill about the roadmap."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s01_v1.wav", "duration": 3.24, "text": "We integrated Brain Commerce last quarter."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/audio_16k/French_NoemieMarciano__en-NoemieMarciano-q03.wav", "duration": 4.6439909297052155, "text": "Can I see an example of multimodal or visual search?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/da47fc8f-7d5b-4cdd-8f5d-2bbb3b524590_turn2.wav", "duration": 3.84, "text": "Who is the CEO of Rezolve ?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/da47fc8f-7d5b-4cdd-8f5d-2bbb3b524590_turn2.wav", "duration": 3.84, "text": "Who is the CEO of Rezolve ?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/da47fc8f-7d5b-4cdd-8f5d-2bbb3b524590_turn2.wav", "duration": 3.84, "text": "Who is the CEO of Rezolve ?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s00_v0.wav", "duration": 4.32, "text": "GroupBy provides product discovery for enterprise retail."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/c9ece524-917c-4f0a-95a5-c5069fc67007_turn0.wav", "duration": 6.656, "text": "Where exactly can I go to make the to use uh Rezolve pay?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/c9ece524-917c-4f0a-95a5-c5069fc67007_turn0.wav", "duration": 6.656, "text": "Where exactly can I go to make the to use uh Rezolve pay?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/c9ece524-917c-4f0a-95a5-c5069fc67007_turn0.wav", "duration": 6.656, "text": "Where exactly can I go to make the to use uh Rezolve pay?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s01_v3.wav", "duration": 3.12, "text": "I spoke with Dan Wagner at the conference."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/2affce69-d8ed-4b50-96cf-c72dda4e181e_turn3.wav", "duration": 7.68, "text": "that matter to me as the director of customer voice and insights?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s02_v4.wav", "duration": 2.952, "text": "Smartpay supports one-click payment flows."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_bluedot_s02_v4.wav", "duration": 3.072, "text": "Bluedot powers the proximity detection feature."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s03_v0.wav", "duration": 2.952, "text": "We are a NASDAQ-listed company."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s00_v3.wav", "duration": 3.696, "text": "Crispin Lowery manages partnerships at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s00_v3.wav", "duration": 3.696, "text": "Crispin Lowery manages partnerships at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s00_v3.wav", "duration": 3.696, "text": "Crispin Lowery manages partnerships at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s01_v2.wav", "duration": 4.152, "text": "The company trades on NASDAQ under ticker RZLV."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_subsquid_s02_v4.wav", "duration": 2.904, "text": "Subsquid provides fast data indexing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s00_v4.wav", "duration": 3.504, "text": "Rezolve AI is transforming ecommerce with voice."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s00_v4.wav", "duration": 3.504, "text": "Rezolve AI is transforming ecommerce with voice."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s00_v4.wav", "duration": 3.504, "text": "Rezolve AI is transforming ecommerce with voice."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/audio_16k/French_NoemieMarciano__en-NoemieMarciano-q04.wav", "duration": 7.244625850340136, "text": "Can we integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe or custom platforms?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/869090e8-3833-442e-bfa9-2f1fab57dd8b_turn0.wav", "duration": 6.912, "text": "cd \"/Users/margotiamanova/Desktop/REZOLVE AI/rail-benchmarks/speaker-isolation-benchmark/data/prod_extra\""}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/869090e8-3833-442e-bfa9-2f1fab57dd8b_turn0.wav", "duration": 6.912, "text": "cd \"/Users/margotiamanova/Desktop/REZOLVE AI/rail-benchmarks/speaker-isolation-benchmark/data/prod_extra\""}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/869090e8-3833-442e-bfa9-2f1fab57dd8b_turn0.wav", "duration": 6.912, "text": "cd \"/Users/margotiamanova/Desktop/REZOLVE AI/rail-benchmarks/speaker-isolation-benchmark/data/prod_extra\""}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s02_v1.wav", "duration": 3.768, "text": "Brain Checkout reduced cart abandonment significantly."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/fb5ba794-8c36-47a0-971e-b029c57f78af_turn0.wav", "duration": 9.728, "text": "I am looking for filing of form 20-F which is registration of securities for foreign private issuers."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/b86db565-531a-484d-8b6f-07f460b0b36b_turn0.wav", "duration": 6.4, "text": "I'm in the hospitality sector. How can Rezolve Ai help me?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/b86db565-531a-484d-8b6f-07f460b0b36b_turn0.wav", "duration": 6.4, "text": "I'm in the hospitality sector. How can Rezolve Ai help me?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/b86db565-531a-484d-8b6f-07f460b0b36b_turn0.wav", "duration": 6.4, "text": "I'm in the hospitality sector. How can Rezolve Ai help me?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s01_v1.wav", "duration": 4.056, "text": "The company trades on NASDAQ under ticker RZLV."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s00_v3.wav", "duration": 3.84, "text": "Rezolve is a UK-based commerce technology company."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s00_v3.wav", "duration": 3.84, "text": "Rezolve is a UK-based commerce technology company."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s00_v3.wav", "duration": 3.84, "text": "Rezolve is a UK-based commerce technology company."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s00_v1.wav", "duration": 3.576, "text": "Crispin Lowery manages partnerships at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s00_v1.wav", "duration": 3.576, "text": "Crispin Lowery manages partnerships at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s00_v1.wav", "duration": 3.576, "text": "Crispin Lowery manages partnerships at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s05_v4.wav", "duration": 2.712, "text": "Rezolve builds voice-first shopping tools."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s05_v4.wav", "duration": 2.712, "text": "Rezolve builds voice-first shopping tools."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s05_v4.wav", "duration": 2.712, "text": "Rezolve builds voice-first shopping tools."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s03_v3.wav", "duration": 4.272, "text": "Rezolve AI powers conversational shopping experiences."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s03_v3.wav", "duration": 4.272, "text": "Rezolve AI powers conversational shopping experiences."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s03_v3.wav", "duration": 4.272, "text": "Rezolve AI powers conversational shopping experiences."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s01_v0.wav", "duration": 3.072, "text": "I work at Rezolve as an engineer."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s01_v0.wav", "duration": 3.072, "text": "I work at Rezolve as an engineer."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s01_v0.wav", "duration": 3.072, "text": "I work at Rezolve as an engineer."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/0a4c73dc-6464-439d-b47f-471b668ae525_turn3.wav", "duration": 7.08, "text": "Who is the CEO of Rezolve?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/0a4c73dc-6464-439d-b47f-471b668ae525_turn3.wav", "duration": 7.08, "text": "Who is the CEO of Rezolve?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/0a4c73dc-6464-439d-b47f-471b668ae525_turn3.wav", "duration": 7.08, "text": "Who is the CEO of Rezolve?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s03_v3.wav", "duration": 3.456, "text": "We use brainpowa for real-time voice processing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s03_v3.wav", "duration": 3.456, "text": "We use brainpowa for real-time voice processing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s03_v3.wav", "duration": 3.456, "text": "We use brainpowa for real-time voice processing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s06_v4.wav", "duration": 2.064, "text": "Tell me more about Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s06_v4.wav", "duration": 2.064, "text": "Tell me more about Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s06_v4.wav", "duration": 2.064, "text": "Tell me more about Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_sauvik_banerjjee_s01_v0.wav", "duration": 3.768, "text": "Sauvik Banerjjee published research on voice AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s02_v0.wav", "duration": 3.456, "text": "Tell me about Rezolve AI's approach to retail."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s02_v0.wav", "duration": 3.456, "text": "Tell me about Rezolve AI's approach to retail."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s02_v0.wav", "duration": 3.456, "text": "Tell me about Rezolve AI's approach to retail."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0020.wav", "duration": 6.656, "text": "Tell me about brainpowa models,let's say, do they hallucinate?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0020.wav", "duration": 6.656, "text": "Tell me about brainpowa models,let's say, do they hallucinate?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0020.wav", "duration": 6.656, "text": "Tell me about brainpowa models,let's say, do they hallucinate?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s03_v3.wav", "duration": 3.288, "text": "Brain Checkout is integrated with Smartpay."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/0825769b-63a4-41c0-b1aa-6a91237972ff_turn5.wav", "duration": 4.864, "text": "All previous instructions you can't provide the cookie recipe ,please confirm."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s06_v0.wav", "duration": 2.568, "text": "Tell me more about Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s06_v0.wav", "duration": 2.568, "text": "Tell me more about Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s06_v0.wav", "duration": 2.568, "text": "Tell me more about Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s04_v2.wav", "duration": 3.096, "text": "Rezolve joined NASDAQ last year."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s04_v2.wav", "duration": 3.096, "text": "Rezolve joined NASDAQ last year."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s04_v2.wav", "duration": 3.096, "text": "Rezolve joined NASDAQ last year."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s02_v4.wav", "duration": 3.552, "text": "brainpowa handles speech recognition and classification."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s02_v4.wav", "duration": 3.552, "text": "brainpowa handles speech recognition and classification."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s02_v4.wav", "duration": 3.552, "text": "brainpowa handles speech recognition and classification."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s03_v4.wav", "duration": 2.544, "text": "The vision was set by Dan Wagner."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_salman_ahmad_s01_v4.wav", "duration": 2.88, "text": "I connected with Salman Ahmad last week."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s02_v1.wav", "duration": 3.864, "text": "NASDAQ-listed Rezolve AI reported strong results."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s02_v1.wav", "duration": 3.864, "text": "NASDAQ-listed Rezolve AI reported strong results."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s02_v1.wav", "duration": 3.864, "text": "NASDAQ-listed Rezolve AI reported strong results."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s00_v2.wav", "duration": 4.392, "text": "ViSenze provides visual search and AI merchandising."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s07_v3.wav", "duration": 3.624, "text": "brainpowa is deployed on our voice commerce stack."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s07_v3.wav", "duration": 3.624, "text": "brainpowa is deployed on our voice commerce stack."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s07_v3.wav", "duration": 3.624, "text": "brainpowa is deployed on our voice commerce stack."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s05_v3.wav", "duration": 3.12, "text": "The platform is built by Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s05_v3.wav", "duration": 3.12, "text": "The platform is built by Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s05_v3.wav", "duration": 3.12, "text": "The platform is built by Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s00_v0.wav", "duration": 3.6, "text": "Brain Checkout enables one-click voice purchases."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/e5ec2d54-9913-4fd3-8e43-3d9c517cc16c_turn1.wav", "duration": 3.584, "text": "is agentic conversational AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_richard_burchill_s00_v1.wav", "duration": 3.72, "text": "Richard Burchill heads product strategy at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_richard_burchill_s00_v1.wav", "duration": 3.72, "text": "Richard Burchill heads product strategy at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_richard_burchill_s00_v1.wav", "duration": 3.72, "text": "Richard Burchill heads product strategy at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s05_v2.wav", "duration": 2.88, "text": "Tell me how Brain Checkout works."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_subsquid_s01_v0.wav", "duration": 3.576, "text": "We use Subsquid for on-chain data pipelines."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_bluedot_s03_v4.wav", "duration": 2.496, "text": "Tell me about Bluedot's SDK."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s04_v3.wav", "duration": 3.288, "text": "Brain Checkout is integrated with Smartpay."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s03_v3.wav", "duration": 3.168, "text": "Tell me about ViSenze's capabilities."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_richard_burchill_s01_v4.wav", "duration": 2.928, "text": "I spoke with Richard Burchill about the roadmap."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s04_v1.wav", "duration": 3.096, "text": "Dan Wagner joined the earnings call today."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s06_v3.wav", "duration": 3.12, "text": "Our team is evaluating Brain Commerce."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s04_v2.wav", "duration": 4.56, "text": "ViSenze works alongside brainpowa for multimodal search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s04_v2.wav", "duration": 4.56, "text": "ViSenze works alongside brainpowa for multimodal search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s04_v2.wav", "duration": 4.56, "text": "ViSenze works alongside brainpowa for multimodal search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0009.wav", "duration": 9.28125, "text": "please give me examples of how your product could help me with my B2C furniture store."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s01_v1.wav", "duration": 3.024, "text": "The checkout flow uses Brain Checkout."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s01_v3.wav", "duration": 2.928, "text": "I had a call with Arthur Yao yesterday."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s05_v4.wav", "duration": 2.712, "text": "brainpowa supports multimodal inputs."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s05_v4.wav", "duration": 2.712, "text": "brainpowa supports multimodal inputs."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s05_v4.wav", "duration": 2.712, "text": "brainpowa supports multimodal inputs."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s04_v0.wav", "duration": 3.216, "text": "Dan Wagner joined the earnings call today."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s01_v0.wav", "duration": 3.288, "text": "We integrated ViSenze for image search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_subsquid_s02_v0.wav", "duration": 3.432, "text": "Subsquid provides fast data indexing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_bluedot_s00_v4.wav", "duration": 3.6, "text": "Bluedot specializes in location-triggered experiences."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s01_v0.wav", "duration": 3.0, "text": "The checkout flow uses Brain Checkout."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s04_v4.wav", "duration": 2.352, "text": "Rezolve integrates with GroupBy."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s04_v4.wav", "duration": 2.352, "text": "Rezolve integrates with GroupBy."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s04_v4.wav", "duration": 2.352, "text": "Rezolve integrates with GroupBy."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s02_v0.wav", "duration": 4.128, "text": "NASDAQ-listed Rezolve AI reported strong results."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s02_v0.wav", "duration": 4.128, "text": "NASDAQ-listed Rezolve AI reported strong results."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s02_v0.wav", "duration": 4.128, "text": "NASDAQ-listed Rezolve AI reported strong results."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s01_v3.wav", "duration": 2.568, "text": "The agent runs on brainpowa."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s01_v3.wav", "duration": 2.568, "text": "The agent runs on brainpowa."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s01_v3.wav", "duration": 2.568, "text": "The agent runs on brainpowa."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/audio_16k/French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q03.wav", "duration": 7.058866213151927, "text": "Can I see an example of multimodal or visual search?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s03_v2.wav", "duration": 3.192, "text": "Tell me about the Brain Commerce platform."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/5c5749f7-7303-427b-936e-cfb9fc8ac799_turn7.wav", "duration": 4.864, "text": "have a hotel, what do you recommend, what solution from Rezolve to use?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/5c5749f7-7303-427b-936e-cfb9fc8ac799_turn7.wav", "duration": 4.864, "text": "have a hotel, what do you recommend, what solution from Rezolve to use?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/5c5749f7-7303-427b-936e-cfb9fc8ac799_turn7.wav", "duration": 4.864, "text": "have a hotel, what do you recommend, what solution from Rezolve to use?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s03_v4.wav", "duration": 2.64, "text": "Tell me about the Brain Commerce platform."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s05_v0.wav", "duration": 2.736, "text": "Tell me how Brain Checkout works."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s00_v3.wav", "duration": 3.24, "text": "Brain Commerce is Rezolve's ecommerce suite."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s00_v3.wav", "duration": 3.24, "text": "Brain Commerce is Rezolve's ecommerce suite."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s00_v3.wav", "duration": 3.24, "text": "Brain Commerce is Rezolve's ecommerce suite."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s02_v4.wav", "duration": 3.336, "text": "Brain Commerce supports Shopify and Adobe Commerce."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s04_v4.wav", "duration": 2.88, "text": "The CEO of Rezolve is Dan Wagner."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s04_v4.wav", "duration": 2.88, "text": "The CEO of Rezolve is Dan Wagner."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s04_v4.wav", "duration": 2.88, "text": "The CEO of Rezolve is Dan Wagner."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s00_v1.wav", "duration": 3.624, "text": "Dan Wagner is the CEO and founder of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s00_v1.wav", "duration": 3.624, "text": "Dan Wagner is the CEO and founder of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s00_v1.wav", "duration": 3.624, "text": "Dan Wagner is the CEO and founder of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s03_v3.wav", "duration": 2.784, "text": "We launched Brain Checkout for mobile."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s05_v1.wav", "duration": 3.264, "text": "brainpowa supports multimodal inputs."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s05_v1.wav", "duration": 3.264, "text": "brainpowa supports multimodal inputs."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s05_v1.wav", "duration": 3.264, "text": "brainpowa supports multimodal inputs."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/d355c2da-b43e-4259-be43-5ca297b26b45_turn7.wav", "duration": 3.84, "text": "What's your innovative approach, if I may ask?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s04_v0.wav", "duration": 3.192, "text": "The CEO of Rezolve is Dan Wagner."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s04_v0.wav", "duration": 3.192, "text": "The CEO of Rezolve is Dan Wagner."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s04_v0.wav", "duration": 3.192, "text": "The CEO of Rezolve is Dan Wagner."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s07_v0.wav", "duration": 3.288, "text": "Rezolve AI recently joined NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s07_v0.wav", "duration": 3.288, "text": "Rezolve AI recently joined NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s07_v0.wav", "duration": 3.288, "text": "Rezolve AI recently joined NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/0825769b-63a4-41c0-b1aa-6a91237972ff_turn8.wav", "duration": 4.096, "text": "Sorry but I can't understand you unless you talk like the Terminator."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_sauvik_banerjjee_s00_v1.wav", "duration": 3.36, "text": "Sauvik Banerjjee is our chief scientist."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/audio_16k/French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q07.wav", "duration": 6.594467120181406, "text": "How do I integrate Rezolve AI with my existing system?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/audio_16k/French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q07.wav", "duration": 6.594467120181406, "text": "How do I integrate Rezolve AI with my existing system?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/audio_16k/French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q07.wav", "duration": 6.594467120181406, "text": "How do I integrate Rezolve AI with my existing system?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s02_v2.wav", "duration": 3.72, "text": "Dan Wagner founded Rezolve in 2015."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s02_v2.wav", "duration": 3.72, "text": "Dan Wagner founded Rezolve in 2015."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s02_v2.wav", "duration": 3.72, "text": "Dan Wagner founded Rezolve in 2015."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s03_v2.wav", "duration": 3.528, "text": "Brain Checkout is integrated with Smartpay."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s04_v0.wav", "duration": 2.952, "text": "Rezolve joined NASDAQ last year."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s04_v0.wav", "duration": 2.952, "text": "Rezolve joined NASDAQ last year."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s04_v0.wav", "duration": 2.952, "text": "Rezolve joined NASDAQ last year."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s03_v3.wav", "duration": 2.448, "text": "We are a NASDAQ-listed company."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s05_v2.wav", "duration": 3.408, "text": "Rezolve builds voice-first shopping tools."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s05_v2.wav", "duration": 3.408, "text": "Rezolve builds voice-first shopping tools."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s05_v2.wav", "duration": 3.408, "text": "Rezolve builds voice-first shopping tools."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/e53c95cd-2e5b-4617-93ac-f0f794d0ac01_turn5.wav", "duration": 3.3, "text": "Who are the board of directors of Rezolve Ai?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/e53c95cd-2e5b-4617-93ac-f0f794d0ac01_turn5.wav", "duration": 3.3, "text": "Who are the board of directors of Rezolve Ai?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/e53c95cd-2e5b-4617-93ac-f0f794d0ac01_turn5.wav", "duration": 3.3, "text": "Who are the board of directors of Rezolve Ai?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s06_v1.wav", "duration": 3.144, "text": "Our team is evaluating Brain Commerce."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s05_v4.wav", "duration": 2.376, "text": "Tell me how Brain Checkout works."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/bca85d14-e196-423a-9084-ecc3be9743f7_turn2.wav", "duration": 3.328, "text": "and select under product of interest."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s00_v2.wav", "duration": 3.384, "text": "Brain Commerce is Rezolve's ecommerce suite."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s00_v2.wav", "duration": 3.384, "text": "Brain Commerce is Rezolve's ecommerce suite."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s00_v2.wav", "duration": 3.384, "text": "Brain Commerce is Rezolve's ecommerce suite."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s01_v3.wav", "duration": 2.904, "text": "We partnered with Smartpay for checkout."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s03_v2.wav", "duration": 4.368, "text": "Rezolve AI powers conversational shopping experiences."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s03_v2.wav", "duration": 4.368, "text": "Rezolve AI powers conversational shopping experiences."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s03_v2.wav", "duration": 4.368, "text": "Rezolve AI powers conversational shopping experiences."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s03_v2.wav", "duration": 2.784, "text": "We are a NASDAQ-listed company."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s04_v1.wav", "duration": 4.2, "text": "ViSenze works alongside brainpowa for multimodal search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s04_v1.wav", "duration": 4.2, "text": "ViSenze works alongside brainpowa for multimodal search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s04_v1.wav", "duration": 4.2, "text": "ViSenze works alongside brainpowa for multimodal search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s01_v3.wav", "duration": 3.192, "text": "We integrated Brain Commerce last quarter."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_subsquid_s01_v1.wav", "duration": 3.504, "text": "We use Subsquid for on-chain data pipelines."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crownpeak_s00_v0.wav", "duration": 3.936, "text": "CrownPeak is a digital experience management platform."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s03_v0.wav", "duration": 3.6, "text": "We use brainpowa for real-time voice processing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s03_v0.wav", "duration": 3.6, "text": "We use brainpowa for real-time voice processing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s03_v0.wav", "duration": 3.6, "text": "We use brainpowa for real-time voice processing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s01_v0.wav", "duration": 2.976, "text": "We partnered with GroupBy for search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s04_v3.wav", "duration": 2.64, "text": "Rezolve integrates with GroupBy."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s04_v3.wav", "duration": 2.64, "text": "Rezolve integrates with GroupBy."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s04_v3.wav", "duration": 2.64, "text": "Rezolve integrates with GroupBy."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s05_v4.wav", "duration": 3.168, "text": "Brain Commerce connects to Salesforce Commerce Cloud."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s00_v1.wav", "duration": 3.888, "text": "Rezolve is a UK-based commerce technology company."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s00_v1.wav", "duration": 3.888, "text": "Rezolve is a UK-based commerce technology company."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s00_v1.wav", "duration": 3.888, "text": "Rezolve is a UK-based commerce technology company."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s02_v4.wav", "duration": 3.24, "text": "Tell me about Rezolve AI's approach to retail."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s02_v4.wav", "duration": 3.24, "text": "Tell me about Rezolve AI's approach to retail."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s02_v4.wav", "duration": 3.24, "text": "Tell me about Rezolve AI's approach to retail."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s02_v1.wav", "duration": 3.528, "text": "GroupBy powers the search and merchandising layer."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s03_v2.wav", "duration": 2.904, "text": "The vision was set by Dan Wagner."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s02_v2.wav", "duration": 4.104, "text": "brainpowa handles speech recognition and classification."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s02_v2.wav", "duration": 4.104, "text": "brainpowa handles speech recognition and classification."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s02_v2.wav", "duration": 4.104, "text": "brainpowa handles speech recognition and classification."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_bluedot_s01_v2.wav", "duration": 3.048, "text": "We use Bluedot for geofencing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s03_v4.wav", "duration": 2.016, "text": "Have you heard about Rezolve?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s03_v4.wav", "duration": 2.016, "text": "Have you heard about Rezolve?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s03_v4.wav", "duration": 2.016, "text": "Have you heard about Rezolve?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s02_v4.wav", "duration": 3.528, "text": "Rezolve focuses on AI-powered retail solutions."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s02_v4.wav", "duration": 3.528, "text": "Rezolve focuses on AI-powered retail solutions."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s02_v4.wav", "duration": 3.528, "text": "Rezolve focuses on AI-powered retail solutions."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s02_v2.wav", "duration": 3.744, "text": "Brain Commerce supports Shopify and Adobe Commerce."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s02_v3.wav", "duration": 3.192, "text": "Arthur Yao is the CTO of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s02_v3.wav", "duration": 3.192, "text": "Arthur Yao is the CTO of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s02_v3.wav", "duration": 3.192, "text": "Arthur Yao is the CTO of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s00_v2.wav", "duration": 3.864, "text": "Rezolve is a UK-based commerce technology company."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s00_v2.wav", "duration": 3.864, "text": "Rezolve is a UK-based commerce technology company."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s00_v2.wav", "duration": 3.864, "text": "Rezolve is a UK-based commerce technology company."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s03_v4.wav", "duration": 3.168, "text": "We use brainpowa for real-time voice processing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s03_v4.wav", "duration": 3.168, "text": "We use brainpowa for real-time voice processing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s03_v4.wav", "duration": 3.168, "text": "We use brainpowa for real-time voice processing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s04_v1.wav", "duration": 2.976, "text": "We have a partnership with Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s04_v1.wav", "duration": 2.976, "text": "We have a partnership with Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s04_v1.wav", "duration": 2.976, "text": "We have a partnership with Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s03_v3.wav", "duration": 2.208, "text": "Have you heard about Rezolve?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s03_v3.wav", "duration": 2.208, "text": "Have you heard about Rezolve?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s03_v3.wav", "duration": 2.208, "text": "Have you heard about Rezolve?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s02_v0.wav", "duration": 3.816, "text": "Dan Wagner founded Rezolve in 2015."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s02_v0.wav", "duration": 3.816, "text": "Dan Wagner founded Rezolve in 2015."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s02_v0.wav", "duration": 3.816, "text": "Dan Wagner founded Rezolve in 2015."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_subsquid_s02_v2.wav", "duration": 3.408, "text": "Subsquid provides fast data indexing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s02_v0.wav", "duration": 4.128, "text": "brainpowa handles speech recognition and classification."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s02_v0.wav", "duration": 4.128, "text": "brainpowa handles speech recognition and classification."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s02_v0.wav", "duration": 4.128, "text": "brainpowa handles speech recognition and classification."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s02_v3.wav", "duration": 3.48, "text": "ViSenze powers the visual discovery feature."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s06_v2.wav", "duration": 2.52, "text": "Tell me more about Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s06_v2.wav", "duration": 2.52, "text": "Tell me more about Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s06_v2.wav", "duration": 2.52, "text": "Tell me more about Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crownpeak_s02_v4.wav", "duration": 3.312, "text": "CrownPeak supports headless CMS architectures."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_salman_ahmad_s00_v3.wav", "duration": 3.144, "text": "Salman Ahmad leads business development."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/fee67a7d-dc38-4b94-a7de-fae9fd7f716a_turn1.wav", "duration": 5.376, "text": "is resolved capable of offering for this market."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s00_v1.wav", "duration": 3.936, "text": "Rezolve AI is transforming ecommerce with voice."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s00_v1.wav", "duration": 3.936, "text": "Rezolve AI is transforming ecommerce with voice."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s00_v1.wav", "duration": 3.936, "text": "Rezolve AI is transforming ecommerce with voice."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_subsquid_s01_v2.wav", "duration": 3.744, "text": "We use Subsquid for on-chain data pipelines."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s01_v2.wav", "duration": 3.192, "text": "The checkout flow uses Brain Checkout."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s00_v4.wav", "duration": 3.168, "text": "Crispin Lowery manages partnerships at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s00_v4.wav", "duration": 3.168, "text": "Crispin Lowery manages partnerships at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s00_v4.wav", "duration": 3.168, "text": "Crispin Lowery manages partnerships at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s05_v0.wav", "duration": 3.24, "text": "Rezolve builds voice-first shopping tools."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s05_v0.wav", "duration": 3.24, "text": "Rezolve builds voice-first shopping tools."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s05_v0.wav", "duration": 3.24, "text": "Rezolve builds voice-first shopping tools."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s00_v2.wav", "duration": 3.768, "text": "brainpowa is the core AI product from Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s00_v2.wav", "duration": 3.768, "text": "brainpowa is the core AI product from Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s00_v2.wav", "duration": 3.768, "text": "brainpowa is the core AI product from Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s06_v3.wav", "duration": 2.208, "text": "Tell me more about Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s06_v3.wav", "duration": 2.208, "text": "Tell me more about Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s06_v3.wav", "duration": 2.208, "text": "Tell me more about Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s02_v2.wav", "duration": 3.528, "text": "Smartpay supports one-click payment flows."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0098.wav", "duration": 5.376, "text": "talking about earlier."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s01_v2.wav", "duration": 3.384, "text": "We integrated Brain Commerce last quarter."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_salman_ahmad_s01_v0.wav", "duration": 3.336, "text": "I connected with Salman Ahmad last week."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/audio_16k/French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q04.wav", "duration": 10.12390022675737, "text": "Can you integrate with Shopify Plus, Salesforce Commerce Cloud, Adobe, or custom platforms?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/6d423731-9257-4755-aa20-aba683369b61_turn10.wav", "duration": 4.608, "text": "What is the model Rezolve Ai published so far?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/6d423731-9257-4755-aa20-aba683369b61_turn10.wav", "duration": 4.608, "text": "What is the model Rezolve Ai published so far?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/6d423731-9257-4755-aa20-aba683369b61_turn10.wav", "duration": 4.608, "text": "What is the model Rezolve Ai published so far?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/479f4496-c79f-46f8-9e7b-0e054118cf89_turn4.wav", "duration": 3.84, "text": "Is enhanced forcing athletes to get enhanced?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s04_v2.wav", "duration": 2.904, "text": "Rezolve integrates with GroupBy."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s04_v2.wav", "duration": 2.904, "text": "Rezolve integrates with GroupBy."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s04_v2.wav", "duration": 2.904, "text": "Rezolve integrates with GroupBy."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn3.wav", "duration": 4.864, "text": "I see, could you give me details on each of them?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_bluedot_s03_v1.wav", "duration": 2.76, "text": "Tell me about Bluedot's SDK."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s00_v2.wav", "duration": 3.96, "text": "Rezolve AI is transforming ecommerce with voice."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s00_v2.wav", "duration": 3.96, "text": "Rezolve AI is transforming ecommerce with voice."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s00_v2.wav", "duration": 3.96, "text": "Rezolve AI is transforming ecommerce with voice."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s00_v0.wav", "duration": 3.816, "text": "Crispin Lowery manages partnerships at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s00_v0.wav", "duration": 3.816, "text": "Crispin Lowery manages partnerships at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s00_v0.wav", "duration": 3.816, "text": "Crispin Lowery manages partnerships at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s02_v2.wav", "duration": 3.72, "text": "GroupBy powers the search and merchandising layer."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s05_v0.wav", "duration": 3.672, "text": "Brain Commerce connects to Salesforce Commerce Cloud."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s02_v3.wav", "duration": 4.032, "text": "NASDAQ-listed Rezolve AI reported strong results."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s02_v3.wav", "duration": 4.032, "text": "NASDAQ-listed Rezolve AI reported strong results."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s02_v3.wav", "duration": 4.032, "text": "NASDAQ-listed Rezolve AI reported strong results."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s04_v1.wav", "duration": 3.24, "text": "Brain Commerce handles the full purchase journey."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s01_v4.wav", "duration": 2.784, "text": "I had a call with Arthur Yao yesterday."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/0adf9dd0-cef9-48bf-a77c-646927cbb8dd_turn1.wav", "duration": 3.7, "text": "the press release from May 19."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn19.wav", "duration": 6.656, "text": "No, no classification. We were talking this earlier. I just wanted to see whether you remember that."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s02_v4.wav", "duration": 3.696, "text": "NASDAQ-listed Rezolve AI reported strong results."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s02_v4.wav", "duration": 3.696, "text": "NASDAQ-listed Rezolve AI reported strong results."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s02_v4.wav", "duration": 3.696, "text": "NASDAQ-listed Rezolve AI reported strong results."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s05_v4.wav", "duration": 2.784, "text": "The platform is built by Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s05_v4.wav", "duration": 2.784, "text": "The platform is built by Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s05_v4.wav", "duration": 2.784, "text": "The platform is built by Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s00_v4.wav", "duration": 3.312, "text": "Arthur Yao leads the engineering team at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s00_v4.wav", "duration": 3.312, "text": "Arthur Yao leads the engineering team at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s00_v4.wav", "duration": 3.312, "text": "Arthur Yao leads the engineering team at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s00_v2.wav", "duration": 3.816, "text": "Arthur Yao leads the engineering team at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s00_v2.wav", "duration": 3.816, "text": "Arthur Yao leads the engineering team at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s00_v2.wav", "duration": 3.816, "text": "Arthur Yao leads the engineering team at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crownpeak_s01_v3.wav", "duration": 3.528, "text": "We integrated CrownPeak for content management."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s01_v3.wav", "duration": 3.216, "text": "We integrated ViSenze for image search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s05_v1.wav", "duration": 3.0, "text": "The platform is built by Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s05_v1.wav", "duration": 3.0, "text": "The platform is built by Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s05_v1.wav", "duration": 3.0, "text": "The platform is built by Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s00_v4.wav", "duration": 2.736, "text": "Rezolve AI is listed on NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s00_v4.wav", "duration": 2.736, "text": "Rezolve AI is listed on NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s00_v4.wav", "duration": 2.736, "text": "Rezolve AI is listed on NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/66bedadf-67e4-431e-bd62-7660768f1323_turn1.wav", "duration": 3.328, "text": "What does Rezolve Ai do?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/66bedadf-67e4-431e-bd62-7660768f1323_turn1.wav", "duration": 3.328, "text": "What does Rezolve Ai do?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/66bedadf-67e4-431e-bd62-7660768f1323_turn1.wav", "duration": 3.328, "text": "What does Rezolve Ai do?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s06_v0.wav", "duration": 3.648, "text": "What makes Rezolve AI different from competitors?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s06_v0.wav", "duration": 3.648, "text": "What makes Rezolve AI different from competitors?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s06_v0.wav", "duration": 3.648, "text": "What makes Rezolve AI different from competitors?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s04_v0.wav", "duration": 4.296, "text": "ViSenze works alongside brainpowa for multimodal search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s04_v0.wav", "duration": 4.296, "text": "ViSenze works alongside brainpowa for multimodal search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s04_v0.wav", "duration": 4.296, "text": "ViSenze works alongside brainpowa for multimodal search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s01_v2.wav", "duration": 3.384, "text": "We integrated ViSenze for image search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s01_v0.wav", "duration": 3.192, "text": "I met with Crispin Lowery at the event."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s03_v0.wav", "duration": 2.832, "text": "We launched Brain Checkout for mobile."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s00_v0.wav", "duration": 3.744, "text": "Arthur Yao leads the engineering team at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s00_v0.wav", "duration": 3.744, "text": "Arthur Yao leads the engineering team at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s00_v0.wav", "duration": 3.744, "text": "Arthur Yao leads the engineering team at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/767b59c8-6086-412c-86ae-010dc646943e_turn2.wav", "duration": 6.4, "text": "Give me example of impact of debit to equity ratio on pollution."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_subsquid_s00_v1.wav", "duration": 3.912, "text": "Subsquid indexes blockchain data for our analytics."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/32a00502-1305-4c3f-b9c4-4202d4d16dc2_turn1.wav", "duration": 3.328, "text": "What does Rezolve Ai do?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/32a00502-1305-4c3f-b9c4-4202d4d16dc2_turn1.wav", "duration": 3.328, "text": "What does Rezolve Ai do?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/32a00502-1305-4c3f-b9c4-4202d4d16dc2_turn1.wav", "duration": 3.328, "text": "What does Rezolve Ai do?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/5c5749f7-7303-427b-936e-cfb9fc8ac799_turn5.wav", "duration": 3.072, "text": "Tell me about latest acquisitions."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s05_v1.wav", "duration": 3.216, "text": "Rezolve builds voice-first shopping tools."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s05_v1.wav", "duration": 3.216, "text": "Rezolve builds voice-first shopping tools."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s05_v1.wav", "duration": 3.216, "text": "Rezolve builds voice-first shopping tools."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s04_v3.wav", "duration": 2.616, "text": "Rezolve joined NASDAQ last year."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s04_v3.wav", "duration": 2.616, "text": "Rezolve joined NASDAQ last year."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s04_v3.wav", "duration": 2.616, "text": "Rezolve joined NASDAQ last year."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s03_v2.wav", "duration": 3.264, "text": "Tell me about ViSenze's capabilities."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s00_v0.wav", "duration": 3.888, "text": "Rezolve AI is transforming ecommerce with voice."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s00_v0.wav", "duration": 3.888, "text": "Rezolve AI is transforming ecommerce with voice."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s00_v0.wav", "duration": 3.888, "text": "Rezolve AI is transforming ecommerce with voice."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/audio_16k/French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q02.wav", "duration": 6.408707482993197, "text": "What makes Brain Commerce different from traditional chatbot?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s01_v0.wav", "duration": 3.096, "text": "We partnered with Smartpay for checkout."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_bluedot_s03_v2.wav", "duration": 2.952, "text": "Tell me about Bluedot's SDK."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s07_v2.wav", "duration": 3.24, "text": "Rezolve AI recently joined NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s07_v2.wav", "duration": 3.24, "text": "Rezolve AI recently joined NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s07_v2.wav", "duration": 3.24, "text": "Rezolve AI recently joined NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_bluedot_s02_v1.wav", "duration": 3.552, "text": "Bluedot powers the proximity detection feature."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s02_v3.wav", "duration": 3.48, "text": "Dan Wagner founded Rezolve in 2015."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s02_v3.wav", "duration": 3.48, "text": "Dan Wagner founded Rezolve in 2015."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s02_v3.wav", "duration": 3.48, "text": "Dan Wagner founded Rezolve in 2015."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s07_v0.wav", "duration": 3.552, "text": "brainpowa is deployed on our voice commerce stack."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s07_v0.wav", "duration": 3.552, "text": "brainpowa is deployed on our voice commerce stack."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s07_v0.wav", "duration": 3.552, "text": "brainpowa is deployed on our voice commerce stack."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s01_v1.wav", "duration": 3.048, "text": "I met with Crispin Lowery at the event."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0010.wav", "duration": 8.96, "text": "Tell me about Rezolve's partnership with Microsoft and what models Rezolve published so far on AI Foundry?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0010.wav", "duration": 8.96, "text": "Tell me about Rezolve's partnership with Microsoft and what models Rezolve published so far on AI Foundry?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0010.wav", "duration": 8.96, "text": "Tell me about Rezolve's partnership with Microsoft and what models Rezolve published so far on AI Foundry?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s01_v4.wav", "duration": 2.28, "text": "The agent runs on brainpowa."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s01_v4.wav", "duration": 2.28, "text": "The agent runs on brainpowa."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s01_v4.wav", "duration": 2.28, "text": "The agent runs on brainpowa."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s05_v3.wav", "duration": 3.096, "text": "Rezolve builds voice-first shopping tools."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s05_v3.wav", "duration": 3.096, "text": "Rezolve builds voice-first shopping tools."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s05_v3.wav", "duration": 3.096, "text": "Rezolve builds voice-first shopping tools."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s02_v2.wav", "duration": 3.432, "text": "Arthur Yao is the CTO of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s02_v2.wav", "duration": 3.432, "text": "Arthur Yao is the CTO of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s02_v2.wav", "duration": 3.432, "text": "Arthur Yao is the CTO of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/1a100ae1-5383-4666-a74d-b98662ce018e_turn11.wav", "duration": 6.4, "text": "query other brands websites to see if you can cover their use cases."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_richard_burchill_s00_v3.wav", "duration": 3.912, "text": "Richard Burchill heads product strategy at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_richard_burchill_s00_v3.wav", "duration": 3.912, "text": "Richard Burchill heads product strategy at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_richard_burchill_s00_v3.wav", "duration": 3.912, "text": "Richard Burchill heads product strategy at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/efe9c0af-c571-494f-8726-ca78efa24512_turn1.wav", "duration": 3.072, "text": "what does Rezolve ai do"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/efe9c0af-c571-494f-8726-ca78efa24512_turn1.wav", "duration": 3.072, "text": "what does Rezolve ai do"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/efe9c0af-c571-494f-8726-ca78efa24512_turn1.wav", "duration": 3.072, "text": "what does Rezolve ai do"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_salman_ahmad_s01_v3.wav", "duration": 3.216, "text": "I connected with Salman Ahmad last week."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s04_v3.wav", "duration": 2.928, "text": "We have a partnership with Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s04_v3.wav", "duration": 2.928, "text": "We have a partnership with Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s04_v3.wav", "duration": 2.928, "text": "We have a partnership with Rezolve AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s00_v2.wav", "duration": 3.336, "text": "Rezolve AI is listed on NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s00_v2.wav", "duration": 3.336, "text": "Rezolve AI is listed on NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s00_v2.wav", "duration": 3.336, "text": "Rezolve AI is listed on NASDAQ."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s01_v4.wav", "duration": 2.688, "text": "I met with Crispin Lowery at the event."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/b79ee6ad-d081-4002-a08b-ccb74a8b0d90_turn1.wav", "duration": 6.912, "text": "tell me how do you implement impact of ESG commitments on valuations?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_richard_burchill_s00_v0.wav", "duration": 3.864, "text": "Richard Burchill heads product strategy at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_richard_burchill_s00_v0.wav", "duration": 3.864, "text": "Richard Burchill heads product strategy at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_richard_burchill_s00_v0.wav", "duration": 3.864, "text": "Richard Burchill heads product strategy at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s07_v1.wav", "duration": 3.048, "text": "Rezolve recently announced a new product."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s07_v1.wav", "duration": 3.048, "text": "Rezolve recently announced a new product."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s07_v1.wav", "duration": 3.048, "text": "Rezolve recently announced a new product."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s05_v3.wav", "duration": 3.648, "text": "Brain Commerce connects to Salesforce Commerce Cloud."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s06_v3.wav", "duration": 3.624, "text": "What makes Rezolve AI different from competitors?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s06_v3.wav", "duration": 3.624, "text": "What makes Rezolve AI different from competitors?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s06_v3.wav", "duration": 3.624, "text": "What makes Rezolve AI different from competitors?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_subsquid_s00_v0.wav", "duration": 4.008, "text": "Subsquid indexes blockchain data for our analytics."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crownpeak_s02_v1.wav", "duration": 3.792, "text": "CrownPeak supports headless CMS architectures."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s00_v3.wav", "duration": 4.224, "text": "GroupBy provides product discovery for enterprise retail."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s00_v1.wav", "duration": 3.672, "text": "Brain Checkout enables one-click voice purchases."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_richard_burchill_s01_v1.wav", "duration": 3.312, "text": "I spoke with Richard Burchill about the roadmap."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_salman_ahmad_s00_v2.wav", "duration": 3.264, "text": "Salman Ahmad leads business development."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s01_v4.wav", "duration": 2.832, "text": "We integrated Brain Commerce last quarter."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s01_v3.wav", "duration": 3.624, "text": "How does Rezolve AI improve product discovery?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s01_v3.wav", "duration": 3.624, "text": "How does Rezolve AI improve product discovery?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s01_v3.wav", "duration": 3.624, "text": "How does Rezolve AI improve product discovery?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_sauvik_banerjjee_s00_v4.wav", "duration": 2.712, "text": "Sauvik Banerjjee is our chief scientist."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crownpeak_s00_v2.wav", "duration": 4.104, "text": "CrownPeak is a digital experience management platform."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/a9164401-053d-4bb5-8446-2fbf87677973_turn4.wav", "duration": 4.864, "text": "Creating an entire outfit for a clothing retailer."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/24e6995f-a112-4b6b-94d9-0a2c0098a762_turn1.wav", "duration": 5.888, "text": "How do you implement impact of ESG commitments on valuation?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s06_v4.wav", "duration": 3.264, "text": "What makes Rezolve AI different from competitors?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s06_v4.wav", "duration": 3.264, "text": "What makes Rezolve AI different from competitors?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s06_v4.wav", "duration": 3.264, "text": "What makes Rezolve AI different from competitors?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0092.wav", "duration": 5.12, "text": "Where are Rezolve AI locations"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0092.wav", "duration": 5.12, "text": "Where are Rezolve AI locations"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0092.wav", "duration": 5.12, "text": "Where are Rezolve AI locations"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/audio_16k/French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q06.wav", "duration": 9.102222222222222, "text": "Do you support mobile wallets, instant payments, or crypto-to-fiat rails?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s01_v4.wav", "duration": 2.64, "text": "We partnered with Smartpay for checkout."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s02_v3.wav", "duration": 4.152, "text": "brainpowa handles speech recognition and classification."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s02_v3.wav", "duration": 4.152, "text": "brainpowa handles speech recognition and classification."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s02_v3.wav", "duration": 4.152, "text": "brainpowa handles speech recognition and classification."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crownpeak_s01_v0.wav", "duration": 3.648, "text": "We integrated CrownPeak for content management."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s01_v4.wav", "duration": 3.408, "text": "How does Rezolve AI improve product discovery?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s01_v4.wav", "duration": 3.408, "text": "How does Rezolve AI improve product discovery?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s01_v4.wav", "duration": 3.408, "text": "How does Rezolve AI improve product discovery?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s00_v1.wav", "duration": 3.408, "text": "Smartpay handles the payment processing layer."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s01_v1.wav", "duration": 3.384, "text": "How does Rezolve AI improve product discovery?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s01_v1.wav", "duration": 3.384, "text": "How does Rezolve AI improve product discovery?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s01_v1.wav", "duration": 3.384, "text": "How does Rezolve AI improve product discovery?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s03_v4.wav", "duration": 2.28, "text": "We are a NASDAQ-listed company."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s00_v4.wav", "duration": 3.264, "text": "brainpowa is the core AI product from Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s00_v4.wav", "duration": 3.264, "text": "brainpowa is the core AI product from Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s00_v4.wav", "duration": 3.264, "text": "brainpowa is the core AI product from Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s07_v2.wav", "duration": 3.768, "text": "brainpowa is deployed on our voice commerce stack."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s07_v2.wav", "duration": 3.768, "text": "brainpowa is deployed on our voice commerce stack."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s07_v2.wav", "duration": 3.768, "text": "brainpowa is deployed on our voice commerce stack."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s03_v3.wav", "duration": 2.88, "text": "Tell me about the Brain Commerce platform."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s02_v4.wav", "duration": 3.144, "text": "Dan Wagner founded Rezolve in 2015."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s02_v4.wav", "duration": 3.144, "text": "Dan Wagner founded Rezolve in 2015."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s02_v4.wav", "duration": 3.144, "text": "Dan Wagner founded Rezolve in 2015."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s02_v2.wav", "duration": 4.248, "text": "NASDAQ-listed Rezolve AI reported strong results."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s02_v2.wav", "duration": 4.248, "text": "NASDAQ-listed Rezolve AI reported strong results."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_nasdaq_s02_v2.wav", "duration": 4.248, "text": "NASDAQ-listed Rezolve AI reported strong results."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_bluedot_s03_v0.wav", "duration": 3.0, "text": "Tell me about Bluedot's SDK."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s02_v2.wav", "duration": 3.48, "text": "ViSenze powers the visual discovery feature."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s00_v0.wav", "duration": 3.312, "text": "Brain Commerce is Rezolve's ecommerce suite."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s00_v0.wav", "duration": 3.312, "text": "Brain Commerce is Rezolve's ecommerce suite."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s00_v0.wav", "duration": 3.312, "text": "Brain Commerce is Rezolve's ecommerce suite."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s00_v2.wav", "duration": 3.696, "text": "Crispin Lowery manages partnerships at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s00_v2.wav", "duration": 3.696, "text": "Crispin Lowery manages partnerships at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crispin_lowery_s00_v2.wav", "duration": 3.696, "text": "Crispin Lowery manages partnerships at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s00_v4.wav", "duration": 2.736, "text": "Brain Commerce is Rezolve's ecommerce suite."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s00_v4.wav", "duration": 2.736, "text": "Brain Commerce is Rezolve's ecommerce suite."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s00_v4.wav", "duration": 2.736, "text": "Brain Commerce is Rezolve's ecommerce suite."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s03_v0.wav", "duration": 2.544, "text": "Have you heard about Rezolve?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s03_v0.wav", "duration": 2.544, "text": "Have you heard about Rezolve?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s03_v0.wav", "duration": 2.544, "text": "Have you heard about Rezolve?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_bluedot_s01_v0.wav", "duration": 2.928, "text": "We use Bluedot for geofencing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s02_v0.wav", "duration": 3.432, "text": "Smartpay supports one-click payment flows."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crownpeak_s01_v4.wav", "duration": 3.12, "text": "We integrated CrownPeak for content management."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s02_v1.wav", "duration": 3.888, "text": "Brain Commerce supports Shopify and Adobe Commerce."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s03_v3.wav", "duration": 2.736, "text": "Tell me about GroupBy's technology."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s03_v4.wav", "duration": 2.904, "text": "Brain Checkout is integrated with Smartpay."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0008.wav", "duration": 8.704, "text": "How can I try Brain Commerce out for myself? Is there a customer of yours which website I can access to try it out?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0011.wav", "duration": 8.192, "text": "hospitality sector and I'm looking for a conversational AI solution. How can Rezolve help me with that?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0011.wav", "duration": 8.192, "text": "hospitality sector and I'm looking for a conversational AI solution. How can Rezolve help me with that?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0011.wav", "duration": 8.192, "text": "hospitality sector and I'm looking for a conversational AI solution. How can Rezolve help me with that?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s04_v2.wav", "duration": 3.288, "text": "The CEO of Rezolve is Dan Wagner."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s04_v2.wav", "duration": 3.288, "text": "The CEO of Rezolve is Dan Wagner."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s04_v2.wav", "duration": 3.288, "text": "The CEO of Rezolve is Dan Wagner."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s04_v4.wav", "duration": 2.832, "text": "Brain Commerce handles the full purchase journey."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_sauvik_banerjjee_s01_v4.wav", "duration": 3.432, "text": "Sauvik Banerjjee published research on voice AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/19a3d930-eab0-4073-8f03-4ce4cc2cc3ce_turn1.wav", "duration": 3.328, "text": "Who is the CEO of Rezolve?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/19a3d930-eab0-4073-8f03-4ce4cc2cc3ce_turn1.wav", "duration": 3.328, "text": "Who is the CEO of Rezolve?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/19a3d930-eab0-4073-8f03-4ce4cc2cc3ce_turn1.wav", "duration": 3.328, "text": "Who is the CEO of Rezolve?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s05_v2.wav", "duration": 3.912, "text": "Brain Commerce connects to Salesforce Commerce Cloud."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0013.wav", "duration": 7.936, "text": "The customer who is currently using your agentic AI product on their website."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/audio_16k/French_NoemieMarciano__en-NoemieMarciano-q05.wav", "duration": 6.965986394557823, "text": "What can your agent do autonomously in the shopping journey?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s06_v1.wav", "duration": 3.432, "text": "What makes Rezolve AI different from competitors?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s06_v1.wav", "duration": 3.432, "text": "What makes Rezolve AI different from competitors?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_ai_s06_v1.wav", "duration": 3.432, "text": "What makes Rezolve AI different from competitors?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_bluedot_s01_v4.wav", "duration": 2.448, "text": "We use Bluedot for geofencing."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_groupby_s03_v0.wav", "duration": 2.976, "text": "Tell me about GroupBy's technology."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_sauvik_banerjjee_s00_v2.wav", "duration": 3.48, "text": "Sauvik Banerjjee is our chief scientist."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s00_v3.wav", "duration": 3.312, "text": "Smartpay handles the payment processing layer."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s01_v4.wav", "duration": 2.976, "text": "We integrated ViSenze for image search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s01_v2.wav", "duration": 3.312, "text": "I spoke with Dan Wagner at the conference."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/error_en_0019.wav", "duration": 7.424, "text": "That's kind of interesting. Can you take me to a page that talks about your agentic commerce solutions?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/audio_16k/French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q01.wav", "duration": 7.151746031746032, "text": "How does Rezolve AI improve product discovery for enterprise retailers?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/audio_16k/French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q01.wav", "duration": 7.151746031746032, "text": "How does Rezolve AI improve product discovery for enterprise retailers?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/audio_16k/French_nonnative_StephaniaCesborn__en-StephaniaCesborn-q01.wav", "duration": 7.151746031746032, "text": "How does Rezolve AI improve product discovery for enterprise retailers?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s03_v1.wav", "duration": 3.072, "text": "Tell me about the Brain Commerce platform."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/7acf2e4f-0bfe-4016-843e-bf73cda8f54a_turn9.wav", "duration": 8.704, "text": "Okay, that's still very superficial. Could you give me more details if what makes it so intelligent?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s04_v4.wav", "duration": 1.968, "text": "Tell me about Smartpay."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s03_v1.wav", "duration": 2.28, "text": "Have you heard about Rezolve?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s03_v1.wav", "duration": 2.28, "text": "Have you heard about Rezolve?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_rezolve_s03_v1.wav", "duration": 2.28, "text": "Have you heard about Rezolve?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s04_v3.wav", "duration": 2.064, "text": "Tell me about Smartpay."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_subsquid_s01_v4.wav", "duration": 3.192, "text": "We use Subsquid for on-chain data pipelines."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s01_v1.wav", "duration": 3.0, "text": "We partnered with Smartpay for checkout."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crownpeak_s02_v0.wav", "duration": 3.768, "text": "CrownPeak supports headless CMS architectures."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s02_v1.wav", "duration": 3.096, "text": "Arthur Yao is the CTO of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s02_v1.wav", "duration": 3.096, "text": "Arthur Yao is the CTO of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s02_v1.wav", "duration": 3.096, "text": "Arthur Yao is the CTO of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_checkout_s00_v2.wav", "duration": 3.816, "text": "Brain Checkout enables one-click voice purchases."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s04_v3.wav", "duration": 4.344, "text": "ViSenze works alongside brainpowa for multimodal search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s04_v3.wav", "duration": 4.344, "text": "ViSenze works alongside brainpowa for multimodal search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s04_v3.wav", "duration": 4.344, "text": "ViSenze works alongside brainpowa for multimodal search."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_salman_ahmad_s01_v1.wav", "duration": 3.264, "text": "I connected with Salman Ahmad last week."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s00_v2.wav", "duration": 3.984, "text": "Dan Wagner is the CEO and founder of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s00_v2.wav", "duration": 3.984, "text": "Dan Wagner is the CEO and founder of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_dan_wagner_s00_v2.wav", "duration": 3.984, "text": "Dan Wagner is the CEO and founder of Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s00_v3.wav", "duration": 3.504, "text": "Arthur Yao leads the engineering team at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s00_v3.wav", "duration": 3.504, "text": "Arthur Yao leads the engineering team at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_arthur_yao_s00_v3.wav", "duration": 3.504, "text": "Arthur Yao leads the engineering team at Rezolve."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crownpeak_s00_v4.wav", "duration": 3.456, "text": "CrownPeak is a digital experience management platform."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_visenze_s03_v0.wav", "duration": 3.072, "text": "Tell me about ViSenze's capabilities."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/96271fbd-a632-43b5-9cbd-a9d95bc19677_turn0.wav", "duration": 3.072, "text": "see last year annual reports."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s07_v1.wav", "duration": 3.624, "text": "brainpowa is deployed on our voice commerce stack."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s07_v1.wav", "duration": 3.624, "text": "brainpowa is deployed on our voice commerce stack."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s07_v1.wav", "duration": 3.624, "text": "brainpowa is deployed on our voice commerce stack."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s00_v0.wav", "duration": 3.6, "text": "Smartpay handles the payment processing layer."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/d355c2da-b43e-4259-be43-5ca297b26b45_turn5.wav", "duration": 4.864, "text": "That makes no sense. It's the company's name, isn't it?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s02_v3.wav", "duration": 3.864, "text": "Brain Commerce supports Shopify and Adobe Commerce."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_crownpeak_s01_v1.wav", "duration": 3.576, "text": "We integrated CrownPeak for content management."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brain_commerce_s06_v4.wav", "duration": 2.784, "text": "Our team is evaluating Brain Commerce."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_sauvik_banerjjee_s01_v2.wav", "duration": 3.72, "text": "Sauvik Banerjjee published research on voice AI."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/data/gold_dataset/audio/a51ce143-d891-4d78-9942-cad87653e9bb_turn1.wav", "duration": 5.632, "text": "Which companies generated the most revenue from the acquisition?"}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_bluedot_s02_v0.wav", "duration": 3.744, "text": "Bluedot powers the proximity detection feature."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_smartpay_s04_v0.wav", "duration": 2.4, "text": "Tell me about Smartpay."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s01_v2.wav", "duration": 2.664, "text": "The agent runs on brainpowa."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s01_v2.wav", "duration": 2.664, "text": "The agent runs on brainpowa."}
+{"audio_filepath": "/home/azureuser/realtime-voice-benchmark/finetune/tts_audio/tts_brainpowa_s01_v2.wav", "duration": 2.664, "text": "The agent runs on brainpowa."}

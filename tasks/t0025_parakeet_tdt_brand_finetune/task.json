@@ -5,9 +5,9 @@
   "name": "parakeet-tdt-0.6b-v3 brand-aware fine-tune — domain adaptation for Rezolve terms",
   "short_description": "Fine-tune parakeet-tdt-0.6b-v3 on Rezolve domain audio with brand-word oversampling and partial encoder unfreezing to maximise brand EA-DV.",
   "long_description_file": "task_description.md",
-  "status": "not_started",
+  "status": "in_progress",
   "dependencies": [],
-  "start_time": null,
+  "start_time": "2026-09-03T09:05:46Z",
   "end_time": null,
   "expected_assets": {
     "model": 1,
